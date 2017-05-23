@@ -430,12 +430,6 @@ print "Creating Valuation Assignments"
 end
 
 puts " ✅"
-print "Creating Legislation"
-
-Legislation.create!(title: 'Participatory Democracy', body: 'In order to achieve...')
-
-
-puts " ✅"
 print "Ignoring flags in Debates, comments & proposals"
 
 Debate.flagged.reorder("RANDOM()").limit(10).each(&:ignore_flag)
@@ -606,7 +600,7 @@ print "Creating Poll Voters"
 end
 
 puts " ✅"
-pring "Creating legislation processes"
+print "Creating legislation processes"
 
 (1..5).each do |i|
   process = ::Legislation::Process.create!(title: Faker::Lorem.sentence(3).truncate(60),
