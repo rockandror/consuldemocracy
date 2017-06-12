@@ -1,0 +1,1 @@
+curl -n -X POST https://api.heroku.com/apps/boatjump-staging/ps -H "Accept: application/json" " -H "Authorization: Bearer $TUTORIAL_KEY" -d "command=rake prices_maintenance:update_gds_prices\['sedna/201706/2017-06-07 000530Z.json'\]"
