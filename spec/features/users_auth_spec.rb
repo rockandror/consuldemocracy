@@ -88,7 +88,7 @@ feature 'Users' do
         click_button 'Enter'
 
         expect(page).not_to have_content 'You have been signed in successfully.'
-        expect(page).to have_content 'Invalid login or password.'
+        expect(page).to have_content "Invalid Email or username or password."
 
         fill_in 'user_login',    with: 'venom@nyc.dev'
         fill_in 'user_password', with: 'symbiote'
@@ -135,7 +135,7 @@ feature 'Users' do
         expect(page).not_to have_css ".recaptcha"
 
         click_button "Enter"
-        expect(page).to have_content "Invalid login or password."
+        expect(page).to have_content "Invalid Email or username or password."
 
         fill_in "Email or username", with: "manuela@consul.dev"
         fill_in "Password", with: "wrong_password"
@@ -165,7 +165,7 @@ feature 'Users' do
         fill_in "Password", with: "wrong_password"
 
         click_button "Enter"
-        expect(page).to have_content "Invalid login or password."
+        expect(page).to have_content "Invalid Email or username or password."
       end
 
       scenario "checked recaptcha with correct login details", :js do
