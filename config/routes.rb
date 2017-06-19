@@ -112,7 +112,7 @@ Rails.application.routes.draw do
       get :debate
       get :draft_publication
       get :allegations
-      get :final_version_publication
+      get :result_publication
       resources :questions, only: [:show] do
         resources :answers, only: [:create]
       end
@@ -400,10 +400,15 @@ Rails.application.routes.draw do
     root to: "dashboard#index"
   end
 
+  # GraphQL
+  get '/graphql', to: 'graphql#query'
+  post '/graphql', to: 'graphql#query'
+
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
 
+  mount GraphiQL::Rails::Engine, at: '/graphiql', graphql_path: '/graphql'
   mount Tolk::Engine => '/translate', :as => 'tolk'
 
   # more info pages
