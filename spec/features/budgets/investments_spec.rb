@@ -39,7 +39,7 @@ feature 'Budget Investments' do
     end
 
     within("#budget_investment_#{investment_with_image.id}") do
-      expect(page).to have_css("img.th[alt='#{investment_with_image.image_description}'][title='#{investment_with_image.image_description}']")
+      expect(page).to have_css("img.th[alt='#{investment_with_image.image_title}'][title='#{investment_with_image.image_title}']")
     end
   end
 
@@ -351,7 +351,7 @@ feature 'Budget Investments' do
 
     visit budget_investment_path(budget_id: budget.id, id: investment_with_image.id)
 
-    expect(page).to have_css("img[alt='#{investment_with_image.image_description}'][title='#{investment_with_image.image_description}']")
+    expect(page).to have_css("img[alt='#{investment_with_image.image_title}'][title='#{investment_with_image.image_title}']")
   end
 
   scenario "Show back link contains heading id" do
@@ -359,6 +359,70 @@ feature 'Budget Investments' do
     visit budget_investment_path(budget, investment)
 
     expect(page).to have_link "Go back", href: budget_investments_path(budget, heading_id: investment.heading)
+  end
+
+  context "Edit image button" do
+    scenario "should not be shown for anonymous users" do
+      investment = create(:budget_investment, heading: heading)
+      visit budget_investment_path(budget, investment)
+
+      expect(page).not_to have_link "Edit image", href: edit_image_budget_investment_path(budget, investment)
+    end
+
+    scenario "should not be shown when current user is not investment author" do
+      investment = create(:budget_investment, heading: heading)
+      visit budget_investment_path(budget, investment)
+
+      expect(page).not_to have_link "Edit image", href: edit_image_budget_investment_path(budget, investment)
+    end
+
+    scenario "should be shown when current user is investment author" do
+      investment = create(:budget_investment, heading: heading, author: author)
+      login_as(author)
+      visit budget_investment_path(budget, investment)
+
+      expect(page).to have_link "Edit image", href: edit_image_budget_investment_path(budget, investment)
+    end
+  end
+
+  scenario "edit page should not be accesible when there is no logged user" do
+    investment = create(:budget_investment, heading: heading, author: author)
+    visit edit_image_budget_investment_path(budget, investment)
+
+    expect(page).to have_content "You must sign in or register to continue"
+  end
+
+  scenario "edit page should redirect to investment show page if logged user is not the author" do
+    other_author = create(:user, :level_two, username: 'Manuel')
+    investment = create(:budget_investment, heading: heading, author: author)
+    login_as(other_author)
+    visit edit_image_budget_investment_path(budget, investment)
+
+    expect(page).to have_content "You do not have permission to carry out the action 'edit_image' on budget/investment."
+  end
+
+  scenario "Update image should not be posible if logged user is not the author" do
+    other_author = create(:user, :level_two, username: 'Manuel')
+    investment = create(:budget_investment, heading: heading, author: author)
+    login_as(other_author)
+
+    visit edit_image_budget_investment_path(investment.budget, investment)
+    expect(current_path).not_to eq(edit_image_budget_investment_path(investment.budget, investment))
+    expect(page).to have_content 'You do not have permission'
+  end
+
+  scenario "Update image should be posible for authors" do
+    investment = create(:budget_investment, heading: heading, author: author)
+    login_as(author)
+
+    visit edit_image_budget_investment_path(investment.budget, investment)
+    fill_in :budget_investment_image_title, with: "New image title"
+    attach_file :budget_investment_image, "spec/fixtures/files/logo_header.jpg"
+    click_on "Save image"
+    within ".budget-investment-show" do
+      expect(page).to have_css("img[src*='logo_header.jpg']")
+    end
+    expect(page).to have_content 'Investment project image updated succesfully. '
   end
 
   context "Show (feasible budget investment)" do
