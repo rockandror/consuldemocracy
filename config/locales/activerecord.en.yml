@@ -99,7 +99,7 @@ en:
         location: "Location"
         organization_name: "If you are proposing in the name of a collective/organization, write its name"
         image: "Proposal descriptive image"
-        image_title: "Image description"
+        image_title: "Image title"
       comment:
         body: "Comment"
         user: "User"
