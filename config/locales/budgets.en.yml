@@ -94,9 +94,11 @@ en:
         votes: Votes
         price: Price
         edit_image: Edit image
+        add_image: Add image
       edit_image:
         title: Change your project image
-        note: 'You are changing investment project image of: %{title}'
+        add_note: 'Add an image to your investment project: %{title}'
+        edit_note: 'You are changing investment project image of: %{title}'
         form:
           image_title: Image title
           submit_button: Save image
