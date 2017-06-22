@@ -42,6 +42,9 @@ FactoryGirl.define do
       confirmed_hide_at Time.current
     end
 
+    trait :verified do
+      verified_at Time.current
+    end
   end
 
   factory :identity do
@@ -288,6 +291,12 @@ FactoryGirl.define do
       selected true
       feasibility "feasible"
       valuation_finished true
+
+    end
+
+    trait :winner do
+      selected
+      winner true
     end
 
     trait :unselected do
