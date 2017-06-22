@@ -861,7 +861,7 @@ describe Budget::Investment do
 
   end
 
-  describe "#is_followed_by" do
+  describe "#is_followed_by?" do
     it "should return true when given user is already following investment" do
       user = create(:user)
       investment.followers << user
