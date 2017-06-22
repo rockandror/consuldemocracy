@@ -860,4 +860,19 @@ describe Budget::Investment do
     end
 
   end
+
+  describe "#is_followed_by" do
+    it "should return true when given user is already following investment" do
+      user = create(:user)
+      investment.followers << user
+
+      expect(investment.is_followed_by?user).to eq(true)
+    end
+
+    it "should return true when given user is already following investment" do
+      user = create(:user)
+
+      expect(investment.is_followed_by?user).to eq(false)
+    end
+  end
 end

@@ -20,6 +20,8 @@ class Budget
     has_many :valuator_assignments, dependent: :destroy
     has_many :valuators, through: :valuator_assignments
     has_many :comments, as: :commentable
+    has_many :investment_interests, class_name: 'Budget::InvestmentInterest'
+    has_many :followers, through: :investment_interests, source: :user
 
     validates :title, presence: true
     validates :author, presence: true
@@ -243,6 +245,10 @@ class Budget
       investments = investments.by_heading(params[:heading_id]) if params[:heading_id].present?
       investments = investments.search(params[:search])         if params[:search].present?
       investments
+    end
+
+    def is_followed_by?(user)
+      followers.include? user
     end
 
     private

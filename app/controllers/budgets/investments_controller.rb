@@ -77,6 +77,18 @@ module Budgets
       super
     end
 
+    def follow
+      @investment.followers << current_user
+      redirect_to budget_investment_path(@investment.budget, @investment),
+                  notice: t("budgets.investments.follow.notice")
+    end
+
+    def unfollow
+      @investment.followers.delete(current_user)
+      redirect_to budget_investment_path(@investment.budget, @investment),
+                  notice: t("budgets.investments.unfollow.notice")
+    end
+
     private
 
       def resource_model

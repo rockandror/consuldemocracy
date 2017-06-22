@@ -4,6 +4,18 @@
     <div class="small-12 medium-9 column">
       <%= back_link_to budget_investments_path(investment.budget, heading_id: investment.heading) %>
 
+      <% if current_user.blank? || !investment.is_followed_by?(current_user) %>
+        <%= link_to t("budgets.investments.show.follow_button"),
+                    follow_budget_investment_path(investment.budget, investment),
+                    method: :post,
+                    class: 'button hollow float-right' %>
+      <% else %>
+        <%= link_to t("budgets.investments.show.unfollow_button"),
+                    unfollow_budget_investment_path(investment.budget, investment),
+                    method: :post,
+                    class: 'button hollow float-right' %>
+      <% end %>
+
       <h1><%= investment.title %></h1>
 
       <div class="budget-investment-info">

@@ -93,6 +93,12 @@ en:
         supports: Supports
         votes: Votes
         price: Price
+        follow_button: Follow this project
+        unfollow_button: Unfollow this project
+      follow:
+        notice: Now you are following this project. You will receive notifications by email.
+      unfollow:
+        notice: You have stopped following this project. You will no longer receive any related notifications.
       wrong_price_format: Only integer numbers
       investment:
         add: Vote

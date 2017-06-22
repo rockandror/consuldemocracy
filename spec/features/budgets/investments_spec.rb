@@ -336,6 +336,52 @@ feature 'Budget Investments' do
     expect(page).to have_link "Go back", href: budget_investments_path(budget, heading_id: investment.heading)
   end
 
+  scenario "Show follow button" do
+    investment = create(:budget_investment, heading: heading)
+    visit budget_investment_path(budget_id: budget.id, id: investment.id)
+
+    expect(page).to have_link("Follow this project")
+  end
+
+  scenario "Show unfollow button when user is already a follower" do
+    user = create(:user)
+    investment = create(:budget_investment, heading: heading)
+    investment.followers << user
+    visit budget_investment_path(budget_id: budget.id, id: investment.id)
+
+    expect(page).to have_link("Follow this project")
+  end
+
+  scenario "follow investment project should not be possible when no user logged in" do
+    user = create(:user)
+    investment = create(:budget_investment, heading: heading)
+    visit budget_investment_path(budget_id: budget.id, id: investment.id)
+
+    click_link("Follow this project")
+    expect(page).to have_content "You must sign in or register to continue. "
+  end
+
+  scenario "follow investment project should be possible for any authenticated user" do
+    user = create(:user)
+    login_as(user)
+    investment = create(:budget_investment, heading: heading)
+    visit budget_investment_path(budget_id: budget.id, id: investment.id)
+
+    click_link("Follow this project")
+    expect(page).to have_content "Now you are following this project. You will receive notifications by email."
+  end
+
+  scenario "unfollow investment project should be possible for any authenticated user" do
+    user = create(:user)
+    login_as(user)
+    investment = create(:budget_investment, heading: heading)
+    investment.followers << user
+    visit budget_investment_path(budget_id: budget.id, id: investment.id)
+
+    click_link("Unfollow this project")
+    expect(page).to have_content "You have stopped following this project. You will no longer receive any related notifications."
+  end
+
   context "Show (feasible budget investment)" do
     let(:investment) do
       create(:budget_investment,

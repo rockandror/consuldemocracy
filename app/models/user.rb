@@ -31,6 +31,8 @@ class User < ActiveRecord::Base
   has_many :direct_messages_sent,     class_name: 'DirectMessage', foreign_key: :sender_id
   has_many :direct_messages_received, class_name: 'DirectMessage', foreign_key: :receiver_id
   has_many :legislation_answers, class_name: 'Legislation::Answer', dependent: :destroy, inverse_of: :user
+  has_many :investment_interests, class_name: 'Budget::InvestmentInterest'
+  has_many :investments, through: :investment_interests, source: :budget_investment
   belongs_to :geozone
 
   validates :username, presence: true, if: :username_required?

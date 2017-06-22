@@ -93,6 +93,12 @@ es:
         supports: Apoyos
         votes: Votos
         price: Coste
+        follow_button: Seguir propuesta
+        unfollow_button: Dejar de seguir
+      follow:
+        notice: Ahora estas siguiendo este proyecto. Recibirás notificaciones por email.
+      unfollow:
+        notice: Has dejado de seguir este proyecto de inversión. Ya no recibirás notificaciones relacionadas.
       wrong_price_format: Solo puede incluir caracteres numéricos
       investment:
         add: Votar
