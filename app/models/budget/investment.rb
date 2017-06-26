@@ -6,7 +6,7 @@ class Budget
     include Taggable
     include Searchable
     include Reclassification
-    include Followable
+    include Interestable
 
     acts_as_votable
     acts_as_paranoid column: :hidden_at

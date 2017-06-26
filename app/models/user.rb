@@ -33,6 +33,8 @@ class User < ActiveRecord::Base
   has_many :legislation_answers, class_name: 'Legislation::Answer', dependent: :destroy, inverse_of: :user
   has_many :follows
   belongs_to :geozone
+  has_many :interests
+
 
   validates :username, presence: true, if: :username_required?
   validates :username, uniqueness: { scope: :registering_with_oauth }, if: :username_required?
