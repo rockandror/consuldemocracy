@@ -2021,6 +2021,11 @@ table {
   background-color: #33dadf;
 }
 
+.banner-style{
+  word-wrap: break-word
+}
+
+
 @include breakpoint(large) {
 
   .banner-img-one {
