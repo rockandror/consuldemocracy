@@ -1952,10 +1952,10 @@ table {
     margin-bottom: $line-height / 2;
 
     .accordion-title {
-      border-bottom: 1px solid $light-gray;
+      border-bottom: 1px solid $border;
       background: #f8f9fb;
-      font-size: rem-calc(15);
-      padding: rem-calc(10);
+      font-size: $small-font-size;
+      padding: $line-height / 2;
     }
 
     .accordion-content {
@@ -1963,12 +1963,12 @@ table {
     }
   }
 
-  .accordion li strong {
+  .accordion .title {
     display: block;
     line-height: $line-height;
   }
 
-  .accordion li i {
+  .accordion .icon {
     font-size: rem-calc(20);
     float: left;
     margin-right: $line-height / 3;
