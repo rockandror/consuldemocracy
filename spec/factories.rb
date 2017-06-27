@@ -349,15 +349,11 @@ FactoryGirl.define do
     association :user, factory: :user
   end
 
-  factory :follow do
+  factory :interest do
     association :user, factory: :user
 
-    trait :followed_proposal do
-      association :followable, factory: :proposal
-    end
-
-    trait :followed_investment do
-      association :followable, factory: :budget_investment
+    trait :interesting_proposal do
+      association :interestable, factory: :proposal
     end
   end
 

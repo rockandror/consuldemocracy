@@ -59,6 +59,8 @@ Rails.application.routes.draw do
       get :retire_form
       get :share
       patch :retire
+      put :follow
+      put :unfollow
     end
     collection do
       get :map
