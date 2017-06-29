@@ -80,6 +80,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.paperclip_defaults = {
+    s3_host_name: "s3-#{ENV['AWS_REGION']}.amazonaws.com",
     storage: :s3,
     s3_credentials: {
       bucket: ENV.fetch('S3_BUCKET_NAME'),
@@ -87,5 +88,5 @@ Rails.application.configure do
       secret_access_key: ENV.fetch('AWS_SECRET_ACCESS_KEY'),
       s3_region: ENV.fetch('AWS_REGION'),
     }
-  }  
+  }
 end
