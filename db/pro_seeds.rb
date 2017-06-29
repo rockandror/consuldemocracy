@@ -68,7 +68,8 @@ def create_user(email, username = Faker::Name.name)
   )
 end
 
-admin = User.first
+admin = create_user('admin@consul.dev', 'admin')
+admin.create_administrator
 admin.update(residence_verified_at: Time.current, confirmed_phone: Faker::PhoneNumber.phone_number, document_type: "1", verified_at: Time.current, document_number: "1111111111")
 
 moderator = create_user('mod@consul.dev', 'mod')
@@ -492,15 +493,15 @@ Proposal.last(3).each do |proposal|
                           created_at: rand((Time.current - 1.week)..Time.current))
 end
 
-# puts " ✅"
-# puts "Creating proposal notifications"
+puts " ✅"
+puts "Creating proposal notifications"
 
-# 100.times do |i|
-#   ProposalNotification.create!(title: "Proposal notification title #{i}",
-#                                body: "Proposal notification body #{i}",
-#                                author: User.reorder("RANDOM()").first,
-#                                proposal: Proposal.reorder("RANDOM()").first)
-# end
+100.times do |i|
+  ProposalNotification.create!(title: "Proposal notification title #{i}",
+                               body: "Proposal notification body #{i}",
+                               author: User.reorder("RANDOM()").first,
+                               proposal: Proposal.reorder("RANDOM()").first)
+end
 
 puts " ✅"
 print "Creating polls"
