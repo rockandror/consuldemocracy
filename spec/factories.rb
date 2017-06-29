@@ -342,11 +342,11 @@ FactoryGirl.define do
     association :user, factory: :user
   end
 
-  factory :interest do
+  factory :follow do
     association :user, factory: :user
 
-    trait :interesting_proposal do
-      association :interestable, factory: :proposal
+    trait :followed_proposal do
+      association :followable, factory: :proposal
     end
   end
 
