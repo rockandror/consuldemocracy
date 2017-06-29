@@ -102,7 +102,7 @@ group :production do
 end
 
 group :production do
-  gem "rails_12_factor"
+  gem "rails_12factor"
 end
 
 eval_gemfile './Gemfile_custom'
