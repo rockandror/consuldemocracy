@@ -101,4 +101,8 @@ group :production do
   gem "rails_12factor"
 end
 
+group :production do
+  gem "rails_12_factor"
+end
+
 eval_gemfile './Gemfile_custom'
