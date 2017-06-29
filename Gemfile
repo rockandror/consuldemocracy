@@ -111,7 +111,11 @@ group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'scss_lint', require: false
   gem 'web-console', '3.3.0'
-  gem "rails_12factor"
+
+end
+
+group :production do
+  gem "rails_12_factor"
 end
 
 eval_gemfile './Gemfile_custom'
