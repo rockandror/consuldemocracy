@@ -34,8 +34,7 @@ module Abilities
       can [:flag, :unflag], Proposal
       cannot [:flag, :unflag], Proposal, author_id: user.id
 
-      can [:follow, :unfollow], Proposal
-      #TODO Ask client. cannot [:follow, :unfollow], Proposal, user_id: user.id      
+      can [:create, :destroy], Follow
 
       unless user.organization?
         can :vote, Debate
