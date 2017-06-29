@@ -59,6 +59,18 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-markdown-it', '~> 8.2.1'
 end
 
+gem 'redcarpet', '~> 3.4.0'
+gem 'rubyzip', '~> 1.2.0'
+
+gem 'paperclip'
+gem 'aws-sdk', '~> 2.3.0'
+gem 'rails-assets-markdown-it', source: 'https://rails-assets.org'
+
+gem 'cocoon'
+
+gem 'graphql', '~> 1.6.3'
+gem 'graphiql-rails', '~> 1.4.1'
+
 group :development, :test do
   gem 'bullet', '~> 5.7.0'
   gem 'byebug', '~> 10.0.0'
