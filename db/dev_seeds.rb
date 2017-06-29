@@ -1,6 +1,6 @@
-# require 'database_cleaner'
+require 'database_cleaner'
 
-# DatabaseCleaner.clean_with :truncation
+DatabaseCleaner.clean_with :truncation
 
 print "Creating Settings"
 Setting.create(key: 'official_level_1_name', value: 'Empleados públicos')
