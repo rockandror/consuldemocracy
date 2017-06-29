@@ -102,6 +102,7 @@ group :production do
 end
 
 group :production do
+  gem "faker", '~> 1.7.3'
   gem "rails_12factor"
 end
 
