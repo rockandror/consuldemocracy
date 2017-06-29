@@ -67,6 +67,7 @@ gem 'redcarpet', '~> 3.4.0'
 gem 'rubyzip', '~> 1.2.0'
 
 gem 'paperclip'
+gem 'aws-sdk', '~> 2.3.0'
 gem 'rails-assets-markdown-it', source: 'https://rails-assets.org'
 
 gem 'cocoon'
