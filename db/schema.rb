@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20170704105112) do
+=======
+ActiveRecord::Schema.define(version: 20170626180127) do
+>>>>>>> Rename interest to follow and code refactor
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -259,7 +263,6 @@ ActiveRecord::Schema.define(version: 20170704105112) do
     t.integer  "geozone_id"
     t.tsvector "tsv"
     t.datetime "featured_at"
-    t.integer  "interests_count",                         default: 0
   end
 
   add_index "debates", ["author_id", "hidden_at"], name: "index_debates_on_author_id_and_hidden_at", using: :btree
@@ -327,6 +330,18 @@ ActiveRecord::Schema.define(version: 20170704105112) do
   add_index "flags", ["user_id", "flaggable_type", "flaggable_id"], name: "access_inappropiate_flags", using: :btree
   add_index "flags", ["user_id"], name: "index_flags_on_user_id", using: :btree
 
+  create_table "follows", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "followable_id"
+    t.string   "followable_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "follows", ["followable_type", "followable_id"], name: "index_follows_on_followable_type_and_followable_id", using: :btree
+  add_index "follows", ["user_id", "followable_type", "followable_id"], name: "access_follows", using: :btree
+  add_index "follows", ["user_id"], name: "index_follows_on_user_id", using: :btree
+
   create_table "geozones", force: :cascade do |t|
     t.string   "name"
     t.string   "html_map_coordinates"
@@ -353,18 +368,6 @@ ActiveRecord::Schema.define(version: 20170704105112) do
   end
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
-
-  create_table "interests", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "interestable_id"
-    t.string   "interestable_type"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-  end
-
-  add_index "interests", ["interestable_type", "interestable_id"], name: "index_interests_on_interestable_type_and_interestable_id", using: :btree
-  add_index "interests", ["user_id", "interestable_type", "interestable_id"], name: "access_interests", using: :btree
-  add_index "interests", ["user_id"], name: "index_interests_on_user_id", using: :btree
 
   create_table "legacy_legislations", force: :cascade do |t|
     t.string   "title"
@@ -739,7 +742,6 @@ ActiveRecord::Schema.define(version: 20170704105112) do
     t.datetime "retired_at"
     t.string   "retired_reason"
     t.text     "retired_explanation"
-    t.integer  "interests_count",                default: 0
   end
 
   add_index "proposals", ["author_id", "hidden_at"], name: "index_proposals_on_author_id_and_hidden_at", using: :btree
@@ -1050,10 +1052,10 @@ ActiveRecord::Schema.define(version: 20170704105112) do
   add_foreign_key "failed_census_calls", "poll_officers"
   add_foreign_key "failed_census_calls", "users"
   add_foreign_key "flags", "users"
+  add_foreign_key "follows", "users"
   add_foreign_key "geozones_polls", "geozones"
   add_foreign_key "geozones_polls", "polls"
   add_foreign_key "identities", "users"
-  add_foreign_key "interests", "users"
   add_foreign_key "legislation_draft_versions", "legislation_processes"
   add_foreign_key "locks", "users"
   add_foreign_key "managers", "users"

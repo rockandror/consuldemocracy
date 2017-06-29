@@ -59,8 +59,6 @@ Rails.application.routes.draw do
       get :retire_form
       get :share
       patch :retire
-      put :follow
-      put :unfollow
     end
     collection do
       get :map
@@ -94,6 +92,8 @@ Rails.application.routes.draw do
       post :vote, on: :member
     end
   end
+
+  resources :follows, only: [:create, :destroy]
 
   resources :stats, only: [:index]
 
