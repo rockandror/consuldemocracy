@@ -259,7 +259,6 @@ ActiveRecord::Schema.define(version: 20170704105112) do
     t.integer  "geozone_id"
     t.tsvector "tsv"
     t.datetime "featured_at"
-    t.integer  "interests_count",                         default: 0
   end
 
   add_index "debates", ["author_id", "hidden_at"], name: "index_debates_on_author_id_and_hidden_at", using: :btree
@@ -365,18 +364,6 @@ ActiveRecord::Schema.define(version: 20170704105112) do
   end
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
-
-  create_table "interests", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "interestable_id"
-    t.string   "interestable_type"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-  end
-
-  add_index "interests", ["interestable_type", "interestable_id"], name: "index_interests_on_interestable_type_and_interestable_id", using: :btree
-  add_index "interests", ["user_id", "interestable_type", "interestable_id"], name: "access_interests", using: :btree
-  add_index "interests", ["user_id"], name: "index_interests_on_user_id", using: :btree
 
   create_table "legacy_legislations", force: :cascade do |t|
     t.string   "title"
@@ -751,7 +738,6 @@ ActiveRecord::Schema.define(version: 20170704105112) do
     t.datetime "retired_at"
     t.string   "retired_reason"
     t.text     "retired_explanation"
-    t.integer  "interests_count",                default: 0
   end
 
   add_index "proposals", ["author_id", "hidden_at"], name: "index_proposals_on_author_id_and_hidden_at", using: :btree
@@ -1067,7 +1053,6 @@ ActiveRecord::Schema.define(version: 20170704105112) do
   add_foreign_key "geozones_polls", "geozones"
   add_foreign_key "geozones_polls", "polls"
   add_foreign_key "identities", "users"
-  add_foreign_key "interests", "users"
   add_foreign_key "legislation_draft_versions", "legislation_processes"
   add_foreign_key "locks", "users"
   add_foreign_key "managers", "users"

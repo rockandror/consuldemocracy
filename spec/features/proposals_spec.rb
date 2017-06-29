@@ -1223,7 +1223,7 @@ feature 'Proposals' do
     expect(Flag.flagged?(user, proposal)).to_not be
   end
 
-  feature "Interests" do
+  feature "Follows" do
 
     scenario "Should not show follow button when there is no logged user" do
       proposal = create(:proposal)
@@ -1248,15 +1248,15 @@ feature 'Proposals' do
         expect(page).to have_css("#unfollow-expand-proposal-#{proposal.id}")
       end
 
-      expect(Interest.interested?(user, proposal)).to be
+      expect(Follow.followed?(user, proposal)).to be
     end
 
     scenario "Show unfollow button when user already follow this proposal" do
       user = create(:user)
-      interest = create(:interest, :interesting_proposal, user: user)
+      follow = create(:follow, :followed_proposal, user: user)
       login_as(user)
 
-      visit proposal_path(interest.interestable)
+      visit proposal_path(follow.followable)
 
       expect(page).to have_link("Unfollow citizen proposal")
     end
@@ -1264,7 +1264,7 @@ feature 'Proposals' do
     scenario "Unfollowing", :js do
       user = create(:user)
       proposal = create(:proposal)
-      Interest.follow(user, proposal)
+      follow = create(:follow, :followed_proposal, user: user, followable: proposal)
       login_as(user)
 
       visit proposal_path(proposal)
@@ -1275,7 +1275,7 @@ feature 'Proposals' do
         expect(page).to have_css("#follow-expand-proposal-#{proposal.id}")
       end
 
-      expect(Interest.interested?(user, proposal)).to_not be
+      expect(Follow.followed?(user, proposal)).not_to be
     end
 
     scenario "Show follow button when user is not following this proposal" do

@@ -13,19 +13,20 @@ class Follow < ActiveRecord::Base
           followable_id: followable.id)
   end)
 
+  # def self.follow(user, followable)
+  #   return false if interested?(user, followable)
+  #   create(user: user, followable: followable)
+  # end
+  #
+  # def self.unfollow(user, followable)
+  #   interests = by_user_and_followable(user, followable)
+  #   return false if interests.empty?
+  #   interests.destroy_all
+  # end
+  #
   def self.followed?(user, followable)
     return false unless user
     !! by_user_and_followable(user, followable).try(:first)
-  end
-
-  def self.interests_by(user)
-    interests = []
-    user.follows.each do |follow|
-      follow.followable.tags.each do |tag|
-        interests << tag.name
-      end
-    end
-    return interests.uniq
   end
 
 end
