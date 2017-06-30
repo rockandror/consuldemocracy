@@ -13,7 +13,7 @@
 <div class="tabs-content" data-tabs-content="investments-tabs" role="tablist">
   <%= render "budgets/investments/filter_subnav" %>
   <%= render "budgets/investments/milestones" %>
-  <%= render "follows/followers", entity: @investment %>
+  <%= render "follows/followers", followable: @investment %>
 
   <div class="tabs-panel is-active" id="tab-comments">
     <%= render partial: '/comments/comment_tree', locals: { comment_tree: @comment_tree,
