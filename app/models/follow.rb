@@ -17,5 +17,15 @@ class Follow < ActiveRecord::Base
     return false unless user
     !! by_user_and_followable(user, followable).try(:first)
   end
-  
+
+  def self.interests_by(user)
+    interests = []
+    user.follows.each do |follow|
+      follow.followable.tags.each do |tag|
+        interests << tag.name
+      end
+    end
+    return interests.uniq
+  end
+
 end
