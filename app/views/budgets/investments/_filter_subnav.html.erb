@@ -17,6 +17,14 @@
           </h3>
         <% end %>
       </li>
+      <li class="tabs-title">
+        <%= link_to "#tab-followers" do %>
+          <h3>
+            <%= t("follows.followers_tab") %>
+            (<%= @investment.follows.count %>)
+          </h3>
+          <% end %>
+      </li>
     </ul>
   </div>
 </div>
