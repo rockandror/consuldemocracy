@@ -17,5 +17,5 @@ class Follow < ActiveRecord::Base
     return false unless user
     !! by_user_and_followable(user, followable).try(:first)
   end
-
+  
 end

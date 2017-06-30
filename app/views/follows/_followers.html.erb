@@ -1,0 +1,14 @@
+<div class="tabs-panel" id="tab-followers">
+  <div class="row">
+    <div class="small-12 column">
+      <% if entity.follows.blank? %>
+        <div class="callout primary text-center">
+          <%= t('proposals.show.no_notifications') %>
+        </div>
+      <% end %>
+      <% entity.follows.each do |follow| %>
+        <p><%= follow.user.name %></p>
+      <% end %>
+    </div>
+  </div>
+</div>
