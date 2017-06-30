@@ -395,7 +395,6 @@ en:
       comments_tab: Comments
       edit_proposal_link: Edit
       flag: This proposal has been flagged as inappropriate by several users.
-      followers_tab: Followers
       login_to_comment: You must %{signin} or %{signup} to leave a comment.
       notifications_tab: Notifications
       retired_warning: "The author considers this proposal should not receive more supports."
@@ -404,7 +403,6 @@ en:
       share: Share
       send_notification: Send notification
       no_notifications: "This proposal has any notifications."
-      no_followers: "Don't have followers."
       embed_video_title: "Video on %{proposal}"
     update:
       form:
