@@ -1891,6 +1891,27 @@ table {
   width: 100%;
 }
 
+.follower-info .user-name {
+  background: transparent;
+  border: 1px solid $border;
+
+  img {
+    margin-right: $line-height / 2;
+  }
+}
+
+.follower-info {
+  color: $text-medium;
+  display: inline-block;
+  font-size: $small-font-size;
+  line-height: rem-calc(32); // Same as avatar height
+
+  .user-name {
+    color: $text;
+    font-weight: bold;
+  }
+}
+
 // 16. Flags
 // ---------
 

@@ -6,13 +6,16 @@
           <%= t('follows.no_followers') %>
         </div>
       <% end %>
-        <% entity.follows.each do |follow| %>
-          <div class="comment-info">
+      <% entity.follows.each do |follow| %>
+        <div class="follower follower-info">
+          <%= link_to user_path(follow.user), class: 'tags' do %>
             <span class="user-name">
-              <%= link_to follow.user.name, user_path(follow.user) %>
+              <%= avatar_image(follow.user, seed: follow.user_id, size: 32, class: "float-left") %>
+              <%= follow.user.name %>
             </span>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
