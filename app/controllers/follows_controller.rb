@@ -20,4 +20,5 @@ class FollowsController < ApplicationController
   def find_followable
     params[:followable_type].constantize.find(params[:followable_id])
   end
+
 end
