@@ -18,12 +18,12 @@
       <% end %>
       </li>
       <li class="tabs-title">
-      <%= link_to "#tab-followers" do %>
-        <h3>
-          <%= t("follows.followers_tab") %>
-          (<%= @proposal.follows.count %>)
-        </h3>
-      <% end %>
+        <%= link_to "#tab-followers" do %>
+          <h3>
+            <%= t("proposals.show.followers_tab") %>
+            (<span id="tab-followers-count"><%= @proposal.follows.count %></span>)
+          </h3>
+        <% end %>
       </li>
     </ul>
   </div>
