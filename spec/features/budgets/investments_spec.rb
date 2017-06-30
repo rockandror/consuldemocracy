@@ -525,6 +525,71 @@ feature 'Budget Investments' do
         expect(page).to have_content("Don't have followers")
       end
     end
+
+    scenario "Followers tab count should be updated after new follow created", :js do
+      user = create(:user)
+      investment = create(:budget_investment)
+      login_as(user)
+
+      visit budget_investment_path(budget_id: investment.budget.id, id: investment.id)
+      within "#budget_investment_#{investment.id}" do
+        page.find("#follow-expand-investment-#{investment.id}").click
+        page.find("#follow-investment-#{investment.id}").click
+      end
+
+      expect(page).to have_link("Followers (1)")
+    end
+
+    scenario "Followers tab content should new follower after new follow created", :js do
+      user = create(:user)
+      investment = create(:budget_investment)
+      login_as(user)
+
+      visit budget_investment_path(budget_id: investment.budget.id, id: investment.id)
+      within "#budget_investment_#{investment.id}" do
+        page.find("#follow-expand-investment-#{investment.id}").click
+        page.find("#follow-investment-#{investment.id}").click
+      end
+      click_link "Followers (1)"
+
+      within "#tab-followers" do
+        expect(page).to have_link(user.username)
+      end
+    end
+
+    scenario "Followers tab count should be updated after follow destroyed", :js do
+      user = create(:user)
+      investment = create(:budget_investment)
+      follow = create(:follow, user: user, followable: investment)
+      login_as(user)
+
+      visit budget_investment_path(budget_id: investment.budget.id, id: investment.id)
+      within "#budget_investment_#{investment.id}" do
+        page.find("#unfollow-expand-investment-#{investment.id}").click
+        page.find("#unfollow-investment-#{investment.id}").click
+      end
+
+      expect(page).to have_link("Followers (0)")
+    end
+
+    scenario "Followers tab content should not show user after follow destroyed", :js do
+      user = create(:user)
+      investment = create(:budget_investment)
+      follow = create(:follow, user: user, followable: investment)
+      login_as(user)
+
+      visit budget_investment_path(budget_id: investment.budget.id, id: investment.id)
+      within "#budget_investment_#{investment.id}" do
+        page.find("#unfollow-expand-investment-#{investment.id}").click
+        page.find("#unfollow-investment-#{investment.id}").click
+      end
+
+      click_link "Followers (0)"
+      within "#tab-followers" do
+        expect(page).not_to have_link(user.username)
+        expect(page).to have_content("Don't have followers")
+      end
+    end
   end
 
   context "Destroy" do
