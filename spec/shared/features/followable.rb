@@ -94,14 +94,17 @@ RSpec.shared_examples "followable" do |followable_class_name, followable_path, f
   end
 
   scenario "Followers list by order username on followable show" do
-    user1 = create(:user, username: "Andres")
-    user2 = create(:user, username: "Bartolo")
+    user1 = create(:user, username: "Andrew")
+    user2 = create(:user, username: "Barry")
+    user3 = create(:user, username: "Charles")
     create(:follow, followable: followable, user: user1)
     create(:follow, followable: followable, user: user2)
+    create(:follow, followable: followable, user: user3)
 
     visit send(followable_path, arguments)
 
     expect(user1.username).to appear_before(user2.username)
+    expect(user2.username).to appear_before(user3.username)
   end
 
   scenario "Show text when have not followers" do
