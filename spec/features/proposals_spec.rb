@@ -1264,7 +1264,7 @@ feature 'Proposals' do
     scenario "Unfollowing", :js do
       user = create(:user)
       proposal = create(:proposal)
-      follow = create(:follow, :followed_proposal, user: user, followable: proposal)
+      follow = create(:follow, user: user, followable: proposal)
       login_as(user)
 
       visit proposal_path(proposal)
@@ -1297,6 +1297,72 @@ feature 'Proposals' do
       expect(page).to have_content("Followers")
       expect(page).to have_content(user.name)
     end
+
+    scenario "Followers tab count should be updated after new follow created", :js do
+      user = create(:user)
+      proposal = create(:proposal)
+      login_as(user)
+
+      visit proposal_path(proposal)
+      within "#proposal_#{proposal.id}" do
+        page.find("#follow-expand-proposal-#{proposal.id}").click
+        page.find("#follow-proposal-#{proposal.id}").click
+      end
+
+      expect(page).to have_link("Followers (1)")
+    end
+
+    scenario "Followers tab content should new follower after new follow created", :js do
+      user = create(:user)
+      proposal = create(:proposal)
+      login_as(user)
+
+      visit proposal_path(proposal)
+      within "#proposal_#{proposal.id}" do
+        page.find("#follow-expand-proposal-#{proposal.id}").click
+        page.find("#follow-proposal-#{proposal.id}").click
+      end
+      click_link "Followers (1)"
+
+      within "#tab-followers" do
+        expect(page).to have_link(user.username)
+      end
+    end
+
+    scenario "Followers tab count should be updated after follow destroyed", :js do
+      user = create(:user)
+      proposal = create(:proposal)
+      follow = create(:follow, user: user, followable: proposal)
+      login_as(user)
+
+      visit proposal_path(proposal)
+      within "#proposal_#{proposal.id}" do
+        page.find("#unfollow-expand-proposal-#{proposal.id}").click
+        page.find("#unfollow-proposal-#{proposal.id}").click
+      end
+
+      expect(page).to have_link("Followers (0)")
+    end
+
+    scenario "Followers tab content should not show user after follow destroyed", :js do
+      user = create(:user)
+      proposal = create(:proposal)
+      follow = create(:follow, user: user, followable: proposal)
+      login_as(user)
+
+      visit proposal_path(proposal)
+      within "#proposal_#{proposal.id}" do
+        page.find("#unfollow-expand-proposal-#{proposal.id}").click
+        page.find("#unfollow-proposal-#{proposal.id}").click
+      end
+
+      click_link "Followers (0)"
+      within "#tab-followers" do
+        expect(page).not_to have_link(user.username)
+        expect(page).to have_content("Don't have followers")
+      end
+    end
+
   end
 
   scenario 'Erased author' do

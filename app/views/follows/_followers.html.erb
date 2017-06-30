@@ -7,13 +7,12 @@
         </div>
       <% end %>
         <% entity.follows.each do |follow| %>
-        <div class="comment-info">
-          <span class="user-name">
-            <%= link_to follow.user.name, user_path(follow.user) %>
-          </span>
+          <div class="comment-info">
+            <span class="user-name">
+              <%= link_to follow.user.name, user_path(follow.user) %>
+            </span>
           </div>
         <% end %>
-
     </div>
   </div>
 </div>
