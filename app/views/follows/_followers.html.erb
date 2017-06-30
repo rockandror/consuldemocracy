@@ -3,16 +3,16 @@
     <div class="small-12 column">
       <% if entity.follows.blank? %>
         <div class="callout primary text-center">
-          <%= t('proposals.show.no_followers') %>
+          <%= t('follows.no_followers') %>
         </div>
       <% end %>
-        <% entity.follows.each do |follow| %>
-          <div class="comment-info">
-            <span class="user-name">
-              <%= link_to follow.user.name, user_path(follow.user) %>
-            </span>
-          </div>
-        <% end %>
+      <% entity.follows.joins(:user).order("users.username ASC").each do |follow| %>
+        <div class="comment-info">
+          <span class="user-name">
+            <%= link_to follow.user.name, user_path(follow.user) %>
+          </span>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
