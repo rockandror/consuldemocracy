@@ -1288,6 +1288,15 @@ feature 'Proposals' do
       expect(page).to have_link("Follow citizen proposal")
     end
 
+    scenario "Followers list from proposal show" do
+      user = create(:user)
+      follow = create(:follow, :followed_proposal, user: user)
+
+      visit proposal_path(follow.followable)
+
+      expect(page).to have_content("Followers")
+      expect(page).to have_content(user.name)
+    end
   end
 
   scenario 'Erased author' do
