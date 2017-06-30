@@ -1,12 +1,12 @@
 <div class="tabs-panel" id="tab-followers">
   <div class="row">
     <div class="small-12 column">
-      <% if entity.follows.blank? %>
+      <% if followable.follows.blank? %>
         <div class="callout primary text-center">
           <%= t('follows.no_followers') %>
         </div>
       <% end %>
-      <% entity.follows.joins(:user).order("users.username ASC").each do |follow| %>
+      <% followable.follows.joins(:user).order("users.username ASC").each do |follow| %>
         <div class="follower follower-info">
           <%= link_to user_path(follow.user), class: 'tags' do %>
             <span class="user-name">
