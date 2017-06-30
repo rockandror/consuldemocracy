@@ -3,7 +3,7 @@
     <div class="small-12 column">
       <% if entity.follows.blank? %>
         <div class="callout primary text-center">
-          <%= t('proposals.show.no_followers') %>
+          <%= t('follows.no_followers') %>
         </div>
       <% end %>
       <% entity.follows.each do |follow| %>
