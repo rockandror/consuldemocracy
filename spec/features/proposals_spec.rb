@@ -1288,14 +1288,44 @@ feature 'Proposals' do
       expect(page).to have_link("Follow citizen proposal")
     end
 
-    scenario "Followers list from proposal show" do
+    scenario "Followers list on proposal show" do
       user = create(:user)
       follow = create(:follow, :followed_proposal, user: user)
 
       visit proposal_path(follow.followable)
+      click_link "Followers (1)"
 
-      expect(page).to have_content("Followers")
-      expect(page).to have_content(user.name)
+      within("#tab-followers") do
+        expect(page).to have_content(user.name)
+        expect(page).to have_link(user.name)
+      end
+    end
+
+    scenario "Followers list by order username on proposal show" do
+      proposal = create(:proposal)
+      user1 = create(:user, username: "Andres")
+      user2 = create(:user, username: "Bartolo")
+      user3 = create(:user, username: "Candido")
+      create(:follow, :followed_proposal, followable: proposal, user: user1)
+      create(:follow, :followed_proposal, followable: proposal, user: user2)
+      create(:follow, :followed_proposal, followable: proposal, user: user3)
+
+      visit proposal_path(proposal)
+
+      expect(user1.username).to appear_before(user2.username)
+      expect(user2.username).to appear_before(user3.username)
+    end
+
+    scenario "Show text when have not followers" do
+      user = create(:user)
+      proposal = create(:proposal)
+
+      visit proposal_path(proposal)
+      click_link "Followers (0)"
+
+      within("#tab-followers") do
+        expect(page).to have_content("Don't have followers")
+      end
     end
   end
 

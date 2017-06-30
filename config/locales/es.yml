@@ -143,6 +143,9 @@ es:
     messages:
       user_not_found: No se encontró el usuario
       invalid_date_range: "El rango de fechas no es válido"
+  follows:
+    followers_tab: Seguidores
+    no_followers: No hay seguidores.
   form:
     accept_terms: Acepto la %{policy} y las %{conditions}
     accept_terms_title: Acepto la Política de privacidad y las Condiciones de uso
@@ -391,7 +394,6 @@ es:
       comments_tab: Comentarios
       edit_proposal_link: Editar propuesta
       flag: Esta propuesta ha sido marcada como inapropiada por varios usuarios.
-      followers_tab: Seguidores
       login_to_comment: Necesitas %{signin} o %{signup} para comentar.
       notifications_tab: Notificaciones
       retired_warning: "El autor de esta propuesta considera que ya no debe seguir recogiendo apoyos."
@@ -400,7 +402,6 @@ es:
       send_notification: Enviar notificación
       share: Compartir
       no_notifications: "Esta propuesta no tiene notificaciones."
-      no_followers: "No hay seguidores."
       embed_video_title: "Vídeo en %{proposal}"
     update:
       form:
