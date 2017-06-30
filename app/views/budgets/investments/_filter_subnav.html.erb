@@ -21,7 +21,7 @@
         <%= link_to "#tab-followers" do %>
           <h3>
             <%= t("follows.followers_tab") %>
-            (<%= @investment.follows.count %>)
+            (<span id="tab-followers-count"><%= @investment.follows.count %></span>)
           </h3>
           <% end %>
       </li>
