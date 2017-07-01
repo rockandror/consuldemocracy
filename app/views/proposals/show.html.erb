@@ -149,8 +149,9 @@
 <div class="tabs-content" data-tabs-content="proposals-tabs" role="tablist">
   <%= render "proposals/filter_subnav" %>
   <%= render "proposals/notifications" %>
-  <%= render "follows/followers", followable: @proposal %>
-
+  <div class="tabs-panel" id="tab-followers">
+    <%= render "follows/followers", followable: @proposal %>
+  </div>
   <div class="tabs-panel is-active" id="tab-comments">
     <%= render "proposals/comments" %>
   </div>
