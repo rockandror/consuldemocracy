@@ -149,14 +149,9 @@
 <div class="tabs-content" data-tabs-content="proposals-tabs" role="tablist">
   <%= render "proposals/filter_subnav" %>
   <%= render "proposals/notifications" %>
-<<<<<<< HEAD
-  <%= render "follows/followers", entity: @proposal %>
-
-=======
   <div class="tabs-panel" id="tab-followers">
     <%= render "follows/followers", followable: @proposal %>
   </div>
->>>>>>> 655987630f1edae5642670c93190cb26a1a125e9
   <div class="tabs-panel is-active" id="tab-comments">
     <%= render "proposals/comments" %>
   </div>

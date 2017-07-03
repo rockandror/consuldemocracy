@@ -108,8 +108,8 @@ ActiveRecord::Schema.define(version: 20170630105250) do
 
   create_table "budget_headings", force: :cascade do |t|
     t.integer "group_id"
-    t.string  "name",     limit: 50
-    t.integer "price",    limit: 8
+    t.string  "name",       limit: 50
+    t.integer "price",      limit: 8
     t.integer "population"
   end
 
