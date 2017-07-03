@@ -5,7 +5,7 @@ feature 'Budget Investments' do
   let(:author)  { create(:user, :level_two, username: 'Isabel') }
   let(:budget)  { create(:budget, name: "Big Budget") }
   let(:other_budget) { create(:budget, name: "What a Budget!") }
-  let(:group)   { create(:budget_group, name: "Health", budget: budget) }
+  let(:group) { create(:budget_group, name: "Health", budget: budget) }
   let!(:heading) { create(:budget_heading, name: "More hospitals", group: group) }
 
   scenario 'Index' do
@@ -420,177 +420,7 @@ feature 'Budget Investments' do
     end
   end
 
-  feature "Follows" do
-
-    scenario "Should not show follow button when there is no logged user" do
-      investment = create(:budget_investment)
-
-      visit budget_investment_path(budget_id: investment.budget.id, id: investment.id)
-
-      within "#budget_investment_#{investment.id}" do
-        expect(page).not_to have_link("Follow citizen proposal")
-      end
-    end
-
-    scenario "Following", :js do
-      user = create(:user)
-      investment = create(:budget_investment)
-      login_as(user)
-
-      visit budget_investment_path(budget_id: investment.budget.id, id: investment.id)
-      within "#budget_investment_#{investment.id}" do
-        page.find("#follow-expand-investment-#{investment.id}").click
-        page.find("#follow-investment-#{investment.id}").click
-
-        expect(page).to have_css("#unfollow-expand-investment-#{investment.id}")
-      end
-
-      expect(Follow.followed?(user, investment)).to be
-    end
-
-    scenario "Show unfollow button when user already follow this investment" do
-      user = create(:user)
-      investment = create(:budget_investment)
-      follow = create(:follow, :followed_investment, user: user, followable: investment)
-      login_as(user)
-
-      visit budget_investment_path(budget_id: investment.budget.id, id: investment.id)
-
-      expect(page).to have_link("Unfollow investment")
-    end
-
-    scenario "Unfollowing", :js do
-      user = create(:user)
-      investment = create(:budget_investment)
-      follow = create(:follow, :followed_investment, user: user, followable: investment)
-      login_as(user)
-
-      visit budget_investment_path(budget_id: investment.budget.id, id: investment.id)
-      within "#budget_investment_#{investment.id}" do
-        page.find("#unfollow-expand-investment-#{investment.id}").click
-        page.find("#unfollow-investment-#{investment.id}").click
-
-        expect(page).to have_css("#follow-expand-investment-#{investment.id}")
-      end
-
-      expect(Follow.followed?(user, investment)).not_to be
-    end
-
-    scenario "Show follow button when user is not following this investment" do
-      user = create(:user)
-      investment = create(:budget_investment)
-      login_as(user)
-
-      visit budget_investment_path(budget_id: investment.budget.id, id: investment.id)
-
-      expect(page).to have_link("Follow investment")
-    end
-
-    scenario "Followers list on investment show", :js do
-      user = create(:user)
-      follow = create(:follow, :followed_investment, user: user)
-
-      visit budget_investment_path(budget_id: follow.followable.budget.id, id: follow.followable.id)
-      click_link "Followers (1)"
-
-      within("#tab-followers") do
-        expect(page).to have_content(user.name)
-        expect(page).to have_link(user.name)
-      end
-    end
-
-    scenario "Followers list by order username on investment show" do
-      investment = create(:budget_investment)
-      user1 = create(:user, username: "Candido")
-      user2 = create(:user, username: "Bartolo")
-      user3 = create(:user, username: "Andres")
-      create(:follow, :followed_proposal, followable: investment, user: user1)
-      create(:follow, :followed_proposal, followable: investment, user: user2)
-      create(:follow, :followed_proposal, followable: investment, user: user3)
-
-      visit budget_investment_path(budget_id: investment.budget.id, id: investment.id)
-
-      expect(user3.username).to appear_before(user2.username)
-      expect(user2.username).to appear_before(user1.username)
-    end
-
-    scenario "Show text when have not followers", :js do
-      user = create(:user)
-      investment = create(:budget_investment)
-
-      visit budget_investment_path(budget_id: investment.budget.id, id: investment.id)
-      click_link "Followers (0)"
-
-      within("#tab-followers") do
-        expect(page).to have_content("Don't have followers")
-      end
-    end
-
-    scenario "Followers tab count should be updated after new follow created", :js do
-      user = create(:user)
-      investment = create(:budget_investment)
-      login_as(user)
-
-      visit budget_investment_path(budget_id: investment.budget.id, id: investment.id)
-      within "#budget_investment_#{investment.id}" do
-        page.find("#follow-expand-investment-#{investment.id}").click
-        page.find("#follow-investment-#{investment.id}").click
-      end
-
-      expect(page).to have_link("Followers (1)")
-    end
-
-    scenario "Followers tab content should new follower after new follow created", :js do
-      user = create(:user)
-      investment = create(:budget_investment)
-      login_as(user)
-
-      visit budget_investment_path(budget_id: investment.budget.id, id: investment.id)
-      within "#budget_investment_#{investment.id}" do
-        page.find("#follow-expand-investment-#{investment.id}").click
-        page.find("#follow-investment-#{investment.id}").click
-      end
-      click_link "Followers (1)"
-
-      within "#tab-followers" do
-        expect(page).to have_link(user.username)
-      end
-    end
-
-    scenario "Followers tab count should be updated after follow destroyed", :js do
-      user = create(:user)
-      investment = create(:budget_investment)
-      follow = create(:follow, user: user, followable: investment)
-      login_as(user)
-
-      visit budget_investment_path(budget_id: investment.budget.id, id: investment.id)
-      within "#budget_investment_#{investment.id}" do
-        page.find("#unfollow-expand-investment-#{investment.id}").click
-        page.find("#unfollow-investment-#{investment.id}").click
-      end
-
-      expect(page).to have_link("Followers (0)")
-    end
-
-    scenario "Followers tab content should not show user after follow destroyed", :js do
-      user = create(:user)
-      investment = create(:budget_investment)
-      follow = create(:follow, user: user, followable: investment)
-      login_as(user)
-
-      visit budget_investment_path(budget_id: investment.budget.id, id: investment.id)
-      within "#budget_investment_#{investment.id}" do
-        page.find("#unfollow-expand-investment-#{investment.id}").click
-        page.find("#unfollow-investment-#{investment.id}").click
-      end
-
-      click_link "Followers (0)"
-      within "#tab-followers" do
-        expect(page).not_to have_link(user.username)
-        expect(page).to have_content("Don't have followers")
-      end
-    end
-  end
+  it_behaves_like "followable", "budget_investment", "budget_investment_path", {"budget_id": "budget_id", "id": "id"}
 
   context "Destroy" do
 
@@ -813,11 +643,11 @@ feature 'Budget Investments' do
       carabanchel_heading = create(:budget_heading, group: group, name: "Carabanchel")
       new_york_heading    = create(:budget_heading, group: group, name: "New York")
 
-      sp1 = create(:budget_investment, :selected, price:      1, heading: global_heading)
-      sp2 = create(:budget_investment, :selected, price:     10, heading: global_heading)
-      sp3 = create(:budget_investment, :selected, price:    100, heading: global_heading)
-      sp4 = create(:budget_investment, :selected, price:   1000, heading: carabanchel_heading)
-      sp5 = create(:budget_investment, :selected, price:  10000, heading: carabanchel_heading)
+      sp1 = create(:budget_investment, :selected, price: 1, heading: global_heading)
+      sp2 = create(:budget_investment, :selected, price: 10, heading: global_heading)
+      sp3 = create(:budget_investment, :selected, price: 100, heading: global_heading)
+      sp4 = create(:budget_investment, :selected, price: 1000, heading: carabanchel_heading)
+      sp5 = create(:budget_investment, :selected, price: 10000, heading: carabanchel_heading)
       sp6 = create(:budget_investment, :selected, price: 100000, heading: new_york_heading)
 
       login_as(user)

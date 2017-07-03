@@ -89,7 +89,7 @@ feature 'Proposals' do
     end
   end
 
-  context "Embedded video"  do
+  context "Embedded video" do
 
     scenario "Show YouTube video" do
       proposal = create(:proposal, video_url: "http://www.youtube.com/watch?v=a7UFm6ErMPU")
@@ -99,7 +99,7 @@ feature 'Proposals' do
     end
 
     scenario "Show Vimeo video" do
-      proposal = create(:proposal, video_url: "https://vimeo.com/7232823" )
+      proposal = create(:proposal, video_url: "https://vimeo.com/7232823")
       visit proposal_path(proposal)
       expect(page).to have_selector("div[id='js-embedded-video']")
       expect(page.html).to include 'https://player.vimeo.com/video/7232823'
@@ -1072,7 +1072,7 @@ feature 'Proposals' do
           click_link "Advanced search"
           fill_in "Write the text", with: "Schwifty"
           select Setting['official_level_1_name'], from: "advanced_search_official_level"
-          select "Last 24 hours",   from: "js-advanced-search-date-min"
+          select "Last 24 hours", from: "js-advanced-search-date-min"
 
           click_button "Filter"
 
@@ -1223,177 +1223,7 @@ feature 'Proposals' do
     expect(Flag.flagged?(user, proposal)).to_not be
   end
 
-  feature "Follows" do
-
-    scenario "Should not show follow button when there is no logged user" do
-      proposal = create(:proposal)
-
-      visit proposal_path(proposal)
-
-      within "#proposal_#{proposal.id}" do
-        expect(page).not_to have_link("Follow citizen proposal")
-      end
-    end
-
-    scenario "Following", :js do
-      user = create(:user)
-      proposal = create(:proposal)
-      login_as(user)
-
-      visit proposal_path(proposal)
-      within "#proposal_#{proposal.id}" do
-        page.find("#follow-expand-proposal-#{proposal.id}").click
-        page.find("#follow-proposal-#{proposal.id}").click
-
-        expect(page).to have_css("#unfollow-expand-proposal-#{proposal.id}")
-      end
-
-      expect(Follow.followed?(user, proposal)).to be
-    end
-
-    scenario "Show unfollow button when user already follow this proposal" do
-      user = create(:user)
-      follow = create(:follow, :followed_proposal, user: user)
-      login_as(user)
-
-      visit proposal_path(follow.followable)
-
-      expect(page).to have_link("Unfollow citizen proposal")
-    end
-
-    scenario "Unfollowing", :js do
-      user = create(:user)
-      proposal = create(:proposal)
-      follow = create(:follow, user: user, followable: proposal)
-      login_as(user)
-
-      visit proposal_path(proposal)
-      within "#proposal_#{proposal.id}" do
-        page.find("#unfollow-expand-proposal-#{proposal.id}").click
-        page.find("#unfollow-proposal-#{proposal.id}").click
-
-        expect(page).to have_css("#follow-expand-proposal-#{proposal.id}")
-      end
-
-      expect(Follow.followed?(user, proposal)).not_to be
-    end
-
-    scenario "Show follow button when user is not following this proposal" do
-      user = create(:user)
-      proposal = create(:proposal)
-      login_as(user)
-
-      visit proposal_path(proposal)
-
-      expect(page).to have_link("Follow citizen proposal")
-    end
-
-    scenario "Followers list on proposal show" do
-      user = create(:user)
-      follow = create(:follow, :followed_proposal, user: user)
-
-      visit proposal_path(follow.followable)
-      click_link "Followers (1)"
-
-      within("#tab-followers") do
-        expect(page).to have_content(user.name)
-        expect(page).to have_link(user.name)
-      end
-    end
-
-    scenario "Followers list by order username on proposal show" do
-      proposal = create(:proposal)
-      user1 = create(:user, username: "Andres")
-      user2 = create(:user, username: "Bartolo")
-      user3 = create(:user, username: "Candido")
-      create(:follow, :followed_proposal, followable: proposal, user: user1)
-      create(:follow, :followed_proposal, followable: proposal, user: user2)
-      create(:follow, :followed_proposal, followable: proposal, user: user3)
-
-      visit proposal_path(proposal)
-
-      expect(user1.username).to appear_before(user2.username)
-      expect(user2.username).to appear_before(user3.username)
-    end
-
-    scenario "Show text when have not followers" do
-      user = create(:user)
-      proposal = create(:proposal)
-
-      visit proposal_path(proposal)
-      click_link "Followers (0)"
-
-      within("#tab-followers") do
-        expect(page).to have_content("Don't have followers")
-      end
-    end
-
-    scenario "Followers tab count should be updated after new follow created", :js do
-      user = create(:user)
-      proposal = create(:proposal)
-      login_as(user)
-
-      visit proposal_path(proposal)
-      within "#proposal_#{proposal.id}" do
-        page.find("#follow-expand-proposal-#{proposal.id}").click
-        page.find("#follow-proposal-#{proposal.id}").click
-      end
-
-      expect(page).to have_link("Followers (1)")
-    end
-
-    scenario "Followers tab content should new follower after new follow created", :js do
-      user = create(:user)
-      proposal = create(:proposal)
-      login_as(user)
-
-      visit proposal_path(proposal)
-      within "#proposal_#{proposal.id}" do
-        page.find("#follow-expand-proposal-#{proposal.id}").click
-        page.find("#follow-proposal-#{proposal.id}").click
-      end
-      click_link "Followers (1)"
-
-      within "#tab-followers" do
-        expect(page).to have_link(user.username)
-      end
-    end
-
-    scenario "Followers tab count should be updated after follow destroyed", :js do
-      user = create(:user)
-      proposal = create(:proposal)
-      follow = create(:follow, user: user, followable: proposal)
-      login_as(user)
-
-      visit proposal_path(proposal)
-      within "#proposal_#{proposal.id}" do
-        page.find("#unfollow-expand-proposal-#{proposal.id}").click
-        page.find("#unfollow-proposal-#{proposal.id}").click
-      end
-
-      expect(page).to have_link("Followers (0)")
-    end
-
-    scenario "Followers tab content should not show user after follow destroyed", :js do
-      user = create(:user)
-      proposal = create(:proposal)
-      follow = create(:follow, user: user, followable: proposal)
-      login_as(user)
-
-      visit proposal_path(proposal)
-      within "#proposal_#{proposal.id}" do
-        page.find("#unfollow-expand-proposal-#{proposal.id}").click
-        page.find("#unfollow-proposal-#{proposal.id}").click
-      end
-
-      click_link "Followers (0)"
-      within "#tab-followers" do
-        expect(page).not_to have_link(user.username)
-        expect(page).to have_content("Don't have followers")
-      end
-    end
-
-  end
+  it_behaves_like "followable", "proposal", "proposal_path", { "id": "id" }
 
   scenario 'Erased author' do
     user = create(:user)
@@ -1517,8 +1347,8 @@ feature 'Proposals' do
   context "Summary" do
 
     scenario "Displays proposals grouped by category" do
-      create(:tag, kind: 'category', name: 'Culture')
-      create(:tag, kind: 'category', name: 'Social Services')
+      create(:tag, :category, name: 'Culture')
+      create(:tag, :category, name: 'Social Services')
 
       3.times { create(:proposal, tag_list: 'Culture') }
       3.times { create(:proposal, tag_list: 'Social Services') }
@@ -1561,7 +1391,7 @@ feature 'Proposals' do
     end
 
     scenario "Displays a maximum of 3 proposals per category" do
-      create(:tag, kind: 'category', name: 'culture')
+      create(:tag, :category, name: 'culture')
       4.times { create(:proposal, tag_list: 'culture') }
 
       visit summary_proposals_path
@@ -1570,7 +1400,7 @@ feature 'Proposals' do
     end
 
     scenario "Orders proposals by votes" do
-      create(:tag, kind: 'category', name: 'culture')
+      create(:tag, :category, name: 'culture')
       create(:proposal, title: 'Best',   tag_list: 'culture').update_column(:confidence_score, 10)
       create(:proposal, title: 'Worst',  tag_list: 'culture').update_column(:confidence_score, 2)
       create(:proposal, title: 'Medium', tag_list: 'culture').update_column(:confidence_score, 5)
@@ -1582,7 +1412,7 @@ feature 'Proposals' do
     end
 
     scenario "Displays proposals from last week" do
-      create(:tag, kind: 'category', name: 'culture')
+      create(:tag, :category, name: 'culture')
       proposal1 = create(:proposal, tag_list: 'culture', created_at: 1.day.ago)
       proposal2 = create(:proposal, tag_list: 'culture', created_at: 5.days.ago)
       proposal3 = create(:proposal, tag_list: 'culture', created_at: 8.days.ago)

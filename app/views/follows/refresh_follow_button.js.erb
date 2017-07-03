@@ -1,3 +1,3 @@
 $("#<%= dom_id(@followable) %> .js-follow").html('<%= j render("followable_button", followable: @followable) %>');
 $("#tab-followers-count").text('<%= @followable.follows.count %>');
-$("#tab-followers").replaceWith('<%= j render "followers", entity: @followable %>');
+$("#tab-followers").html('<%= j render "followers", followable: @followable %>');
