@@ -2015,6 +2015,14 @@ table {
   }
 }
 
+.public_interest {
+  margin-top: $line-height;
+
+  .column{
+    padding-left: 0;
+  }
+}
+
 // 18. Banners
 // -----------
 

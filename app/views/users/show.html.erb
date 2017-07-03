@@ -47,10 +47,17 @@
       <% end %>
 
       <% if @user.public_interest || @authorized_current_user %>
-        <div id="public_interest">
-            <% @interests.each do |interest| %>
-              <%= interest %>
-            <% end %>
+        <div id="public_interest" class="public-interest">
+          <h4><%= t('account.show.public_interest_title_list') %></h4>
+          <% @interests.in_groups_of(10, false) do |interest_group| %>
+            <div class="small-4 column end">
+              <ul class="no-bullet">
+                <% interest_group.each do |interest| %>
+                  <li> <small><%= interest %></small> </li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
         </div>
       <% end %>
 
