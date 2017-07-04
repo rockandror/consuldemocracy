@@ -8,6 +8,10 @@ module FlagsHelper
     current_user && !own_flaggable?(flaggable) && flagged?(flaggable)
   end
 
+  def show_flag?(flaggable)
+    show_flag_action?(flaggable) || show_unflag_action?(flaggable)
+  end
+
   private
 
   def flagged?(flaggable)
