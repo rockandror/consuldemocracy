@@ -13,6 +13,8 @@ en:
       personal: Personal details
       phone_number_label: Phone number
       public_activity_label: Keep my list of activities public
+      public_interests_label: Keep my interests public
+      public_interests_title_list: List of interests
       save_changes_submit: Save changes
       subscription_to_website_newsletter_label: Receive by email website relevant information
       email_on_direct_message_label: Receive emails about direct messages
@@ -298,7 +300,7 @@ en:
       geozone: Scope of operation
       proposal_external_url: Link to additional documentation
       proposal_question: Proposal question
-      proposal_question_example_html: Must be summarised in one question with a Yes or No answer. <em>E.g. 'Do you agree with the pedestrianisation of Calle Mayor?'</em>
+      proposal_question_example_html: "Must be summarised in one question with a Yes or No answer. <br>E.g. 'Do you agree with the pedestrianisation of Calle Mayor?'"
       proposal_responsible_name: Full name of the person submitting the proposal
       proposal_responsible_name_note: "(individually or as representative of a collective; will not be displayed publically)"
       proposal_summary: Proposal summary
@@ -500,6 +502,9 @@ en:
     check_none: None
     collective: Collective
     flag: Flag as inappropriate
+    follow: "Follow"
+    follow_entity: "Follow %{entity}"
+    follow_entity_title: "Follow %{entity}: You can participate and receive notifications of any related events."
     hide: Hide
     print:
       print_button: Print this info
@@ -511,7 +516,7 @@ en:
           one: "There is a debate with the term '%{query}', you can participate in it instead of opening a new one."
           other: "There are debates with the term '%{query}', you can participate in them instead of opening a new one."
         message: "You are seeing %{limit} of %{count} debates containing the term '%{query}'"
-        see_all: "Ver todos"
+        see_all: "See all"
       budget_investment:
         found:
           one: "There is an investment with the term '%{query}', you can participate in it instead of opening a new one."
@@ -532,6 +537,8 @@ en:
     target_blank_html: " (link opens in new window)"
     you_are_in: "You are in"
     unflag: Unflag
+    unfollow: "Unfollow"
+    unfollow_entity: "Unfollow %{entity}"
     outline:
       debates: Debates
       proposals: Proposals
@@ -643,6 +650,9 @@ en:
         budget_investments:
           one: 1 Investment
           other: "%{count} Investments"
+        follows:
+          one: 1 Following
+          other: "%{count} Following"
       no_activity: User has no public activity
       no_private_messages: "This user doesn't accept private messages."
       private_activity: This user decided to keep the activity list private

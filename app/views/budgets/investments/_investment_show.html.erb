@@ -18,6 +18,12 @@
         <%= l investment.created_at.to_date %>
         <span class="bullet">&nbsp;&bull;&nbsp;</span>
         <%= investment.heading.name %>
+
+        <% if current_user %>
+          <span class="bullet">&nbsp;&bull;&nbsp;</span>
+          <%= render 'follows/followable_button', followable: investment %>
+        <% end %>
+
       </div>
 
       <br>
