@@ -18,12 +18,6 @@
         <%= l investment.created_at.to_date %>
         <span class="bullet">&nbsp;&bull;&nbsp;</span>
         <%= investment.heading.name %>
-
-        <% if current_user %>
-          <span class="bullet">&nbsp;&bull;&nbsp;</span>
-          <%= render 'follows/followable_button', followable: investment %>
-        <% end %>
-
       </div>
 
       <br>
@@ -141,6 +135,9 @@
         image_url: investment.image.exists? ? investment_image_full_url(investment, :thumb) : '',
         url: budget_investment_url(budget_id: investment.budget_id, id: investment.id)
       } %>
+
+      <%= render 'follows/followable_button', followable: investment if current_user %>
+
      </aside>
   </div>
 </section>
