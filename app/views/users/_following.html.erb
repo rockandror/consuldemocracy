@@ -1,0 +1,34 @@
+<ul class="accordion" data-accordion data-allow-all-closed="true">
+
+  <% @followable_types.each do |followable_type| %>
+
+    <li class="accordion-item" data-accordion-item>
+
+      <a href="#" class="accordion-title">
+        <span class="icon">
+          <i class="icon icon-<%= entity_icon(followable_type) %>"></i>
+        </span>
+        <span class="title">
+          <strong><%= entity_title(followable_type) %></strong>
+        </span>
+      </a>
+
+      <div class="accordion-content" data-tab-content>
+        <table>
+          <tbody>
+            <% @follows.where(followable_type: followable_type).each do |follow| %>
+              <% if followable_type == "Proposal" %>
+                <%= render "proposal", proposal: follow.followable %>
+              <% elsif followable_type == "Budget::Investment" %>
+                <%= render "budget_investment", budget_investment: follow.followable %>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+    </li>
+
+  <% end %>
+
+</ul>
