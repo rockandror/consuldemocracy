@@ -497,12 +497,12 @@ end
 puts " ✅"
 puts "Creating proposal notifications"
 
-100.times do |i|
-  ProposalNotification.create!(title: "Proposal notification title #{i}",
-                               body: "Proposal notification body #{i}",
-                               author: User.reorder("RANDOM()").first,
-                               proposal: Proposal.reorder("RANDOM()").first)
-end
+# 100.times do |i|
+#   ProposalNotification.create!(title: "Proposal notification title #{i}",
+#                                body: "Proposal notification body #{i}",
+#                                author: User.reorder("RANDOM()").first,
+#                                proposal: Proposal.reorder("RANDOM()").first)
+# end
 
 puts " ✅"
 print "Creating polls"
