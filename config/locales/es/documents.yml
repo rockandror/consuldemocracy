@@ -7,12 +7,13 @@ es:
     form:
       attachment_label: Selecciona un archivo
       submit_button: Subir documento
+      source_note: Selecciona archivo si quieres subir un archivo desde tu ordenador, selecciona "Enlace" si quieres añadir un enlace a un documento externo.
     new:
       title: Subir un documento
     recommendations_title: Consejos para subir archivos
-    recommendation_one_html: Puedes subir hasta un máximo de <strong>3 ficheros</strong>
-    recommendation_two_html: Sólo puedes subir archivos <strong>pdf</strong>
-    recommendation_three_html: Puedes subir archivos de hasta <strong>3MB</strong>
+    recommendation_one_html: Puedes subir hasta un máximo de <strong>%{max_documents_allowed} documentos</strong>
+    recommendation_two_html: Sólo puedes subir <strong>archivos %{accepted_content_types}</strong> o <strong>enlaces externos</strong> a páginas o archivos de internet.
+    recommendation_three_html: Puedes subir archivos de hasta <strong>%{max_file_size}  MB</strong>
     actions:
       create:
         notice: "El documento se ha creado correctamente."
@@ -24,6 +25,7 @@ es:
       download_document: Descargar PDF
       destroy_document: Eliminar
       link_document: Enlace
+      follow_link: Ir al enlace
     errors:
       messages:
         in_between: debe estar entre %{min} y %{max}

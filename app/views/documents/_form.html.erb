@@ -14,11 +14,21 @@
       <%= f.text_field :title %>
     </div>
 
-    <div class="small-12 column">
+    <div id="sources" class="small-12 column text-center">
+      <%= f.label :source %>
+      <p><%= t "documents.form.source_note" %></p>
+      <%= f.collection_radio_buttons :source, document_source_options, :first, :second %>
+    </div>
+
+    <div class="small-12 column source-option-link">
+      <%= f.text_field :link %>
+    </div>
+
+    <div class="small-12 column source-option-file">
       <div class="file-name">
-        <%= f.file_field :attachment, label: false, class:'show-for-sr' %>
+        <%= f.file_field :attachment, label: false, class: 'show-for-sr' %>
         <br>
-        <%= f.label :attachment, t("documents.form.attachment_label"), class:'button' %>
+        <%= f.label :attachment, t("documents.form.attachment_label"), class: 'button hollow' %>
         <p><%= document_attachment_file_name(@document) %></p>
       </div>
     </div>

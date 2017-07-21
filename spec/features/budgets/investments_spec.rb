@@ -431,7 +431,9 @@ feature 'Budget Investments' do
 
   it_behaves_like "followable", "budget_investment", "budget_investment_path", { "budget_id": "budget_id", "id": "id" }
 
-  it_behaves_like "documentable", "budget_investment", "budget_investment_path", {"budget_id": "budget_id", "id": "id"}
+  it_behaves_like "documentable", "budget_investment", "budget_investment_path", {"budget_id": "budget_id", "id": "id"}, :file_document
+
+  it_behaves_like "documentable", "budget_investment", "budget_investment_path", {"budget_id": "budget_id", "id": "id"}, :link_document
 
   context "Destroy" do
 

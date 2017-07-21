@@ -203,6 +203,9 @@ en:
       document:
         title: Title
         attachment: Attachment
+        link: Link
+        source: Source
+        file: File
     errors:
       models:
         user:

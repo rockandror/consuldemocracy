@@ -198,6 +198,9 @@ es:
       document:
         title: Título
         attachment: Archivo adjunto
+        link: Enlace
+        source: Origen
+        file: Archivo
     errors:
       models:
         user:

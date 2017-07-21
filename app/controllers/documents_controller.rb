@@ -41,7 +41,8 @@ class DocumentsController < ApplicationController
   end
 
   def document_params
-    params.require(:document).permit(:title, :documentable_type, :documentable_id, :attachment)
+    params.require(:document).permit(:title, :documentable_type, :documentable_id,
+                                     :attachment, :source, :link)
   end
 
 end
