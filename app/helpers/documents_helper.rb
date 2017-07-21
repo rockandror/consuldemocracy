@@ -16,4 +16,12 @@ module DocumentsHelper
     bytes / Numeric::MEGABYTE
   end
 
+  def document_source_options
+    Hash[Document.sources.map { |k,v| [k, Document.human_attribute_name("document.#{k}")] }]
+  end
+
+  def bytesToMeg(bytes)
+    bytes / Numeric::MEGABYTE
+  end
+
 end
