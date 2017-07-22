@@ -18,16 +18,21 @@ feature "Notifications" do
     login_as user
     visit debate_path debate
 
+    page.save_screenshot
     fill_in "comment-body-debate_#{debate.id}", with: "I commented on your debate"
+    page.save_screenshot
     click_button "Publish comment"
+    page.save_screenshot
     within "#comments" do
       expect(page).to have_content "I commented on your debate"
     end
 
+    page.save_screenshot
     logout
     login_as author
     visit root_path
 
+    page.save_screenshot
     find(".icon-notification").click
 
     expect(page).to have_css ".notification", count: 1
