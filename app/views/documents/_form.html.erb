@@ -14,7 +14,7 @@
       <%= f.text_field :title %>
     </div>
 
-    <div id="sources" class="small-12 column text-center">
+    <div id="sources" class="small-12 column text-left radio-buttons">
       <%= f.label :source %>
       <p><%= t "documents.form.source_note" %></p>
       <%= f.collection_radio_buttons :source, document_source_options, :first, :second %>
