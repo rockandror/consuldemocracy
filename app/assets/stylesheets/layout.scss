@@ -2115,6 +2115,10 @@ table {
     margin-bottom: $line-height * 2;
   }
 
+  img {
+    display: none;
+  }
+
   .debates,
   .proposals,
   .budget-investments {
@@ -2196,4 +2200,34 @@ table {
       font-size: rem-calc(14);
     }
   }
+
+  .carousel-image {
+    .card .orbit {
+      height: 480px;
+
+      .orbit-wrapper {
+        max-height: 425px;
+      }
+    }
+
+    .debates-inner,
+    .proposals-inner,
+    .budget-investments-inner {
+      max-height: 500px;
+
+      @include breakpoint(small) {
+        max-height: 600px;
+      }
+    }
+  }
+
+  .carousel-image .orbit-wrapper img {
+    display: block;
+
+    @include breakpoint(small) {
+      max-height: 200px;
+      margin: 0 auto;
+    }
+  }
+
 }
