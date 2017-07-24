@@ -29,7 +29,7 @@ App.Forms =
     while i < element.length
       element[i].addEventListener 'change', ->
         idButton = $(this)
-        idButton.closest('.image-upload').find('p').text(@files[0].name)
+        idButton.closest('.file-upload').find('p').text(@files[0].name)
         return
       i++
 
