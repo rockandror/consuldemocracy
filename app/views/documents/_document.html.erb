@@ -1,0 +1,21 @@
+<tr id="<%= dom_id(document)%>">
+  <td class="document-link">
+    <%= document.title %>
+  </td>
+  <td class="text-center">
+    <% if document.file_document? %>
+      <%= link_to t('documents.buttons.download_document'), document.attachment.url, target: :blank, class: 'button hollow' %>
+    <% else %>
+      <%= link_to t('documents.buttons.follow_link'), document.link, target: :blank, class: 'button hollow' %>
+    <% end %>
+
+  </td>
+  <td class="text-center">
+    <% if can? :destroy, Document %>
+      <%= link_to t('documents.buttons.destroy_document'),
+                    document_path(document, from: request.url), method: :delete,
+                    data: { confirm: t('documents.actions.destroy.alert') },
+                    class: 'button hollow alert' %>
+    <% end %>
+  </td>
+</tr>

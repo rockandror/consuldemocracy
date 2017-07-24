@@ -1,4 +1,11 @@
 FactoryGirl.define do
+  factory :local_census_record, class: 'LocalCensusRecord' do
+    document_number '12345678A'
+    document_type 1
+    date_of_birth Date.new(1970, 1, 31)
+    postal_code '28002'
+  end
+
   sequence(:document_number) { |n| "#{n.to_s.rjust(8, '0')}X" }
 
   factory :user do
@@ -363,6 +370,29 @@ FactoryGirl.define do
 
     trait :followed_investment do
       association :followable, factory: :budget_investment
+    end
+  end
+
+  factory :document do
+    sequence(:title) { |n| "Document title #{n}" }
+    association :user, factory: :user
+
+    trait :file_document do
+      source "file"
+      attachment { File.new("spec/fixtures/files/empty.pdf") }
+    end
+
+    trait :link_document do
+      source "link"
+      sequence(:link) { |n| "http://external-link#{n}.com" }
+    end
+
+    trait :proposal_document do
+      association :documentable, factory: :proposal
+    end
+
+    trait :budget_investment_document do
+      association :documentable, factory: :budget_investment
     end
   end
 

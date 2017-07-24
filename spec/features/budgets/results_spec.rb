@@ -14,8 +14,12 @@ feature 'Results' do
   let!(:results) { Budget::Result.new(budget, heading).calculate_winners }
 
   scenario "Diplays winner investments" do
+    create(:budget_heading, group: group)
+
     visit budget_path(budget)
     click_link "See results"
+
+    expect(page).to have_selector('a.active', text: budget.headings.first.name)
 
     within("#budget-investments-compatible") do
       expect(page).to have_content investment1.title
@@ -43,6 +47,18 @@ feature 'Results' do
 
     within("#budget-investments-incompatible") do
       expect(page).to have_content investment3.title
+    end
+  end
+
+  scenario "Load first budget heading if not specified" do
+    other_heading = create(:budget_heading, group: group)
+    other_investment = create(:budget_investment, :winner, heading: other_heading)
+
+    visit budget_results_path(budget)
+
+    within("#budget-investments-compatible") do
+      expect(page).to have_content investment1.title
+      expect(page).to_not have_content other_investment.title
     end
   end
 

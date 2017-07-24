@@ -18,6 +18,7 @@
 // 16. Flags
 // 17. Activity
 // 18. Banners
+// 19. Documents
 //
 
 // 01. Global styles
@@ -89,6 +90,11 @@ a {
 .button.hollow {
   border: 1px solid $link;
   color: $link;
+}
+
+.button.hollow.error {
+  border-color: $alert-border;
+  color: $color-alert;
 }
 
 .postfix.button {
@@ -226,6 +232,11 @@ a {
     a {
       color: $text-medium;
       padding: 0;
+
+      &.active {
+        font-weight: bold;
+        color: $brand;
+      }
     }
 
     h2 {
@@ -234,11 +245,6 @@ a {
 
     &.active {
       border-bottom: 2px solid $brand;
-      color: $brand;
-    }
-
-    &.bold {
-      font-weight: bold;
       color: $brand;
     }
   }
@@ -412,6 +418,32 @@ header {
       box-shadow: 0 7px 0 #fff, 0 14px 0 #fff;
     }
   }
+
+  .menu {
+
+    &.is-dropdown-submenu {
+      margin: 0;
+      margin-top: rem-calc(-24);
+      padding: 0;
+    }
+
+    .is-submenu-item {
+      display: block;
+      height: auto;
+      margin-bottom: 0;
+
+      a {
+        color: $text;
+      }
+    }
+  }
+}
+
+.dropdown.menu > li {
+
+  &.is-dropdown-submenu-parent > a::after {
+    border-color: #fff transparent transparent;
+  }
 }
 
 .top-links {
@@ -530,6 +562,14 @@ header {
     margin-bottom: 0;
     margin-right: 0;
     width: 100%;
+  }
+}
+
+.top-bar-right {
+
+  .active {
+    font-weight: bold;
+    text-decoration: underline;
   }
 }
 
@@ -2091,5 +2131,127 @@ table {
   a:hover h3 {
     color: #eaeaf2 !important;
     text-decoration: none;
+  }
+}
+
+// 19. Documents
+.document-form form {
+
+  .radio-buttons {
+    label {
+      margin-right: $line-height;
+    }
+  }
+
+  .source-option-link {
+    input {
+      padding-bottom: 0;
+    }
+
+    .error {
+      margin-bottom: $line-height;
+    }
+
+    label {
+      &.error {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .source-option-file {
+    .file-upload {
+      label {
+
+        @include breakpoint(small medium) {
+          float: none;
+        }
+
+        @include breakpoint(large) {
+          float: left;
+        }
+      }
+
+      p {
+
+        @include breakpoint(small medium) {
+          float: none;
+          margin-top: 0;
+          margin-left: 0;
+          margin-bottom: 0;
+        }
+
+        @include breakpoint(large) {
+          float: left;
+          margin-bottom: 0;
+          margin-top: $line-height / 2;
+          margin-left: $line-height;
+        }
+      }
+    }
+  }
+
+  .attachment-errors {
+    margin-bottom: $line-height;
+  }
+}
+
+.documents-list {
+
+  table {
+    border: 0;
+  }
+
+  td {
+    position: relative;
+
+    @include breakpoint(small) {
+      float: left;
+      width: 100%;
+    }
+
+    @include breakpoint(medium) {
+      float: none;
+    }
+
+    a {
+      width: 100%;
+    }
+
+    &:first-child {
+      padding-left: $line-height * 1.5;
+
+      @include breakpoint(small) {
+        width: 100%;
+      }
+
+      @include breakpoint(medium) {
+        width: 70%;
+      }
+
+      @include breakpoint(large) {
+        width: 80%;
+      }
+    }
+
+    &:first-child::before {
+      color: #007bb7;
+      content: 'G';
+      font-family: "icons" !important;
+      font-size: rem-calc(24);
+      left: rem-calc(6);
+      position: absolute;
+      top: 0;
+
+      @include breakpoint(small) {
+        padding-top: rem-calc(12);
+      }
+
+      @include breakpoint(medium) {
+        padding-top: rem-calc(22);
+      }
+
+    }
+
   }
 }

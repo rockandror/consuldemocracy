@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170708225159) do
+ActiveRecord::Schema.define(version: 20170721191717) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -303,6 +303,25 @@ ActiveRecord::Schema.define(version: 20170708225159) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "documents", force: :cascade do |t|
+    t.string   "title"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.integer  "user_id"
+    t.integer  "documentable_id"
+    t.string   "documentable_type"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "link"
+    t.integer  "source",                  default: 0
+  end
+
+  add_index "documents", ["documentable_type", "documentable_id"], name: "index_documents_on_documentable_type_and_documentable_id", using: :btree
+  add_index "documents", ["user_id", "documentable_type", "documentable_id"], name: "access_documents", using: :btree
+  add_index "documents", ["user_id"], name: "index_documents_on_user_id", using: :btree
+
   create_table "failed_census_calls", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "document_number"
@@ -488,6 +507,15 @@ ActiveRecord::Schema.define(version: 20170708225159) do
 
   add_index "legislation_questions", ["hidden_at"], name: "index_legislation_questions_on_hidden_at", using: :btree
   add_index "legislation_questions", ["legislation_process_id"], name: "index_legislation_questions_on_legislation_process_id", using: :btree
+
+  create_table "local_census_records", force: :cascade do |t|
+    t.string   "document_number", null: false
+    t.string   "document_type",   null: false
+    t.date     "date_of_birth",   null: false
+    t.string   "postal_code",     null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "locks", force: :cascade do |t|
     t.integer  "user_id"
@@ -1024,6 +1052,7 @@ ActiveRecord::Schema.define(version: 20170708225159) do
   add_foreign_key "administrators", "users"
   add_foreign_key "annotations", "legacy_legislations"
   add_foreign_key "annotations", "users"
+  add_foreign_key "documents", "users"
   add_foreign_key "failed_census_calls", "poll_officers"
   add_foreign_key "failed_census_calls", "users"
   add_foreign_key "flags", "users"
