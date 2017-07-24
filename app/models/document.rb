@@ -1,5 +1,6 @@
 class Document < ActiveRecord::Base
   include DocumentsHelper
+  include DocumentablesHelper
   has_attached_file :attachment
 
   enum source: %w(file link)
@@ -32,16 +33,16 @@ class Document < ActiveRecord::Base
        attachment_file_size > documentable.class.max_file_size
       errors[:attachment] = I18n.t("documents.errors.messages.in_between",
                                     min: "0 Bytes",
-                                    max: "#{bytesToMeg(documentable.class.max_file_size)} MB")
+                                    max: "#{max_file_size(documentable)} MB")
     end
   end
 
   def validate_attachment_content_type
     if attachment.file? && documentable.present? &&
-       !documentable.class.accepted_content_types.include?(attachment_content_type)
+       !accepted_content_types(documentable).include?(attachment_content_type)
       errors[:attachment] = I18n.t("documents.errors.messages.wrong_content_type",
                                     content_type: attachment_content_type,
-                                    accepted_content_types: documentable.class.accepted_content_types.join(", "))
+                                    accepted_content_types: humanized_accepted_content_types(documentable))
     end
   end
 
