@@ -178,6 +178,16 @@ shared_examples "documentable" do |documentable_factory_name, documentable_path,
       expect(page).to have_selector "#document_link"
     end
 
+    scenario "Should accept only documentable allowed content types" do
+      login_as documentable.author
+
+      visit new_document_path(documentable_type: documentable.class.name,
+                              documentable_id: documentable.id,
+                              from: send(documentable_path, arguments))
+
+      expect(page).to have_selector "input[type=file][accept='#{accepted_content_types_extensions(documentable)}']"
+    end
+
     scenario "Should show documentable custom recomentations" do
       login_as documentable.author
 
