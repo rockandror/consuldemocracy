@@ -31,8 +31,8 @@
   }
 }
 
-@mixin image-upload {
-  .image-upload {
+@mixin file-upload {
+  .file-upload {
     .button,
     p {
       float: left;

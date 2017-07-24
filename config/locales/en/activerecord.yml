@@ -76,6 +76,9 @@ en:
       legislation/answers:
         one: "Answer"
         other: "Answers"
+      documents:
+        one: "Document"
+        other: "Documents"
     attributes:
       budget:
         name: "Name"
@@ -199,6 +202,12 @@ en:
         value: Value
       legislation/annotation:
         text: Comment
+      document:
+        title: Title
+        attachment: Attachment
+        link: Link
+        source: Source
+        file: File
     errors:
       models:
         user:
