@@ -24,7 +24,6 @@ es:
     buttons:
       download_document: Descargar PDF
       destroy_document: Eliminar
-      link_document: Enlace
       follow_link: Ir al enlace
     errors:
       messages:
