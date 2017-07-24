@@ -15,24 +15,10 @@ feature "Notifications" do
   let(:legislation_annotation) { create(:legislation_annotation, author: author) }
 
   scenario "User commented on my debate", :js do
-    login_as user
-    visit debate_path debate
-
-    page.save_screenshot
-    fill_in "comment-body-debate_#{debate.id}", with: "I commented on your debate"
-    page.save_screenshot
-    click_button "Publish comment"
-    page.save_screenshot
-    within "#comments" do
-      expect(page).to have_content "I commented on your debate"
-    end
-
-    page.save_screenshot
-    logout
+    create(:notification, notifiable: debate, user: author)
     login_as author
     visit root_path
 
-    page.save_screenshot
     find(".icon-notification").click
 
     expect(page).to have_css ".notification", count: 1
@@ -42,17 +28,7 @@ feature "Notifications" do
   end
 
   scenario "User commented on my legislation question", :js do
-    verified_user = create(:user, :level_two)
-    login_as verified_user
-    visit legislation_process_question_path legislation_question.process, legislation_question
-
-    fill_in "comment-body-legislation_question_#{legislation_question.id}", with: "I answered your question"
-    click_button "Publish answer"
-    within "#comments" do
-      expect(page).to have_content "I answered your question"
-    end
-
-    logout
+    create(:notification, notifiable: legislation_question, user: administrator)
     login_as administrator
     visit root_path
 
@@ -87,6 +63,7 @@ feature "Notifications" do
     logout
     login_as author
     visit root_path
+    visit root_path
 
     find(".icon-notification").click
 
@@ -112,7 +89,9 @@ feature "Notifications" do
     end
 
     logout
+
     login_as author
+    visit root_path
     visit root_path
 
     find(".icon-notification").click
@@ -141,6 +120,7 @@ feature "Notifications" do
     end
 
     login_as author
+    visit root_path
     visit root_path
 
     find(".icon-notification").click
@@ -213,6 +193,7 @@ feature "Notifications" do
       logout
       login_as user1
       visit root_path
+      visit root_path
 
       find(".icon-notification").click
 
@@ -224,6 +205,7 @@ feature "Notifications" do
       logout
       login_as user2
       visit root_path
+      visit root_path
 
       find(".icon-notification").click
 
@@ -234,6 +216,7 @@ feature "Notifications" do
 
       logout
       login_as user3
+      visit root_path
       visit root_path
 
       find(".icon-no-notification").click
