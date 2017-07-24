@@ -3,10 +3,19 @@
     <%= document.title %>
   </td>
   <td class="text-center">
+
     <% if document.file_document? %>
-      <%= link_to t('documents.buttons.download_document'), document.attachment.url, target: :blank, class: 'button hollow' %>
+      <%= link_to t('documents.buttons.download_document'),
+                  document.attachment.url,
+                  target: "_blank",
+                  rel: "nofollow",
+                  class: 'button hollow' %>
     <% else %>
-      <%= link_to t('documents.buttons.follow_link'), document.link, target: :blank, class: 'button hollow' %>
+      <%= link_to t('documents.buttons.follow_link'),
+                  document_link_url(document),
+                  target: "_blank",
+                  rel: "nofollow",
+                  class: 'button hollow' %>
     <% end %>
 
   </td>

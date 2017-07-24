@@ -78,21 +78,55 @@ shared_examples "documentable" do |documentable_factory_name, documentable_path,
         end
       end
 
-      describe "Download action" do
+      scenario "Download action Should be able to anyone" do
+        visit send(documentable_path, arguments)
 
-        scenario "Should be able to anyone" do
-          visit send(documentable_path, arguments)
-
-          within "#tab-documents" do
-
-            if document_trait == :file_document
-              expect(page).to have_link("Download PDF")
-            else
-              expect(page).to have_link("Go to link")
-            end
+        within "#tab-documents" do
+          if document_trait == :file_document
+            expect(page).to have_link("Download PDF")
+          else
+            expect(page).to have_link("Go to link")
           end
         end
+      end
 
+      scenario "Follow link button should add http URI schema to stored link when no schema present" do
+        document.update_attribute(:link, "www.example.com") if document_trait == :link_document
+        visit send(documentable_path, arguments)
+
+        within "#tab-documents" do
+          if document_trait == :file_document
+            expect(page).not_to have_link("Go to link")
+          else
+            expect(page).to have_link("Go to link", href: "http://www.example.com" )
+          end
+        end
+      end
+
+      scenario "Download and Follow links should have blank target attribute" do
+        document.update_attribute(:link, "www.example.com") if document_trait == :link_document
+        visit send(documentable_path, arguments)
+
+        within "#tab-documents" do
+          if document_trait == :file_document
+            expect(page).to have_selector("a[target=_blank]", text: "Download PDF")
+          else
+            expect(page).to have_selector("a[target=_blank]", text: "Go to link")
+          end
+        end
+      end
+
+      scenario "Download and Follow links should have rel attribute setted to no follow" do
+        document.update_attribute(:link, "www.example.com") if document_trait == :link_document
+        visit send(documentable_path, arguments)
+
+        within "#tab-documents" do
+          if document_trait == :file_document
+            expect(page).to have_selector("a[rel=nofollow]", text: "Download PDF")
+          else
+            expect(page).to have_selector("a[rel=nofollow]", text: "Go to link")
+          end
+        end
       end
 
       describe "Destroy action" do
