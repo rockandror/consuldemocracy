@@ -313,6 +313,41 @@ class User < ActiveRecord::Base
     follows.map{|follow| follow.followable.tags.map(&:name)}.flatten.compact.uniq
   end
 
+  def recommended_debates
+    debates_list =  if interests.any?
+                      Debate.tagged_with(interests, any: true)
+                            .where("author_id != ?", self)
+                    else
+                      Debate.where("author_id != ?", self)
+                    end
+
+    debates_list.order("cached_votes_total DESC").limit(3)
+  end
+
+  def recommended_proposals
+    proposals_list =  if interests.any?
+                        followed_proposals_ids = Proposal.followed_by_user(self).pluck(:id)
+                        Proposal.tagged_with(interests, any: true)
+                                .where("author_id != ? AND id NOT IN (?)", id, followed_proposals_ids)
+                      else
+                        Proposal.where("author_id != ?", id)
+                      end
+
+    proposals_list.order("cached_votes_up DESC").limit(3)
+  end
+
+  def recommended_budget_investments
+    investments_list =  if interests.any?
+                          followed_investments_ids = Budget::Investment.followed_by_user(self).pluck(:id)
+                          Budget::Investment.tagged_with(interests, any: true)
+                                            .where("author_id != ? AND id NOT IN (?)", id, followed_investments_ids)
+                        else
+                          Budget::Investment.where("author_id != ?", id)
+                        end
+
+    investments_list.order("cached_votes_up DESC").limit(3)
+  end
+
   private
 
     def clean_document_number
