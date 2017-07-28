@@ -40,10 +40,22 @@ class Debate < ActiveRecord::Base
   scope :last_week,                -> { where("created_at >= ?", 7.days.ago)}
   scope :featured,                 -> { where("featured_at is not null")}
   scope :public_for_api,           -> { all }
+  scope :sort_by_recommended,      -> (user) { recommended(user).order(cached_votes_total: :desc) }
   # Ahoy setup
   visitable # Ahoy will automatically assign visit_id on create
 
   attr_accessor :link_required
+
+  def self.recommended(user)
+    debates_list = where("author_id != ?", user.id)
+    #same as "with_tagged(user.interests, any: true)"
+    debates_list_with_tagged = debates_list.joins(:tags).where('taggings.taggable_type = ?', self.name).where('tags.name IN (?)', user.interests)
+    if debates_list_with_tagged.any?
+      debates_list = debates_list_with_tagged
+    end
+
+    debates_list
+  end
 
   def searchable_values
     { title              => 'A',
@@ -135,4 +147,9 @@ class Debate < ActiveRecord::Base
     featured_at.present?
   end
 
+  def self.debates_orders(user)
+    orders = %w{hot_score confidence_score created_at relevance}
+    orders << "recommended" if user.present?
+    orders
+  end
 end
