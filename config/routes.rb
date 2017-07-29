@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  # mount DocumentUploader::UploadEndpoint => "/attachments"
+
   if Rails.env.development? || Rails.env.staging?
     get '/sandbox' => 'sandbox#index'
     get '/sandbox/*template' => 'sandbox#show'

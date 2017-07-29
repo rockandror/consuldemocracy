@@ -375,10 +375,12 @@ FactoryGirl.define do
 
     trait :proposal_document do
       association :documentable, factory: :proposal
+      documentable_type "Proposal"
     end
 
     trait :budget_investment_document do
       association :documentable, factory: :budget_investment
+      documentable_type "Budget::Investment"
     end
   end
 

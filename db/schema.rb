@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170720092638) do
+ActiveRecord::Schema.define(version: 20170729102127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -300,15 +300,12 @@ ActiveRecord::Schema.define(version: 20170720092638) do
 
   create_table "documents", force: :cascade do |t|
     t.string   "title"
-    t.string   "attachment_file_name"
-    t.string   "attachment_content_type"
-    t.integer  "attachment_file_size"
-    t.datetime "attachment_updated_at"
     t.integer  "user_id"
     t.integer  "documentable_id"
     t.string   "documentable_type"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.text     "attachment_data"
   end
 
   add_index "documents", ["documentable_type", "documentable_id"], name: "index_documents_on_documentable_type_and_documentable_id", using: :btree
@@ -936,7 +933,7 @@ ActiveRecord::Schema.define(version: 20170720092638) do
     t.boolean  "email_digest",                              default: true
     t.boolean  "email_on_direct_message",                   default: true
     t.boolean  "official_position_badge",                   default: false
-    t.datetime "password_changed_at",                       default: '2017-07-27 22:09:12', null: false
+    t.datetime "password_changed_at",                       default: '2017-07-29 12:05:41', null: false
     t.boolean  "created_from_signature",                    default: false
     t.integer  "failed_email_digests_count",                default: 0
     t.text     "former_users_data_log",                     default: ""

@@ -33,7 +33,7 @@ shared_examples "document validations" do |documentable_factory|
   end
 
   it "should not be valid for attachments larger than documentable max_file_size definition" do
-    document.stub(:attachment_file_size).and_return(maxfilesize.megabytes + 1.byte)
+    document.attachment = FakeIO.new('file'* (maxfilesize.megabytes + 1.byte))
 
     expect(document).to_not be_valid
     expect(document.errors[:attachment]).to include "must be in between 0 Bytes and #{maxfilesize} MB"

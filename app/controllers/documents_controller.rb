@@ -34,7 +34,10 @@ class DocumentsController < ApplicationController
   end
 
   def prepare_new_document
-    @document = Document.new(documentable: @documentable, user_id: @documentable.author_id)
+    @document = Document.new(documentable: @documentable,
+                             user_id: @documentable.author_id,
+                             documentable_type: @documentable.class.name,
+                             documentable_id: @documentable.id)
   end
 
   def prepare_document_for_creation
