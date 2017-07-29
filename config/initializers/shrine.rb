@@ -5,8 +5,8 @@ if Rails.env.development?
   require "shrine/storage/file_system"
 
   Shrine.storages = {
-    cache: Shrine::Storage::FileSystem.new("public", prefix: "uploads/attachments/cache"), # temporary
-    store: Shrine::Storage::FileSystem.new("public", prefix: "uploads/attachments/store"), # permanent
+    cache: Shrine::Storage::FileSystem.new("tmp", prefix: "cache/uploads/documents"), # temporary
+    store: Shrine::Storage::FileSystem.new("public", prefix: "system/documents"), # permanent
   }
 
 else
