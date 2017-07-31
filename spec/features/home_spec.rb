@@ -29,11 +29,11 @@ feature "Home" do
     feature "Recommended" do
 
       background do
-        Setting['feature.recommendeds'] = true
+        Setting['feature.user.recommendations'] = true
       end
 
       after do
-        Setting['feature.recommendeds'] = nil
+        Setting['feature.user.recommendations'] = nil
       end
 
       scenario 'Display recommended section' do
@@ -54,7 +54,7 @@ feature "Home" do
 
       scenario 'Not display recommended section when feature flag recommended is not active' do
         debate = create(:debate)
-        Setting['feature.recommendeds'] = false
+        Setting['feature.user.recommendations'] = false
 
         visit root_path
 
