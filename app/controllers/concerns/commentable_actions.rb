@@ -9,7 +9,7 @@ module CommentableActions
 
     @resources = @resources.tagged_with(@tag_filter) if @tag_filter
     @resources =  if @current_order == "recommended" && current_user.present?
-                    @resources.page(params[:page]).for_render.send("sort_by_#{@current_order}", current_user)
+                    @resources.recommended(current_user).page(params[:page]).send("sort_by_#{@current_order}")
                   else
                     @resources.page(params[:page]).for_render.send("sort_by_#{@current_order}")
                   end

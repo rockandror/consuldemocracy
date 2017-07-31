@@ -48,6 +48,7 @@ class Proposal < ActiveRecord::Base
   scope :sort_by_relevance,        -> { all }
   scope :sort_by_flags,            -> { order(flags_count: :desc, updated_at: :desc) }
   scope :sort_by_archival_date,    -> { archived.sort_by_confidence_score }
+  scope :sort_by_recommended,      -> { order(cached_votes_up: :desc) }
   scope :archived,                 -> { where("proposals.created_at <= ?", Setting["months_to_archive_proposals"].to_i.months.ago) }
   scope :not_archived,             -> { where("proposals.created_at > ?", Setting["months_to_archive_proposals"].to_i.months.ago) }
   scope :last_week,                -> { where("proposals.created_at >= ?", 7.days.ago)}
@@ -55,14 +56,11 @@ class Proposal < ActiveRecord::Base
   scope :not_retired,              -> { where(retired_at: nil) }
   scope :successful,               -> { where("cached_votes_up >= ?", Proposal.votes_needed_for_success) }
   scope :public_for_api,           -> { all }
-  scope :sort_by_recommended,      -> (user) { recommended(user).order(cached_votes_up: :desc) }
-
 
   def self.recommended(user)
     proposals_list = where("author_id != ?", user.id)
-    #same as "with_tagged(user.interests, any: true)"
-    proposals_list_with_tagged = proposals_list.joins(:tags).where('taggings.taggable_type = ?', self.name).where('tags.name IN (?)', user.interests)
-    
+    proposals_list_with_tagged = proposals_list.joins(:tags).where('taggings.taggable_type = ?', self.name)
+                                                            .where('tags.name IN (?)', user.interests)
     if proposals_list_with_tagged.any?
       followed_proposals_ids = Proposal.followed_by_user(user).pluck(:id)
       proposals_list = proposals_list_with_tagged.where("proposals.id NOT IN (?)", followed_proposals_ids)
@@ -70,18 +68,6 @@ class Proposal < ActiveRecord::Base
 
     proposals_list
   end
-
-  # def recommended_proposals
-  #   proposals_list = Proposal.where("author_id != ?", id)
-  #   proposals_list_with_tagged = proposals_list.tagged_with(interests, any: true)
-  #
-  #   if interests.any? && proposals_list_with_tagged.any?
-  #     followed_proposals_ids = Proposal.followed_by_user(self).pluck(:id)
-  #     proposals_list = proposals_list_with_tagged.where("id NOT IN (?)", followed_proposals_ids)
-  #   end
-  #
-  #   proposals_list.order("cached_votes_up DESC").limit(3)
-  # end
 
   def to_param
     "#{id}-#{title}".parameterize

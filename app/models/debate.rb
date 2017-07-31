@@ -37,10 +37,11 @@ class Debate < ActiveRecord::Base
   scope :sort_by_random,           -> { reorder("RANDOM()") }
   scope :sort_by_relevance,        -> { all }
   scope :sort_by_flags,            -> { order(flags_count: :desc, updated_at: :desc) }
+  scope :sort_by_recommended,      -> { order(cached_votes_total: :desc) }
   scope :last_week,                -> { where("created_at >= ?", 7.days.ago)}
   scope :featured,                 -> { where("featured_at is not null")}
   scope :public_for_api,           -> { all }
-  scope :sort_by_recommended,      -> (user) { recommended(user).order(cached_votes_total: :desc) }
+
   # Ahoy setup
   visitable # Ahoy will automatically assign visit_id on create
 
