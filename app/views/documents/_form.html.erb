@@ -1,14 +1,14 @@
-<!-- <div class="document-uploader"></div> -->
 <%= form_for @document,
              url: documents_path(
               documentable_type: @document.documentable_type,
               documentable_id: @document.documentable_id,
               from: params[:from]
              ),
-             html: { multipart: true } do |f| %>
+             html: { multipart: true },
+             data: { direct_upload_url: document_uploader_upload_endpoint_path(documentable_type: @document.documentable_type, documentable_id: @document.documentable_id) } do |f| %>
 
-  <%= f.hidden_field :documentable_type, value: @document.documentable.class.name %>
-  <%= f.hidden_field :documentable_id, value: @document.documentable.id %>
+  <%#= f.hidden_field :documentable_type, value: @document.documentable.class.name %>
+  <%#= f.hidden_field :documentable_id, value: @document.documentable.id %>
 
   <%= render 'shared/errors', resource: @document %>
 
@@ -19,14 +19,13 @@
     </div>
 
     <div class="small-12 column">
-      <div class="file-name">
-        <%= f.hidden_field :attachment, value: @document.cached_attachment_data, id: 'cached_attachment_data' %>
-        <%= f.file_field :attachment,
-                          accept: accepted_content_types_extensions(@document.documentable),
-                          label: false, class: 'show-for-sr' %>
-        <%= f.label :attachment, t("documents.form.attachment_label"), class: 'button hollow' %>
-        <p><%= document_attachment_file_name(@document) %></p>
-      </div>
+      <%= f.hidden_field :attachment, value: @document.cached_attachment_data, id: 'cached_attachment_data' %>
+      <%= f.file_field :attachment,
+                        accept: accepted_content_types_extensions(@document.documentable),
+                        label: false, class: 'show-for-sr' %>
+      <%= f.label :attachment, t("documents.form.attachment_label"), class: 'button hollow' %>
+      <div id="progress-bar"></div>
+      <p class="file-name"><%= document_attachment_file_name(@document) %></p>
     </div>
 
     <% if @document.errors.has_key?(:attachment) %>

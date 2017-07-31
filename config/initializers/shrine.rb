@@ -1,5 +1,10 @@
 require "shrine"
 
+Shrine.plugin :activerecord
+Shrine.plugin :logging, logger: Rails.logger
+Shrine.plugin :direct_upload
+Shrine.plugin :backgrounding
+
 if Rails.env.development?
 
   require "shrine/storage/file_system"

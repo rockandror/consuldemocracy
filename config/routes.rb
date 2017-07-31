@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  # mount DocumentUploader::UploadEndpoint => "/attachments"
-
   if Rails.env.development? || Rails.env.staging?
     get '/sandbox' => 'sandbox#index'
     get '/sandbox/*template' => 'sandbox#show'
@@ -430,4 +428,7 @@ Rails.application.routes.draw do
   # static pages
   get '/blog' => redirect("http://blog.consul/")
   resources :pages, path: '/', only: [:show]
+
+  mount DocumentUploader::UploadEndpoint, at: "/documents/attachments"
+
 end
