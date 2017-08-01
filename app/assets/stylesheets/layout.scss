@@ -596,7 +596,7 @@ header {
     text-align: left;
 
     @include breakpoint(medium) {
-      margin-right: $line-height * 1.5;
+      margin-right: rem-calc(24);
     }
 
     &:hover {
@@ -2143,6 +2143,7 @@ table {
   }
 }
 
+
 // 19. Documents
 .document-form form {
 
@@ -2267,8 +2268,16 @@ table {
 
 // 20. Recommended Section Home
 // ----------------------------
+
+// .home-page {
+//   .push {
+//     display: none;
+//   }
+// }
+
 .section-recommended {
-  padding-top: $line-height * 2;
+  padding: $line-height * 2 0;
+  // padding-bottom: $line-height * 2;
 
   h2 {
     margin-bottom: $line-height * 2;
@@ -2289,15 +2298,20 @@ table {
     @include breakpoint(small) {
       margin-bottom: $line-height;
     }
+
+    .button.hollow{
+      margin-top: $line-height;
+    }
   }
 
   .card {
 
     .card-section {
-      padding: $line-height;
+      padding:$line-height 0;
 
       p {
         font-size: rem-calc(15);
+        text-align: left;
       }
     }
 
@@ -2357,15 +2371,18 @@ table {
 
     h5 {
       font-size: rem-calc(14);
+      text-align: left;
     }
   }
 
   .carousel-image {
+
     .card .orbit {
       height: 480px;
 
       .orbit-wrapper {
-        max-height: 425px;
+        min-height: 450px;
+        max-height: 460px;
       }
     }
 
@@ -2384,7 +2401,6 @@ table {
     display: block;
 
     @include breakpoint(small) {
-      max-height: 200px;
       margin: 0 auto;
     }
   }

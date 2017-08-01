@@ -52,6 +52,7 @@ class Proposal < ActiveRecord::Base
   scope :sort_by_relevance,        -> { all }
   scope :sort_by_flags,            -> { order(flags_count: :desc, updated_at: :desc) }
   scope :sort_by_archival_date,    -> { archived.sort_by_confidence_score }
+  scope :sort_by_recommendations,  -> { order(cached_votes_up: :desc) }
   scope :archived,                 -> { where("proposals.created_at <= ?", Setting["months_to_archive_proposals"].to_i.months.ago) }
   scope :not_archived,             -> { where("proposals.created_at > ?", Setting["months_to_archive_proposals"].to_i.months.ago) }
   scope :last_week,                -> { where("proposals.created_at >= ?", 7.days.ago)}
@@ -59,6 +60,19 @@ class Proposal < ActiveRecord::Base
   scope :not_retired,              -> { where(retired_at: nil) }
   scope :successful,               -> { where("cached_votes_up >= ?", Proposal.votes_needed_for_success) }
   scope :public_for_api,           -> { all }
+
+  def self.recommendations(user)
+    proposals_list = where("author_id != ?", user.id)
+    # same as tagged_with(user.interests, any: true)
+    proposals_list_with_tagged = proposals_list.joins(:tags).where('taggings.taggable_type = ?', self.name)
+                                                            .where('tags.name IN (?)', user.interests)
+    if proposals_list_with_tagged.any?
+      followed_proposals_ids = Proposal.followed_by_user(user).pluck(:id)
+      proposals_list = proposals_list_with_tagged.where("proposals.id NOT IN (?)", followed_proposals_ids)
+    end
+
+    proposals_list
+  end
 
   def to_param
     "#{id}-#{title}".parameterize
@@ -177,6 +191,12 @@ class Proposal < ActiveRecord::Base
 
   def users_to_notify
     (voters + followers).uniq
+  end
+
+  def self.proposals_orders(user)
+    orders = %w{hot_score confidence_score created_at relevance archival_date}
+    orders << "recommendations" if user.present?
+    orders
   end
 
   protected

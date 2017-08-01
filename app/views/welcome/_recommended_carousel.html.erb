@@ -1,4 +1,4 @@
-<div class="small-12 medium-4 large-3 column text-center <%= key %> <%= klass if klass %> ">
+<div class="small-12 medium-4 large-4 <%= carousel_size %> column text-center <%= key %> ">
   <div class="card small-centered <%= key %>-inner">
 
     <h4><%= t("welcome.recommended.#{key.underscore}.title") %></h4>
@@ -33,4 +33,5 @@
     </div>
 
   </div>
+  <%= link_to btn_text_link, btn_path_link, class: 'button hollow expanded' %>  
 </div>

@@ -105,6 +105,7 @@ en:
         hot_score: most active
         most_commented: most commented
         relevance: relevance
+        recommendations: recommendations
       search_form:
         button: Search
         placeholder: Search debates...
@@ -327,6 +328,7 @@ en:
         most_commented: most commented
         relevance: relevance
         archival_date: Archived
+        recommendations: recommendations
       retired_proposals: Retired proposals
       retired_proposals_link: "Proposals retired by the author"
       retired_links:
@@ -715,8 +717,10 @@ en:
       title: Recommendations that may interest you
       debates:
         title: Recommended debates
+        btn_text_link: All recommended debates
       proposals:
         title: Recommended proposals
+        btn_text_link: All recommended proposals
       budget_investments:
         title: Recommended investments
     verification:
