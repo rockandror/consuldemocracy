@@ -61,6 +61,8 @@
 //= require followable
 //= require tree_navigator
 //= require custom
+//= require leaflet
+//= require city_map
 
 var initialize_modules = function() {
   App.Comments.initialize();
@@ -94,6 +96,7 @@ var initialize_modules = function() {
     App.LegislationAnnotatable.initialize();
   App.WatchFormChanges.initialize();
   App.TreeNavigator.initialize();
+  App.CityMap.initialize();
 };
 
 $(function(){

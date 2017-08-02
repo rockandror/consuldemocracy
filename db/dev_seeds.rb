@@ -46,6 +46,11 @@ Setting.create(key: 'meta_keywords', value: 'citizen participation, open governm
 Setting.create(key: 'verification_offices_url', value: 'http://oficinas-atencion-ciudadano.url/')
 Setting.create(key: 'min_age_to_participate', value: '16')
 Setting.create(key: 'proposal_improvement_path', value: nil)
+Setting.create(key: 'feature.map', value: true)
+Setting.create(key: 'feature.map.address', value: "Greenwich")
+Setting.create(key: 'feature.map.latitude', value: 51.48)
+Setting.create(key: 'feature.map.longitude', value: 0)
+Setting.create(key: 'feature.map.zoom', value: 10)
 
 puts " ✅"
 print "Creating Geozones"

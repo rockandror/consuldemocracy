@@ -58,6 +58,9 @@ es:
       site_customization/content_block:
         one: Bloque
         other: Bloques
+      site_customization/city_map:
+        one: "Mapa de la ciudad"
+        other: "Mapa de la ciudad"
       legislation/process:
           one: "Proceso"
           other: "Procesos"
@@ -167,6 +170,11 @@ es:
         name: Nombre
         locale: Idioma
         body: Contenido
+      site_customization/city_map:
+        address: Dirección del centro del mapa
+        latitude: Latitud (Coordenada GPS)
+        longitude: Longitud (Coordenada GPS)
+        zoom: Ampliación del mapa(Zoom)
       legislation/process:
         title: Título del proceso
         description: En qué consiste

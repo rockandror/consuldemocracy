@@ -307,6 +307,9 @@ Rails.application.routes.draw do
       resources :pages, except: [:show]
       resources :images, only: [:index, :update, :destroy]
       resources :content_blocks, except: [:show]
+
+      get :city_map, to: "city_map#show"
+      put :city_map, to: "city_map#update"
     end
   end
 

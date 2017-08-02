@@ -107,3 +107,11 @@ Setting['min_age_to_participate'] = 16
 
 # Proposal improvement url path ('/more-information/proposal-improvement')
 Setting['proposal_improvement_path'] = nil
+
+# City map feature setting
+Setting['feature.map'] = nil
+# City map feature attributtes
+Setting['feature.map.address'] = "Greenwich"
+Setting['feature.map.latitude'] = 51.48
+Setting['feature.map.longitude'] = 0
+Setting['feature.map.zoom'] = 10

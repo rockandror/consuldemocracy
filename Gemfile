@@ -52,6 +52,10 @@ gem 'turnout', '~> 2.4.0'
 gem 'uglifier', '~> 3.2.0'
 gem 'unicorn', '~> 5.3.0'
 gem 'whenever', '~> 0.9.7', require: false
+gem 'geocoder'
+source 'https://rails-assets.org' do
+  gem 'rails-assets-leaflet'
+end
 
 group :development, :test do
   gem "bullet", '~> 5.5.1'

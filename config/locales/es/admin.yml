@@ -424,6 +424,7 @@ es:
         pages: Personalizar páginas
         images: Personalizar imágenes
         content_blocks: Personalizar bloques
+        city_map: Personalizar mapa
       title_categories: Categorías
       title_moderated_content: Contenido moderado
       title_budgets: Presupuestos
@@ -940,3 +941,9 @@ es:
           status_draft: Borrador
           status_published: Publicada
           locale: Idioma
+      city_map:
+        show:
+          title: Centro del mapa para la aplicación
+          help: Aquí puedes personalizar la manera en la que se muestra el mapa a los usuarios. Esta configuración se usuará en los mapas para ayudar a los usuarios a geolocalizar sus nuevas propuestas y proyectos de inversión.
+        form:
+          submit: Guardar configuración del mapa

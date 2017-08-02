@@ -328,6 +328,7 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.2.9)
       sprockets-rails
+    rails-assets-leaflet (1.1.0)
     rails-assets-markdown-it (8.2.1)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
@@ -509,6 +510,7 @@ DEPENDENCIES
   faker (~> 1.7.3)
   foundation-rails (~> 6.2.4.0)
   foundation_rails_helper (~> 2.0.0)
+  geocoder
   graphiql-rails (~> 1.4.1)
   graphql (~> 1.6.3)
   groupdate (~> 3.2.0)
@@ -534,6 +536,7 @@ DEPENDENCIES
   poltergeist (~> 1.15.0)
   quiet_assets (~> 1.1.0)
   rails (= 4.2.9)
+  rails-assets-leaflet!
   rails-assets-markdown-it (~> 8.2.1)!
   redcarpet (~> 3.4.0)
   responders (~> 2.4.0)
@@ -559,4 +562,4 @@ DEPENDENCIES
   whenever (~> 0.9.7)
 
 BUNDLED WITH
-   1.15.1
+   1.15.3

@@ -58,6 +58,9 @@ en:
       site_customization/content_block:
         one: Custom content block
         other: Custom content blocks
+      site_customization/city_map:
+        one: "City map"
+        other: "City map"        
       legislation/process:
         one: "Process"
         other: "Processes"
@@ -172,6 +175,11 @@ en:
         name: Name
         locale: locale
         body: Body
+      site_customization/city_map:
+        address: Map center address
+        latitude: Latitude (GPS Coordinate)
+        longitude: Longitude (GPS Coordinate)
+        zoom: Map zoom
       legislation/process:
         title: Process Title
         description: Description

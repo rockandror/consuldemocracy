@@ -770,4 +770,9 @@ LOREM_IPSUM
     locale "en"
     body "Some top links content"
   end
+
+  factory :city_map do
+    address "Comunidad de Madrid"
+  end
+
 end
