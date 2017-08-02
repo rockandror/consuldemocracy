@@ -14,20 +14,22 @@ module WelcomeHelper
       debate_path(recommended)
     when "Proposal"
       proposal_path(recommended)
-    when "Budget::Investment"
-      budget_investment_path(budget_id: recommended.budget.id, id: recommended.id)
     else
       '#'
     end
   end
 
   def render_image(recommended, image_field, image_version, image_default)
-    image_path =  if image_field.present? && image_version.present?
-                    recommended.send("#{image_field}", image_version)
-                  elsif image_default.present?
-                    image_default
-                  end
+    image_path = calculate_image_path(recommended, image_field, image_version, image_default)
     image_tag(image_path) if image_path.present?
+  end
+
+  def calculate_image_path(recommended, image_field, image_version, image_default)
+    if image_field.present? && image_version.present?
+      recommended.send("#{image_field}", image_version)
+    elsif image_default.present?
+      image_default
+    end
   end
 
   def calculate_carousel_size(debates, proposals, apply_offset)
@@ -53,8 +55,11 @@ module WelcomeHelper
     end
   end
 
+<<<<<<< HEAD
   def display_recommendeds(debates, proposals)
     debates.any? || proposals.any?
   end
 
+=======
+>>>>>>> user-recomendations
 end

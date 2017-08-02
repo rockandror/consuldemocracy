@@ -38,17 +38,13 @@ feature "Home" do
 
       scenario 'Display recommended section' do
         debate = create(:debate)
-
         visit root_path
-
         expect(page).to have_content "Recommendations that may interest you"
       end
 
       scenario 'Display recommended section when feature flag recommended is active' do
         debate = create(:debate)
-
         visit root_path
-
         expect(page).to have_content "Recommendations that may interest you"
       end
 
@@ -70,6 +66,12 @@ feature "Home" do
         expect(page).to have_content debate.description
       end
 
+      scenario 'Display all recommended debates link' do
+        debate = create(:debate)
+        visit root_path
+        expect(page).to have_link("All recommended debates", href: debates_path(order: "recommendations"))
+      end
+
       scenario 'Display proposal' do
         proposal = create(:proposal)
 
@@ -77,6 +79,12 @@ feature "Home" do
 
         expect(page).to have_content proposal.title
         expect(page).to have_content proposal.description
+      end
+
+      scenario 'Display all recommended proposals link' do
+        debate = create(:proposal)
+        visit root_path
+        expect(page).to have_link("All recommended proposals", href: proposals_path(order: "recommendations"))
       end
 
       scenario 'Display orbit carrousel' do
@@ -100,17 +108,14 @@ feature "Home" do
 
       scenario 'Do not display recommended section when there are not debates and proposals' do
         visit root_path
-
         expect(page).not_to have_content "Recommendations that may interest you"
       end
 
       feature 'Carousel size' do
 
-        scenario 'Display debates centered when there is not proposals' do
+        scenario 'Display debates centered when there are no proposals' do
           debate = create(:debate)
-
           visit root_path
-
           expect(page).to have_selector('.medium-centered.large-centered')
         end
 

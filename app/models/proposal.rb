@@ -63,15 +63,23 @@ class Proposal < ActiveRecord::Base
 
   def self.recommendations(user)
     proposals_list = where("author_id != ?", user.id)
-    # same as tagged_with(user.interests, any: true)
-    proposals_list_with_tagged = proposals_list.joins(:tags).where('taggings.taggable_type = ?', self.name)
-                                                            .where('tags.name IN (?)', user.interests)
+    proposals_list_with_tagged = self.proposals_with_tagged(user, proposals_list)
+
     if proposals_list_with_tagged.any?
-      followed_proposals_ids = Proposal.followed_by_user(user).pluck(:id)
-      proposals_list = proposals_list_with_tagged.where("proposals.id NOT IN (?)", followed_proposals_ids)
+      proposals_list = self.proposals_not_followed_by_user(user, proposals_list_with_tagged)
     end
 
-    proposals_list
+    proposals_list.uniq
+  end
+
+  def self.proposals_with_tagged(user, proposals_list)
+    proposals_list.joins(:tags).where('taggings.taggable_type = ?', self.name)
+                               .where('tags.name IN (?)', user.interests)
+  end
+
+  def self.proposals_not_followed_by_user(user, proposals_list_with_tagged)
+    followed_proposals_ids = Proposal.followed_by_user(user).pluck(:id)
+    proposals_list_with_tagged.where("proposals.id NOT IN (?)", followed_proposals_ids)
   end
 
   def to_param

@@ -10,4 +10,8 @@ module Followable
     }
   end
 
+  def followed_by?(user)
+    followers.include?(user)
+  end
+
 end

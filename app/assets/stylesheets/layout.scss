@@ -1161,7 +1161,6 @@ form {
     margin-top: $line-height / 4;
     position: absolute;
     right: 0;
-    z-index: 2;
   }
 }
 
@@ -1800,6 +1799,7 @@ table {
 
     [class^="icon-"] {
       font-size: $base-font-size;
+      text-decoration: none;
       vertical-align: sub;
     }
   }
@@ -1830,6 +1830,7 @@ table {
       font-size: $base-font-size;
       left: -20px;
       position: absolute;
+      text-decoration: none;
       top: -1px;
     }
 
@@ -2143,7 +2144,6 @@ table {
   }
 }
 
-
 // 19. Documents
 .document-form form {
 
@@ -2269,11 +2269,12 @@ table {
 // 20. Recommended Section Home
 // ----------------------------
 
-// .home-page {
-//   .push {
-//     display: none;
-//   }
-// }
+
+.home-page {
+  .push {
+    display: none;
+  }
+}
 
 .section-recommended {
   padding: $line-height * 2 0;
