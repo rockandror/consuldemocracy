@@ -55,11 +55,4 @@ module WelcomeHelper
     end
   end
 
-<<<<<<< HEAD
-  def display_recommendeds(debates, proposals)
-    debates.any? || proposals.any?
-  end
-
-=======
->>>>>>> user-recomendations
 end
