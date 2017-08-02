@@ -16,7 +16,8 @@ class Admin::SiteCustomization::CityMapController < Admin::SiteCustomization::Ba
   end
 
   def geocode
-
+    results = Geocoder.search(params[:term], { language: I18n.locale})
+    render json: results
   end
 
   private

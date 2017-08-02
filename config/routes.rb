@@ -310,6 +310,7 @@ Rails.application.routes.draw do
 
       get :city_map, to: "city_map#show"
       put :city_map, to: "city_map#update"
+      get :gecode,   to: "city_map#geocode"
     end
   end
 

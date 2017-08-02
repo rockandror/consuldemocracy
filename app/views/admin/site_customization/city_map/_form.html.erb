@@ -16,7 +16,7 @@
   <div class="row">
     <div class="small-12 column">
       <%= f.label :address, t("activerecord.attributes.site_customization/city_map.address") %>
-      <%= f.text_field :address, label: false %>
+      <%= f.text_field :address, label: false, class: "autocomplete" %>
     </div>
     <div class="small-6 column">
       <%= f.label :latitude, t("activerecord.attributes.site_customization/city_map.latitude") %>

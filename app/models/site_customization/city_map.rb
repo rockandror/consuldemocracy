@@ -17,8 +17,6 @@ class SiteCustomization::CityMap
 
   validates_presence_of :address, :latitude, :longitude, :zoom
 
-  after_validation :geocode
-
   def initialize(attributes = {})
     attributes.each do |name, value|
       send("#{name}=", value)
@@ -51,16 +49,6 @@ class SiteCustomization::CityMap
                                    latitude:   Setting['feature.map.latitude'],
                                    longitude:  Setting['feature.map.longitude'],
                                    zoom:       Setting['feature.map.zoom'])
-  end
-
-  def geocode
-    if @address.present? && not(default_location?)
-      result = Geocoder.search(@address)
-      if result.any?
-        @latitude = result.first.data['lat']
-        @longitude = result.first.data['lon']
-      end
-    end
   end
 
   def default_location?
