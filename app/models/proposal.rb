@@ -59,10 +59,11 @@ class Proposal < ActiveRecord::Base
   scope :retired,                  -> { where.not(retired_at: nil) }
   scope :not_retired,              -> { where(retired_at: nil) }
   scope :successful,               -> { where("cached_votes_up >= ?", Proposal.votes_needed_for_success) }
+  scope :unsuccessful,             -> { where("cached_votes_up < ?", Proposal.votes_needed_for_success) }
   scope :public_for_api,           -> { all }
 
   def self.recommendations(user)
-    proposals_list = where("author_id != ?", user.id)
+    proposals_list = where("author_id != ?", user.id).unsuccessful
     proposals_list_with_tagged = self.proposals_with_tagged(user, proposals_list)
 
     if proposals_list_with_tagged.any?
@@ -74,7 +75,7 @@ class Proposal < ActiveRecord::Base
 
   def self.proposals_with_tagged(user, proposals_list)
     proposals_list.joins(:tags).where('taggings.taggable_type = ?', self.name)
-                               .where('tags.name IN (?)', user.interests)
+                               .where('tags.name IN (?)', user.interests).group('proposals.id')
   end
 
   def self.proposals_not_followed_by_user(user, proposals_list_with_tagged)
