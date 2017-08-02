@@ -54,7 +54,7 @@ class Debate < ActiveRecord::Base
       debates_list = debates_list_with_tagged
     end
 
-    debates_list.uniq
+    debates_list
   end
 
   def searchable_values
