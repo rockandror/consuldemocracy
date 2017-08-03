@@ -952,3 +952,8 @@ es:
           submit: Guardar configuración del mapa
         success: La configuración del mapa se ha guardado correctamente
         error: No se ha podido guardar la configuración. Revise los errores del formulario e intételo de nuevo.
+        errors:
+          form:
+            error:
+              one: "error impidió guardar el mapa"
+              other: "errores impidieron guardar el mapa."

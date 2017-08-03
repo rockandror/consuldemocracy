@@ -952,3 +952,8 @@ en:
           submit: Save map configuration
         success: Map configuration updated succesfully.
         error: Cannot update map configuration. Check form errors and try again.
+        errors:
+          form:
+            error:
+              one: "prevented map from being saved"
+              other: 'prevented map from being saved'

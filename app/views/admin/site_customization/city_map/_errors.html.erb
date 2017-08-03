@@ -1,0 +1,14 @@
+<% if @city_map.errors.any? %>
+
+  <div id="error_explanation" data-alert class="callout alert" data-closable>
+    <button class="close-button" aria-label="<%= t("application.close") %>" type="button" data-close>
+      <span aria-hidden="true">&times;</span>
+    </button>
+
+    <strong>
+      <%= @city_map.errors.count %>
+      <%= t("admin.site_customization.city_map.errors.form.error", count: @city_map.errors.count) %>
+    </strong>
+  </div>
+
+<% end %>
