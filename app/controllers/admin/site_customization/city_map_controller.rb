@@ -15,6 +15,7 @@ class Admin::SiteCustomization::CityMapController < Admin::SiteCustomization::Ba
     end
   end
 
+  # TODO: Relocate method (Maybe this action should be better at new controller called "geocoder_controller")
   def geocode
     results = Geocoder.search(params[:term], { language: I18n.locale})
     render json: results
