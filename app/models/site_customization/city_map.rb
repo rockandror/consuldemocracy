@@ -18,14 +18,16 @@ class SiteCustomization::CityMap
       Setting['feature.map.latitude'] = @latitude
       Setting['feature.map.longitude'] = @longitude
       Setting['feature.map.zoom'] = @zoom
+      return true
     end
+    return false
   end
 
   def self.find
     SiteCustomization::CityMap.new(address:    Setting['feature.map.address'],
-                                   latitude:   Setting['feature.map.latitude'],
-                                   longitude:  Setting['feature.map.longitude'],
-                                   zoom:       Setting['feature.map.zoom'])
+                                   latitude:   Setting['feature.map.latitude'].to_f,
+                                   longitude:  Setting['feature.map.longitude'].to_f,
+                                   zoom:       Setting['feature.map.zoom'].to_i)
   end
 
   def persisted?

@@ -771,8 +771,11 @@ LOREM_IPSUM
     body "Some top links content"
   end
 
-  factory :city_map do
-    address "Comunidad de Madrid"
+  factory :city_map, class: 'SiteCustomization::CityMap' do
+    address "Greenwich"
+    latitude 51.48
+    longitude 0
+    zoom 10
   end
 
 end
