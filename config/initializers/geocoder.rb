@@ -1,22 +1,30 @@
-Geocoder.configure(
+if Rails.env.test?
 
-  # geocoding service (see below for supported options):
-  :lookup => :nominatim,
+  Geocoder.configure(:lookup => :test)
 
-  # IP address geocoding service (see below for supported options):
-  :ip_lookup => :maxmind,
+else
+  Geocoder.configure(
 
-  # to use an API key:
-  :api_key => "...",
+    # geocoding service (see below for supported options):
+    :lookup => :nominatim,
 
-  # geocoding service request timeout, in seconds (default 3):
-  :timeout => 5,
+    # IP address geocoding service (see below for supported options):
+    :ip_lookup => :maxmind,
 
-  # set default units to kilometers:
-  :units => :km,
+    # to use an API key:
+    :api_key => "...",
 
-  # caching (see below for details):
-  # :cache => Redis.new,
-  # :cache_prefix => "..."
+    # geocoding service request timeout, in seconds (default 3):
+    :timeout => 5,
 
-)
+    # set default units to kilometers:
+    :units => :km,
+
+    # caching (see below for details):
+    # :cache => Redis.new,
+    # :cache_prefix => "...",
+
+    # https://github.com/alexreisner/geocoder#nominatim-nominatim
+    :http_headers => { "User-Agent" => "your contact info" }
+  )
+end

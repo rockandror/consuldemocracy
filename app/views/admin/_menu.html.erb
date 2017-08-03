@@ -166,7 +166,7 @@
 
         <% if Setting['feature.map'] %>
           <li <%= "class=active" if controller_name == "city_map" %>>
-            <%= link_to t("admin.menu.site_customization.city_map"), admin_site_customization_city_map_path %>
+            <%= link_to t("admin.menu.site_customization.city_map"), admin_site_customization_city_map_edit_path %>
           </li>
         <% end %>
       </ul>

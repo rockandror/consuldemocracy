@@ -40,8 +40,8 @@ en:
       errors:
         form:
           error:
-            one: "prevented this banner from being saved"
-            other: 'prevented this banner from being saved'
+            one: "error prevented this banner from being saved"
+            other: 'errors prevented this banner from being saved'
       new:
         creating: Create banner
     activity:
@@ -771,8 +771,8 @@ en:
       errors:
         form:
           error:
-            one: "prevented this geozone from being saved"
-            other: 'prevented this geozone from being saved'
+            one: "error prevented this geozone from being saved"
+            other: 'errors prevented this geozone from being saved'
       edit:
         form:
           submit_button: Save changes
@@ -942,6 +942,9 @@ en:
           status_published: Published
           locale: Language
       city_map:
+        flash:
+          update: Map configuration updated succesfully.
+          error_update: Cannot update map configuration. Check form errors and try again.
         show:
           title: Application map center
           help: Here you can customize the way the map is displayed to users. This configuration will be used to geolocate their new proposals and investment projects.
@@ -950,10 +953,8 @@ en:
           address_help: Use the address field to search locations around the world, as you type results will be rendered. You can also adjust map marker position by dragging it or by clicking anywhere on the map.
           geolocation_help: These fields will be automatically populated after map marker location or places search by address.
           submit: Save map configuration
-        success: Map configuration updated succesfully.
-        error: Cannot update map configuration. Check form errors and try again.
         errors:
           form:
             error:
-              one: "prevented map from being saved"
-              other: 'prevented map from being saved'
+              one: "error prevented map from being saved"
+              other: 'errors prevented map from being saved'
