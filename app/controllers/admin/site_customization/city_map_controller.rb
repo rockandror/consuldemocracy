@@ -1,5 +1,5 @@
 class Admin::SiteCustomization::CityMapController < Admin::SiteCustomization::BaseController
-  load_and_authorize_resource :image, class: "SiteCustomization::Image"
+  authorize_resource :city_map, class: "SiteCustomization::CityMap"
 
   def show
     @city_map = SiteCustomization::CityMap.find
@@ -8,9 +8,9 @@ class Admin::SiteCustomization::CityMapController < Admin::SiteCustomization::Ba
   def update
     @city_map = SiteCustomization::CityMap.new(city_map_params)
     if @city_map.save
-      redirect_to admin_site_customization_city_map_path, notice: "Map updated"
+      redirect_to admin_site_customization_city_map_path, notice: t("admin.site_customization.city_map.success")
     else
-      flash.now[:alert] = "Error"
+      flash.now[:alert] = t("admin.site_customization.city_map.error")
       render :show
     end
   end

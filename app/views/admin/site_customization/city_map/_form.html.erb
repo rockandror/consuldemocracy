@@ -13,27 +13,33 @@
     </div>
   <% end %>
 
+  <br>
   <div class="row">
     <div class="small-12 column">
       <%= f.label :address, t("activerecord.attributes.site_customization/city_map.address") %>
-      <%= f.text_field :address, label: false, class: "autocomplete" %>
+      <%= f.text_field :address, label: false, class: "autocomplete", placeholder: t("admin.site_customization.city_map.form.address_placeholder") %>
+      <small><%= t "admin.site_customization.city_map.form.address_help" %></small>
     </div>
-    <div class="small-6 column">
+    <div class="small-12 column">
+      <hr>
+      <div class="callout primary"><%= t "admin.site_customization.city_map.form.geolocation_help" %></div>
+    </div>
+    <div class="small-4 column">
       <%= f.label :latitude, t("activerecord.attributes.site_customization/city_map.latitude") %>
       <%= f.text_field :latitude, label: false, readonly: true %>
     </div>
-    <div class="small-6 column">
+    <div class="small-4 column">
       <%= f.label :longitude, t("activerecord.attributes.site_customization/city_map.longitude") %>
       <%= f.text_field :longitude, label: false, readonly: true %>
     </div>
-    <div class="small-12 column">
+    <div class="small-4 column">
       <%= f.label :zoom, t("activerecord.attributes.site_customization/city_map.zoom") %>
       <%= f.text_field :zoom, label: false, readonly: true %>
     </div>
   </div>
 
   <div class="small-12 medium-6 large-4">
-    <%= f.submit class: "button success expanded" %>
+    <%= f.submit t("admin.site_customization.city_map.form.submit"), class: "button success expanded" %>
   </div>
 
 <% end %>

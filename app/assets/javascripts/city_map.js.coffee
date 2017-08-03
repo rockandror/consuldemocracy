@@ -7,13 +7,17 @@ App.CityMap =
       address = $('#city-map').data('address')
       map = L.map('city-map').setView(latLng, zoom)
 
-      L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors').addTo map
+      L.tileLayer('//{s}.tile.osm.org/{z}/{x}/{y}.png', attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors').addTo map
       marker_el = document.getElementById('city-map-marker')
       marker_icon = L.divIcon(
         className: 'city-map-marker'
         iconSize: null
         html: marker_el.outerHTML)
-      marker = L.marker(latLng, icon: marker_icon).addTo(map)
+      marker = L.marker(latLng, { icon: marker_icon, draggable: 'true' }).addTo(map)
+      marker.on('dragend', (e) ->
+        reCenterMap this.getLatLng().lat, this.getLatLng().lng
+        updateFormfields this.getLatLng().lat, this.getLatLng().lng
+      )
 
       onMapClick = (e) ->
         rellocateMarker e.latlng.lat, e.latlng.lng
@@ -51,11 +55,7 @@ App.CityMap =
             minLength: 2
             select: ( event, ui ) ->
               event.preventDefault()
-              console.log ui.item.data.display_name
-              console.log ui.item.data.lat
-              console.log ui.item.data.lon
               this.value = ui.item.data.display_name
-              # $('#' + $('#city-map').data('address-field-id')).val ui.item.data.display_name
               $('#' + $('#city-map').data('latitude-field-id')).val ui.item.data.lat
               $('#' + $('#city-map').data('longitude-field-id')).val ui.item.data.lon
 

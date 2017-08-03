@@ -67,12 +67,12 @@ module Abilities
       can :manage, SiteCustomization::Page
       can :manage, SiteCustomization::Image
       can :manage, SiteCustomization::ContentBlock
+      can :manage, SiteCustomization::CityMap
 
       can [:manage], ::Legislation::Process
       can [:manage], ::Legislation::DraftVersion
       can [:manage], ::Legislation::Question
       cannot :comment_as_moderator, [::Legislation::Question, Legislation::Annotation]
-
     end
   end
 end

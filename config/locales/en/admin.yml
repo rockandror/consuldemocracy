@@ -943,11 +943,12 @@ en:
           locale: Language
       city_map:
         show:
-          title: "Application map center"
-          help: "You can customize default mao position and zoom. This configuration will be used on frontend maps as initial configutation to help users to geolocate their proposals and budget investment projects."
-      city_map:
-        show:
           title: Application map center
-          help: Here you can customize the way the map is displayed to users. This configuration will be used in the maps to help users to geolocalize their new proposals and investment projects.
+          help: Here you can customize the way the map is displayed to users. This configuration will be used to geolocate their new proposals and investment projects.
         form:
+          address_placeholder: Type your place search and we show you available options.
+          address_help: Use the address field to search locations around the world, as you type results will be rendered. You can also adjust map marker position by dragging it or by clicking anywhere on the map.
+          geolocation_help: These fields will be automatically populated after map marker location or places search by address.
           submit: Save map configuration
+        success: Map configuration updated succesfully.
+        error: Cannot update map configuration. Check form errors and try again.
