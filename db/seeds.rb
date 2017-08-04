@@ -79,6 +79,7 @@ Setting['feature.public_stats'] = true
 Setting['feature.budgets'] = true
 Setting['feature.signature_sheets'] = true
 Setting['feature.legislation'] = true
+Setting['feature.map'] = nil
 
 # Spending proposals feature flags
 Setting['feature.spending_proposal_features.voting_allowed'] = nil
@@ -108,10 +109,7 @@ Setting['min_age_to_participate'] = 16
 # Proposal improvement url path ('/more-information/proposal-improvement')
 Setting['proposal_improvement_path'] = nil
 
-# City map feature setting
-Setting['feature.map'] = nil
-# City map feature attributtes
-Setting['feature.map.address'] = "Greenwich"
-Setting['feature.map.latitude'] = 51.48
-Setting['feature.map.longitude'] = 0
-Setting['feature.map.zoom'] = 10
+# City map feature default configuration (Greenwich)
+Setting['map.latitude'] = 51.48
+Setting['map.longitude'] = 0
+Setting['map.zoom'] = 10

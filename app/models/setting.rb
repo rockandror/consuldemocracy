@@ -18,7 +18,7 @@ class Setting < ActiveRecord::Base
   end
 
   def feature_flag?
-    key.start_with?('feature.') && !key.start_with?('feature.map.')
+    key.start_with?('feature.')
   end
 
   def enabled?

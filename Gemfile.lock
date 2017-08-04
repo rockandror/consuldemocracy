@@ -510,7 +510,6 @@ DEPENDENCIES
   faker (~> 1.7.3)
   foundation-rails (~> 6.2.4.0)
   foundation_rails_helper (~> 2.0.0)
-  geocoder
   graphiql-rails (~> 1.4.1)
   graphql (~> 1.6.3)
   groupdate (~> 3.2.0)

@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="small-12 column">
+    <div id="map" data-latitude="<%= Setting["map.latitude"] %>"
+                       data-longitude="<%= Setting["map.longitude"] %>"
+                       data-zoom="<%= Setting["map.zoom"] %>"
+                       data-latitude-field-id="latitude"
+                       data-longitude-field-id="longitude"
+                       data-zoom-field-id="zoom">
+    </div>
+    <div id="map-marker" class="map-marker"></div>
+  </div>
+</div>
+
+<br>
+
+<%= form_tag admin_update_map_path, method: :put, html: { id: 'map-form'} do |f| %>
+
+  <%= hidden_field_tag :latitude,   Setting["map.latitude"] %>
+  <%= hidden_field_tag :longitude,  Setting["map.longitude"] %>
+  <%= hidden_field_tag :zoom,       Setting["map.zoom"] %>
+
+  <div class="small-12 medium-6 large-4">
+    <%= submit_tag t("admin.settings.index.map.form.submit"),
+                 class: "button hollow expanded" %>
+  </div>
+
+<% end %>

@@ -231,6 +231,8 @@ Rails.application.routes.draw do
     end
 
     resources :settings, only: [:index, :update]
+    put :update_map, to: "settings#update_map"
+
     resources :moderators, only: [:index, :create, :destroy] do
       get :search, on: :collection
     end
@@ -307,9 +309,6 @@ Rails.application.routes.draw do
       resources :pages, except: [:show]
       resources :images, only: [:index, :update, :destroy]
       resources :content_blocks, except: [:show]
-      get "city_map/edit", to: "city_map#edit"
-      put :city_map, to: "city_map#update"
-      get :gecode,   to: "city_map#geocode"
     end
   end
 

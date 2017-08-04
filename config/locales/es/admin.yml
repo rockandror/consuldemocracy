@@ -424,7 +424,6 @@ es:
         pages: Personalizar páginas
         images: Personalizar imágenes
         content_blocks: Personalizar bloques
-        city_map: Personalizar mapa
       title_categories: Categorías
       title_moderated_content: Contenido moderado
       title_budgets: Presupuestos
@@ -679,7 +678,14 @@ es:
           enabled: "Funcionalidad activada"
           disabled: "Funcionalidad desactivada"
           enable: "Activar"
-          disable: "Desactivar"
+          disable: "Desactivar"          
+        map:
+          title: Configuración del mapa
+          help: Aquí puedes personalizar la manera en la que se muestra el mapa a los usuarios. Arrastra el marcador o pulsa sobre cualquier parte del mapa y guarda.
+          flash:
+            update: La configuración del mapa se ha guardado correctamente.
+          form:
+            submit: Actualizar
     shared:
       booths_search:
         button: Buscar
@@ -941,20 +947,3 @@ es:
           status_draft: Borrador
           status_published: Publicada
           locale: Idioma
-      city_map:
-        flash:
-          update: La configuración del mapa se ha guardado correctamente.
-          error_update: No se ha podido guardar la configuración. Revise los errores del formulario e intételo de nuevo.
-        show:
-          title: Centro del mapa para la aplicación
-          help: Aquí puedes personalizar la manera en la que se muestra el mapa a los usuarios. Esta configuración se usuará en los mapas para ayudar a los usuarios a geolocalizar sus nuevas propuestas y proyectos de inversión.
-        form:
-          address_placeholder: Introduce la dirección, nombre de ciudad o población donde quieres que esté el centro del mapa.
-          address_help: Usa el campo de dirección para buscar ubicaciones por todo el mundo, a medida que introduzcas tu búsqueda te aparecerán resultados. También puedes ajustar la posición del marcador en el mapa arrastrándolo o pulsando en cualquier parte del mapa.
-          geolocation_help: Estos campos se rellenan automáticamente al cambiar la posición del marcador.
-          submit: Guardar configuración del mapa
-        errors:
-          form:
-            error:
-              one: "error impidió guardar el mapa"
-              other: "errores impidieron guardar el mapa."

@@ -771,8 +771,7 @@ LOREM_IPSUM
     body "Some top links content"
   end
 
-  factory :city_map, class: 'SiteCustomization::CityMap' do
-    address "Greenwich"
+  factory :map do
     latitude 51.48
     longitude 0
     zoom 10

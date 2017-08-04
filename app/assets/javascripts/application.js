@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui/widgets/autocomplete
 //= require jquery-ui/widgets/datepicker
 //= require jquery-ui/i18n/datepicker-es
 //= require foundation
@@ -63,7 +62,7 @@
 //= require tree_navigator
 //= require custom
 //= require leaflet
-//= require city_map
+//= require map
 
 var initialize_modules = function() {
   App.Comments.initialize();
@@ -97,7 +96,7 @@ var initialize_modules = function() {
     App.LegislationAnnotatable.initialize();
   App.WatchFormChanges.initialize();
   App.TreeNavigator.initialize();
-  App.CityMap.initialize();
+  App.Map.initialize();
 };
 
 $(function(){

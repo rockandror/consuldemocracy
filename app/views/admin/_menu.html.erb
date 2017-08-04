@@ -161,14 +161,8 @@
         </li>
 
         <li <%= "class=active" if controller_name == "content_blocks" %>>
-          <%= link_to t("admin.menu.site_customization.content_blocks"), admin_site_customization_content_blocks_path %>
+          <%= link_to t("admin.menu.site_customization.content_blocks"), admin_site_customization_content_blocks_path%>
         </li>
-
-        <% if Setting['feature.map'] %>
-          <li <%= "class=active" if controller_name == "city_map" %>>
-            <%= link_to t("admin.menu.site_customization.city_map"), admin_site_customization_city_map_edit_path %>
-          </li>
-        <% end %>
       </ul>
     </li>
 

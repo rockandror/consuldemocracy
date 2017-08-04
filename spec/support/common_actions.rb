@@ -287,10 +287,4 @@ module CommonActions
     end
   end
 
-  def choose_autocomplete(field, options = {})
-    page.execute_script %Q{$('##{field}').val('#{options[:with]}').keydown()}
-    sleep 1 # Cannot wait automatically for AJAX response
-    page.execute_script("$('.ui-autocomplete .ui-menu-item:contains(\"#{options[:select]}\")').find('a').trigger('mouseenter').click()")
-  end
-
 end
