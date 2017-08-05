@@ -903,10 +903,10 @@ table {
 // 09. Map
 // --------------
 
-#map{
+.map{
   width: 100%;
   height: 350px;
-  #map-marker {
+  .map-marker {
     visibility: visible;
     width: 30px;
     height: 30px;
@@ -916,9 +916,9 @@ table {
     transform: rotate(-45deg);
     left: 50%;
     top: 50%;
-    margin: -20px 0 0 -20px;
+    margin: -45px 0 0 -15px;
   }
-  #map-marker:after {
+  .map-marker:after {
     content: "";
     width: 14px;
     height: 14px;
@@ -928,6 +928,9 @@ table {
     border-radius: 50%;
   }
 }
-#map-marker{
+.map-marker{
+  visibility: hidden;
+}
+.map-attributtion{
   visibility: hidden;
 }

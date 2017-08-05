@@ -1,36 +1,48 @@
 App.Map =
 
   initialize: ->
-    if $('#map').length > 0
-      latLng = new (L.LatLng)($('#map').data('latitude'), $('#map').data('longitude'))
-      zoom = $('#map').data('zoom')
-      map = L.map('map').setView(latLng, zoom)
+    maps = $('*[data-map]')
 
-      L.tileLayer('//{s}.tile.osm.org/{z}/{x}/{y}.png', attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors').addTo map
-      marker_el = document.getElementById('map-marker')
-      marker_icon = L.divIcon(
-        className: 'map-marker'
-        iconSize: null
-        html: marker_el.outerHTML)
-      marker = L.marker(latLng, { icon: marker_icon, draggable: 'true' }).addTo(map)
-      marker.on('dragend',  ->
-        updateFormfields this.getLatLng().lat, this.getLatLng().lng
-      )
+    if maps.length > 0
+      $.each maps, (index, map) ->
+        App.Map.initializeMap map
 
-      onMapClick = (e) ->
-        marker.setLatLng(e.latlng)
-        updateFormfields e.latlng.lat, e.latlng.lng
-        return
+  initializeMap: (element) ->
+    latitude                  = $(element).data('latitude')
+    longitude                 = $(element).data('longitude')
+    zoom                      = $(element).data('zoom')
+    mapTilesProvider          = $(element).data('tiles-provider')
+    mapAttributionSelector    = $(element).data('tiles-attribution-selector')
+    latitudeInputSelector     = $(element).data('latitude-input-selector')
+    longitudeInputSelector    = $(element).data('longitude-input-selector')
+    zoomInputSelector         = $(element).data('zoom-input-selector')
 
-      updateFormfields = (lat, lng) ->
-        $('#' + $('#map').data('latitude-field-id')).val lat
-        $('#' + $('#map').data('longitude-field-id')).val lng
-        $('#' + $('#map').data('zoom-field-id')).val map.getZoom()
-        return
+    latLng              = new (L.LatLng)(latitude, longitude)
+    map                 = L.map(element.id).setView(latLng, zoom)
+    attribution         = $(mapAttributionSelector)
+    L.tileLayer(mapTilesProvider, attribution: attribution).addTo map
 
-      updateZoomField = (e) ->
-        $('#' + $('#map').data('zoom-field-id')).val e.target.getZoom()
-        return
+    marker_icon = L.divIcon(
+      iconSize: null
+      html: '<div class="map-marker"></div>')
+    marker = L.marker(latLng, { icon: marker_icon, draggable: 'true' })
+    marker.addTo(map)
 
-      map.on 'click', onMapClick
-      map.on 'zoomend', updateZoomField
+    onMapClick = (e) ->
+      marker.setLatLng(e.latlng)
+      updateFormfields()
+      return
+
+    updateFormfields = ->
+      $(latitudeInputSelector).val marker.getLatLng().lat
+      $(longitudeInputSelector).val marker.getLatLng().lng
+      $(zoomInputSelector).val map.getZoom()
+      return
+
+    updateZoomField = (e) ->
+      $(zoomInputSelector).val e.target.getZoom()
+      return
+
+    marker.on 'dragend', updateFormfields
+    map.on    'zoomend', updateZoomField
+    map.on    'click',   onMapClick
