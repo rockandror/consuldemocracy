@@ -20,7 +20,7 @@ App.Map =
     latLng              = new (L.LatLng)(latitude, longitude)
     map                 = L.map(element.id).setView(latLng, zoom)
     attribution         = $(mapAttributionSelector)
-    L.tileLayer(mapTilesProvider, attribution: attribution).addTo map
+    L.tileLayer(mapTilesProvider, attribution: attribution.html()).addTo map
 
     marker_icon = L.divIcon(
       iconSize: null
