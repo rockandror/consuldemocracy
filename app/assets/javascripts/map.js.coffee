@@ -39,10 +39,6 @@ App.Map =
       $(zoomInputSelector).val map.getZoom()
       return
 
-    updateZoomField = (e) ->
-      $(zoomInputSelector).val e.target.getZoom()
-      return
-
     marker.on 'dragend', updateFormfields
-    map.on    'zoomend', updateZoomField
+    map.on    'zoomend', updateFormfields
     map.on    'click',   onMapClick

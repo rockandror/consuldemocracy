@@ -14,20 +14,18 @@
     <div id="admin-map-attribution" class="map-attributtion">
       &copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors
     </div>
+
+    <%= form_tag admin_update_map_path, method: :put, id: 'map-form' do |f| %>
+
+      <%= hidden_field_tag :latitude,   Setting["map.latitude"] %>
+      <%= hidden_field_tag :longitude,  Setting["map.longitude"] %>
+      <%= hidden_field_tag :zoom,       Setting["map.zoom"] %>
+
+      <div class="small-12 medium-6 large-4">
+        <%= submit_tag t("admin.settings.index.map.form.submit"),
+                     class: "button hollow expanded" %>
+      </div>
+
+    <% end %>
   </div>
 </div>
-
-<br>
-
-<%= form_tag admin_update_map_path, method: :put, id: 'map-form' do |f| %>
-
-  <%= hidden_field_tag :latitude,   Setting["map.latitude"] %>
-  <%= hidden_field_tag :longitude,  Setting["map.longitude"] %>
-  <%= hidden_field_tag :zoom,       Setting["map.zoom"] %>
-
-  <div class="small-12 medium-6 large-4">
-    <%= submit_tag t("admin.settings.index.map.form.submit"),
-                 class: "button hollow expanded" %>
-  </div>
-
-<% end %>
