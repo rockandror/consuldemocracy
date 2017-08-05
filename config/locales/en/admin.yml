@@ -681,7 +681,7 @@ en:
           disable: "Disable"
         map:
           title: Map configuration
-          help: Here you can customize the way the map is displayed to users. Drag map marker or click anywhere over the map and save.
+          help: Here you can customize the way the map is displayed to users. Drag map marker or click anywhere over the map, set desired zoom and click button "Update".
           flash:
             update: Map configuration updated succesfully.
           form:

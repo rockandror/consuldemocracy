@@ -678,10 +678,10 @@ es:
           enabled: "Funcionalidad activada"
           disabled: "Funcionalidad desactivada"
           enable: "Activar"
-          disable: "Desactivar"          
+          disable: "Desactivar"
         map:
           title: Configuración del mapa
-          help: Aquí puedes personalizar la manera en la que se muestra el mapa a los usuarios. Arrastra el marcador o pulsa sobre cualquier parte del mapa y guarda.
+          help: Aquí puedes personalizar la manera en la que se muestra el mapa a los usuarios. Arrastra el marcador o pulsa sobre cualquier parte del mapa, ajusta el zoom y pulsa el botón 'Actualizar'.
           flash:
             update: La configuración del mapa se ha guardado correctamente.
           form:
