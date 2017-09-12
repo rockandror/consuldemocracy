@@ -102,7 +102,7 @@ feature 'Proposals' do
 
     scenario 'Can not access the community' do
       Setting['feature.community'] = false
-      
+
       proposal = create(:proposal)
       visit proposal_path(proposal)
       expect(page).not_to have_content "Access the community"
@@ -1243,6 +1243,8 @@ feature 'Proposals' do
 
     expect(Flag.flagged?(user, proposal)).to_not be
   end
+
+  it_behaves_like "imageable", "proposal", "proposal_path", { "id": "id" }
 
   it_behaves_like "followable", "proposal", "proposal_path", { "id": "id" }
 

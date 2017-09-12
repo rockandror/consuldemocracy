@@ -22,6 +22,20 @@
                       class: 'button hollow float-right' %>
         <% end %>
 
+        <% if can?(:create, @image) %>
+          <%= link_to t("images.upload_image"),
+                      new_image_path(imageable_id: @proposal, imageable_type: @proposal.class.name, from: request.url),
+                      class: 'button hollow float-right' %>
+        <% end %>
+
+        <% if @proposal.image.present? && can?(:destroy, @proposal.image) %>
+          <%= link_to t("images.remove_image"),
+                      image_path(@proposal.image, from: request.url),
+                      method: :delete,
+                      class: 'button hollow float-right',
+                      data: { confirm: 'Are you sure?' } %>
+        <% end %>
+
         <% if author_of?(@proposal, current_user) %>
           <%= link_to t("proposals.show.send_notification"),
                       new_proposal_notification_path(proposal_id: @proposal.id),
@@ -63,6 +77,8 @@
           <% end %>
 
         </div>
+
+        <%= render_image(@proposal.image, :large, true) if @proposal.image.present? %>
 
         <br>
         <p>

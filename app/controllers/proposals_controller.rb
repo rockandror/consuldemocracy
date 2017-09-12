@@ -20,12 +20,14 @@ class ProposalsController < ApplicationController
     super
     @notifications = @proposal.notifications
     @document = Document.new(documentable: @proposal)
+    @image = Image.new(imageable: @proposal)
     redirect_to proposal_path(@proposal), status: :moved_permanently if request.path != proposal_path(@proposal)
   end
 
   def create
     @proposal = Proposal.new(proposal_params.merge(author: current_user))
     recover_documents_from_cache(@proposal)
+    recover_image_from_cache(@proposal)
 
     if @proposal.save
       redirect_to share_proposal_path(@proposal), notice: I18n.t('flash.actions.create.proposal')
@@ -78,6 +80,7 @@ class ProposalsController < ApplicationController
     def proposal_params
       params.require(:proposal).permit(:title, :question, :summary, :description, :external_url, :video_url,
                                        :responsible_name, :tag_list, :terms_of_service, :geozone_id,
+                                       image_attributes: [:id, :title, :attachment, :cached_attachment, :user_id],
                                        documents_attributes: [:id, :title, :attachment, :cached_attachment, :user_id] )
     end
 

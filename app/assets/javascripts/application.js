@@ -61,6 +61,7 @@
 //= require watch_form_changes
 //= require followable
 //= require documentable
+//= require imageable
 //= require tree_navigator
 //= require custom
 
@@ -97,6 +98,7 @@ var initialize_modules = function() {
   App.WatchFormChanges.initialize();
   App.TreeNavigator.initialize();
   App.Documentable.initialize();
+  App.Imageable.initialize();
 };
 
 $(function(){
