@@ -33,7 +33,7 @@
                       image_path(@proposal.image, from: request.url),
                       method: :delete,
                       class: 'button hollow float-right',
-                      data: { confirm: 'Are you sure?' } %>
+                      data: { confirm: t("images.remove_alert") } %>
         <% end %>
 
         <% if author_of?(@proposal, current_user) %>
