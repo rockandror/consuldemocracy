@@ -62,8 +62,7 @@
 //= require followable
 //= require flaggable
 //= require documentable
-//= require imageable
-//= require direct_uploads
+// require imageable
 //= require tree_navigator
 //= require custom
 
@@ -99,13 +98,12 @@ var initialize_modules = function() {
     App.LegislationAnnotatable.initialize();
   App.WatchFormChanges.initialize();
   App.TreeNavigator.initialize();
-  // App.Documentable.initialize();
+  App.Documentable.initialize();
   // App.Imageable.initialize();
-  App.DirectUploads.initialize();
 };
 
 $(function(){
-  Turbolinks.enableProgressBar()
+  Turbolinks.enableProgressBar();
 
   $(document).ready(initialize_modules);
   $(document).on('page:load', initialize_modules);
