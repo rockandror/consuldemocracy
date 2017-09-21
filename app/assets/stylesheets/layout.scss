@@ -18,7 +18,7 @@
 // 16. Flags
 // 17. Activity
 // 18. Banners
-// 19. Documents
+// 19. Images
 //
 
 // 01. Global styles
@@ -2136,63 +2136,58 @@ table {
   }
 }
 
-// 19. Documents
-.documents-list {
+// 19. Images
+.image-form form {
 
-  table {
-    border: 0;
+  .source-option-link {
+    input {
+      padding-bottom: 0;
+    }
+
+    .error {
+      margin-bottom: $line-height;
+    }
+
+    label {
+      &.error {
+        margin-bottom: 0;
+      }
+    }
   }
 
-  td {
-    position: relative;
+  .source-option-file {
+    .file-name {
+      label {
 
-    @include breakpoint(small) {
-      float: left;
-      width: 100%;
-    }
+        @include breakpoint(small medium) {
+          float: none;
+        }
 
-    @include breakpoint(medium) {
-      float: none;
-    }
-
-    a {
-      width: 100%;
-    }
-
-    &:first-child {
-      padding-left: $line-height * 1.5;
-
-      @include breakpoint(small) {
-        width: 100%;
+        @include breakpoint(large) {
+          float: left;
+        }
       }
 
-      @include breakpoint(medium) {
-        width: 70%;
-      }
+      p {
 
-      @include breakpoint(large) {
-        width: 80%;
+        @include breakpoint(small medium) {
+          float: none;
+          margin-top: 0;
+          margin-left: 0;
+          margin-bottom: 0;
+        }
+
+        @include breakpoint(large) {
+          float: left;
+          margin-bottom: 0;
+          margin-top: $line-height / 2;
+          margin-left: $line-height;
+        }
       }
     }
+  }
 
-    &:first-child::before {
-      color: #007bb7;
-      content: 'G';
-      font-family: "icons" !important;
-      font-size: rem-calc(24);
-      left: rem-calc(6);
-      position: absolute;
-      top: 0;
-
-      @include breakpoint(small) {
-        padding-top: rem-calc(12);
-      }
-
-      @include breakpoint(medium) {
-        padding-top: rem-calc(22);
-      }
-
-    }
-
+  .attachment-errors {
+    margin-bottom: $line-height;
   }
 }
