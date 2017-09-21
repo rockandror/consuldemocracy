@@ -18,7 +18,6 @@
 // 16. Flags
 // 17. Activity
 // 18. Banners
-// 19. Images
 //
 
 // 01. Global styles
@@ -2133,61 +2132,5 @@ table {
   a:hover h3 {
     color: #eaeaf2 !important;
     text-decoration: none;
-  }
-}
-
-// 19. Images
-.image-form form {
-
-  .source-option-link {
-    input {
-      padding-bottom: 0;
-    }
-
-    .error {
-      margin-bottom: $line-height;
-    }
-
-    label {
-      &.error {
-        margin-bottom: 0;
-      }
-    }
-  }
-
-  .source-option-file {
-    .file-name {
-      label {
-
-        @include breakpoint(small medium) {
-          float: none;
-        }
-
-        @include breakpoint(large) {
-          float: left;
-        }
-      }
-
-      p {
-
-        @include breakpoint(small medium) {
-          float: none;
-          margin-top: 0;
-          margin-left: 0;
-          margin-bottom: 0;
-        }
-
-        @include breakpoint(large) {
-          float: left;
-          margin-bottom: 0;
-          margin-top: $line-height / 2;
-          margin-left: $line-height;
-        }
-      }
-    }
-  }
-
-  .attachment-errors {
-    margin-bottom: $line-height;
   }
 }

@@ -9,16 +9,6 @@ module ImagesHelper
     end
   end
 
-  def image_note(image)
-    t "images.new.#{image.imageable.class.name.parameterize.underscore}.note",
-      title: image.imageable.title
-  end
-
-  def image_first_recommendation(image)
-    t "images.#{image.imageable.class.name.parameterize.underscore}.recommendation_one_html",
-      title: image.imageable.title
-  end
-
   def image_attachment_file_name(image)
     image.attachment_file_name
   end
@@ -27,7 +17,7 @@ module ImagesHelper
     image.errors[:attachment].join(', ') if image.errors.key?(:attachment)
   end
 
-  def image_bytesToMeg(bytes)
+  def image_bytes_to_mega(bytes)
     bytes / Numeric::MEGABYTE
   end
 
@@ -37,6 +27,13 @@ module ImagesHelper
 
   def render_destroy_image_link(builder, image)
     if !image.persisted? && image.cached_attachment.present?
+      link_to t('images.form.delete_button'),
+              image_path(image, nested_image: true),
+              method: :delete,
+              remote: true,
+              data: { confirm: t('images.actions.destroy.confirm') },
+              class: "delete remove-image"
+    elsif !image.persisted? && image.cached_attachment.present?
       link_to t('images.form.delete_button'),
               direct_upload_destroy_url("direct_upload[resource_type]": image.imageable_type,
                                         "direct_upload[resource_id]": image.imageable_id,

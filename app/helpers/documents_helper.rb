@@ -8,7 +8,7 @@ module DocumentsHelper
     document.errors[:attachment].join(', ') if document.errors.key?(:attachment)
   end
 
-  def bytes_to_mega(bytes)
+  def document_bytes_to_mega(bytes)
     bytes / Numeric::MEGABYTE
   end
 
@@ -19,13 +19,13 @@ module DocumentsHelper
   def render_destroy_document_link(builder, document)
     if !document.persisted? && document.cached_attachment.present?
       link_to t('documents.form.delete_button'),
-                  direct_upload_destroy_url("direct_upload[resource_type]": document.documentable_type,
-                                            "direct_upload[resource_id]": document.documentable_id,
-                                            "direct_upload[resource_relation]": "documents",
-                                            "direct_upload[cached_attachment]": document.cached_attachment),
-                  method: :delete,
-                  remote: true,
-                  class: "delete remove-cached-attachment"
+              direct_upload_destroy_url("direct_upload[resource_type]": document.documentable_type,
+                                        "direct_upload[resource_id]": document.documentable_id,
+                                        "direct_upload[resource_relation]": "documents",
+                                        "direct_upload[cached_attachment]": document.cached_attachment),
+              method: :delete,
+              remote: true,
+              class: "delete remove-cached-attachment"
     else
       link_to_remove_association t('documents.form.delete_button'), builder, class: "delete remove-document"
     end

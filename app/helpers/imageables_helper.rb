@@ -5,11 +5,7 @@ module ImageablesHelper
   end
 
   def imageable_max_file_size
-    bytesToMeg(Image::MAX_IMAGE_SIZE)
-  end
-
-  def bytesToMeg(bytes)
-    bytes / Numeric::MEGABYTE
+    image_bytes_to_mega(Image::MAX_IMAGE_SIZE)
   end
 
   def imageable_accepted_content_types

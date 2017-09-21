@@ -249,11 +249,9 @@
 .proposal-form,
 .budget-investment-form,
 .spending-proposal-form,
-.document-form,
 .topic-new,
 .topic-form,
-.image-form,
-.proposal .image-form {
+.image-form {
 
   .icon-debates,
   .icon-proposals,
@@ -305,9 +303,7 @@
 
 .proposal-form,
 .topic-form,
-.topic-new,
-.document-form,
-.image-form {
+.topic-new {
 
   .recommendations li::before {
     color: $proposals;
@@ -856,12 +852,6 @@
   display: none;
 }
 
-.document-form {
-  max-width: 75rem;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .more-info {
   clear: both;
   color: $text-medium;
@@ -956,13 +946,6 @@
       font-size: $small-font-size;
       margin-top: rem-calc(10);
     }
-  }
-}
-
-.image-form {
-
-  .note-marked p {
-    margin-bottom: 0;
   }
 }
 

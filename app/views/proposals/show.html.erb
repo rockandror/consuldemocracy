@@ -121,14 +121,6 @@
               <% end %>
             <% end %>
 
-            <% if can?(:create, @image) %>
-              <%= link_to new_image_path(imageable_id: @proposal, imageable_type: @proposal.class.name, from: request.url),
-                          class: 'button hollow expanded' do %>
-                          <span class="icon-document"></span>
-                          <%= t("images.upload_image") %>
-              <% end %>
-            <% end %>
-
             <% if can_destroy_image?(@proposal.image, @proposal) %>
               <%= link_to image_path(@proposal.image, from: request.url),
                           method: :delete,
