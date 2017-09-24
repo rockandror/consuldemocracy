@@ -28,13 +28,6 @@ module ImagesHelper
   def render_destroy_image_link(builder, image)
     if !image.persisted? && image.cached_attachment.present?
       link_to t('images.form.delete_button'),
-              image_path(image, nested_image: true),
-              method: :delete,
-              remote: true,
-              data: { confirm: t('images.actions.destroy.confirm') },
-              class: "delete remove-image"
-    elsif !image.persisted? && image.cached_attachment.present?
-      link_to t('images.form.delete_button'),
               direct_upload_destroy_url("direct_upload[resource_type]": image.imageable_type,
                                         "direct_upload[resource_id]": image.imageable_id,
                                         "direct_upload[resource_relation]": "image",
