@@ -1290,8 +1290,6 @@ feature 'Proposals' do
 
   it_behaves_like "followable", "proposal", "proposal_path", { "id": "id" }
 
-  it_behaves_like "imageable", "proposal", "proposal_path", { "id": "id" }
-
   it_behaves_like "nested imageable",
                   "proposal",
                   "new_proposal_path",
@@ -1307,8 +1305,6 @@ feature 'Proposals' do
                   nil,
                   "Save changes",
                   "Proposal updated successfully"
-
-  it_behaves_like "documentable", "proposal", "proposal_path", { "id": "id" }
 
   it_behaves_like "nested documentable",
                   "user",
