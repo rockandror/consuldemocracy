@@ -33,7 +33,7 @@ gem 'omniauth', '~> 1.8.1'
 gem 'omniauth-facebook', '~> 4.0.0'
 gem 'omniauth-google-oauth2', '~> 0.4.0'
 gem 'omniauth-twitter', '~> 1.4.0'
-gem 'paperclip', '~> 5.2.1'
+# gem 'paperclip', '~> 5.2.1'
 gem 'paranoia', '~> 2.4.0'
 gem 'pg', '~> 0.21.0'
 gem 'pg_search', '~> 2.0.1'
@@ -64,12 +64,12 @@ gem 'rubyzip', '~> 1.2.0'
 
 gem 'paperclip'
 gem 'aws-sdk', '~> 2.3.0'
-gem 'rails-assets-markdown-it', source: 'https://rails-assets.org'
+# gem 'rails-assets-markdown-it', source: 'https://rails-assets.org'
 
-gem 'cocoon'
+# gem 'cocoon'
 
-gem 'graphql', '~> 1.6.3'
-gem 'graphiql-rails', '~> 1.4.1'
+# gem 'graphql', '~> 1.6.3'
+# gem 'graphiql-rails', '~> 1.4.1'
 
 group :development, :test do
   gem 'bullet', '~> 5.7.0'
@@ -110,11 +110,6 @@ end
 
 group :production do
   gem 'faker', '~> 1.8.7'
-  gem "rails_12factor"
-end
-
-group :production do
-  gem "faker", '~> 1.7.3'
   gem "rails_12factor"
 end
 

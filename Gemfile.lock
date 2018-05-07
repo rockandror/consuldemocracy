@@ -550,7 +550,7 @@ DEPENDENCIES
   omniauth-facebook (~> 4.0.0)
   omniauth-google-oauth2 (~> 0.4.0)
   omniauth-twitter (~> 1.4.0)
-  paperclip (~> 5.2.1)
+  paperclip
   paranoia (~> 2.4.0)
   pg (~> 0.21.0)
   pg_search (~> 2.0.1)
