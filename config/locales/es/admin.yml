@@ -1074,6 +1074,7 @@ es:
       moderated_content: "Revisa el contenido moderado por los moderadores, y confirma si la moderación se ha realizado correctamente."
       image: Imagen
       show_image: Mostrar imagen
+      moderated_content: "Revisa el contenido moderado por los moderadores, y confirma si la moderación se ha realizado correctamente."
     spending_proposals:
       index:
         geozone_filter_all: Todos los ámbitos de actuación

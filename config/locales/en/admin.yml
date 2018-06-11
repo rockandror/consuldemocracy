@@ -1074,6 +1074,7 @@ en:
       moderated_content: "Check the content moderated by the moderators, and confirm if the moderation has been done correctly."
       image: Image
       show_image: Show image
+      moderated_content: "Check the content moderated by the moderators, and confirm if the moderation has been done correctly."
     spending_proposals:
       index:
         geozone_filter_all: All zones
