@@ -6,9 +6,11 @@ class Budget
     end
 
     def generate
-      stats = %w[total_participants total_participants_support_phase total_participants_vote_phase total_budget_investments total_votes
-                 total_selected_investments total_unfeasible_investments total_male_participants total_female_participants total_supports
-                 total_unknown_gender_or_age age_groups male_percentage female_percentage headings]
+      stats = %w[total_participants total_participants_support_phase total_participants_vote_phase
+                total_budget_investments total_votes total_selected_investments
+                total_unfeasible_investments total_male_participants total_female_participants
+                total_supports total_unknown_gender_or_age age_groups male_percentage
+                female_percentage headings total_participants_web total_participants_booths]
       stats.map { |stat_name| [stat_name.to_sym, send(stat_name)] }.to_h
     end
 
@@ -20,6 +22,16 @@ class Budget
 
       def total_participants_support_phase
         stats_cache('total_participants_support_phase') { voters.uniq.count }
+      end
+
+      def total_participants_web
+        stats_cache('total_participants_web') do
+          (balloters - poll_ballot_voters).uniq.compact.count
+        end
+      end
+
+      def total_participants_booths
+        stats_cache('total_participants_booths') { poll_ballot_voters.uniq.count }
       end
 
       def total_participants_vote_phase
@@ -95,7 +107,9 @@ class Budget
       end
 
       def participants
-        stats_cache('participants') { User.where(id: (authors + voters + balloters).uniq) }
+        stats_cache('participants') do
+          User.where(id: (authors + voters + balloters + poll_ballot_voters).uniq.compact)
+        end
       end
 
       def authors
@@ -108,6 +122,12 @@ class Budget
 
       def balloters
         stats_cache('balloters') { @budget.ballots.where('ballot_lines_count > ?', 0).pluck(:user_id) }
+      end
+
+      def poll_ballot_voters
+        stats_cache('poll_ballot_voters') do
+          @budget&.poll ? @budget.poll.voters.pluck(:user_id) : []
+        end
       end
 
       def total_participants_with_gender
@@ -194,7 +214,7 @@ class Budget
       end
 
       def stats_cache(key, &block)
-        Rails.cache.fetch("budgets_stats/#{@budget.id}/#{key}/v7", &block)
+        Rails.cache.fetch("budgets_stats/#{@budget.id}/#{key}/v8", &block)
       end
   end
 end
