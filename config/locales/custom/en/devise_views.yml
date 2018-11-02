@@ -1,0 +1,7 @@
+en:
+  devise_views:
+    users:
+      registrations:
+        new:
+          first_name: First Name
+          last_name: Last Name

@@ -220,6 +220,9 @@ describe "Users" do
 
         click_link "Sign up with Twitter"
 
+        fill_in "First name", with: "Manuela"
+        click_button "Register"
+
         expect_to_be_signed_in
 
         click_link "My account"
@@ -237,8 +240,10 @@ describe "Users" do
 
         click_link "Sign up with Twitter"
 
-        expect(page).to have_current_path(root_path)
-        expect(page).to have_content "Successfully identified"
+        expect(page).to have_current_path(finish_signup_path)
+
+        fill_in "First name", with: "Manuela"
+        click_button "Register"
 
         expect_to_be_signed_in
 
@@ -266,7 +271,9 @@ describe "Users" do
         click_link "Sign up with Twitter"
 
         expect(page).to have_current_path(finish_signup_path)
-        fill_in "user_email", with: "manueladelascarmenas@example.com"
+
+        fill_in "First name", with: "Manuela"
+        fill_in "Email", with: "manueladelascarmenas@example.com"
         click_button "Register"
 
         expect_to_be_signed_in
@@ -329,13 +336,7 @@ describe "Users" do
 
         expect(page).to have_current_path(finish_signup_path)
 
-        expect(page).to have_field("user_username", with: "manuela")
-
-        click_button "Register"
-
-        expect(page).to have_current_path(do_finish_signup_path)
-
-        fill_in "user_username", with: "manuela2"
+        fill_in "First name", with: "Manuela"
         click_button "Register"
 
         expect_to_be_signed_in
@@ -357,6 +358,7 @@ describe "Users" do
 
         expect(page).to have_current_path(finish_signup_path)
 
+        fill_in "First name", with: "Manuela"
         fill_in "user_email", with: "manuela@example.com"
         click_button "Register"
 
@@ -392,8 +394,9 @@ describe "Users" do
         click_link "Sign up with Twitter"
 
         expect(page).to have_current_path(finish_signup_path)
-
         expect(page).to have_field("user_email", with: "manuelacarmena@example.com")
+
+        fill_in "First name", with: "Manuela"
         fill_in "user_email", with: "somethingelse@example.com"
         click_button "Register"
 
@@ -435,7 +438,11 @@ describe "Users" do
 
         click_link "Sign up with Wordpress"
 
-        expect(page).to have_current_path(root_path)
+        expect(page).to have_current_path(finish_signup_path)
+
+        fill_in "First name", with: "Manuela"
+        click_button "Register"
+
         expect_to_be_signed_in
 
         click_link "Sign out"
@@ -464,13 +471,11 @@ describe "Users" do
 
         expect(page).to have_current_path(finish_signup_path)
 
-        expect(page).to have_field("user_username", with: "manuela")
-
+        fill_in "First name", with: "Manuela"
         click_button "Register"
 
         expect(page).to have_current_path(do_finish_signup_path)
 
-        fill_in "Username", with: "manuela2"
         fill_in "Email", with: "manuela@consul.dev"
         click_button "Register"
 
