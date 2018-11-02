@@ -10,10 +10,10 @@ describe "Emails" do
       interceptor = RecipientInterceptor.new("recipient@consul.dev", subject_prefix: "[staging]")
       Mail.register_interceptor(interceptor)
 
-      sign_up
+      reset_password
 
       email = open_last_email
-      expect(email).to have_subject("[staging] Confirmation instructions")
+      expect(email).to have_subject("[staging] Instructions for resetting your password")
       expect(email).to deliver_to("recipient@consul.dev")
       expect(email).not_to deliver_to("manuela@consul.dev")
 
@@ -21,7 +21,7 @@ describe "Emails" do
     end
   end
 
-  scenario "Signup Email" do
+  scenario "Signup Email", skip: "Sign up is disabled" do
     sign_up
 
     email = open_last_email
@@ -202,7 +202,7 @@ describe "Emails" do
     end
   end
 
-  scenario "Email depending on user's locale" do
+  scenario "Email depending on user's locale", skip: "Sign up is disabled" do
     visit root_path(locale: :es)
 
     click_link "Registrarse"
