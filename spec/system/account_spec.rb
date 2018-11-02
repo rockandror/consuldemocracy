@@ -61,15 +61,6 @@ describe "Account" do
 
     click_button "Update"
 
-    notice = "Your account has been updated successfully;"\
-             " however, we need to verify your new email address."\
-             " Please check your email and click on the link to"\
-             " complete the confirmation of your new email address."
-    expect(page).to have_content notice
-
-    open_last_email
-    visit_in_email("Confirm my account")
-
     logout
     visit root_path
     click_link "Sign in"
