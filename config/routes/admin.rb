@@ -29,7 +29,11 @@ namespace :admin do
     end
   end
 
-  resources :proposals, only: :index do
+  resources :proposals, only: [:index, :show] do
+    resources :milestones, controller: "proposal_milestones"
+  end
+
+  resources :hidden_proposals, only: :index do
     member do
       put :restore
       put :confirm_hide
@@ -139,7 +143,7 @@ namespace :admin do
       resources :results, only: :index
     end
 
-    resources :officers do
+    resources :officers, only: [:index, :new, :create, :destroy] do
       get :search, on: :collection
     end
 
@@ -204,6 +208,7 @@ namespace :admin do
         member { patch :toggle_selection }
       end
       resources :draft_versions
+      resources :milestones
     end
   end
 

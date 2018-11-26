@@ -225,8 +225,6 @@ en:
         tags: Tags
         user_tags: User tags
         undefined: Undefined
-        milestone: Milestone
-        new_milestone: Create new milestone
         compatibility:
           title: Compatibility
           "true": Incompatible
@@ -275,6 +273,8 @@ en:
         image: "Image"
         show_image: "Show image"
         documents: "Documents"
+        milestone: Milestone
+        new_milestone: Create new milestone
       form:
         admin_statuses: Admin investment statuses
         no_statuses_defined: There are no defined investment statuses yet
@@ -417,9 +417,10 @@ en:
           status_planned: Planned
         subnav:
           info: Information
-          draft_texts: Drafting
+          draft_versions: Drafting
           questions: Debate
           proposals: Proposals
+          milestones: Following
       proposals:
         index:
           title: Proposals
@@ -518,6 +519,9 @@ en:
           comments_count: Comments count
         question_option_fields:
           remove_option: Remove option
+      milestones:
+        index:
+          title: Following
     managers:
       index:
         title: Managers
@@ -534,6 +538,7 @@ en:
       admin: Admin menu
       banner: Manage banners
       poll_questions: Questions
+      proposals: Proposals
       proposals_topics: Proposals topics
       budgets: Participatory budgets
       geozones: Manage geozones
@@ -594,6 +599,7 @@ en:
         title: Administrators
         name: Name
         email: Email
+        id: Administrator ID
         no_administrators: There are no administrators.
       administrator:
         add: Add
@@ -1059,6 +1065,13 @@ en:
         title: Search Organisations
         no_results: No organizations found.
     proposals:
+      index:
+        title: Proposals
+        id: ID
+        author: Author
+        milestones: Milestones
+        no_proposals: There are no proposals.
+    hidden_proposals:
       index:
         filter: Filter
         filters:
