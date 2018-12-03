@@ -10,6 +10,7 @@ feature 'Admin polls' do
   it_behaves_like "translatable",
                   "poll",
                   "edit_admin_poll_path",
+                  false,
                   %w[name summary description]
 
   scenario 'Index empty', :js do

@@ -11,6 +11,7 @@ feature "Admin Notifications" do
   it_behaves_like "translatable",
                   "admin_notification",
                   "edit_admin_admin_notification_path",
+                  false,
                   %w[title body]
 
   context "Show" do

@@ -10,6 +10,7 @@ feature 'Admin legislation processes' do
   it_behaves_like "translatable",
                   "legislation_process",
                   "edit_admin_legislation_process_path",
+                  false,
                   %w[title summary description additional_info]
 
   context "Feature flag" do

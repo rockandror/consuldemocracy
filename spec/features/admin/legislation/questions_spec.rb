@@ -12,6 +12,7 @@ feature 'Admin legislation questions' do
   it_behaves_like "translatable",
                   "legislation_question",
                   "edit_admin_legislation_process_question_path",
+                  false,
                   %w[title]
 
   context "Feature flag" do

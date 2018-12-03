@@ -9,6 +9,7 @@ feature 'Admin poll questions' do
   it_behaves_like "translatable",
                   "poll_question",
                   "edit_admin_question_path",
+                  false,
                   %w[title]
 
   scenario 'Index' do

@@ -1,4 +1,4 @@
-shared_examples "translatable" do |factory_name, path_name, input_fields, textarea_fields = {}|
+shared_examples "translatable" do |factory_name, path_name, author, input_fields, textarea_fields = {}|
   let(:language_texts) do
     {
       es:      "en español",
@@ -12,6 +12,7 @@ shared_examples "translatable" do |factory_name, path_name, input_fields, textar
 
   let(:input_fields) { input_fields } # So it's accessible by methods
   let(:textarea_fields) { textarea_fields } # So it's accessible by methods
+  let(:author) { author } # So it's accessible by methods
 
   let(:fields) { input_fields + textarea_fields.keys }
 
@@ -31,9 +32,14 @@ shared_examples "translatable" do |factory_name, path_name, input_fields, textar
     fields - optional_fields
   end
 
+  let(:user) { create(:administrator).user }
   let(:translatable) { create(factory_name, attributes) }
   let(:path) { send(path_name, *resource_hierarchy_for(translatable)) }
-  before { login_as(create(:administrator).user) }
+
+  before do
+    login_as(user)
+    translatable.update(author: user) if author
+  end
 
   context "Manage translations" do
     before do

@@ -10,6 +10,7 @@ feature "Admin custom pages" do
   it_behaves_like "translatable",
                   "site_customization_page",
                   "edit_admin_site_customization_page_path",
+                  false,
                   %w[title subtitle],
                   { "content" => :ckeditor }
 

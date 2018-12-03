@@ -10,6 +10,7 @@ feature 'Admin legislation draft versions' do
   it_behaves_like "translatable",
                   "legislation_draft_version",
                   "edit_admin_legislation_process_draft_version_path",
+                  false,
                   %w[title changelog],
                   { "body" => :markdownit }
 

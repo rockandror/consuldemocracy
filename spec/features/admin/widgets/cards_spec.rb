@@ -10,6 +10,7 @@ feature 'Cards' do
   it_behaves_like "translatable",
                   "widget_card",
                   "edit_admin_widget_card_path",
+                  false,
                   %w[title description link_text label]
 
   scenario "Create", :js do

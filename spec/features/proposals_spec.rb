@@ -12,10 +12,13 @@ feature 'Proposals' do
   context "Concerns" do
     it_behaves_like 'notifiable in-app', Proposal
     it_behaves_like 'relationable', Proposal
-    it_behaves_like "translatable",
-                    "proposal",
-                    "edit_proposal_path",
-                    %w[title description question summary retired_reason retired_explanation]
+    it_behaves_like 'translatable',
+                    'proposal',
+                    'edit_proposal_path',
+                    true,
+                    %w[title question summary],
+                    { 'description' => :ckeditor }
+
   end
 
   context 'Index' do

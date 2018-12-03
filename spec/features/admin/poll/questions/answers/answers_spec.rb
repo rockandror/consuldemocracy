@@ -10,6 +10,7 @@ feature 'Answers' do
   it_behaves_like "translatable",
                   "poll_question_answer",
                   "edit_admin_answer_path",
+                  false,
                   %w[title],
                   { "description" => :ckeditor }
 

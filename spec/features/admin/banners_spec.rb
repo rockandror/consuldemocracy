@@ -9,6 +9,7 @@ feature 'Admin banners magement' do
   it_behaves_like "translatable",
                   "banner",
                   "edit_admin_banner_path",
+                  false,
                   %w[title description]
 
   context "Index" do

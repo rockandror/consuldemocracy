@@ -10,6 +10,7 @@ feature "Admin custom information texts" do
   it_behaves_like "translatable",
                   "i18n_content",
                   "admin_site_customization_information_texts_path",
+                  false,
                   %w[value]
 
   scenario 'page is correctly loaded' do
