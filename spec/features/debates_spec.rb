@@ -15,7 +15,8 @@ feature 'Debates' do
     it_behaves_like "translatable",
                     "debate",
                     "edit_debate_path",
-                    %w[title description],
+                    true,
+                    %w[title],
                     { "description" => :ckeditor }
   end
 
