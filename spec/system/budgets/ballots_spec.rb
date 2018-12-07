@@ -182,7 +182,7 @@ describe "Ballots" do
         within("#sidebar") do
           expect(page).to have_content "OpenStreetMap"
           expect(page).to have_content "New Block"
-          expect(page).to have_css ".map-icon", visible: :all, count: 2
+          expect(page).to have_css ".marker-cluster div span", text: "2"
         end
 
         add_to_ballot("More bridges")
@@ -191,7 +191,7 @@ describe "Ballots" do
           expect(page).to have_content "More bridges"
           expect(page).to have_content "OpenStreetMap"
           expect(page).to have_content "New Block"
-          expect(page).to have_css ".map-icon", visible: :all, count: 2
+          expect(page).to have_css ".marker-cluster div span", text: "2"
         end
 
         within(".budget-investment", text: "More bridges") do
@@ -202,7 +202,7 @@ describe "Ballots" do
           expect(page).not_to have_content "More bridges"
           expect(page).to have_content "OpenStreetMap"
           expect(page).to have_content "New Block"
-          expect(page).to have_css ".map-icon", visible: :all, count: 2
+          expect(page).to have_css ".marker-cluster div span", text: "2"
         end
       end
     end
