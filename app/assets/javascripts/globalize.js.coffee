@@ -5,12 +5,10 @@ App.Globalize =
 
     $("#globalize_locale .js-globalize-locale").each ->
       if $(this).data("locale") == locale
-        # $(this).show()
         $(this).addClass('is-active')
 
     $(".js-globalize-locale-link").each ->
       if $(this).data("locale") == locale
-        # $(this).show()
         $(this).removeClass('hide')
         $(this).addClass('show')
         App.Globalize.highlight_locale($(this))
@@ -20,7 +18,6 @@ App.Globalize =
   display_translations: (locale) ->
     $(".js-globalize-attribute").each ->
       if $(this).data("locale") == locale
-        console.log locale
         $(this).show()
       else
         $(this).hide()
@@ -31,7 +28,13 @@ App.Globalize =
     $('#globalize_locale').val(element.val())
     $('.js-globalize-locale-link').removeClass('is-active')
     element.addClass('is-active')
-    console.log element
+    App.Globalize.show_language_languages_buttons()
+
+  show_language_languages_buttons: ->
+    if  $('#globalize_locale option.show').length > 1
+      $('.group-destroy-languages').show()
+    else
+      $('.group-destroy-languages').hide()
 
   remove_language: (locale) ->
     $(".js-globalize-attribute[data-locale=" + locale + "]").each ->
@@ -40,20 +43,10 @@ App.Globalize =
           CKEDITOR.instances[$(this).attr('id')].setData('')
     $(".js-globalize-locale-link[data-locale=" + locale + "]").toggleClass('show hide')
 
-    next = $(".js-globalize-locale-link:visible").first()
-
-    #next = $('#globalize_locale option:selected .js-globalize-locale-link:visible').next()
-    #next = $('#globalize_locale option:selected').find('.is-active[style*="block"]').next().attr('data-locale')
-    #next = $('#globalize_locale option:selected').removeAttr('selected').find('.is-active[style*="block"]').next().attr('selected', 'selected')
-    #next = $('#globalize_locale option:selected').removeAttr('selected').find('.js-globalize-locale-link:visible').first().attr('selected', 'selected')
-    #next = $('#globalize_locale option:selected').removeAttr('selected').find('.is-active[style*="block"]').next().attr('selected', 'selected')
-
-    console.log next
-    #$('#globalize_locale option:selected').removeAttr('selected').find('.js-globalize-locale-link:visible').first().attr('selected', 'selected')
-
-    #App.Globalize.highlight_locale(next)
-    #App.Globalize.display_translations(next.data("locale"))
-    #App.Globalize.disable_locale(locale)
+    next = $('#globalize_locale option:selected').removeAttr('selected').closest('#globalize_locale').find('.show').attr('selected', 'selected')
+    App.Globalize.highlight_locale(next)
+    App.Globalize.display_translations(next.data("locale"))
+    App.Globalize.disable_locale(locale)
 
   enable_locale: (locale) ->
     App.Globalize.destroy_locale_field(locale).val(false)
@@ -84,9 +77,9 @@ App.Globalize =
       $(this).find('option').addClass('js-globalize-locale-link hide')
       $("#globalize_locale .js-globalize-locale-link").each ->
         if $(this).hasClass("is-active")
-          #$(this).show()
           $(this).removeClass('hide')
           $(this).addClass('show')
+      App.Globalize.show_language_languages_buttons()
 
     $('.js-globalize-locale').on 'change', ->
       App.Globalize.display_translations($(this).val())
@@ -98,8 +91,7 @@ App.Globalize =
         App.Globalize.display_translations(locale)
         App.Globalize.highlight_locale($(this))
         $('.js-globalize-locale-link').removeClass('is-active')
-        $(this).find(':selected').addClass('is-active');
-        #$(this).find(':selected').addClass('is-active').siblings('option').removeClass('is-active');
+        $(this).find(':selected').addClass('is-active')
 
     $('.js-globalize-locale-link').on 'click', ->
       locale = $(this).data("locale")
