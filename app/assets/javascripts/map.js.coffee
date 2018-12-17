@@ -5,7 +5,7 @@ App.Map =
 
     if maps.length > 0
       $.each maps, (index, map) ->
-        App.Map.initializeMap map
+        #App.Map.initializeMap map
 
     $('.js-toggle-map').on
         click: ->
