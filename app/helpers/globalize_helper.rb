@@ -19,6 +19,10 @@ module GlobalizeHelper
     end
   end
 
+  def display_translation(locale)
+    t("admin.translations.remove_language", locale: locale) + " " + name_for_locale(locale)
+  end
+
   def display_translation_style(resource, locale)
     "display: none;" unless display_translation?(resource, locale)
   end

@@ -1370,3 +1370,6 @@ it:
         submit_header: Salva intestazione
         card_title: Modifica scheda
         submit_card: Salva scheda
+    translations:
+        remove_language: Rimuovi Lingua
+        add_language: Aggiungi Lingua

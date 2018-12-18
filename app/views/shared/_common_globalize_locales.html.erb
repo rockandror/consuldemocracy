@@ -12,7 +12,7 @@
     %>
     <div class="group-destroy-languages">
       <% I18n.available_locales.each do |locale| %>
-          <%= link_to t("admin.translations.remove_language"), "#",
+          <%= link_to display_translation(locale), "#",
                       id: "js_delete_#{locale}",
                       style: display_translation_style(resource, locale),
                       class: 'delete js-delete-language',

@@ -27,9 +27,9 @@ App.Globalize =
     $('#globalize_locale').val(element.val())
     $('.js-globalize-locale-link').removeClass('is-active')
     element.addClass('is-active')
-    App.Globalize.show_languages_buttons()
+    App.Globalize.show_destroy_languages_buttons()
 
-  show_languages_buttons: ->
+  show_destroy_languages_buttons: ->
     numLanguages = $('#globalize_locale option.show').length
     $('.num-languages').text(numLanguages)
     if  $('#globalize_locale option.show').length > 1
@@ -80,7 +80,7 @@ App.Globalize =
         if $(this).hasClass("is-active")
           $(this).removeClass('hide')
           $(this).addClass('show')
-      App.Globalize.show_languages_buttons()
+      App.Globalize.show_destroy_languages_buttons()
 
     $('.js-globalize-locale').on 'change', ->
       App.Globalize.display_translations($(this).val())
