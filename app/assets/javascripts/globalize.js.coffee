@@ -2,7 +2,6 @@ App.Globalize =
 
   display_locale: (locale) ->
     App.Globalize.enable_locale(locale)
-
     $("#globalize_locale .js-globalize-locale").each ->
       if $(this).data("locale") == locale
         $(this).addClass('is-active')
@@ -31,6 +30,8 @@ App.Globalize =
     App.Globalize.show_language_languages_buttons()
 
   show_language_languages_buttons: ->
+    numLanguages = $('#globalize_locale option.show').length
+    $('.num-languages').text(numLanguages)
     if  $('#globalize_locale option.show').length > 1
       $('.group-destroy-languages').show()
     else

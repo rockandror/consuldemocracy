@@ -1,7 +1,10 @@
 <div class="row">
   <div class="small-6 large-3 columns">
-    <small><strong>[translate = Language in use]</strong></small>
-
+    <small>
+      <strong>
+        <div class="num-languages inline"></div> [Language in use]
+      </strong>
+    </small>
     <%= select_tag :translation_locale,
               options_for_locale_select,
               prompt: name_for_locale(locale),
@@ -15,8 +18,7 @@
                       class: 'delete js-delete-language',
                       data: { locale: locale } %>
       <% end %>
-      </div>
-
+    </div>
   </div>
   <div class="small-6 large-3 columns">
     <br />
