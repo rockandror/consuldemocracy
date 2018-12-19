@@ -1400,5 +1400,9 @@ en:
         card_title: Edit card
         submit_card: Save card
     translations:
+        language_in_use:
+          zero: Language in use
+          one: Language in use
+          other: Languages in use
         remove_language: Remove language
         add_language: Add language

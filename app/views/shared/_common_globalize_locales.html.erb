@@ -1,12 +1,14 @@
 <div class="row globalize-languages">
-  <div class="small-6 large-3 columns">
+  <div class="small-6 large-3 columns"
+       data-single-language-text="<%= t("admin.translations.language_in_use", :count => 1 ) %>"
+       data-mutiple-language-text="<%= t("admin.translations.language_in_use", :count => 2 ) %>">
     <small>
       <strong>
-        <div class="num-languages inline"></div> [Language in use]
+        <div id="num-languages" class="inline"></div>
       </strong>
     </small>
     <%= select_tag :translation_locale,
-              options_for_locale_select,
+              visible_options_for_locale_select,
               prompt: name_for_locale(locale),
               :id => "globalize_locale"
     %>

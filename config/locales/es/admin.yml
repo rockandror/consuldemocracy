@@ -1399,5 +1399,6 @@ es:
         card_title: Editar tarjeta
         submit_card: Guardar tarjeta
     translations:
+      language_in_use: Idioma en uso
       remove_language: Eliminar idioma
       add_language: Añadir idioma

@@ -31,7 +31,8 @@ App.Globalize =
 
   show_destroy_languages_buttons: ->
     numLanguages = $('#globalize_locale option.show').length
-    $('.num-languages').text(numLanguages)
+    $('#num-languages').text(numLanguages)
+
     if  $('#globalize_locale option.show').length > 1
       $('.group-destroy-languages').show()
     else

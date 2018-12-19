@@ -6,6 +6,16 @@ module GlobalizeHelper
 
   def locale_options
     I18n.available_locales.map do |locale|
+      [name_for_locale(locale), locale]
+    end
+  end
+
+  def visible_options_for_locale_select
+    options_for_select(visible_locale_options, nil)
+  end
+
+  def visible_locale_options
+    I18n.available_locales.map do |locale|
       [name_for_locale(locale), locale, { 'class'=> highlight_class(@resource, locale), 'data-locale' => locale }]
     end
   end
