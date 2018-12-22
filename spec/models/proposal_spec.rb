@@ -8,6 +8,7 @@ describe Proposal do
     it_behaves_like "has_public_author"
     it_behaves_like "notifiable"
     it_behaves_like "map validations"
+    it_behaves_like "globalizable", :proposal
   end
 
   it "is valid" do
@@ -44,8 +45,34 @@ describe Proposal do
   describe "#description" do
     it "is sanitized" do
       proposal.description = "<script>alert('danger');</script>"
+
       proposal.valid?
+
       expect(proposal.description).to eq("alert('danger');")
+    end
+
+    it "is sanitized using globalize accessors" do
+      proposal.description_en = "<script>alert('danger');</script>"
+
+      proposal.valid?
+
+      expect(proposal.description_en).to eq("alert('danger');")
+    end
+
+    it "is html_safe" do
+      proposal.description = "<script>alert('danger');</script>"
+
+      proposal.valid?
+
+      expect(proposal.description).to be_html_safe
+    end
+
+    it "is html_safe using globalize accessors" do
+      proposal.description_en = "<script>alert('danger');</script>"
+
+      proposal.valid?
+
+      expect(proposal.description_en).to be_html_safe
     end
 
     it "is not valid when very long" do
