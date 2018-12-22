@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181214094002) do
+ActiveRecord::Schema.define(version: 20181215164405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -344,6 +344,17 @@ ActiveRecord::Schema.define(version: 20181214094002) do
   end
 
   add_index "ckeditor_assets", ["type"], name: "index_ckeditor_assets_on_type", using: :btree
+
+  create_table "comment_translations", force: :cascade do |t|
+    t.integer  "comment_id", null: false
+    t.string   "locale",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text     "body"
+  end
+
+  add_index "comment_translations", ["comment_id"], name: "index_comment_translations_on_comment_id", using: :btree
+  add_index "comment_translations", ["locale"], name: "index_comment_translations_on_locale", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.integer  "commentable_id"
@@ -1207,6 +1218,16 @@ ActiveRecord::Schema.define(version: 20181214094002) do
   add_index "related_contents", ["parent_relationable_id", "parent_relationable_type", "child_relationable_id", "child_relationable_type"], name: "unique_parent_child_related_content", unique: true, using: :btree
   add_index "related_contents", ["parent_relationable_type", "parent_relationable_id"], name: "index_related_contents_on_parent_relationable", using: :btree
   add_index "related_contents", ["related_content_id"], name: "opposite_related_content", using: :btree
+
+  create_table "remote_translations", force: :cascade do |t|
+    t.string   "from"
+    t.string   "to"
+    t.integer  "remote_translatable_id"
+    t.string   "remote_translatable_type"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.text     "error_message"
+  end
 
   create_table "settings", force: :cascade do |t|
     t.string "key"
