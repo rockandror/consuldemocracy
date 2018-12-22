@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190122133850) do
+ActiveRecord::Schema.define(version: 20190123122936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -209,6 +209,20 @@ ActiveRecord::Schema.define(version: 20190122133850) do
 
   add_index "budget_investment_statuses", ["hidden_at"], name: "index_budget_investment_statuses_on_hidden_at", using: :btree
 
+  create_table "budget_investment_translations", force: :cascade do |t|
+    t.integer  "budget_investment_id", null: false
+    t.string   "locale",               null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "title"
+    t.text     "description"
+    t.datetime "hidden_at"
+  end
+
+  add_index "budget_investment_translations", ["budget_investment_id"], name: "index_budget_investment_translations_on_budget_investment_id", using: :btree
+  add_index "budget_investment_translations", ["hidden_at"], name: "index_budget_investment_translations_on_hidden_at", using: :btree
+  add_index "budget_investment_translations", ["locale"], name: "index_budget_investment_translations_on_locale", using: :btree
+
   create_table "budget_investments", force: :cascade do |t|
     t.integer  "author_id"
     t.integer  "administrator_id"
@@ -335,6 +349,19 @@ ActiveRecord::Schema.define(version: 20190122133850) do
 
   add_index "ckeditor_assets", ["type"], name: "index_ckeditor_assets_on_type", using: :btree
 
+  create_table "comment_translations", force: :cascade do |t|
+    t.integer  "comment_id", null: false
+    t.string   "locale",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text     "body"
+    t.datetime "hidden_at"
+  end
+
+  add_index "comment_translations", ["comment_id"], name: "index_comment_translations_on_comment_id", using: :btree
+  add_index "comment_translations", ["hidden_at"], name: "index_comment_translations_on_hidden_at", using: :btree
+  add_index "comment_translations", ["locale"], name: "index_comment_translations_on_locale", using: :btree
+
   create_table "comments", force: :cascade do |t|
     t.integer  "commentable_id"
     t.string   "commentable_type"
@@ -370,6 +397,20 @@ ActiveRecord::Schema.define(version: 20190122133850) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "debate_translations", force: :cascade do |t|
+    t.integer  "debate_id",   null: false
+    t.string   "locale",      null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "title"
+    t.text     "description"
+    t.datetime "hidden_at"
+  end
+
+  add_index "debate_translations", ["debate_id"], name: "index_debate_translations_on_debate_id", using: :btree
+  add_index "debate_translations", ["hidden_at"], name: "index_debate_translations_on_hidden_at", using: :btree
+  add_index "debate_translations", ["locale"], name: "index_debate_translations_on_locale", using: :btree
 
   create_table "debates", force: :cascade do |t|
     t.string   "title",                        limit: 80
@@ -1114,6 +1155,23 @@ ActiveRecord::Schema.define(version: 20190122133850) do
     t.datetime "ignored_at"
     t.datetime "confirmed_hide_at"
   end
+
+  create_table "proposal_translations", force: :cascade do |t|
+    t.integer  "proposal_id",         null: false
+    t.string   "locale",              null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "title"
+    t.text     "description"
+    t.string   "question"
+    t.text     "summary"
+    t.text     "retired_explanation"
+    t.datetime "hidden_at"
+  end
+
+  add_index "proposal_translations", ["hidden_at"], name: "index_proposal_translations_on_hidden_at", using: :btree
+  add_index "proposal_translations", ["locale"], name: "index_proposal_translations_on_locale", using: :btree
+  add_index "proposal_translations", ["proposal_id"], name: "index_proposal_translations_on_proposal_id", using: :btree
 
   create_table "proposals", force: :cascade do |t|
     t.string   "title",               limit: 80
