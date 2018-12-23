@@ -31,4 +31,9 @@ namespace :settings do
     Setting['featured_proposals_number'] = 3
   end
 
+  desc "Enable translation interface for translatable database contents"
+  task enable_translation_interface: :environment do
+    Setting['feature.translation_interface'] = true
+  end
+
 end
