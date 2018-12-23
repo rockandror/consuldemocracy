@@ -5,6 +5,17 @@ module TranslatableFormHelper
     end
   end
 
+  module TranslationsInterface
+    def translations_interface_enabled?
+      Setting['feature.translation_interface'].present? || backend_translations_enabled?
+    end
+
+    def backend_translations_enabled?
+      (controller.class.parents & [Admin, Management, Valuation]).any?
+    end
+  end
+  include TranslationsInterface
+
   class TranslatableFormBuilder < FoundationRailsHelper::FormBuilder
     def translatable_fields(&block)
       @object.globalize_locales.map do |locale|
