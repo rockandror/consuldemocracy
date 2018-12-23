@@ -15,6 +15,17 @@ feature "Proposals" do
   context "Concerns" do
     it_behaves_like "notifiable in-app", Proposal
     it_behaves_like "relationable", Proposal
+    context "Translatable at front end" do
+      before do
+        Setting["feature.translation_interface"] = true
+      end
+
+      it_behaves_like "translatable",
+                      "proposal",
+                      "edit_proposal_path",
+                      %w[title question summary],
+                      { "description" => :ckeditor }
+    end
   end
 
   context "Index" do

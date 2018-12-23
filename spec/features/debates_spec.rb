@@ -11,6 +11,17 @@ feature "Debates" do
   context "Concerns" do
     it_behaves_like "notifiable in-app", Debate
     it_behaves_like "relationable", Debate
+    context "Translatable at front end" do
+      before do
+        Setting["feature.translation_interface"] = true
+      end
+
+      it_behaves_like "translatable",
+                      "debate",
+                      "edit_debate_path",
+                      %w[title],
+                      { "description" => :ckeditor }
+    end
   end
 
   scenario "Index" do
