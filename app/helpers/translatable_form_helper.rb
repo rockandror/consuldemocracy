@@ -1,4 +1,5 @@
 module TranslatableFormHelper
+
   def translatable_form_for(record, options = {})
     form_for(record, options.merge(builder: TranslatableFormBuilder)) do |f|
       yield(f)
@@ -17,8 +18,11 @@ module TranslatableFormHelper
   include TranslationsInterface
 
   class TranslatableFormBuilder < FoundationRailsHelper::FormBuilder
+    include TranslationsInterface
+    attr_reader :controller
+
     def translatable_fields(&block)
-      @object.globalize_locales.map do |locale|
+      visible_locales.map do |locale|
         Globalize.with_locale(locale) { fields_for_locale(locale, &block) }
       end.join.html_safe
     end
@@ -72,6 +76,14 @@ module TranslatableFormHelper
 
       def no_other_translations?(translation)
         (@object.translations - [translation]).reject(&:_destroy).empty?
+      end
+
+      def visible_locales
+        @controller = @template.controller
+
+        @object.globalize_locales.reject do |locale|
+          locale != I18n.locale && !translations_interface_enabled?
+        end
       end
   end
 
