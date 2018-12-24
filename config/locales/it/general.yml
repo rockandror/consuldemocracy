@@ -851,4 +851,6 @@ it:
       title: Come posso commentare questo documento?
   remote_translations:
     text: Il contenuto di questa pagina non è disponibile nella tua lingua
+    create:
+      enqueue_remote_translation: Le traduzioni richieste sono in attesa di traduzione. In un breve periodo di tempo rinfrescando la pagina potrete vedere le traduzioni.
     button: Traduci Pagina
