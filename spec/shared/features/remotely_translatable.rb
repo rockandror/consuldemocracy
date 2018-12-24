@@ -119,6 +119,78 @@ shared_examples "remotely_translatable" do |factory_name, path_name, path_argume
 
   end
 
+  context "After request translations" do
+
+    describe "with delayed jobs" do
+
+      before do
+        Delayed::Worker.delay_jobs = true
+      end
+
+      after do
+        Delayed::Worker.delay_jobs = false
+      end
+
+      scenario "Should be present remote translations button", :js do
+        visit path
+        select('Español', from: 'locale-switcher')
+
+        click_button "Traducir página"
+
+        expect(page).to have_button("Traducir página")
+      end
+
+      scenario "Should be present enqueued notice", :js do
+        visit path
+        select('Español', from: 'locale-switcher')
+
+        click_button "Traducir página"
+
+        expect(page).to have_content("Las traducciones solicitadas estan pendientes de traducir. En un breve peridodo de tiempo refrescando la página podrá ver las traducciones.")
+      end
+
+    end
+
+    describe "without delayed jobs" do
+
+      scenario "Should be present remote translations resource", :js do
+        stub_microsoft_translate_client_response(resource)
+        visit path
+        select('Español', from: 'locale-switcher')
+
+        click_button "Traducir página"
+
+        expect(page).to have_content("CAMPO TRADUCIDO")
+      end
+
+      describe "Should be translated resources comments" do
+
+        before do
+          if index_path?(path_name)
+            skip("only show_path")
+          end
+        end
+
+        scenario "when exists resource translations but his comment has not tanslations", :js do
+          stub_microsoft_translate_client_response(resource)
+          add_translations(resource)
+          create(:comment, commentable: resource)
+          visit path
+          select('Español', from: 'locale-switcher')
+
+          click_button "Traducir página"
+
+          within "#comments" do
+            expect(page).to have_content("CAMPO TRADUCIDO")
+          end
+        end
+
+      end
+
+    end
+
+  end
+
 end
 
 def add_translations(resource)
@@ -142,4 +214,15 @@ end
 
 def commentable?(resource)
   Comment::COMMENTABLE_TYPES.include?(resource.class.to_s)
+end
+
+def stub_microsoft_translate_client_response(resource)
+  response = []
+  Globalize.with_locale(:es) do
+    resource.translated_attribute_names.each_with_index do |field, index|
+      value = index == 0 ? "CAMPO TRADUCIDO" : resource.send(:"#{field}")
+      response << value
+    end
+  end
+  expect_any_instance_of(MicrosoftTranslateClient).to receive(:call).and_return(response)
 end
