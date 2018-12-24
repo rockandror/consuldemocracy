@@ -849,3 +849,6 @@ it:
       text_sign_in: login
       text_sign_up: registrarsi
       title: Come posso commentare questo documento?
+  remote_translations:
+    text: Il contenuto di questa pagina non è disponibile nella tua lingua
+    button: Traduci Pagina
