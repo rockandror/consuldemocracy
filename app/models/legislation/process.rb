@@ -3,7 +3,7 @@ class Legislation::Process < ActiveRecord::Base
   include Taggable
   include Milestoneable
   include Documentable
-  documentable max_documents_allowed: 4,
+  documentable max_documents_allowed: 5,
                max_file_size: 3.megabytes,
                accepted_content_types: [ "application/pdf" ]
 
@@ -15,6 +15,7 @@ class Legislation::Process < ActiveRecord::Base
   translates :description,        touch: true
   translates :additional_info,    touch: true
   translates :milestones_summary, touch: true
+  translates :homepage,           touch: true
   include Globalizable
 
   PHASES_AND_PUBLICATIONS = %i[draft_phase debate_phase allegations_phase proposals_phase
