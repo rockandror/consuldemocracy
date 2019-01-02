@@ -31,7 +31,7 @@ module TranslatableFormHelper
 
       def fields_for_locale(locale, &block)
         fields_for_translation(translation_for(locale)) do |translations_form|
-          @template.content_tag :div, translations_options(translations_form.object, locale) do
+          @template.content_tag :div, rr_translations_options(translations_form.object, locale) do
             @template.concat translations_form.hidden_field(
               :_destroy,
               data: { locale: locale }
@@ -66,10 +66,10 @@ module TranslatableFormHelper
         end
       end
 
-      def translations_options(resource, locale)
+      def rr_translations_options(resource, locale)
         {
           class: "translatable-fields js-globalize-attribute",
-          style: @template.display_translation_style(resource.globalized_model, locale),
+          style: @template.rr_display_translation_style(resource.globalized_model, locale),
           data:  { locale: locale }
         }
       end
