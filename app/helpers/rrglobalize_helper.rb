@@ -32,6 +32,11 @@ module RrglobalizeHelper
   def rr_display_translation_style(resource, locale)
     "display: none;" unless rr_display_translation?(resource, locale)
   end
+
+  def rr_display_translation(locale)
+    t("admin.translations.remove_language", locale: locale) + " " + name_for_locale(locale)
+  end
+
   #
   # def translation_enabled_tag(locale, enabled)
   #   hidden_field_tag("enabled_translations[#{locale}]", (enabled ? 1 : 0))
