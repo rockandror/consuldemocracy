@@ -1,41 +1,35 @@
 <div class="row globalize-languages">
   <div class="small-6 large-3 columns">
-    <small><strong>[translate = Language in use]</strong></small>
+
+    <small>
+     <strong>
+       <div id="num-languages" class="inline"></div>
+     </strong>
+   </small>
+
     <%= select_tag :translation_locale,
               rr_options_for_locale_select,
               prompt: name_for_locale(locale),
-              :id => "globalize_locale"
+              :id => "change_language_selector"
     %>
 
-    <% I18n.available_locales.each do |locale| %>
-        <%= link_to t("admin.translations.remove_language"), "#",
-                    id: "js_delete_#{locale}",
-                    style: rr_display_translation_style(resource, locale),
-                    class: 'delete js-delete-language',
-                    data: { locale: locale } %>
-    <% end %>
+    <div class="group-destroy-languages">
+      <% I18n.available_locales.each do |locale| %>
+          <%= link_to t("admin.translations.remove_language"), "#",
+                      id: "js_delete_#{locale}",
+                      class: 'delete js-delete-language',
+                      data: { locale: locale } %>
+      <% end %>
+    </div>
+
   </div>
 
   <div class="small-6 large-3 columns">
     <br />
     <%= select_tag :translation_locale,
-                   rr_options_for_locale_select,
+                   rr_options_for_locale_select_add_language,
                    prompt: t("admin.translations.add_language"),
-                   class: "js-globalize-locale" %>
+                   class: "js-add-language" %>
   </div>
   <div class="small-6 large-6 columns"></div>
 </div>
-
-
-
-<ul class="tabs" data-tabs id="globalize_locale">
-  <% I18n.available_locales.each do |locale| %>
-    <li class="tabs-title">
-      <%= link_to name_for_locale(locale), "#",
-                  style: display_style.call(locale),
-                  class: "js-globalize-locale-link",
-                  data: { locale: locale },
-                  remote: true %>
-    </li>
-  <% end %>
-</ul>
