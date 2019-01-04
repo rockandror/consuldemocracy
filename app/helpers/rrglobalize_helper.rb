@@ -1,13 +1,18 @@
 module RrglobalizeHelper
 
-  def rr_options_for_locale_select
-    options_for_select(rr_locale_options, nil)
+  def rr_options_for_locale_select(resource)
+    options_for_select(rr_locale_options(resource), nil)
   end
 
-  def rr_locale_options
+  def rr_locale_options(resource)
     I18n.available_locales.map do |locale|
-      [name_for_locale(locale), locale, { 'selected'=> rr_language_selected(@resource, locale), 'data-locale' => locale }]
+      [name_for_locale(locale), locale, { class: rr_method_name(resource, locale) ,'selected'=> rr_language_selected(resource, locale), 'data-locale' => locale }]
     end
+  end
+
+  def rr_method_name(resource, locale)
+    #resource.translations.map(&:locale).include?(locale) ? 'show' : 'hide' #not work
+    rr_display_translation?(resource, locale) ? 'show' : 'hide'
   end
 
   def rr_options_for_locale_select_add_language

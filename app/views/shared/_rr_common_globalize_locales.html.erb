@@ -8,8 +8,8 @@
    </small>
 
     <%= select_tag :translation_locale,
-              rr_options_for_locale_select,
-              prompt: name_for_locale(locale),
+              rr_options_for_locale_select(resource),
+              #prompt: name_for_locale(locale),
               :id => "change_language_selector"
     %>
 
@@ -26,10 +26,13 @@
 
   <div class="small-6 large-3 columns">
     <br />
+
     <%= select_tag :translation_locale,
                    rr_options_for_locale_select_add_language,
                    prompt: t("admin.translations.add_language"),
                    class: "js-add-language" %>
   </div>
+
+
   <div class="small-6 large-6 columns"></div>
 </div>
