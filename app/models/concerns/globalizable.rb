@@ -8,6 +8,10 @@ module Globalizable
     def locales_not_marked_for_destruction
       translations.reject(&:_destroy).map(&:locale)
     end
+
+    def description
+      self.read_attribute(:description).try :html_safe
+    end
   end
 
   class_methods do
