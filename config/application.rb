@@ -50,6 +50,13 @@ module Consul
 
     config.after_initialize { Globalize.set_fallbacks_to_all_available_locales }
 
+    config.after_initialize do
+      if ActiveRecord::Base.connection.tables.any?
+        api_config = YAML.load_file('./config/api.yml')
+        GraphqlController::API_TYPE_DEFINITIONS = GraphQL::ApiTypesCreator::parse_api_config_file(api_config)
+      end
+    end
+
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
