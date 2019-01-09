@@ -9,13 +9,13 @@
     </small>
     <%= select_tag :select_language,
                    active_languages(resource),
-                   prompt: "Choose language" %>
+                   prompt: "Choose language",
+                   class: "js-select-language" %>
     <div class="group-destroy-languages">
       <% I18n.available_locales.each do |locale| %>
         <%= link_to t("admin.translations.remove_language"), "#",
-                    id: "js_delete_#{locale}",
                     style: display_destroy_locale_style(resource, locale),
-                    class: "delete js-delete-language",
+                    class: "delete js-delete-language js-delete-#{locale}",
                     data: { locale: locale } %>
       <% end %>
     </div>
