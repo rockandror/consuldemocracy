@@ -2,11 +2,11 @@ App.Globalize =
 
   display_locale: (locale) ->
     App.Globalize.enable_locale(locale)
-    $("#globalize_locale option[data-locale=" + locale + "]").show().prop('selected', true)
-    $(".js-translation-locale option:selected").removeAttr("selected");
+    $("#select_language option[data-locale=" + locale + "]").show().prop('selected', true)
+    $(".js-add-language option:selected").removeAttr("selected");
 
   display_translations: (locale) ->
-    $("#globalize_locale option[data-locale=" + locale + "]").prop('selected', true)
+    $("#select_language option[data-locale=" + locale + "]").prop('selected', true)
     $(".js-globalize-attribute").each ->
       if $(this).data("locale") == locale
         $(this).show()
@@ -21,14 +21,14 @@ App.Globalize =
       if CKEDITOR.instances[$(this).attr('id')]
           CKEDITOR.instances[$(this).attr('id')].setData('')
 
-    $("#globalize_locale option[data-locale=" + locale + "]").hide()
-    next = $("#globalize_locale option:visible[data-locale]").first()
+    $("#select_language option[data-locale=" + locale + "]").hide()
+    next = $("#select_language option:visible[data-locale]").first()
     App.Globalize.display_translations(next.data("locale"))
     App.Globalize.disable_locale(locale)
     App.Globalize.update_description()
 
-    if $("#globalize_locale option:visible").length == 1
-      $("#globalize_locale option:visible").prop('selected', true)
+    if $("#select_language option:visible").length == 1
+      $("#select_language option:visible").prop('selected', true)
 
   enable_locale: (locale) ->
     App.Globalize.destroy_locale_field(locale).val(false)
@@ -40,7 +40,7 @@ App.Globalize =
 
   enabled_locales: ->
     $.map(
-      $("#globalize_locale option:visible"),
+      $("#select_language option:visible"),
       (element) -> $(element).data("locale")
     )
 
@@ -51,7 +51,7 @@ App.Globalize =
     $("#enabled_translations_#{locale}")
 
   refresh_visible_translations: ->
-    locale = $(".js-globalize-locale-link.is-active").data("locale")
+    locale = $('#select_language').find('option:selected').data("locale")
     App.Globalize.display_translations(locale)
 
   update_description: ->
@@ -69,19 +69,16 @@ App.Globalize =
     $('.js-languages-text').text(text)
 
   initialize: ->
-    # Add selected language
-    $('.js-translation-locale').on 'change', ->
+    $('.js-add-language').on 'change', ->
       locale = $(this).val()
       App.Globalize.display_translations(locale)
       App.Globalize.display_locale(locale)
       App.Globalize.update_description()
 
-    # Change active language
-    $('#globalize_locale').on 'change', ->
+    $('#select_language').on 'change', ->
       locale = $(this).find('option:selected').data("locale")
       App.Globalize.display_translations(locale)
 
-    # Destroy language
     $('.js-delete-language').on 'click', (e) ->
       e.preventDefault()
       locale = $(this).data("locale")
