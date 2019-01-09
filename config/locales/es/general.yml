@@ -616,6 +616,13 @@ es:
       title: Recomendaciones
       see_more: Ver más recomendaciones
       hide: Ocultar recomendaciones
+    translation_interface:
+      single_language_text: idioma en uso
+      multiple_language_text: idiomas en uso
+      languages_in_use:
+        zero: "<span class=\"js-languages-count\">0</span> <span class=\"js-languages-text\">idiomas en uso</span>"
+        one: "<span class=\"js-languages-count\">1</span> <span class=\"js-languages-text\">idioma en uso</span>"
+        other: "<span class=\"js-languages-count\">%{count}</span> <span class=\"js-languages-text\">idiomas en uso</span>"
   social:
     facebook: "Facebook de %{org}"
     twitter: "Twitter de %{org}"
