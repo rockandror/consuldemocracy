@@ -7,7 +7,7 @@
         <div class="inline"><%= active_languages_text(resource) %></div>
       </strong>
     </small>
-    <%= select_tag :globalize_locale,
+    <%= select_tag :select_language,
                    active_languages(resource),
                    prompt: "Choose language" %>
     <div class="group-destroy-languages">
@@ -22,10 +22,10 @@
   </div>
   <div class="small-6 large-3 columns">
     <br />
-    <%= select_tag :translation_locale,
+    <%= select_tag :add_language,
                    options_for_locale_select,
                    prompt: t("admin.translations.add_language"),
-                   class: "js-translation-locale" %>
+                   class: "js-add-language" %>
   </div>
   <div class="small-6 large-6 columns"></div>
 </div>
