@@ -1,18 +1,31 @@
-<% I18n.available_locales.each do |locale| %>
-  <div class="text-right">
-    <%= link_to t("admin.translations.remove_language"), "#",
-                id: "js_delete_#{locale}",
-                style: display_translation_style(resource, locale),
-                class: 'delete js-delete-language',
-                data: { locale: locale } %>
+<div class="row globalize-languages"
+     data-single-language-text="<%= t "shared.translation_interface.single_language_text" %>"
+     data-multiple-language-text="<%= t "shared.translation_interface.multiple_language_text" %>">
+  <div class="small-6 large-3 columns">
+    <small>
+      <strong>
+        <div class="inline"><%= active_languages_text(resource) %></div>
+      </strong>
+    </small>
+    <%= select_tag :globalize_locale,
+                   active_languages(resource),
+                   prompt: "Choose language" %>
+    <div class="group-destroy-languages">
+      <% I18n.available_locales.each do |locale| %>
+        <%= link_to t("admin.translations.remove_language"), "#",
+                    id: "js_delete_#{locale}",
+                    style: display_destroy_locale_style(resource, locale),
+                    class: "delete js-delete-language",
+                    data: { locale: locale } %>
+      <% end %>
+    </div>
   </div>
-<% end %>
-
-<%= render "admin/shared/globalize_tabs", resource: resource, display_style: display_style %>
-
-<div class="small-12 medium-6">
-  <%= select_tag :translation_locale,
-                 options_for_locale_select,
-                 prompt: t("admin.translations.add_language"),
-                 class: "js-globalize-locale" %>
+  <div class="small-6 large-3 columns">
+    <br />
+    <%= select_tag :translation_locale,
+                   options_for_locale_select,
+                   prompt: t("admin.translations.add_language"),
+                   class: "js-translation-locale" %>
+  </div>
+  <div class="small-6 large-6 columns"></div>
 </div>
