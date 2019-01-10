@@ -28,9 +28,11 @@ module Sanitizable
       # Sanitize description when using attribute accessor in place of nested translations.
       # This is because Globalize gem create translations on after save callback
       # https://github.com/globalize/globalize/blob/e37c471775d196cd4318e61954572c300c015467/lib/globalize/active_record/act_macro.rb#L105
-      Globalize.with_locale(I18n.locale) do
-        self.description = WYSIWYGSanitizer.new.sanitize(description)
-      end if translations.empty?
+      if translations.empty?
+        Globalize.with_locale(I18n.locale) do
+          self.description = WYSIWYGSanitizer.new.sanitize(description)
+        end
+      end
 
       translations.reject(&:_destroy).each do |translation|
         Globalize.with_locale(translation.locale) do
