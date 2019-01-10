@@ -37,9 +37,8 @@ class Management::ProposalsController < Management::BaseController
     end
 
     def proposal_params
-      attributes = [:title, :question, :summary, :description, :external_url,
-                    :video_url, :responsible_name, :tag_list, :terms_of_service,
-                    :geozone_id]
+      attributes = [:external_url, :video_url, :responsible_name, :tag_list,
+                    :terms_of_service, :geozone_id]
       params.require(:proposal).permit(attributes, translation_params(Proposal))
     end
 
