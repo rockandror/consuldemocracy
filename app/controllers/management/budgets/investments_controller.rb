@@ -53,7 +53,7 @@ class Management::Budgets::InvestmentsController < Management::BaseController
     end
 
     def investment_params
-      attributes = [:title, :description, :external_url, :heading_id, :tag_list, :organization_name, :location]
+      attributes = [:external_url, :heading_id, :tag_list, :organization_name, :location]
       params.require(:budget_investment).permit(attributes, translation_params(Budget::Investment))
     end
 
