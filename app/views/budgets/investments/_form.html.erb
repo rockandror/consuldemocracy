@@ -13,7 +13,7 @@
       <div class="small-12 column">
         <%= translations_form.text_field :title,
               maxlength: SpendingProposal.title_max_length,
-              label: t("activerecord.attributes.budget/investment.title"),
+              label: t("budgets.investments.form.title"),
               data: { js_suggest_result: "js_suggest_result",
                       js_suggest: "#js-suggest",
                       js_url: suggest_budget_investments_path(@budget) }%>
@@ -23,7 +23,7 @@
       <div class="ckeditor small-12 column">
         <%= translations_form.cktext_area :description,
               maxlength: SpendingProposal.description_max_length,
-              label: t("activerecord.attributes.budget/investment.description"),
+              label: t("budgets.investments.form.description"),
               ckeditor: { language: I18n.locale } %>
       </div>
     <% end %>
