@@ -9,8 +9,9 @@ App.Suggest =
       callback = ->
         $.ajax
           url: $this.data('js-url')
-          data: {search: $this.val()},
-          type: 'GET',
+          data:
+            search: $this.val()
+          type: 'GET'
           dataType: 'html'
           success: (stHtml) ->
             js_suggest_selector = $this.data('js-suggest')
