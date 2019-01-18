@@ -1055,6 +1055,13 @@ form {
   }
 }
 
+.translatable-fields {
+  &.highlight {
+    display: inline-block;
+    padding-top: 1rem;
+  }
+}
+
 // 07. Callout
 // -----------
 
