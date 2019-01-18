@@ -22,10 +22,11 @@
   </div>
   <div class="small-6 large-3 columns">
     <br />
-    <%= select_tag :add_language,
-                   options_for_locale_select,
-                   prompt: t("admin.translations.add_language"),
-                   class: "js-add-language" %>
-  </div>
+    <div class="translation-locale column <%= translations_interface_enabled? ? 'highlight' : '' %>">
+      <%= select_tag :add_language,
+                     options_for_locale_select,
+                     prompt: t("admin.translations.add_language"),
+                     class: "js-add-language" %>
+    </div>
   <div class="small-6 large-6 columns"></div>
 </div>
