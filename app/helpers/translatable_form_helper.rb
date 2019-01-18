@@ -11,6 +11,10 @@ module TranslatableFormHelper
       Setting['feature.translation_interface'].present? || backend_translations_enabled?
     end
 
+    def highlight_translations_class
+      return 'highlight' if translations_interface_enabled?
+    end
+
     def backend_translations_enabled?
       (controller.class.parents & [Admin, Management, Valuation]).any?
     end
@@ -68,7 +72,7 @@ module TranslatableFormHelper
 
       def translations_options(resource, locale)
         {
-          class: "translatable-fields js-globalize-attribute",
+          class: "translatable-fields js-globalize-attribute #{@template.highlight_translations_class}",
           style: @template.display_translation_style(resource.globalized_model, locale),
           data:  { locale: locale }
         }
