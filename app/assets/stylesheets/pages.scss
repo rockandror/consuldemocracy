@@ -103,6 +103,15 @@
   }
 }
 
+.globalize-languages{
+  padding-top: $line-height / 2;
+  padding-bottom: $line-height;
+
+  .js-select-locale{
+    margin-bottom: $line-height / 3;
+  }
+}
+
 // 04. Sidebar
 // ----------------------
 

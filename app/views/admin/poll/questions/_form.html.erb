@@ -6,7 +6,7 @@
 
   <%= f.hidden_field :proposal_id %>
 
-  <div class="small-12">
+  <div class="small-12 column">
     <div class="small-12 medium-6 large-4">
       <% select_options = Poll.all.map { |p| [p.name, p.id] } %>
       <%= f.select :poll_id,
