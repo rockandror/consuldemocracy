@@ -30,6 +30,10 @@ module GlobalizeHelper
     t("shared.translation_interface.languages_in_use", count: active_languages).html_safe
   end
 
+  def highlight_translations_class
+    return 'highlight' if translations_interface_enabled?
+  end
+
   # For div with translations fields
   def display_translation_style(resource, locale)
     "display: none;" unless display_translation?(resource, locale)
