@@ -9,7 +9,7 @@
 <% end %>
 
 <%= render "shared/globalize_tabs", resource: resource, display_style: display_style %>
-<div class="translation-locale column <%= translations_interface_enabled? ? 'highlight' : '' %>">
+<div class="translation-locale highlight column">
   <div class="small-12 medium-6">
     <%= select_tag :translation_locale,
                    options_for_locale_select,
