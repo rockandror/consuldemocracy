@@ -9,8 +9,8 @@ module Globalizable
       translations.reject(&:_destroy).map(&:locale)
     end
 
-    def assign_model_to_translations
-      translations.each { |translation| translation.globalized_model = self }
+    if self.paranoid?
+      translation_class.send :acts_as_paranoid, column: :hidden_at
     end
   end
 
