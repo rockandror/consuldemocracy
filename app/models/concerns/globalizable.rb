@@ -29,5 +29,9 @@ module Globalizable
     def translation_class_delegate(method)
       translation_class.instance_eval { delegate method, to: :globalized_model }
     end
+
+    def translation_class_delegate(method)
+      translation_class.instance_eval { delegate method, to: :globalized_model }
+    end
   end
 end
