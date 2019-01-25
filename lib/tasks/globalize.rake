@@ -3,6 +3,7 @@ namespace :globalize do
     [
       AdminNotification,
       Banner,
+      Comment,
       Milestone,
       Budget::Investment,
       Debate,
@@ -11,6 +12,7 @@ namespace :globalize do
       Legislation::Process,
       Legislation::Question,
       Legislation::QuestionOption,
+      Milestone,
       Poll,
       Poll::Question,
       Poll::Question::Answer,
