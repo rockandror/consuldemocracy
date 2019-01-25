@@ -4,6 +4,7 @@ namespace :globalize do
       AdminNotification,
       Banner,
       Milestone,
+      Debate,
       I18nContent,
       Legislation::DraftVersion,
       Legislation::Process,
