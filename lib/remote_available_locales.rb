@@ -1,12 +1,14 @@
-require 'net/https'
-require 'uri'
-require 'cgi'
-require 'json'
+require "net/https"
+require "uri"
+require "cgi"
+require "json"
 
 module RemoteAvailableLocales
 
-  def load_remote_locales
-    remote_available_locales.map { |locale| locale.first }
+  def get_available_locales
+    daily_cache("locales") do
+      remote_available_locales.map { |locale| locale.first }
+    end
   end
 
   def parse_locale(locale)
@@ -25,15 +27,15 @@ module RemoteAvailableLocales
   private
 
   def remote_available_locales
-    host = 'https://api.cognitive.microsofttranslator.com'
-    path = '/languages?api-version=3.0'
+    host = "https://api.cognitive.microsofttranslator.com"
+    path = "/languages?api-version=3.0"
 
     uri = URI (host + path)
 
     request = Net::HTTP::Get.new(uri)
-    request['Ocp-Apim-Subscription-Key'] = Rails.application.secrets.microsoft_api_key
+    request["Ocp-Apim-Subscription-Key"] = Rails.application.secrets.microsoft_api_key
 
-    response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
+    response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == "https") do |http|
       http.request (request)
     end
 
@@ -42,4 +44,7 @@ module RemoteAvailableLocales
     JSON.parse(result)["translation"]
   end
 
+  def daily_cache(key, &block)
+    Rails.cache.fetch("remote_available_locales/#{Time.current.strftime('%Y-%m-%d')}/#{key}", &block)
+  end
 end
