@@ -2,6 +2,21 @@ require "rails_helper"
 
 feature "Welcome screen" do
 
+  it_behaves_like "remotely_translatable",
+                  :proposal,
+                  "root_path",
+                  {}
+
+  it_behaves_like "remotely_translatable",
+                  :debate,
+                  "root_path",
+                  {}
+
+  it_behaves_like "remotely_translatable",
+                  :legislation_process,
+                  "root_path",
+                  {}
+
   let(:budget) { create(:budget) }
 
   scenario "for a not verified user" do
