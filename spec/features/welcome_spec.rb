@@ -2,10 +2,24 @@ require "rails_helper"
 
 feature "Welcome screen" do
 
-  let(:budget) { create(:budget) }
+  it_behaves_like "remotely_translatable",
+                  :proposal,
+                  "root_path",
+                  {}
 
-  scenario "for a not verified user" do
+  it_behaves_like "remotely_translatable",
+                  :debate,
+                  "root_path",
+                  {}
+
+  it_behaves_like "remotely_translatable",
+                  :legislation_process,
+                  "root_path",
+                  {}
+
+  scenario "a regular users sees it the first time he logs in" do
     user = create(:user)
+
     login_through_form_as(user)
 
     expect(page).to have_current_path(page_path("welcome_not_verified"))
