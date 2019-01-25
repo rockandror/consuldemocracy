@@ -36,4 +36,9 @@ namespace :settings do
     Setting['hot_score_period_in_days'] = 31
   end
 
+  desc "Enable remote translations"
+  task enable_remote_translations: :environment do
+    Setting['feature.remote_translations'] = true
+  end
+
 end
