@@ -5,8 +5,10 @@ require "json"
 
 module RemoteTranslations::Microsoft::AvailableLocales
 
-  def load_remote_locales
-    remote_available_locales.map { |locale| locale.first }
+  def get_available_locales
+    daily_cache("locales") do
+      remote_available_locales.map { |locale| locale.first }
+    end
   end
 
   def parse_locale(locale)
@@ -40,6 +42,10 @@ module RemoteTranslations::Microsoft::AvailableLocales
       result = response.body.force_encoding("utf-8")
 
       JSON.parse(result)["translation"]
+    end
+
+    def daily_cache(key, &block)
+      Rails.cache.fetch("remote_available_locales/#{Time.current.strftime('%Y-%m-%d')}/#{key}", &block)
     end
 
 end
