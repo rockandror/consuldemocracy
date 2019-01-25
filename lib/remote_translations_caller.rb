@@ -1,3 +1,4 @@
+include RemoteAvailableLocales
 class RemoteTranslationsCaller
   attr_reader :remote_translation
   # attr_accessor :available_remote_locales # TODO: Review
@@ -8,6 +9,10 @@ class RemoteTranslationsCaller
   def call
     update_resource
     destroy_remote_translation
+  end
+
+  def available_remote_locales
+    @remote_locales = daily_cache('remote_locales') { RemoteAvailableLocales.load_remote_locales }
   end
 
   private
@@ -46,5 +51,9 @@ class RemoteTranslationsCaller
 
     def locale
       remote_translation.locale
+    end
+
+    def daily_cache(key, &block)
+      Rails.cache.fetch("load_remote_locales/#{Time.current.strftime('%Y-%m-%d')}/#{key}", &block)
     end
 end
