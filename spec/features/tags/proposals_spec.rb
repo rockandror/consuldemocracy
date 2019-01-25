@@ -69,6 +69,7 @@ feature "Tags" do
     login_as(user)
 
     visit new_proposal_path
+<<<<<<< HEAD
     fill_in "proposal_title", with: "Help refugees"
     fill_in "proposal_question", with: "¿Would you like to give assistance to war refugees?"
     fill_in "proposal_summary", with: "In summary, what we want is..."
@@ -76,6 +77,15 @@ feature "Tags" do
     fill_in "proposal_responsible_name", with: "Isabel Garcia"
     fill_in "proposal_tag_list", with: "Economía, Hacienda"
     check "proposal_terms_of_service"
+=======
+    fill_in "Proposal title", with: "Help refugees"
+    fill_in "Proposal question", with: "¿Would you like to give assistance to war refugees?"
+    fill_in "Proposal summary", with: "In summary, what we want is..."
+    fill_in "Proposal text", with: "This is very important because..."
+    fill_in 'proposal_responsible_name', with: 'Isabel Garcia'
+    fill_in 'proposal_tag_list', with: 'Economía, Hacienda'
+    check 'proposal_terms_of_service'
+>>>>>>> Fix proposal specs
 
     click_button "Create proposal"
 
@@ -96,6 +106,7 @@ feature "Tags" do
 
     visit new_proposal_path
 
+<<<<<<< HEAD
     fill_in "proposal_title", with: "Help refugees"
     fill_in "proposal_question", with: "¿Would you like to give assistance to war refugees?"
     fill_in "proposal_summary", with: "In summary, what we want is..."
@@ -104,6 +115,16 @@ feature "Tags" do
     fill_in "proposal_video_url", with: "https://www.youtube.com/watch?v=Ae6gQmhaMn4"
     fill_in "proposal_responsible_name", with: "Isabel Garcia"
     check "proposal_terms_of_service"
+=======
+    fill_in "Proposal title", with: "Help refugees"
+    fill_in "Proposal question", with: "¿Would you like to give assistance to war refugees?"
+    fill_in "Proposal summary", with: "In summary, what we want is..."
+    fill_in_ckeditor "Proposal text", with: "A description with enough characters"
+    fill_in 'proposal_external_url', with: 'http://rescue.org/refugees'
+    fill_in 'proposal_video_url', with: 'https://www.youtube.com/watch?v=Ae6gQmhaMn4'
+    fill_in 'proposal_responsible_name', with: 'Isabel Garcia'
+    check 'proposal_terms_of_service'
+>>>>>>> Fix proposal specs
 
     find(".js-add-tag-link", text: "Education").click
     click_button "Create proposal"
@@ -123,9 +144,15 @@ feature "Tags" do
     login_as(user)
 
     visit new_proposal_path
+<<<<<<< HEAD
     fill_in "proposal_title", with: "Title"
     fill_in "proposal_description", with: "Description"
     check "proposal_terms_of_service"
+=======
+    fill_in "Proposal title", with: "Title"
+    fill_in "Proposal text", with: "Description"
+    check 'proposal_terms_of_service'
+>>>>>>> Fix proposal specs
 
     fill_in "proposal_tag_list", with: "Impuestos, Economía, Hacienda, Sanidad, Educación, Política, Igualdad"
 
@@ -141,6 +168,7 @@ feature "Tags" do
 
     visit new_proposal_path
 
+<<<<<<< HEAD
     fill_in "proposal_title", with: "A test of dangerous strings"
     fill_in "proposal_question", with: "¿Would you like to give assistance to war refugees?"
     fill_in "proposal_summary", with: "In summary, what we want is..."
@@ -148,6 +176,15 @@ feature "Tags" do
     fill_in "proposal_external_url", with: "http://rescue.org/refugees"
     fill_in "proposal_responsible_name", with: "Isabel Garcia"
     check "proposal_terms_of_service"
+=======
+    fill_in "Proposal title", with: "A test of dangerous strings"
+    fill_in "Proposal question", with: "¿Would you like to give assistance to war refugees?"
+    fill_in "Proposal summary", with: "In summary, what we want is..."
+    fill_in "Proposal text", with: "A description suitable for this test"
+    fill_in 'proposal_external_url', with: 'http://rescue.org/refugees'
+    fill_in 'proposal_responsible_name', with: 'Isabel Garcia'
+    check 'proposal_terms_of_service'
+>>>>>>> Fix proposal specs
 
     fill_in "proposal_tag_list", with: "user_id=1, &a=3, <script>alert('hey');</script>"
 
