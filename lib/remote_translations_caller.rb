@@ -1,6 +1,6 @@
 class RemoteTranslationsCaller
   attr_reader :remote_translation
-
+  # attr_accessor :available_remote_locales # TODO: Review
   def initialize(remote_translation)
     @remote_translation = remote_translation
   end
