@@ -12,6 +12,7 @@ namespace :globalize do
       Poll,
       Poll::Question,
       Poll::Question::Answer,
+      Proposal,
       SiteCustomization::Page,
       Widget::Card
     ]
