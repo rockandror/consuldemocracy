@@ -1,3 +1,4 @@
+include RemoteAvailableLocales
 class RemoteTranslationsCaller
   attr_reader :remote_translation
 
@@ -47,4 +48,5 @@ class RemoteTranslationsCaller
     def locale
       remote_translation.locale
     end
+
 end
