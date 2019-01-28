@@ -6,8 +6,6 @@ shared_examples_for "globalizable" do |factory_name|
 
   describe "Fallbacks" do
     before do
-      allow(I18n).to receive(:available_locales).and_return(%i[ar de en es fr])
-
       record.update_attribute(field, "In English")
 
       { es: "En español", de: "Deutsch" }.each do |locale, text|
@@ -21,18 +19,7 @@ shared_examples_for "globalizable" do |factory_name|
       end
     end
 
-    after do
-      allow(I18n).to receive(:available_locales).and_call_original
-      allow(I18n.fallbacks).to receive(:[]).and_call_original
-      Globalize.set_fallbacks_to_all_available_locales
-    end
-
-    context "With a defined fallback" do
-      before do
-        allow(I18n.fallbacks).to receive(:[]).and_return([:fr, :es])
-        Globalize.set_fallbacks_to_all_available_locales
-      end
-
+    context "With a explicit defined fallback" do
       it "Falls back to the defined fallback" do
         Globalize.with_locale(:fr) do
           expect(record.send(field)).to eq "En español"
@@ -40,10 +27,10 @@ shared_examples_for "globalizable" do |factory_name|
       end
     end
 
-    context "Without a defined fallback" do
+    context "Without explicit defined fallback" do
       before do
-        allow(I18n.fallbacks).to receive(:[]).and_return([:fr])
-        Globalize.set_fallbacks_to_all_available_locales
+        record.translations.where("locale != ?", :de).destroy_all
+        record.reload
       end
 
       it "Falls back to the first available locale" do
