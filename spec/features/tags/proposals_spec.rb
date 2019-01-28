@@ -112,7 +112,7 @@ feature 'Tags' do
 
     click_link 'Not now, go to my proposal'
 
-    within "#tags_proposal_#{Proposal.last.id}" do
+    within "#tags_proposal_#{Proposal.last.id}", wait: 3 do
       expect(page).to have_content 'Education'
       expect(page).not_to have_content 'Health'
     end

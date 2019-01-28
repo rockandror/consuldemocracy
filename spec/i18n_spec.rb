@@ -40,11 +40,11 @@ describe 'I18n' do
                other: "%{count} comments" }
 
       I18n.backend.store_translations(I18n.default_locale, { test_plural: keys })
-      I18n.backend.store_translations(:zz, {} )
+      I18n.backend.store_translations(:de, {} )
 
       I18n.enforce_available_locales = false
-      I18n.locale = :zz
-      I18n.fallbacks[:zz] << I18n.default_locale
+      I18n.locale = :de
+      I18n.fallbacks[:de] << I18n.default_locale
 
       expect(I18n.t("test_plural", count: 0)).to eq("No comments")
       expect(I18n.t("test_plural", count: 1)).to eq("1 comment")
