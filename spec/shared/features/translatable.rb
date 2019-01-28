@@ -54,9 +54,9 @@ shared_examples "translatable" do |factory_name, path_name, input_fields, textar
       translatable.update(attributes)
       visit path
 
-      select "English", from: :translation_locale
+      select "English", from: :select_language
       click_link 'Remove language'
-      select "Español", from: :translation_locale
+      select "Español", from: :select_language
       click_link 'Remove language'
       click_button update_button_text
 
