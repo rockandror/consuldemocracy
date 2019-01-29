@@ -342,6 +342,8 @@ def update_button_text
     "Update milestone"
   when "AdminNotification"
     "Update notification"
+  when "Budget::Investment"
+    "Update"
   when "Poll"
     "Update poll"
   when "Poll::Question", "Poll::Question::Answer"

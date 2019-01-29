@@ -5,6 +5,10 @@ describe Budget::Investment do
 
   describe "Concerns" do
     it_behaves_like "notifiable"
+    it_behaves_like "sanitizable"
+    it_behaves_like "globalizable", :budget_investment
+    it_behaves_like "acts as imageable", :budget_investment_image
+    it_behaves_like "acts as paranoid", :budget_investment
   end
 
   it "is valid" do
@@ -31,14 +35,6 @@ describe Budget::Investment do
       investment.title = "a" * 81
       expect(investment).not_to be_valid
     end
-  end
-
-  it_behaves_like "acts as imageable", "budget_investment_image"
-
-  it "sanitizes description" do
-    investment.description = "<script>alert('danger');</script>"
-    investment.valid?
-    expect(investment.description).to eq("alert('danger');")
   end
 
   it "set correct group and budget ids" do
@@ -617,9 +613,20 @@ describe Budget::Investment do
 
     context "attributes" do
 
+      let(:attributes) { { title: 'save the world',
+                           description: 'in order to save the world one must think about...',
+                           title_es: 'para salvar el mundo uno debe pensar en...',
+                           description_es: 'uno debe pensar' } }
+
       it "searches by title" do
-        budget_investment = create(:budget_investment, title: 'save the world')
+        budget_investment = create(:budget_investment, attributes)
         results = described_class.search('save the world')
+        expect(results).to eq([budget_investment])
+      end
+
+      it "searches by title across all languages" do
+        budget_investment = create(:budget_investment, attributes)
+        results = described_class.search('salvar el mundo')
         expect(results).to eq([budget_investment])
       end
 
