@@ -12,11 +12,17 @@ feature 'Debates' do
   context "Concerns" do
     it_behaves_like 'notifiable in-app', Debate
     it_behaves_like 'relationable', Debate
-    it_behaves_like 'translatable',
-                    'debate',
-                    'edit_debate_path',
-                    %w[title],
-                    { 'description' => :ckeditor }    
+    context "Translatable at front end" do
+      before do
+        Setting['feature.translation_interface'] = true
+      end
+
+      it_behaves_like 'translatable',
+                      'debate',
+                      'edit_debate_path',
+                      %w[title],
+                      { 'description' => :ckeditor }
+    end
     it_behaves_like 'remotely_translatable',
                     :debate,
                     'debates_path',
@@ -24,7 +30,7 @@ feature 'Debates' do
     it_behaves_like 'remotely_translatable',
                     :debate,
                     'debate_path',
-                    { 'id': 'id' }
+                    { 'id': 'id' }    
   end
 
   scenario 'Index' do

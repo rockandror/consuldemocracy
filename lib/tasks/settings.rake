@@ -41,4 +41,9 @@ namespace :settings do
     Setting['feature.remote_translations'] = true
   end
 
+  desc "Enable translation interface for translatable database contents"
+  task enable_translation_interface: :environment do
+    Setting['feature.translation_interface'] = true
+  end
+
 end
