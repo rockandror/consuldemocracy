@@ -21,17 +21,17 @@ feature 'Debates' do
                     :debate,
                     'debate_path',
                     { 'id': 'id' }
-    # context "Translatable at front end" do
-    #   before do
-    #     Setting['feature.translation_interface'] = true
-    #   end
-    #
-    #   it_behaves_like 'translatable',
-    #                   'debate',
-    #                   'edit_debate_path',
-    #                   %w[title],
-    #                   { 'description' => :ckeditor }
-    # end
+    context "Translatable at front end" do
+      before do
+        Setting['feature.translation_interface'] = true
+      end
+
+      it_behaves_like 'translatable',
+                      'debate',
+                      'edit_debate_path',
+                      %w[title],
+                      { 'description' => :ckeditor }
+    end
   end
 
 end
