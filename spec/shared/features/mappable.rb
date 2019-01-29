@@ -230,9 +230,9 @@ shared_examples "mappable" do |mappable_factory_name, mappable_association_name,
 end
 
 def fill_in_proposal_form
-  fill_in 'proposal_title', with: 'Help refugees'
-  fill_in 'proposal_question', with: '¿Would you like to give assistance to war refugees?'
-  fill_in 'proposal_summary', with: 'In summary, what we want is...'
+  fill_in 'Proposal title', with: 'Help refugees'
+  fill_in 'Proposal question', with: '¿Would you like to give assistance to war refugees?'
+  fill_in 'Proposal summary', with: 'In summary, what we want is...'
 end
 
 def submit_proposal_form
