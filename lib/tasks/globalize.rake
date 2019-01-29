@@ -5,6 +5,7 @@ namespace :globalize do
       Banner,
       Milestone,
       Budget::Investment,
+      Debate,
       I18nContent,
       Legislation::DraftVersion,
       Legislation::Process,

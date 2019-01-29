@@ -17,16 +17,17 @@ class Debate < ActiveRecord::Base
   acts_as_paranoid column: :hidden_at
   include ActsAsParanoidAliases
 
+  translates :title, touch: true
+  translates :description, touch: true
+  include Globalizable
+
   belongs_to :author, -> { with_hidden }, class_name: 'User', foreign_key: 'author_id'
   belongs_to :geozone
   has_many :comments, as: :commentable
 
-  validates :title, presence: true
-  validates :description, presence: true
+  validates_translation :title, presence: true, length: { in: 4..Debate.title_max_length }
+  validates_translation :description, presence: true, length: { in: 10..Debate.description_max_length }
   validates :author, presence: true
-
-  validates :title, length: { in: 4..Debate.title_max_length }
-  validates :description, length: { in: 10..Debate.description_max_length }
 
   validates :terms_of_service, acceptance: { allow_nil: false }, on: :create
 
@@ -59,13 +60,17 @@ class Debate < ActiveRecord::Base
       .where("author_id != ?", user.id)
   end
 
+  def searchable_translations_definitions
+    { title       => 'A',
+      description => 'D' }
+  end
+
   def searchable_values
-    { title              => 'A',
+    {
       author.username    => 'B',
       tag_list.join(' ') => 'B',
       geozone.try(:name) => 'B',
-      description        => 'D'
-    }
+    }.merge!(searchable_globalized_values)
   end
 
   def self.search(terms)
@@ -151,4 +156,16 @@ class Debate < ActiveRecord::Base
     orders << "recommendations" if Setting['feature.user.recommendations_on_debates'] && user&.recommended_debates
     return orders
   end
+
+  private
+
+    def searchable_globalized_values
+      values = {}
+      translations.each do |translation|
+        Globalize.with_locale(translation.locale) do
+          values.merge! searchable_translations_definitions
+        end
+      end
+      values
+    end
 end
