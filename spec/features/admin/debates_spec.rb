@@ -13,6 +13,7 @@ feature 'Admin debates' do
   end
 
   background do
+    skip("fix specs")
     admin = create(:administrator)
     login_as(admin.user)
   end

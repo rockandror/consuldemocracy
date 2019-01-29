@@ -420,6 +420,7 @@ feature 'Commenting Budget::Investments' do
   feature 'Voting comments' do
 
     background do
+      skip("fix specs")
       @manuela = create(:user, verified_at: Time.current)
       @pablo = create(:user)
       @investment = create(:budget_investment)

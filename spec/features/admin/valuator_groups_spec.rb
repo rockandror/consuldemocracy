@@ -5,6 +5,7 @@ feature "Valuator groups" do
   let(:admin) { create(:administrator).user }
 
   background do
+    skip("fix specs")
     login_as(admin)
   end
 

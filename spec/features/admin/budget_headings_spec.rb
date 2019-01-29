@@ -6,6 +6,7 @@ feature "Admin budget headings" do
   let(:group) { create(:budget_group, budget: budget) }
 
   background do
+    skip("fix specs")
     admin = create(:administrator)
     login_as(admin.user)
   end

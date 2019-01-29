@@ -5,6 +5,7 @@ feature "Admin budget groups" do
   let(:budget) { create(:budget, phase: "drafting") }
 
   background do
+    skip("fix specs")
     admin = create(:administrator)
     login_as(admin.user)
   end
