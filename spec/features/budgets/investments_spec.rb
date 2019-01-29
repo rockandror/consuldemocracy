@@ -13,16 +13,29 @@ feature 'Budget Investments' do
   # it_behaves_like "milestoneable",
   #                 :budget_investment,
   #                 "budget_investment_path"
+  before do
+    Setting['feature.translation_interface'] = true
+  end
+  context "Concerns" do
+    it_behaves_like 'remotely_translatable',
+                        :debate,
+                        'debates_path',
+                        {}
+    it_behaves_like 'remotely_translatable',
+                        :debate,
+                        'debate_path',
+                        { 'id': 'id' }
 
-  it_behaves_like "remotely_translatable",
-                  :budget_investment,
-                  "budget_investments_path",
-                  { "budget_id": "budget_id" }
+    it_behaves_like "remotely_translatable",
+                    :budget_investment,
+                    "budget_investments_path",
+                    { "budget_id": "budget_id" }
 
-  it_behaves_like "remotely_translatable",
-                  :budget_investment,
-                  "budget_investment_path",
-                  { "budget_id": "budget_id", "id": "id" }
+    it_behaves_like "remotely_translatable",
+                    :budget_investment,
+                    "budget_investment_path",
+                    { "budget_id": "budget_id", "id": "id" }
+  end
 
   # before do
   #   skip("all")
