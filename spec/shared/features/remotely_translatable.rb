@@ -13,7 +13,7 @@ shared_examples "remotely_translatable" do |factory_name, path_name, path_argume
   end
 
   after do
-    Setting["feature.remote_translations"] = false
+    Setting["feature.remote_translations"] = nil
   end
 
   context "Button to request remote translation" do
@@ -210,6 +210,10 @@ shared_examples "remotely_translatable" do |factory_name, path_name, path_argume
     end
 
     describe "without delayed jobs" do
+
+      before do
+        Delayed::Worker.delay_jobs = false
+      end
 
       scenario "the remote translation button should not be present", :js do
         microsoft_translate_client_response = generate_response(resource)
