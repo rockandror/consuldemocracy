@@ -13,14 +13,14 @@ feature 'Debates' do
   context "Concerns" do
     # it_behaves_like 'notifiable in-app', Debate
     # it_behaves_like 'relationable', Debate
-    # it_behaves_like 'remotely_translatable',
-    #                 :debate,
-    #                 'debates_path',
-    #                 {}
-    # it_behaves_like 'remotely_translatable',
-    #                 :debate,
-    #                 'debate_path',
-    #                 { 'id': 'id' }
+    it_behaves_like 'remotely_translatable',
+                    :debate,
+                    'debates_path',
+                    {}
+    it_behaves_like 'remotely_translatable',
+                    :debate,
+                    'debate_path',
+                    { 'id': 'id' }
     # context "Translatable at front end" do
     #   before do
     #     Setting['feature.translation_interface'] = true
