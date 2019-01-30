@@ -222,6 +222,7 @@ shared_examples "remotely_translatable" do |factory_name, path_name, path_argume
         select('Deutsch', from: 'locale-switcher')
 
         click_button "Translate page"
+
         expect(Delayed::Job.count).to eq(0)
         expect(page).not_to have_button("Translate page")
       end
