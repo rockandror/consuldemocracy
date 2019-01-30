@@ -211,6 +211,10 @@ shared_examples "remotely_translatable" do |factory_name, path_name, path_argume
 
     describe "without delayed jobs" do
 
+      before do
+        Delayed::Worker.delay_jobs = false
+      end
+
       scenario "the remote translation button should not be present", :js do
         microsoft_translate_client_response = generate_response(resource)
         expect_any_instance_of(MicrosoftTranslateClient).to receive(:call).and_return(microsoft_translate_client_response)
@@ -218,7 +222,7 @@ shared_examples "remotely_translatable" do |factory_name, path_name, path_argume
         select('Deutsch', from: 'locale-switcher')
 
         click_button "Translate page"
-
+        expect(Delayed::Job.count).to eq(0)
         expect(page).not_to have_button("Translate page")
       end
 
