@@ -1,18 +1,33 @@
-<% I18n.available_locales.each do |locale| %>
-  <div class="text-right">
-    <%= link_to t("admin.translations.remove_language"), "#",
-                id: "js_delete_#{locale}",
-                style: display_translation_style(resource, locale),
-                class: 'delete js-delete-language',
-                data: { locale: locale } %>
+<div class="row globalize-languages column <%= highlight_translations_class %>"
+     data-single-language-text="<%= t "shared.translation_interface.single_language_text" %>"
+     data-multiple-language-text="<%= t "shared.translation_interface.multiple_language_text" %>">
+  <div class="small-6 large-3 columns">
+    <% if resource %>
+      <small>
+        <strong>
+          <div class="inline"><%= active_locales_description(resource) %></div>
+        </strong>
+      </small>
+    <% end %>
+    <%= select_tag :select_locale,
+                   active_locales(resource, display_style),
+                   prompt: t("admin.translations.choose_language"),
+                   class: "js-select-locale" %>
+    <div class="group-destroy-languages">
+      <% I18n.available_locales.each do |locale| %>
+        <%= link_to t("admin.translations.remove_language"), "#",
+                    style: display_translation_style(resource, locale),
+                    class: "delete js-delete-language js-delete-#{locale}",
+                    data: { locale: locale } %>
+      <% end %>
+    </div>
   </div>
-<% end %>
-
-<%= render "admin/shared/globalize_tabs", resource: resource, display_style: display_style %>
-
-<div class="small-12 medium-6">
-  <%= select_tag :translation_locale,
-                 options_for_locale_select,
-                 prompt: t("admin.translations.add_language"),
-                 class: "js-globalize-locale" %>
+  <div class="small-6 large-3 columns">
+    <br />
+    <%= select_tag :add_locale,
+                   options_for_select(locale_options, nil),
+                   prompt: t("admin.translations.add_language"),
+                   class: "js-add-locale" %>
+  </div>
+  <div class="small-6 large-6 columns"></div>
 </div>

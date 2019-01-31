@@ -633,6 +633,13 @@ en:
         title: Recommendations
         see_more: See more recommendations
         hide: Hide recommendations
+    translation_interface:
+      single_language_text: language in use
+      multiple_language_text: languages in use
+      languages_in_use:
+        zero: "<span class=\"js-languages-count\">0</span> <span class=\"js-languages-text\">languages in use</span>"
+        one: "<span class=\"js-languages-count\">1</span> <span class=\"js-languages-text\">language in use</span>"
+        other: "<span class=\"js-languages-count\">%{count}</span> <span class=\"js-languages-text\">languages in use</span>"
   social:
     blog: "%{org} Blog"
     facebook: "%{org} Facebook"

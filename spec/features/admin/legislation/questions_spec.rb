@@ -177,7 +177,7 @@ feature 'Admin legislation questions' do
 
         find('#nested_question_options input').set('Option 1')
 
-        click_link "Español"
+        select "Español", from: :select_locale
 
         find('#nested_question_options input').set('Opción 1')
 
@@ -186,21 +186,20 @@ feature 'Admin legislation questions' do
 
         expect(page).to have_field(field_en[:id], with: 'Option 1')
 
-        click_link "Español"
-
+        select "Español", from: :select_locale
         expect(page).to have_field(field_es[:id], with: 'Opción 1')
       end
 
       scenario 'Add new question option after changing active locale', :js do
         visit edit_question_url
 
-        click_link "Español"
+        select "Español", from: :select_locale
 
         click_on 'Add option'
 
         find('#nested_question_options input').set('Opción 1')
 
-        click_link "English"
+        select "English", from: :select_locale
 
         find('#nested_question_options input').set('Option 1')
 
@@ -210,7 +209,7 @@ feature 'Admin legislation questions' do
 
         expect(page).to have_field(field_en[:id], with: 'Option 1')
 
-        click_link "Español"
+        select "Español", from: :select_locale
 
         expect(page).to have_field(field_es[:id], with: 'Opción 1')
       end

@@ -21,4 +21,11 @@ module CommonActions
     check 'user_terms_of_service'
   end
 
+  def expect_to_have_active_language(language)
+    expect(page).to have_select(:select_locale, with_options: [language])
+  end
+
+  def expect_not_to_have_active_language(language)
+    expect(page).not_to have_select(:select_locale, with_options: [language])
+  end
 end

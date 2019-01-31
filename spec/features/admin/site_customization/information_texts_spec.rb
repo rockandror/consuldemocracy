@@ -61,14 +61,14 @@ feature "Admin custom information texts" do
 
       visit admin_site_customization_information_texts_path
 
-      select "Français", from: "translation_locale"
+      select "Français", from: :add_locale
       fill_in "contents_content_#{key}values_value_fr", with: 'Titre personalise du débat'
 
       click_button "Save"
 
       expect(page).to have_content 'Translation updated successfully'
 
-      select "Français", from: "translation_locale"
+      select "Français", from: :select_locale
 
       expect(page).to have_content 'Titre personalise du débat'
       expect(page).not_to have_content 'Titre du débat'
@@ -80,13 +80,13 @@ feature "Admin custom information texts" do
 
       visit admin_site_customization_information_texts_path
 
-      select "Français", from: "translation_locale"
+      select "Français", from: :select_locale
       fill_in "contents_content_#{key}values_value_fr", with: 'Titre personalise again du débat'
 
       click_button 'Save'
       expect(page).to have_content 'Translation updated successfully'
 
-      click_link 'Français'
+      select "Français", from: :select_locale
 
       expect(page).to have_content 'Titre personalise again du débat'
       expect(page).not_to have_content 'Titre personalise du débat'
@@ -105,13 +105,13 @@ feature "Admin custom information texts" do
 
       visit admin_site_customization_information_texts_path
 
-      click_link "Español"
+      select "Español", from: :select_locale
       click_link "Remove language"
       click_button "Save"
 
       expect(page).not_to have_link "Español"
 
-      click_link 'English'
+      select "English", from: :select_locale
       expect(page).to have_content 'Custom debate text'
       expect(page).to have_content 'Custom debate title'
 

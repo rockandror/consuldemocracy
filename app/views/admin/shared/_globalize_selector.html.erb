@@ -1,0 +1,17 @@
+<div class="row globalize-languages column <%= highlight_translations_class %>"
+     data-single-language-text="<%= t "shared.translation_interface.single_language_text" %>"
+     data-multiple-language-text="<%= t "shared.translation_interface.multiple_language_text" %>">
+  <div class="small-6 large-3 columns">
+    <% if @process %>
+      <small>
+        <strong>
+          <div class="inline"><%= active_locales_description(@process) %></div>
+        </strong>
+      </small>
+    <% end %>
+    <%= select_tag :select_locale,
+                   active_locales(@process, display_style),
+                   prompt: t("admin.translations.choose_language"),
+                   class: "js-select-locale" %>
+  </div>
+</div>

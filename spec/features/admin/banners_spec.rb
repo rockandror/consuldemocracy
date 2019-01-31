@@ -113,10 +113,10 @@ feature 'Admin banners magement' do
   scenario "Publish a banner with a translation different than the current locale", :js do
     visit new_admin_banner_path
 
-    expect(page).to have_link "English"
+    expect(page).to have_select :select_locale, selected: "English"
 
     click_link "Remove language"
-    select "Français", from: "translation_locale"
+    select "Français", from: :add_locale
 
     fill_in "Title", with: "En Français"
     fill_in "Description", with: "Link en Français"
@@ -132,8 +132,9 @@ feature 'Admin banners magement' do
     click_button "Save changes"
     click_link "Edit banner"
 
-    expect(page).to have_link "Français"
-    expect(page).not_to have_link "English"
+    expect_to_have_active_language("Français")
+    expect_not_to_have_active_language("English")
+    expect(page).to have_select :select_locale, selected: "Français"
     expect(page).to have_field "Title", with: "En Français"
   end
 

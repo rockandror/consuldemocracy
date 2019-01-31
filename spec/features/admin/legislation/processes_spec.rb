@@ -202,7 +202,7 @@ feature 'Admin legislation processes' do
       visit admin_legislation_process_milestones_path(process)
 
       expect(page).not_to have_link "Remove language"
-      expect(page).not_to have_field "translation_locale"
+      expect(page).not_to have_select "add_locale"
 
       within(".translatable-fields[data-locale='en']") do
         fill_in_ckeditor find("textarea", visible: false)[:id],
