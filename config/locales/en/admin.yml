@@ -1462,12 +1462,11 @@ en:
           link_text: Link text
           link_url: Link URL
           create:
-            notice: "Success"
+            notice: "Card created successfully!"
           update:
-            notice: "Updated"
+            notice: "Card updated successfully"
           destroy:
-            notice: "Removed"
-
+            notice: "Card removed successfully"
     homepage:
       title: Homepage
       description: The active modules appear in the homepage in the same order as here.

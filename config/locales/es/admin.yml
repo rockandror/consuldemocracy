@@ -1482,6 +1482,12 @@ es:
           description: Descripción
           link_text: Texto del enlace
           link_url: URL del enlace
+          create:
+            notice: "¡Tarjeta creada con éxito!"
+          update:
+            notice: "Tarjeta actualizada con éxito"
+          destroy:
+            notice: "Tarjeta eliminada con éxito"
     homepage:
       title: Título
       description: Los módulos activos aparecerán en la homepage en el mismo orden que aquí.
