@@ -194,6 +194,20 @@ shared_examples "translatable" do |factory_name, path_name, input_fields, textar
       expect_not_to_have_active_language 'Español'
     end
 
+    scenario "Should not allow to remove all translation and shows a new and
+              empty one with I18n locale", :js do
+      visit path
+
+      click_link "Remove language"
+      click_link "Remove language"
+
+      expect(page).to have_select(:select_locale, selected: 'Choose language' )
+
+      click_button update_button_text
+
+      expect(page).to have_select(:select_locale, selected: 'English' )
+    end
+
     scenario "Remove a translation with invalid data", :js do
       skip("can't have invalid translations") if required_fields.empty?
 

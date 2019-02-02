@@ -4,6 +4,16 @@ shared_examples_for "globalizable" do |factory_name|
   let(:record) { create(factory_name) }
   let(:field) { record.translated_attribute_names.first }
 
+  describe "Translations validation" do
+    before do
+      record.translations.each{ |translation| translation.mark_for_destruction }
+    end
+
+    it "Should not be valid when all translations are marked for destruction" do
+      expect(record).not_to be_valid
+    end
+  end
+
   describe "Fallbacks" do
     before do
       allow(I18n).to receive(:available_locales).and_return(%i[ar de en es fr])
