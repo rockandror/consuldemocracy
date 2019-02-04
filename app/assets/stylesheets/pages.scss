@@ -103,11 +103,14 @@
   }
 }
 
-.globalize-languages{
-  padding-top: $line-height / 2;
+.admin .globalize-languages {
   padding-bottom: $line-height;
+}
 
-  .js-select-locale{
+.globalize-languages {
+  padding-top: $line-height / 2;
+
+  .js-select-locale {
     margin-bottom: $line-height / 3;
   }
 }
