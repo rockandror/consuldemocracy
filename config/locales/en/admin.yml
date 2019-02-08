@@ -461,8 +461,7 @@ en:
           homepage_description: Here you can explain the content of the process
           homepage_enabled: Homepage enabled
           banner_title: Header colors
-          banner_background_color: Background colour
-          banner_font_color: Font colour
+          color_help: Hexadecimal format
         index:
           create: New process
           delete: Delete
@@ -1513,13 +1512,13 @@ en:
           description: Description
           link_text: Link text
           link_url: Link URL
+          columns_help: "Width of the card in number of columns. On mobile screens it's always a width of 100%."
           create:
-            notice: "Success"
+            notice: "Card created successfully!"
           update:
-            notice: "Updated"
+            notice: "Card updated successfully"
           destroy:
-            notice: "Removed"
-
+            notice: "Card removed successfully"
     homepage:
       title: Homepage
       description: The active modules appear in the homepage in the same order as here.

@@ -462,8 +462,7 @@ es:
           homepage_description: Aquí puedes explicar el contenido del proceso
           homepage_enabled: Homepage activada
           banner_title: Colores del encabezado
-          banner_background_color: Color de fondo
-          banner_font_color: Color del texto
+          color_help: Formato hexadecimal
         index:
           create: Nuevo proceso
           delete: Borrar
@@ -1514,6 +1513,13 @@ es:
           description: Descripción
           link_text: Texto del enlace
           link_url: URL del enlace
+          columns_help: "Ancho de la tarjeta en número de columnas. En pantallas móviles siempre es un ancho del 100%."
+          create:
+            notice: "¡Tarjeta creada con éxito!"
+          update:
+            notice: "Tarjeta actualizada con éxito"
+          destroy:
+            notice: "Tarjeta eliminada con éxito"
     homepage:
       title: Homepage
       description: Los módulos activos aparecerán en la homepage en el mismo orden que aquí.
