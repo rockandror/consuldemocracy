@@ -460,14 +460,15 @@ en:
           homepage: Description
           homepage_description: Here you can explain the content of the process
           homepage_enabled: Homepage enabled
+          banner_title: Header colors
+          banner_background_color: Background colour
+          banner_font_color: Font colour
         index:
           create: New process
           delete: Delete
           title: Legislation processes
           filters:
             open: Open
-            next: Next
-            past: Past
             all: All
         new:
           back: Back
@@ -1502,6 +1503,23 @@ en:
           status_published: Published
           title: Title
           slug: Slug
+          cards_title: Cards
+          see_cards: See Cards
+        cards:
+          cards_title: cards
+          create_card: Create card
+          no_cards: There are no cards.
+          title: Title
+          description: Description
+          link_text: Link text
+          link_url: Link URL
+          create:
+            notice: "Success"
+          update:
+            notice: "Updated"
+          destroy:
+            notice: "Removed"
+
     homepage:
       title: Homepage
       description: The active modules appear in the homepage in the same order as here.
