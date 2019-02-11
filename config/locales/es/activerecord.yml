@@ -16,6 +16,9 @@ es:
       milestone/status:
         one: "Estado de seguimiento"
         other: "Estados de seguimiento"
+      progress_bar:
+        one: "Barra de progreso"
+        other: "Barras de progreso"
       comment:
         one: "Comentario"
         other: "Comentarios"
@@ -136,6 +139,13 @@ es:
       milestone/status:
         name: "Nombre"
         description: "Descripción (opcional)"
+      progress_bar:
+        kind: "Tipo"
+        title: "Título"
+        percentage: "Progreso"
+      progress_bar/kind:
+        primary: "Principal"
+        secondary: "Secundaria"
       budget/heading:
         name: "Nombre de la partida"
         price: "Cantidad"
@@ -234,6 +244,8 @@ es:
         allegations_start_date: Fecha de inicio de alegaciones
         allegations_end_date: Fecha de fin de alegaciones
         result_publication_date: Fecha de publicación del resultado final
+        background_color: Color del fondo
+        font_color: Color del texto
       legislation/process/translation:
         title: Título del proceso
         summary: Resumen
@@ -291,6 +303,7 @@ es:
         description: Descripción
         link_text: Texto del enlace
         link_url: URL del enlace
+        columns: Número de columnas
       widget/card/translation:
         label: Etiqueta (opcional)
         title: Título

@@ -851,7 +851,6 @@ footer {
 .categories a,
 .geozone a,
 .sidebar-links a,
-.sidebar-map a,
 .tags span {
   background: #ececec;
   border-radius: rem-calc(6);
@@ -882,7 +881,7 @@ footer {
 .sidebar-map {
 
   .map {
-    z-index: -1;
+    z-index: 0;
   }
 }
 
@@ -1093,6 +1092,7 @@ form {
 
 .callout {
   font-size: $small-font-size;
+  overflow: hidden;
 
   a:not(.button) {
     font-weight: bold;
@@ -1131,6 +1131,10 @@ form {
 
   .close {
     text-decoration: none !important;
+  }
+
+  .button {
+    margin-bottom: 0;
   }
 }
 
@@ -2724,7 +2728,8 @@ table {
 // 24. Homepage
 // ------------
 
-.home-page {
+.home-page,
+.custom-page {
 
   a {
 
@@ -2864,11 +2869,19 @@ table {
 .figure-card {
   display: flex;
   margin: 0 0 $line-height;
+  overflow: hidden;
   position: relative;
+
+  @include breakpoint(medium down) {
+    min-height: $line-height * 4;
+  }
 
   @include breakpoint(medium) {
     max-height: rem-calc(185);
-    overflow: hidden;
+  }
+
+  @include breakpoint(large) {
+    min-height: rem-calc(185);
   }
 
   a {
@@ -2900,8 +2913,16 @@ table {
 
     h3,
     .title {
-      font-size: rem-calc(24);
-      line-height: rem-calc(24);
+      font-size: $base-font-size;
+
+      @include breakpoint(medium) {
+        font-size: rem-calc(20);
+      }
+
+      @include breakpoint(large) {
+        font-size: rem-calc(24);
+        line-height: rem-calc(24);
+      }
     }
 
     span {
