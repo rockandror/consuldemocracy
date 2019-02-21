@@ -20,6 +20,8 @@ module Globalizable
     if self.paranoid? && translation_class.attribute_names.include?("hidden_at")
       translation_class.send :acts_as_paranoid, column: :hidden_at
     end
+
+    scope :with_translation, -> { joins("LEFT OUTER JOIN #{translations_table_name} ON #{table_name}.id = #{translations_table_name}.#{reflections["translations"].foreign_key} AND #{translations_table_name}.locale='#{I18n.locale }'") }
   end
 
   class_methods do

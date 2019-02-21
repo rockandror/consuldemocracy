@@ -110,9 +110,7 @@ class Budget
     end
 
     def self.sort_by_title
-      includes(:translations).
-        with_locales(Globalize.fallbacks(I18n.locale)).
-        order("budget_investment_translations.title ASC")
+      with_translation.sort_by(&:title)
     end
 
     def self.filter_params(params)

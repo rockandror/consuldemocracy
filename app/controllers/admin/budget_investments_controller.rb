@@ -76,8 +76,8 @@ class Admin::BudgetInvestmentsController < Admin::BaseController
 
     def load_investments
       @investments = Budget::Investment.scoped_filter(params, @current_filter)
-                                       .order_filter(params)
-
+      @investments = @investments.order_filter(params[:sort_by]) if params[:sort_by].present?
+      @investments = Kaminari.paginate_array(@investments) if @investments.kind_of?(Array)
       @investments = @investments.page(params[:page]) unless request.format.csv?
     end
 
