@@ -10,7 +10,6 @@
         <%= translations_form.text_field :title,
               maxlength: Proposal.title_max_length,
               placeholder: t("proposals.form.proposal_title"),
-              label: t("proposals.form.proposal_title"),
               data: { js_suggest_result: "js_suggest_result",
                       js_suggest: ".js-suggest",
                       js_url: suggest_proposals_path } %>
@@ -18,7 +17,7 @@
       <div class="js-suggest" data-locale="<%= translations_form.locale %>"></div>
 
       <div class="small-12 column">
-        <%= translations_form.label :question, t("proposals.form.proposal_question") %>
+        <%= translations_form.label :question %>
         <p class="help-text" id="question-help-text">
           <%= t("proposals.form.proposal_question_example_html") %>
         </p>
@@ -30,7 +29,7 @@
       </div>
 
       <div class="small-12 column">
-        <%= translations_form.label :summary, t("proposals.form.proposal_summary") %>
+        <%= translations_form.label :summary %>
         <p class="help-text" id="summary-help-text">
           <%= t("proposals.form.proposal_summary_note") %>
         </p>
@@ -44,8 +43,7 @@
       <div class="ckeditor small-12 column">
         <%= translations_form.cktext_area :description,
                                           maxlength: Proposal.description_max_length,
-                                          ckeditor: { language: I18n.locale },
-                                          label: t("proposals.form.proposal_text") %>
+                                          ckeditor: { language: I18n.locale } %>
       </div>
     <% end %>
 
