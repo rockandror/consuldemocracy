@@ -62,16 +62,14 @@ shared_examples "translatable" do |factory_name, path_name, input_fields, textar
       attributes = fields.product(%i[fr]).map do |field, locale|
         [:"#{field}_#{locale}", text_for(field, locale)]
       end.to_h
+      translatable.translations.delete_all
       translatable.update(attributes)
       visit path
 
-      select "English", from: :translation_locale
-      click_link 'Remove language'
-      select "Español", from: :translation_locale
-      click_link 'Remove language'
-      click_button update_button_text
-
-      expect(page).to have_content 'en Français'
+      within "#globalize_locales" do
+        expect(page).to have_css "li a", visible: true, count: 1
+        expect(page).to have_css "li a", text: "Français"
+      end
     end
 
     scenario "Add a translation", :js do
