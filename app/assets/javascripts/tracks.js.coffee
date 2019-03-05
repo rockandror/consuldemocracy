@@ -29,7 +29,7 @@ App.Tracks =
   track_proposal: ->
     page_title = App.Tracks.page_title()
     proposal_rank = $('#js-tracking').data('proposal-rank')
-    _paq.push(['trackPageView', page_title, {dimension6: proposal_rank}])
+    _paq.push(['trackPageView', page_title, { dimension6: proposal_rank }])
 
   track_user: ->
     tracking_data      = $("#tracking_data")
@@ -40,8 +40,8 @@ App.Tracks =
     district           = tracking_data.data('track-district')
 
     if current_user_id?
-      _paq.push(['setUserId', current_user_id]);
-      _paq.push(['setCustomDimension', customDimensionId = 1, customDimensionValue = verification_level]);
+      _paq.push(['setUserId', current_user_id])
+      _paq.push(['setCustomDimension', customDimensionId = 1, customDimensionValue = verification_level])
       _paq.push(['setCustomDimension', customDimensionId = 2, customDimensionValue = current_user_id])
       _paq.push(['setCustomDimension', customDimensionId = 3, customDimensionValue = sex])
       _paq.push(['setCustomDimension', customDimensionId = 4, customDimensionValue = age])
