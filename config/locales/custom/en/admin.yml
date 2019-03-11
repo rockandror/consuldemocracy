@@ -20,11 +20,6 @@ en:
     hidden_users:
       show:
         phone: 'Phone:'
-    recounts:
-      index:
-        all_booths_total: "Cumulative total from all booths:"
-        total_final: Final recounts
-        total_system: Votes (automatic)
     booths:
       new:
         physical: "Physical booth"

@@ -20,11 +20,6 @@ es:
     hidden_users:
       show:
         phone: 'Teléfono:'
-    recounts:
-      index:
-        all_booths_total: "Acumulado en todas las urnas:"
-        total_final: Recuentos finales
-        total_system: Votos (automático)
     booths:
       new:
         physical: "Urna física"
