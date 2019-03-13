@@ -528,48 +528,6 @@ describe SpendingProposal do
       expect(sp.total_votes).to eq(2)
     end
 
-    it "does not take into account forum votes" do
-      forum = create(:forum)
-      sp = create(:spending_proposal)
-
-      sp.register_vote(forum.user, true)
-      expect(sp.total_votes).to eq(0)
-    end
-  end
-
-  describe "#delegated_votes" do
-    before(:each) do
-      Setting["feature.spending_proposal_features.voting_allowed"] = true
-    end
-
-    it "counts delegated votes" do
-      forum = create(:forum)
-      user1 = create(:user, representative: forum)
-      user2 = create(:user, representative: forum)
-      sp = create(:spending_proposal)
-
-      sp.register_vote(forum.user, true)
-      expect(sp.delegated_votes).to eq(2)
-    end
-
-    it "does not count delegated votes if user has also voted" do
-      forum = create(:forum)
-      user = create(:user, :level_two, representative: forum)
-      sp = create(:spending_proposal)
-
-      sp.register_vote(forum.user, true)
-      sp.register_vote(user, true)
-
-      expect(sp.delegated_votes).to eq(0)
-    end
-
-    it "does not count forum votes" do
-      forum = create(:forum)
-      sp = create(:spending_proposal)
-
-      sp.register_vote(forum.user, true)
-      expect(sp.delegated_votes).to eq(0)
-    end
   end
 
   describe "#with_supports" do

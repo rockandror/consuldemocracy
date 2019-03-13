@@ -8,6 +8,7 @@ module Budgets
     def show
       authorize! :read_results, @budget
       @investments = Budget::Result.new(@budget, @heading).investments
+      @headings = @budget.headings.sort_by_name
     end
 
     private
@@ -18,9 +19,12 @@ module Budgets
 
       def load_heading
         if @budget.present?
-          headings = @budget.headings
-          @heading = headings.find_by_slug_or_id(params[:heading_id]) || headings.first
+          @heading = @budget.headings.find_by_slug_or_id(params[:heading_id]) || default_heading
         end
+      end
+
+      def default_heading
+        @budget.city_heading || @budget.headings.first
       end
 
   end

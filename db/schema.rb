@@ -1785,6 +1785,7 @@ ActiveRecord::Schema.define(version: 20190131122858) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "signature_id"
+    t.boolean  "delegated",    default: false
   end
 
   add_index "votes", ["signature_id"], name: "index_votes_on_signature_id", using: :btree

@@ -56,6 +56,28 @@ feature 'Stats' do
       expect(page).to have_content "Stats"
     end
 
-  end
+    context "headings" do
 
+      scenario "Displays headings ordered by name with city heading first" do
+        budget.update(phase: "finished")
+
+        district_group = create(:budget_group, budget: budget)
+        create(:budget_heading, group: district_group, name: "Brooklyn")
+        create(:budget_heading, group: district_group, name: "Queens")
+        create(:budget_heading, group: district_group, name: "Manhattan")
+
+        city_group = create(:budget_group, budget: budget)
+        city_heading = create(:budget_heading, group: city_group, name: "City of New York")
+
+        visit budget_stats_path(budget)
+
+        within("#headings") do
+          expect("City of New York").to appear_before("Brooklyn")
+          expect("Brooklyn").to appear_before("Manhattan")
+          expect("Manhattan").to appear_before("Queens")
+        end
+      end
+    end
+
+  end
 end

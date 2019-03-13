@@ -20,6 +20,10 @@ FactoryBot.define do
     user
   end
 
+  factory :represented_user, parent: :user, traits: [:level_three] do
+    association :representative, factory: :forum
+  end
+
   factory :ballot do
     user
   end

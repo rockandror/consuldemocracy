@@ -162,15 +162,10 @@
                     </div>
                     <div class="small-12 medium-6 column table" data-equalizer-watch>
                       <div id="budget_<%= budget.id %>_results" class="table-cell align-middle">
-                        <% if budget.name == "Presupuestos Participativos 2016" %>
-                          <%= link_to t("budgets.index.see_results"),
-                                      participatory_budget_results_path,
-                                      class: "button" %>
-                        <% else %>
-                          <%= link_to t("budgets.index.see_results"),
-                                      custom_budget_results_path(budget),
-                                      class: "button" %>
-                        <% end %>
+                        <%= link_to t("budgets.index.see_results"),
+                                    custom_budget_results_path(budget),
+                                    class: "button" %>
+                        
                         <% unless budget.name == "Presupuestos Participativos 2018" %>
                           <%= link_to t("budgets.index.milestones"),
                                       custom_budget_executions_path(budget, status: 1),
