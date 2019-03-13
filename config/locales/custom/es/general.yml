@@ -304,4 +304,5 @@ es:
       slide: "Ver %{title}"
     welcome:
       go_to_index: Ahora no, empezar a participar
+      start_using_consul: "Empezar a participar"
       user_permission_verify_info: "* Sólo usuarios empadronados en el municipio de Madrid."

@@ -1,0 +1,7 @@
+load Rails.root.join("db", "pages", "welcome_level_three_verified.rb")
+load Rails.root.join("db", "pages", "welcome_level_two_verified.rb")
+load Rails.root.join("db", "pages", "welcome_not_verified.rb")
+load Rails.root.join("db", "pages", "custom", "accessibility.rb")
+load Rails.root.join("db", "pages", "custom", "conditions.rb")
+load Rails.root.join("db", "pages", "custom", "privacy.rb")
+load Rails.root.join("db", "pages", "custom", "faq.rb")
