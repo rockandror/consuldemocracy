@@ -1,18 +1,18 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'Tracking' do
+feature "Tracking" do
 
-  context 'User data' do
+  context "User data" do
 
-    context 'User ID' do
+    context "User ID" do
 
-      scenario 'Anonymous' do
+      scenario "Anonymous" do
         visit "/"
 
         expect(page).not_to have_css("span[data-track-user-id]")
       end
 
-      scenario 'Logged in' do
+      scenario "Logged in" do
         user = create(:user)
 
         login_as(user)
@@ -23,29 +23,29 @@ feature 'Tracking' do
 
     end
 
-    context 'Verification level' do
+    context "Verification level" do
 
-      scenario 'Anonymous' do
+      scenario "Anonymous" do
         visit "/"
 
         expect(page).not_to have_css("span[data-track-verification-level]")
       end
 
-      scenario 'Level 1' do
+      scenario "Level 1" do
         login_as(create(:user))
         visit "/"
 
         expect(page).to have_css("span[data-track-verification-level='Nivel 1']")
       end
 
-      scenario 'Level 2' do
+      scenario "Level 2" do
         login_as(create(:user, :level_two))
         visit "/"
 
         expect(page).to have_css("span[data-track-verification-level='Nivel 2']")
       end
 
-      scenario 'Level 3' do
+      scenario "Level 3" do
         login_as(create(:user, :level_three))
         visit "/"
 
@@ -54,9 +54,9 @@ feature 'Tracking' do
 
     end
 
-    context 'Demographics' do
+    context "Demographics" do
 
-      scenario 'Age' do
+      scenario "Age" do
         user = create(:user, date_of_birth: 18.years.ago)
 
         login_as(user)
@@ -65,9 +65,9 @@ feature 'Tracking' do
         expect(page).to have_css("span[data-track-age='18']")
       end
 
-      scenario 'Gender' do
-        male   = create(:user, gender: 'male')
-        female = create(:user, gender: 'female')
+      scenario "Gender" do
+        male   = create(:user, gender: "male")
+        female = create(:user, gender: "female")
 
         login_as(male)
         visit "/"
@@ -80,7 +80,7 @@ feature 'Tracking' do
         expect(page).to have_css("span[data-track-gender='Mujer']")
       end
 
-      scenario 'District' do
+      scenario "District" do
         new_york = create(:geozone, name: "New York")
         user = create(:user, geozone: new_york)
 
@@ -93,9 +93,9 @@ feature 'Tracking' do
 
   end
 
-  context 'Events' do
+  context "Events" do
 
-    scenario 'Login' do
+    scenario "Login" do
       user = create(:user)
       login_through_form_as(user)
 
@@ -103,65 +103,65 @@ feature 'Tracking' do
       expect(page).to have_css("span[data-track-event-action='Entrar']")
     end
 
-    scenario 'Registration' do
+    scenario "Registration" do
       sign_up
 
       expect(page).to have_css("span[data-track-event-category='Registro']")
       expect(page).to have_css("span[data-track-event-action='Registrar']")
     end
 
-    scenario 'Register as organization' do
+    scenario "Register as organization" do
       sign_up_as_organization
 
       expect(page).to have_css("span[data-track-event-category='Registro']")
       expect(page).to have_css("span[data-track-event-action='Registrar']")
     end
 
-    scenario 'Upvote a debate', :js do
+    scenario "Upvote a debate", :js do
       user   = create(:user)
       debate = create(:debate)
 
       login_as(user)
       visit debate_path(debate)
 
-      find('.in-favor a').click
+      find(".in-favor a").click
       expect(page).to have_css("span[data-track-event-category='Debate']", visible: false)
       expect(page).to have_css("span[data-track-event-action='Votar']", visible: false)
       expect(page).to have_css("span[data-track-event-name='Positivo']", visible: false)
     end
 
-    scenario 'Downvote a debate', :js do
+    scenario "Downvote a debate", :js do
       user   = create(:user)
       debate = create(:debate)
 
       login_as(user)
       visit debate_path(debate)
 
-      find('.against a').click
+      find(".against a").click
       expect(page).to have_css("span[data-track-event-category='Debate']", visible: false)
       expect(page).to have_css("span[data-track-event-action='Votar']", visible: false)
       expect(page).to have_css("span[data-track-event-name='Negativo']", visible: false)
     end
 
-    scenario 'Support a proposal', :js do
+    scenario "Support a proposal", :js do
       user     = create(:user, :level_two)
       proposal = create(:proposal)
 
       login_as(user)
       visit proposal_path(proposal)
 
-      find('.in-favor a').click
+      find(".in-favor a").click
       expect(page).to have_css("span[data-track-event-category='Propuesta']", visible: false)
       expect(page).to have_css("span[data-track-event-action='Apoyar']", visible: false)
       expect(page).to have_css("span[data-track-event-name='#{proposal.id}']", visible: false)
     end
 
-    scenario 'Proposal ranking', :js do
+    scenario "Proposal ranking", :js do
       user = create(:user, :level_two)
 
-      medium = create(:proposal, title: 'Medium proposal')
-      best   = create(:proposal, title: 'Best proposal')
-      worst  = create(:proposal, title: 'Worst proposal')
+      medium = create(:proposal, title: "Medium proposal")
+      best   = create(:proposal, title: "Best proposal")
+      worst  = create(:proposal, title: "Worst proposal")
 
       10.times { create(:vote, votable: best)   }
       5.times  { create(:vote, votable: medium) }
@@ -170,9 +170,9 @@ feature 'Tracking' do
       login_as(user)
 
       visit proposals_path
-      click_link 'Best proposal'
+      click_link "Best proposal"
       within("aside") do
-        find('.in-favor a').click
+        find(".in-favor a").click
       end
 
       expect(page).to have_css("span[data-track-event-category='Propuesta']", visible: false)
@@ -182,72 +182,72 @@ feature 'Tracking' do
       expect(page).to have_css("span[data-track-event-dimension-value='1']", visible: false)
 
       visit proposals_path
-      click_link 'Medium proposal'
+      click_link "Medium proposal"
       within("aside") do
-        find('.in-favor a').click
+        find(".in-favor a").click
       end
 
       expect(page).to have_css("span[data-track-event-custom-value='2']", visible: false)
       expect(page).to have_css("span[data-track-event-dimension-value='2']", visible: false)
 
       visit proposals_path
-      click_link 'Worst proposal'
+      click_link "Worst proposal"
       within("aside") do
-        find('.in-favor a').click
+        find(".in-favor a").click
       end
 
       expect(page).to have_css("span[data-track-event-custom-value='3']", visible: false)
       expect(page).to have_css("span[data-track-event-dimension-value='3']", visible: false)
     end
 
-    scenario 'Create a proposal' do
+    scenario "Create a proposal" do
       author = create(:user)
       login_as(author)
 
       visit new_proposal_path
       fill_in_proposal
-      click_button 'Create proposal'
+      click_button "Create proposal"
 
-      expect(page).to have_content 'Proposal created successfully.'
+      expect(page).to have_content "Proposal created successfully."
       expect(page).to have_css("span[data-track-event-category='Propuesta']")
       expect(page).to have_css("span[data-track-event-action='Crear']")
     end
 
-    scenario 'Comment a proposal', :js do
+    scenario "Comment a proposal", :js do
       user     = create(:user)
       proposal = create(:proposal)
 
       login_as(user)
       visit proposal_path(proposal)
 
-      fill_in "comment-body-proposal_#{proposal.id}", with: 'Have you thought about...?'
-      click_button 'Publish comment'
+      fill_in "comment-body-proposal_#{proposal.id}", with: "Have you thought about...?"
+      click_button "Publish comment"
 
       expect(page).to have_css("span[data-track-event-category='Propuesta']", visible: false)
       expect(page).to have_css("span[data-track-event-action='Comentar']", visible: false)
     end
 
-    scenario 'Vote a poll', :js do
+    scenario "Vote a poll", :js do
       user = create(:user, :level_two)
       poll = create(:poll)
 
       question = create(:poll_question, poll: poll)
-      answer1 = create(:poll_question_answer, question: question, title: 'Han Solo')
-      answer2 = create(:poll_question_answer, question: question, title: 'Chewbacca')
+      create(:poll_question_answer, question: question, title: "Han Solo")
+      create(:poll_question_answer, question: question, title: "Chewbacca")
 
       login_as user
       visit poll_path(poll)
 
-      click_link 'Han Solo'
+      click_link "Han Solo"
 
-      expect(page).not_to have_link('Han Solo')
+      expect(page).not_to have_link("Han Solo")
 
       expect(page).to have_css("span[data-track-event-category]", visible: false)
       expect(page).to have_css("span[data-track-event-category='Votación']", visible: false)
       expect(page).to have_css("span[data-track-event-action='Votar']", visible: false)
     end
 
-    scenario 'Verify census' do
+    scenario "Verify census" do
       user = create(:user)
       login_as(user)
 
@@ -258,7 +258,7 @@ feature 'Tracking' do
       expect(page).to have_css("span[data-track-event-action='Censo']")
     end
 
-    scenario 'Verify sms' do
+    scenario "Verify sms" do
       user = create(:user, residence_verified_at: Time.now)
       login_as(user)
 
@@ -269,12 +269,12 @@ feature 'Tracking' do
       expect(page).to have_css("span[data-track-event-action='SMS']")
     end
 
-    scenario 'Delete account' do
+    scenario "Delete account" do
       user = create(:user)
       login_as(user)
 
       visit users_registrations_delete_form_path
-      click_button 'Erase my account'
+      click_button "Erase my account"
 
       expect(page).to have_css("span[data-track-event-category='Baja']")
       expect(page).to have_css("span[data-track-event-action='Dar de baja']")
@@ -282,28 +282,28 @@ feature 'Tracking' do
   end
 
   #Requires testing outgoing _paq.push call from track.js.coffee
-  xscenario 'Track events on ajax call'
+  xscenario "Track events on ajax call"
 
   #Requires testing outgoing _paq.push call from track.js.coffee
-  xcontext 'Page view' do
-    scenario 'Url'
-    scenario 'Referer'
-    scenario 'Title'
+  xcontext "Page view" do
+    scenario "Url"
+    scenario "Referer"
+    scenario "Title"
   end
 
   #Requires testing social network registrations
-  xscenario 'Register with social network'
+  xscenario "Register with social network"
 
   #Requires testing method track_proposal from track.js.coffee
-  xcontext 'Proposals' do
-    scenario 'show' do
+  xcontext "Proposals" do
+    scenario "show" do
     end
   end
 
   context "Tracking pages" do
 
     background do
-      Setting['per_page_code_head'] = '<script type="text/javascript">function weboConv(idConv){}</script>'
+      Setting["per_page_code_head"] = "<script>function weboConv(idConv){}</script>"
     end
 
     context "Codes", :js do
@@ -356,7 +356,7 @@ feature 'Tracking' do
       end
 
       scenario "presupuestos" do
-        budget = create(:budget)
+        create(:budget)
         visit "presupuestos"
         expect(page.html).to have_content "weboConv(33);"
       end

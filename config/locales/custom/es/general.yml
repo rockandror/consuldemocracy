@@ -294,7 +294,7 @@ es:
       confirm_discard_delegation: "Si votas dejarás de delegar. "
       no_ballots_allowed: No se puede votar
   welcome:
-    title: "Decide Madrid: portal of citizen participation of the City of Madrid"
+    title: "Portal of citizen participation of the City of Madrid"
     recommended:
       help: "Estas recomendaciones se generan por las etiquetas de los debates y propuestas que estás siguiendo."
       debates:

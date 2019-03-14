@@ -35,7 +35,9 @@
 
 <main class="welcome">
 
-  <h1 class="show-for-sr"><%= t("welcome.title") %></h1>
+  <h1 class="show-for-sr"><%= setting["org_name"] %></h1>
+
+  <h2 class="show-for-sr"><%= t("welcome.title") %></h2>
 
   <%= render "feeds" %>
 
