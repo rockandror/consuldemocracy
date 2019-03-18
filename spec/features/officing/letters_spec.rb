@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'Letters' do
+feature "Letters" do
   let(:officer) { create(:poll_officer, letter_officer: true) }
   let(:poll)    { create(:poll) }
 
@@ -13,14 +13,14 @@ feature 'Letters' do
   end
 
   scenario "Verify and store voter" do
-    fill_in 'residence_document_number', with: "12345678Z"
-    fill_in 'residence_postal_code', with: '28013'
+    fill_in "residence_document_number", with: "12345678Z"
+    fill_in "residence_postal_code", with: "28013"
 
-    click_button 'Validate document'
+    click_button "Validate document"
 
-    expect(page).to have_content 'Voto VÁLIDO'
-    expect(page).to have_content '12345678Z'
-    expect(page).to have_content '28013'
+    expect(page).to have_content "Voto VÁLIDO"
+    expect(page).to have_content "12345678Z"
+    expect(page).to have_content "28013"
 
     voters = Poll::Voter.all
     expect(voters.count).to eq(1)
@@ -38,9 +38,9 @@ feature 'Letters' do
   end
 
   scenario "Error on verify (everything blank)" do
-    click_button 'Validate document'
+    click_button "Validate document"
 
-    expect(page).to have_content 'Voto NO VÁLIDO'
+    expect(page).to have_content "Voto NO VÁLIDO"
     expect(Poll::Voter.count).to eq(0)
 
     logs = Poll::LetterOfficerLog.all
@@ -55,14 +55,14 @@ feature 'Letters' do
     initial_failed_census_calls_count = officer.failed_census_calls_count
     visit new_officing_letter_path
 
-    fill_in 'residence_document_number', with: "9999999A"
-    fill_in 'residence_postal_code', with: '28013'
+    fill_in "residence_document_number", with: "9999999A"
+    fill_in "residence_postal_code", with: "28013"
 
-    click_button 'Validate document'
+    click_button "Validate document"
 
-    expect(page).to have_content 'Voto NO VÁLIDO'
-    expect(page).to have_content '9999999A'
-    expect(page).to have_content '28013'
+    expect(page).to have_content "Voto NO VÁLIDO"
+    expect(page).to have_content "9999999A"
+    expect(page).to have_content "28013"
 
     officer.reload
     fcc = FailedCensusCall.last
@@ -73,14 +73,14 @@ feature 'Letters' do
   end
 
   scenario "Error on Census (postal code)" do
-    fill_in 'residence_document_number', with: "12345678Z"
-    fill_in 'residence_postal_code', with: '28014'
+    fill_in "residence_document_number", with: "12345678Z"
+    fill_in "residence_postal_code", with: "28014"
 
-    click_button 'Validate document'
+    click_button "Validate document"
 
-    expect(page).to have_content 'Voto NO VÁLIDO'
-    expect(page).to have_content '12345678Z'
-    expect(page).to have_content '28014'
+    expect(page).to have_content "Voto NO VÁLIDO"
+    expect(page).to have_content "12345678Z"
+    expect(page).to have_content "28014"
 
     logs = Poll::LetterOfficerLog.all
     expect(logs.count).to eq(3)
@@ -98,14 +98,14 @@ feature 'Letters' do
     allow_any_instance_of(Officing::Residence).
     to receive(:letter_poll).and_return(poll)
 
-    fill_in 'residence_document_number', with: "12345678Z"
-    fill_in 'residence_postal_code', with: '28013'
+    fill_in "residence_document_number", with: "12345678Z"
+    fill_in "residence_postal_code", with: "28013"
 
-    click_button 'Validate document'
+    click_button "Validate document"
 
-    expect(page).to have_content 'Voto REFORMULADO'
-    expect(page).to have_content '12345678Z'
-    expect(page).to have_content '28013'
+    expect(page).to have_content "Voto REFORMULADO"
+    expect(page).to have_content "12345678Z"
+    expect(page).to have_content "28013"
 
     expect(Poll::Voter.count).to eq(1)
 
@@ -128,14 +128,14 @@ feature 'Letters' do
     allow_any_instance_of(Officing::Residence).
     to receive(:date_of_birth).and_return(13.years.ago)
 
-    fill_in 'residence_document_number', with: "12345678Z"
-    fill_in 'residence_postal_code', with: '28013'
+    fill_in "residence_document_number", with: "12345678Z"
+    fill_in "residence_postal_code", with: "28013"
 
-    click_button 'Validate document'
+    click_button "Validate document"
 
-    expect(page).to have_content 'Voto NO VÁLIDO'
-    expect(page).to have_content '12345678Z'
-    expect(page).to have_content '28013'
+    expect(page).to have_content "Voto NO VÁLIDO"
+    expect(page).to have_content "12345678Z"
+    expect(page).to have_content "28013"
 
     expect(Poll::Voter.count).to eq(1)
 
@@ -148,11 +148,11 @@ feature 'Letters' do
   end
 
   scenario "Validate next letter" do
-    fill_in 'residence_document_number', with: "12345678Z"
-    fill_in 'residence_postal_code', with: '28013'
+    fill_in "residence_document_number", with: "12345678Z"
+    fill_in "residence_postal_code", with: "28013"
 
-    click_button 'Validate document'
-    expect(page).to have_content 'Voto VÁLIDO'
+    click_button "Validate document"
+    expect(page).to have_content "Voto VÁLIDO"
 
     click_link "Introducir nuevo documento"
     expect(page).to have_content "Validate document"
@@ -184,7 +184,7 @@ feature 'Letters' do
       login_as(officer.user)
       visit new_officing_letter_path
 
-      expect(page).to have_content 'Validate document'
+      expect(page).to have_content "Validate document"
     end
 
     scenario "Admins can access letter interface" do
@@ -195,14 +195,14 @@ feature 'Letters' do
       login_as(admin.user)
       visit new_officing_letter_path
 
-      expect(page).to have_content 'Validate document'
+      expect(page).to have_content "Validate document"
     end
 
   end
 
   #pending check to see if current_user is officer and has an active assignment
   xscenario "Sign in" do
-    click_link 'Sign out'
+    click_link "Sign out"
     login_through_form_as(officer.user)
 
     expect(page).to have_current_path(new_officing_letter_path)
@@ -220,14 +220,14 @@ feature 'Letters' do
   context "Checks all document types" do
 
     scenario "Passport" do
-      fill_in 'residence_document_number', with: "AA12345B"
-      fill_in 'residence_postal_code', with: '28013'
+      fill_in "residence_document_number", with: "AA12345B"
+      fill_in "residence_postal_code", with: "28013"
 
-      click_button 'Validate document'
+      click_button "Validate document"
 
-      expect(page).to have_content 'Voto VÁLIDO'
-      expect(page).to have_content 'AA12345B'
-      expect(page).to have_content '28013'
+      expect(page).to have_content "Voto VÁLIDO"
+      expect(page).to have_content "AA12345B"
+      expect(page).to have_content "28013"
 
       voters = Poll::Voter.all
       expect(voters.count).to eq(1)
@@ -250,14 +250,14 @@ feature 'Letters' do
     end
 
     scenario "Foreign resident" do
-      fill_in 'residence_document_number', with: "X54321H"
-      fill_in 'residence_postal_code', with: '28013'
+      fill_in "residence_document_number", with: "X54321H"
+      fill_in "residence_postal_code", with: "28013"
 
-      click_button 'Validate document'
+      click_button "Validate document"
 
-      expect(page).to have_content 'Voto VÁLIDO'
-      expect(page).to have_content 'X54321H'
-      expect(page).to have_content '28013'
+      expect(page).to have_content "Voto VÁLIDO"
+      expect(page).to have_content "X54321H"
+      expect(page).to have_content "28013"
 
       voters = Poll::Voter.all
       expect(voters.count).to eq(1)
@@ -274,13 +274,13 @@ feature 'Letters' do
   context "No postal code" do
 
     scenario "Correct name" do
-      fill_in 'residence_document_number', with: "12345678Z"
+      fill_in "residence_document_number", with: "12345678Z"
 
-      click_button 'Validate document'
+      click_button "Validate document"
 
-      expect(page).to have_content 'Verifica EL NOMBRE'
-      expect(page).to have_content '12345678Z'
-      expect(page).to have_content 'José García'
+      expect(page).to have_content "Verifica EL NOMBRE"
+      expect(page).to have_content "12345678Z"
+      expect(page).to have_content "José García"
 
       voters = Poll::Voter.all
       expect(voters.count).to eq(0)
@@ -294,19 +294,19 @@ feature 'Letters' do
 
       click_button "Nombre igual"
 
-      expect(page).to have_content 'Voto VÁLIDO'
-      expect(page).to have_content '12345678Z'
-      expect(page).to have_content '28013'
+      expect(page).to have_content "Voto VÁLIDO"
+      expect(page).to have_content "12345678Z"
+      expect(page).to have_content "28013"
     end
 
     scenario "Incorrect name" do
-      fill_in 'residence_document_number', with: "12345678Z"
+      fill_in "residence_document_number", with: "12345678Z"
 
-      click_button 'Validate document'
+      click_button "Validate document"
 
-      expect(page).to have_content 'Verifica EL NOMBRE'
-      expect(page).to have_content '12345678Z'
-      expect(page).to have_content 'José García'
+      expect(page).to have_content "Verifica EL NOMBRE"
+      expect(page).to have_content "12345678Z"
+      expect(page).to have_content "José García"
 
       voters = Poll::Voter.all
       expect(voters.count).to eq(0)
@@ -320,9 +320,9 @@ feature 'Letters' do
 
       click_button "Nombre distinto"
 
-      expect(page).to have_content 'Voto NO VÁLIDO'
-      expect(page).to have_content '12345678Z'
-      expect(page).to have_content 'Nombre: Incorrecto'
+      expect(page).to have_content "Voto NO VÁLIDO"
+      expect(page).to have_content "12345678Z"
+      expect(page).to have_content "Nombre: Incorrecto"
     end
 
     scenario "Already voted" do
@@ -333,12 +333,12 @@ feature 'Letters' do
       allow_any_instance_of(Officing::Residence).
       to receive(:letter_poll).and_return(poll)
 
-      fill_in 'residence_document_number', with: "12345678Z"
+      fill_in "residence_document_number", with: "12345678Z"
 
-      click_button 'Validate document'
+      click_button "Validate document"
 
-      expect(page).to have_content 'Voto REFORMULADO'
-      expect(page).to have_content '12345678Z'
+      expect(page).to have_content "Voto REFORMULADO"
+      expect(page).to have_content "12345678Z"
 
       expect(Poll::Voter.count).to eq(1)
 
@@ -353,12 +353,12 @@ feature 'Letters' do
     scenario "Document number not in Census" do
       visit new_officing_letter_path
 
-      fill_in 'residence_document_number', with: "9999999A"
+      fill_in "residence_document_number", with: "9999999A"
 
-      click_button 'Validate document'
+      click_button "Validate document"
 
-      expect(page).to have_content 'Voto NO VÁLIDO'
-      expect(page).to have_content '9999999A'
+      expect(page).to have_content "Voto NO VÁLIDO"
+      expect(page).to have_content "9999999A"
     end
 
   end

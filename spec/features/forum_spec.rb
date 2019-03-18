@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature "Forum" do
 
@@ -31,8 +31,8 @@ feature "Forum" do
   context "Selection phase" do
 
     background do
-      Setting['feature.spending_proposal_features.phase2'] = true
-      Setting['feature.spending_proposal_features.voting_allowed'] ||= true
+      Setting["feature.spending_proposal_features.phase2"] = true
+      Setting["feature.spending_proposal_features.voting_allowed"] ||= true
     end
 
     scenario "Forum votes" do
@@ -82,9 +82,9 @@ feature "Forum" do
   context "Balloting phase" do
 
     background do
-      Setting['feature.spending_proposal_features.voting_allowed'] = nil
-      Setting['feature.spending_proposal_features.phase3'] = true
-      Setting['feature.spending_proposal_features.final_voting_allowed'] ||= true
+      Setting["feature.spending_proposal_features.voting_allowed"] = nil
+      Setting["feature.spending_proposal_features.phase3"] = true
+      Setting["feature.spending_proposal_features.final_voting_allowed"] ||= true
     end
 
     context "Forum votes" do

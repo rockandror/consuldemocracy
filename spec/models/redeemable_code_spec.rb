@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe RedeemableCode do
 
@@ -14,7 +14,7 @@ describe RedeemableCode do
   end
 
   describe "#redeemable?" do
-    let(:token)   { 'token' }
+    let(:token)   { "token" }
 
     it "is true if a code is redeemable" do
       RedeemableCode.create!(token: token)
@@ -28,7 +28,7 @@ describe RedeemableCode do
   end
 
   describe "#redeem" do
-    let(:token)   { 'token' }
+    let(:token)   { "token" }
     let(:user)    { create(:user) }
 
     it "when not redeemable, it returns false" do
@@ -57,14 +57,14 @@ describe RedeemableCode do
     end
 
     it "re-rolls the token when it finds a collision" do
-      RedeemableCode.create(token: 'potato')
+      RedeemableCode.create(token: "potato")
 
-      expect(RedeemableCode).to receive(:generate_token).and_return('potato')
-      expect(RedeemableCode).to receive(:generate_token).and_return('tomato')
+      expect(RedeemableCode).to receive(:generate_token).and_return("potato")
+      expect(RedeemableCode).to receive(:generate_token).and_return("tomato")
 
       RedeemableCode.generate_list(1)
 
-      expect(RedeemableCode.last.token).to eq('tomato')
+      expect(RedeemableCode.last.token).to eq("tomato")
       expect(RedeemableCode.count).to eq(2)
     end
   end

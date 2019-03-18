@@ -1,10 +1,10 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe Probe do
 
   before(:each) do
-    @probe = Probe.create(codename: 'test_probe')
-    @probe_option = @probe.probe_options.create(code: '01' , name: 'First Option')
+    @probe = Probe.create(codename: "test_probe")
+    @probe_option = @probe.probe_options.create(code: "01" , name: "First Option")
     @user = create(:user, :level_two)
   end
 

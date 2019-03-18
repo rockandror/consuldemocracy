@@ -1,10 +1,10 @@
-require 'rails_helper'
-require 'csv'
+require "rails_helper"
+require "csv"
 
-feature 'CSV Exporter' do
+feature "CSV Exporter" do
 
   def parse_csv(str)
-    CSV.parse(str, col_sep: ';', force_quotes: true, encoding: 'ISO-8859-1')
+    CSV.parse(str, col_sep: ";", force_quotes: true, encoding: "ISO-8859-1")
   end
 
   background do
@@ -484,7 +484,7 @@ feature 'CSV Exporter' do
     scenario "Do not display tags for proceeding's proposals" do
       valid_proceeding_proposal = create(:proposal, proceeding: "Derechos Humanos", sub_proceeding: "Right to a Home", tag_list: "Health")
       invalid_proceeding_proposal = create(:proposal, tag_list: "Animals")
-      invalid_proceeding_proposal.update_attribute('proceeding', "Random")
+      invalid_proceeding_proposal.update_attribute("proceeding", "Random")
 
       @csv_exporter.export
 
@@ -496,8 +496,8 @@ feature 'CSV Exporter' do
     end
 
     scenario "Do not display tags for taggings that are not public" do
-      create(:tag, name: 'Special', kind: 'special')
-      create(:tag, name: 'Category', kind: 'category')
+      create(:tag, name: "Special", kind: "special")
+      create(:tag, name: "Category", kind: "category")
       create(:proposal, tag_list: "Hidden", hidden_at: 1.month.ago)
       create(:proposal, tag_list: "Ok")
       create(:proposal, tag_list: "Special")

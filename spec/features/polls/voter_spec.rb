@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature "Voter" do
 
@@ -9,8 +9,8 @@ feature "Voter" do
     let(:booth) { create(:poll_booth) }
     let(:officer) { create(:poll_officer) }
     let(:admin) { create(:administrator) }
-    let!(:answer_yes) { create(:poll_question_answer, question: question, title: 'Yes') }
-    let!(:answer_no) { create(:poll_question_answer, question: question, title: 'No') }
+    let!(:answer_yes) { create(:poll_question_answer, question: question, title: "Yes") }
+    let!(:answer_no) { create(:poll_question_answer, question: question, title: "No") }
 
     background do
       create(:geozone, :in_census)
@@ -32,7 +32,7 @@ feature "Voter" do
 
       # Hides token temporally
       #expect(page).to have_css(".js-token-message", visible: true)
-      #token = find(:css, ".js-question-answer")[:href].gsub(/.+?(?=token)/, '').gsub('token=', '')
+      #token = find(:css, ".js-question-answer")[:href].gsub(/.+?(?=token)/, "").gsub("token=", "")
 
       #expect(page).to have_content "You can write down this vote identifier, to check your vote on the final results: #{token}"
 
@@ -44,8 +44,8 @@ feature "Voter" do
       poll = create(:poll)
 
       question = create(:poll_question, poll: poll)
-      answer1 = create(:poll_question_answer, question: question, title: 'Yes')
-      answer2 = create(:poll_question_answer, question: question, title: 'No')
+      answer1 = create(:poll_question_answer, question: question, title: "Yes")
+      answer2 = create(:poll_question_answer, question: question, title: "No")
 
       user = create(:user, :level_two)
 
@@ -55,7 +55,7 @@ feature "Voter" do
       remove_token_from_vote_link
 
       within("#poll_question_#{question.id}_answers") do
-        click_link 'Yes'
+        click_link "Yes"
       end
 
       expect(page).to have_content "Something went wrong and your vote couldn't be registered. Please check if your browser supports Javascript and try again later."
@@ -79,7 +79,7 @@ feature "Voter" do
       expect(page).not_to have_content("You have already participated in this poll. If you vote again it will be overwritten")
     end
 
-    scenario 'Voting in booth', :js do
+    scenario "Voting in booth", :js do
       user = create(:user, :in_census)
 
       login_through_form_as_officer(officer.user)
@@ -205,7 +205,7 @@ feature "Voter" do
 
         visit poll_path(poll)
 
-        expect(page).not_to have_selector('.js-token-message')
+        expect(page).not_to have_selector(".js-token-message")
 
         expect(page).to have_content "You have already participated in this poll. If you vote again it will be overwritten."
         within("#poll_question_#{question.id}_answers") do
@@ -241,7 +241,7 @@ feature "Voter" do
 
       login_as user
       visit account_path
-      click_link 'Verify my account'
+      click_link "Verify my account"
 
       verify_residence
       confirm_phone(user)

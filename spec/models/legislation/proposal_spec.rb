@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe Legislation::Proposal do
   let(:proposal) { build(:legislation_proposal) }
@@ -45,7 +45,7 @@ describe Legislation::Proposal do
     end
   end
 
-  describe '#hot_score' do
+  describe "#hot_score" do
     let(:now) { Time.current }
 
     it "period is correctly calculated to get exact votes per day" do
@@ -101,7 +101,7 @@ describe Legislation::Proposal do
       expect(newer_proposal.hot_score).to be > older_proposal.hot_score
     end
 
-    describe 'actions which affect it' do
+    describe "actions which affect it" do
 
       let(:proposal) { create(:legislation_proposal) }
 

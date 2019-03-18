@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'Booth', :with_frozen_time do
+feature "Booth", :with_frozen_time do
 
   scenario "Officer with no booth assignments today" do
     officer = create(:poll_officer)
@@ -19,7 +19,7 @@ feature 'Booth', :with_frozen_time do
     expect(page).to have_content "You don't have officing shifts today"
   end
 
-  scenario 'Officer with single booth assignment today' do
+  scenario "Officer with single booth assignment today" do
     officer = create(:poll_officer)
     poll = create(:poll)
 
@@ -35,7 +35,7 @@ feature 'Booth', :with_frozen_time do
     end
   end
 
-  scenario 'Officer with multiple booth assignments today' do
+  scenario "Officer with multiple booth assignments today" do
     officer = create(:poll_officer)
     poll = create(:poll)
 
@@ -50,10 +50,10 @@ feature 'Booth', :with_frozen_time do
 
     login_through_form_as_officer(officer.user)
 
-    expect(page).to have_content 'Choose your booth'
+    expect(page).to have_content "Choose your booth"
 
-    select booth2.location, from: 'booth_id'
-    click_button 'Enter'
+    select booth2.location, from: "booth_id"
+    click_button "Enter"
 
     within("#officing-booth") do
       expect(page).to have_content "You are officing the booth located at #{booth2.location}."
@@ -79,7 +79,7 @@ feature 'Booth', :with_frozen_time do
 
     login_through_form_as_officer(officer.user)
 
-    expect(page).to have_content 'Choose your booth'
+    expect(page).to have_content "Choose your booth"
 
     expect(page).to have_select("booth_id", options: [booth1.location, booth2.location])
   end

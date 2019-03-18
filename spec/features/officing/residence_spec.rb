@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'Residence', :with_frozen_time do
+feature "Residence", :with_frozen_time do
   let(:officer) { create(:poll_officer) }
 
   feature "Officers without assignments" do
@@ -34,18 +34,18 @@ feature 'Residence', :with_frozen_time do
         click_link "Validate document"
       end
 
-      expect(page).to have_selector('#new_residence .small-12.medium-6',
-                                    text: 'Document type')
+      expect(page).to have_selector("#new_residence .small-12.medium-6",
+                                    text: "Document type")
 
-      select 'DNI', from: 'residence_document_type'
-      fill_in 'residence_document_number', with: "12345678Z"
-      fill_in 'residence_year_of_birth', with: '1980'
+      select "DNI", from: "residence_document_type"
+      fill_in "residence_document_number", with: "12345678Z"
+      fill_in "residence_year_of_birth", with: "1980"
 
       within("#new_residence") do
         click_button "Validate document"
       end
 
-      expect(page).to have_content 'Document verified with Census'
+      expect(page).to have_content "Document verified with Census"
     end
 
     scenario "Document number is copied from the census API" do
@@ -53,21 +53,21 @@ feature 'Residence', :with_frozen_time do
         click_link "Validate document"
       end
 
-      expect(page).to have_selector('#new_residence .small-12.medium-6',
-                                    text: 'Document type')
+      expect(page).to have_selector("#new_residence .small-12.medium-6",
+                                    text: "Document type")
 
 
-      select 'DNI', from: 'residence_document_type'
-      fill_in 'residence_document_number', with: "00012345678Z"
-      fill_in 'residence_year_of_birth', with: '1980'
+      select "DNI", from: "residence_document_type"
+      fill_in "residence_document_number", with: "00012345678Z"
+      fill_in "residence_year_of_birth", with: "1980"
 
       within("#new_residence") do
         click_button "Validate document"
       end
 
-      expect(page).to have_content 'Document verified with Census'
+      expect(page).to have_content "Document verified with Census"
 
-      expect(User.last.document_number).to eq('12345678Z')
+      expect(User.last.document_number).to eq("12345678Z")
     end
 
     scenario "Error on verify" do
@@ -88,18 +88,18 @@ feature 'Residence', :with_frozen_time do
         click_link "Validate document"
       end
 
-      expect(page).to have_selector('#new_residence .small-12.medium-6',
-                                    text: 'Document type')
+      expect(page).to have_selector("#new_residence .small-12.medium-6",
+                                    text: "Document type")
 
-      select 'DNI', from: 'residence_document_type'
-      fill_in 'residence_document_number', with: "9999999A"
-      fill_in 'residence_year_of_birth', with: '1980'
+      select "DNI", from: "residence_document_type"
+      fill_in "residence_document_number", with: "9999999A"
+      fill_in "residence_year_of_birth", with: "1980"
 
       within("#new_residence") do
         click_button "Validate document"
       end
 
-      expect(page).to have_content 'The Census was unable to verify this document'
+      expect(page).to have_content "The Census was unable to verify this document"
 
       officer.reload
       fcc = FailedCensusCall.last
@@ -114,18 +114,18 @@ feature 'Residence', :with_frozen_time do
         click_link "Validate document"
       end
 
-      expect(page).to have_selector('#new_residence .small-12.medium-6',
-                                    text: 'Document type')
+      expect(page).to have_selector("#new_residence .small-12.medium-6",
+                                    text: "Document type")
 
-      select 'DNI', from: 'residence_document_type'
-      fill_in 'residence_document_number', with: "12345678Z"
-      fill_in 'residence_year_of_birth', with: '1981'
+      select "DNI", from: "residence_document_type"
+      fill_in "residence_document_number", with: "12345678Z"
+      fill_in "residence_year_of_birth", with: "1981"
 
       within("#new_residence") do
         click_button "Validate document"
       end
 
-      expect(page).to have_content 'The Census was unable to verify this document'
+      expect(page).to have_content "The Census was unable to verify this document"
     end
 
   end

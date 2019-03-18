@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe Poll::Voter do
 
@@ -78,7 +78,7 @@ describe Poll::Voter do
     it "is not valid if the user has voted via web" do
       answer = create(:poll_answer)
 
-      Poll::Voter.find_or_create_by(user: answer.author, poll: answer.poll, origin: "web", token: 'token')
+      Poll::Voter.find_or_create_by(user: answer.author, poll: answer.poll, origin: "web", token: "token")
 
       voter = build(:poll_voter, poll: answer.question.poll, user: answer.author)
       expect(voter).not_to be_valid
@@ -87,7 +87,7 @@ describe Poll::Voter do
 
     it "should not be valid if token is not present via web" do
       user = create(:user, :level_two)
-      voter = build(:poll_voter, user: user, poll: poll, origin: "web", token: '')
+      voter = build(:poll_voter, user: user, poll: poll, origin: "web", token: "")
 
       expect(voter).not_to be_valid
       expect(voter.errors.messages[:token]).to eq(["can't be blank"])
@@ -95,14 +95,14 @@ describe Poll::Voter do
 
     it "should be valid if token is not present via booth" do
       user = create(:user, :level_two)
-      voter = build(:poll_voter, user: user, poll: poll, officer_assignment: officer_assignment, origin: "booth", token: '')
+      voter = build(:poll_voter, user: user, poll: poll, officer_assignment: officer_assignment, origin: "booth", token: "")
 
       expect(voter).to be_valid
     end
 
     it "should be valid if token is not present via letter" do
       user = create(:user, :level_two)
-      voter = build(:poll_voter, user: user, poll: poll, origin: "letter", token: '')
+      voter = build(:poll_voter, user: user, poll: poll, origin: "letter", token: "")
 
       expect(voter).to be_valid
     end
@@ -132,19 +132,19 @@ describe Poll::Voter do
 
     context "assignments" do
       it "should not be valid without a booth_assignment_id when origin is booth" do
-        voter.origin = 'booth'
+        voter.origin = "booth"
         voter.booth_assignment_id = nil
         expect(voter).not_to be_valid
       end
 
       it "should not be valid without an officer_assignment_id when origin is booth" do
-        voter.origin = 'booth'
+        voter.origin = "booth"
         voter.officer_assignment_id = nil
         expect(voter).not_to be_valid
       end
 
       it "should be valid without assignments when origin is web" do
-        voter.origin = 'web'
+        voter.origin = "web"
         voter.booth_assignment_id = nil
         voter.officer_assignment_id = nil
         expect(voter).to be_valid

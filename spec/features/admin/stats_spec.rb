@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'Stats' do
+feature "Stats" do
 
   background do
     admin = create(:administrator)
@@ -8,9 +8,9 @@ feature 'Stats' do
     visit root_path
   end
 
-  context 'Summary' do
+  context "Summary" do
 
-    scenario 'General' do
+    scenario "General" do
       create(:debate)
       2.times { create(:proposal) }
       3.times { create(:comment, commentable: Debate.first) }
@@ -26,7 +26,7 @@ feature 'Stats' do
       expect(page).to have_content "Investment projects 6"
     end
 
-    scenario 'Votes' do
+    scenario "Votes" do
       debate = create(:debate)
       create(:vote, votable: debate)
 
@@ -52,7 +52,7 @@ feature 'Stats' do
 
   context "Users" do
 
-    scenario 'Summary' do
+    scenario "Summary" do
       1.times { create(:user, :level_three) }
       2.times { create(:user, :level_two) }
       3.times { create(:user) }
@@ -292,7 +292,7 @@ feature 'Stats' do
         create(:budget_ballot_line, ballot: ballot_1, investment: investment_2)
         create(:budget_ballot_line, ballot: ballot_2, investment: investment_2)
 
-        expect { Rake::Task['budgets:stats:balloting'].execute }.not_to raise_exception
+        expect { Rake::Task["budgets:stats:balloting"].execute }.not_to raise_exception
 
         visit admin_stats_path
         click_link "Participatory Budgets"
@@ -315,7 +315,7 @@ feature 'Stats' do
         create(:budget_ballot_line, ballot: ballot_1, investment: @investment)
         create(:budget_ballot_line, ballot: ballot_2, investment: @investment)
 
-        expect { Rake::Task['budgets:stats:balloting'].execute }.not_to raise_exception
+        expect { Rake::Task["budgets:stats:balloting"].execute }.not_to raise_exception
 
         visit admin_stats_path
         click_link "Participatory Budgets"
@@ -460,9 +460,9 @@ feature 'Stats' do
   context "Redeemable codes" do
 
     scenario "Total" do
-      create(:user, redeemable_code: 'abc')
-      create(:user, redeemable_code: 'def')
-      create(:user, redeemable_code: 'ghi')
+      create(:user, redeemable_code: "abc")
+      create(:user, redeemable_code: "def")
+      create(:user, redeemable_code: "ghi")
 
       visit admin_stats_path
       click_link "Redeemable codes"
@@ -473,9 +473,9 @@ feature 'Stats' do
     end
 
     scenario "After campaign of June 17th 2016" do
-      create(:user, redeemable_code: 'abd', verified_at: Date.new(2016, 6, 16))
-      create(:user, redeemable_code: 'def', verified_at: Date.new(2016, 6, 17))
-      create(:user, redeemable_code: 'ghi', verified_at: Date.new(2016, 6, 18))
+      create(:user, redeemable_code: "abd", verified_at: Date.new(2016, 6, 16))
+      create(:user, redeemable_code: "def", verified_at: Date.new(2016, 6, 17))
+      create(:user, redeemable_code: "ghi", verified_at: Date.new(2016, 6, 18))
 
       visit admin_stats_path
       click_link "Redeemable codes"
@@ -569,8 +569,8 @@ feature 'Stats' do
   context "Probes" do
 
     scenario "Index" do
-      probe1 = Probe.create(codename: 'town_planning')
-      probe2 = Probe.create(codename: 'plaza')
+      probe1 = Probe.create(codename: "town_planning")
+      probe2 = Probe.create(codename: "plaza")
 
       visit admin_probes_path
 
@@ -579,7 +579,7 @@ feature 'Stats' do
     end
 
     scenario "Show" do
-      probe = Probe.create(codename: 'plaza')
+      probe = Probe.create(codename: "plaza")
 
       visit admin_probe_path(probe)
 

@@ -1,8 +1,8 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'Budget Poll Officing' do
+feature "Budget Poll Officing" do
 
-  scenario 'Show sidebar menus if officer has shifts assigned' do
+  scenario "Show sidebar menus if officer has shifts assigned" do
     budget = create(:budget)
     poll = create(:poll, budget: budget)
     booth = create(:poll_booth)
@@ -33,7 +33,7 @@ feature 'Budget Poll Officing' do
     expect(page).to have_content("Total recounts and results")
   end
 
-  scenario 'Do not show sidebar menu if officer has no shifts assigned' do
+  scenario "Do not show sidebar menu if officer has no shifts assigned" do
     user = create(:user)
     officer = create(:poll_officer, user: user)
 

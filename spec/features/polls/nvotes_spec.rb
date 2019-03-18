@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'Nvotes' do
+feature "Nvotes" do
 
   before do
     skip "this feature is currently disabled"
@@ -64,8 +64,8 @@ feature 'Nvotes' do
 
       authorization_hash = "khmac:///sha-256;#{signature}/#{message}"
 
-      page.driver.header 'Authorization', authorization_hash
-      page.driver.header 'ACCEPT', "application/json"
+      page.driver.header "Authorization", authorization_hash
+      page.driver.header "ACCEPT", "application/json"
       page.driver.post polls_nvotes_success_path
 
       expect(page.status_code).to eq(200)
@@ -83,8 +83,8 @@ feature 'Nvotes' do
 
       authorization_hash = "khmac:///sha-256;#{signature}/#{message}"
 
-      page.driver.header 'Authorization', authorization_hash
-      page.driver.header 'ACCEPT', "application/json"
+      page.driver.header "Authorization", authorization_hash
+      page.driver.header "ACCEPT", "application/json"
       page.driver.post polls_nvotes_success_path
 
       expect(page.status_code).to eq(400)
@@ -110,8 +110,8 @@ feature 'Nvotes' do
 
       authorization_hash = "khmac:///sha-256;#{signature}/#{message}"
 
-      page.driver.header 'Authorization', authorization_hash
-      page.driver.header 'ACCEPT', "application/json"
+      page.driver.header "Authorization", authorization_hash
+      page.driver.header "ACCEPT", "application/json"
       page.driver.post polls_nvotes_success_path
 
       expect(page.status_code).to eq(200)

@@ -1,10 +1,10 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'Stats' do
+feature "Stats" do
 
-  context 'Summary' do
+  context "Summary" do
 
-    scenario 'General' do
+    scenario "General" do
       create(:debate)
       2.times { create(:proposal) }
       3.times { create(:comment, commentable: Debate.first) }
@@ -18,7 +18,7 @@ feature 'Stats' do
       expect(page).to have_content "Visits 4"
     end
 
-    scenario 'Votes' do
+    scenario "Votes" do
       debate = create(:debate)
       create(:vote, votable: debate)
 
@@ -36,7 +36,7 @@ feature 'Stats' do
       expect(page).to have_content "Total votes 6"
     end
 
-    scenario 'Users' do
+    scenario "Users" do
       create_list(:user, 2)
       create_list(:user, 2, :level_two)
       create(:user, :level_three)

@@ -1,12 +1,12 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'Human Rights' do
+feature "Human Rights" do
 
   background do
-    Setting['feature.human_rights.voting'] = true
+    Setting["feature.human_rights.voting"] = true
   end
 
-  context 'Navigation' do
+  context "Navigation" do
 
     scenario "Home redirects to Legislation" do
       process = create(:legislation_process, id: 94)
@@ -14,18 +14,18 @@ feature 'Human Rights' do
       expect(current_path).to eq debate_legislation_process_path(process)
     end
 
-    scenario 'Proposals' do
+    scenario "Proposals" do
       visit human_rights_proposals_path
       expect(page).to have_current_path "/derechos-humanos/medidas"
     end
 
   end
 
-  context 'Proposals' do
+  context "Proposals" do
 
-    context 'Index' do
+    context "Index" do
 
-      scenario 'Index' do
+      scenario "Index" do
         proposal1 = create(:proposal, :human_rights)
         proposal2 = create(:proposal, :human_rights)
         proposal3 = create(:proposal, :human_rights)
@@ -38,7 +38,7 @@ feature 'Human Rights' do
         expect(page).to have_content proposal3.title
       end
 
-      scenario 'Search by title' do
+      scenario "Search by title" do
         proposal1 = create(:proposal, :human_rights, title: "Get Schwifty")
         proposal2 = create(:proposal, :human_rights, title: "Schwifty Hello")
         proposal3 = create(:proposal, :human_rights, title: "Do not show me")
@@ -52,7 +52,7 @@ feature 'Human Rights' do
         end
 
         within("#proposals") do
-          expect(page).to have_css('.proposal', count: 2)
+          expect(page).to have_css(".proposal", count: 2)
 
           expect(page).to have_content(proposal1.title)
           expect(page).to have_content(proposal2.title)
@@ -61,7 +61,7 @@ feature 'Human Rights' do
         end
       end
 
-      scenario 'Search by subproceeding' do
+      scenario "Search by subproceeding" do
         proposal1 = create(:proposal, title: "Get Schwifty",   proceeding: "Derechos Humanos", sub_proceeding: "Derecho a la educación")
         proposal2 = create(:proposal, title: "Schwifty Hello", proceeding: "Derechos Humanos", sub_proceeding: "Derecho a la vivienda")
         proposal3 = create(:proposal, title: "Do not show me", proceeding: "Derechos Humanos", sub_proceeding: "Derecho al trabajo")
@@ -74,7 +74,7 @@ feature 'Human Rights' do
         end
 
         within("#proposals") do
-          expect(page).to have_css('.proposal', count: 1)
+          expect(page).to have_css(".proposal", count: 1)
 
           expect(page).to have_content(proposal1.title)
           expect(page).not_to have_content(proposal2.title)
@@ -82,7 +82,7 @@ feature 'Human Rights' do
         end
       end
 
-      scenario 'Search by official position', :js do
+      scenario "Search by official position", :js do
         ana  = create :user, official_level: 2
         john = create :user, official_level: 3
 
@@ -94,7 +94,7 @@ feature 'Human Rights' do
         visit human_rights_proposals_path
 
         click_link "Advanced search"
-        select Setting['official_level_2_name'], from: "advanced_search_official_level"
+        select Setting["official_level_2_name"], from: "advanced_search_official_level"
         click_button "Filter"
 
         expect(page).to have_content("There are 2 citizen proposals")
@@ -107,7 +107,7 @@ feature 'Human Rights' do
         end
       end
 
-      scenario 'Order by random by default' do
+      scenario "Order by random by default" do
         per_page = Kaminari.config.default_per_page
         (per_page + 2).times { create(:proposal, :human_rights) }
 
@@ -120,21 +120,21 @@ feature 'Human Rights' do
         expect(order).not_to eq(new_order)
       end
 
-      scenario 'Order by most voted' do
-        create(:proposal, :human_rights, title: 'Best').update_column(:confidence_score, 10)
-        create(:proposal, :human_rights, title: 'Worst').update_column(:confidence_score, 2)
-        create(:proposal, :human_rights, title: 'Medium').update_column(:confidence_score, 5)
+      scenario "Order by most voted" do
+        create(:proposal, :human_rights, title: "Best").update_column(:confidence_score, 10)
+        create(:proposal, :human_rights, title: "Worst").update_column(:confidence_score, 2)
+        create(:proposal, :human_rights, title: "Medium").update_column(:confidence_score, 5)
 
         visit human_rights_proposals_path
 
-        click_link 'highest rated'
+        click_link "highest rated"
 
-        expect(page).to have_selector('a.is-active', text: 'highest rated')
-        expect('Best').to appear_before('Medium')
-        expect('Medium').to appear_before('Worst')
+        expect(page).to have_selector("a.is-active", text: "highest rated")
+        expect("Best").to appear_before("Medium")
+        expect("Medium").to appear_before("Worst")
       end
 
-      scenario 'No vote', :js do
+      scenario "No vote", :js do
         user = create(:user, :level_two)
         proposal = create(:proposal,  :human_rights)
 
@@ -142,11 +142,11 @@ feature 'Human Rights' do
         visit human_rights_proposals_path
 
         within("#proposal_#{proposal.id}") do
-          expect(page).not_to have_css('.in-favor a')
+          expect(page).not_to have_css(".in-favor a")
         end
       end
 
-      scenario 'Filter by sub process' do
+      scenario "Filter by sub process" do
         proposal1 = create(:proposal, proceeding: "Derechos Humanos", sub_proceeding: "Derecho a la educación")
         proposal2 = create(:proposal, proceeding: "Derechos Humanos", sub_proceeding: "Derecho a la vivienda")
 
@@ -157,7 +157,7 @@ feature 'Human Rights' do
         end
 
         within("#proposals") do
-          expect(page).to have_css('.proposal', count: 1)
+          expect(page).to have_css(".proposal", count: 1)
           expect(page).to have_content(proposal1.title)
         end
       end
@@ -173,24 +173,24 @@ feature 'Human Rights' do
         expect(page).not_to have_css("#proposal_#{proposal2.id}.human-rights")
       end
 
-      scenario 'Do not display tag cloud' do
-        earth = create(:proposal, tag_list: 'Medio Ambiente')
-        money = create(:proposal, tag_list: 'Economía')
-        proposal1 = create(:proposal, :human_rights, tag_list: 'Libros')
-        proposal2 = create(:proposal, :human_rights, tag_list:  'Casas')
+      scenario "Do not display tag cloud" do
+        earth = create(:proposal, tag_list: "Medio Ambiente")
+        money = create(:proposal, tag_list: "Economía")
+        proposal1 = create(:proposal, :human_rights, tag_list: "Libros")
+        proposal2 = create(:proposal, :human_rights, tag_list:  "Casas")
 
         visit human_rights_proposals_path
 
         expect(page).not_to have_css("#tag-cloud")
       end
 
-      scenario 'Do not display create proposal button' do
+      scenario "Do not display create proposal button" do
         visit human_rights_proposals_path
 
         expect(page).not_to have_link "Create proposal"
       end
 
-      scenario 'Only display official sub proceedings' do
+      scenario "Only display official sub proceedings" do
         proposal1 = create(:proposal, proceeding: "Derechos Humanos", sub_proceeding: "Derecho a la educación")
         proposal2 = create(:proposal, proceeding: "Derechos Humanos", sub_proceeding: "Derecho a ser feliz")
 
@@ -202,7 +202,7 @@ feature 'Human Rights' do
         end
       end
 
-      scenario 'Do not display number of votes required' do
+      scenario "Do not display number of votes required" do
         proposal = create(:proposal, :human_rights)
 
         visit human_rights_proposals_path
@@ -214,9 +214,9 @@ feature 'Human Rights' do
 
     end
 
-    context 'Show' do
+    context "Show" do
 
-      scenario 'Proceeding attributes' do
+      scenario "Proceeding attributes" do
         proposal = create(:proposal, proceeding: "Derechos Humanos", sub_proceeding: "Derecho a la educación")
 
         visit human_rights_proposal_path(proposal)
@@ -225,7 +225,7 @@ feature 'Human Rights' do
         expect(page).to have_content "Derecho a la educación"
       end
 
-      scenario 'No vote', :js do
+      scenario "No vote", :js do
         user = create(:user, :level_two)
         proposal = create(:proposal, :human_rights)
 
@@ -233,11 +233,11 @@ feature 'Human Rights' do
         visit human_rights_proposal_path(proposal)
 
         within("#proposal_#{proposal.id}") do
-          expect(page).not_to have_css('.in-favor a')
+          expect(page).not_to have_css(".in-favor a")
         end
       end
 
-      scenario 'Do not display number of votes required' do
+      scenario "Do not display number of votes required" do
         proposal = create(:proposal, :human_rights)
 
         visit human_rights_proposal_path(proposal)
@@ -251,22 +251,22 @@ feature 'Human Rights' do
 
   end
 
-  context 'Legislation' do
+  context "Legislation" do
 
-    scenario 'Comment' do
+    scenario "Comment" do
     end
 
   end
 
-  context 'Closed' do
+  context "Closed" do
 
-    scenario 'Home' do
+    scenario "Home" do
     end
 
-    scenario 'proposals' do
+    scenario "proposals" do
     end
 
-    scenario 'Legislation' do
+    scenario "Legislation" do
     end
 
   end

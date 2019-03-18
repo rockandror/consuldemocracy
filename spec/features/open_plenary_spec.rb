@@ -1,8 +1,8 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'Open Plenary' do
+feature "Open Plenary" do
 
-  let!(:debate) { create(:debate, comment_kind: 'question', tag_list: "plenoabierto") }
+  let!(:debate) { create(:debate, comment_kind: "question", tag_list: "plenoabierto") }
 
   scenario "Question's index" do
     author = create(:user)
@@ -23,31 +23,31 @@ feature 'Open Plenary' do
   end
 
   scenario "Hide supports (index)" do
-    proposal = create(:proposal, title: "Plant more trees", tag_list: 'plenoabierto')
+    proposal = create(:proposal, title: "Plant more trees", tag_list: "plenoabierto")
 
-    visit proposals_path(search: 'plenoabierto')
+    visit proposals_path(search: "plenoabierto")
 
     within("#proposals") do
-      expect(page).to have_css('.proposal', count: 1)
+      expect(page).to have_css(".proposal", count: 1)
       expect(page).to have_content(proposal.title)
-      expect(page).to have_content('Pleno Abierto')
+      expect(page).to have_content("Pleno Abierto")
 
       expect(page).not_to have_content "0% / 100%"
-      expect(page).not_to have_content('supports needed')
+      expect(page).not_to have_content("supports needed")
     end
   end
 
   scenario "Hide supports (show)" do
-    proposal = create(:proposal, title: "Plant more trees", tag_list: 'plenoabierto')
+    proposal = create(:proposal, title: "Plant more trees", tag_list: "plenoabierto")
 
     visit proposal_path(proposal)
 
     within("#proposal_#{proposal.id}") do
       expect(page).to have_content(proposal.title)
-      expect(page).to have_content('Pleno Abierto')
+      expect(page).to have_content("Pleno Abierto")
 
       expect(page).not_to have_content "0% / 100%"
-      expect(page).not_to have_content('supports needed')
+      expect(page).not_to have_content("supports needed")
     end
   end
 

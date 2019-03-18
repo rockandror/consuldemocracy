@@ -1,8 +1,8 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'CKEditor' do
+feature "CKEditor" do
 
-  scenario 'is present before & after turbolinks update page', :js do
+  scenario "is present before & after turbolinks update page", :js do
     author = create(:user)
     login_as(author)
 
@@ -11,7 +11,7 @@ feature 'CKEditor' do
     expect(page).to have_css "#cke_debate_description"
 
     visit debates_path
-    click_link 'Start a debate'
+    click_link "Start a debate"
 
     expect(page).to have_css "#cke_debate_description"
   end

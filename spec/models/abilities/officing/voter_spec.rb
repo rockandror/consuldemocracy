@@ -1,5 +1,5 @@
-require 'rails_helper'
-require 'cancan/matchers'
+require "rails_helper"
+require "cancan/matchers"
 
 describe "Abilities::Officing::Voter" do
   subject(:ability) { Ability.new(user) }

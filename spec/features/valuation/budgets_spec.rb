@@ -1,26 +1,26 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'Valuation budgets' do
+feature "Valuation budgets" do
 
   let!(:valuator) do
-    create(:valuator, user: create(:user, username: 'Rachel', email: 'rachel@valuators.org'))
+    create(:valuator, user: create(:user, username: "Rachel", email: "rachel@valuators.org"))
   end
 
   background do
     login_as(valuator.user)
   end
 
-  scenario 'Disabled with a feature flag' do
-    Setting['feature.budgets'] = nil
+  scenario "Disabled with a feature flag" do
+    Setting["feature.budgets"] = nil
     expect{ visit valuation_budgets_path }.to raise_exception(FeatureFlags::FeatureDisabled)
 
-    Setting['feature.budgets'] = true
+    Setting["feature.budgets"] = true
   end
 
-  context 'Index' do
+  context "Index" do
 
-    scenario 'Displaying budgets' do
-      budget = create(:budget, name: 'Current Budget')
+    scenario "Displaying budgets" do
+      budget = create(:budget, name: "Current Budget")
       group = create(:budget_group, budget: budget)
       heading = create(:budget_heading, group: group)
       valuator_group = create(:valuator_group, valuators: [valuator])
@@ -49,13 +49,13 @@ feature 'Valuation budgets' do
 
       visit valuation_budgets_path
 
-      expect(page).to have_content('Current Budget')
+      expect(page).to have_content("Current Budget")
       within("#budget_#{budget.id}") do
-        expect(page).to have_content('3')
+        expect(page).to have_content("3")
       end
     end
 
-    scenario 'Filters by phase' do
+    scenario "Filters by phase" do
       budget1 = create(:budget, :finished)
       budget2 = create(:budget, :finished)
       budget3 = create(:budget, :accepting)

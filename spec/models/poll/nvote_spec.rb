@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe Poll::Nvote do
 
@@ -67,9 +67,9 @@ describe Poll::Nvote do
       nvote = create(:poll_nvote, poll: poll)
       message  = nvote.generate_message
 
-      expect(message.split(':')[0]).to eq(nvote.voter_hash)
-      expect(message.split(':')[2]).to eq("1234")
-      timestamp = message.split(':')[4].to_i
+      expect(message.split(":")[0]).to eq(nvote.voter_hash)
+      expect(message.split(":")[2]).to eq("1234")
+      timestamp = message.split(":")[4].to_i
       expect(Time.at(timestamp).to_date).to eq(Date.today)
     end
 

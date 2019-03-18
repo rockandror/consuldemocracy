@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'Representatives' do
+feature "Representatives" do
 
   scenario "Select a representative" do
     Setting["feature.spending_proposal_features.final_voting_allowed"] = true
@@ -66,7 +66,7 @@ feature 'Representatives' do
     let!(:forum) { create(:forum) }
 
     background do
-      Setting['feature.spending_proposal_features.final_voting_allowed'] = false
+      Setting["feature.spending_proposal_features.final_voting_allowed"] = false
       login_as(user)
     end
 

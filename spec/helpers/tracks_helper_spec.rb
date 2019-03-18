@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe TracksHelper do
 
@@ -8,7 +8,7 @@ describe TracksHelper do
       user = create(:user)
 
       user.date_of_birth = nil
-      expect(age(user)).to eq('Desconocida')
+      expect(age(user)).to eq("Desconocida")
 
       user.date_of_birth = 25.years.ago.beginning_of_year
       expect(age(user)).to eq(25)

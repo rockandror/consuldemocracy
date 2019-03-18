@@ -1,29 +1,29 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'Spending proposals' do
+feature "Spending proposals" do
 
-  let(:author) { create(:user, :level_two, username: 'Isabel') }
+  let(:author) { create(:user, :level_two, username: "Isabel") }
 
   background do
-    Setting['feature.spending_proposals'] = true
-    Setting['feature.spending_proposal_features.voting_allowed'] = true
+    Setting["feature.spending_proposals"] = true
+    Setting["feature.spending_proposal_features.voting_allowed"] = true
   end
 
   after do
-    Setting['feature.spending_proposals'] = nil
-    Setting['feature.spending_proposal_features.voting_allowed'] = nil
+    Setting["feature.spending_proposals"] = nil
+    Setting["feature.spending_proposal_features.voting_allowed"] = nil
   end
 
-  scenario 'Index' do
-    skip 'Spending Proposals now redirects to its associated Budget Investment'
+  scenario "Index" do
+    skip "Spending Proposals now redirects to its associated Budget Investment"
     spending_proposals = [create(:spending_proposal), create(:spending_proposal), create(:spending_proposal, feasible: true)]
     unfeasible_spending_proposal = create(:spending_proposal, feasible: false)
 
     visit spending_proposals_path
 
-    expect(page).to have_selector('#investment-projects .investment-project', count: 3)
+    expect(page).to have_selector("#investment-projects .investment-project", count: 3)
     spending_proposals.each do |spending_proposal|
-      within('#investment-projects') do
+      within("#investment-projects") do
         expect(page).to have_content spending_proposal.title
         expect(page).to have_css("a[href='#{spending_proposal_path(spending_proposal)}']", text: spending_proposal.title)
         expect(page).not_to have_content(unfeasible_spending_proposal.title)
@@ -33,10 +33,10 @@ feature 'Spending proposals' do
 
   context("Search") do
     before do
-      skip 'Spending Proposals now redirects to its associated Budget Investment'
+      skip "Spending Proposals now redirects to its associated Budget Investment"
     end
 
-    scenario 'Search by text' do
+    scenario "Search by text" do
       spending_proposal1 = create(:spending_proposal, title: "Get Schwifty")
       spending_proposal2 = create(:spending_proposal, title: "Schwifty Hello")
       spending_proposal3 = create(:spending_proposal, title: "Do not show me")
@@ -49,7 +49,7 @@ feature 'Spending proposals' do
       end
 
       within("#investment-projects") do
-        expect(page).to have_css('.investment-project', count: 2)
+        expect(page).to have_css(".investment-project", count: 2)
 
         expect(page).to have_content(spending_proposal1.title)
         expect(page).to have_content(spending_proposal2.title)
@@ -60,10 +60,10 @@ feature 'Spending proposals' do
 
   context("Filters") do
     before do
-      skip 'Spending Proposals now redirects to its associated Budget Investment'
+      skip "Spending Proposals now redirects to its associated Budget Investment"
     end
 
-    scenario 'by unfeasibility' do
+    scenario "by unfeasibility" do
       geozone1 = create(:geozone)
       spending_proposal1 = create(:spending_proposal, feasible: false, valuation_finished: true)
       spending_proposal2 = create(:spending_proposal, feasible: true)
@@ -74,7 +74,7 @@ feature 'Spending proposals' do
       visit spending_proposals_path(unfeasible: 1)
 
       within("#investment-projects") do
-        expect(page).to have_css('.investment-project', count: 2)
+        expect(page).to have_css(".investment-project", count: 2)
 
         expect(page).to have_content(spending_proposal1.title)
         expect(page).not_to have_content(spending_proposal2.title)
@@ -86,7 +86,7 @@ feature 'Spending proposals' do
 
   context("Orders") do
     before do
-      skip 'Spending Proposals now redirects to its associated Budget Investment'
+      skip "Spending Proposals now redirects to its associated Budget Investment"
     end
 
     scenario "Default order is random" do
@@ -119,7 +119,7 @@ feature 'Spending proposals' do
     end
 
 
-    scenario 'Random order maintained with pagination', :js do
+    scenario "Random order maintained with pagination", :js do
       per_page = Kaminari.config.default_per_page
       (per_page * 100).times { create(:spending_proposal) }
 
@@ -127,100 +127,100 @@ feature 'Spending proposals' do
 
       order = all(".investment-project h3").collect {|i| i.text }
 
-      click_link 'Next'
+      click_link "Next"
       expect(page).to have_content "You're on page 2"
 
-      click_link 'Previous'
+      click_link "Previous"
       expect(page).to have_content "You're on page 1"
 
       new_order = all(".investment-project h3").collect {|i| i.text }
       expect(order).to eq(new_order)
     end
 
-    scenario 'Proposals are ordered by confidence_score', :js do
-      create(:spending_proposal, title: 'Best proposal').update_column(:confidence_score, 10)
-      create(:spending_proposal, title: 'Worst proposal').update_column(:confidence_score, 2)
-      create(:spending_proposal, title: 'Medium proposal').update_column(:confidence_score, 5)
+    scenario "Proposals are ordered by confidence_score", :js do
+      create(:spending_proposal, title: "Best proposal").update_column(:confidence_score, 10)
+      create(:spending_proposal, title: "Worst proposal").update_column(:confidence_score, 2)
+      create(:spending_proposal, title: "Medium proposal").update_column(:confidence_score, 5)
 
       visit spending_proposals_path
-      click_link 'highest rated'
-      expect(page).to have_selector('a.is-active', text: 'highest rated')
+      click_link "highest rated"
+      expect(page).to have_selector("a.is-active", text: "highest rated")
 
-      within '#investment-projects' do
-        expect('Best proposal').to appear_before('Medium proposal')
-        expect('Medium proposal').to appear_before('Worst proposal')
+      within "#investment-projects" do
+        expect("Best proposal").to appear_before("Medium proposal")
+        expect("Medium proposal").to appear_before("Worst proposal")
       end
 
-      expect(current_url).to include('order=confidence_score')
-      expect(current_url).to include('page=1')
+      expect(current_url).to include("order=confidence_score")
+      expect(current_url).to include("page=1")
     end
 
   end
 
-  xscenario 'Create with invisible_captcha honeypot field' do
+  xscenario "Create with invisible_captcha honeypot field" do
     login_as(author)
 
     visit new_spending_proposal_path
-    fill_in 'spending_proposal_title', with: 'I am a bot'
-    fill_in 'spending_proposal_subtitle', with: 'This is the honeypot'
-    fill_in 'spending_proposal_description', with: 'This is the description'
-    select  'All city', from: 'spending_proposal_geozone_id'
-    check 'spending_proposal_terms_of_service'
+    fill_in "spending_proposal_title", with: "I am a bot"
+    fill_in "spending_proposal_subtitle", with: "This is the honeypot"
+    fill_in "spending_proposal_description", with: "This is the description"
+    select  "All city", from: "spending_proposal_geozone_id"
+    check "spending_proposal_terms_of_service"
 
-    click_button 'Create'
+    click_button "Create"
 
     expect(page.status_code).to eq(200)
     expect(page.html).to be_empty
     expect(current_path).to eq(spending_proposals_path)
   end
 
-  xscenario 'Create spending proposal too fast' do
+  xscenario "Create spending proposal too fast" do
     allow(InvisibleCaptcha).to receive(:timestamp_threshold).and_return(Float::INFINITY)
 
     login_as(author)
 
     visit new_spending_proposal_path
-    fill_in 'spending_proposal_title', with: 'I am a bot'
-    fill_in 'spending_proposal_description', with: 'This is the description'
-    select  'All city', from: 'spending_proposal_geozone_id'
-    check 'spending_proposal_terms_of_service'
+    fill_in "spending_proposal_title", with: "I am a bot"
+    fill_in "spending_proposal_description", with: "This is the description"
+    select  "All city", from: "spending_proposal_geozone_id"
+    check "spending_proposal_terms_of_service"
 
-    click_button 'Create'
+    click_button "Create"
 
-    expect(page).to have_content 'Sorry, that was too quick! Please resubmit'
+    expect(page).to have_content "Sorry, that was too quick! Please resubmit"
     expect(current_path).to eq(new_spending_proposal_path)
   end
 
-  xscenario 'Create notice' do
+  xscenario "Create notice" do
     login_as(author)
 
     visit new_spending_proposal_path
-    fill_in 'spending_proposal_title', with: 'Build a skyscraper'
-    fill_in 'spending_proposal_description', with: 'I want to live in a high tower over the clouds'
-    fill_in 'spending_proposal_external_url', with: 'http://http://skyscraperpage.com/'
-    fill_in 'spending_proposal_association_name', with: 'People of the neighbourhood'
-    select  'All city', from: 'spending_proposal_geozone_id'
-    check 'spending_proposal_terms_of_service'
+    fill_in "spending_proposal_title", with: "Build a skyscraper"
+    fill_in "spending_proposal_description", with: "I want to live in a high tower over the clouds"
+    fill_in "spending_proposal_external_url", with: "http://http://skyscraperpage.com/"
+    fill_in "spending_proposal_association_name", with: "People of the neighbourhood"
+    select  "All city", from: "spending_proposal_geozone_id"
+    check "spending_proposal_terms_of_service"
 
-    click_button 'Create'
+    click_button "Create"
 
-    expect(page).to have_content 'Spending proposal created successfully'
-    expect(page).to have_content 'You can access it from My activity'
+    expect(page).to have_content "Spending proposal created successfully"
+    expect(page).to have_content "You can access it from My activity"
   end
 
-  xscenario 'Errors on create' do
+  xscenario "Errors on create" do
     login_as(author)
 
     visit new_spending_proposal_path
-    click_button 'Create'
+    click_button "Create"
     expect(page).to have_content error_message
   end
 
   scenario "Show" do
-    skip 'Spending Proposals now redirects to its associated Budget Investment'
+    skip "Spending Proposals now redirects to its associated Budget Investment"
     spending_proposal = create(:spending_proposal,
                                 geozone: create(:geozone),
-                                association_name: 'People of the neighbourhood')
+                                association_name: "People of the neighbourhood")
 
     visit spending_proposal_path(spending_proposal)
 
@@ -235,7 +235,7 @@ feature 'Spending proposals' do
   end
 
   scenario "Show (feasible spending proposal)" do
-    skip 'Spending Proposals now redirects to its associated Budget Investment'
+    skip "Spending Proposals now redirects to its associated Budget Investment"
     user = create(:user)
     login_as(user)
 
@@ -243,7 +243,7 @@ feature 'Spending proposals' do
                                 valuation_finished: true,
                                 feasible: true,
                                 price: 16,
-                                price_explanation: 'Every wheel is 4 euros, so total is 16')
+                                price_explanation: "Every wheel is 4 euros, so total is 16")
 
     visit spending_proposal_path(spending_proposal)
 
@@ -252,7 +252,7 @@ feature 'Spending proposals' do
   end
 
   scenario "Show (unfeasible spending proposal)" do
-    skip 'Spending Proposals now redirects to its associated Budget Investment'
+    skip "Spending Proposals now redirects to its associated Budget Investment"
 
     user = create(:user)
     login_as(user)
@@ -260,7 +260,7 @@ feature 'Spending proposals' do
     spending_proposal = create(:spending_proposal,
                                 valuation_finished: true,
                                 feasible: false,
-                                feasible_explanation: 'Local government is not competent in this matter')
+                                feasible_explanation: "Local government is not competent in this matter")
 
     visit spending_proposal_path(spending_proposal)
 
@@ -287,7 +287,7 @@ feature 'Spending proposals' do
 
   context "Badge" do
     before do
-      skip 'Spending Proposals now redirects to its associated Budget Investment'
+      skip "Spending Proposals now redirects to its associated Budget Investment"
     end
 
     scenario "Spending proposal created by a Foum" do
@@ -321,7 +321,7 @@ feature 'Spending proposals' do
   context "Phase 3 - Final Voting" do
 
     background do
-      skip 'Spending Proposals now redirects to its associated Budget Investment'
+      skip "Spending Proposals now redirects to its associated Budget Investment"
       Setting["feature.spending_proposal_features.phase3"] = true
     end
 
@@ -347,23 +347,23 @@ feature 'Spending proposals' do
       end
     end
 
-    scenario 'Order by cost (only in phase3)' do
-      create(:spending_proposal, :feasible, :finished, title: 'Build a nice house',  price:  1000).update_column(:confidence_score, 10)
-      create(:spending_proposal, :feasible, :finished, title: 'Build an ugly house', price:  1000).update_column(:confidence_score, 5)
-      create(:spending_proposal, :feasible, :finished, title: 'Build a skyscraper',  price: 20000)
+    scenario "Order by cost (only in phase3)" do
+      create(:spending_proposal, :feasible, :finished, title: "Build a nice house",  price:  1000).update_column(:confidence_score, 10)
+      create(:spending_proposal, :feasible, :finished, title: "Build an ugly house", price:  1000).update_column(:confidence_score, 5)
+      create(:spending_proposal, :feasible, :finished, title: "Build a skyscraper",  price: 20000)
 
       visit spending_proposals_path
 
-      click_link 'by price'
-      expect(page).to have_selector('a.is-active', text: 'by price')
+      click_link "by price"
+      expect(page).to have_selector("a.is-active", text: "by price")
 
-      within '#investment-projects' do
-        expect('Build a skyscraper').to appear_before('Build a nice house')
-        expect('Build a nice house').to appear_before('Build an ugly house')
+      within "#investment-projects" do
+        expect("Build a skyscraper").to appear_before("Build a nice house")
+        expect("Build a nice house").to appear_before("Build an ugly house")
       end
 
-      expect(current_url).to include('order=price')
-      expect(current_url).to include('page=1')
+      expect(current_url).to include("order=price")
+      expect(current_url).to include("page=1")
     end
 
     xscenario "Show" do
@@ -438,7 +438,7 @@ feature 'Spending proposals' do
   end
 
 
-  context 'Results' do
+  context "Results" do
 
     before(:each) do
       Setting["feature.spending_proposal_features.open_results_page"] = true
@@ -654,7 +654,7 @@ feature 'Spending proposals' do
   context "Stats" do
 
     before(:each) do
-      skip 'Spending Proposals now redirects to its associated Budget Investment'
+      skip "Spending Proposals now redirects to its associated Budget Investment"
       Setting["feature.spending_proposal_features.open_results_page"] = true
     end
 
@@ -762,9 +762,9 @@ feature 'Spending proposals' do
     end
 
     scenario "Gender" do
-      isabel  = create(:user, :level_two, gender: 'female')
-      eva     = create(:user, :level_two, gender: 'female')
-      antonio = create(:user, :level_two, gender: 'male')
+      isabel  = create(:user, :level_two, gender: "female")
+      eva     = create(:user, :level_two, gender: "female")
+      antonio = create(:user, :level_two, gender: "male")
 
       create_spending_proposal_for(isabel)
       create_vote_for(isabel, eva, antonio)
@@ -789,9 +789,9 @@ feature 'Spending proposals' do
     end
 
     scenario "Gender unknown" do
-      isabel  = create(:user, :level_two, gender: 'female')
+      isabel  = create(:user, :level_two, gender: "female")
       unknown = create(:user, :level_two, gender:  nil)
-      antonio = create(:user, :level_two, gender: 'male')
+      antonio = create(:user, :level_two, gender: "male")
 
       create_spending_proposal_for(isabel)
       create_vote_for(isabel, unknown, antonio)
@@ -848,12 +848,12 @@ feature 'Spending proposals' do
     end
 
     scenario "Unknown sex or gender" do
-      isabel  = create(:user, :level_two, gender: 'female', date_of_birth: 17.years.ago)
-      antonio = create(:user, :level_two, gender: 'male',   date_of_birth: 17.years.ago)
+      isabel  = create(:user, :level_two, gender: "female", date_of_birth: 17.years.ago)
+      antonio = create(:user, :level_two, gender: "male",   date_of_birth: 17.years.ago)
       unknown = create(:user, :level_two, gender:  nil,     date_of_birth: 17.years.ago)
 
-      eva      = create(:user, :level_two, gender: 'female', date_of_birth: 17.years.ago)
-      jose     = create(:user, :level_two, gender: 'male',   date_of_birth: 17.years.ago)
+      eva      = create(:user, :level_two, gender: "female", date_of_birth: 17.years.ago)
+      jose     = create(:user, :level_two, gender: "male",   date_of_birth: 17.years.ago)
       unknown2 = create(:user, :level_two, gender:  nil,     date_of_birth: nil)
 
       create_spending_proposal_for(isabel)

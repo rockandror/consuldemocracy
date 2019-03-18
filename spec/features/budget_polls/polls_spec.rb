@@ -1,10 +1,10 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature "Polls" do
 
   context "Public index" do
 
-    scenario 'Budget polls should not be listed' do
+    scenario "Budget polls should not be listed" do
       poll = create(:poll)
       budget_poll = create(:poll, budget: create(:budget))
 
@@ -18,7 +18,7 @@ feature "Polls" do
 
   context "Admin index" do
 
-    scenario 'Budget polls should not appear in the list' do
+    scenario "Budget polls should not appear in the list" do
       login_as(create(:administrator).user)
 
       poll = create(:poll)

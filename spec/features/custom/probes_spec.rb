@@ -1,30 +1,30 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'Probes' do
+feature "Probes" do
 
-  context 'Town Planning' do
+  context "Town Planning" do
 
     background do
-      @probe = Probe.create(codename: 'town_planning')
-      @probe_option_1 = @probe.probe_options.create(code: '01' , name: 'First Option')
-      @probe_option_2 = @probe.probe_options.create(code: '02' , name: 'Second Option')
+      @probe = Probe.create(codename: "town_planning")
+      @probe_option_1 = @probe.probe_options.create(code: "01" , name: "First Option")
+      @probe_option_2 = @probe.probe_options.create(code: "02" , name: "Second Option")
       @user = create(:user, :level_two)
       login_as(@user)
     end
 
-    context 'Selecting is allowed' do
-      scenario 'User needs permission to select' do
+    context "Selecting is allowed" do
+      scenario "User needs permission to select" do
         logout
 
         visit probe_path(id: @probe.codename)
 
-        expect(page).to have_content 'Selecciona el proyecto que quieres votar'
-        expect(page).to have_content 'First Option'
-        expect(page).to have_content 'Second Option'
-        expect(page).not_to have_content 'Enviar voto'
+        expect(page).to have_content "Selecciona el proyecto que quieres votar"
+        expect(page).to have_content "First Option"
+        expect(page).to have_content "Second Option"
+        expect(page).not_to have_content "Enviar voto"
       end
 
-      scenario 'User selects an option' do
+      scenario "User selects an option" do
         visit probe_path(id: @probe.codename)
 
         choose "option_id_#{@probe_option_2.id}"
@@ -43,31 +43,31 @@ feature 'Probes' do
       end
     end
 
-    scenario 'Selecting not allowed: Results published' do
+    scenario "Selecting not allowed: Results published" do
       @probe.update(selecting_allowed: false)
       ProbeSelection.create(probe: @probe, probe_option: @probe_option_2, user: create(:user, :level_two))
 
       visit probe_path(id: @probe.codename)
 
       expect(@probe_option_2.name).to appear_before(@probe_option_1.name)
-      expect(page).not_to have_content 'Enviar voto'
+      expect(page).not_to have_content "Enviar voto"
     end
   end
 
-  context 'Plaza' do
+  context "Plaza" do
 
     background do
-      @probe = Probe.create(codename: 'plaza')
-      @probe_option_1 = @probe.probe_options.create(code: 'PL1' , name: 'Plaza Option 1')
-      @probe_option_2 = @probe.probe_options.create(code: 'PL2' , name: 'Plaza Option II')
+      @probe = Probe.create(codename: "plaza")
+      @probe_option_1 = @probe.probe_options.create(code: "PL1" , name: "Plaza Option 1")
+      @probe_option_2 = @probe.probe_options.create(code: "PL2" , name: "Plaza Option II")
       @user = create(:user, :level_two)
       logout
       login_as(@user)
     end
 
-    context 'Selecting is allowed' do
+    context "Selecting is allowed" do
 
-      scenario 'Index' do
+      scenario "Index" do
         visit probe_path(id: @probe.codename)
 
         expect(page).to have_css(".probe_option", count: 2)
@@ -86,7 +86,7 @@ feature 'Probes' do
         end
       end
 
-      scenario 'Random order maintained when going back from show' do
+      scenario "Random order maintained when going back from show" do
         10.times { |i| @probe.probe_options.create(code: "PL#{i + 2}" , name: "Plaza Option #{i + 2}") }
 
         visit probe_path(id: @probe.codename)
@@ -100,14 +100,14 @@ feature 'Probes' do
         expect(order).to eq(new_order)
       end
 
-      scenario 'User needs permission to select' do
+      scenario "User needs permission to select" do
         logout
 
         visit probe_path(id: @probe.codename)
 
-        expect(page).to have_content 'You must Sign in or Sign up to participate'
-        expect(page).to have_content 'Plaza Option 1'
-        expect(page).to have_content 'Plaza Option II'
+        expect(page).to have_content "You must Sign in or Sign up to participate"
+        expect(page).to have_content "Plaza Option 1"
+        expect(page).to have_content "Plaza Option II"
         expect(page).not_to have_css("#probe_option_#{@probe_option_1.id}_form")
         expect(page).not_to have_css("#probe_option_#{@probe_option_2.id}_form")
 
@@ -115,14 +115,14 @@ feature 'Probes' do
 
         visit probe_path(id: @probe.codename)
 
-        expect(page).to have_content 'To participate in this process you need to verify your account'
-        expect(page).to have_content 'Plaza Option 1'
-        expect(page).to have_content 'Plaza Option II'
+        expect(page).to have_content "To participate in this process you need to verify your account"
+        expect(page).to have_content "Plaza Option 1"
+        expect(page).to have_content "Plaza Option II"
         expect(page).not_to have_css("#probe_option_#{@probe_option_1.id}_form")
         expect(page).not_to have_css("#probe_option_#{@probe_option_2.id}_form")
       end
 
-      scenario 'User selects an option' do
+      scenario "User selects an option" do
         visit probe_path(id: @probe.codename)
 
         within("#probe_option_#{@probe_option_2.id}_form") do
@@ -159,7 +159,7 @@ feature 'Probes' do
         end
       end
 
-      scenario 'do not show in index' do
+      scenario "do not show in index" do
         @probe_option_1.update(debate: create(:debate))
         @probe_option_2.update(debate: create(:debate))
 

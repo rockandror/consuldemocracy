@@ -1,8 +1,8 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'Verify Letter' do
+feature "Verify Letter" do
 
-  scenario 'Request a letter' do
+  scenario "Request a letter" do
     user = create(:user, residence_verified_at: Time.current,
                          confirmed_phone:       "611111111")
 
@@ -18,7 +18,7 @@ feature 'Verify Letter' do
     expect(user.letter_verification_code).to be
   end
 
-  scenario 'Go to office instead of send letter' do
+  scenario "Go to office instead of send letter" do
     Setting["verification_offices_url"] = "http://offices.consul"
     user = create(:user, residence_verified_at: Time.current,
                          confirmed_phone:       "611111111")
@@ -35,7 +35,7 @@ feature 'Verify Letter' do
     login_as(user)
     visit new_letter_path
 
-    expect(page).to have_content 'You have not yet confirmed your residency'
+    expect(page).to have_content "You have not yet confirmed your residency"
     expect(page).to have_current_path(new_residence_path)
   end
 
@@ -45,7 +45,7 @@ feature 'Verify Letter' do
     login_as(user)
     visit new_letter_path
 
-    expect(page).to have_content 'You have not yet entered the confirmation code'
+    expect(page).to have_content "You have not yet entered the confirmation code"
     expect(page).to have_current_path(new_sms_path)
   end
 
@@ -121,7 +121,7 @@ feature 'Verify Letter' do
       expect(page).to have_content "can't be blank"
     end
 
-    scenario '6 tries allowed' do
+    scenario "6 tries allowed" do
       user = create(:user, residence_verified_at:    Time.current,
                            confirmed_phone:          "611111111",
                            letter_verification_code: "123456")
@@ -141,7 +141,7 @@ feature 'Verify Letter' do
 
     context "Redeeamble Code" do
 
-      scenario 'Valid reedeamble code' do
+      scenario "Valid reedeamble code" do
         token = RedeemableCode.generate_token
         redeemable_code = create(:redeemable_code, token: token)
 
@@ -161,7 +161,7 @@ feature 'Verify Letter' do
         expect(current_path).to eq(account_path)
       end
 
-      scenario 'Error message on incorrect reedeamble code' do
+      scenario "Error message on incorrect reedeamble code" do
         token = RedeemableCode.generate_token
         redeemable_code = create(:redeemable_code, token: token)
 

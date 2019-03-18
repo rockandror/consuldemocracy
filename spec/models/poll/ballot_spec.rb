@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe Poll::Ballot do
 
@@ -55,7 +55,7 @@ describe Poll::Ballot do
 
   describe "#add_investment" do
 
-    describe 'Money' do
+    describe "Money" do
       it "is not valid if insufficient funds" do
         investment.update(price: heading.price + 1)
         expect(poll_ballot.add_investment(investment.id)).to be(false)
@@ -67,7 +67,7 @@ describe Poll::Ballot do
       end
     end
 
-    describe 'Heading' do
+    describe "Heading" do
       it "is not valid if investment heading is not valid" do
         expect(poll_ballot.add_investment(investment.id)).to be(true)
 
@@ -86,7 +86,7 @@ describe Poll::Ballot do
       end
     end
 
-    describe 'Selectibility' do
+    describe "Selectibility" do
       it "is not valid if investment is unselected" do
         investment.update(selected: false)
         expect(poll_ballot.add_investment(investment.id)).to be(false)
@@ -98,7 +98,7 @@ describe Poll::Ballot do
       end
     end
 
-    describe 'Budget' do
+    describe "Budget" do
       it "is not valid if investment belongs to a different budget" do
         other_budget = create(:budget)
         investment.update(budget: other_budget)
@@ -110,7 +110,7 @@ describe Poll::Ballot do
       end
     end
 
-    describe 'Already added' do
+    describe "Already added" do
       it "is not valid if already exists" do
         poll_ballot.add_investment(investment.id)
         expect(poll_ballot.add_investment(investment.id)).to be(nil)

@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'Recommendations' do
+feature "Recommendations" do
 
   context "Load" do
 
@@ -37,7 +37,7 @@ feature 'Recommendations' do
     user = create(:user)
     login_as(user)
 
-    budget.update!(phase: 'selecting')
+    budget.update!(phase: "selecting")
     visit root_path
     click_link "Delegation"
 
@@ -48,7 +48,7 @@ feature 'Recommendations' do
     expect(page).to have_content "Investment project added to the list"
     expect(page).to have_link(investment_to_select.title, href: budget_investment_path(budget, investment_to_select))
 
-    budget.update!(phase: 'balloting')
+    budget.update!(phase: "balloting")
     visit root_path
     click_link "Delegation"
 
@@ -59,13 +59,13 @@ feature 'Recommendations' do
     expect(page).to have_content "Investment project added to the list"
     expect(page).to have_link(investment_to_ballot.title, href: budget_investment_path(budget, investment_to_ballot))
 
-    budget.update!(phase: 'selecting')
+    budget.update!(phase: "selecting")
     visit budget_recommendations_path(budget, user_id: user.id)
 
     expect(page).to have_content investment_to_select.title
     expect(page).not_to have_content investment_to_ballot.title
 
-    budget.update!(phase: 'balloting')
+    budget.update!(phase: "balloting")
     visit budget_recommendations_path(budget, user_id: user.id)
 
     expect(page).to have_content investment_to_ballot.title
@@ -120,15 +120,15 @@ feature 'Recommendations' do
 
     investment = create(:budget_investment, :feasible)
     create(:budget_recommendation, budget_id: investment.budget_id, investment: investment, user: user1)
-    investment.budget.update(phase: 'selecting')
+    investment.budget.update(phase: "selecting")
 
     login_as(user2)
     visit user_path(user1)
 
     click_link "List of recommended investments projects"
 
-    within('.supports') do
-      find('.in-favor a').click
+    within(".supports") do
+      find(".in-favor a").click
 
       expect(page).to have_content "1 support"
       expect(page).to have_content "You have already supported this investment project. Share it!"
@@ -141,16 +141,16 @@ feature 'Recommendations' do
 
     investment = create(:budget_investment, :selected)
     budget = investment.budget
-    budget.update!(phase: 'balloting')
-    create(:budget_recommendation, budget_id: investment.budget_id, investment: investment, user: user1, phase: 'balloting')
+    budget.update!(phase: "balloting")
+    create(:budget_recommendation, budget_id: investment.budget_id, investment: investment, user: user1, phase: "balloting")
 
     login_as(user2)
     visit user_path(user1)
 
     click_link "List of recommended investments projects"
 
-    within('.ballot') do
-      find('.in-favor a').click
+    within(".ballot") do
+      find(".in-favor a").click
 
       expect(page).to have_content "Remove vote"
     end

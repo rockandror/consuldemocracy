@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe Budget::Stats do
 
@@ -7,25 +7,25 @@ describe Budget::Stats do
     @group = create(:budget_group, budget: @budget)
     @heading = create(:budget_heading, :city_heading, group: @group, price: 1000)
 
-    @investment1 = create(:budget_investment, :selected, author: create(:user, gender: 'female'),
+    @investment1 = create(:budget_investment, :selected, author: create(:user, gender: "female"),
                           heading: @heading, price: 200, ballot_lines_count: 900, winner: true)
-    @investment2 = create(:budget_investment, :selected, author: create(:user, gender: 'female'),
+    @investment2 = create(:budget_investment, :selected, author: create(:user, gender: "female"),
                           heading: @heading, price: 300, ballot_lines_count: 800, winner: true)
-    @investment3 = create(:budget_investment, :selected, author: create(:user, gender: 'female',
+    @investment3 = create(:budget_investment, :selected, author: create(:user, gender: "female",
                           date_of_birth: 40.years.ago), heading: @heading, price: 400,
                           ballot_lines_count: 880, winner: true)
-    @investment4 = create(:budget_investment, :selected, author: create(:user, gender: 'male'),
+    @investment4 = create(:budget_investment, :selected, author: create(:user, gender: "male"),
                           heading: @heading, price: 100, ballot_lines_count: 915, winner: true)
-    @investment5 = create(:budget_investment, :unfeasible, author: create(:user, gender: 'male',
+    @investment5 = create(:budget_investment, :unfeasible, author: create(:user, gender: "male",
                           date_of_birth: 25.years.ago), heading: @heading)
 
-    @support1 = create(:vote, votable: @investment1, voter: create(:user, gender: 'male'))
+    @support1 = create(:vote, votable: @investment1, voter: create(:user, gender: "male"))
     @support2 = create(:vote, votable: @investment2, voter: create(:user))
 
-    @budget_ballot1 = create(:budget_ballot, budget: @budget, user: create(:user, gender: 'female',
+    @budget_ballot1 = create(:budget_ballot, budget: @budget, user: create(:user, gender: "female",
                              date_of_birth: 54.years.ago))
-    @budget_ballot2 = create(:budget_ballot, budget: @budget, user: create(:user, gender: 'female'))
-    @budget_ballot3 = create(:budget_ballot, budget: @budget, user: create(:user, gender: 'male'))
+    @budget_ballot2 = create(:budget_ballot, budget: @budget, user: create(:user, gender: "female"))
+    @budget_ballot3 = create(:budget_ballot, budget: @budget, user: create(:user, gender: "male"))
 
     @budget_ballot_line1 = create(:budget_ballot_line, ballot: @budget_ballot1,
                                   investment: @investment1)

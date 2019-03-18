@@ -1,9 +1,9 @@
 # coding: utf-8
-require 'rails_helper'
+require "rails_helper"
 
-feature 'Proceedings' do
+feature "Proceedings" do
 
-  scenario 'creation with sub_proceeding' do
+  scenario "creation with sub_proceeding" do
     login_as (create(:user, :level_two))
 
     visit new_proposal_path(proceeding: "Derechos Humanos", sub_proceeding: "Derecho a una vivienda digna")
@@ -14,10 +14,10 @@ feature 'Proceedings' do
     fill_in :proposal_title, with: "This is the proposal title"
     fill_in :proposal_summary, with: "This is the proposal summary"
     fill_in :proposal_description, with: "This is the proposal description"
-    check 'proposal_terms_of_service'
+    check "proposal_terms_of_service"
 
-    click_button 'Create proposal'
-    click_link 'Not now, go to my proposal'
+    click_button "Create proposal"
+    click_link "Not now, go to my proposal"
 
     expect(page).to have_content("Derechos Humanos")
     expect(page).to have_content("Derecho a una vivienda digna")
@@ -26,7 +26,7 @@ feature 'Proceedings' do
     expect(page).to have_content("This is the proposal description")
   end
 
-  scenario 'creation without sub_proceeding' do
+  scenario "creation without sub_proceeding" do
     login_as (create(:user, :level_two))
 
     visit new_proposal_path(proceeding: "Derechos Humanos")
@@ -37,10 +37,10 @@ feature 'Proceedings' do
     fill_in :proposal_title, with: "This is the proposal title"
     fill_in :proposal_summary, with: "This is the proposal summary"
     fill_in :proposal_description, with: "This is the proposal description"
-    check 'proposal_terms_of_service'
+    check "proposal_terms_of_service"
 
-    click_button 'Create proposal'
-    click_link 'Not now, go to my proposal'
+    click_button "Create proposal"
+    click_link "Not now, go to my proposal"
 
     expect(page).to have_content("Derechos Humanos")
     expect(page).to have_content("Derecho a una buena salud")
@@ -50,7 +50,7 @@ feature 'Proceedings' do
 
   end
 
-  scenario 'proceeding proposals are not listed in the index' do
+  scenario "proceeding proposals are not listed in the index" do
 
     create(:proposal, title: "A test proposal")
     create(:proposal, title: "Another test proposal", proceeding: "Derechos Humanos", sub_proceeding: "Derecho a la intimidad")

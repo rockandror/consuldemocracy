@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'Official positions' do
+feature "Official positions" do
 
   context "Badge" do
 
@@ -73,7 +73,7 @@ feature 'Official positions' do
     context "Spending proposals" do
 
       background do
-        skip 'Spending Proposals now redirects to its associated Budget Investment'
+        skip "Spending Proposals now redirects to its associated Budget Investment"
 
         Setting["feature.spending_proposals"] = true
         @spending_proposal1 = create(:spending_proposal, author: @user1)

@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe SpendingProposal do
 
@@ -318,7 +318,7 @@ describe SpendingProposal do
     end
   end
 
-  describe 'Permissions' do
+  describe "Permissions" do
     let(:user)        { create(:user, :level_two) }
     let(:luser)       { create(:user) }
     let(:district)    { create(:geozone) }
@@ -327,15 +327,15 @@ describe SpendingProposal do
 
     before do
       Setting["feature.spending_proposals"] = true
-      Setting['feature.spending_proposal_features.voting_allowed'] = true
+      Setting["feature.spending_proposal_features.voting_allowed"] = true
     end
 
     after do
       Setting["feature.spending_proposals"] = nil
-      Setting['feature.spending_proposal_features.voting_allowed'] = nil
+      Setting["feature.spending_proposal_features.voting_allowed"] = nil
     end
 
-    describe '#reason_for_not_being_votable_by' do
+    describe "#reason_for_not_being_votable_by" do
       it "rejects not logged in users" do
         expect(city_sp.reason_for_not_being_votable_by(nil)).to eq(:not_logged_in)
         expect(district_sp.reason_for_not_being_votable_by(nil)).to eq(:not_logged_in)
@@ -389,7 +389,7 @@ describe SpendingProposal do
 
     end
 
-    describe '#register_vote' do
+    describe "#register_vote" do
       it "decreases a counter for city proposals" do
         expect{ city_sp.register_vote(user, true) }.to change { user.reload.city_wide_spending_proposals_supported_count }.by(-1)
       end
@@ -408,7 +408,7 @@ describe SpendingProposal do
       end
     end
 
-    describe '#votable_by?' do
+    describe "#votable_by?" do
       it "allows voting on city-wide if the counter is not too low" do
         expect(city_sp.votable_by?(user)).to be
         user.city_wide_spending_proposals_supported_count = 0
@@ -497,12 +497,12 @@ describe SpendingProposal do
   describe "total votes" do
     before do
       Setting["feature.spending_proposals"] = true
-      Setting['feature.spending_proposal_features.voting_allowed'] = true
+      Setting["feature.spending_proposal_features.voting_allowed"] = true
     end
 
     after do
       Setting["feature.spending_proposals"] = nil
-      Setting['feature.spending_proposal_features.voting_allowed'] = nil
+      Setting["feature.spending_proposal_features.voting_allowed"] = nil
     end
 
     it "takes into account physical votes in addition to web votes" do
@@ -543,14 +543,14 @@ describe SpendingProposal do
 
   describe "Final Voting" do
 
-    describe 'Permissions' do
+    describe "Permissions" do
       let(:user)        { create(:user, :level_two) }
       let(:luser)       { create(:user) }
       let(:district)    { create(:geozone) }
       let(:city_sp)     { create(:spending_proposal) }
       let(:district_sp) { create(:spending_proposal, geozone: district) }
 
-      describe '#reason_for_not_being_ballotable_by' do
+      describe "#reason_for_not_being_ballotable_by" do
         it "rejects not logged in users" do
           expect(city_sp.reason_for_not_being_ballotable_by(nil)).to eq(:not_logged_in)
           expect(district_sp.reason_for_not_being_ballotable_by(nil)).to eq(:not_logged_in)

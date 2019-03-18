@@ -1,16 +1,16 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe BallotLine do
 
   let(:ballot_line) { build(:ballot_line) }
 
-  describe 'Validations' do
+  describe "Validations" do
 
     it "should be valid" do
       expect(ballot_line).to be_valid
     end
 
-    describe 'Money' do
+    describe "Money" do
 
       it "should not be valid if insufficient funds (city-wide)" do
         sp = create(:spending_proposal, price: 25000000)
@@ -72,7 +72,7 @@ describe BallotLine do
 
     end
 
-    describe 'Geozone' do
+    describe "Geozone" do
 
       it "should not be valid for a different geozone" do
         geozone1 = create(:geozone, name: "Carabanchel")
@@ -121,7 +121,7 @@ describe BallotLine do
 
     end
 
-    describe 'Feasibility' do
+    describe "Feasibility" do
 
       it "should not be valid if spending proposal is unfeasible" do
         sp = create(:spending_proposal, price: 20000, feasible: false)

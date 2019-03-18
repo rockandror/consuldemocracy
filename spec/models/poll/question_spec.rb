@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe Poll::Question do
   let(:poll_question) { build(:poll_question) }

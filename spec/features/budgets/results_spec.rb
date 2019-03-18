@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'Results' do
+feature "Results" do
 
   let(:budget)  { create(:budget, phase: "finished") }
   let(:group)   { create(:budget_group, budget: budget) }
@@ -21,7 +21,7 @@ feature 'Results' do
     visit budget_path(budget)
     click_link "See results"
 
-    expect(page).to have_selector('a.is-active', text: budget.headings.first.name)
+    expect(page).to have_selector("a.is-active", text: budget.headings.first.name)
 
     within("#budget-investments-compatible") do
       expect(page).to have_content investment1.title
@@ -69,7 +69,7 @@ feature 'Results' do
   scenario "Loads budget and heading by slug" do
     visit custom_budget_results_path(budget.slug, heading.slug)
 
-    expect(page).to have_selector('a.is-active', text: heading.name)
+    expect(page).to have_selector("a.is-active", text: heading.name)
 
     within("#budget-investments-compatible") do
       expect(page).to have_content investment1.title
@@ -120,7 +120,7 @@ feature 'Results' do
   context "Index" do
 
     scenario "Display links to finished budget results" do
-      (Budget::Phase::PHASE_KINDS - ['finished']).each do |phase|
+      (Budget::Phase::PHASE_KINDS - ["finished"]).each do |phase|
         budget = create(:budget, phase: phase)
         expect(page).not_to have_css("#budget_#{budget.id}_results", text: "See results")
       end
@@ -140,7 +140,7 @@ feature 'Results' do
   context "Show" do
 
     it "is not accessible to normal users if phase is not 'finished'" do
-      budget.update(phase: 'reviewing_ballots')
+      budget.update(phase: "reviewing_ballots")
 
       visit budget_results_path(budget.id)
       expect(page).to have_content "You do not have permission to carry out the action "\
@@ -148,14 +148,14 @@ feature 'Results' do
     end
 
     it "is accessible to normal users if phase is 'finished'" do
-      budget.update(phase: 'finished')
+      budget.update(phase: "finished")
 
       visit budget_results_path(budget.id)
       expect(page).to have_content "Results"
     end
 
     it "is accessible to administrators when budget has phase 'reviewing_ballots'" do
-      budget.update(phase: 'reviewing_ballots')
+      budget.update(phase: "reviewing_ballots")
 
       login_as(create(:administrator).user)
 

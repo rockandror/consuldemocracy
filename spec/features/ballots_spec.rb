@@ -1,12 +1,12 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'Ballots' do
+feature "Ballots" do
 
   background do
-    skip 'Spending Proposals now redirects to its associated Budget Investment'
+    skip "Spending Proposals now redirects to its associated Budget Investment"
     Setting["feature.spending_proposals"] = true
-    Setting['feature.spending_proposal_features.phase3'] = true
-    Setting['feature.spending_proposal_features.final_voting_allowed'] ||= true
+    Setting["feature.spending_proposal_features.phase3"] = true
+    Setting["feature.spending_proposal_features.final_voting_allowed"] ||= true
   end
 
   context "Voting" do
@@ -26,7 +26,7 @@ feature 'Ballots' do
         click_link "Vote city proposals"
 
         within("#spending_proposal_#{sp1.id}") do
-          find('.add a').click
+          find(".add a").click
         end
 
         expect(page).to have_css("#amount-spent", text: "$10,000")
@@ -38,7 +38,7 @@ feature 'Ballots' do
         end
 
         within("#spending_proposal_#{sp2.id}") do
-          find('.add a').click
+          find(".add a").click
         end
 
         expect(page).to have_css("#amount-spent", text: "$30,000")
@@ -65,7 +65,7 @@ feature 'Ballots' do
         end
 
         within("#spending_proposal_#{sp1.id}") do
-          find('.remove a').click
+          find(".remove a").click
         end
 
         expect(page).to have_css("#amount-spent", text: "$0")
@@ -79,7 +79,7 @@ feature 'Ballots' do
 
     end
 
-    context 'District' do
+    context "District" do
 
       scenario "Add a proposal", :js do
         carabanchel = create(:geozone, name: "Carabanchel")
@@ -91,7 +91,7 @@ feature 'Ballots' do
         click_link carabanchel.name
 
         within("#spending_proposal_#{sp1.id}") do
-          find('.add a').click
+          find(".add a").click
           expect(page).to have_content "Remove"
         end
 
@@ -106,7 +106,7 @@ feature 'Ballots' do
         end
 
         within("#spending_proposal_#{sp2.id}") do
-          find('.add a').click
+          find(".add a").click
         end
 
         expect(page).to have_css("#amount-spent", text: "$30,000")
@@ -136,7 +136,7 @@ feature 'Ballots' do
         end
 
         within("#spending_proposal_#{sp1.id}") do
-          find('.remove a').click
+          find(".remove a").click
         end
 
         expect(page).to have_css("#amount-spent", text: "$0")
@@ -161,7 +161,7 @@ feature 'Ballots' do
         click_link "Vote city proposals"
 
         within("#spending_proposal_#{sp1.id}") do
-          find('.add a').click
+          find(".add a").click
           expect(page).to have_content "Remove"
         end
 
@@ -179,7 +179,7 @@ feature 'Ballots' do
         expect(page).to have_css("#amount-spent", text: "$3,247,830")
 
         within("#spending_proposal_#{sp2.id}") do
-          find('.add a').click
+          find(".add a").click
           expect(page).to have_content "Remove"
         end
 
@@ -221,7 +221,7 @@ feature 'Ballots' do
       click_link carabanchel.name
 
       within("#spending_proposal_#{sp1.id}") do
-        find('.add a').click
+        find(".add a").click
         expect(page).to have_content "Remove"
       end
 
@@ -239,7 +239,7 @@ feature 'Ballots' do
       visit welcome_spending_proposals_path
     end
 
-    scenario 'Select my district', :js do
+    scenario "Select my district", :js do
       california = create(:geozone)
       new_york = create(:geozone)
       sp1 = create(:spending_proposal, :feasible, :finished, geozone: california)
@@ -248,14 +248,14 @@ feature 'Ballots' do
       click_link california.name
 
       within("#spending_proposal_#{sp1.id}") do
-        find('.add a').click
+        find(".add a").click
       end
 
       visit select_district_path
       expect(page).to have_css("#geozone_#{california.id}.active")
     end
 
-    scenario 'Change my district', :js do
+    scenario "Change my district", :js do
       california = create(:geozone)
       new_york = create(:geozone)
 
@@ -267,13 +267,13 @@ feature 'Ballots' do
       visit spending_proposals_path(geozone: california)
 
       within("#spending_proposal_#{sp1.id}") do
-        find('.remove a').click
+        find(".remove a").click
       end
 
       visit spending_proposals_path(geozone: new_york)
 
       within("#spending_proposal_#{sp2.id}") do
-        find('.add a').click
+        find(".add a").click
       end
 
       visit select_district_path
@@ -281,7 +281,7 @@ feature 'Ballots' do
       expect(page).not_to have_css("#geozone_#{california.id}.active")
     end
 
-    scenario 'View another district' do
+    scenario "View another district" do
       california = create(:geozone)
       new_york = create(:geozone)
 
@@ -299,9 +299,9 @@ feature 'Ballots' do
 
   end
 
-  context 'Showing the ballot' do
+  context "Showing the ballot" do
 
-    scenario 'Displaying the correct count & amount' do
+    scenario "Displaying the correct count & amount" do
       user = create(:user, :level_two)
       geozone = create(:geozone, name: "Carabanchel")
       ballot = create(:ballot, user: user, geozone: geozone)
@@ -320,7 +320,7 @@ feature 'Ballots' do
 
   end
 
-  scenario 'Removing spending proposals from ballot', :js do
+  scenario "Removing spending proposals from ballot", :js do
     user = create(:user, :level_two)
     ballot = create(:ballot, user: user)
     sp = create(:spending_proposal, :feasible, :finished, price: 10)
@@ -339,7 +339,7 @@ feature 'Ballots' do
     expect(page).to have_content("You voted 0 proposals")
   end
 
-  scenario 'Removing spending proposals from ballot (sidebar)', :js do
+  scenario "Removing spending proposals from ballot (sidebar)", :js do
     user = create(:user, :level_two)
     sp1 = create(:spending_proposal, :feasible, :finished, price: 10000)
     sp2 = create(:spending_proposal, :feasible, :finished, price: 20000)
@@ -347,7 +347,7 @@ feature 'Ballots' do
     ballot = create(:ballot, user: user, spending_proposals: [sp1, sp2])
 
     login_as(user)
-    visit spending_proposals_path(geozone: 'all')
+    visit spending_proposals_path(geozone: "all")
 
     expect(page).to have_css("#amount-spent", text: "$30,000")
     expect(page).to have_css("#amount-available", text: "$23,970,000")
@@ -376,7 +376,7 @@ feature 'Ballots' do
     end
   end
 
-  scenario 'Removing spending proposals from ballot (sidebar)', :js do
+  scenario "Removing spending proposals from ballot (sidebar)", :js do
     user = create(:user, :level_two)
     sp1 = create(:spending_proposal, :feasible, :finished, price: 10000)
     sp2 = create(:spending_proposal, :feasible, :finished, price: 20000)
@@ -384,7 +384,7 @@ feature 'Ballots' do
     ballot = create(:ballot, user: user, spending_proposals: [sp1, sp2])
 
     login_as(user)
-    visit spending_proposals_path(geozone: 'all')
+    visit spending_proposals_path(geozone: "all")
 
     expect(page).to have_css("#amount-spent", text: "$30,000")
     expect(page).to have_css("#amount-available", text: "$23,970,000")
@@ -413,9 +413,9 @@ feature 'Ballots' do
     end
   end
 
-  context 'Permissions' do
+  context "Permissions" do
 
-    scenario 'User not logged in', :js do
+    scenario "User not logged in", :js do
       spending_proposal = create(:spending_proposal, :feasible, :finished)
 
       visit spending_proposals_path
@@ -426,7 +426,7 @@ feature 'Ballots' do
       end
     end
 
-    scenario 'User not verified', :js do
+    scenario "User not verified", :js do
       user = create(:user)
       spending_proposal = create(:spending_proposal, :feasible, :finished)
 
@@ -439,7 +439,7 @@ feature 'Ballots' do
       end
     end
 
-    xscenario 'User is organization', :js do
+    xscenario "User is organization", :js do
       org = create(:organization)
       spending_proposal = create(:spending_proposal, :feasible, :finished)
 
@@ -452,7 +452,7 @@ feature 'Ballots' do
       end
     end
 
-    scenario 'Spending proposal unfeasible' do
+    scenario "Spending proposal unfeasible" do
       user = create(:user, :level_two)
       spending_proposal = create(:spending_proposal, :finished, feasible: false)
 
@@ -464,7 +464,7 @@ feature 'Ballots' do
       end
     end
 
-    scenario 'Spending proposal with feasibility undecided are not shown' do
+    scenario "Spending proposal with feasibility undecided are not shown" do
       user = create(:user, :level_two)
       spending_proposal = create(:spending_proposal, :finished, feasible: nil)
 
@@ -477,7 +477,7 @@ feature 'Ballots' do
       end
     end
 
-    scenario 'Different district', :js do
+    scenario "Different district", :js do
       user = create(:user, :level_two)
       california = create(:geozone)
       new_york = create(:geozone)
@@ -496,22 +496,22 @@ feature 'Ballots' do
       end
     end
 
-    scenario 'Insufficient funds', :js do
+    scenario "Insufficient funds", :js do
       user = create(:user, :level_two)
       california = create(:geozone)
 
       sp1 = create(:spending_proposal, :feasible, :finished, price: 25000000)
 
       login_as(user)
-      visit spending_proposals_path(geozone: 'all')
+      visit spending_proposals_path(geozone: "all")
 
       within("#spending_proposal_#{sp1.id}") do
-        find('.add a').click
+        find(".add a").click
         expect_message_insufficient_funds
       end
     end
 
-    scenario 'Displays error message for all proposals (on create)', :js do
+    scenario "Displays error message for all proposals (on create)", :js do
       user = create(:user, :level_two)
       california = create(:geozone)
 
@@ -519,10 +519,10 @@ feature 'Ballots' do
       sp2 = create(:spending_proposal, :feasible, :finished, price: 5000000)
 
       login_as(user)
-      visit spending_proposals_path(geozone: 'all')
+      visit spending_proposals_path(geozone: "all")
 
       within("#spending_proposal_#{sp1.id}") do
-        find('.add a').click
+        find(".add a").click
         expect(page).to have_content "Remove vote"
       end
 
@@ -533,7 +533,7 @@ feature 'Ballots' do
 
     end
 
-    scenario 'Displays error message for all proposals (on destroy)', :js do
+    scenario "Displays error message for all proposals (on destroy)", :js do
       user = create(:user, :level_two)
 
       sp1 = create(:spending_proposal, :feasible, :finished, price: 24000000)
@@ -542,26 +542,26 @@ feature 'Ballots' do
       create(:ballot, user: user, spending_proposals: [sp1])
 
       login_as(user)
-      visit spending_proposals_path(geozone: 'all')
+      visit spending_proposals_path(geozone: "all")
 
       within("#spending_proposal_#{sp2.id}") do
         find("div.ballot").hover
         expect(page).to have_content "This proposal's price is more than the available amount left"
-        expect(page).to have_selector('.in-favor a', visible: false)
+        expect(page).to have_selector(".in-favor a", visible: false)
       end
 
       within("#spending_proposal_#{sp1.id}") do
-        find('.remove a').click
+        find(".remove a").click
       end
 
       within("#spending_proposal_#{sp2.id}") do
         find("div.ballot").hover
         expect(page).not_to have_content "This proposal's price is more than the available amount left"
-        expect(page).to have_selector('.in-favor a', visible: true)
+        expect(page).to have_selector(".in-favor a", visible: true)
       end
     end
 
-    scenario 'Displays error message for all proposals (on destroy from sidebar)', :js do
+    scenario "Displays error message for all proposals (on destroy from sidebar)", :js do
       user = create(:user, :level_two)
 
       sp1 = create(:spending_proposal, :feasible, :finished, price: 24000000)
@@ -570,16 +570,16 @@ feature 'Ballots' do
       create(:ballot, user: user, spending_proposals: [sp1])
 
       login_as(user)
-      visit spending_proposals_path(geozone: 'all')
+      visit spending_proposals_path(geozone: "all")
 
       within("#spending_proposal_#{sp2.id}") do
         find("div.ballot").hover
         expect(page).to have_content "This proposal's price is more than the available amount left"
-        expect(page).to have_selector('.in-favor a', visible: false)
+        expect(page).to have_selector(".in-favor a", visible: false)
       end
 
       within("#spending_proposal_#{sp1.id}_sidebar") do
-        find('.remove-investment-project').click
+        find(".remove-investment-project").click
       end
 
       expect(page).not_to have_css "#spending_proposal_#{sp1.id}_sidebar"
@@ -587,7 +587,7 @@ feature 'Ballots' do
       within("#spending_proposal_#{sp2.id}") do
         find("div.ballot").hover
         expect(page).not_to have_content "This proposal's price is more than the available amount left"
-        expect(page).to have_selector('.in-favor a', visible: true)
+        expect(page).to have_selector(".in-favor a", visible: true)
       end
     end
 
@@ -599,10 +599,10 @@ feature 'Ballots' do
       sp2 = create(:spending_proposal, :feasible, :finished, price: 5000000)
 
       login_as(user)
-      visit spending_proposals_path(geozone: 'all')
+      visit spending_proposals_path(geozone: "all")
 
       within("#spending_proposal_#{sp1.id}") do
-        find('.add a').click
+        find(".add a").click
         expect(page).to have_content "Remove vote"
       end
 
@@ -613,7 +613,7 @@ feature 'Ballots' do
     end
 
     scenario "Voting proposals when delegating", :js do
-      forum = create(:forum, name: 'hydra')
+      forum = create(:forum, name: "hydra")
       user = create(:user, :level_two, representative_id: forum.id)
       sp = create(:spending_proposal, :feasible, :finished)
 
@@ -621,10 +621,10 @@ feature 'Ballots' do
       visit forums_path
       expect(page).to have_content("You are delegating your votes on hydra")
 
-      visit spending_proposals_path(geozone: 'all')
+      visit spending_proposals_path(geozone: "all")
 
       within("#spending_proposal_#{sp.id}") do
-        find('.add a').click
+        find(".add a").click
         expect(page).to have_content "Remove vote"
       end
 

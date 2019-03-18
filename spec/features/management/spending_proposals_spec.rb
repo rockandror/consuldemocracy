@@ -1,16 +1,16 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'Spending Proposals' do
+feature "Spending Proposals" do
 
   background do
-    Setting['feature.spending_proposals'] = true
-    Setting['feature.spending_proposal_features.voting_allowed'] = true
+    Setting["feature.spending_proposals"] = true
+    Setting["feature.spending_proposal_features.voting_allowed"] = true
     login_as_manager
   end
 
   xcontext "Create" do
 
-    scenario 'Creating spending proposals on behalf of someone' do
+    scenario "Creating spending proposals on behalf of someone" do
       user = create(:user, :level_two)
       login_managed_user(user)
 
@@ -23,19 +23,19 @@ feature 'Spending Proposals' do
         expect(page).to have_content (user.document_number).to_s
       end
 
-      fill_in 'spending_proposal_title', with: 'Build a park in my neighborhood'
-      fill_in 'spending_proposal_description', with: 'There is no parks here...'
-      fill_in 'spending_proposal_external_url', with: 'http://moarparks.com'
-      check 'spending_proposal_terms_of_service'
+      fill_in "spending_proposal_title", with: "Build a park in my neighborhood"
+      fill_in "spending_proposal_description", with: "There is no parks here..."
+      fill_in "spending_proposal_external_url", with: "http://moarparks.com"
+      check "spending_proposal_terms_of_service"
 
-      click_button 'Create'
+      click_button "Create"
 
-      expect(page).to have_content 'Investment project created successfully.'
+      expect(page).to have_content "Investment project created successfully."
 
-      expect(page).to have_content 'Build a park in my neighborhood'
-      expect(page).to have_content 'There is no parks here...'
-      expect(page).to have_content 'All city'
-      expect(page).to have_content 'http://moarparks.com'
+      expect(page).to have_content "Build a park in my neighborhood"
+      expect(page).to have_content "There is no parks here..."
+      expect(page).to have_content "All city"
+      expect(page).to have_content "http://moarparks.com"
       expect(page).to have_content user.name
       expect(page).to have_content I18n.l(SpendingProposal.last.created_at.to_date)
 
@@ -68,7 +68,7 @@ feature 'Spending Proposals' do
       expect(current_path).to eq(management_spending_proposals_path)
 
       within("#investment-projects") do
-        expect(page).to have_css('.investment-project', count: 1)
+        expect(page).to have_css(".investment-project", count: 1)
         expect(page).to have_content(spending_proposal1.title)
         expect(page).not_to have_content(spending_proposal2.title)
         expect(page).to have_css("a[href='#{management_spending_proposal_path(spending_proposal1)}']", text: spending_proposal1.title)
@@ -91,7 +91,7 @@ feature 'Spending Proposals' do
       expect(current_path).to eq(management_spending_proposals_path)
 
       within("#investment-projects") do
-        expect(page).to have_css('.investment-project', count: 1)
+        expect(page).to have_css(".investment-project", count: 1)
         expect(page).not_to have_content(spending_proposal1.title)
         expect(page).to have_content(spending_proposal2.title)
         expect(page).to have_css("a[href='#{management_spending_proposal_path(spending_proposal2)}']", text: spending_proposal2.title)
@@ -119,7 +119,7 @@ feature 'Spending Proposals' do
     end
 
     within("#investment-projects") do
-      expect(page).to have_css('.investment-project', count: 2)
+      expect(page).to have_css(".investment-project", count: 2)
       expect(page).to have_css("a[href='#{management_spending_proposal_path(spending_proposal1)}']", text: spending_proposal1.title)
       expect(page).to have_css("a[href='#{management_spending_proposal_path(spending_proposal1)}']", text: spending_proposal1.description)
       expect(page).to have_css("a[href='#{management_spending_proposal_path(spending_proposal2)}']", text: spending_proposal2.title)
@@ -133,7 +133,7 @@ feature 'Spending Proposals' do
       Setting["feature.spending_proposal_features.phase2"] = true
     end
 
-    scenario 'Voting spending proposals on behalf of someone in index view', :js do
+    scenario "Voting spending proposals on behalf of someone in index view", :js do
       spending_proposal = create(:spending_proposal)
 
       user = create(:user, :level_two)
@@ -142,7 +142,7 @@ feature 'Spending Proposals' do
       click_link "Support spending proposals"
 
       within("#investment-projects") do
-        find('.in-favor a').click
+        find(".in-favor a").click
 
         expect(page).to have_content "1 support"
         expect(page).to have_content "You have already supported this. Share it!"
@@ -150,7 +150,7 @@ feature 'Spending Proposals' do
       expect(current_path).to eq(management_spending_proposals_path)
     end
 
-    scenario 'Voting spending proposals on behalf of someone in show view', :js do
+    scenario "Voting spending proposals on behalf of someone in show view", :js do
       spending_proposal = create(:spending_proposal)
 
       user = create(:user, :level_two)
@@ -162,7 +162,7 @@ feature 'Spending Proposals' do
         click_link spending_proposal.title
       end
 
-      find('.in-favor a').click
+      find(".in-favor a").click
       expect(page).to have_content "1 support"
       expect(page).to have_content "You have already supported this. Share it!"
       expect(current_path).to eq(management_spending_proposal_path(spending_proposal))
@@ -182,21 +182,21 @@ feature 'Spending Proposals' do
 
   xcontext "Printing" do
 
-    scenario 'Printing spending proposals' do
+    scenario "Printing spending proposals" do
       16.times { create(:spending_proposal, geozone_id: nil) }
 
       click_link "Print spending proposals"
 
-      expect(page).to have_css('.investment-project', count: 15)
-      expect(page).to have_css("a[href='javascript:window.print();']", text: 'Print')
+      expect(page).to have_css(".investment-project", count: 15)
+      expect(page).to have_css("a[href='javascript:window.print();']", text: "Print")
     end
 
     scenario "Filtering spending proposals by geozone to be printed", :js do
       district_9 = create(:geozone, name: "District Nine")
-      create(:spending_proposal, title: 'Change district 9', geozone: district_9, cached_votes_up: 10)
-      create(:spending_proposal, title: 'Destroy district 9', geozone: district_9, cached_votes_up: 100)
-      create(:spending_proposal, title: 'Nuke district 9', geozone: district_9, cached_votes_up: 1)
-      create(:spending_proposal, title: 'Add new districts to the city', geozone_id: nil)
+      create(:spending_proposal, title: "Change district 9", geozone: district_9, cached_votes_up: 10)
+      create(:spending_proposal, title: "Destroy district 9", geozone: district_9, cached_votes_up: 100)
+      create(:spending_proposal, title: "Nuke district 9", geozone: district_9, cached_votes_up: 1)
+      create(:spending_proposal, title: "Add new districts to the city", geozone_id: nil)
 
       user = create(:user, :level_two)
       login_managed_user(user)
@@ -205,22 +205,22 @@ feature 'Spending Proposals' do
 
       expect(page).to have_content "Investment projects with scope: All city"
 
-      within '#investment-projects' do
-        expect(page).to have_content('Add new districts to the city')
-        expect(page).not_to have_content('Change district 9')
-        expect(page).not_to have_content('Destroy district 9')
-        expect(page).not_to have_content('Nuke district 9')
+      within "#investment-projects" do
+        expect(page).to have_content("Add new districts to the city")
+        expect(page).not_to have_content("Change district 9")
+        expect(page).not_to have_content("Destroy district 9")
+        expect(page).not_to have_content("Nuke district 9")
       end
 
-      select 'District Nine', from: 'geozone'
+      select "District Nine", from: "geozone"
 
       expect(page).to have_content "Investment projects with scope: District Nine"
       expect(current_url).to include("geozone=#{district_9.id}")
 
-      within '#investment-projects' do
-        expect(page).not_to have_content('Add new districts to the city')
-        expect('Destroy district 9').to appear_before('Change district 9')
-        expect('Change district 9').to appear_before('Nuke district 9')
+      within "#investment-projects" do
+        expect(page).not_to have_content("Add new districts to the city")
+        expect("Destroy district 9").to appear_before("Change district 9")
+        expect("Change district 9").to appear_before("Nuke district 9")
       end
     end
 

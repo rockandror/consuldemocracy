@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'Poll budget ballot sheets' do
+feature "Poll budget ballot sheets" do
   let(:budget) { create(:budget) }
   let(:poll) { create(:poll, budget: budget, ends_at: 1.day.ago) }
   let(:booth) { create(:poll_booth) }
@@ -20,7 +20,7 @@ feature 'Poll budget ballot sheets' do
 
     scenario "Budget polls are visible" do
       visit root_path
-      click_link 'Polling officers'
+      click_link "Polling officers"
 
       within("#side_menu") do
         click_link "Total recounts and results"
@@ -117,7 +117,7 @@ feature 'Poll budget ballot sheets' do
 
       select "#{booth.name}", from: "officer_assignment_id"
       fill_in "data", with: "1234;5678"
-      click_button 'Save'
+      click_button "Save"
 
       expect(Poll::BallotSheet.count).to be 1
 
@@ -130,7 +130,7 @@ feature 'Poll budget ballot sheets' do
       visit new_officing_poll_ballot_sheet_path(poll)
 
       select "#{booth.name}", from: "officer_assignment_id"
-      click_button 'Save'
+      click_button "Save"
 
       expect(Poll::BallotSheet.count).to be 0
 
@@ -141,7 +141,7 @@ feature 'Poll budget ballot sheets' do
       visit new_officing_poll_ballot_sheet_path(poll)
 
       fill_in "data", with: "1234;5678"
-      click_button 'Save'
+      click_button "Save"
 
       expect(page).to have_content "Officer assignment can't be blank"
     end

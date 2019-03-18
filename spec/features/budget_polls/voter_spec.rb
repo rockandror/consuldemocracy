@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature "BudgetPolls", :with_frozen_time do
   let(:budget) { create(:budget, :balloting) }
@@ -97,7 +97,7 @@ feature "BudgetPolls", :with_frozen_time do
       visit budget_investment_path(budget, investment)
 
       within("#budget_investment_#{investment.id}") do
-        find('.add a').click
+        find(".add a").click
         expect(page).to have_content "Remove"
       end
     end
@@ -107,7 +107,7 @@ feature "BudgetPolls", :with_frozen_time do
       visit budget_investment_path(budget, investment)
 
       within("#budget_investment_#{investment.id}") do
-        find('.add a').click
+        find(".add a").click
         expect(page).to have_content "Remove"
       end
 
@@ -124,7 +124,7 @@ feature "BudgetPolls", :with_frozen_time do
       visit budget_investment_path(budget, investment)
 
       within("#budget_investment_#{investment.id}") do
-        find('.add a').click
+        find(".add a").click
         expect(page).to have_content "Remove"
       end
 

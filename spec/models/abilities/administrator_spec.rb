@@ -1,5 +1,5 @@
-require 'rails_helper'
-require 'cancan/matchers'
+require "rails_helper"
+require "cancan/matchers"
 
 describe Abilities::Administrator do
   subject(:ability) { Ability.new(user) }
@@ -80,7 +80,7 @@ describe Abilities::Administrator do
   describe "valuation open" do
 
     before(:each) do
-      Setting['feature.spending_proposal_features.valuation_allowed'] = true
+      Setting["feature.spending_proposal_features.valuation_allowed"] = true
     end
 
     it { should be_able_to(:destroy, SpendingProposal) }
@@ -89,7 +89,7 @@ describe Abilities::Administrator do
   describe "valuation finished" do
 
     before(:each) do
-      Setting['feature.spending_proposal_features.valuation_allowed'] = nil
+      Setting["feature.spending_proposal_features.valuation_allowed"] = nil
     end
 
     it { should_not be_able_to(:destroy, SpendingProposal) }
@@ -106,8 +106,8 @@ describe Abilities::Administrator do
   it { should be_able_to(:update, Budget::Investment) }
   it { should be_able_to(:hide,   Budget::Investment) }
 
-  it { should be_able_to(:valuate, create(:budget_investment, budget: create(:budget, phase: 'valuating'))) }
-  it { should be_able_to(:valuate, create(:budget_investment, budget: create(:budget, phase: 'finished'))) }
+  it { should be_able_to(:valuate, create(:budget_investment, budget: create(:budget, phase: "valuating"))) }
+  it { should be_able_to(:valuate, create(:budget_investment, budget: create(:budget, phase: "finished"))) }
 
   it { should be_able_to(:destroy, proposal_image) }
   it { should be_able_to(:destroy, proposal_document) }

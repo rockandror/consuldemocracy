@@ -1,15 +1,15 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'Volunteer Poll' do
+feature "Volunteer Poll" do
 
   scenario "Create" do
     visit new_volunteer_poll_path
-    fill_in 'volunteer_poll_email', with: "example@example.com"
-    fill_in 'volunteer_poll_first_name', with: "Isabel"
-    fill_in 'volunteer_poll_last_name', with: "Johnson"
-    fill_in 'volunteer_poll_document_number', with: "12345678Z"
-    fill_in 'volunteer_poll_phone', with: "606111111"
-    select '2 turnos', from: 'volunteer_poll_turns'
+    fill_in "volunteer_poll_email", with: "example@example.com"
+    fill_in "volunteer_poll_first_name", with: "Isabel"
+    fill_in "volunteer_poll_last_name", with: "Johnson"
+    fill_in "volunteer_poll_document_number", with: "12345678Z"
+    fill_in "volunteer_poll_phone", with: "606111111"
+    select "2 turnos", from: "volunteer_poll_turns"
     check_all_day_checkboxes
     check_all_geozones_checkboxes
     click_button "Enviar"
@@ -30,21 +30,21 @@ feature 'Volunteer Poll' do
 end
 
 def check_all_day_checkboxes
-  check 'volunteer_poll_monday_13_morning'
-  check 'volunteer_poll_monday_13_afternoon'
-  check 'volunteer_poll_tuesday_14_morning'
-  check 'volunteer_poll_tuesday_14_afternoon'
-  check 'volunteer_poll_wednesday_15_morning'
-  check 'volunteer_poll_wednesday_15_afternoon'
-  check 'volunteer_poll_thursday_16_morning'
-  check 'volunteer_poll_thursday_16_afternoon'
-  check 'volunteer_poll_friday_17_morning'
-  check 'volunteer_poll_friday_17_afternoon'
-  check 'volunteer_poll_saturday_18_morning'
-  check 'volunteer_poll_saturday_18_afternoon'
-  check 'volunteer_poll_sunday_19_morning'
-  check 'volunteer_poll_sunday_19_afternoon'
-  check 'volunteer_poll_monday_20_morning'
+  check "volunteer_poll_monday_13_morning"
+  check "volunteer_poll_monday_13_afternoon"
+  check "volunteer_poll_tuesday_14_morning"
+  check "volunteer_poll_tuesday_14_afternoon"
+  check "volunteer_poll_wednesday_15_morning"
+  check "volunteer_poll_wednesday_15_afternoon"
+  check "volunteer_poll_thursday_16_morning"
+  check "volunteer_poll_thursday_16_afternoon"
+  check "volunteer_poll_friday_17_morning"
+  check "volunteer_poll_friday_17_afternoon"
+  check "volunteer_poll_saturday_18_morning"
+  check "volunteer_poll_saturday_18_afternoon"
+  check "volunteer_poll_sunday_19_morning"
+  check "volunteer_poll_sunday_19_afternoon"
+  check "volunteer_poll_monday_20_morning"
 end
 
 def check_all_geozones_checkboxes

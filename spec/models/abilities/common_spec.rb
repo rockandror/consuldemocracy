@@ -1,5 +1,5 @@
-require 'rails_helper'
-require 'cancan/matchers'
+require "rails_helper"
+require "cancan/matchers"
 
 describe Abilities::Common do
   subject(:ability) { Ability.new(user) }
@@ -15,10 +15,10 @@ describe Abilities::Common do
   let(:own_comment)  { create(:comment,  author: user) }
   let(:own_proposal) { create(:proposal, author: user) }
 
-  let(:accepting_budget) { create(:budget, phase: 'accepting') }
-  let(:reviewing_budget) { create(:budget, phase: 'reviewing') }
-  let(:selecting_budget) { create(:budget, phase: 'selecting') }
-  let(:balloting_budget) { create(:budget, phase: 'balloting') }
+  let(:accepting_budget) { create(:budget, phase: "accepting") }
+  let(:reviewing_budget) { create(:budget, phase: "reviewing") }
+  let(:selecting_budget) { create(:budget, phase: "selecting") }
+  let(:balloting_budget) { create(:budget, phase: "balloting") }
 
   let(:investment_in_accepting_budget) { create(:budget_investment, budget: accepting_budget) }
   let(:investment_in_reviewing_budget) { create(:budget_investment, budget: reviewing_budget) }
@@ -100,7 +100,7 @@ describe Abilities::Common do
   it { should be_able_to(:destroy, own_budget_investment_image) }
   it { should_not be_able_to(:destroy, budget_investment_image) }
 
-  describe 'flagging content' do
+  describe "flagging content" do
     it { should be_able_to(:flag, debate)   }
     it { should be_able_to(:unflag, debate) }
 
@@ -255,7 +255,7 @@ describe Abilities::Common do
     end
 
     describe "when not old enough to vote" do
-      before(:each) { user.date_of_birth = Setting['min_age_to_participate'].to_i.years.ago + 1.year }
+      before(:each) { user.date_of_birth = Setting["min_age_to_participate"].to_i.years.ago + 1.year }
 
       describe "Proposal" do
         it { should_not be_able_to(:vote, Proposal) }
@@ -378,7 +378,7 @@ describe Abilities::Common do
     end
 
     context "when not old enough to vote" do
-      before(:each) { user.date_of_birth = Setting['min_age_to_participate'].to_i.years.ago + 1.year }
+      before(:each) { user.date_of_birth = Setting["min_age_to_participate"].to_i.years.ago + 1.year }
 
       it { should_not be_able_to(:vote, Proposal)          }
       it { should_not be_able_to(:vote_featured, Proposal) }

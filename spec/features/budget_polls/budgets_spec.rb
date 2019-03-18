@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'Admin Budgets' do
+feature "Admin Budgets" do
 
   background do
     admin = create(:administrator).user
@@ -9,7 +9,7 @@ feature 'Admin Budgets' do
 
   context "Index" do
 
-    scenario 'Create poll if the budget does not have a poll associated' do
+    scenario "Create poll if the budget does not have a poll associated" do
       budget = create(:budget)
 
       visit admin_budgets_path
@@ -27,7 +27,7 @@ feature 'Admin Budgets' do
       expect(Poll.last.budget).to eq(budget)
     end
 
-    scenario 'Display link to poll if the budget has a poll associated' do
+    scenario "Display link to poll if the budget has a poll associated" do
       budget = create(:budget)
       poll = create(:poll, budget: budget)
 
@@ -42,7 +42,7 @@ feature 'Admin Budgets' do
 
   context "Show" do
 
-    scenario 'Do not show questions section if the budget have a poll associated' do
+    scenario "Do not show questions section if the budget have a poll associated" do
       budget = create(:budget)
       poll = create(:poll, budget: budget)
 

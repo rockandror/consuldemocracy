@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'Officing Nvotes', :selenium do
+feature "Officing Nvotes", :selenium do
 
   before do
     skip "this feature is currently disabled"
