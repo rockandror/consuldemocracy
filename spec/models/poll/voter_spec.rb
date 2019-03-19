@@ -78,7 +78,7 @@ describe Poll::Voter do
     it "is not valid if the user has voted via web" do
       answer = create(:poll_answer)
 
-      Poll::Voter.find_or_create_by(user: answer.author, poll: answer.poll, origin: "web", token: "token")
+      create(:poll_voter, :from_web, user: answer.author, poll: answer.poll)
 
       voter = build(:poll_voter, poll: answer.question.poll, user: answer.author)
       expect(voter).not_to be_valid
@@ -86,23 +86,20 @@ describe Poll::Voter do
     end
 
     it "should not be valid if token is not present via web" do
-      user = create(:user, :level_two)
-      voter = build(:poll_voter, user: user, poll: poll, origin: "web", token: "")
+      voter = build(:poll_voter, :from_web, token: "")
 
       expect(voter).not_to be_valid
       expect(voter.errors.messages[:token]).to eq(["can't be blank"])
     end
 
     it "should be valid if token is not present via booth" do
-      user = create(:user, :level_two)
-      voter = build(:poll_voter, user: user, poll: poll, officer_assignment: officer_assignment, origin: "booth", token: "")
+      voter = build(:poll_voter, :from_booth, token: "")
 
       expect(voter).to be_valid
     end
 
     it "should be valid if token is not present via letter" do
-      user = create(:user, :level_two)
-      voter = build(:poll_voter, user: user, poll: poll, origin: "letter", token: "")
+      voter = build(:poll_voter, origin: "letter", token: "")
 
       expect(voter).to be_valid
     end
@@ -157,10 +154,9 @@ describe Poll::Voter do
 
     describe "#web" do
       it "returns voters with a web origin" do
-        oa = create(:poll_officer_assignment)
-        voter1 = create(:poll_voter, origin: "web")
-        voter2 = create(:poll_voter, origin: "web")
-        voter3 = create(:poll_voter, origin: "booth", officer_assignment: oa)
+        voter1 = create(:poll_voter, :from_web)
+        voter2 = create(:poll_voter, :from_web)
+        voter3 = create(:poll_voter, :from_booth)
 
         web_voters = described_class.web
 
@@ -173,10 +169,9 @@ describe Poll::Voter do
 
     describe "#booth" do
       it "returns voters with a booth origin" do
-        oa = create(:poll_officer_assignment)
-        voter1 = create(:poll_voter, origin: "booth", officer_assignment: oa)
-        voter2 = create(:poll_voter, origin: "booth", officer_assignment: oa)
-        voter3 = create(:poll_voter, origin: "web")
+        voter1 = create(:poll_voter, :from_booth)
+        voter2 = create(:poll_voter, :from_booth)
+        voter3 = create(:poll_voter, :from_web)
 
         booth_voters = described_class.booth
 
@@ -191,7 +186,7 @@ describe Poll::Voter do
       it "returns voters with a letter origin" do
         voter1 = create(:poll_voter, origin: "letter")
         voter2 = create(:poll_voter, origin: "letter")
-        voter3 = create(:poll_voter, origin: "web")
+        voter3 = create(:poll_voter, :from_web)
 
         letter_voters = Poll::Voter.letter
 
