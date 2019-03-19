@@ -18,11 +18,11 @@
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
     <%= favicon_link_tag "favicon.ico" %>
-    <%= setting['per_page_code_head'].try(:html_safe) %>
+    <%= setting["html.per_page_code_head"].try(:html_safe) %>
   </head>
 
   <body class="auth-page <%= css_for_landing %>">
-    <%= setting['per_page_code_body'].try(:html_safe) %>
+    <%= setting["html.per_page_code_body"].try(:html_safe) %>
 
     <div class="wrapper">
       <div class="auth-image small-12 medium-6 column">

@@ -3,15 +3,9 @@ require "rails_helper"
 feature "Admin feature flags" do
 
   background do
-    Setting["feature.budgets"] = true
     Setting["feature.spending_proposals"] = true
     Setting["feature.spending_proposal_features.voting_allowed"] = true
     login_as(create(:administrator).user)
-  end
-
-  after do
-    Setting["feature.spending_proposals"] = nil
-    Setting["feature.spending_proposal_features.voting_allowed"] = nil
   end
 
   scenario "Enabled features are listed on menu" do
@@ -22,13 +16,13 @@ feature "Admin feature flags" do
     end
   end
 
-  scenario "Disable a feature" do
-    setting_id = Setting.find_by(key: "feature.budgets").id
+  scenario "Disable a participatory process" do
+    setting = Setting.find_by(key: "process.budgets")
     budget = create(:budget)
 
     visit admin_settings_path
 
-    within("#edit_setting_#{setting_id}") do
+    within("#edit_setting_#{setting.id}") do
       expect(page).to have_button "Disable"
       expect(page).not_to have_button "Enable"
       click_button "Disable"
@@ -44,9 +38,9 @@ feature "Admin feature flags" do
     expect{ visit admin_budgets_path }.to raise_exception(FeatureFlags::FeatureDisabled)
   end
 
-  scenario "Enable a disabled feature" do
-    Setting["feature.budgets"] = nil
-    setting_id = Setting.find_by(key: "feature.budgets").id
+  scenario "Enable a disabled participatory process" do
+    Setting["process.budgets"] = nil
+    setting = Setting.find_by(key: "process.budgets")
 
     visit admin_root_path
 
@@ -56,7 +50,7 @@ feature "Admin feature flags" do
 
     visit admin_settings_path
 
-    within("#edit_setting_#{setting_id}") do
+    within("#edit_setting_#{setting.id}") do
       expect(page).to have_button "Enable"
       expect(page).not_to have_button "Disable"
       click_button "Enable"
@@ -66,6 +60,44 @@ feature "Admin feature flags" do
 
     within("#side_menu") do
       expect(page).to have_link "Participatory budgets"
+    end
+  end
+
+  scenario "Disable a feature" do
+    setting = Setting.find_by(key: "feature.spending_proposals")
+
+    visit admin_settings_path
+
+    within("#edit_setting_#{setting.id}") do
+      expect(page).to have_button "Disable"
+      expect(page).not_to have_button "Enable"
+      click_button "Disable"
+    end
+
+    expect(page).to have_content "Value updated"
+
+    within("#edit_setting_#{setting.id}") do
+      expect(page).to have_button "Enable"
+      expect(page).not_to have_button "Disable"
+    end
+  end
+
+  scenario "Enable a disabled feature" do
+    setting = Setting.find_by(key: "feature.map")
+
+    visit admin_settings_path
+
+    within("#edit_setting_#{setting.id}") do
+      expect(page).to have_button "Enable"
+      expect(page).not_to have_button "Disable"
+      click_button "Enable"
+    end
+
+    expect(page).to have_content "Value updated"
+
+    within("#edit_setting_#{setting.id}") do
+      expect(page).to have_button "Disable"
+      expect(page).not_to have_button "Enable"
     end
   end
 

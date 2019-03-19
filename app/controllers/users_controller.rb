@@ -15,9 +15,9 @@ class UsersController < ApplicationController
     def set_activity_counts
       @activity_counts = HashWithIndifferentAccess.new(
                           proposals: Proposal.where(author_id: @user.id).count,
-                          debates: (Setting['feature.debates'] ? Debate.where(author_id: @user.id).count : 0),
+                          debates: (Setting["process.debates"] ? Debate.where(author_id: @user.id).count : 0),
                           ballot: (Setting["feature.spending_proposal_features.phase3"].blank? ? 0 : 1),
-                          budget_investments: (Setting['feature.budgets'] ? Budget::Investment.where(author_id: @user.id).count : 0),
+                          budget_investments: (Setting["process.budgets"] ? Budget::Investment.where(author_id: @user.id).count : 0),
                           comments: only_active_commentables.count,
                           follows: @user.follows.map(&:followable).compact.count)
     end
@@ -108,8 +108,8 @@ class UsersController < ApplicationController
 
     def only_active_commentables
       disabled_commentables = []
-      disabled_commentables << "Debate" unless Setting['feature.debates']
-      disabled_commentables << "Budget::Investment" unless Setting['feature.budgets']
+      disabled_commentables << "Debate" unless Setting["process.debates"]
+      disabled_commentables << "Budget::Investment" unless Setting["process.budgets"]
       disabled_commentables << "SpendingProposal" unless Setting['feature.spending_proposals']
       if disabled_commentables.present?
         all_user_comments.where("commentable_type NOT IN (?)", disabled_commentables)
