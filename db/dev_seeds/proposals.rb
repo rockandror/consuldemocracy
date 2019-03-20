@@ -28,10 +28,8 @@ section "Creating Proposals" do
     description = "<p>#{Faker::Lorem.paragraphs.join('</p><p>')}</p>"
     proposal = Proposal.create!(author: author,
                                 title: Faker::Lorem.sentence(3).truncate(60),
-                                question: Faker::Lorem.sentence(3) + "?",
                                 summary: Faker::Lorem.sentence(3),
                                 responsible_name: Faker::Name.name,
-                                external_url: Faker::Internet.url,
                                 description: description,
                                 created_at: rand((Time.current - 1.week)..Time.current),
                                 tag_list: tags.sample(3).join(","),
@@ -49,10 +47,8 @@ section "Creating Archived Proposals" do
     description = "<p>#{Faker::Lorem.paragraphs.join('</p><p>')}</p>"
     proposal = Proposal.create!(author: author,
                                 title: Faker::Lorem.sentence(3).truncate(60),
-                                question: Faker::Lorem.sentence(3) + "?",
                                 summary: Faker::Lorem.sentence(3),
                                 responsible_name: Faker::Name.name,
-                                external_url: Faker::Internet.url,
                                 description: description,
                                 tag_list: tags.sample(3).join(","),
                                 geozone: Geozone.all.sample,
@@ -70,10 +66,8 @@ section "Creating Successful Proposals" do
     description = "<p>#{Faker::Lorem.paragraphs.join('</p><p>')}</p>"
     proposal = Proposal.create!(author: author,
                                 title: Faker::Lorem.sentence(3).truncate(60),
-                                question: Faker::Lorem.sentence(3) + "?",
                                 summary: Faker::Lorem.sentence(3),
                                 responsible_name: Faker::Name.name,
-                                external_url: Faker::Internet.url,
                                 description: description,
                                 created_at: rand((Time.current - 1.week)..Time.current),
                                 tag_list: tags.sample(3).join(","),
@@ -90,10 +84,8 @@ section "Creating Successful Proposals" do
     description = "<p>#{Faker::Lorem.paragraphs.join('</p><p>')}</p>"
     proposal = Proposal.create!(author: author,
                                 title: Faker::Lorem.sentence(4).truncate(60),
-                                question: Faker::Lorem.sentence(6) + "?",
                                 summary: Faker::Lorem.sentence(3),
                                 responsible_name: Faker::Name.name,
-                                external_url: Faker::Internet.url,
                                 description: description,
                                 created_at: rand((Time.current - 1.week)..Time.current),
                                 tag_list: tags.sample(3).join(","),
@@ -139,10 +131,8 @@ section "Creating Proposals for Human Right Proceeding" do
     description = "<p>#{Faker::Lorem.paragraphs.join('</p><p>')}</p>"
     Proposal.create!(author: author,
                      title: Faker::Lorem.sentence(3).truncate(60),
-                     question: Faker::Lorem.sentence(3) + "?",
                      summary: Faker::Lorem.sentence(3),
                      responsible_name: Faker::Name.name,
-                     external_url: Faker::Internet.url,
                      description: description,
                      created_at: rand((Time.now - 1.week)..Time.now),
                      tag_list: tags.sample(3).join(","),
@@ -159,7 +149,6 @@ section "Open plenary proposal" do
     description = "<p>#{Faker::Lorem.paragraphs.join('</p><p>')}</p>"
     Proposal.create!(author: User.reorder("RANDOM()").first,
                      title: Faker::Lorem.sentence(3).truncate(60),
-                     question: Faker::Lorem.sentence(3),
                      summary: Faker::Lorem.sentence(3),
                      responsible_name: Faker::Name.name,
                      description: description,

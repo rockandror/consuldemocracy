@@ -308,7 +308,6 @@ es:
       other: Otra
     form:
       geozone: Ámbito de actuación
-      proposal_external_url: Enlace a documentación adicional
       proposal_responsible_name: Nombre y apellidos de la persona que hace esta propuesta
       proposal_responsible_name_note: "(individualmente o como representante de un colectivo; no se mostrará públicamente)"
       proposal_summary: Resumen de la propuesta
@@ -432,7 +431,6 @@ es:
       send_notification: Enviar notificación
       no_notifications: "Esta propuesta no tiene notificaciones."
       embed_video_title: "Vídeo en %{proposal}"
-      title_external_url: "Documentación adicional"
       title_video_url: "Vídeo externo"
       author: Autor
     update:

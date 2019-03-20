@@ -24,7 +24,6 @@ feature "CSV Exporter" do
         "id",
         "title",
         "description",
-        "external_url",
         "cached_votes_up",
         "comments_count",
         "hot_score",

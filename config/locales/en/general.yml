@@ -310,7 +310,6 @@ en:
       other: Other
     form:
       geozone: Scope of operation
-      proposal_external_url: Link to additional documentation
       proposal_responsible_name: Full name of the person submitting the proposal
       proposal_responsible_name_note: "(individually or as representative of a collective; will not be displayed publically)"
       proposal_summary: Proposal summary
@@ -434,7 +433,6 @@ en:
       send_notification: Send notification
       no_notifications: "This proposal has no notifications."
       embed_video_title: "Video on %{proposal}"
-      title_external_url: "Additional documentation"
       title_video_url: "External video"
       author: Author
     update:

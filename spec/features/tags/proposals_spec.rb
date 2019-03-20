@@ -98,7 +98,6 @@ feature "Tags" do
     fill_in "proposal_title", with: "Help refugees"
     fill_in "proposal_summary", with: "In summary, what we want is..."
     fill_in_ckeditor "proposal_description", with: "A description with enough characters"
-    fill_in "proposal_external_url", with: "http://rescue.org/refugees"
     fill_in "proposal_video_url", with: "https://www.youtube.com/watch?v=Ae6gQmhaMn4"
     fill_in "proposal_responsible_name", with: "Isabel Garcia"
     check "proposal_terms_of_service"
@@ -142,7 +141,6 @@ feature "Tags" do
     fill_in "proposal_title", with: "A test of dangerous strings"
     fill_in "proposal_summary", with: "In summary, what we want is..."
     fill_in "proposal_description", with: "A description suitable for this test"
-    fill_in "proposal_external_url", with: "http://rescue.org/refugees"
     fill_in "proposal_responsible_name", with: "Isabel Garcia"
     check "proposal_terms_of_service"
 
