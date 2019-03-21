@@ -70,6 +70,8 @@ es:
       reason_for_supports_necessary: 1% del Censo
       successful: "Esta propuesta ha alcanzado los apoyos necesarios y pasará a la %{voting}."
       voting: "próxima votación"
+      improve_info: "Mejora tu campaña y consigue más apoyos"
+      improve_info_link: "Ver más información"
   polls:
     index:
       title: Consultas ciudadanas del Ayuntamiento Madrid

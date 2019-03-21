@@ -80,7 +80,6 @@ section "Creating Settings" do
   Setting.create(key: "direct_message_max_per_day", value: 3)
   Setting.create(key: "related_content_score_threshold", value: -0.3)
   Setting.create(key: "hot_score_period_in_days", value: 31)
-  Setting.create(key: "analytics_url", value: "")
 
   # piwik_tracking_code_head = "<!-- Piwik -->
   # <script type='text/javascript'>

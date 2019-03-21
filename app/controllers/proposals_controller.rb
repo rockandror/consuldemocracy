@@ -79,9 +79,6 @@ class ProposalsController < ApplicationController
   end
 
   def share
-    if Setting['proposal_improvement_path'].present?
-      @proposal_improvement_path = Setting['proposal_improvement_path']
-    end
   end
 
   def vote_featured

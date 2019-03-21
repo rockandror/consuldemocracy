@@ -66,6 +66,8 @@ en:
       reason_for_supports_necessary: 1% of Census
       successful: "This proposal has reached the required supports and will be voted in the %{voting}."
       voting: "next voting"
+      improve_info: "Improve your campaign and get more supports"
+      improve_info_link: "See more information"
   polls:
     index:
       title: Madrid City Council Citizen Consultations

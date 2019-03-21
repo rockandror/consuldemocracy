@@ -46,7 +46,10 @@ namespace :settings do
       "banner-style.banner-style-three",
       "banner-img.banner-img-one",
       "banner-img.banner-img-two",
-      "banner-img.banner-img-three"
+      "banner-img.banner-img-three",
+      "min_age_to_verify",
+      "proposal_improvement_path",
+      "analytics_url"
     ]
 
     deprecated_keys.each do |key|
