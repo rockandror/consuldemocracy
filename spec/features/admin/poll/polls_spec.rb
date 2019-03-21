@@ -16,9 +16,6 @@ feature "Admin polls" do
     visit admin_root_path
 
     click_link "Polls"
-    within("#polls_menu") do
-      click_link "Polls"
-    end
 
     expect(page).to have_content "There are no polls"
   end
@@ -31,9 +28,6 @@ feature "Admin polls" do
     visit admin_root_path
 
     click_link "Polls"
-    within("#polls_menu") do
-      click_link "Polls"
-    end
 
     expect(page).to have_content "List of polls"
     expect(page).to have_css ".poll", count: 3

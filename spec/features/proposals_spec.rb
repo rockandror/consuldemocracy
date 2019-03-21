@@ -595,6 +595,7 @@ feature "Proposals" do
     end
 
     scenario "Index do not list retired proposals by default" do
+      Setting["feature.featured_proposals"] = true
       create_featured_proposals
       not_retired = create(:proposal)
       retired = create(:proposal, retired_at: Time.current)
@@ -953,8 +954,10 @@ feature "Proposals" do
     end
 
     scenario "do not show in featured proposals section" do
+      Setting["feature.featured_proposals"] = true
       featured_proposal = create(:proposal, :with_confidence_score, cached_votes_up: 100)
-      archived_proposal = create(:proposal, :archived, :with_confidence_score, cached_votes_up: 10000)
+      archived_proposal = create(:proposal, :archived, :with_confidence_score,
+                                                        cached_votes_up: 10000)
 
       visit proposals_path
 
