@@ -4,6 +4,7 @@ module Sanitizable
   included do
     before_validation :sanitize_description
     before_validation :sanitize_tag_list
+  end
 
   protected
 
