@@ -523,6 +523,9 @@ describe Budget::Investment do
     end
 
     describe "sort_by_title" do
+
+      before { Globalize.set_fallbacks_to_all_available_locales }
+
       it "sorts using the title in the current locale" do
         create(:budget_investment, title_en: "CCCC", title_es: "BBBB", description_en: "CCCC", description_es: "BBBB")
         create(:budget_investment, title_en: "DDDD", title_es: "AAAA", description_en: "DDDD", description_es: "AAAA")
@@ -548,7 +551,10 @@ describe Budget::Investment do
     end
 
     describe "search_by_title_or_id" do
-      before { create(:budget_investment) }
+      before do
+        Globalize.set_fallbacks_to_all_available_locales
+        create(:budget_investment)
+      end
 
       let!(:investment) do
         I18n.with_locale(:es) do
@@ -1189,6 +1195,5 @@ describe Budget::Investment do
       end
 
     end
-
   end
 end
