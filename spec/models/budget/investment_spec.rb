@@ -541,11 +541,7 @@ describe Budget::Investment do
             create(:budget_investment, title: "AAAA")
           end
         end
-        expect(Globalize.locale).to eq :en
-        expect(I18n.locale).to eq :en
-        expect(english_investment.title).to eq "BBBB"
-        expect(spanish_investment.title).to eq "AAAA"
-        expect(described_class.count).to eq 2
+
         expect(described_class.sort_by_title.map(&:title)).to eq %w[AAAA BBBB]
       end
     end
@@ -574,8 +570,6 @@ describe Budget::Investment do
       end
 
       it "return investments by given title" do
-        expect(Globalize.locale).to eq :en
-        expect(I18n.locale).to eq :en
         expect(described_class.search_by_title_or_id("Título del proyecto de inversión", all_investments)).
           to eq([investment])
       end
