@@ -85,4 +85,19 @@ section "Creating Settings" do
   Setting.create(key: "proposals.email_description", value: nil)
 
   Setting.create(key: "dashboard.emails", value: nil)
+
+  Setting.create(key: "remote_census.general.endpoint", value: "")
+  Setting.create(key: "remote_census.request.method_name", value: "")
+  Setting.create(key: "remote_census.request.structure", value: "")
+  Setting.create(key: "remote_census.request.alias_document_type", value: "")
+  Setting.create(key: "remote_census.request.alias_document_number", value: "")
+  Setting.create(key: "remote_census.request.alias_date_of_birth", value: "")
+  Setting.create(key: "remote_census.request.alias_postal_code", value: "")
+  Setting.create(key: "remote_census.response.date_of_birth", value: "")
+  Setting.create(key: "remote_census.response.postal_code", value: "")
+  Setting.create(key: "remote_census.response.district", value: "")
+  Setting.create(key: "remote_census.response.gender", value: "")
+  Setting.create(key: "remote_census.response.name", value: "")
+  Setting.create(key: "remote_census.response.surname", value: "")
+  Setting.create(key: "remote_census.response.valid", value: "")
 end
