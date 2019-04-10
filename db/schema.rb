@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190205131722) do
+ActiveRecord::Schema.define(version: 20190410171307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1105,6 +1105,7 @@ ActiveRecord::Schema.define(version: 20190205131722) do
     t.string   "origin"
     t.integer  "officer_id"
     t.string   "token"
+    t.date     "date_of_birth"
   end
 
   add_index "poll_voters", ["booth_assignment_id"], name: "index_poll_voters_on_booth_assignment_id", using: :btree
@@ -1261,6 +1262,7 @@ ActiveRecord::Schema.define(version: 20190205131722) do
     t.boolean  "verified",           default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "date_of_birth"
   end
 
   create_table "site_customization_content_blocks", force: :cascade do |t|

@@ -4,6 +4,7 @@ class Verification::Management::Document
 
   attr_accessor :document_type
   attr_accessor :document_number
+  attr_accessor :date_of_birth
 
   validates :document_type, :document_number, presence: true
 
@@ -18,7 +19,7 @@ class Verification::Management::Document
   end
 
   def in_census?
-    response = CensusCaller.new.call(document_type, document_number)
+    response = CensusCaller.new.call(document_type, document_number, date_of_birth)
     response.valid? && valid_age?(response)
   end
 

@@ -183,12 +183,13 @@ describe Poll::Voter do
     end
 
     it "sets user info" do
-      user = create(:user, document_number: "1234A", document_type: "1")
+      user = create(:user, document_number: "1234A", document_type: "1", date_of_birth: Date.parse("01/07/1983"))
       voter = build(:poll_voter, user: user, token: "1234abcd")
       voter.save
 
       expect(voter.document_number).to eq("1234A")
       expect(voter.document_type).to eq("1")
+      expect(voter.date_of_birth.strftime("%d/%m/%Y")).to eq("01/07/1983")
       expect(voter.token).to eq("1234abcd")
     end
   end
