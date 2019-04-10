@@ -126,22 +126,22 @@ Setting["hot_score_period_in_days"] = 31
 
 # Remote Census configuration
 # General
-Setting["remote_census.general.endpoint"] = nil
+Setting["remote_census.general.endpoint"] = "census_api_endpoint"
 # Request
-Setting["remote_census.request.method_name"] = nil
-Setting["remote_census.request.structure"] = nil
-Setting["remote_census.request.alias_document_type"] = nil
-Setting["remote_census.request.alias_document_number"] = nil
+Setting["remote_census.request.method_name"] = "get_habita_datos"
+Setting["remote_census.request.structure"] = "{ request: { tipo_documento: , documento: , codigo_institucion: 12 } }"
+Setting["remote_census.request.alias_document_type"] = "tipo_documento"
+Setting["remote_census.request.alias_document_number"] = "documento"
 Setting["remote_census.request.alias_date_of_birth"] = nil
 Setting["remote_census.request.alias_postal_code"] = nil
 # Response
-Setting["remote_census.response.date_of_birth"] = nil
-Setting["remote_census.response.postal_code"] = nil
-Setting["remote_census.response.district"] = nil
-Setting["remote_census.response.gender"] = nil
-Setting["remote_census.response.name"] = nil
-Setting["remote_census.response.surname"] = nil
-Setting["remote_census.response.valid"] = nil
+Setting["remote_census.response.date_of_birth"] = "[:datos_habitante][:item][:fecha_nacimiento_string]"
+Setting["remote_census.response.postal_code"] = "[:datos_vivienda][:item][:codigo_postal]"
+Setting["remote_census.response.district"] = "[:datos_vivienda][:item][:codigo_distrito]"
+Setting["remote_census.response.gender"] = "[:datos_habitante][:item][:descripcion_sexo]"
+Setting["remote_census.response.name"] = "[:datos_habitante][:item][:nombre]"
+Setting["remote_census.response.surname"] = "[:datos_habitante][:item][:apellido1]"
+Setting["remote_census.response.valid"] = "[:datos_habitante][:item]"
 
 
 WebSection.create(name: "homepage")
