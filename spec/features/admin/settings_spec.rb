@@ -98,6 +98,69 @@ feature "Admin settings" do
 
   end
 
+  describe "Update Remote Census Configuration" do
+
+    scenario "Should not be able when remote census feature deactivated" do
+      Setting["feature.remote_census"] = false
+      admin = create(:administrator).user
+      login_as(admin)
+      visit admin_settings_path
+      find("#remote-census-tab").click
+
+      expect(page).to have_content 'To configure remote census (SOAP) you must enable ' \
+                                   '"Configure connection to remote census (SOAP)" ' \
+                                   'on "Features" tab.'
+    end
+
+    scenario "Should be able when map feature activated" do
+      Setting["feature.remote_census"] = true
+      admin = create(:administrator).user
+      login_as(admin)
+      visit admin_settings_path
+      find("#remote-census-tab").click
+
+      expect(page).to have_content("General Information")
+      expect(page).to have_content("Request Data")
+      expect(page).to have_content("Response Data")
+      expect(page).not_to have_content 'To configure remote census (SOAP) you must enable ' \
+                                       '"Configure connection to remote census (SOAP)" ' \
+                                       'on "Features" tab.'
+    end
+
+    scenario "Should redirect to #tab-remote-census-connection after update any remote census setting", :js do
+      setting_remote_census = create(:setting, key: "remote_census_general.any_remote_census_general_setting")
+      Setting["feature.remote_census"] = true
+      admin = create(:administrator).user
+      login_as(admin)
+      visit admin_settings_path
+      find("#remote-census-tab").click
+
+      within("#edit_setting_#{setting_remote_census.id}") do
+        fill_in "setting_#{setting_remote_census.id}", with: "New value"
+        click_button "Update"
+      end
+
+      expect(page).to have_current_path(admin_settings_path)
+      expect(page).to have_css("div#tab-remote-census-connection.is-active")
+    end
+
+    scenario "Should not redirect to #tab-remote-census-connection after do not update any remote census setting", :js do
+      admin = create(:administrator).user
+      login_as(admin)
+      visit admin_settings_path
+
+      within("#edit_setting_#{@setting1.id}") do
+        fill_in "setting_#{@setting1.id}", with: "New value"
+        click_button "Update"
+      end
+
+      expect(page).to have_current_path(admin_settings_path)
+      expect(page).to have_css("div#tab-configuration.is-active")
+      expect(page).not_to have_css("div#tab-remote-census-connection.is-active")
+    end
+
+  end
+
   describe "Skip verification" do
 
     scenario "deactivate skip verification", :js do
