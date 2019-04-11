@@ -12,6 +12,13 @@ class Migrations::SpendingProposal::BudgetInvestments
     end
   end
 
+  def destroy_associated
+    if spending_proposals.any?
+      Vote.where(votable: spending_proposals).destroy_all
+      Tagging.where(taggable: spending_proposals).destroy_all
+    end
+  end
+
   private
 
     def load_spending_proposals

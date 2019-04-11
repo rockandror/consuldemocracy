@@ -99,4 +99,11 @@ namespace :spending_proposals do
     puts "Finished"
   end
 
+  desc "Destoy all associated spending proposal records"
+  task :destroy_associated do
+    puts "Starting to destroy associated records"
+    Migrations::SpendingProposal::Investments.new.destroy_associated
+    puts "Finished"
+  end
+
 end
