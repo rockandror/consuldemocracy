@@ -45,7 +45,7 @@ class Poll::Question::Answer < ActiveRecord::Base
               web_voters = Poll::Voter.where(poll: question.poll, origin: 'web').count
               first_answer = Poll::Answer.where(answer: question.question_answers.where(given_order: 1).first.title, question: question).count
               second_answer = Poll::Answer.where(answer: question.question_answers.where(given_order: 2).first.title, question: question).count
-              web_voters - first_answer - second_answer - Poll::Stats.new(question.poll).generate[:total_web_white]
+              web_voters - first_answer - second_answer - Poll::Stats.new(question.poll).total_web_white
             else
               Poll::Answer.where(question_id: question, answer: title).count
             end
