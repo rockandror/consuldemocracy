@@ -129,20 +129,19 @@ Setting["hot_score_period_in_days"] = 31
 Setting["remote_census.general.endpoint"] = "census_api_endpoint"
 # Request
 Setting["remote_census.request.method_name"] = "get_habita_datos"
-Setting["remote_census.request.structure"] = "{ request: { tipo_documento: , documento: , codigo_institucion: 12 } }"
-Setting["remote_census.request.alias_document_type"] = "tipo_documento"
-Setting["remote_census.request.alias_document_number"] = "documento"
+Setting["remote_census.request.structure"] = "{ request: { codigo_institucion: 1, codigo_portal: 1, codigo_usuario: 1, documento: 'xxx', tipo_documento: 'xxx', codigo_idioma: '102', nivel: '3' } }"
+Setting["remote_census.request.alias_document_type"] = "request.tipo_documento"
+Setting["remote_census.request.alias_document_number"] = "request.documento"
 Setting["remote_census.request.alias_date_of_birth"] = nil
 Setting["remote_census.request.alias_postal_code"] = nil
 # Response
-Setting["remote_census.response.date_of_birth"] = "[:datos_habitante][:item][:fecha_nacimiento_string]"
-Setting["remote_census.response.postal_code"] = "[:datos_vivienda][:item][:codigo_postal]"
-Setting["remote_census.response.district"] = "[:datos_vivienda][:item][:codigo_distrito]"
-Setting["remote_census.response.gender"] = "[:datos_habitante][:item][:descripcion_sexo]"
-Setting["remote_census.response.name"] = "[:datos_habitante][:item][:nombre]"
-Setting["remote_census.response.surname"] = "[:datos_habitante][:item][:apellido1]"
-Setting["remote_census.response.valid"] = "[:datos_habitante][:item]"
-
+Setting["remote_census.response.date_of_birth"] = "get_habita_datos_response.get_habita_datos_return.datos_habitante.item.fecha_nacimiento_string"
+Setting["remote_census.response.postal_code"] = "get_habita_datos_response.get_habita_datos_return.datos_vivienda.item.codigo_postal"
+Setting["remote_census.response.district"] = "get_habita_datos_response.get_habita_datos_return.datos_vivienda.item.codigo_distrito"
+Setting["remote_census.response.gender"] = "get_habita_datos_response.get_habita_datos_return.datos_habitante.item.descripcion_sexo"
+Setting["remote_census.response.name"] = "get_habita_datos_response.get_habita_datos_return.datos_habitante.item.nombre"
+Setting["remote_census.response.surname"] = "get_habita_datos_response.get_habita_datos_return.datos_habitante.item.apellido1"
+Setting["remote_census.response.valid"] = "get_habita_datos_response.get_habita_datos_return.datos_habitante.item"
 
 WebSection.create(name: "homepage")
 WebSection.create(name: "debates")
