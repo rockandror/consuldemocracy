@@ -1,10 +1,10 @@
 include DocumentParser
 class RemoteCensusApi
 
-  def call(document_type, document_number, date_of_birth, postal_code)
+  def call(document_type, document_number)
     response = nil
     get_document_number_variants(document_type, document_number).each do |variant|
-      response = Response.new(get_response_body(document_type, variant, date_of_birth, postal_code))
+      response = Response.new(get_response_body(document_type, variant))
       return response if response.valid?
     end
     response
@@ -70,10 +70,9 @@ class RemoteCensusApi
 
   private
 
-    def get_response_body(document_type, document_number, date_of_birth, postal_code)
+    def get_response_body(document_type, document_number)
       if end_point_available?
-        request = request(document_type, document_number, date_of_birth, postal_code)
-        client.call(Setting["remote_census.request.method_name"].to_sym, message: request).body
+        client.call(Setting["remote_census.request.method_name"].to_sym, message: request(document_type, document_number)).body
       else
         stubbed_response(document_type, document_number)
       end
@@ -83,17 +82,11 @@ class RemoteCensusApi
       @client = Savon.client(wsdl: Setting["remote_census.general.endpoint"])
     end
 
-    def request(document_type, document_number, date_of_birth, postal_code)
+    def request(document_type, document_number)
       structure = eval(Setting["remote_census.request.structure"])
 
       fill_in(structure, Setting["remote_census.request.document_type"], document_type)
       fill_in(structure, Setting["remote_census.request.document_number"], document_number)
-      fill_in(structure, Setting["remote_census.request.postal_code"], postal_code)
-      if date_of_birth.present?
-        fill_in(structure,
-                Setting["remote_census.request.date_of_birth"],
-                I18n.l(date_of_birth, format: :default))
-      end
 
       structure
     end
