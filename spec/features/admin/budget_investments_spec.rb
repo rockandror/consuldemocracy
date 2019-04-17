@@ -1357,6 +1357,7 @@ feature "Admin budget investments" do
         click_link("Selected")
       end
 
+      click_button("Filter")
       expect(page).not_to have_content(selected_bi.title)
       expect(page).to have_content("There is 1 investment")
 
@@ -1365,6 +1366,24 @@ feature "Admin budget investments" do
       within("#budget_investment_#{selected_bi.id}") do
         expect(page).to have_link("Select")
         expect(page).not_to have_link("Selected")
+      end
+    end
+
+    feature "Pagination" do
+      background { selected_bi.update(cached_votes_up: 50) }
+
+      scenario "After unselecting an investment", :js do
+        create_list(:budget_investment, 30, budget: budget)
+
+        visit admin_budget_budget_investments_path(budget)
+
+        within("#budget_investment_#{selected_bi.id}") do
+          click_link("Selected")
+        end
+
+        click_link("Next")
+
+        expect(page).to have_link("Previous")
       end
     end
   end
@@ -1562,8 +1581,7 @@ feature "Admin budget investments" do
       visit admin_budget_budget_investments_path(budget)
 
       within("#budget_investment_#{associated_budget_investment.id}") do
-        expect(page).to have_link("Budget Investment child",
-                                  href: spending_proposal_migrated_to_budget_investment_path)
+        expect(page).to have_link("Budget Investment child")
       end
     end
 

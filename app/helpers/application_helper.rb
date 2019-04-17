@@ -67,4 +67,9 @@ module ApplicationHelper
     custom_partial_path = "custom/#{@virtual_path.remove(controller_action)}#{partial_name}"
     render custom_partial_path if lookup_context.exists?(custom_partial_path, [], true)
   end
+
+  def management_controller?
+    controller.class.to_s.include?("Management")
+  end
+
 end
