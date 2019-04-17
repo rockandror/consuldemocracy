@@ -251,7 +251,7 @@ get 'proceso/pleno-abierto',                          to: 'pages#show', id: 'pro
 get 'proceso/once-plazas',                            to: 'pages#show', id: 'processes/once_plazas/index',      as: 'once_plazas'
 get 'plenoabierto',                                   to: 'legislation/processes#proposals', id: '24',          as: 'open_plenary_2017'
 get 'plazas-abiertas',                                to: 'pages#show', id: 'landings/plazas_abiertas',         as: 'plazas_abiertas'
-get 'filmotecas',                                     to: 'pages#show', id: 'processes/filmotecas/index',       as: 'filmotecas'
+get 'filmotecas',                                     to: 'legislation/processes#show', id: '102',              as: 'filmotecas'
 
 # Probes
 get 'processes/urbanismo-bancos',         to: 'probes#show',    id: 'town_planning',   as: 'town_planning'
