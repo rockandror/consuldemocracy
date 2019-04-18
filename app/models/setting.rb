@@ -16,6 +16,14 @@ class Setting < ActiveRecord::Base
     value.present?
   end
 
+  # def self.calculate_presence_date_of_birth?
+  #   Setting["feature.remote_census"].present? && Setting["remote_census_request.alias_date_of_birth"].present?
+  # end
+  #
+  # def self.calculate_presence_postal_code?
+  #   Setting["feature.remote_census"].present? && Setting["remote_census_request.alias_postal_code"].present?
+  # end
+
   class << self
     def [](key)
       where(key: key).pluck(:value).first.presence
