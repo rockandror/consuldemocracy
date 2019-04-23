@@ -100,9 +100,11 @@ namespace :spending_proposals do
   end
 
   desc "Destoy all associated spending proposal records"
-  task :destroy_associated do
+  task destroy_associated: :environment do
+    require "migrations/spending_proposal/budget_investments"
+
     puts "Starting to destroy associated records"
-    Migrations::SpendingProposal::Investments.new.destroy_associated
+    Migrations::SpendingProposal::BudgetInvestments.new.destroy_associated
     puts "Finished"
   end
 
