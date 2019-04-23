@@ -17,9 +17,9 @@ end
 
 ### Budgets
 get 'presupuestos',                         to: 'budgets#index', id: 'help/budgets/welcome',    as: 'budgets_welcome'
-get "presupuestos/:budget_id/estadisticas", to: "budgets/stats#show", as: 'custom_budget_stats'
-get "presupuestos/:budget_id/resultados",   to: "budgets/results#show", as: 'custom_budget_results'
-get 'presupuestos/:budget_id/ejecuciones',  to: 'budgets/executions#show', as: 'custom_budget_executions'
+get "presupuestos/:budget_id/estadisticas", to: "budgets/stats#show", as: "budget_stats"
+get "presupuestos/:budget_id/resultados",   to: "budgets/results#show", as: "budget_results"
+get "presupuestos/:budget_id/ejecuciones",  to: 'budgets/executions#show', as: "budget_executions"
 get "presupuestos/:budget_id/resultados/:heading_id", to: "budgets/results#show", as: 'custom_budget_heading_result'
 
 resources :budgets, only: [:show, :index], path: 'presupuestos' do

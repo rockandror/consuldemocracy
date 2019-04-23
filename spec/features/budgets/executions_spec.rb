@@ -14,10 +14,10 @@ feature "Executions" do
   scenario "finds budget by id or slug" do
     budget.update(slug: "budget_slug")
 
-    visit custom_budget_executions_path("budget_slug")
+    visit budget_executions_path("budget_slug")
     within(".budgets-stats") { expect(page).to have_content budget.name }
 
-    visit custom_budget_executions_path(budget)
+    visit budget_executions_path(budget)
     within(".budgets-stats") { expect(page).to have_content budget.name }
 
     visit budget_executions_path("budget_slug")
@@ -252,7 +252,7 @@ feature "Executions" do
       city_heading   = create_heading_with_investment_with_milestone(:city_heading, group: group)
       other_heading2 = create_heading_with_investment_with_milestone(group: group)
 
-      visit custom_budget_executions_path(budget)
+      visit budget_executions_path(budget)
 
       expect(page).to have_css(".budget-execution", count: 3)
       expect(city_heading.name).to appear_before(other_heading1.name)
@@ -265,7 +265,7 @@ feature "Executions" do
       a_heading = create_heading_with_investment_with_milestone(group: group, name: "Aaa")
       m_heading = create_heading_with_investment_with_milestone(group: group, name: "Mmm")
 
-      visit custom_budget_executions_path(budget)
+      visit budget_executions_path(budget)
 
       expect(page).to have_css(".budget-execution", count: 3)
       expect(a_heading.name).to appear_before(m_heading.name)
@@ -280,7 +280,7 @@ feature "Executions" do
       unpublished_milestone = create(:milestone, milestoneable: investment1,
                                      status: status, publication_date: Date.tomorrow)
 
-      visit custom_budget_executions_path(budget, status: status.id)
+      visit budget_executions_path(budget, status: status.id)
 
       expect(page).to have_content("No winner investments in this state")
     end

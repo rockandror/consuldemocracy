@@ -29,13 +29,13 @@
   <div class="small-12 column">
     <ul class="tabs">
       <li class="tabs-title">
-        <%= link_to t("budgets.results.link"), custom_budget_results_path(@budget) %>
+        <%= link_to t("budgets.results.link"), budget_results_path(@budget) %>
       </li>
       <li class="tabs-title">
-        <%= link_to t("stats.budgets.link"), custom_budget_stats_path(@budget) %>
+        <%= link_to t("stats.budgets.link"), budget_stats_path(@budget) %>
       </li>
       <li class="tabs-title is-active">
-        <%= link_to t("budgets.executions.link"), custom_budget_executions_path(@budget), class: 'is-active' %>
+        <%= link_to t("budgets.executions.link"), budget_executions_path(@budget), class: 'is-active' %>
       </li>
     </ul>
   </div>
@@ -56,7 +56,7 @@
   </div>
 
   <div class="small-12 medium-9 large-10 column">
-    <%= form_tag(custom_budget_executions_path(@budget), method: :get) do %>
+    <%= form_tag(budget_executions_path(@budget), method: :get) do %>
       <div class="small-12 medium-3 column">
         <%= label_tag :status, t("budgets.executions.filters.label") %>
         <%= select_tag :status,

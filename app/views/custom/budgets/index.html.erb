@@ -64,7 +64,7 @@
 
         <% if current_budget.finished? %>
           <%= link_to t("budgets.show.see_results"),
-                      custom_budget_results_path(current_budget),
+                      budget_results_path(current_budget),
                       class: "button margin-top expanded" %>
         <% end %>
       </div>
@@ -155,12 +155,12 @@
                     <div class="small-12 medium-6 column table" data-equalizer-watch>
                       <div id="budget_<%= budget.id %>_results" class="table-cell align-middle">
                         <%= link_to t("budgets.index.see_results"),
-                                    custom_budget_results_path(budget),
+                                    budget_results_path(budget),
                                     class: "button" %>
                         
                         <% unless budget.name == "Presupuestos Participativos 2018" %>
                           <%= link_to t("budgets.index.milestones"),
-                                      custom_budget_executions_path(budget, status: 1),
+                                      budget_executions_path(budget, status: 1),
                                       class: "button" %>
                         <% end %>
                       </div>

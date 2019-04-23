@@ -53,13 +53,13 @@ feature "Results" do
   end
 
   scenario "Does not raise error if budget (slug or id) is not found" do
-    visit custom_budget_results_path("wrong budget")
+    visit budget_results_path("wrong budget")
 
     within(".budgets-stats") do
       expect(page).to have_content "Results"
     end
 
-    visit custom_budget_results_path(0)
+    visit budget_results_path(0)
 
     within(".budgets-stats") do
       expect(page).to have_content "Results"
@@ -67,7 +67,7 @@ feature "Results" do
   end
 
   scenario "Loads budget and heading by slug" do
-    visit custom_budget_results_path(budget.slug, heading.slug)
+    visit budget_results_path(budget.slug, heading.slug)
 
     expect(page).to have_selector("a.is-active", text: heading.name)
 
@@ -85,7 +85,7 @@ feature "Results" do
 
     allow_any_instance_of(Budget).to receive(:city_heading).and_return(city_heading)
 
-    visit custom_budget_results_path(budget)
+    visit budget_results_path(budget)
 
     within("#budget-investments-compatible") do
       expect(page).to have_content city_investment.title
@@ -99,7 +99,7 @@ feature "Results" do
 
     allow_any_instance_of(Budget).to receive(:city_heading).and_return(nil)
 
-    visit custom_budget_results_path(budget)
+    visit budget_results_path(budget)
 
     within("#budget-investments-compatible") do
       expect(page).to have_content investment1.title
