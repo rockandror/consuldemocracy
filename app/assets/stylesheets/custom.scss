@@ -5,10 +5,8 @@
 // 02. Header
 // 03. Alerts
 // 04. Surveys
-// 05. Spending proposals
 // 06. Featured
 // 07. Processes
-// 08. Spending proposals votes
 // 09. Collaborative legislation
 // 10. Jumbo brand
 // 11. Budgets custom
@@ -1153,263 +1151,6 @@ table {
   }
 }
 
-// 05. Spending proposals
-// - - - - - - - - - - - - - - - - - - - - - - - - -
-
-.spending-proposals {
-  background: $budget image-url("spending_proposals_bg.jpg");
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  h1 {
-    color: #fff;
-    margin: $line-height 0;
-  }
-
-  .button {
-    background: #fff;
-    color: $budget;
-  }
-
-  &.results {
-
-    .back {
-      color: #fff;
-    }
-  }
-}
-
-.investment-project-sidebar-votes {
-
-  .sticky {
-    background: rgba(255, 255, 255, 0.85);
-
-    @include breakpoint(medium down) {
-      margin-top: $line-height;
-      position: initial;
-    }
-  }
-
-  .counters {
-
-    .callout {
-      float: left;
-      margin-right: $line-height / 4;
-      min-height: rem-calc(130);
-      padding: $line-height / 2 0;
-      width: rem-calc(125);
-    }
-
-    .callout.warning.unverified {
-      padding: $line-height / 2;
-      width: 100%;
-    }
-
-    span {
-      text-transform: uppercase;
-    }
-  }
-
-  .votes-number {
-    font-size: rem-calc(80);
-    font-weight: bold;
-    line-height: rem-calc(80);
-    margin-bottom: 0;
-    vertical-align: top;
-  }
-
-  .icon-deleted {
-    font-size: rem-calc(40);
-    line-height: rem-calc(40);
-  }
-}
-
-.investment-projects-scope {
-
-  .callout {
-    background: #fff;
-    border-color: $border;
-    border-radius: 0;
-    color: $text;
-
-    @include breakpoint(medium) {
-      height: $line-height * 17;
-    }
-
-    a {
-      font-size: $base-font-size;
-    }
-  }
-
-  .callout.primary {
-    border-top: 4px solid $info-border;
-
-    @include breakpoint(medium) {
-      background: image-url("investment_project_city.jpg") no-repeat bottom;
-    }
-  }
-
-  .callout.success {
-    border-top: 4px solid $success-border;
-
-    @include breakpoint(medium) {
-      background: image-url("investment_project_districts.jpg") no-repeat bottom;
-    }
-
-    .button {
-      margin-bottom: 0;
-    }
-
-    .accordion {
-      background: #fff;
-      border: 0;
-    }
-
-    .accordion-title {
-      border: 0;
-      color: $text;
-      padding: 0;
-
-      &::before {
-        content: none;
-      }
-
-      &:hover,
-      &:focus,
-      &:hover h2,
-      &:focus h2 {
-        background: none;
-        color: $text;
-        text-decoration: none;
-      }
-    }
-
-    .accordion-content {
-      background: none;
-      border: 0;
-
-      @include breakpoint(medium) {
-        padding-bottom: rem-calc(39);
-      }
-    }
-  }
-}
-
-.no-underline a,
-.no-underline a:hover,
-.no-underline a:hover h2 {
-  color: $text !important;
-  text-decoration: none !important;
-}
-
-.is-forum {
-  background: $budget;
-}
-
-.forum.is-active {
-  color: $check;
-  font-weight: bold;
-
-  a {
-    background: $success-bg;
-    border: 1px solid $success-border;
-    border-radius: 35px;
-    color: $success-color;
-    padding: rem-calc(6) rem-calc(12);
-  }
-
-  &::after {
-    color: $check;
-    content: "\6c";
-    font-family: "icons";
-    margin-left: rem-calc(6);
-  }
-}
-
-.jumbo-investment-project-votes {
-  background: #f6f5f8;
-
-  .content {
-    background: #f6f5f8;
-
-    @include breakpoint(large) {
-      padding-bottom: $line-height;
-      padding-top: $line-height;
-    }
-  }
-
-  h1 {
-    color: #7e328a;
-  }
-
-  .button.budget {
-    background: #7e328a !important;
-
-    &:hover {
-      background: #7571bf;
-    }
-  }
-}
-
-.jumbo-investment-image {
-  height: rem-calc(360);
-  position: absolute;
-}
-
-.investment-projects-scope {
-
-  a {
-    line-height: $line-height * 2;
-  }
-}
-
-.jumbo-delegation {
-  background: #7e328a image-url("investment_project_delegation.jpg");
-  margin-bottom: rem-calc(-96);
-
-  @include breakpoint(medium) {
-    min-height: $line-height * 15;
-  }
-
-  h2,
-  h3,
-  p {
-    color: #fff;
-  }
-
-  h3 a {
-    color: #fff;
-    text-decoration: underline;
-  }
-
-  .button {
-    background: #fff;
-    color: #7e328a;
-  }
-}
-
-.investment-project .supports .total-supports.no-button,
-.investment-project-show .supports .total-supports.no-button {
-  display: block;
-  margin-top: $line-height * 1.5;
-}
-
-table {
-
-  &.age-groups-investment-projects {
-
-    .progress {
-      background: #dad9e3;
-      height: $line-height / 2;
-    }
-
-    .progress-meter {
-      background: $budget;
-    }
-  }
-}
-
 // 06. Featured
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -1434,31 +1175,6 @@ table {
   a:hover h2,
   a:hover h3 {
     color: #eaeaf2 !important;
-    text-decoration: none;
-  }
-}
-
-.featured-spending-proposals {
-  background: $budget;
-  padding: $line-height / 2;
-
-  @include breakpoint(medium) {
-    background: $budget image-url("featured_spending_proposals.png") no-repeat;
-    background-position: bottom right;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-
-  h2,
-  h3,
-  a {
-    color: #fff;
-    margin: 0;
-  }
-
-  a:hover h2,
-  a:hover h3 {
-    color: #fff !important;
     text-decoration: none;
   }
 }
@@ -2101,241 +1817,6 @@ a {
   }
 }
 
-// 08. Spending proposals votes
-// - - - - - - - - - - - - - - - - - - - - - - - - -
-
-.progress-votes {
-  position: relative;
-
-  .progress {
-    background: #212033;
-    clear: both;
-  }
-
-  .progress-meter {
-    background: #fdcb10;
-    border-radius: 0;
-    transition: width 2s;
-  }
-
-  .spent-amount-progress,
-  .spent-amount-meter {
-    background: none !important;
-  }
-
-  .spent-amount-text {
-    color: $budget-2018-pink;
-    font-size: $base-font-size;
-    font-weight: normal;
-    position: absolute;
-    right: 0;
-    text-align: right;
-    top: 16px;
-    width: 100%;
-
-    &::before {
-      color: $budget-2018-pink;
-      content: "\57";
-      font-family: "icons";
-      font-size: $small-font-size;
-      position: absolute;
-      right: -7px;
-      top: -17px;
-    }
-  }
-
-  .total-amount {
-    color: $budget-2018-yellow;
-    font-size: rem-calc(18);
-    font-weight: bold;
-    float: right;
-  }
-
-  .amount-available {
-    color: $budget-2018-yellow;
-    display: block;
-    text-align: right;
-
-    span {
-      font-size: rem-calc(24);
-      font-weight: bold;
-    }
-  }
-}
-
-.big-number {
-  color: #7e328a;
-  font-size: rem-calc(60);
-  line-height: rem-calc(120);
-
-  @include breakpoint(large) {
-    font-size: rem-calc(90);
-    line-height: rem-calc(240);
-  }
-}
-
-.ballot {
-
-  h2,
-  h3 {
-    font-weight: normal;
-
-    span {
-      color: $budget;
-      font-weight: bold;
-    }
-  }
-
-  h3 {
-
-    &.subtitle {
-      border-bottom: 3px solid $budget;
-
-      span {
-        font-size: $base-font-size;
-        font-weight: normal;
-      }
-    }
-  }
-
-  .amount-spent {
-    background: $success-bg;
-    font-weight: normal;
-    padding: $line-height / 2;
-
-    span {
-      font-size: rem-calc(24);
-      font-weight: bold;
-    }
-  }
-}
-
-ul {
-
-  &.ballot-list {
-    list-style: none;
-    margin-left: 0;
-
-    li {
-      background: #f9f9f9;
-      line-height: $line-height;
-      margin-bottom: $line-height / 4;
-      position: relative;
-
-      a {
-        color: $text;
-      }
-
-      span {
-        display: block;
-        font-style: italic;
-      }
-
-      .remove-investment-project {
-        display: block;
-        height: 0;
-      }
-    }
-  }
-}
-
-.ballot-list li {
-
-  .remove-investment-project {
-
-    .icon-x {
-      color: #9f9f9f;
-      font-size: rem-calc(24);
-      line-height: $line-height / 2;
-      position: absolute;
-      right: 6px;
-      text-decoration: none;
-      top: 6px;
-
-      @include breakpoint(medium) {
-        font-size: $base-font-size;
-      }
-    }
-  }
-
-  &:hover {
-    background: $budget;
-    color: #fff;
-
-    a,
-    span {
-      color: #fff;
-      outline: 0;
-      text-decoration: none;
-    }
-
-    .remove-investment-project .icon-x {
-      color: #fff;
-    }
-  }
-}
-
-.select-district .is-active a {
-  background: #f9f9f9;
-  border-radius: rem-calc(3);
-  color: $budget;
-  font-weight: bold;
-  padding: $line-height / 4;
-
-  &::after {
-    content: "\56";
-    font-family: "icons";
-    font-size: $small-font-size;
-    font-weight: normal;
-    line-height: $line-height;
-    padding-left: rem-calc(3);
-    vertical-align: baseline;
-
-    &:hover {
-      text-decoration: none;
-    }
-  }
-}
-
-// Animaton on progress bar
-// - - - - - - - - - - - - - - - - - - - - - - - - -
-
-.progress-bar-nav {
-  position: relative;
-  z-index: 3;
-
-  @include breakpoint(medium) {
-    background-color: #000;
-  }
-
-  @include breakpoint(large) {
-    background-color: #000;
-    height: rem-calc(100);
-    transition: height 0.3s;
-    z-index: 1;
-
-    h1 {
-      transition: font-size 0.3s;
-    }
-
-    &.is-fixed {
-      height: $line-height * 6;
-      left: 0;
-      padding: rem-calc(24);
-      padding-bottom: $line-height * 6;
-      position: fixed;
-      top: 0;
-      width: 100%;
-
-      h1 {
-        font-size: rem-calc(24);
-        line-height: rem-calc(31);
-        transition: font-size 0.3s;
-      }
-    }
-  }
-}
-
 // 09. Collaborative legislation
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -2469,6 +1950,84 @@ ul {
 
 // 11. Budgets custom
 // - - - - - - - - - - - - - - - - - - - - - - - - -
+
+.progress-votes {
+
+  .spent-amount-text {
+    color: $budget-2018-pink;
+
+    &::before {
+      color: $budget-2018-pink;
+      right: -7px;
+    }
+  }
+
+  .total-amount {
+    color: $budget-2018-yellow;
+  }
+
+  .amount-available {
+    color: $budget-2018-yellow;
+  }
+}
+
+.big-number {
+  color: #7e328a;
+}
+
+.ballot {
+
+  h3 {
+
+    &.subtitle {
+      border-bottom: 3px solid $budget;
+
+      span {
+        font-size: $base-font-size;
+        font-weight: normal;
+      }
+    }
+  }
+}
+
+// Animaton on progress bar
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+
+.progress-bar-nav {
+  position: relative;
+  z-index: 3;
+
+  @include breakpoint(medium) {
+    background-color: #000;
+  }
+
+  @include breakpoint(large) {
+    background-color: #000;
+    height: rem-calc(100);
+    transition: height 0.3s;
+    z-index: 1;
+
+    h1 {
+      transition: font-size 0.3s;
+    }
+
+    &.is-fixed {
+      height: $line-height * 6;
+      left: 0;
+      padding: rem-calc(24);
+      padding-bottom: $line-height * 6;
+      position: fixed;
+      top: 0;
+      width: 100%;
+
+      h1 {
+        font-size: rem-calc(24);
+        line-height: rem-calc(31);
+        transition: font-size 0.3s;
+      }
+    }
+  }
+}
 
 .budgets-welcome {
 

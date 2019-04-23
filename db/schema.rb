@@ -1503,13 +1503,6 @@ ActiveRecord::Schema.define(version: 20190408133956) do
     t.index ["username"], name: "index_users_on_username", using: :btree
   end
 
-  create_table "valuation_assignments", force: :cascade do |t|
-    t.integer  "valuator_id"
-    t.integer  "spending_proposal_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-  end
-
   create_table "valuator_groups", force: :cascade do |t|
     t.string  "name"
     t.integer "budget_investments_count", default: 0
