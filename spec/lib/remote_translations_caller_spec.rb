@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe RemoteTranslationsCaller do
   let(:remote_translation_caller) { described_class.new }
@@ -7,14 +7,14 @@ describe RemoteTranslationsCaller do
     RemoteTranslation.skip_callback(:create, :after, :enqueue_remote_translation)
   end
 
-  describe '#call' do
+  describe "#call" do
 
-    context 'Debates' do
+    context "Debates" do
 
       let(:debate)             { create(:debate) }
       let(:remote_translation) { create(:remote_translation, remote_translatable: debate, locale: :es) }
 
-      it 'returns the resource with new translation persisted' do
+      it "returns the resource with new translation persisted" do
         microsoft_translate_client_response = ["Título traducido", "Descripción traducida"]
         expect_any_instance_of(MicrosoftTranslateClient).to receive(:call).and_return(microsoft_translate_client_response)
 
@@ -55,12 +55,12 @@ describe RemoteTranslationsCaller do
       end
     end
 
-    context 'Proposals' do
+    context "Proposals" do
 
       let!(:proposal)          { create(:proposal) }
       let(:remote_translation) { create(:remote_translation, remote_translatable: proposal, locale: :es) }
 
-      it 'returns the resource with new translation persisted' do
+      it "returns the resource with new translation persisted" do
         microsoft_translate_client_response = ["Título traducido", "Descripción traducida", "Pregunta traducida", "Resumen traducido", nil]
         expect_any_instance_of(MicrosoftTranslateClient).to receive(:call).and_return(microsoft_translate_client_response)
 
@@ -101,12 +101,12 @@ describe RemoteTranslationsCaller do
       end
     end
 
-    context 'Budget Investments' do
+    context "Budget Investments" do
 
       let(:budget_investment)  { create(:budget_investment) }
       let(:remote_translation) { create(:remote_translation, remote_translatable: budget_investment, locale: :es) }
 
-      it 'returns the resource with new translation persisted' do
+      it "returns the resource with new translation persisted" do
         microsoft_translate_client_response = ["Título traducido", "Descripción traducida"]
         expect_any_instance_of(MicrosoftTranslateClient).to receive(:call).and_return(microsoft_translate_client_response)
 
@@ -147,12 +147,12 @@ describe RemoteTranslationsCaller do
       end
     end
 
-    context 'Comments' do
+    context "Comments" do
 
       let(:comment)            { create(:comment) }
       let(:remote_translation) { create(:remote_translation, remote_translatable: comment, locale: :es) }
 
-      it 'returns the resource with new translation persisted' do
+      it "returns the resource with new translation persisted" do
         microsoft_translate_client_response = ["Body traducido"]
         expect_any_instance_of(MicrosoftTranslateClient).to receive(:call).and_return(microsoft_translate_client_response)
 

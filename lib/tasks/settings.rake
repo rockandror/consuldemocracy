@@ -77,7 +77,7 @@ namespace :settings do
 
   desc "Enable remote translations"
   task enable_remote_translations: :environment do
-    Setting['feature.remote_translations'] = true
+    Setting["feature.remote_translations"] = true
   end
 
 end

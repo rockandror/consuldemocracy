@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe RemotelyTranslatable do
 
@@ -29,7 +29,7 @@ describe RemotelyTranslatable do
     Setting["feature.remote_translations"] = true
   end
 
-  describe 'index' do
+  describe "index" do
 
     it "Should detect remote_translations when not defined in request locale" do
       create(:proposal)
@@ -48,7 +48,7 @@ describe RemotelyTranslatable do
     end
   end
 
-  describe 'show' do
+  describe "show" do
 
     it "Should detect remote_translations when not defined in request locale" do
       proposal = create(:proposal)
