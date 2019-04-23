@@ -205,7 +205,7 @@ feature "CSV Exporter" do
     scenario "Only include comments from proposals and debates" do
       proposal_comment          = create(:comment, commentable: create(:proposal))
       debate_comment            = create(:comment, commentable: create(:debate))
-      spending_proposal_comment = create(:comment, commentable: create(:spending_proposal))
+      budget_investment_comment = create(:comment, commentable: create(:budget_investment))
 
       @csv_exporter.export
       visit csv_path_for("comments")
@@ -213,7 +213,7 @@ feature "CSV Exporter" do
 
       expect(csv).to include(proposal_comment.body)
       expect(csv).to include(debate_comment.body)
-      expect(csv).not_to include(spending_proposal_comment.body)
+      expect(csv).not_to include(budget_investment_comment.body)
     end
 
     scenario "Displays comments of authors even if public activity is set to false" do
@@ -501,7 +501,7 @@ feature "CSV Exporter" do
       create(:proposal, tag_list: "Ok")
       create(:proposal, tag_list: "Special")
       create(:proposal, tag_list: "Category")
-      create(:spending_proposal, tag_list: "NotPorD")
+      create(:budget_investment, tag_list: "NotPorD")
 
       @csv_exporter.export
 
@@ -538,11 +538,11 @@ feature "CSV Exporter" do
     scenario "Only include taggings for proposals and debates" do
       proposal          = create(:proposal)
       debate            = create(:debate)
-      spending_proposal = create(:spending_proposal)
+      budget_investment = create(:budget_investment)
 
       proposal_tagging          = create(:tagging, taggable: proposal)
       debate_tagging            = create(:tagging, taggable: debate)
-      spending_proposal_tagging = create(:tagging, taggable: spending_proposal)
+      budget_investment_tagging = create(:tagging, taggable: budget_investment)
 
       @csv_exporter.export
 
@@ -551,7 +551,7 @@ feature "CSV Exporter" do
 
       expect(csv).to include(proposal_tagging.taggable_type)
       expect(csv).to include(debate_tagging.taggable_type)
-      expect(csv).not_to include(spending_proposal_tagging.taggable_type)
+      expect(csv).not_to include(budget_investment_tagging.taggable_type)
     end
 
     scenario "Do not include taggings for hidden debates" do
@@ -659,12 +659,12 @@ feature "CSV Exporter" do
       proposal = create(:proposal)
       debate   = create(:debate)
       comment  = create(:comment)
-      spending_proposal = create(:spending_proposal)
+      budget_investment = create(:budget_investment)
 
       proposal_vote = create(:vote, votable: proposal)
       debate_vote   = create(:vote, votable: debate)
       comment_vote  = create(:vote, votable: comment)
-      spending_proposal_vote = create(:vote, votable: spending_proposal)
+      budget_investment_vote = create(:vote, votable: budget_investment)
 
       @csv_exporter.export
       visit csv_path_for("votes")
@@ -673,7 +673,7 @@ feature "CSV Exporter" do
       expect(csv).to include(proposal_vote.votable_type)
       expect(csv).to include(debate_vote.votable_type)
       expect(csv).to include(comment_vote.votable_type)
-      expect(csv).not_to include(spending_proposal_vote.votable_type)
+      expect(csv).not_to include(budget_investment_vote.votable_type)
     end
 
     scenario "Do not include votes of a hidden debates" do

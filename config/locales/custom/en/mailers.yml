@@ -1,9 +1,5 @@
 en:
   mailers:
-    unfeasible_spending_proposal:
-      unfeasible_html: "From the Madrid City Council we want to thank you for your participation in the <strong>participatory budgets of the city of Madrid</strong>. We regret to inform you that your proposal <strong>'%{title}'</strong> will be excluded from this participatory process for the following reason:"
-      reconsider_html: "If you believe that the rejected proposal meets the requirements to be an investment proposal, you can communicate this, within 48 hours, responding to the email address examples@consul.es. Including the code %{code} in the subject of the email."
-      signatory: "DEPARTMENT OF PUBLIC PARTICIPATION"
     email_verification:
       instructions_html: To complete the verification of your user account in the Open Government Portal, you must click %{verification_link}.
     user_invite:

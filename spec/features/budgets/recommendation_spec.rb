@@ -126,6 +126,7 @@ feature "Recommendations" do
     visit user_path(user1)
 
     click_link "List of recommended investments projects"
+    expect(page).to have_content "Investment projects recommended"
 
     within(".supports") do
       find(".in-favor a").click

@@ -10,8 +10,6 @@
                     polls_admin_stats_path, class: "button hollow" %>
         <%= link_to t("admin.stats.show.participatory_budgets"),
                     budgets_admin_stats_path, class: "button hollow" %>
-        <%= link_to t("admin.stats.show.participatory_budget_2016"),
-                    spending_proposals_admin_stats_path, class: "button hollow" %>
         <%= link_to t("admin.stats.show.user_invites"),
                     user_invites_admin_stats_path, class: "button hollow" %>
         <%= link_to t("admin.stats.show.redeemable_codes"),
@@ -34,14 +32,6 @@
             <span class="number"><%= number_with_delimiter(@visits) %></span>
           </p>
           <p class="featured">
-            <%= t "admin.stats.show.summary.ballot_line_votes" %> <br>
-            <span class="number"><%= number_with_delimiter(@ballot_lines) %></span>
-          </p>
-          <p class="featured">
-            <%= link_to t("admin.stats.show.summary.spending_proposals"),
-                        graph_admin_stats_path(id: 'spending_proposals',
-                                               count: @spending_proposals) %> <br>
-            <span class="number"><%= number_with_delimiter(@spending_proposals) %></span>
           </p>
           <p>
             <%= t "admin.stats.show.summary.debates" %> <br>
@@ -71,16 +61,6 @@
           <p class="featured">
             <%= t "admin.stats.show.summary.proposal_votes" %> <br>
             <span class="number"><%= number_with_delimiter(@proposal_votes) %> <br></span>
-          </p>
-
-          <p class="featured">
-            <%= t "admin.stats.show.summary.ballot_votes" %> <br>
-            <span class="number"><%= number_with_delimiter(@ballots_with_votes) %> <br></span>
-          </p>
-
-          <p class="featured">
-            <%= t "admin.stats.show.summary.spending_proposal_votes" %> <br>
-            <span class="number"><%= number_with_delimiter(@spending_proposal_votes) %></span>
           </p>
 
           <p>
@@ -137,14 +117,6 @@
           </p>
         </div>
 
-        <% if feature?(:spending_proposals) %>
-          <div class="small-12 medium-3 column">
-            <p class="featured">
-              <%= t "admin.stats.show.summary.spending_proposals" %> <br>
-              <span class="number"><%= number_with_delimiter(@spending_proposals) %></span>
-            </p>
-          </div>
-        <% end %>
       </div>
 
       <div class="small-12 column">
@@ -155,13 +127,6 @@
           </h3>
         <% end %>
       </div>
-
-      <% if feature?(:spending_proposals) %>
-        <div class="small-12 column">
-          <h2><%= t "admin.stats.show.spending_proposals_title" %></h2>
-          <%= spending_proposals_chart_tag id: "spending_proposals" %>
-        </div>
-      <% end %>
 
       <% if feature?(:budgets) %>
         <div class="small-12 column">

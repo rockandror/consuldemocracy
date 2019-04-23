@@ -244,17 +244,6 @@ feature "Moderate comments" do
         expect(page).to have_content comment.body
       end
 
-      scenario "Spending Proposal" do
-        spending_proposal = create(:spending_proposal)
-        comment  = create(:comment, :flagged, commentable: spending_proposal)
-
-        visit moderation_comments_path
-
-        expect(page).to have_content "Spending Proposal"
-        expect(page).to have_link spending_proposal.title, href: spending_proposal_path(spending_proposal)
-        expect(page).to have_content comment.body
-      end
-
       scenario "Probe Option" do
         probe_option = create(:probe_option)
         comment  = create(:comment, :flagged, commentable: probe_option)

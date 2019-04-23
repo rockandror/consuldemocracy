@@ -1,10 +1,5 @@
 es:
   mailers:
-    unfeasible_spending_proposal:
-      hi: "Estimado usuario,"
-      reconsider_html: "En caso de que la fase de creación de propuestas haya acabado, puedes enviarnos el texto de subsanación o mejora de tu propuesta, en el plazo de 48 horas, al correo preparticipativos@madrid.es, indicando necesariamente para su tramitación el código %{code} como asunto del correo, correspondiente a tu propuesta."
-      unfeasible_html: "Desde el Ayuntamiento de Madrid queremos agradecer tu participación en los <strong>Presupuestos Participativos de la ciudad de Madrid</strong>. Lamentamos informarte de que tu propuesta <strong>'%{title}'</strong> quedará excluida de este proceso participativo por el siguiente motivo:"
-      signatory: "DIRECCIÓN GENERAL DE PARTICIPACIÓN CIUDADANA"
     budget_investment_unfeasible:
       hi: "Estimado usuario,"
       reconsider_html: "Si consideras que el proyecto rechazado cumple los requisitos para mantenerlo como proyecto de gasto, podrás comunicarlo, en el plazo de 48 horas, al correo preparticipativos@madrid.es, indicando necesariamente para su tramitación el código %{code} como asunto del correo, correspondiente a tu proyecto."

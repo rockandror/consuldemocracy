@@ -23,29 +23,8 @@ es:
     booths:
       new:
         physical: "Urna física"
-    spending_proposals:
-      index:
-        max_per_geozone: Corte por distrito
-        max_for_no_geozone: Corte por ciudad
-      show:
-        compatibility_title: Compatibilidad
-        compatibility:
-          "true": "Compatible"
-          "false": "Incompatible"
-      edit:
-        compatibility: Compatibilidad
-      results:
-        title: Ranking actual de propuestas - Votaciones finales
-        spending_proposal: Título
-        ballot_lines_count: Votos
-        hide_discarded_link: Ocultar descartadas
-        show_all_link: Mostrar todas
-        price: Coste
-        amount_available: Presupuesto disponible
-        incompatible: Incompatibles
     stats:
       show:
-        participatory_budget_2016: Presupuestos Participativos 2016
         participatory_budgets: Presupuestos Participativos
         polls: Votaciones
         direct_messages: Mensajes directos
@@ -54,14 +33,8 @@ es:
         user_invites: Invitaciones Linea Madrid
         external_stats: Estadísticas externas
         incomplete_verifications: Verificaciones incompletas
-        summary:
-          ballot_line_votes: Votos en inversión
-          ballot_votes: Presupuestos votados
-          spending_proposal_votes: Votos Propuesta Inversión
-          spending_proposals: Propuestas de inversión
       graph:
         debate_created: Debates
-        spending_proposals: Propuestas de inversión
         visit: Visitas
         level_2_user: Usuarios nivel 2
         proposal_created: Propuestas Ciudadanas
@@ -69,15 +42,6 @@ es:
         user_voted_budgets: Usuarios que han votado
         user_supported_budgets: Usuarios que han votado
         unverified_users: Usuarios sin verificar
-      spending_proposals:
-        title: Presupuestos participativos
-        districts: Distrito
-        users: Usuarios
-        users_city_total: Usuarios que han votado propuestas de ciudad
-        users_district_total: Usuarios que han votado propuestas de distrito
-        users_city_only: Usuarios que han votado SOLO propuestas de CIUDAD
-        users_district_only: Usuarios que han votado SOLO propuestas de DISTRITO
-        users_both_total: Usuarios que han votado AMBAS
       budgets:
         title: "Presupuestos participativos - Estadisticas de participación"
         supporting_phase: Fase de apoyos

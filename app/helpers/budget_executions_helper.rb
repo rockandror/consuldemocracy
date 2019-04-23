@@ -1,9 +1,5 @@
 module BudgetExecutionsHelper
 
-  def spending_proposals?
-    @budget.slug == '2016'
-  end
-
   def filters_select_counts(status)
     @budget.investments.winners.with_milestone_status_id(status).count
   end

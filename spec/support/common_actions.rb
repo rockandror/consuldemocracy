@@ -114,56 +114,6 @@ module CommonActions
     to receive(:physical_booth?).and_return(true)
   end
 
-  def expect_message_already_voted_in_another_geozone(geozone)
-    expect(page).to have_content "You have already supported other district proposals."
-    expect(page).to have_link(geozone.name, href: spending_proposals_path(geozone: geozone))
-    expect(page).to have_selector(".in-favor a", visible: false)
-  end
-
-  def expect_message_insufficient_funds
-    expect(page).to have_content "This proposal's price is more than the available amount left"
-  end
-
-  def expect_message_selecting_not_allowed
-    expect(page).to have_content "No Selecting Allowed"
-    expect(page).not_to have_selector(".in-favor a")
-  end
-
-  def create_spending_proposal_for(*users)
-    users.each do |user|
-      create(:spending_proposal, :finished, :feasible, author: user)
-    end
-  end
-
-  def create_vote_for(*users)
-    sp = first_or_create_spending_spending_proposal
-    users.each do |user|
-      create(:vote, votable: sp, voter: user)
-    end
-  end
-
-  def create_ballot_for(*users)
-    sp = first_or_create_spending_spending_proposal
-    users.each do |user|
-      create(:ballot, spending_proposals: [sp], user: user)
-    end
-  end
-
-  def create_delegation_for(*users)
-    forum = create(:forum)
-    users.each do |user|
-      user.update(representative: forum)
-    end
-  end
-
-  def first_or_create_spending_spending_proposal
-    if SpendingProposal.any?
-      return SpendingProposal.first
-    else
-      return create(:spending_proposal, :finished, :feasible)
-    end
-  end
-
   def send_user_invite
     visit new_management_user_invite_path
 
@@ -171,13 +121,6 @@ module CommonActions
     click_button "Send invitations"
 
     expect(page).to have_content "3 invitations have been sent."
-  end
-
-  def add_spending_proposal_to_ballot(spending_proposal)
-    within("#spending_proposal_#{spending_proposal.id}") do
-      find(".add a").click
-      expect(page).to have_content "Remove"
-    end
   end
 
   def csv_path_for(table)

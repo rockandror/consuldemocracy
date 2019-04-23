@@ -54,7 +54,6 @@ en:
       other:
         world: "Citizen participation in the world"
         facts: "Facts about citizen participation and direct democracy"
-        forums: "Local Forums"
       history:
         title: "History of Decide Madrid"
         description: "Decide Madrid's participation platform has been in operation since September 2015. Since then it has registered tens of thousands of proposals and projects, two citizen consultations have been held (in February and October 2017) and two editions of participatory budgets in which citizens have decided on how to spend 160 million euros of municipal budgets."
@@ -74,8 +73,6 @@ en:
           Not only can you use freely this portal in your local government, but you also will be helped by Madrid city council as much as possible to do it, so if you are interested <a href='mailto:extension.institucional@madrid.es'>write us an email</a>.
 
           If you are a programmer, you can see the code and help us to improve it at [Madrid's CONSUL app version](https://github.com/ayuntamientomadrid/consul 'consul github').
-      titles:
-        meetings: Debate's and proposal's meetings
     privacy: Privacy policy
     titles:
       polls: "Frequently Asked Questions about Voting"

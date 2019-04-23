@@ -5,7 +5,7 @@ class Comment < ApplicationRecord
   include Notifiable
 
   COMMENTABLE_TYPES = %w(Debate Proposal Budget::Investment Poll Topic Legislation::Question
-                        Legislation::Annotation Legislation::Proposal SpendingProposal
+                        Legislation::Annotation Legislation::Proposal
                         Poll::Question ProbeOption).freeze
 
   acts_as_paranoid column: :hidden_at

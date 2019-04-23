@@ -47,7 +47,6 @@
 
     <tbody>
       <% @investments.each do |investment| %>
-        <% investment_id = investment.original_spending_proposal_id || investment.id %>
         <tr id="<%= dom_id(investment) %>" class="budget_investment">
           <%= render "/admin/budget_investments/select_investment", investment: investment %>
         </tr>

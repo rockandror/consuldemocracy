@@ -8,13 +8,16 @@ module Budgets
 
     PER_PAGE = 10
 
-    before_action :authenticate_user!, except: [:index, :show, :redirect_to_new_url, :json_data]
-    before_action :load_budget, except: [:redirect_to_new_url, :json_data]
-    before_action :load_investment, only: [:show]
+    before_action :authenticate_user!, except: [:index, :show, :json_data]
+    before_action :load_budget, except: :json_data
+    before_action :load_investment, only: :show
 
-    load_and_authorize_resource :budget, except: [:redirect_to_new_url, :json_data]
-    load_and_authorize_resource :investment, through: :budget, class: "Budget::Investment", except: [:redirect_to_new_url, :json_data]
-    skip_authorization_check only: [:redirect_to_new_url, :json_data]
+    load_and_authorize_resource :budget, except: [:json_data]
+    load_and_authorize_resource :investment, through: :budget,
+                                class: "Budget::Investment",
+                                except: :json_data
+
+    skip_authorization_check only: :json_data
 
     before_action -> { flash.now[:notice] = flash[:notice].html_safe if flash[:html_safe] && flash[:notice] }
     before_action :load_ballot, only: [:index, :show]
@@ -93,11 +96,6 @@ module Budgets
       super
     end
 
-    def redirect_to_new_url
-      investment = Budget::Investment.where(original_spending_proposal_id: params['id']).first
-      redirect_to budget_investment_path(investment.budget.slug, params['id'], spending: true) if investment.present?
-    end
-
     def json_data
       investment =  Budget::Investment.find(params[:id])
       data = {
@@ -135,11 +133,7 @@ module Budgets
       end
 
       def load_investment
-        @investment = if params['spending'] == 'true'
-                        @budget.investments.where(original_spending_proposal_id: params['id']).first
-                      else
-                        @budget.investments.find(params['id'])
-                      end
+        @investment = @budget.investments.find(params["id"])
       end
 
       def load_ballot

@@ -77,7 +77,6 @@ Setting["process.legislation"] = true
 
 # Feature flags
 Setting["feature.featured_proposals"] = nil
-Setting["feature.spending_proposals"] = nil
 Setting["feature.twitter_login"] = true
 Setting["feature.facebook_login"] = true
 Setting["feature.google_login"] = true
@@ -93,15 +92,6 @@ Setting["feature.allow_images"] = true
 Setting["feature.allow_attached_documents"] = true
 Setting["feature.guides"] = true
 Setting["feature.help_page"] = true
-
-# Spending proposals feature flags
-Setting["feature.spending_proposal_features.phase1"] = true
-Setting["feature.spending_proposal_features.phase2"] = nil
-Setting["feature.spending_proposal_features.phase3"] = nil
-Setting["feature.spending_proposal_features.voting_allowed"] = nil
-Setting["feature.spending_proposal_features.final_voting_allowed"] = true
-Setting["feature.spending_proposal_features.open_results_page"] = nil
-Setting["feature.spending_proposal_features.valuation_allowed"] = nil
 
 # Proposal notifications
 Setting["proposal_notification_minimum_interval_in_days"] = 3

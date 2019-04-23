@@ -20,11 +20,6 @@ es:
       new_reply_by_html: Hay una nueva respuesta de <b>%{commenter}</b> a tu comentario en
       subject: Alguien ha respondido a tu comentario
       title: Nueva respuesta a tu comentario
-    unfeasible_spending_proposal:
-      hi: "Estimado/a usuario/a"
-      sincerely: "Atentamente"
-      sorry: "Sentimos las molestias ocasionadas y volvemos a darte las gracias por tu inestimable participación."
-      subject: "Tu propuesta de inversión '%{code}' ha sido marcada como inviable"
     proposal_notification_digest:
       info: "A continuación te mostramos las nuevas notificaciones que han publicado los autores de las propuestas que estás apoyando en %{org_name}."
       title: "Notificaciones de propuestas en %{org_name}"

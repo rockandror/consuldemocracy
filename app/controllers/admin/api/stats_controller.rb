@@ -4,7 +4,6 @@ class Admin::Api::StatsController < Admin::Api::BaseController
     unless params[:event].present? ||
            params[:visits].present? ||
            params[:unverified_users].present? ||
-           params[:spending_proposals].present? ||
            params[:user_voted_budgets].present? ||
            params[:budget_investments].present? ||
            params[:user_supported_budgets].present?
@@ -23,10 +22,6 @@ class Admin::Api::StatsController < Admin::Api::BaseController
 
     if params[:unverified_users].present?
       ds.add "Usuarios sin verificar", User.with_hidden.unverified.group_by_day(:created_at).count
-    end
-
-    if params[:spending_proposals].present?
-      ds.add "Spending proposals", SpendingProposal.group_by_day(:created_at).count
     end
 
     if params[:user_voted_budgets].present?

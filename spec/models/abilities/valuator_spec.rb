@@ -21,28 +21,6 @@ describe Abilities::Valuator do
     finished_assigned_investment.valuators << valuator
   end
 
-  it { should be_able_to(:read, SpendingProposal) }
-
-  describe "valuation open" do
-
-    before(:each) do
-      Setting["feature.spending_proposal_features.valuation_allowed"] = true
-    end
-
-    it { should be_able_to(:update, SpendingProposal) }
-    it { should be_able_to(:valuate, SpendingProposal) }
-  end
-
-  describe "valuation finished" do
-
-    before(:each) do
-      Setting["feature.spending_proposal_features.valuation_allowed"] = nil
-    end
-
-    it { should_not be_able_to(:update, SpendingProposal) }
-    it { should_not be_able_to(:valuate, SpendingProposal) }
-  end
-
   it "cannot valuate an assigned investment with a finished valuation" do
     assigned_investment.update(valuation_finished: true)
 

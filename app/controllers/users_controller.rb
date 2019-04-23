@@ -16,7 +16,6 @@ class UsersController < ApplicationController
       @activity_counts = HashWithIndifferentAccess.new(
                           proposals: Proposal.where(author_id: @user.id).count,
                           debates: (Setting["process.debates"] ? Debate.where(author_id: @user.id).count : 0),
-                          ballot: (Setting["feature.spending_proposal_features.phase3"].blank? ? 0 : 1),
                           budget_investments: (Setting["process.budgets"] ? Budget::Investment.where(author_id: @user.id).count : 0),
                           comments: only_active_commentables.count,
                           follows: @user.follows.map(&:followable).compact.count)
@@ -66,10 +65,6 @@ class UsersController < ApplicationController
       @comments = only_active_commentables.includes(:commentable).order(created_at: :desc).page(params[:page])
     end
 
-    def load_spending_proposals
-      @spending_proposals = SpendingProposal.where(author_id: @user.id).order(created_at: :desc).page(params[:page])
-    end
-
     def load_budget_investments
       @budget_investments = Budget::Investment.where(author_id: @user.id).order(created_at: :desc).page(params[:page])
     end
@@ -110,7 +105,6 @@ class UsersController < ApplicationController
       disabled_commentables = []
       disabled_commentables << "Debate" unless Setting["process.debates"]
       disabled_commentables << "Budget::Investment" unless Setting["process.budgets"]
-      disabled_commentables << "SpendingProposal" unless Setting['feature.spending_proposals']
       if disabled_commentables.present?
         all_user_comments.where("commentable_type NOT IN (?)", disabled_commentables)
       else

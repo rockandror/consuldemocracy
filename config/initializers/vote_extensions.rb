@@ -41,14 +41,6 @@ ActsAsVotable::Vote.class_eval do
     where(votable_type: 'Legislation::Proposal', votable_id: proposals)
   end
 
-  def self.for_spending_proposals(spending_proposals)
-    where(votable_type: 'SpendingProposal', votable_id: spending_proposals)
-  end
-
-  def self.representative_votes
-    where(votable_type: 'SpendingProposal', voter_id: User.forums.pluck(:id))
-  end
-
   def self.city_wide
     joins(:votable).where("#{votable.table_name}.geozone is null")
   end

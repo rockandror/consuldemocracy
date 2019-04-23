@@ -7,12 +7,9 @@ class Admin::StatsController < Admin::BaseController
     @debates   = Debate.with_hidden.count
     @proposals = Proposal.with_hidden.count
     @comments  = Comment.not_valuations.with_hidden.count
-    @spending_proposals = SpendingProposal.with_hidden.count
-    @ballot_lines = BallotLine.count
 
     @debate_votes   = Vote.where(votable_type: 'Debate').count
     @proposal_votes = Vote.where(votable_type: 'Proposal').count
-    @spending_proposal_votes = Vote.where(votable_type: 'SpendingProposal').count
     @comment_votes  = Vote.where(votable_type: 'Comment').count
     @votes = Vote.count
 
@@ -27,9 +24,6 @@ class Admin::StatsController < Admin::BaseController
                                                        .count(:voter_id)
 
     @user_ids_who_didnt_vote_proposals = @verified_users - @user_ids_who_voted_proposals
-
-    @spending_proposals = SpendingProposal.count
-    @ballots_with_votes = Ballot.where("ballot_lines_count > ?", 0).count
     budgets_ids = Budget.where.not(phase: 'finished').pluck(:id)
     @budgets = budgets_ids.size
     @investments = Budget::Investment.where(budget_id: budgets_ids).count
@@ -54,17 +48,6 @@ class Admin::StatsController < Admin::BaseController
   def direct_messages
     @direct_messages = DirectMessage.count
     @users_who_have_sent_message = DirectMessage.select(:sender_id).distinct.count
-  end
-
-  def spending_proposals
-    @ballots = Ballot.where.not(geozone_id: nil).group(:geozone).count
-    @voters_in_city = BallotLine.select(:ballot_id)
-                                .distinct
-                                .joins(:spending_proposal)
-                                .where("spending_proposals.geozone_id" => nil).to_a.size
-
-    @voters_in_district = @ballots.values.sum
-    @user_count = Ballot.where('ballot_lines_count > ?', 0).count
   end
 
   def budgets

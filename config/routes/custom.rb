@@ -3,7 +3,6 @@ namespace :admin do
   resources :probes, only: [:index, :show]
 
   resource :stats, only: :show do
-    get :spending_proposals, on: :collection
     get :budgets, on: :collection
     get :budget_supporting, on: :member
     get :budget_balloting, on: :member
@@ -13,16 +12,6 @@ namespace :admin do
     get :redeemable_codes, on: :collection
     get :user_invites, on: :collection
     get :polls, on: :collection
-  end
-
-  resources :spending_proposals, only: [:index, :show, :edit, :update] do
-    member do
-      patch :assign_admin
-      patch :assign_valuators
-    end
-
-    get :summary, on: :collection
-    get :results, on: :collection
   end
 end
 
@@ -58,27 +47,12 @@ end
 
 get "presupuestos/:budget_id/:id/:heading_id", to: "budgets/investments#index", as: 'custom_budget_investments'
 get "presupuestos/:budget_id/:id", to: "budgets/groups#show", as: 'custom_budget_group'
-get "participatory_budget/investment_projects/:id", to: "budgets/investments#redirect_to_new_url", as: 'spending_proposals_to_budget_investments'
 
 scope '/participatory_budget' do
-  resources :spending_proposals, only: [:index, :destroy], path: 'investment_projects', controller: "budgets/investments" do #[:new, :create] temporary disabled
-    get :welcome, on: :collection
-    get :stats, on: :collection
-    post :vote, on: :member
-  end
-
-  resource :ballot, only: [:show] do
-    resources :ballot_lines, only: [:create, :destroy], shallow: true
-  end
-
   resource :budget_poll, only: [:show, :new, :create] do
     get :thanks, on: :collection
   end
 end
-
-### Delegation
-resources :forums, only: [:index, :create, :show]
-resources :representatives, only: [:create, :destroy]
 
 ### Human Rights
 resources :human_rights, only: [:index, :show]
@@ -171,12 +145,6 @@ get 'presupuestos-participativos-2017-videos',     to: 'pages#show', id: 'landin
 get 'presupuestos-participativos-2017-materiales', to: 'pages#show', id: 'landings/budgets_materials_2017', as: 'budgets_materials_2017'
 get 'presupuestos-participativos-2018-materiales', to: 'pages#show', id: 'landings/budgets_materials_2018', as: 'budgets_materials_2018'
 get 'como-votar-presupuestos-participativos-2018', to: 'pages#show', id: 'landings/budgets_voting_2018',    as: 'budgets_voting_2018'
-get 'participatory_budget/select_district',        to: 'spending_proposals#select_district', as: 'select_district'
-get 'delegacion',                                  to: 'forums#index', as: 'delegation'
-get 'presupuestos-participativos-resultados',      to: 'spending_proposals#results',                    as: 'participatory_budget_results'
-get 'presupuestos-participativos-estadisticas',    to: 'spending_proposals#stats',                      as: 'participatory_budget_stats'
-get 'presupuestos-participativos-ejecuciones',     to: 'budgets/executions#show',                       as: 'participatory_budget_executions', defaults: {budget_id: '2016'}
-get 'participatory_budget_info',                   to: 'pages#show', id: 'help/budgets/info_2016', as: 'more_info_budgets_2016'
 get 'jornada-presupuestos-participativos',         to: 'budget_polls#new'
 get 'jornada-presupuestos-participativos/success', to: 'budget_polls#success'
 
@@ -214,7 +182,6 @@ get 'mas-informacion/participacion/hechos',        to: 'pages#show', id: 'help/p
 get 'mas-informacion/participacion/mundo',         to: 'pages#show', id: 'help/participation/world',    as: 'participation_world'
 get 'mas-informacion/derechos-humanos',            to: 'pages#show', id: 'help/participation/ddhh',     as: 'more_info_human_rights'
 get 'mas-informacion/gobierno-abierto',            to: 'pages#show', id: 'help/participation/open',     as: 'participation_open_government'
-get 'mas-informacion/foros-locales',               to: 'pages#show', id: 'help/participation/forums',   as: 'participation_forums'
 get 'mas-informacion/kit-decide',                  to: 'pages#show', id: 'help/kit_decide/index',       as: 'kit_decide'
 
 # Once plazas results & stats

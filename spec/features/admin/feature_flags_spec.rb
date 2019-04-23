@@ -3,8 +3,7 @@ require "rails_helper"
 feature "Admin feature flags" do
 
   background do
-    Setting["feature.spending_proposals"] = true
-    Setting["feature.spending_proposal_features.voting_allowed"] = true
+    Setting["process.budgets"] = true
     login_as(create(:administrator).user)
   end
 
@@ -64,7 +63,7 @@ feature "Admin feature flags" do
   end
 
   scenario "Disable a feature" do
-    setting = Setting.find_by(key: "feature.spending_proposals")
+    setting = Setting.find_by(key: "feature.twitter_login")
 
     visit admin_settings_path
 

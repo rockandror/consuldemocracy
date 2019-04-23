@@ -23,29 +23,8 @@ en:
     booths:
       new:
         physical: "Physical booth"
-    spending_proposals:
-      index:
-        max_per_geozone: Max per geozone
-        max_for_no_geozone: Max for city-wide
-      show:
-        compatibility_title: Compatibility
-        compatibility:
-          "true": "Compatible"
-          "false": "Incompatible"
-      edit:
-        compatibility: Compatibility
-      results:
-        title: Current final voting ranking
-        spending_proposal: Proposal title
-        ballot_lines_count: Times selected
-        hide_discarded_link: Hide discarded
-        show_all_link: Show all
-        price: Cost
-        amount_available: Available budget
-        incompatible: Incompatibles
     stats:
       show:
-        participatory_budget_2016: Participatory Budget 2016
         participatory_budgets: Participatory Budgets
         polls: Polls
         direct_messages: Direct messages
@@ -54,14 +33,8 @@ en:
         user_invites: Invitations
         external_stats: External stats
         incomplete_verifications: Incomplete verifications
-        summary:
-          ballot_line_votes: Votes in investment projects
-          ballot_votes: Budgets voted
-          spending_proposal_votes: Investment project votes
-          spending_proposals: Investment projects
       graph:
         debate_created: Debates
-        spending_proposals: Investment projects
         visit: Visits
         level_2_user: Level 2 users
         proposal_created: Citizen proposals
@@ -69,15 +42,6 @@ en:
         user_voted_budgets: Users that have voted
         user_supported_budgets: Users that have voted
         unverified_users: Unverified users
-      spending_proposals:
-        title: Participatory Budgets
-        districts: District
-        users: Users
-        users_city_total: Users who voted for city-wide proposals
-        users_district_total: Users who voted for district-wide proposals
-        users_city_only: Users who voted ONLY for city-wide proposals
-        users_district_only: Users who voted ONLY for district-wide proposals
-        users_both_total:  Users who voted for BOTH
       budgets:
         title: "Participatory Budgets - Participation stats"
         supporting_phase: Supporting phase

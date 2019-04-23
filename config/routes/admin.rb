@@ -54,15 +54,6 @@ namespace :admin do
   #         The main problem is that routes can not be duplicated
   ###
 
-  #resources :spending_proposals, only: [:index, :show, :edit, :update] do
-  #  member do
-  #    patch :assign_admin
-  #    patch :assign_valuators
-  #  end
-  #
-  #  get :summary, on: :collection
-  #end
-
   resources :budgets do
     member do
       put :calculate_winners

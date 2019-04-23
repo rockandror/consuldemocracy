@@ -17,8 +17,6 @@ module Abilities
       end
       can :read, Poll::Question
       can [:read, :welcome], Budget
-      can [:read, :welcome, :select_district], SpendingProposal
-      can [:stats, :results], SpendingProposal
       can :read, User
       can [:read], Budget
       can [:read], Budget::Group

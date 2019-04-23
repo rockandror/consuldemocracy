@@ -93,24 +93,6 @@ ActiveRecord::Schema.define(version: 20190408133956) do
     t.index ["context"], name: "index_answers_on_context", using: :btree
   end
 
-  create_table "ballot_lines", force: :cascade do |t|
-    t.integer  "ballot_id"
-    t.integer  "spending_proposal_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.index ["ballot_id", "spending_proposal_id"], name: "index_ballot_lines_on_ballot_id_and_spending_proposal_id", unique: true, using: :btree
-    t.index ["spending_proposal_id"], name: "index_ballot_lines_on_spending_proposal_id", using: :btree
-  end
-
-  create_table "ballots", force: :cascade do |t|
-    t.integer  "user_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.datetime "confirmed_at"
-    t.integer  "geozone_id"
-    t.integer  "ballot_lines_count", default: 0
-  end
-
   create_table "banner_sections", force: :cascade do |t|
     t.integer  "banner_id"
     t.integer  "web_section_id"
@@ -284,7 +266,6 @@ ActiveRecord::Schema.define(version: 20190408133956) do
     t.boolean  "winner",                                      default: false
     t.boolean  "incompatible",                                default: false
     t.integer  "community_id"
-    t.integer  "original_spending_proposal_id"
     t.integer  "valuator_group_assignments_count",            default: 0
     t.datetime "confirmed_hide_at"
     t.datetime "ignored_flag_at"
@@ -559,13 +540,6 @@ ActiveRecord::Schema.define(version: 20190408133956) do
     t.index ["followable_type", "followable_id"], name: "index_follows_on_followable_type_and_followable_id", using: :btree
     t.index ["user_id", "followable_type", "followable_id"], name: "access_follows", using: :btree
     t.index ["user_id"], name: "index_follows_on_user_id", using: :btree
-  end
-
-  create_table "forums", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "geozones", force: :cascade do |t|
@@ -1396,42 +1370,6 @@ ActiveRecord::Schema.define(version: 20190408133956) do
     t.string   "locale"
   end
 
-  create_table "spending_proposals", force: :cascade do |t|
-    t.string   "title"
-    t.text     "description"
-    t.integer  "author_id"
-    t.string   "external_url"
-    t.datetime "created_at",                                             null: false
-    t.datetime "updated_at",                                             null: false
-    t.integer  "geozone_id"
-    t.bigint   "price"
-    t.boolean  "feasible"
-    t.string   "association_name"
-    t.text     "price_explanation"
-    t.text     "feasible_explanation"
-    t.text     "internal_comments"
-    t.boolean  "valuation_finished",                     default: false
-    t.text     "explanations_log"
-    t.integer  "administrator_id"
-    t.integer  "valuation_assignments_count",            default: 0
-    t.bigint   "price_first_year"
-    t.string   "time_scope"
-    t.datetime "unfeasible_email_sent_at"
-    t.integer  "cached_votes_up",                        default: 0
-    t.tsvector "tsv"
-    t.integer  "comments_count",                         default: 0
-    t.datetime "hidden_at"
-    t.integer  "confidence_score",                       default: 0,     null: false
-    t.boolean  "forum",                                  default: false
-    t.string   "responsible_name",            limit: 60
-    t.integer  "physical_votes",                         default: 0
-    t.integer  "ballot_lines_count",                     default: 0
-    t.boolean  "compatible",                             default: true
-    t.index ["author_id"], name: "index_spending_proposals_on_author_id", using: :btree
-    t.index ["geozone_id"], name: "index_spending_proposals_on_geozone_id", using: :btree
-    t.index ["tsv"], name: "index_spending_proposals_on_tsv", using: :gin
-  end
-
   create_table "stats", force: :cascade do |t|
     t.string   "namespace"
     t.string   "group"
@@ -1468,7 +1406,6 @@ ActiveRecord::Schema.define(version: 20190408133956) do
     t.integer "taggings_count",                          default: 0
     t.integer "debates_count",                           default: 0
     t.integer "proposals_count",                         default: 0
-    t.integer "spending_proposals_count",                default: 0
     t.string  "kind"
     t.integer "budget/investments_count",                default: 0
     t.integer "legislation/proposals_count",             default: 0
@@ -1478,7 +1415,6 @@ ActiveRecord::Schema.define(version: 20190408133956) do
     t.index ["legislation/proposals_count"], name: "index_tags_on_legislation/proposals_count", using: :btree
     t.index ["name"], name: "index_tags_on_name", unique: true, using: :btree
     t.index ["proposals_count"], name: "index_tags_on_proposals_count", using: :btree
-    t.index ["spending_proposals_count"], name: "index_tags_on_spending_proposals_count", using: :btree
   end
 
   create_table "topics", force: :cascade do |t|
@@ -1495,30 +1431,30 @@ ActiveRecord::Schema.define(version: 20190408133956) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                                                       default: ""
-    t.string   "encrypted_password",                                          default: "",                    null: false
+    t.string   "email",                                     default: ""
+    t.string   "encrypted_password",                        default: "",                    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                                               default: 0,                     null: false
+    t.integer  "sign_in_count",                             default: 0,                     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                                                                  null: false
-    t.datetime "updated_at",                                                                                  null: false
+    t.datetime "created_at",                                                                null: false
+    t.datetime "updated_at",                                                                null: false
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.boolean  "email_on_comment",                                            default: false
-    t.boolean  "email_on_comment_reply",                                      default: false
-    t.string   "phone_number",                                     limit: 30
+    t.boolean  "email_on_comment",                          default: false
+    t.boolean  "email_on_comment_reply",                    default: false
+    t.string   "phone_number",                   limit: 30
     t.string   "official_position"
-    t.integer  "official_level",                                              default: 0
+    t.integer  "official_level",                            default: 0
     t.datetime "hidden_at"
     t.string   "sms_confirmation_code"
-    t.string   "username",                                         limit: 60
+    t.string   "username",                       limit: 60
     t.string   "document_number"
     t.string   "document_type"
     t.datetime "residence_verified_at"
@@ -1529,38 +1465,33 @@ ActiveRecord::Schema.define(version: 20190408133956) do
     t.datetime "letter_requested_at"
     t.datetime "confirmed_hide_at"
     t.string   "letter_verification_code"
-    t.integer  "failed_census_calls_count",                                   default: 0
+    t.integer  "failed_census_calls_count",                 default: 0
     t.datetime "level_two_verified_at"
     t.string   "erase_reason"
     t.datetime "erased_at"
-    t.boolean  "public_activity",                                             default: true
-    t.boolean  "newsletter",                                                  default: true
-    t.integer  "notifications_count",                                         default: 0
-    t.boolean  "registering_with_oauth",                                      default: false
+    t.boolean  "public_activity",                           default: true
+    t.boolean  "newsletter",                                default: true
+    t.integer  "notifications_count",                       default: 0
+    t.boolean  "registering_with_oauth",                    default: false
     t.string   "locale"
     t.string   "oauth_email"
     t.integer  "geozone_id"
     t.string   "redeemable_code"
-    t.integer  "district_wide_spending_proposals_supported_count",            default: 10
-    t.integer  "city_wide_spending_proposals_supported_count",                default: 10
-    t.integer  "supported_spending_proposals_geozone_id"
-    t.integer  "representative_id"
-    t.boolean  "accepted_delegation_alert",                                   default: false
-    t.string   "gender",                                           limit: 10
+    t.string   "gender",                         limit: 10
     t.datetime "date_of_birth"
-    t.boolean  "email_on_proposal_notification",                              default: true
-    t.boolean  "email_digest",                                                default: true
-    t.boolean  "email_on_direct_message",                                     default: true
-    t.boolean  "official_position_badge",                                     default: false
-    t.datetime "password_changed_at",                                         default: '2015-01-01 01:01:01', null: false
-    t.boolean  "created_from_signature",                                      default: false
-    t.integer  "failed_email_digests_count",                                  default: 0
-    t.boolean  "officing_voter",                                              default: false
-    t.text     "former_users_data_log",                                       default: ""
+    t.boolean  "email_on_proposal_notification",            default: true
+    t.boolean  "email_digest",                              default: true
+    t.boolean  "email_on_direct_message",                   default: true
+    t.boolean  "official_position_badge",                   default: false
+    t.datetime "password_changed_at",                       default: '2015-01-01 01:01:01', null: false
+    t.boolean  "created_from_signature",                    default: false
+    t.integer  "failed_email_digests_count",                default: 0
+    t.boolean  "officing_voter",                            default: false
+    t.text     "former_users_data_log",                     default: ""
     t.integer  "balloted_heading_id"
-    t.boolean  "public_interests",                                            default: false
-    t.boolean  "recommended_debates",                                         default: true
-    t.boolean  "recommended_proposals",                                       default: true
+    t.boolean  "public_interests",                          default: false
+    t.boolean  "recommended_debates",                       default: true
+    t.boolean  "recommended_proposals",                     default: true
     t.string   "newsletter_token"
     t.datetime "newsletter_token_used_at"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
@@ -1587,7 +1518,6 @@ ActiveRecord::Schema.define(version: 20190408133956) do
   create_table "valuators", force: :cascade do |t|
     t.integer "user_id"
     t.string  "description"
-    t.integer "spending_proposals_count", default: 0
     t.integer "budget_investments_count", default: 0
     t.integer "valuator_group_id"
     t.index ["user_id"], name: "index_valuators_on_user_id", using: :btree
@@ -1692,7 +1622,6 @@ ActiveRecord::Schema.define(version: 20190408133956) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "signature_id"
-    t.boolean  "delegated",    default: false
     t.index ["signature_id"], name: "index_votes_on_signature_id", using: :btree
     t.index ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope", using: :btree
     t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree

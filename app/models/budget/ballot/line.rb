@@ -16,7 +16,7 @@ class Budget
       scope :by_investment, ->(investment_id) { where(investment_id: investment_id) }
 
       before_validation :set_denormalized_ids
-      #after_save :store_user_heading
+      after_save :store_user_heading
 
       def check_sufficient_funds
         errors.add(:money, "insufficient funds") if ballot.amount_available(investment.heading) < investment.price.to_i

@@ -87,7 +87,7 @@ describe Budget::Stats do
 
     it "doesn't count nil user ids" do
       create(:budget_ballot_line, investment: investment,
-        ballot: create(:budget_ballot, budget: budget, user: nil)
+        ballot: create(:budget_ballot, budget: budget, user: nil, physical: true)
       )
 
       expect(stats.total_participants_vote_phase).to be 0

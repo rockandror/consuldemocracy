@@ -93,8 +93,7 @@ class Admin::BudgetInvestmentsController < Admin::BaseController
     end
 
     def load_investment
-      @investment = @budget.investments.where(original_spending_proposal_id: params[:id]).first
-      @investment ||= @budget.investments.find(params[:id])
+      @investment = @budget.investments.find(params[:id])
     end
 
     def load_admins

@@ -1,29 +1,4 @@
 FactoryBot.define do
-  factory :spending_proposal do
-    sequence(:title)     { |n| "Spending Proposal #{n} title" }
-    description          "Spend money on this"
-    feasible_explanation "This proposal is viable because..."
-    external_url         "http://external_documention.org"
-    terms_of_service     "1"
-    association :author, factory: :user
-
-    trait :with_confidence_score do
-      before(:save) { |sp| sp.calculate_confidence_score }
-    end
-
-    trait :feasible do
-      feasible true
-    end
-
-    trait :unfeasible do
-      feasible false
-    end
-
-    trait :finished do
-      valuation_finished true
-    end
-  end
-
   factory :budget do
     sequence(:name) { |n| "#{Faker::Lorem.word} #{n}" }
     currency_symbol "€"

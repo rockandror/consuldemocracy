@@ -1567,36 +1567,4 @@ feature "Admin budget investments" do
     end
   end
 
-  context "SPs migrated to Budget Investments should keep the original IDs on lists & urls" do
-    let(:spending_proposal) { create(:spending_proposal, id: 9999, title: "Le Spending Proposal") }
-    let(:spending_proposal_migrated_to_budget_investment_path) {
-      "/admin/budgets/#{budget.id}/budget_investments/#{spending_proposal.id}"
-    }
-    let!(:associated_budget_investment) do
-      create(:budget_investment, id: 8888, budget: budget, title: "Budget Investment child",
-                                 original_spending_proposal_id: spending_proposal.id)
-    end
-
-    scenario "An investment generated from a SP should be listed & linked with original SP id" do
-      visit admin_budget_budget_investments_path(budget)
-
-      within("#budget_investment_#{associated_budget_investment.id}") do
-        expect(page).to have_link("Budget Investment child")
-      end
-    end
-
-    scenario "An investment generated from a SP should be accesible by original SP id" do
-      visit admin_budget_budget_investment_path(budget_id: budget.id, id: spending_proposal.id)
-
-      expect(page).to have_current_path(spending_proposal_migrated_to_budget_investment_path)
-      expect(page).to have_content("Budget Investment child")
-    end
-
-    scenario "An investment generated from a SP should be accesible by its own id" do
-      visit admin_budget_budget_investment_path(budget_id: budget.id,
-                                                id: associated_budget_investment.id)
-
-      expect(page).to have_content("Budget Investment child")
-    end
-  end
 end
