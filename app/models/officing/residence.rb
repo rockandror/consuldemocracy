@@ -11,9 +11,6 @@ class Officing::Residence
   validates :document_type, presence: true
   validates :date_of_birth, presence: true, if: :calculate_presence_date_of_birth?
   validates :postal_code, presence: true, if: :calculate_presence_postal_code?
-  # validates :date_of_birth, presence: true, if: Setting.calculate_presence_date_of_birth?
-  # validates :postal_code, presence: true, if: Setting.calculate_presence_postal_code?
-  # validates :xxxx, presence: true, if: calculate_presence("xxxx", false)
   validates :year_of_birth, presence: true, unless: :calculate_presence_date_of_birth?
 
   validate :allowed_age
@@ -25,11 +22,6 @@ class Officing::Residence
     super
     clean_document_number
   end
-
-  # def initialize(attrs = {})
-  #   super
-  #   clean_document_number
-  # end
 
   def save
     return false unless valid?
@@ -95,7 +87,6 @@ class Officing::Residence
   end
 
   def allowed_age?
-    # Age.in_years(date_of_birth) >= User.minimum_required_age
     Age.in_years(response_date_of_birth) >= User.minimum_required_age
   end
 
