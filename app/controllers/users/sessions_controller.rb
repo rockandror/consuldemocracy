@@ -1,5 +1,5 @@
 class Users::SessionsController < Devise::SessionsController
-  after_filter :after_login, only: :create
+  after_action :after_login, only: :create
 
   private
 

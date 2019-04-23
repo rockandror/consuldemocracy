@@ -1,4 +1,4 @@
-class CreateVolunteerPolls < ActiveRecord::Migration
+class CreateVolunteerPolls < ActiveRecord::Migration[4.2]
   def change
     create_table :volunteer_polls do |t|
       t.string :email

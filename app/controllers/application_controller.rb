@@ -5,17 +5,18 @@ class ApplicationController < ActionController::Base
   include HasOrders
   include Analytics
 
+  protect_from_forgery with: :exception
+
   before_action :authenticate_http_basic, if: :http_basic_auth_site?
 
   before_action :ensure_signup_complete
   before_action :set_locale
   before_action :track_email_campaign
   before_action :set_return_url
+  before_action :set_fallbacks_to_all_available_locales
 
   check_authorization unless: :devise_controller?
   self.responder = ApplicationResponder
-
-  protect_from_forgery with: :exception
 
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
@@ -142,4 +143,7 @@ class ApplicationController < ActionController::Base
       Budget.current
     end
 
+    def set_fallbacks_to_all_available_locales
+      Globalize.set_fallbacks_to_all_available_locales
+    end
 end

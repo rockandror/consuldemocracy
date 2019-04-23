@@ -1,4 +1,4 @@
-class DestroyBenches < ActiveRecord::Migration
+class DestroyBenches < ActiveRecord::Migration[4.2]
   def self.up
     drop_table :benches
   end

@@ -31,7 +31,7 @@ describe Admin::Api::StatsController do
 
       it "returns single events formated for working with c3.js" do
         sign_in user
-        get :show, event: "foo"
+        get :show, params: { event: "foo" }
 
         expect(response).to be_ok
 
@@ -50,7 +50,7 @@ describe Admin::Api::StatsController do
         create :visit, started_at: time_2
 
         sign_in user
-        get :show, visits: true
+        get :show, params: { visits: true }
 
         expect(response).to be_ok
 
@@ -73,7 +73,7 @@ describe Admin::Api::StatsController do
         create :visit, started_at: time_2
 
         sign_in user
-        get :show, event: "foo", visits: true
+        get :show, params: { event: "foo", visits: true }
 
         expect(response).to be_ok
 
@@ -92,7 +92,7 @@ describe Admin::Api::StatsController do
         budget_investment3 = create(:budget_investment, budget: @budget, created_at: time_2)
 
         sign_in user
-        get :show, budget_investments: true
+        get :show, params: { budget_investments: true }
 
         expect(response).to be_ok
 

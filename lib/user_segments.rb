@@ -66,7 +66,7 @@ class UserSegments
   end
 
   def self.geozones_available?
-    ActiveRecord::Base.connection.table_exists?('geozones')
+    ActiveRecord::Base.connection.data_source_exists?("geozones")
   end
 
   def self.geozone_names

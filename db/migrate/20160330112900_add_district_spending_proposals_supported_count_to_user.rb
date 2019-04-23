@@ -1,4 +1,4 @@
-class AddDistrictSpendingProposalsSupportedCountToUser < ActiveRecord::Migration
+class AddDistrictSpendingProposalsSupportedCountToUser < ActiveRecord::Migration[4.2]
   def change
     add_column :users, :district_wide_spending_proposals_supported_count, :integer, default: 0
     add_column :users, :city_wide_spending_proposals_supported_count, :integer, default: 0

@@ -1,4 +1,4 @@
-class CreateBudgetPolls < ActiveRecord::Migration
+class CreateBudgetPolls < ActiveRecord::Migration[4.2]
   def change
     create_table :budget_polls do |t|
       t.string :name

@@ -1,4 +1,4 @@
-class CreatesNvotes < ActiveRecord::Migration
+class CreatesNvotes < ActiveRecord::Migration[4.2]
   def change
     create_table "nvotes", force: :cascade do |t|
       t.integer  "user_id"

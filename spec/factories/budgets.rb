@@ -212,7 +212,7 @@ FactoryBot.define do
     transient { user nil }
 
     ballot do
-      association :budget_ballot, budget: investment.budget, user: user || association(:user)
+      association :budget_ballot, budget: investment.budget.reload, user: user || association(:user)
     end
   end
 

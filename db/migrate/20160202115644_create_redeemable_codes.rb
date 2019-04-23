@@ -1,4 +1,4 @@
-class CreateRedeemableCodes < ActiveRecord::Migration
+class CreateRedeemableCodes < ActiveRecord::Migration[4.2]
   def change
     create_table :redeemable_codes do |t|
       t.string :token

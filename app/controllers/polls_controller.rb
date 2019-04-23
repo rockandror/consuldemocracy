@@ -1,3 +1,6 @@
+require_dependency "poll/answer"
+require_dependency "poll/question/answer"
+
 class PollsController < ApplicationController
   include PollsHelper
 
@@ -9,10 +12,8 @@ class PollsController < ApplicationController
   has_filters %w[current expired]
   has_orders %w{most_voted newest oldest}, only: :show
 
-  ::Poll::Answer # trigger autoload
-
   def index
-    @polls = @polls.not_budget.send(@current_filter).includes(:geozones).sort_for_list.page(params[:page])
+    @polls = @polls.not_budget.send(@current_filter).sort_for_list.page(params[:page])
   end
 
   def show
@@ -21,7 +22,7 @@ class PollsController < ApplicationController
     @poll_questions_answers = Poll::Question::Answer.where(question: @poll.questions).where.not(description: "").order(:given_order)
 
     @answers_by_question_id = {}
-    poll_answers = ::Poll::Answer.by_question(@poll.question_ids).by_author(current_user.try(:id))
+    poll_answers = Poll::Answer.by_question(@poll.question_ids).by_author(current_user.try(:id))
     poll_answers.each do |answer|
       @answers_by_question_id[answer.question_id] = answer.answer
     end

@@ -1,3 +1,4 @@
+require_relative "boot"
 
 require File.expand_path('../boot', __FILE__)
 
@@ -60,9 +61,6 @@ module Consul
 
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
 
-    # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.raise_in_transactional_callbacks = true
-
     # Add lib to the autoload path
     config.autoload_paths << Rails.root.join('lib')
     config.time_zone = 'Madrid'
@@ -76,6 +74,16 @@ module Consul
     config.autoload_paths << "#{Rails.root}/app/controllers/custom"
     config.autoload_paths << "#{Rails.root}/app/models/custom"
     config.paths['app/views'].unshift(Rails.root.join('app', 'views', 'custom'))
+  end
+end
+
+class Rails::Engine
+  initializer :prepend_custom_assets_path, group: :all do |app|
+    if self.class.name == "Consul::Application"
+      %w[images fonts javascripts].each do |asset|
+        app.config.assets.paths.unshift(Rails.root.join("app", "assets", asset, "custom").to_s)
+      end
+    end
   end
 end
 

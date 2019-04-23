@@ -1,9 +1,29 @@
 class Budget
-  class Group < ActiveRecord::Base
+  class Group < ApplicationRecord
     include Sluggable
 
     translates :name, touch: true
     include Globalizable
+    translation_class_delegate :budget
+
+    class Translation
+      validate :name_uniqueness_by_budget
+      before_save :strip_name
+
+      def name_uniqueness_by_budget
+        if budget.groups.joins(:translations)
+                        .where(name: name)
+                        .where.not("budget_group_translations.budget_group_id": budget_group_id).any?
+          errors.add(:name, I18n.t("errors.messages.taken"))
+        end
+      end
+
+      private
+
+        def strip_name
+          name.strip!
+        end
+    end
 
     belongs_to :budget
 
@@ -18,9 +38,7 @@ class Budget
     validates :max_supportable_headings, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
 
     scope :by_slug, ->(slug) { where(slug: slug) }
-    scope :sort_by_name, -> { includes(:translations).order(:name) }
-
-    before_save :strip_name
+    scope :sort_by_name, -> { joins(:translations).order(:name) }
 
     def to_param
       slug
@@ -34,10 +52,6 @@ class Budget
 
     def generate_slug?
       slug.nil? || budget.drafting?
-    end
-
-    def strip_name
-      name.strip!
     end
   end
 end

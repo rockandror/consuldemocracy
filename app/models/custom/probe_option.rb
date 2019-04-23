@@ -1,4 +1,4 @@
-class ProbeOption < ActiveRecord::Base
+class ProbeOption < ApplicationRecord
   include Randomizable
 
   belongs_to :probe

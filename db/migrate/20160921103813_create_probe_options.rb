@@ -1,4 +1,4 @@
-class CreateProbeOptions < ActiveRecord::Migration
+class CreateProbeOptions < ActiveRecord::Migration[4.2]
   def change
     create_table :probe_options do |t|
       t.string :code

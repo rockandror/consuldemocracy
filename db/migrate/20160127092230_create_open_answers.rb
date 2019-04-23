@@ -1,4 +1,4 @@
-class CreateOpenAnswers < ActiveRecord::Migration
+class CreateOpenAnswers < ActiveRecord::Migration[4.2]
   def change
     create_table :open_answers do |t|
       t.text :text

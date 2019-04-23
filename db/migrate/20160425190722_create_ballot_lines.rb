@@ -1,4 +1,4 @@
-class CreateBallotLines < ActiveRecord::Migration
+class CreateBallotLines < ActiveRecord::Migration[4.2]
   def change
     create_table :ballot_lines do |t|
       t.integer :ballot_id

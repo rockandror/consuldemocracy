@@ -21,8 +21,3 @@ Rails.application.config.assets.precompile += %w( stats-charts.js )
 Rails.application.config.assets.precompile += %w( participatory-budget-charts.js )
 
 # Loads custom images and custom fonts before app/assets/images and app/assets/fonts
-assets_path = Rails.application.config.assets.paths
-
-%w[images fonts javascripts].each do |asset|
-  assets_path.insert(0, Rails.root.join("app", "assets", asset, "custom").to_s)
-end

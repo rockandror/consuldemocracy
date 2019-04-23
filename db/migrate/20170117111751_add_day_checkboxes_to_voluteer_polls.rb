@@ -1,4 +1,4 @@
-class AddDayCheckboxesToVoluteerPolls < ActiveRecord::Migration
+class AddDayCheckboxesToVoluteerPolls < ActiveRecord::Migration[4.2]
   def change
     add_column :volunteer_polls, :monday_13_morning, :boolean
     add_column :volunteer_polls, :monday_13_afternoon, :boolean

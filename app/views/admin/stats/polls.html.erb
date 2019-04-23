@@ -1,3 +1,5 @@
+<% require_dependency "poll/answer" %>
+
 <%= back_link_to %>
 
 <h2 id="top"><%= t("admin.stats.polls.title")%></h2>
@@ -67,7 +69,7 @@
           <%= question.title %>
         </td>
         <td class="name text-right">
-          <%= ::Poll::Answer.by_question(question).count %>
+          <%= Poll::Answer.by_question(question).count %>
         </td>
       </tr>
     <% end %>
@@ -77,8 +79,8 @@
         <th class="name text-right">
           <strong>
             <%= t("admin.stats.polls.table.origin_total") %>: 
-            <%= ::Poll::Answer.where(question: poll.questions)
-                              .select(:author_id).distinct.count %>
+            <%= Poll::Answer.where(question: poll.questions)
+                            .select(:author_id).distinct.count %>
           </strong>
         </th>
       </tr>

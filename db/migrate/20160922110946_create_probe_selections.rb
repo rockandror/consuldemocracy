@@ -1,4 +1,4 @@
-class CreateProbeSelections < ActiveRecord::Migration
+class CreateProbeSelections < ActiveRecord::Migration[4.2]
   def change
     create_table :probe_selections do |t|
       t.belongs_to :probe

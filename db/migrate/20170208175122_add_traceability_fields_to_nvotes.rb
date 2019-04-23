@@ -1,4 +1,4 @@
-class AddTraceabilityFieldsToNvotes < ActiveRecord::Migration
+class AddTraceabilityFieldsToNvotes < ActiveRecord::Migration[4.2]
   def change
     add_column :poll_nvotes, :officer_assignment_id, :integer
     add_column :poll_nvotes, :booth_assignment_id, :integer

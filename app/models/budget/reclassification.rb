@@ -1,3 +1,5 @@
+require_dependency "budget/ballot"
+
 class Budget
   module Reclassification
     extend ActiveSupport::Concern
