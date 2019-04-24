@@ -29,6 +29,10 @@ describe RemotelyTranslatable do
     Setting["feature.remote_translations"] = true
   end
 
+  after do
+    Setting["feature.remote_translations"] = nil
+  end
+
   describe "index" do
 
     it "Should detect remote_translations when not defined in request locale" do
