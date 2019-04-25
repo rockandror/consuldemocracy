@@ -1,10 +1,10 @@
 <%= provide :title,            t("social_share.polls_show.title_#{@poll.id}", default: @poll.title) %>
-<%= provide :meta_description, t("social_share.polls_show.description_#{@poll.id}", default: @poll.summary) %>
+<%= provide :meta_description, t("social_share.polls_show.description_#{@poll.id}", default: @poll.title) %>
 <%= provide :social_media_meta_tags do %>
   <%= render "shared/social_media_meta_tags",
               social_url: poll_url,
               social_title: t("social_share.polls_show.title_#{@poll.id}", default: @poll.title),
-              social_description: t("social_share.polls_show.facebook_#{@poll.id}", default: @poll.summary),
+              social_description: t("social_share.polls_show.facebook_#{@poll.id}", default: @poll.title),
               twitter_image_url:  "social_media_polls_twitter.jpg",
               og_image_url: "social_media_polls.jpg" %>
 <% end %>
@@ -32,7 +32,7 @@
       <% end %>
 
       <% @questions.each do |question| %>
-        <%= render 'polls/questions/question', question: question, token: @token %>
+        <%= render "polls/questions/question", question: question, token: @token %>
       <% end %>
 
       <!-- Hides token temporally -->

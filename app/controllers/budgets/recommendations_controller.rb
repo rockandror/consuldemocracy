@@ -41,7 +41,7 @@ module Budgets
     private
 
       def load_user
-        @user = params[:user_id].present? ? User.find(params[:user_id]) : current_user
+        @user = params[:user_id].present? ? User.find(params[:user_id]) : authenticate_user!
       end
 
       def load_budget

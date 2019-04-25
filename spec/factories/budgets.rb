@@ -198,7 +198,7 @@ FactoryBot.define do
   end
 
   factory :budget_recommendation, class: "Budget::Recommendation" do
-    budget
+    budget { investment.budget }
     association :investment, factory: :budget_investment
     user
   end

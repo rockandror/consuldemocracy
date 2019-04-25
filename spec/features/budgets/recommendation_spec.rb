@@ -25,6 +25,30 @@ feature "Recommendations" do
       end.to raise_error ActiveRecord::RecordNotFound
     end
 
+    scenario "without a user id shows recommendations for current user" do
+      create(:budget_recommendation,
+             user: user,
+             investment: create(:budget_investment, budget: budget, description: "More Festivals!")
+      )
+
+      create(:budget_recommendation,
+             user: create(:user),
+             investment: create(:budget_investment, budget: budget, description: "Less Festivals!")
+      )
+
+      login_as(user)
+      visit budget_recommendations_path(budget)
+
+      expect(page).to have_content "More Festivals!"
+      expect(page).not_to have_content "Less Festivals!"
+    end
+
+    scenario "without a user id redirects to sign in if user isn't authenticated" do
+      visit budget_recommendations_path(budget)
+
+      expect(page).to have_current_path new_user_session_path
+      expect(page).to have_content "You must sign in or register to continue"
+    end
   end
 
   scenario "Create by phase" do
@@ -98,9 +122,9 @@ feature "Recommendations" do
     investment2 = create(:budget_investment, heading: heading)
     investment3 = create(:budget_investment, heading: heading)
 
-    recommendation1 = create(:budget_recommendation, user: user1, investment: investment1, budget: heading.budget)
-    recommendation2 = create(:budget_recommendation, user: user1, investment: investment2, budget: heading.budget)
-    recommendation3 = create(:budget_recommendation, user: user2, investment: investment3, budget: heading.budget)
+    recommendation1 = create(:budget_recommendation, user: user1, investment: investment1)
+    recommendation2 = create(:budget_recommendation, user: user1, investment: investment2)
+    recommendation3 = create(:budget_recommendation, user: user2, investment: investment3)
 
     login_as(user2)
     visit user_path(user1)
@@ -119,7 +143,7 @@ feature "Recommendations" do
     user2 = create(:user, :level_two)
 
     investment = create(:budget_investment, :feasible)
-    create(:budget_recommendation, budget_id: investment.budget_id, investment: investment, user: user1)
+    create(:budget_recommendation, investment: investment, user: user1)
     investment.budget.update(phase: "selecting")
 
     login_as(user2)
@@ -143,7 +167,7 @@ feature "Recommendations" do
     investment = create(:budget_investment, :selected)
     budget = investment.budget
     budget.update!(phase: "balloting")
-    create(:budget_recommendation, budget_id: investment.budget_id, investment: investment, user: user1, phase: "balloting")
+    create(:budget_recommendation, investment: investment, user: user1, phase: "balloting")
 
     login_as(user2)
     visit user_path(user1)

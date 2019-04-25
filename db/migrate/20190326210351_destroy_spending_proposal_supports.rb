@@ -1,4 +1,4 @@
-class DestroySpendingProposalSupports < ActiveRecord::Migration
+class DestroySpendingProposalSupports < ActiveRecord::Migration[4.2]
   def change
     remove_column :users, :district_wide_spending_proposals_supported_count
     remove_column :users, :city_wide_spending_proposals_supported_count
