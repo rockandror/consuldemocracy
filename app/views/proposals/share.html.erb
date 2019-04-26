@@ -28,8 +28,6 @@
           mobile: @proposal.title
         } %>
 
-        <!-- Hides temporally dashboard button -->
-        <% if false %>
         <% if can?(:dashboard, @proposal) %>
           <div class="callout light margin">
             <p class="text-center">
@@ -40,7 +38,6 @@
                           progress_proposal_dashboard_path(@proposal), class: "button expanded" %>
             </div>
           </div>
-        <% end %>
         <% end %>
 
         <%= render "custom/proposals/kit_decide" %>

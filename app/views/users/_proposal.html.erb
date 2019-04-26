@@ -18,12 +18,11 @@
 
   <% if proposal.retired? %>
     <td class="help-text"><%= t("users.proposals.retired_help_text") %></td>
-  <!-- Hides temporally dashboard button -->
-  <%# elsif can?(:dashboard, proposal) %>
-    <!-- <td>
-        <%#= link_to t("proposals.show.dashboard_proposal_link"),
-                    progress_proposal_dashboard_path(proposal), class: "button hollow expanded" %>
-    </td> -->
+  <% elsif can?(:dashboard, proposal) %>
+    <td>
+      <%= link_to t("proposals.show.dashboard_proposal_link"),
+                  progress_proposal_dashboard_path(proposal), class: "button hollow expanded" %>
+    </td>
   <% else %>
     <td class="text-center">
       <%= link_to t("users.proposals.see"), proposal, class: "button hollow" %>
