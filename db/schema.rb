@@ -446,16 +446,15 @@ ActiveRecord::Schema.define(version: 20190411090023) do
   end
 
   create_table "dashboard_administrator_tasks", force: :cascade do |t|
-    t.integer  "source_id"
     t.string   "source_type"
+    t.integer  "source_id"
     t.integer  "user_id"
     t.datetime "executed_at"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["source_type", "source_id"], name: "index_dashboard_administrator_tasks_on_source", using: :btree
+    t.index ["user_id"], name: "index_dashboard_administrator_tasks_on_user_id", using: :btree
   end
-
-  add_index "dashboard_administrator_tasks", ["source_type", "source_id"], name: "index_dashboard_administrator_tasks_on_source", using: :btree
-  add_index "dashboard_administrator_tasks", ["user_id"], name: "index_dashboard_administrator_tasks_on_user_id", using: :btree
 
   create_table "dashboard_executed_actions", force: :cascade do |t|
     t.integer  "proposal_id"
@@ -463,10 +462,9 @@ ActiveRecord::Schema.define(version: 20190411090023) do
     t.datetime "executed_at"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["action_id"], name: "index_proposal_action", using: :btree
+    t.index ["proposal_id"], name: "index_dashboard_executed_actions_on_proposal_id", using: :btree
   end
-
-  add_index "dashboard_executed_actions", ["action_id"], name: "index_proposal_action", using: :btree
-  add_index "dashboard_executed_actions", ["proposal_id"], name: "index_dashboard_executed_actions_on_proposal_id", using: :btree
 
   create_table "debates", force: :cascade do |t|
     t.string   "title",                        limit: 80
@@ -841,13 +839,12 @@ ActiveRecord::Schema.define(version: 20190411090023) do
   create_table "links", force: :cascade do |t|
     t.string   "label"
     t.string   "url"
-    t.integer  "linkable_id"
     t.string   "linkable_type"
+    t.integer  "linkable_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.index ["linkable_type", "linkable_id"], name: "index_links_on_linkable_type_and_linkable_id", using: :btree
   end
-
-  add_index "links", ["linkable_type", "linkable_id"], name: "index_links_on_linkable_type_and_linkable_id", using: :btree
 
   create_table "local_census_records", force: :cascade do |t|
     t.string   "document_number", null: false
@@ -1212,11 +1209,11 @@ ActiveRecord::Schema.define(version: 20190411090023) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "budget_id"
-    t.integer  "related_id"
     t.string   "related_type"
+    t.integer  "related_id"
     t.index ["budget_id"], name: "index_polls_on_budget_id", unique: true, using: :btree
-    t.index ["starts_at", "ends_at"], name: "index_polls_on_starts_at_and_ends_at", using: :btree
     t.index ["related_type", "related_id"], name: "index_polls_on_related_type_and_related_id", using: :btree
+    t.index ["starts_at", "ends_at"], name: "index_polls_on_starts_at_and_ends_at", using: :btree
   end
 
   create_table "probe_options", force: :cascade do |t|

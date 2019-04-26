@@ -411,21 +411,19 @@ namespace :proposal_actions do
     goal_votes = Setting["votes_for_proposal_success"].to_f
     cached_votes_up = 0
 
-    tags = Faker::Lorem.words(25)
     author = User.all.sample
-    description = "<p>#{Faker::Lorem.paragraphs.join('</p><p>')}</p>"
+    description = "<p>This is an example of a successful proposal with an ideal progress.</p>"
     proposal = Proposal.create!(author: author,
-                                title: Faker::Lorem.sentence(3).truncate(60),
-                                summary: Faker::Lorem.sentence(3),
-                                responsible_name: Faker::Name.name,
+                                title: "Successful proposal",
+                                summary: "Example of a successful proposal",
+                                responsible_name: "User Name",
                                 description: description,
                                 created_at: Time.now - expected_supports.length.days,
-                                tag_list: tags.sample(3).join(","),
+                                tag_list: "Example",
                                 geozone: Geozone.all.sample,
                                 skip_map: "1",
                                 terms_of_service: "1",
                                 published_at: Time.now - expected_supports.length.days)
-
 
     expected_supports.each_with_index do |supports, day_offset|
       supports = (supports * goal_votes / votes_count).ceil
