@@ -166,15 +166,20 @@ feature "Results" do
     context "headings" do
 
       scenario "Displays headings ordered by name with city heading first" do
+        allow_any_instance_of(Budget::Heading).to receive(:city_heading?) do |heading|
+          heading.name == "City of New York"
+        end
+
         budget.update(phase: "finished")
 
+        city_group = create(:budget_group, budget: budget)
         district_group = create(:budget_group, budget: budget)
+
         create(:budget_heading, group: district_group, name: "Brooklyn")
         create(:budget_heading, group: district_group, name: "Queens")
         create(:budget_heading, group: district_group, name: "Manhattan")
 
-        city_group = create(:budget_group, budget: budget)
-        city_heading = create(:budget_heading, group: city_group, name: "City of New York")
+        create(:budget_heading, group: city_group, name: "City of New York")
 
         visit budget_results_path(budget)
 
