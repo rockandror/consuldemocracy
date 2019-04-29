@@ -13,7 +13,6 @@ RSpec.configure do |config|
 
   config.filter_run :focus
   config.run_all_when_everything_filtered = true
-  config.include Devise::TestHelpers, type: :controller
   config.include RequestSpecHelper, type: :request
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include FactoryBot::Syntax::Methods
