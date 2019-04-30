@@ -996,10 +996,12 @@ feature "Budget Investments" do
 
       visit budget_investments_path(budget, heading_id: heading.id)
 
-      expect(page).not_to have_link("Check my ballot")
+      expect(page).not_to have_link("Check and confirm my ballot")
       expect(page).not_to have_css("#progress_bar")
+
       within("#sidebar") do
         expect(page).not_to have_content("My ballot")
+        expect(page).not_to have_link("Check and confirm my ballot")
       end
     end
 
@@ -1634,7 +1636,8 @@ feature "Budget Investments" do
 
       visit budget_ballot_path(budget)
 
-      expect(page).to have_content "You can change your vote at any time until the close of this phase"
+      expect(page).to have_content "But you can change your vote at any time "\
+                                   "until this phase is closed."
 
       within("#budget_group_#{global_group.id}") do
         expect(page).to have_content investment1.title
@@ -1697,10 +1700,12 @@ feature "Budget Investments" do
 
       visit budget_investments_path(budget, heading_id: heading.id)
 
-      expect(page).to have_link("Check my ballot")
+      expect(page).to have_link("Check and confirm my ballot")
       expect(page).to have_css("#progress_bar")
+
       within("#sidebar") do
         expect(page).to have_content("My ballot")
+        expect(page).to have_link("Check and confirm my ballot")
       end
     end
 

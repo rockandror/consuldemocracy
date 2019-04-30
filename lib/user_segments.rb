@@ -3,6 +3,7 @@ class UserSegments
   def self.segments
     %w(all_users
        administrators
+       all_proposal_authors
        proposal_authors
        investment_authors
        feasible_and_undecided_investment_authors
@@ -18,6 +19,10 @@ class UserSegments
 
   def self.administrators
     all_users.administrators
+  end
+
+  def self.all_proposal_authors
+    author_ids(Proposal.pluck(:author_id).uniq)
   end
 
   def self.proposal_authors
