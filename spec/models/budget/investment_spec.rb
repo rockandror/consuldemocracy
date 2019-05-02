@@ -1044,6 +1044,64 @@ describe Budget::Investment do
         expect(described_class.sort_by_confidence_score.fourth).to eq least_voted
       end
     end
+
+    describe "#sort_by_supports" do
+
+      it "sorts by cached votes" do
+        most_voted = create(:budget_investment, cached_votes_up: 10)
+        some_votes = create(:budget_investment, cached_votes_up: 5)
+        least_voted = create(:budget_investment, cached_votes_up: 2)
+
+        expect(described_class.sort_by_supports.first).to eq most_voted
+        expect(described_class.sort_by_supports.second).to eq some_votes
+        expect(described_class.sort_by_supports.third).to eq least_voted
+      end
+
+      it "sorts by physical votes" do
+        most_voted = create(:budget_investment, physical_votes: 10)
+        some_votes = create(:budget_investment, physical_votes: 5)
+        least_voted = create(:budget_investment, physical_votes: 2)
+
+        expect(described_class.sort_by_supports.first).to eq most_voted
+        expect(described_class.sort_by_supports.second).to eq some_votes
+        expect(described_class.sort_by_supports.third).to eq least_voted
+      end
+
+      it "sorts by cached votes plus physical votes" do
+        most_voted = create(:budget_investment, cached_votes_up: 1, physical_votes: 10)
+        some_votes = create(:budget_investment, cached_votes_up: 3, physical_votes: 3)
+        least_voted = create(:budget_investment, cached_votes_up: 4, physical_votes: 1)
+
+        expect(described_class.sort_by_supports.first).to eq most_voted
+        expect(described_class.sort_by_supports.second).to eq some_votes
+        expect(described_class.sort_by_supports.third).to eq least_voted
+      end
+
+    end
+  end
+
+  describe ".order_filter" do
+
+    it "sorts investments by supports when no order given" do
+      most_voted = create(:budget_investment, cached_votes_up: 1, physical_votes: 10)
+      some_votes = create(:budget_investment, cached_votes_up: 3, physical_votes: 3)
+      least_voted = create(:budget_investment, cached_votes_up: 4, physical_votes: 1)
+
+      expect(described_class.order_filter({}).first).to eq most_voted
+      expect(described_class.order_filter({}).second).to eq some_votes
+      expect(described_class.order_filter({}).third).to eq least_voted
+    end
+
+    it "sorts investments by supports" do
+      most_voted = create(:budget_investment, cached_votes_up: 1, physical_votes: 10)
+      some_votes = create(:budget_investment, cached_votes_up: 3, physical_votes: 3)
+      least_voted = create(:budget_investment, cached_votes_up: 4, physical_votes: 1)
+
+      expect(described_class.order_filter(sort_by: "supports", direction: "desc").first).to eq most_voted
+      expect(described_class.order_filter(sort_by: "supports", direction: "desc").second).to eq some_votes
+      expect(described_class.order_filter(sort_by: "supports", direction: "desc").third).to eq least_voted
+    end
+
   end
 
   describe "responsible_name" do

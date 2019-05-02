@@ -1,6 +1,6 @@
 class Budget
   class Investment < ApplicationRecord
-    SORTING_OPTIONS = {id: "id", title: "title", supports: "cached_votes_up"}.freeze
+    SORTING_OPTIONS = {id: "id", title: "title", supports: "cached_votes_up + physical_votes"}.freeze
 
     include Rails.application.routes.url_helpers
     include Measurable
@@ -59,7 +59,7 @@ class Budget
 
     scope :sort_by_id, -> { order("id DESC") }
     scope :sort_by_title, -> { order("title ASC") }
-    scope :sort_by_supports, -> { order("cached_votes_up DESC") }
+    scope :sort_by_supports, -> { order("cached_votes_up + physical_votes DESC") }
 
     scope :valuation_open,              -> { where(valuation_finished: false) }
     scope :without_admin,               -> { valuation_open.where(administrator_id: nil) }
@@ -153,7 +153,7 @@ class Budget
         direction = params[:direction] == "desc" ? "desc" : "asc"
         order("#{allowed_sort_option} #{direction}")
       else
-        order(cached_votes_up: :desc).order(id: :desc)
+        sort_by_supports
       end
     end
 
