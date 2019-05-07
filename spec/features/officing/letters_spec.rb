@@ -1,10 +1,10 @@
 require "rails_helper"
 
-feature "Letters" do
+describe "Letters" do
   let(:officer) { create(:poll_officer, letter_officer: true) }
   let(:poll)    { create(:poll) }
 
-  background do
+  before do
     login_as(officer.user)
     visit new_officing_letter_path
 

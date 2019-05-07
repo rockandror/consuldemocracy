@@ -1,8 +1,8 @@
 require "rails_helper"
 
-feature "Admin feature flags" do
+describe "Admin feature flags" do
 
-  background do
+  before do
     Setting["process.budgets"] = true
     login_as(create(:administrator).user)
   end

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Open Plenary" do
+describe "Open Plenary" do
 
   let!(:debate) { create(:debate, comment_kind: "question", tag_list: "plenoabierto") }
 

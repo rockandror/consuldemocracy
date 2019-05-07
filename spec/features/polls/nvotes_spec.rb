@@ -1,14 +1,14 @@
 require "rails_helper"
 
-feature "Nvotes" do
+describe "Nvotes" do
 
   before do
     skip "this feature is currently disabled"
   end
 
   scenario "Check correct configuration" do
-    expect(Rails.application.secrets["nvotes_shared_key"]).not_to eq("")
-    expect(Rails.application.secrets["nvotes_server_url"]).not_to eq("")
+    expect(Rails.application.secrets.nvotes_shared_key).not_to eq("")
+    expect(Rails.application.secrets.nvotes_server_url).not_to eq("")
   end
 
   scenario "Send vote", :selenium do

@@ -1,8 +1,8 @@
 require "rails_helper"
 
-feature "Admin users" do
+describe "Admin users" do
 
-  background do
+  before do
     @admin = create(:administrator)
     @user  = create(:user, username: "Jose Luis Balbin")
     login_as(@admin.user)

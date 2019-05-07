@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Legislation Proposals" do
+describe "Legislation Proposals" do
 
   let(:user)     { create(:user) }
   let(:film_library_process) { create(:legislation_process, film_library: true) }

@@ -1,8 +1,8 @@
 require "rails_helper"
 
-feature "Admin probes" do
+describe "Admin probes" do
 
-  background do
+  before do
     @probe = Probe.create(codename: "testprobe")
     @probe_option_1 = @probe.probe_options.create(code: "A1" , name: "Test Probe Option 1", probe_selections_count: 3)
     @probe_option_2 = @probe.probe_options.create(code: "A2" , name: "Test Probe Option II", probe_selections_count: 10)

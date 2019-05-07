@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Budget Groups" do
+describe "Budget Groups" do
 
   let(:budget) { create(:budget, slug: "budget_slug") }
   let!(:group)  { create(:budget_group, slug: "group_slug", budget: budget) }

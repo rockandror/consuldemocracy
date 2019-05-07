@@ -1,12 +1,12 @@
 require "rails_helper"
 
-feature "Valuation budgets" do
+describe "Valuation budgets" do
 
   let!(:valuator) do
     create(:valuator, user: create(:user, username: "Rachel", email: "rachel@valuators.org"))
   end
 
-  background do
+  before do
     login_as(valuator.user)
   end
 

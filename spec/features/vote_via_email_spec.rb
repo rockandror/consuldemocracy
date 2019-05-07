@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Vote via email" do
+describe "Vote via email" do
 
   context "Voting proposals via a GET link" do
     let(:proposal) { create(:proposal) }

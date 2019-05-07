@@ -1,7 +1,7 @@
 # coding: utf-8
 require "rails_helper"
 
-feature "Proceedings" do
+describe "Proceedings" do
 
   scenario "creation with sub_proceeding" do
     login_as (create(:user, :level_two))

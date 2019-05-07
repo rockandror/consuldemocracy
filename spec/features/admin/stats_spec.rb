@@ -1,8 +1,8 @@
 require "rails_helper"
 
-feature "Stats" do
+describe "Stats" do
 
-  background do
+  before do
     admin = create(:administrator)
     login_as(admin.user)
     visit root_path
@@ -92,7 +92,7 @@ feature "Stats" do
 
   end
 
-  feature "Budget investments" do
+  describe "Budget investments" do
 
     context "Supporting phase" do
       let!(:budget) { create(:budget) }
@@ -208,7 +208,7 @@ feature "Stats" do
     end
 
     context "Balloting phase" do
-      background do
+      before do
         @budget = create(:budget, :balloting)
         @group = create(:budget_group, budget: @budget)
         @heading = create(:budget_heading, group: @group)
@@ -412,7 +412,7 @@ feature "Stats" do
 
   context "User invites" do
 
-    background do
+    before do
       create(:campaign, track_id: 172943750183759812)
     end
 

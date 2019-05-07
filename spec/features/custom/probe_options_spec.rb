@@ -1,9 +1,9 @@
 require "rails_helper"
 
-feature "Probe options" do
+describe "Probe options" do
 
   context "Plaza probe" do
-    background do
+    before do
       @probe = Probe.create(codename: "plaza")
       @probe_option = @probe.probe_options.create(code: "01", name: "mas o menos")
       logout

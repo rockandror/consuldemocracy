@@ -1,10 +1,10 @@
 require "rails_helper"
 
-feature "Probes" do
+describe "Probes" do
 
   context "Town Planning" do
 
-    background do
+    before do
       @probe = Probe.create(codename: "town_planning")
       @probe_option_1 = @probe.probe_options.create(code: "01" , name: "First Option")
       @probe_option_2 = @probe.probe_options.create(code: "02" , name: "Second Option")
@@ -56,7 +56,7 @@ feature "Probes" do
 
   context "Plaza" do
 
-    background do
+    before do
       @probe = Probe.create(codename: "plaza")
       @probe_option_1 = @probe.probe_options.create(code: "PL1" , name: "Plaza Option 1")
       @probe_option_2 = @probe.probe_options.create(code: "PL2" , name: "Plaza Option II")

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Officing Nvotes", :selenium do
+describe "Officing Nvotes", :selenium do
 
   before do
     skip "this feature is currently disabled"
@@ -8,7 +8,7 @@ feature "Officing Nvotes", :selenium do
 
   let(:officer) { create(:poll_officer) }
 
-  background do
+  before do
     validate_officer
     login_as(officer.user)
     create(:geozone, census_code: "01")

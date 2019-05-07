@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Recommendations" do
+describe "Recommendations" do
 
   context "Load" do
 

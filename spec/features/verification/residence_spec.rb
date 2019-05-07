@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Residence" do
+describe "Residence" do
 
   let!(:geozone) { create(:geozone) }
 

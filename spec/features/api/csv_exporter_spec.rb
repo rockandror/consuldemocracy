@@ -1,13 +1,13 @@
 require "rails_helper"
 require "csv"
 
-feature "CSV Exporter" do
+describe "CSV Exporter" do
 
   def parse_csv(str)
     CSV.parse(str, col_sep: ";", force_quotes: true, encoding: "ISO-8859-1")
   end
 
-  background do
+  before do
     @csv_exporter = API::CSVExporter.new
   end
 

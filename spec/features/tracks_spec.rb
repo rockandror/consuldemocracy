@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Tracking" do
+describe "Tracking" do
 
   context "User data" do
 
@@ -302,7 +302,7 @@ feature "Tracking" do
 
   context "Tracking pages" do
 
-    background do
+    before do
       Setting["per_page_code_head"] = "<script>function weboConv(idConv){}</script>"
     end
 
@@ -330,7 +330,7 @@ feature "Tracking" do
 
     context "Codes after login", :js do
 
-      background do
+      before do
         user = create(:user, :level_two)
         login_as(user)
       end

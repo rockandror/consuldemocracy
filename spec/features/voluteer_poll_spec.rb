@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Volunteer Poll" do
+describe "Volunteer Poll" do
 
   scenario "Create" do
     visit new_volunteer_poll_path

@@ -1,14 +1,14 @@
 require "rails_helper"
 
-feature "Votes" do
+describe "Votes" do
 
-  background do
+  before do
     @manuela = create(:user, verified_at: Time.current)
     @pablo = create(:user)
   end
 
-  feature "Debates" do
-    background { login_as(@manuela) }
+  describe "Debates" do
+    before { login_as(@manuela) }
 
     scenario "Index shows user votes on debates" do
 
@@ -59,7 +59,7 @@ feature "Votes" do
       end
     end
 
-    feature "Single debate" do
+    describe "Single debate" do
 
       scenario "Show no votes" do
         visit debate_path(create(:debate))
@@ -184,8 +184,8 @@ feature "Votes" do
     end
   end
 
-  feature "Proposals" do
-    background { login_as(@manuela) }
+  describe "Proposals" do
+    before { login_as(@manuela) }
 
     scenario "Index shows user votes on proposals" do
       proposal1 = create(:proposal)
@@ -210,8 +210,8 @@ feature "Votes" do
       end
     end
 
-    feature "Single proposal" do
-      background do
+    describe "Single proposal" do
+      before do
         @proposal = create(:proposal)
       end
 

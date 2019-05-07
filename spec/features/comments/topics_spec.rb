@@ -1,7 +1,7 @@
 require "rails_helper"
 include ActionView::Helpers::DateHelper
 
-feature "Commenting topics from proposals" do
+describe "Commenting topics from proposals" do
   let(:user)     { create :user }
   let(:proposal) { create :proposal }
 
@@ -166,7 +166,7 @@ feature "Commenting topics from proposals" do
     expect(page).to have_css(".comment", count: 2)
   end
 
-  feature "Not logged user" do
+  describe "Not logged user" do
     scenario "can not see comments forms" do
       community = proposal.community
       topic = create(:topic, community: community)
@@ -336,7 +336,7 @@ feature "Commenting topics from proposals" do
     end
   end
 
-  feature "Moderators" do
+  describe "Moderators" do
     scenario "can create comment as a moderator", :js do
       community = proposal.community
       topic = create(:topic, community: community)
@@ -398,7 +398,7 @@ feature "Commenting topics from proposals" do
     end
   end
 
-  feature "Administrators" do
+  describe "Administrators" do
     scenario "can create comment as an administrator", :js do
       community = proposal.community
       topic = create(:topic, community: community)
@@ -460,8 +460,8 @@ feature "Commenting topics from proposals" do
     end
   end
 
-  feature "Voting comments" do
-    background do
+  describe "Voting comments" do
+    before do
       @manuela = create(:user, verified_at: Time.current)
       @pablo = create(:user)
       @proposal = create(:proposal)
@@ -553,7 +553,7 @@ feature "Commenting topics from proposals" do
 
 end
 
-feature "Commenting topics from budget investments" do
+describe "Commenting topics from budget investments" do
   let(:user)       { create :user }
   let(:investment) { create :budget_investment }
 
@@ -718,7 +718,7 @@ feature "Commenting topics from budget investments" do
     expect(page).to have_css(".comment", count: 2)
   end
 
-  feature "Not logged user" do
+  describe "Not logged user" do
     scenario "can not see comments forms" do
       community = investment.community
       topic = create(:topic, community: community)
@@ -888,7 +888,7 @@ feature "Commenting topics from budget investments" do
     end
   end
 
-  feature "Moderators" do
+  describe "Moderators" do
     scenario "can create comment as a moderator", :js do
       community = investment.community
       topic = create(:topic, community: community)
@@ -950,7 +950,7 @@ feature "Commenting topics from budget investments" do
     end
   end
 
-  feature "Administrators" do
+  describe "Administrators" do
     scenario "can create comment as an administrator", :js do
       community = investment.community
       topic = create(:topic, community: community)
@@ -1012,8 +1012,8 @@ feature "Commenting topics from budget investments" do
     end
   end
 
-  feature "Voting comments" do
-    background do
+  describe "Voting comments" do
+    before do
       @manuela = create(:user, verified_at: Time.current)
       @pablo = create(:user)
       @investment = create(:budget_investment)

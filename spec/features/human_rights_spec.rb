@@ -1,8 +1,8 @@
 require "rails_helper"
 
-feature "Human Rights" do
+describe "Human Rights" do
 
-  background do
+  before do
     Setting["feature.human_rights.voting"] = true
   end
 

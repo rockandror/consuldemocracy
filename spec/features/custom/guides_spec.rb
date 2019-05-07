@@ -1,11 +1,11 @@
 require "rails_helper"
 
-feature "Guide the user to create the correct resource" do
+describe "Guide the user to create the correct resource" do
 
   let(:user) { create(:user, :verified)}
   let!(:budget) { create(:budget, :accepting) }
 
-  background do
+  before do
     Setting["feature.guides"] = true
   end
 

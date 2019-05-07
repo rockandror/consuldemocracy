@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Custom urls" do
+describe "Custom urls" do
 
   let(:budget)      { create(:budget,            name:  "Big Budget") }
   let(:group)       { create(:budget_group,      name:  "Health",               budget: budget) }

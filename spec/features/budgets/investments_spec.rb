@@ -1,7 +1,7 @@
 require "rails_helper"
 require "sessions_helper"
 
-feature "Budget Investments" do
+describe "Budget Investments" do
   let(:author)  { create(:user, :level_two, username: "Isabel") }
   let(:budget)  { create(:budget, name: "Big Budget") }
   let(:other_budget) { create(:budget, name: "What a Budget!") }
@@ -1083,7 +1083,7 @@ feature "Budget Investments" do
 
     context "When investment with price is unselected" do
 
-      background do
+      before do
         investment.update(selected: false)
       end
 
@@ -1150,7 +1150,7 @@ feature "Budget Investments" do
              price_explanation: "Every wheel is 4 euros, so total is 16")
     end
 
-    background do
+    before do
       user = create(:user)
       login_as(user)
     end
@@ -1378,7 +1378,7 @@ feature "Budget Investments" do
 
   context "Selecting Phase" do
 
-    background do
+    before do
       budget.update(phase: "selecting")
     end
 
@@ -1464,7 +1464,7 @@ feature "Budget Investments" do
 
   context "Evaluating Phase" do
 
-    background do
+    before do
       budget.update(phase: "valuating")
     end
 
@@ -1507,7 +1507,7 @@ feature "Budget Investments" do
 
   context "Publishing prices phase" do
 
-    background do
+    before do
       budget.update(phase: "publishing_prices")
     end
 
@@ -1528,7 +1528,7 @@ feature "Budget Investments" do
 
   context "Balloting Phase" do
 
-    background do
+    before do
       budget.update(phase: "balloting")
     end
 
@@ -1774,7 +1774,7 @@ feature "Budget Investments" do
       expect(page).not_to have_link("Vote")
     end
 
-    feature "Reclassification" do
+    describe "Reclassification" do
 
       scenario "Due to heading change" do
         user = create(:user, :level_two)

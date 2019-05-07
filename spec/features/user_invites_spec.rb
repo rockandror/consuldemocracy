@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "User invites" do
+describe "User invites" do
 
   scenario "Send invitations" do
     login_as_manager

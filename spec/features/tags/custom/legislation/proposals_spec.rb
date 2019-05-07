@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Tags" do
+describe "Tags" do
 
   let(:film_library_process) { create(:legislation_process, film_library: true) }
 
