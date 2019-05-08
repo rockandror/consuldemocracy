@@ -15,6 +15,14 @@ class Admin::LocalCensusRecordsController < Admin::BaseController
     end
   end
 
+  def update
+    if @local_census_record.update(local_census_record_params)
+      redirect_to admin_local_census_records_path, notice: t(".notice")
+    else
+      render :edit
+    end
+  end
+
   private
 
     def local_census_record_params
