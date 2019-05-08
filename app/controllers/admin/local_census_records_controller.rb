@@ -23,6 +23,11 @@ class Admin::LocalCensusRecordsController < Admin::BaseController
     end
   end
 
+  def destroy
+    @local_census_record.destroy
+    redirect_to admin_local_census_records_path, notice: t(".notice")
+  end
+
   private
 
     def local_census_record_params
