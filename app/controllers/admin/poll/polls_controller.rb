@@ -58,6 +58,25 @@ class Admin::Poll::PollsController < Admin::Poll::BaseController
     @polls = Poll.current
   end
 
+  def destroy
+    if ::Poll::Voter.where(poll: @poll).any?
+      redirect_to admin_poll_path(@poll), alert: t("admin.polls.destroy.unable_notice")
+    else
+      @poll.destroy
+
+      @poll.questions.each do |question|
+
+        question.answers.each do |answer|
+          answer.destroy
+        end
+
+        question.destroy
+      end
+
+      redirect_to admin_polls_path, notice: t("admin.polls.destroy.success_notice")
+    end
+  end
+
   private
 
     def load_geozones
