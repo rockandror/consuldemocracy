@@ -72,4 +72,31 @@ feature "Admin local census records" do
       end
     end
   end
+
+  context "Create" do
+    scenario "Should show validation errors" do
+      visit new_admin_local_census_record_path
+
+      click_on "Save"
+
+      expect(page).to have_content "4 errors prevented this Local Census Record from being saved."
+      expect(page).to have_content "can't be blank", count: 4
+    end
+
+    scenario "Should show successful notice after create valid record" do
+      visit new_admin_local_census_record_path
+
+      fill_in :local_census_record_document_type, with: "DNI"
+      fill_in :local_census_record_document_number, with: "#DOCUMENT"
+      fill_in :local_census_record_date_of_birth, with: "07/07/1982"
+      fill_in :local_census_record_postal_code, with: "07003"
+      click_on "Save"
+
+      expect(page).to have_content "New local census record created successfully!"
+      expect(page).to have_content "DNI"
+      expect(page).to have_content "#DOCUMENT"
+      expect(page).to have_content "1982-07-07"
+      expect(page).to have_content "07003"
+    end
+  end
 end
