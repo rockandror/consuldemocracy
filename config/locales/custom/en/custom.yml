@@ -348,3 +348,5 @@ en:
     meta:
       title: Change your city with Decide Madrid
       description: Decide Madrid is a website where you can make decisions to make Madrid more yours, better. Make your proposals for the City Hall to carry them out.
+  map:
+    alt: "Map of Madrid districts"
