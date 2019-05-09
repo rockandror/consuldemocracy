@@ -26,6 +26,8 @@ class Management::DocumentVerificationsController < Management::BaseController
   end
 
   def create
+    puts "ESTO PASA POR AQUI O NO??"
+    return false
     @document_verification = Verification::Management::Document.new(document_verification_params)
     @document_verification.verify
     render :verified
