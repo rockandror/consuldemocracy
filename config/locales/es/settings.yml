@@ -116,6 +116,8 @@ es:
       public_stats_description: "Muestra las estadísticas públicas en el panel de Administración"
       help_page: "Página de ayuda"
       help_page_description: 'Muestra un menú Ayuda que contiene una página con una sección de información sobre cada funcionalidad habilitada. También se pueden crear páginas y menús personalizados en las secciones "Personalizar páginas" y "Personalizar bloques"'
+      captcha: "reCAPTCHA"
+      captcha_description: "Habilita un sistema de verificación humana después de un número de intentos de autentificación fallidos. Frecuentemente usado para prevenir ataques de fuerza bruta"
     map:
       latitude: "Latitud"
       latitude_description: "Latitud para mostrar la posición del mapa"
@@ -139,3 +141,6 @@ es:
       per_page_code_head_description: "Esté código aparecerá dentro de la etiqueta <head>. Útil para introducir scripts personalizados, analitycs..."
       per_page_code_body: "Código a incluir en cada página (<body>)"
       per_page_code_body_description: "Esté código aparecerá dentro de la etiqueta <body>. Útil para introducir scripts personalizados, analitycs..."
+    captcha:
+      max_failed_login_attempts: "Número de intentos de autentificación fallidos permitidos"
+      max_failed_login_attempts_description: "Después de ese número de intentos fallidos se mostrará un reCAPTCHA en el formulario de acceso si la funcionalidad está activada"

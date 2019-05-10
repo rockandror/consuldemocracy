@@ -1,7 +1,28 @@
 class Users::SessionsController < Devise::SessionsController
+  prepend_before_action :check_recaptcha, only: [:create]
+
   after_action :after_login, only: :create
 
+  def show_recaptcha
+    render json: { recaptcha: show_recaptcha_for?(params[:login]) }
+  end
+
   private
+
+    def check_recaptcha
+      if Setting["feature.captcha"] && show_recaptcha_for?(params[:user][:login])
+        unless verify_recaptcha
+          flash.discard
+          redirect_to new_user_session_path, alert: I18n.t("recaptcha.errors.verification_failed")
+        end
+      end
+    end
+
+    def show_recaptcha_for?(login)
+      user = User.find_by_username(login) || User.find_by_email(login)
+      return false unless user.present?
+      user.exceeded_failed_login_attempts?
+    end
 
     def after_sign_in_path_for(resource)
       if false #current_user.poll_officer? && current_user.has_poll_active?

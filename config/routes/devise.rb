@@ -13,6 +13,7 @@ devise_scope :user do
   delete "users/registrations", to: "users/registrations#delete"
   get :finish_signup, to: "users/registrations#finish_signup"
   patch :do_finish_signup, to: "users/registrations#do_finish_signup"
+  get "users/sessions/show_recaptcha", to: "users/sessions#show_recaptcha"
 end
 
 devise_for :organizations, class_name: "User",

@@ -86,6 +86,7 @@
 //= require globalize
 //= require send_admin_notification_alert
 //= require settings
+//= require login_form
 
 var initialize_modules = function() {
   App.Answers.initialize();
@@ -135,6 +136,7 @@ var initialize_modules = function() {
   App.Globalize.initialize();
   App.SendAdminNotificationAlert.initialize();
   App.Settings.initialize();
+  App.LoginForm.initialize();
 };
 
 $(function(){

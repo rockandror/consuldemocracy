@@ -92,6 +92,7 @@ Setting["feature.allow_images"] = true
 Setting["feature.allow_attached_documents"] = true
 Setting["feature.guides"] = true
 Setting["feature.help_page"] = true
+Setting["feature.captcha"] = nil
 
 # Proposal notifications
 Setting["proposal_notification_minimum_interval_in_days"] = 3
@@ -136,6 +137,9 @@ Setting["proposals.poster_description"] = nil
 
 # Dashboard
 Setting["dashboard.emails"] = nil
+
+# Recaptcha
+Setting["captcha.max_failed_login_attempts"] = 5
 
 # Default custom pages
 load Rails.root.join("db", "pages.rb")

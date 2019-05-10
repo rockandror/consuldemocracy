@@ -122,6 +122,7 @@ ignore_missing:
   - "tracking.events.category.*"
   - "tracking.user_data.*"
   - "tracking.events.name.*"
+  - "recaptcha.errors.verification_failed"
 
 ## Consider these keys used:
 ignore_unused:

@@ -1063,6 +1063,16 @@ form {
   }
 }
 
+.recaptcha {
+  padding-bottom: 10px;
+  text-align: center;
+  display: none;
+}
+
+.g-recaptcha {
+  display: inline-block;
+}
+
 // 07. Callout
 // -----------
 

@@ -63,3 +63,7 @@ es:
         one: "1 error impidió que este %{resource} fuera guardado. Por favor revisa los campos marcados para saber cómo corregirlos:"
         other: "%{count} errores impidieron que este %{resource} fuera guardado. Por favor revisa los campos marcados para saber cómo corregirlos:"
       equal_to_current_password: "debe ser diferente a la contraseña actual"
+  recaptcha:
+    errors:
+      verification_failed: "No se ha realizado la verificación humana reCAPTCHA. Por favor inténtalo de nuevo."
+      recaptcha_unreachable: "No ha sido posible verificar reCAPTCHA, possiblemente por un error en la conexión a Internet. Por favor inténtalo de nuevo."

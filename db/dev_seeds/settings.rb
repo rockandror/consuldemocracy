@@ -49,6 +49,7 @@ section "Creating Settings" do
   Setting.create(key: "feature.public_stats", value: "true")
   Setting.create(key: "feature.guides", value: true)
   Setting.create(key: "feature.help_page", value: "true")
+  Setting.create(key: "feature.captcha", value: nil)
 
   Setting.create(key: "html.per_page_code_head", value: "")
   Setting.create(key: "html.per_page_code_body", value: "")
@@ -107,4 +108,6 @@ section "Creating Settings" do
   Setting.create(key: "proposals.email_description", value: nil)
 
   Setting.create(key: "dashboard.emails", value: nil)
+
+  Setting.create(key: "captcha.max_failed_login_attempts", value: 5)
 end

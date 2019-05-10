@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable, :confirmable, :recoverable, :rememberable,
          :trackable, :validatable, :omniauthable, :password_expirable, :secure_validatable,
-         authentication_keys: [:login]
+         :lockable, authentication_keys: [:login]
 
   acts_as_voter
   acts_as_paranoid column: :hidden_at
@@ -381,6 +381,10 @@ class User < ApplicationRecord
 
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_later
+  end
+
+  def exceeded_failed_login_attempts?
+    failed_attempts >= Setting["captcha.max_failed_login_attempts"].to_i
   end
 
   private

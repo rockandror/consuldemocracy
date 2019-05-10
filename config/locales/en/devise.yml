@@ -64,3 +64,7 @@ en:
         one: "1 error prevented this %{resource} from being saved. Please check the marked fields to know how to correct them:"
         other: "%{count} errors prevented this %{resource} from being saved. Please check the marked fields to know how to correct them:"
       equal_to_current_password: "must be different than the current password."
+  recaptcha:
+    errors:
+      verification_failed: "reCAPTCHA human verification is missing. please try again."
+      recaptcha_unreachable: "Was not possible to verify reCAPTCHA, maybe due to an Internet issue. Please try again."

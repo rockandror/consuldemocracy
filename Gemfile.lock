@@ -383,6 +383,8 @@ GEM
     rainbow (3.0.0)
     raindrops (0.19.0)
     rake (12.3.2)
+    recaptcha (4.14.0)
+      json
     recipient_interceptor (0.2.0)
       mail
     redcarpet (3.4.0)
@@ -589,6 +591,7 @@ DEPENDENCIES
   rails (= 5.0.7.2)
   rails-assets-leaflet!
   rails-assets-markdown-it (~> 8.2.1)!
+  recaptcha (~> 4.14)
   recipient_interceptor (~> 0.2.0)
   redcarpet (~> 3.4.0)
   responders (~> 2.4.0)
