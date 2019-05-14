@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe "Executions" do
 
-  let(:budget)  { create(:budget, phase: "finished") }
+  let(:budget)  { create(:budget, :finished) }
   let(:group)   { create(:budget_group, budget: budget) }
   let(:heading) { create(:budget_heading, group: group) }
 

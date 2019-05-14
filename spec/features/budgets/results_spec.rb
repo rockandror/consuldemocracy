@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe "Results" do
 
-  let(:budget)  { create(:budget, phase: "finished") }
+  let(:budget)  { create(:budget, :finished) }
   let(:group)   { create(:budget_group, budget: budget) }
   let(:heading) { create(:budget_heading, group: group, price: 1000) }
 
@@ -125,9 +125,9 @@ describe "Results" do
         expect(page).not_to have_css("#budget_#{budget.id}_results", text: "See results")
       end
 
-      finished_budget1 = create(:budget, phase: "finished")
-      finished_budget2 = create(:budget, phase: "finished")
-      finished_budget3 = create(:budget, phase: "finished")
+      finished_budget1 = create(:budget, :finished)
+      finished_budget2 = create(:budget, :finished)
+      finished_budget3 = create(:budget, :finished)
 
       visit budgets_path
 

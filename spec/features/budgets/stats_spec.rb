@@ -8,7 +8,7 @@ describe "Stats" do
 
   context "Load" do
 
-    before { budget.update(slug: "budget_slug", phase: "finished") }
+    before { budget.update(slug: "budget_slug", phase: "finished", stats_enabled: true) }
 
     scenario "finds budget by slug" do
       visit budget_stats_path("budget_slug")
@@ -31,20 +31,22 @@ describe "Stats" do
   end
 
   describe "Show" do
+    describe "advanced stats" do
+      let(:budget) { create(:budget, :finished) }
 
-    it "is not accessible if supports phase is not finished" do
-      budget.update(phase: "selecting")
+      scenario "advanced stats enabled" do
+        budget.update(advanced_stats_enabled: true)
 
-      visit budget_stats_path(budget.id)
-      expect(page).to have_content "You do not have permission to carry out the action "\
-                                   "'read_stats' on budget."
-    end
+        visit budget_stats_path(budget)
 
-    it "is accessible if supports phase is finished" do
-      budget.update(phase: "valuating")
+        expect(page).to have_content "Advanced statistics"
+      end
 
-      visit budget_stats_path(budget.id)
-      expect(page).to have_content "Stats"
+      scenario "advanced stats disabled" do
+        visit budget_stats_path(budget)
+
+        expect(page).not_to have_content "Advanced statistics"
+      end
     end
 
     context "headings" do
@@ -54,7 +56,7 @@ describe "Stats" do
           heading.name == "City of New York"
         end
 
-        budget.update(phase: "finished")
+        budget.update(phase: "finished", stats_enabled: true, advanced_stats_enabled: true)
 
         city_group = create(:budget_group, budget: budget)
         district_group = create(:budget_group, budget: budget)
