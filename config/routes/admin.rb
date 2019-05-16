@@ -245,4 +245,7 @@ namespace :admin do
   end
 
   resources :local_census_records
+  namespace :local_census_records do
+    resources :imports, only: [:new, :create, :show]
+  end
 end
