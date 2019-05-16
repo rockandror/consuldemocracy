@@ -97,4 +97,6 @@ describe Abilities::Administrator do
   it { is_expected.to be_able_to :manage, dashboard_administrator_task }
 
   it { should be_able_to(:manage, LocalCensusRecord) }
+  it { should be_able_to(:create, LocalCensusRecords::Importation) }
+  it { should be_able_to(:show, LocalCensusRecords::Importation) }
 end
