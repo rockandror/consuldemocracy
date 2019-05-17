@@ -128,7 +128,7 @@ describe "Admin budget groups" do
       visit admin_budget_groups_path(budget)
       within("#budget_group_#{group.id}") { click_link "Delete" }
 
-      expect(page).to have_content "You cannot destroy a Group that has associated headings"
+      expect(page).to have_content "You cannot delete a Group that has associated headings"
       expect(page).to have_selector "#budget_group_#{group.id}"
     end
 

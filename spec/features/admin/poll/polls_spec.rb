@@ -152,7 +152,7 @@ describe "Admin polls" do
         accept_confirm { click_link "Delete" }
       end
 
-      expect(page).to have_content("You cannot destroy a poll that has votes")
+      expect(page).to have_content("You cannot delete a poll that has votes")
       expect(page).to have_content(poll.name)
     end
   end
