@@ -81,7 +81,7 @@ describe "Users" do
 
         visit account_path
 
-        expect(page).to have_link "My activity", href: user_path(u1)
+        expect(page).to have_link "My content", href: user_path(u1)
 
         visit "/"
         click_link "Sign out"
@@ -104,7 +104,7 @@ describe "Users" do
 
         visit account_path
 
-        expect(page).to have_link "My activity", href: user_path(u2)
+        expect(page).to have_link "My content", href: user_path(u2)
       end
 
       scenario "counts failed attempts" do
