@@ -455,6 +455,11 @@ header {
   border-bottom: 1px solid $border;
   margin-bottom: $line-height;
 
+  @include breakpoint(small down) {
+    position: relative;
+    z-index: 10;
+  }
+
   .selected {
     border-bottom: 1px solid #fff;
   }
@@ -1095,9 +1100,12 @@ form {
 
 .notice-container {
   min-width: $line-height * 12;
-  position: absolute;
   right: 24px;
   top: 24px;
+
+  @include breakpoint(medium) {
+    position: absolute;
+  }
 
   .notice {
     height: $line-height * 4;
@@ -2682,6 +2690,12 @@ table {
   a {
     color: $link !important;
   }
+}
+
+.leaflet-bottom,
+.leaflet-pane,
+.leaflet-top {
+  z-index: 4 !important;
 }
 
 // 24. Homepage
