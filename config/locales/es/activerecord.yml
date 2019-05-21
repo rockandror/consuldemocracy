@@ -124,6 +124,9 @@ es:
       local_census_record:
         one: Registro del censo local
         other: Registros del censo local
+      local_census_records/importation:
+        one: Importación de registros del censo local
+        other: Importación de registros del censo local
     attributes:
       budget:
         name: "Nombre"
