@@ -1,3 +1,5 @@
+require_dependency "comment_tree"
+
 module CommentableActions
   extend ActiveSupport::Concern
   include Polymorphic
