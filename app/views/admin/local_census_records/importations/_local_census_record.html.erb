@@ -16,3 +16,8 @@
     <%= errors_for local_census_record, :postal_code %>
   </td>
 </tr>
+<% if local_census_record.errors[:base].any? %>
+  <tr class="local-census-record-base-errors">
+    <td><%= errors_for local_census_record, :base %></td>
+  </tr>
+<% end %>
