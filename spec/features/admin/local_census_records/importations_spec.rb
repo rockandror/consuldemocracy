@@ -87,5 +87,21 @@ feature "Importations", type: :feature do
       expect(rows[2]).to have_content("can't be blank")
       expect(rows[3]).to have_content("can't be blank")
     end
+
+    scenario "Should show base error messages at next row to errored record" do
+      create(:local_census_record, document_type: "DNI", document_number: "44556678T",
+        date_of_birth: "07/08/1984", postal_code: "7008")
+      within "form#new_local_census_records_importation" do
+        path = base_files_path << "valid.csv"
+        file = File.join(Rails.root, *path)
+        attach_file("local_census_records_importation_file", file)
+        click_button "Save"
+      end
+
+      rows = all("#invalid-local-census-records tbody tr")
+      expect(rows[0]).to have_content("44556678T")
+      expect(rows[1]).to have_content("There is already an existing record with " \
+                                      "exact provided values!")
+    end
   end
 end

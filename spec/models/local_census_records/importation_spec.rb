@@ -84,5 +84,30 @@ describe LocalCensusRecords::Importation do
       expect(importation.invalid_records.collect(&:postal_code))
       .to eq(invalid_records_postal_codes)
     end
+
+    it "Add duplicated local census records to invalid_records array" do
+      attributes = { document_type: "DNI", document_number: "44556678T",
+        date_of_birth: "07/08/1984", postal_code: "7008" }
+      create(:local_census_record, **attributes)
+      attributes = { document_type: "DNI", document_number: "33556678T",
+        date_of_birth: "07/08/1985", postal_code: "7008" }
+      create(:local_census_record, **attributes)
+      attributes = { document_type: "DNI", document_number: "22556678T",
+        date_of_birth: "07/08/1986", postal_code: "7008" }
+      create(:local_census_record, **attributes)
+      attributes = { document_type: "NIE", document_number: "X11556678",
+        date_of_birth: "07/08/1987", postal_code: "7008" }
+      create(:local_census_record, **attributes)
+      path = base_files_path << "valid.csv"
+      file = Rack::Test::UploadedFile.new(Rails.root.join(*path))
+      importation.file = file
+
+      importation.save
+
+      expect(importation.invalid_records.count).to eq 4
+      invalid_records_document_numbers = ["44556678T", "33556678T", "22556678T", "X11556678"]
+      expect(importation.invalid_records.collect(&:document_number))
+        .to eq(invalid_records_document_numbers)
+    end
   end
 end
