@@ -31,6 +31,42 @@ describe LocalCensusRecord do
 
       expect(local_census_record).not_to be_valid
     end
+
+    describe "When already exists a record" do
+      it "with exact attributes values it should not be valid" do
+        attributes = { document_type: "DNI", document_number: "#DOC_NUMBER",
+          date_of_birth: "1980-07-07", postal_code: "00567" }
+        create(:local_census_record, **attributes)
+        local_census_record = LocalCensusRecord.new(**attributes)
+
+        expect(local_census_record).not_to be_valid
+        expect(local_census_record.errors[:base].any?).to be(true)
+      end
+
+      it "with same attribute values but with different text case it should not be valid" do
+        upcase_attributes = { document_type: "DNI", document_number: "#DOC_NUMBER",
+          date_of_birth: "1980-07-07", postal_code: "00567" }
+        downcase_attributes = { document_type: "dni", document_number: "#doc_number",
+          date_of_birth: "1980-07-07", postal_code: "00567" }
+        create(:local_census_record, **upcase_attributes)
+        local_census_record = LocalCensusRecord.new(**downcase_attributes)
+
+        expect(local_census_record).not_to be_valid
+        expect(local_census_record.errors[:base].any?).to be(true)
+      end
+
+      it "with same values but surrounded with whitespaces it should not be valid" do
+        dirty_attributes = { document_type: " DNI ", document_number: " #DOC_NUMBER ",
+          date_of_birth: "1980-07-07", postal_code: "00567" }
+        attributes = { document_type: "DNI", document_number: "#DOC_NUMBER",
+          date_of_birth: "1980-07-07", postal_code: "00567" }
+        create(:local_census_record, **attributes)
+        local_census_record = LocalCensusRecord.new(**dirty_attributes)
+
+        expect(local_census_record).not_to be_valid
+        expect(local_census_record.errors[:base].any?).to be(true)
+      end
+    end
   end
 
   context "scopes" do

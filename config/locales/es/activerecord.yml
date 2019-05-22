@@ -442,6 +442,10 @@ es:
           attributes:
             valuation:
               cannot_comment_valuation: "No puedes comentar una evaluación"
+        local_census_record:
+          attributes:
+            base:
+              duplicated_record: ¡Ya existe un registro con estos valores exactos!
       messages:
         record_invalid: "Error de validación: %{errors}"
         another_poll_active: Hay otra encuesta activa para este periodo.

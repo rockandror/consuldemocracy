@@ -441,6 +441,10 @@ en:
           attributes:
             valuation:
               cannot_comment_valuation: "You cannot comment a valuation"
+        local_census_record:
+          attributes:
+            base:
+              duplicated_record: There is already an existing record with exact provided values!
       messages:
         record_invalid: "Validation failed: %{errors}"
         another_poll_active: There is another poll active for the given period
