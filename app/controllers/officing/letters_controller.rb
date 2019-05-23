@@ -3,7 +3,7 @@ class Officing::LettersController < Officing::BaseController
   helper_method :letter?
   before_action :verify_letter_officer
 
-  layout 'letter_officer'
+  layout "letter_officer"
 
   def new
     @residence = Officing::Residence.new(letter: true)

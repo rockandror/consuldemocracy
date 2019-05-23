@@ -44,7 +44,7 @@ class PollsController < ApplicationController
   end
 
   def stats_2017
-    @totals = Stat.hash("polls_2017_participation")['totals']
+    @totals = Stat.hash("polls_2017_participation")["totals"]
 
     @poll_1 = ::Poll.joins(:translations).where("name ILIKE ?", "%Billete único%").first
     @poll_2 = ::Poll.joins(:translations).where("name ILIKE ?", "%Gran Vía%").first
@@ -69,10 +69,10 @@ class PollsController < ApplicationController
     if Rails.env.development?
       @polls = Poll.expired
     else
-      @polls = Poll.where(starts_at: Time.parse('08-10-2017'), ends_at: Time.parse('22-10-2017'))
+      @polls = Poll.where(starts_at: Time.parse("08-10-2017"), ends_at: Time.parse("22-10-2017"))
     end
 
-    @totals = Stat.hash("polls_2018_participation")['totals']
+    @totals = Stat.hash("polls_2018_participation")["totals"]
     @poll_stats = Stat.hash("polls_2018_polls")
     @age_stats = Stat.hash("polls_2018_age")
     @gender_stats = Stat.hash("polls_2018_gender")
@@ -83,7 +83,7 @@ class PollsController < ApplicationController
     if Rails.env.development?
       @polls = Poll.expired
     else
-      @polls = Poll.where(starts_at: Time.parse('08-10-2017'), ends_at: Time.parse('22-10-2017'))
+      @polls = Poll.where(starts_at: Time.parse("08-10-2017"), ends_at: Time.parse("22-10-2017"))
     end
   end
 

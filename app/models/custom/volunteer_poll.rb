@@ -19,7 +19,7 @@ class VolunteerPoll < ApplicationRecord
   ]
 
   VALID_TURNS = [
-    ['1 turno', (2..16).collect {|i| "#{i} turnos"}]
+    ["1 turno", (2..16).collect {|i| "#{i} turnos"}]
   ].flatten.freeze
 
   DISTRICTS = [ :any_district, :arganzuela, :barajas, :carabanchel, :centro,

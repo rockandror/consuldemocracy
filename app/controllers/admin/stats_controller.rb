@@ -59,7 +59,7 @@ class Admin::StatsController < Admin::BaseController
     @budget = Budget.find(params[:budget_id])
     heading_ids = @budget.heading_ids
 
-    votes = Vote.where(votable_type: 'Budget::Investment').
+    votes = Vote.where(votable_type: "Budget::Investment").
             includes(:budget_investment).
             where(budget_investments: {heading_id: heading_ids})
 
@@ -79,14 +79,14 @@ class Admin::StatsController < Admin::BaseController
     @budget = Budget.find(params[:budget_id])
 
     budget_stats = Stat.hash("budget_#{@budget.id}_balloting_stats")
-    @user_count = budget_stats['stats']['user_count']
-    @vote_count = budget_stats['stats']['vote_count']
-    @user_count_in_city = budget_stats['stats']['user_count_in_city']
-    @user_count_in_district = budget_stats['stats']['user_count_in_district']
-    @user_count_in_city_and_district = budget_stats['stats']['user_count_in_city_and_district']
+    @user_count = budget_stats["stats"]["user_count"]
+    @vote_count = budget_stats["stats"]["vote_count"]
+    @user_count_in_city = budget_stats["stats"]["user_count_in_city"]
+    @user_count_in_district = budget_stats["stats"]["user_count_in_district"]
+    @user_count_in_city_and_district = budget_stats["stats"]["user_count_in_city_and_district"]
 
-    @vote_count_by_heading = budget_stats['vote_count_by_heading']
-    @user_count_by_district = budget_stats['user_count_by_district']
+    @vote_count_by_heading = budget_stats["vote_count_by_heading"]
+    @user_count_by_district = budget_stats["user_count_by_district"]
   end
 
   def redeemable_codes
@@ -105,7 +105,7 @@ class Admin::StatsController < Admin::BaseController
     if Rails.env.test? || Rails.env.development?
       @polls = ::Poll.current
     else
-      @polls = ::Poll.where(starts_at: Time.parse('08-10-2017'), ends_at: Time.parse('22-10-2017'))
+      @polls = ::Poll.where(starts_at: Time.parse("08-10-2017"), ends_at: Time.parse("22-10-2017"))
     end
     @participants = ::Poll::Voter.where(poll: @polls)
   end
@@ -113,14 +113,14 @@ class Admin::StatsController < Admin::BaseController
   private
 
   def voters_in_heading(heading)
-    Vote.where(votable_type: 'Budget::Investment').
+    Vote.where(votable_type: "Budget::Investment").
         includes(:budget_investment).
         where(budget_investments: {heading_id: heading.id}).
         select("votes.voter_id").distinct.count
   end
 
   def voters_in_districts(budget)
-    Vote.where(votable_type: 'Budget::Investment').
+    Vote.where(votable_type: "Budget::Investment").
         includes(:budget_investment).
         where(budget_investments: { heading_id: (budget.heading_ids - [budget.city_heading.id]) }).
         select("votes.voter_id").distinct.count

@@ -12,9 +12,9 @@ class Poll
 
     validates :poll_id, presence: true
     validates :user_id, presence: true
-    validates :token, presence: true, if: ->(voter) { voter.origin == 'web' }
-    validates :booth_assignment_id, presence: true, if: ->(voter) { voter.origin == 'booth' }
-    validates :officer_assignment_id, presence: true, if: ->(voter) { voter.origin == 'booth' }
+    validates :token, presence: true, if: ->(voter) { voter.origin == "web" }
+    validates :booth_assignment_id, presence: true, if: ->(voter) { voter.origin == "booth" }
+    validates :officer_assignment_id, presence: true, if: ->(voter) { voter.origin == "booth" }
 
     validates :document_number, presence: true, uniqueness: { scope: [:poll_id, :document_type], message: :has_voted }
     validates :origin, inclusion: { in: VALID_ORIGINS }
@@ -72,7 +72,7 @@ class Poll
       end
 
       def booth?
-        origin == 'booth'
+        origin == "booth"
       end
 
   end

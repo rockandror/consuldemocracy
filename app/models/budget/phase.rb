@@ -27,7 +27,7 @@ class Budget
     after_save :touch_budget
 
     scope :enabled,           -> { where(enabled: true) }
-    scope :published,         -> { enabled.where.not(kind: 'drafting') }
+    scope :published,         -> { enabled.where.not(kind: "drafting") }
 
     PHASE_KINDS.each do |phase|
       define_singleton_method(phase) { find_by_kind(phase) }

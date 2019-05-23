@@ -149,7 +149,7 @@ class Officing::Residence
 
     def not_voted
       if already_voted?
-        errors.add(:document_number, I18n.t('officing.letter.new.alredy_voted'))
+        errors.add(:document_number, I18n.t("officing.letter.new.alredy_voted"))
       end
     end
 

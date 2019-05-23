@@ -24,7 +24,7 @@ class Poll
 
   def self.generate_hash(message)
     key = Poll.server_shared_key
-    OpenSSL::HMAC.hexdigest(OpenSSL::Digest::SHA256.new('sha256'), key, message)
+    OpenSSL::HMAC.hexdigest(OpenSSL::Digest::SHA256.new("sha256"), key, message)
   end
 
   def nvotes_poll_id

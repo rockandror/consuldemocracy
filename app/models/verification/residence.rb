@@ -59,7 +59,7 @@ class Verification::Residence
   def redeemable_code_is_redeemable
     return if redeemable_code.blank?
     unless RedeemableCode.redeemable?(redeemable_code)
-      errors.add(:redeemable_code, I18n.t('verification.residence.new.error_can_not_redeem_code'))
+      errors.add(:redeemable_code, I18n.t("verification.residence.new.error_can_not_redeem_code"))
     end
   end
 

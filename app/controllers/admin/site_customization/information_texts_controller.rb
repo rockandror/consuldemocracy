@@ -13,7 +13,7 @@ class Admin::SiteCustomization::InformationTextsController < Admin::SiteCustomiz
 
       unless values.empty?
         values.each do |key, value|
-          locale = key.split('_').last
+          locale = key.split("_").last
 
           if value == t(content[:id], locale: locale) || value.match(/translation missing/)
             next

@@ -1,4 +1,4 @@
-require 'csv'
+require "csv"
 class Proposal < ApplicationRecord
   include Rails.application.routes.url_helpers
   include Flaggable
@@ -29,7 +29,7 @@ class Proposal < ApplicationRecord
   include ActsAsParanoidAliases
 
   RETIRE_OPTIONS = %w[duplicated started unfeasible done other]
-  PROCEEDINGS = [ 'Derechos Humanos' ]
+  PROCEEDINGS = [ "Derechos Humanos" ]
 
   belongs_to :author, -> { with_hidden }, class_name: "User", foreign_key: "author_id"
   belongs_to :geozone
@@ -77,7 +77,7 @@ class Proposal < ApplicationRecord
   scope :not_retired,              -> { where(retired_at: nil) }
   scope :successful,               -> { where("cached_votes_up >= ?", Proposal.votes_needed_for_success) }
   scope :unsuccessful,             -> { where("cached_votes_up < ?", Proposal.votes_needed_for_success) }
-  scope :public_for_api,           -> { where('proposals.proceeding IS NULL or proposals.proceeding = ?', 'Derechos Humanos') }
+  scope :public_for_api,           -> { where("proposals.proceeding IS NULL or proposals.proceeding = ?", "Derechos Humanos") }
   scope :proceedings,              -> { where.not(proceeding: nil) }
   scope :not_proceedings,          -> { where(proceeding: nil) }
   scope :not_supported_by_user,    ->(user) { where.not(id: user.find_voted_items(votable_type: "Proposal").compact.map(&:id)) }
@@ -189,7 +189,7 @@ class Proposal < ApplicationRecord
   end
 
   def code
-    "#{Setting['proposal_code_prefix']}-#{created_at.strftime('%Y-%m')}-#{id}"
+    "#{Setting["proposal_code_prefix"]}-#{created_at.strftime("%Y-%m")}-#{id}"
   end
 
   def after_commented
@@ -217,12 +217,12 @@ class Proposal < ApplicationRecord
   end
 
   def open_plenary?
-    tag_list.include?('plenoabierto') &&
+    tag_list.include?("plenoabierto") &&
     created_at >= Date.parse("18-04-2016").beginning_of_day
   end
 
   def self.open_plenary_winners
-    tagged_with('plenoabierto').
+    tagged_with("plenoabierto").
     by_date_range(open_plenary_dates).
     sort_by_confidence_score.
     limit(5)
@@ -256,7 +256,7 @@ class Proposal < ApplicationRecord
 
   def self.rank(proposal)
     return 0 if proposal.blank?
-    connection.select_all(<<-SQL).first['rank']
+    connection.select_all(<<-SQL).first["rank"]
       SELECT ranked.rank FROM (
         SELECT id, rank() OVER (ORDER BY confidence_score DESC)
         FROM proposals

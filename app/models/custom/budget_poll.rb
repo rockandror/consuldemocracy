@@ -1,11 +1,11 @@
 class BudgetPoll < ApplicationRecord
   VALID_PREFERRED_SUBJECTS = [
-    'ns/nc',
-    'Fase de propuesta',
-    'Fase de apoyos',
-    'Fase de informes',
-    'Fase de votación final',
-    'Otros'
+    "ns/nc",
+    "Fase de propuesta",
+    "Fase de apoyos",
+    "Fase de informes",
+    "Fase de votación final",
+    "Otros"
   ].freeze
 
   validates :name, presence: true

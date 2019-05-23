@@ -4,7 +4,7 @@ class RedeemableCode < ApplicationRecord
   validates :token, uniqueness: true
 
   def self.generate_token
-    (1..10).inject([]){|chars, _| chars << VALID_CHARS.sample} * ''
+    (1..10).inject([]){|chars, _| chars << VALID_CHARS.sample} * ""
   end
 
   def self.redeemable?(token)
@@ -31,7 +31,7 @@ class RedeemableCode < ApplicationRecord
           code.token = generate_token
         end
 
-        print('.') if i > 0 && i.multiple_of?(1000)
+        print(".") if i > 0 && i.multiple_of?(1000)
       end
     end
   end

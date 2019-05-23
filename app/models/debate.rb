@@ -162,11 +162,11 @@ class Debate < ApplicationRecord
   end
 
   def set_comment_kind
-    self.comment_kind ||= 'comment'
+    self.comment_kind ||= "comment"
   end
 
   def self.open_plenary_winners
-    where(comment_kind: 'question').first
+    where(comment_kind: "question").first
                                    .comments
                                    .sort_by_most_voted
                                    .limit(5)

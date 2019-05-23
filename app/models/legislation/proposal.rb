@@ -34,7 +34,7 @@ class Legislation::Proposal < ApplicationRecord
 
   validates :proposal_type, presence: true, inclusion: { in: VALID_TYPES }
   validates :title, presence: true
-  validates :summary, presence: true, unless: ->(p) { p.proposal_type == 'question' }
+  validates :summary, presence: true, unless: ->(p) { p.proposal_type == "question" }
   validates :author, presence: true
   validates :process, presence: true
 
@@ -125,7 +125,7 @@ class Legislation::Proposal < ApplicationRecord
   end
 
   def code
-    "#{Setting['proposal_code_prefix']}-#{created_at.strftime('%Y-%m')}-#{id}"
+    "#{Setting["proposal_code_prefix"]}-#{created_at.strftime("%Y-%m")}-#{id}"
   end
 
   def after_commented
@@ -149,11 +149,11 @@ class Legislation::Proposal < ApplicationRecord
   end
 
   def is_proposal?
-    proposal_type == 'proposal'
+    proposal_type == "proposal"
   end
 
   def is_question?
-    proposal_type == 'question'
+    proposal_type == "question"
   end
 
   protected

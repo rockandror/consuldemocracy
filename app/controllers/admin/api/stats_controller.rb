@@ -25,11 +25,11 @@ class Admin::Api::StatsController < Admin::Api::BaseController
     end
 
     if params[:user_voted_budgets].present?
-      ds.add "User voted budgets", Ballot.where('ballot_lines_count > ?', 0).group_by_day(:updated_at).count
+      ds.add "User voted budgets", Ballot.where("ballot_lines_count > ?", 0).group_by_day(:updated_at).count
     end
 
     if params[:user_supported_budgets].present?
-      ds.add "User supported budgets", Vote.where(votable_type: 'Budget::Investment').select(:voter_id).distinct.group_by_day(:created_at).count
+      ds.add "User supported budgets", Vote.where(votable_type: "Budget::Investment").select(:voter_id).distinct.group_by_day(:created_at).count
     end
 
     if params[:budget_investments].present?

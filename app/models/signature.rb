@@ -86,7 +86,7 @@ class Signature < ApplicationRecord
 
   def assign_vote_to_user
     if signable.is_a? Budget::Investment
-      signable.vote_by(voter: user, vote: 'yes') if can_sign?
+      signable.vote_by(voter: user, vote: "yes") if can_sign?
     else
       signable.register_vote(user, "yes")
     end

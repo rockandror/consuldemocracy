@@ -17,7 +17,7 @@ class Polls::QuestionsController < ApplicationController
       voter.save!
 
       @answers_by_question_id = { @question.id => params[:answer] }
-      log_event("poll", 'vote')
+      log_event("poll", "vote")
     else
       flash.now[:error] = t("poll_questions.show.vote_error")
       render :error
