@@ -52,7 +52,7 @@ module AdminHelper
 
   def menu_settings?
     controllers_names = ["settings", "tags", "geozones", "images", "content_blocks",
-      "locals"]
+      "locals", "importations"]
     controllers_names.include?(controller_name) &&
       controller.class.parent != Admin::Poll::Questions::Answers
   end
@@ -72,6 +72,11 @@ module AdminHelper
 
   def menu_dashboard?
     ["actions", "administrator_tasks"].include?(controller_name)
+  end
+
+  def submenu_census?
+    controller_name == "locals" ||
+    (controller_name == "importations" && controller.class.parent == Admin::Census::Locals)
   end
 
   def official_level_options
