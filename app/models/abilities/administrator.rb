@@ -100,6 +100,7 @@ module Abilities
       can [:manage], Dashboard::AdministratorTask
 
       can :manage, Census::Local
+      can [:create, :read], Census::Local::Importation
     end
   end
 end
