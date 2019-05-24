@@ -37,7 +37,7 @@ $budget-2019-blue-dark:   #425257;
 $budget-2019-orange:      #ffeed4;
 $budget-2019-orange-dark: #726e4f;
 $budget-2019-red:         #ef775b;
-$budget-2019-yellow:      #ffeaac;
+$budget-2019-pink:        #f3af99;
 
 // Madrid corporate identity manual
 
@@ -1954,20 +1954,20 @@ a {
 .progress-votes {
 
   .spent-amount-text {
-    color: $budget-2018-pink;
+    color: $text;
 
     &::before {
-      color: $budget-2018-pink;
+      color: $text;
       right: -7px;
     }
   }
 
   .total-amount {
-    color: $budget-2018-yellow;
+    color: $text;
   }
 
   .amount-available {
-    color: $budget-2018-yellow;
+    color: $text;
   }
 }
 
@@ -1994,15 +1994,11 @@ a {
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
 .progress-bar-nav {
+  background-color: transparent;
   position: relative;
   z-index: 3;
 
-  @include breakpoint(medium) {
-    background-color: #000;
-  }
-
   @include breakpoint(large) {
-    background-color: #000;
     height: rem-calc(100);
     transition: height 0.3s;
     z-index: 1;
@@ -2012,6 +2008,7 @@ a {
     }
 
     &.is-fixed {
+      background: $budget-2019-pink;
       height: $line-height * 6;
       left: 0;
       padding: rem-calc(24);
@@ -2288,10 +2285,17 @@ a {
 // -------------------------------
 .expanded.budget,
 .jumbo-budget {
-  background: $budget-2019-yellow;
+  background: $budget-2019-pink;
+
+  @include breakpoint(small down) {
+
+    .button {
+      margin-bottom: $line-height;
+    }
+  }
 
   @include breakpoint(medium) {
-    background: $budget-2019-yellow image-url("budget_welcome/background_header.jpg");
+    background: $budget-2019-pink image-url("budget_welcome/background_header.jpg");
     background-position: 100% top;
     background-repeat: no-repeat;
     background-size: cover;
@@ -2305,7 +2309,8 @@ a {
   p,
   a,
   .back,
-  .icon-angle-left {
+  .icon-angle-left,
+  .description {
     color: $text;
   }
 
@@ -2326,10 +2331,10 @@ a {
   }
 
   &.budget-header {
-    background: $budget-2019-yellow;
+    background: $budget-2019-pink;
 
     @include breakpoint(medium) {
-      background: $budget-2019-yellow image-url("budget_welcome/background_header.jpg");
+      background: $budget-2019-pink image-url("budget_welcome/background_header.jpg");
       background-position: 100% top;
       background-repeat: no-repeat;
       background-size: contain;
@@ -2438,11 +2443,11 @@ a {
   z-index: 3;
 
   .progress {
-    background: #1a1a1a;
+    background: #fff;
   }
 
   .progress-meter {
-    background: $budget-2018-yellow;
+    background: #ff5f5f;
   }
 }
 
