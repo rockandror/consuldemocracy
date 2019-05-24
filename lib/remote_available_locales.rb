@@ -22,6 +22,10 @@ module RemoteAvailableLocales
     end
   end
 
+  def available_remote_locales
+    @remote_locales = daily_cache('remote_locales') { load_remote_locales }
+  end
+
   private
 
   def remote_available_locales
@@ -40,6 +44,10 @@ module RemoteAvailableLocales
     result = response.body.force_encoding("utf-8")
 
     JSON.parse(result)["translation"]
+  end
+
+  def daily_cache(key, &block)
+    Rails.cache.fetch("load_remote_locales/#{Time.current.strftime('%Y-%m-%d')}/#{key}", &block)
   end
 
 end

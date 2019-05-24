@@ -11,9 +11,9 @@ class RemoteTranslationsCaller
     destroy_remote_translation
   end
 
-  def available_remote_locales
-    @remote_locales = daily_cache('remote_locales') { RemoteAvailableLocales.load_remote_locales }
-  end
+  # def available_remote_locales
+  #   @remote_locales = daily_cache('remote_locales') { RemoteAvailableLocales.load_remote_locales }
+  # end
 
   private
 
@@ -53,7 +53,7 @@ class RemoteTranslationsCaller
       remote_translation.locale
     end
 
-    def daily_cache(key, &block)
-      Rails.cache.fetch("load_remote_locales/#{Time.current.strftime('%Y-%m-%d')}/#{key}", &block)
-    end
+    # def daily_cache(key, &block)
+    #   Rails.cache.fetch("load_remote_locales/#{Time.current.strftime('%Y-%m-%d')}/#{key}", &block)
+    # end
 end
