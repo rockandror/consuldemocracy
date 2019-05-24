@@ -247,6 +247,10 @@
         <li <%= "class=is-active" if controller_name == "content_blocks" %>>
           <%= link_to t("admin.menu.site_customization.content_blocks"), admin_site_customization_content_blocks_path%>
         </li>
+
+        <li <%= "class=is-active" if controller_name == "locals" %>>
+          <%= link_to t("admin.menu.census.locals"), admin_census_locals_path %>
+        </li>
       </ul>
     </li>
     <li class="section-title">

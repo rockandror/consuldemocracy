@@ -51,8 +51,10 @@ module AdminHelper
   end
 
   def menu_settings?
-    ["settings", "tags", "geozones", "images", "content_blocks"].include?(controller_name) &&
-    controller.class.parent != Admin::Poll::Questions::Answers
+    controllers_names = ["settings", "tags", "geozones", "images", "content_blocks",
+      "locals"]
+    controllers_names.include?(controller_name) &&
+      controller.class.parent != Admin::Poll::Questions::Answers
   end
 
   def menu_customization?

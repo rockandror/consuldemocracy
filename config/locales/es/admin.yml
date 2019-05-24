@@ -706,6 +706,8 @@ es:
       dashboard: Panel de progreso de propuestas
       administrator_tasks: Recursos solicitados
       dashboard_actions: Recursos y acciones
+      census:
+        locals: Gestionar censo local
     administrators:
       index:
         title: Administradores
