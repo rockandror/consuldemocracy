@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190411090023) do
+ActiveRecord::Schema.define(version: 20190524141712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -345,6 +345,15 @@ ActiveRecord::Schema.define(version: 20190411090023) do
     t.string   "track_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "census_locals", force: :cascade do |t|
+    t.string   "document_number", null: false
+    t.string   "document_type",   null: false
+    t.date     "date_of_birth",   null: false
+    t.string   "postal_code",     null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "ckeditor_assets", force: :cascade do |t|
@@ -809,15 +818,6 @@ ActiveRecord::Schema.define(version: 20190411090023) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.index ["linkable_type", "linkable_id"], name: "index_links_on_linkable_type_and_linkable_id", using: :btree
-  end
-
-  create_table "local_census_records", force: :cascade do |t|
-    t.string   "document_number", null: false
-    t.string   "document_type",   null: false
-    t.date     "date_of_birth",   null: false
-    t.string   "postal_code",     null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
   end
 
   create_table "locks", force: :cascade do |t|
