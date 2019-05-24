@@ -1627,6 +1627,7 @@ en:
           search:
             placeholder: Search by document number
             search: Search
+          import: Import CSV
         form:
           date_of_birth: Date of birth
         new:
