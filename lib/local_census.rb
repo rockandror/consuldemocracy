@@ -60,7 +60,7 @@ class LocalCensus
   private
 
     def get_record(document_type, document_number)
-      LocalCensusRecord.find_by(document_type: document_type, document_number: document_number)
+      Census::Local.find_by(document_type: document_type, document_number: document_number)
     end
 
     def dni?(document_type)

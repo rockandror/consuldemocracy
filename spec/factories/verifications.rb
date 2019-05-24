@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :local_census_record, class: "LocalCensusRecord" do
+  factory :census_local, class: Census::Local do
     document_number "12345678A"
     document_type 1
     date_of_birth Date.new(1970, 1, 31)

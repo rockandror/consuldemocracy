@@ -29,7 +29,7 @@ describe LocalCensus do
 
   describe "#call" do
     let(:invalid_body) { nil }
-    let(:valid_body) { create(:local_census_record) }
+    let(:valid_body) { create(:census_local) }
 
     it "returns the response for the first valid variant" do
       allow(api).to receive(:get_record).with(1, "00123456").and_return(invalid_body)
