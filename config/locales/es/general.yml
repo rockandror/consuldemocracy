@@ -191,6 +191,7 @@ es:
     document: el documento
     topic: Tema
     image: Imagen
+    census/local: el registro del censo local
   geozones:
     none: Toda la ciudad
     all: Todos los ámbitos de actuación

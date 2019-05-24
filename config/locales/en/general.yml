@@ -191,6 +191,7 @@ en:
     document: Document
     topic: Topic
     image: Image
+    census/local: Local Census Record
   geozones:
     none: All city
     all: All scopes

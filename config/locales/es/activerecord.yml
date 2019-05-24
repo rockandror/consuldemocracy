@@ -121,6 +121,9 @@ es:
       link:
         one: Enlace
         other: Enlaces
+      census/local:
+        one: Registro del censo local
+        other: Registros del censo local
     attributes:
       budget:
         name: "Nombre"
