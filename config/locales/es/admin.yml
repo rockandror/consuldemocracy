@@ -1613,3 +1613,16 @@ es:
     translations:
       remove_language: Eliminar idioma
       add_language: Añadir idioma
+    census:
+      locals:
+        index:
+          title: Gestionar censo local
+          create: Crear nuevo registro en el censo local
+          no_records: No hay registros de censo local
+          document_type: Tipo de documento
+          document_number: Número de documento
+          date_of_birth: Fecha de nacimiento
+          postal_code: Código postal
+          search:
+            placeholder: Búsqueda por número de documento
+            search: Buscar

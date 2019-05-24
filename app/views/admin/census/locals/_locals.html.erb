@@ -1,0 +1,23 @@
+<% if @locals.any? %>
+  <h3 class="margin"><%= page_entries_info @locals %></h3>
+  <table>
+    <thead>
+      <tr>
+        <th><%= t("admin.census.locals.index.document_type") %></th>
+        <th><%= t("admin.census.locals.index.document_number") %></th>
+        <th><%= t("admin.census.locals.index.date_of_birth") %></th>
+        <th><%= t("admin.census.locals.index.postal_code") %></th>
+        <th><%= t("admin.actions.actions") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: "local", collection: @locals  %>
+    </tbody>
+  </table>
+
+  <%= paginate @locals %>
+<% else %>
+  <div class="callout primary">
+    <%= t("admin.census.locals.index.no_records") %>
+  </div>
+<% end %>

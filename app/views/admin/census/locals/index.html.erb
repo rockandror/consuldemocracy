@@ -1,0 +1,20 @@
+<h2 class="inline-block"><%= t("admin.census.locals.index.title") %></h2>
+
+<%= link_to t("admin.census.locals.index.create"),
+            new_admin_census_local_path,
+            class: "button float-right" %>
+
+<div class="small-12 medium-6">
+  <%= form_tag admin_census_locals_path, method: :get, remote: true  do %>
+    <div class="input-group">
+      <%= text_field_tag :search, "", placeholder: t("admin.census.locals.index.search.placeholder") %>
+      <div class="input-group-button">
+        <%= submit_tag t("admin.census.locals.index.search.search"), class: "button" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div id="census_locals">
+  <%= render "locals" %>
+</div>

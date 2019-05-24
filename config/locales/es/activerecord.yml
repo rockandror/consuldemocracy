@@ -355,6 +355,11 @@ es:
       link:
         label: Título
         url: Enlace
+      census/local:
+        document_type: Tipo de documento
+        document_number: Número de documento
+        date_of_birth: Fecha de nacimiento
+        postal_code: Código postal
     errors:
       models:
         user:

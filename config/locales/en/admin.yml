@@ -1614,3 +1614,16 @@ en:
     translations:
         remove_language: Remove language
         add_language: Add language
+    census:
+      locals:
+        index:
+          title: Manage local census
+          create: Create new local census record
+          no_records: There are no local census records.
+          document_type: Document type
+          document_number: Document number
+          date_of_birth: Date of birth
+          postal_code: Postal code
+          search:
+            placeholder: Search by document number
+            search: Search

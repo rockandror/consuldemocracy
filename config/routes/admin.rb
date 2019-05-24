@@ -243,4 +243,8 @@ namespace :admin do
     resources :actions, only: [:index, :new, :create, :edit, :update, :destroy]
     resources :administrator_tasks, only: [:index, :edit, :update]
   end
+
+  namespace :census do
+    resources :locals
+  end
 end
