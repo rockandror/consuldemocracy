@@ -133,4 +133,19 @@ feature "Admin census locals" do
       expect(page).to have_content "07007"
     end
   end
+
+  context "Destroy" do
+    let!(:census_local) { create(:census_local) }
+    let!(:deleted_document_number) { census_local.document_number }
+
+    scenario "Should show successful destroy notice" do
+      visit admin_census_locals_path
+
+      expect(page).to have_content deleted_document_number
+      click_on "Delete"
+
+      expect(page).to have_content "Local census record removed successfully!"
+      expect(page).not_to have_content deleted_document_number
+    end
+  end
 end
