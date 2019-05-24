@@ -16,6 +16,15 @@ class Admin::Census::LocalsController < Admin::BaseController
     end
   end
 
+  def update
+    if @local.update(local_params)
+      redirect_to admin_census_locals_path,
+        notice: t("admin.census.locals.update.notice")
+    else
+      render :edit
+    end
+  end
+
   private
 
     def local_params
