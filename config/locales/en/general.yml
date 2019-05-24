@@ -192,6 +192,7 @@ en:
     topic: Topic
     image: Image
     census/local: Local Census Record
+    census/local/importation: Local Census Records Importation
   geozones:
     none: All city
     all: All scopes

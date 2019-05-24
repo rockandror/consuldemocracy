@@ -1638,3 +1638,17 @@ es:
           notice: ¡Registro del censo local actualizado correctamente!
         destroy:
           notice: ¡Registro del censo local eliminado correctamente!
+        importations:
+          new:
+            title: Registros del censo local
+            subtitle: Importar archivo CSV
+          create:
+            notice: ¡Proceso de importation de registros del censo local ejecutado correctamente!
+          show:
+            title: Gestionar censo local
+            subtitle: Resultados del proceso de importación
+            import: Importar otro fichero
+            errored: Filas erróneas
+            created: Registros creados
+          locals:
+            no_records_found: No se han encontrado registros.

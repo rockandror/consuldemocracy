@@ -246,5 +246,8 @@ namespace :admin do
 
   namespace :census do
     resources :locals
+    namespace :locals do
+      resources :importations, only: [:new, :create, :show]
+    end
   end
 end
