@@ -7,10 +7,10 @@
           <span class="js-comments-count">(<%= @commentable.comments_count %>)</span>
         </h2>
 
-        <%= render 'shared/wide_order_selector', i18n_namespace: "comments" %>
+        <%= render "shared/wide_order_selector", i18n_namespace: "comments" %>
 
         <% if user_signed_in? %>
-          <%= render 'comments/form', {commentable: @commentable, parent_id: nil, toggeable: false} %>
+          <%= render "comments/form", {commentable: @commentable, parent_id: nil, toggeable: false} %>
         <% else %>
         <br>
 
@@ -22,7 +22,7 @@
         <% end %>
 
         <% @comment_tree.root_comments.each do |comment| %>
-          <%= render 'comments/comment', comment: comment  %>
+          <%= render "comments/comment", comment: comment  %>
         <% end %>
         <%= paginate @comment_tree.root_comments %>
       </div>

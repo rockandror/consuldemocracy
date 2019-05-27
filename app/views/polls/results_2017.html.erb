@@ -7,13 +7,13 @@
   <!-- Facebook -->
   <meta property="og:url"            content="<%= first_voting_url %>" />
   <meta property="og:title"          content="<%= t("first_2017_poll.results.title") %>" />
-  <meta property="og:image"          content="<%= image_url 'social_media_polls_results.png' %>" />
+  <meta property="og:image"          content="<%= image_url "social_media_polls_results.png" %>" />
   <meta property="og:description"    content="<%= t("first_2017_poll.results.description") %>" />
   <!-- Twitter -->
   <meta name="twitter:card"          content="summary" />
   <meta name="twitter:site"          content="@DecideMadrid" />
   <meta name="twitter:title"         content="<%= t("first_2017_poll.results.title") %>" />
-  <meta name="twitter:image"         content="<%= image_url 'social_media_polls_results_twitter.png' %>" />
+  <meta name="twitter:image"         content="<%= image_url "social_media_polls_results_twitter.png" %>" />
   <meta name="twitter:description"   content="<%= t("first_2017_poll.results.description") %>" />
 <% end %>
 
@@ -44,12 +44,12 @@
     <div class="small-12 medium-6 column">
       <figure class="figure-card pdf">
         <%= link_to "/docs/informe_tecnico_100_sostenible.pdf", target: "_blank",
-                    title: t("polls_reports.label") + ' - ' + t("polls_reports.title_1") + ' - ' + 'PDF 712kb' do %>
+                    title: t("polls_reports.label") + " - " + t("polls_reports.title_1") + " - " + "PDF 712kb" do %>
           <%= image_tag "landings/first_voting_sustainable_report.jpg", alt: t("polls_reports.img_alt_1") %>
         <% end %>
         <figcaption>
           <%= link_to "/docs/informe_tecnico_100_sostenible.pdf", target: "_blank",
-                      title: t("polls_reports.label") + ' - ' + t("polls_reports.title_1") + ' - ' + 'PDF 712kb' do %>
+                      title: t("polls_reports.label") + " - " + t("polls_reports.title_1") + " - " + "PDF 712kb" do %>
             <span><%= t("polls_reports.label") %></span><br>
             <p class="title"><%= t("polls_reports.title_1") %></p>
           <% end %>
@@ -58,19 +58,19 @@
       <p><%= t("polls_reports.description_1_html") %></p>
       <p>
         <%= link_to t("polls_reports.button"), "/docs/informe_tecnico_100_sostenible.pdf", target: "_blank",
-                    title: t("polls_reports.label") + ' - ' + t("polls_reports.title_1") + ' - ' + 'PDF 712kb',
+                    title: t("polls_reports.label") + " - " + t("polls_reports.title_1") + " - " + "PDF 712kb",
                     class: "button hollow" %>
       </p>
     </div>
     <div class="small-12 medium-6 column">
       <figure class="figure-card pdf">
         <%= link_to "/docs/informe_tecnico_billete_unico.pdf", target: "_blank",
-                      title: t("polls_reports.label") + ' - ' + t("polls_reports.title_2") + ' - ' + 'PDF 514kb' do %>
+                      title: t("polls_reports.label") + " - " + t("polls_reports.title_2") + " - " + "PDF 514kb" do %>
           <%= image_tag "landings/first_voting_transport_report.jpg", alt: t("polls_reports.img_alt_2") %>
         <% end %>
         <figcaption>
           <%= link_to "/docs/informe_tecnico_billete_unico.pdf", target: "_blank",
-                        title: t("polls_reports.label") + ' - ' + t("polls_reports.title_2") + ' - ' + 'PDF 514kb' do %>
+                        title: t("polls_reports.label") + " - " + t("polls_reports.title_2") + " - " + "PDF 514kb" do %>
             <span><%= t("polls_reports.label") %></span><br>
             <p class="title"><%= t("polls_reports.title_2") %></p>
           <% end %>
@@ -79,7 +79,7 @@
       <p><%= t("polls_reports.description_2_html") %></p>
       <p>
         <%= link_to t("polls_reports.button"), "/docs/informe_tecnico_billete_unico.pdf", target: "_blank",
-                    title: t("polls_reports.label") + ' - ' + t("polls_reports.title_2") + ' - ' + 'PDF 514kb',
+                    title: t("polls_reports.label") + " - " + t("polls_reports.title_2") + " - " + "PDF 514kb",
                     class: "button hollow" %>
       </p>
     </div>
@@ -124,7 +124,7 @@
     <div class="small-12 medium-9 column">
       <h2 class="show-for-sr">TODA LA CIUDAD</h2>
 
-      <% cache ["results:polls_2017:rake_task:#{Stat.named('polls_2017_cache', 'keys', 'stats').value}"] do %>
+      <% cache ["results:polls_2017:rake_task:#{Stat.named("polls_2017_cache", "keys", "stats").value}"] do %>
         <!-- Propuestas y Plaza de España -->
         <%= render "polls/results_2017/poll_1" %>
 

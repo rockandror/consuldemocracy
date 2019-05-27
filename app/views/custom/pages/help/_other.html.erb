@@ -4,7 +4,7 @@
   <li><%= link_to t("pages.titles.kit_decide"), kit_decide_path %></li>
   <li><%= link_to t("pages.help.other.facts"), participation_facts_path %></li>
   <li><%= link_to t("pages.help.other.world"), participation_world_path %></li>
-  <li><%= link_to t("pages.help.other.how_to_use", org_name: setting['org_name']), how_to_use_path %></li>
+  <li><%= link_to t("pages.help.other.how_to_use", org_name: setting["org_name"]), how_to_use_path %></li>
 
   <% SiteCustomization::Page.with_more_info_flag.with_same_locale.each do |custom_page| %>
     <li><%= link_to custom_page.title, page_path(custom_page.slug) %></li>

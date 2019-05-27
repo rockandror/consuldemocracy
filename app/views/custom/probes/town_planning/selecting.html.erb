@@ -28,7 +28,7 @@
       <div class="media-object">
         <div class="media-object-section">
           <div class="thumbnail">
-            <%= link_to probe_option.original_image_url, target: '_blank' do %>
+            <%= link_to probe_option.original_image_url, target: "_blank" do %>
               <%= image_tag probe_option.thumb_image_url, alt: probe_option.name %>
             <% end %>
           </div>
@@ -41,9 +41,9 @@
                       target: "_blank",
                       class: "button hollow" %>
           <br>
-          <%= link_to "Descargar dossier <small>(PDF | #{probe_option.file_size('dossier', 'pdf')})</small>".html_safe,
-                      probe_option.file_path('dossier', 'pdf'),
-                      title: "PDF #{probe_option.name} | #{probe_option.file_size('dossier', 'pdf')}",
+          <%= link_to "Descargar dossier <small>(PDF | #{probe_option.file_size("dossier", "pdf")})</small>".html_safe,
+                      probe_option.file_path("dossier", "pdf"),
+                      title: "PDF #{probe_option.name} | #{probe_option.file_size("dossier", "pdf")}",
                       target: "_blank" %>
         </div>
       </div>

@@ -30,13 +30,13 @@
         <td class="border-right">
           <strong><%= geozone.name %></strong>
         </td>
-        <td><%= @district_stats[geozone.id.to_s]['web'] %>
-          <small><em>(<%= percent_stat(@district_stats[geozone.id.to_s]['web'], @district_stats[geozone.id.to_s]['total'])%>%)</em></small></td>
-        <td><%= @district_stats[geozone.id.to_s]['booth'] %>
-          <small><em>(<%= percent_stat(@district_stats[geozone.id.to_s]['booth'], @district_stats[geozone.id.to_s]['total'])%>%)</em></small></td>
-        <td class="border-left"><%= @district_stats[geozone.id.to_s]['total'] %>
-          <small><em>(<%= percent_stat(@district_stats[geozone.id.to_s]['total'], @district_stats['all']['total'])%>%)</em></small></td>
-        <td><%= percent_stat(@district_stats[geozone.id.to_s]['total'], population_by_geozone(geozone.name))%>%</td>
+        <td><%= @district_stats[geozone.id.to_s]["web"] %>
+          <small><em>(<%= percent_stat(@district_stats[geozone.id.to_s]["web"], @district_stats[geozone.id.to_s]["total"])%>%)</em></small></td>
+        <td><%= @district_stats[geozone.id.to_s]["booth"] %>
+          <small><em>(<%= percent_stat(@district_stats[geozone.id.to_s]["booth"], @district_stats[geozone.id.to_s]["total"])%>%)</em></small></td>
+        <td class="border-left"><%= @district_stats[geozone.id.to_s]["total"] %>
+          <small><em>(<%= percent_stat(@district_stats[geozone.id.to_s]["total"], @district_stats["all"]["total"])%>%)</em></small></td>
+        <td><%= percent_stat(@district_stats[geozone.id.to_s]["total"], population_by_geozone(geozone.name))%>%</td>
       </tr>
     <% end %>
   </tbody>

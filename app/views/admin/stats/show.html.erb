@@ -5,7 +5,7 @@
 
       <div class="float-right clear">
         <%= link_to t("admin.stats.show.external_stats"),
-                    "https://webanalytics01.madrid.es", target: '_blank', class: "button hollow" %>
+                    "https://webanalytics01.madrid.es", target: "_blank", class: "button hollow" %>
         <%= link_to t("admin.stats.show.polls"),
                     polls_admin_stats_path, class: "button hollow" %>
         <%= link_to t("admin.stats.show.participatory_budgets"),
@@ -28,7 +28,7 @@
         <div class="small-12 medium-3 column">
           <p class="featured">
             <%= link_to t("admin.stats.show.summary.visits"),
-                        graph_admin_stats_path(id: 'visits', count: @visits) %> <br>
+                        graph_admin_stats_path(id: "visits", count: @visits) %> <br>
             <span class="number"><%= number_with_delimiter(@visits) %></span>
           </p>
           <p class="featured">
@@ -87,7 +87,7 @@
 
           <p class="featured">
             <%= link_to t("admin.stats.show.summary.unverified_users"),
-                        graph_admin_stats_path(id: 'unverified_users',
+                        graph_admin_stats_path(id: "unverified_users",
                                                count: @unverified_users) %> <br>
             <span class="number"><%= number_with_delimiter(@unverified_users) %></span>
           </p>

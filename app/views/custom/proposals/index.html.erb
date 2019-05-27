@@ -40,7 +40,7 @@
     <%= render "shared/section_header", i18n_namespace: "proposals.index.section_header", image: "proposals" %>
   <% end %>
 
-  <% if feature?('user.recommendations') && @recommended_proposals.present? %>
+  <% if feature?("user.recommendations") && @recommended_proposals.present? %>
     <%= render "shared/recommended_index", recommended: @recommended_proposals,
                                            disable_recommendations_path: recommendations_disable_proposals_path,
                                            namespace: "proposals" %>
@@ -82,14 +82,14 @@
         <%= render "shared/advanced_search",
                    search_path: path_to_search_proposals  %>
       <% end %>
-      <%= render 'shared/order_links', i18n_namespace: "proposals.index" %>
+      <%= render "shared/order_links", i18n_namespace: "proposals.index" %>
 
       <% if @proposals.any? %>
         <% if request.path != human_rights_proposals_path %>
           <div class="show-for-small-only">
             <%= link_to t("proposals.index.start_proposal"),
                         new_proposal_guide,
-                        class: 'button expanded' %>
+                        class: "button expanded" %>
           </div>
         <% end %>
       <% end %>
@@ -97,10 +97,10 @@
       <div id="proposals-list">
         <% if @proposals.any? || current_user.blank? %>
           <% if request.path == human_rights_proposals_path || proposals_default_view? %>
-            <%= render partial: 'proposals/proposal', collection: @proposals %>
+            <%= render partial: "proposals/proposal", collection: @proposals %>
           <% else %>
             <% @proposals.each do |proposal| %>
-              <%= render partial: '/proposals/proposal_minimal', locals: { proposal: proposal } %>
+              <%= render partial: "/proposals/proposal_minimal", locals: { proposal: proposal } %>
             <% end %>
           <% end %>
         <% else %>
@@ -125,7 +125,7 @@
             <p><%= t("proposals.index.section_footer.help_text_1b",
                       blog: link_to(t("proposals.index.section_footer.help_text_1b_blog"), "https://diario.madrid.es/decidemadrid/2017/09/07/diez-claves-para-crear-una-propuesta-ciudadana-en-decide-madrid/", target: "_blank")).html_safe %></p>
             <p><%= t("proposals.index.section_footer.help_text_2",
-                      org: link_to(setting['org_name'], new_user_registration_path),
+                      org: link_to(setting["org_name"], new_user_registration_path),
                       supports: setting["votes_for_proposal_success"]).html_safe %></p>
             <p><%= t("proposals.index.section_footer.help_text_3") %></p>
             <p><%= t("proposals.index.section_footer.help_text_4") %></p>
@@ -139,17 +139,17 @@
         <% if request.path != human_rights_proposals_path %>
           <%= link_to t("proposals.index.start_proposal"),
                       new_proposal_guide,
-                      class: 'button expanded' %>
+                      class: "button expanded" %>
         <% end %>
         <% if params[:retired].blank? %>
-          <%= render 'categories' %>
+          <%= render "categories" %>
           <% if request.path != human_rights_proposals_path %>
-            <%= render "shared/tag_cloud", taggable: 'proposal' %>
+            <%= render "shared/tag_cloud", taggable: "proposal" %>
           <% end %>
-          <%= render 'geozones' %>
-          <%= render 'popular' %>
+          <%= render "geozones" %>
+          <%= render "popular" %>
         <% end %>
-        <%= render 'retired' %>
+        <%= render "retired" %>
       </aside>
     </div>
 

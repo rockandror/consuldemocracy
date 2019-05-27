@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title><%= content_for?(:title) ? yield(:title) : "Admin" %></title>
     <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= content_for :head %>
     <%= csrf_meta_tags %>
     <%= favicon_link_tag "favicon.ico" %>
@@ -18,7 +18,7 @@
       <div class="expanded row">
         <div class="top-bar">
 
-          <%= link_to setting['org_name'], namespaced_root_path, class: "logo show-for-small-only" %>
+          <%= link_to setting["org_name"], namespaced_root_path, class: "logo show-for-small-only" %>
 
           <span data-responsive-toggle="responsive-menu" data-hide-for="medium" class="float-right">
             <span class="menu-icon dark" data-toggle></span>
@@ -29,8 +29,8 @@
             <div class="top-bar-title">
               <h1>
                 <%= link_to namespaced_root_path, class: "hide-for-small-only" do %>
-                  <%= image_tag('logo_header.png', class: 'hide-for-small-only float-left', size: '80x80', alt: t("layouts.header.logo")) %>
-                  <%= setting['org_name'] %>
+                  <%= image_tag("logo_header.png", class: "hide-for-small-only float-left", size: "80x80", alt: t("layouts.header.logo")) %>
+                  <%= setting["org_name"] %>
                   &nbsp;|&nbsp;<%= namespaced_header_title %>
                 <% end %>
               </h1>
@@ -61,7 +61,7 @@
 
     <div class="no-margin-top row no-max-width collapse" data-equalizer>
       <div class="admin-content small-12 medium-9 large-6 small-centered column" data-equalizer-watch>
-        <%= render 'layouts/flash' %>
+        <%= render "layouts/flash" %>
         <%= yield %>
       </div>
     </div>

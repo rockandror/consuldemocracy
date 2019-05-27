@@ -97,41 +97,41 @@
                       <%= "<small>Memoria Final (165Mb)</small>".html_safe %>
             <% end %>
           <% else %>
-            <%= link_to @probe_option.file_path('memoria_finalista', 'pdf'),
-                        title: "PDF #{@probe_option.name} finalista | #{@probe_option.file_size('memoria_finalista', 'pdf')}",
+            <%= link_to @probe_option.file_path("memoria_finalista", "pdf"),
+                        title: "PDF #{@probe_option.name} finalista | #{@probe_option.file_size("memoria_finalista", "pdf")}",
                         target: "_blank", class: "button hollow expanded",
                         rel: "nofollow" do %>
                         <%= image_tag "icon_pdf.png", alt: "PDF" %>
-                        <%= "<small>Memoria Final (#{@probe_option.file_size('memoria_finalista', 'pdf')})</small>".html_safe %>
+                        <%= "<small>Memoria Final (#{@probe_option.file_size("memoria_finalista", "pdf")})</small>".html_safe %>
             <% end %>
           <% end %>
-          <%= link_to @probe_option.file_path('dossier_finalista', 'pdf'),
-                      title: "PDF #{@probe_option.name} finalista | #{@probe_option.file_size('dossier_finalista', 'pdf')}",
+          <%= link_to @probe_option.file_path("dossier_finalista", "pdf"),
+                      title: "PDF #{@probe_option.name} finalista | #{@probe_option.file_size("dossier_finalista", "pdf")}",
                       target: "_blank", class: "button hollow expanded",
                       rel: "nofollow" do %>
                       <%= image_tag "icon_pdf.png", alt: "PDF" %>
-                      <%= "<small>Imágenes Finales  (#{@probe_option.file_size('dossier_finalista', 'pdf')})</small>".html_safe %>
+                      <%= "<small>Imágenes Finales  (#{@probe_option.file_size("dossier_finalista", "pdf")})</small>".html_safe %>
           <% end %>
           <br>
         <% end %>
 
         <h3><%= t("probes.show.documents") %></h3>
-        <%= link_to @probe_option.file_path('memoria', 'pdf'),
-                    title: "PDF #{@probe_option.name} | #{@probe_option.file_size('memoria', 'pdf')}",
+        <%= link_to @probe_option.file_path("memoria", "pdf"),
+                    title: "PDF #{@probe_option.name} | #{@probe_option.file_size("memoria", "pdf")}",
                     target: "_blank", class: "button hollow expanded",
                     rel: "nofollow" do %>
                     <%= image_tag "icon_pdf.png", alt: "PDF" %>
-                    <%= "<small>Memoria (#{@probe_option.file_size('memoria', 'pdf')})</small>".html_safe %>
+                    <%= "<small>Memoria (#{@probe_option.file_size("memoria", "pdf")})</small>".html_safe %>
         <% end %>
-        <%= link_to @probe_option.file_path('dossier', 'pdf'),
-                    title: "PDF #{@probe_option.name} | #{@probe_option.file_size('dossier', 'pdf')}",
+        <%= link_to @probe_option.file_path("dossier", "pdf"),
+                    title: "PDF #{@probe_option.name} | #{@probe_option.file_size("dossier", "pdf")}",
                     target: "_blank", class: "button hollow expanded",
                     rel: "nofollow" do %>
                     <%= image_tag "icon_pdf.png", alt: "PDF" %>
-                    <%= "<small>Imágenes (#{@probe_option.file_size('dossier', 'pdf')})</small>".html_safe %>
+                    <%= "<small>Imágenes (#{@probe_option.file_size("dossier", "pdf")})</small>".html_safe %>
         <% end %>
 
-        <%= render partial: 'shared/social_share', locals: {
+        <%= render partial: "shared/social_share", locals: {
           share_title: t("probes.show.share"),
           title: @probe_option.name,
           url: plaza_probe_option_url(@probe_option),
@@ -144,7 +144,7 @@
 
   <div class="row margin-top">
     <div class="small-12 column">
-      <%= render 'probe_options/comments' %>
+      <%= render "probe_options/comments" %>
     </div>
   </div>
 </div>

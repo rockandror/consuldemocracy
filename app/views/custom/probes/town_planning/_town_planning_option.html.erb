@@ -1,7 +1,7 @@
 <tr>
   <td>
     <div class="thumbnail">
-      <%= link_to town_planning_option.original_image_url, target: '_blank' do %>
+      <%= link_to town_planning_option.original_image_url, target: "_blank" do %>
         <%= image_tag town_planning_option.thumb_image_url, alt: town_planning_option.name %>
       <% end %>
     </div>
@@ -15,9 +15,9 @@
   </td>
 
   <td>
-    <%= link_to "Descargar dossier <small>(PDF | #{town_planning_option.file_size('dossier', 'pdf')})</small>".html_safe,
-                  town_planning_option.file_path('dossier', 'pdf'),
-                  title: "PDF #{town_planning_option.name} | #{town_planning_option.file_size('dossier', 'pdf')}",
+    <%= link_to "Descargar dossier <small>(PDF | #{town_planning_option.file_size("dossier", "pdf")})</small>".html_safe,
+                  town_planning_option.file_path("dossier", "pdf"),
+                  title: "PDF #{town_planning_option.name} | #{town_planning_option.file_size("dossier", "pdf")}",
                   target: "_blank" %>
   </td>
 

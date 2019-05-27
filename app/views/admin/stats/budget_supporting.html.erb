@@ -1,5 +1,5 @@
 <% content_for :head do %>
-  <%= javascript_include_tag "stat_graphs", 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag "stat_graphs", "data-turbolinks-track" => true %>
 <% end %>
 
 <%= back_link_to budgets_admin_stats_path %>
@@ -30,7 +30,7 @@
   </div>
 </div>
 
-<%= render 'graph', name: "user_supported_budgets", event: "", count: @user_count %>
+<%= render "graph", name: "user_supported_budgets", event: "", count: @user_count %>
 
 <table class="investment-projects-summary">
   <tr id="city_voters">

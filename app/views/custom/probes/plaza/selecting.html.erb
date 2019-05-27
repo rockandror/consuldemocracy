@@ -89,7 +89,7 @@
 
             <div class="thumbnail">
               <%= link_to plaza_probe_option_path(probe_option),
-                          class: 'project-thumbnail' do %>
+                          class: "project-thumbnail" do %>
                 <%= image_tag probe_option.thumb_image_url, alt: probe_option.name %>
               <% end %>
             </div>
@@ -125,18 +125,18 @@
               <% end %>
             <% end %>
             <% cache ["plaza", "probe_selection_fragment_2", probe_option.id] do %>
-              <%= link_to probe_option.file_path('memoria', 'pdf'),
-                          title: "PDF #{probe_option.name} | #{probe_option.file_size('memoria', 'pdf')}",
+              <%= link_to probe_option.file_path("memoria", "pdf"),
+                          title: "PDF #{probe_option.name} | #{probe_option.file_size("memoria", "pdf")}",
                           target: "_blank" do %>
                           <%= image_tag "icon_pdf.png" %>
-                          <%= "<small>Memoria (#{probe_option.file_size('memoria', 'pdf')})</small>".html_safe %>
+                          <%= "<small>Memoria (#{probe_option.file_size("memoria", "pdf")})</small>".html_safe %>
               <% end %>
               &nbsp;
-              <%= link_to "#{probe_option.file_path('dossier', 'pdf')}",
-                          title: "PDF #{probe_option.name} | #{probe_option.file_size('dossier', 'pdf')}",
+              <%= link_to "#{probe_option.file_path("dossier", "pdf")}",
+                          title: "PDF #{probe_option.name} | #{probe_option.file_size("dossier", "pdf")}",
                           target: "_blank" do %>
                           <%= image_tag "icon_pdf.png" %>
-                          <%= "<small>Imágenes (#{probe_option.file_size('dossier', 'pdf')})</small>".html_safe %>
+                          <%= "<small>Imágenes (#{probe_option.file_size("dossier", "pdf")})</small>".html_safe %>
               <% end %>
 
               <br>

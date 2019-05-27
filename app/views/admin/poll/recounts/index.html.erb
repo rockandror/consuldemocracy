@@ -50,7 +50,7 @@
               </strong>
             </td>
             <% unless @poll.budget_poll? %>
-              <td class="text-center <%= 'count-error' if total_recounts.to_i != system_count %>" id="<%= dom_id(booth_assignment) %>_recount">
+              <td class="text-center <%= "count-error" if total_recounts.to_i != system_count %>" id="<%= dom_id(booth_assignment) %>_recount">
                 <% if total_recounts.present? %>
                   <strong><%= total_recounts %></strong>
                 <% else %>

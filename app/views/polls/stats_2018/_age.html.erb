@@ -23,15 +23,15 @@
           <% end %>
         </td>
 
-        <% ['web', 'booth'].each do |origin| %>
+        <% ["web", "booth"].each do |origin| %>
           <td>
             <div class="progress" role="progressbar" tabindex="0"
-                 aria-valuetext="<%= percent_stat(@age_stats[age.to_s][origin], @age_stats['all']['total']) %>%"
+                 aria-valuetext="<%= percent_stat(@age_stats[age.to_s][origin], @age_stats["all"]["total"]) %>%"
                  aria-valuemin="0" aria-valuemax="100">
-              <span class="progress-meter <%= origin %>" style="width: <%= @age_stats[age.to_s][origin]*100*6/@age_stats['all']['total'] rescue 0 %>%">
+              <span class="progress-meter <%= origin %>" style="width: <%= @age_stats[age.to_s][origin]*100*6/@age_stats["all"]["total"] rescue 0 %>%">
                 <span class="progress-meter-text">
                   <%= @age_stats[age.to_s][origin] %>
-                  (<%=  percent_stat(@age_stats[age.to_s][origin], @age_stats['all']['total']) %>%)
+                  (<%=  percent_stat(@age_stats[age.to_s][origin], @age_stats["all"]["total"]) %>%)
                 </span>
               </span>
             </div>
@@ -40,13 +40,13 @@
 
         <td class="border-left">
           <strong>
-            <%= @age_stats[age.to_s]['total'] %>
-            (<%= percent_stat(@age_stats[age.to_s]['total'], @age_stats['all']['total']) %>%)
+            <%= @age_stats[age.to_s]["total"] %>
+            (<%= percent_stat(@age_stats[age.to_s]["total"], @age_stats["all"]["total"]) %>%)
           </strong>
           <div class="progress" role="progressbar" tabindex="0"
-               aria-valuetext="<%= percent_stat(@age_stats[age.to_s]['total'], @age_stats['all']['total']) %>%"
+               aria-valuetext="<%= percent_stat(@age_stats[age.to_s]["total"], @age_stats["all"]["total"]) %>%"
                aria-valuemin="0" aria-valuemax="100">
-            <span class="progress-meter" style="width: <%= @age_stats[age.to_s]['total']*100*6/@age_stats['all']['total'] rescue 0 %>%"></span>
+            <span class="progress-meter" style="width: <%= @age_stats[age.to_s]["total"]*100*6/@age_stats["all"]["total"] rescue 0 %>%"></span>
           </div>
         </td>
       </tr>

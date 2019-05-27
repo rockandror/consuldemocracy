@@ -31,7 +31,7 @@
         </div>
         <div class="small-12 medium-3 column info padding" data-equalizer-watch>
           <p>
-            <strong><%= t('budgets.show.phase') %></strong>
+            <strong><%= t("budgets.show.phase") %></strong>
           </p>
           <h2><%= t("budgets.phase.#{current_budget.phase}") %></h2>
 
@@ -201,7 +201,7 @@
       <p><%= t("budgets.index.section_footer.help_text_1") %></p>
       <p><%= t("budgets.index.section_footer.help_text_2") %></p>
       <p><%= t("budgets.index.section_footer.help_text_3",
-                org: link_to(setting['org_name'], new_user_registration_path)).html_safe %></p>
+                org: link_to(setting["org_name"], new_user_registration_path)).html_safe %></p>
       <p><%= t("budgets.index.section_footer.help_text_4") %></p>
     </div>
   </div>
