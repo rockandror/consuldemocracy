@@ -1,7 +1,7 @@
 module QuestionsHelper
 
   def comment_kind_select_options
-    ['comment', 'question'].collect do |comment_kind|
+    ["comment", "question"].collect do |comment_kind|
       [t("comment_kinds.#{comment_kind}"), comment_kind]
     end
   end
@@ -29,7 +29,7 @@ module QuestionsHelper
   end
 
   def find_comment_kind(resource)
-    comment_kind = 'comment'
+    comment_kind = "comment"
     if resource.present? && resource.is_a?(Debate)
       comment_kind = resource.comment_kind
     end

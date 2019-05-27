@@ -30,7 +30,7 @@ namespace :budgets do
 
   desc "Get Budget Polls results to fill an excell"
   task budget_polls_results: :environment do
-    require 'csv'
+    require "csv"
 
     csv_string = CSV.generate(col_sep: "^", row_sep: "*****") do |csv|
       BudgetPoll.find_each do |budget_poll|
@@ -38,10 +38,10 @@ namespace :budgets do
           budget_poll.name,
           budget_poll.email,
           budget_poll.preferred_subject,
-          budget_poll.collective ? 'Si' : 'No',
-          budget_poll.public_worker ? 'Si' : 'No',
-          budget_poll.proposal_author ? 'Si' : 'No',
-          budget_poll.selected_proposal_author ? 'Si' : 'No'
+          budget_poll.collective ? "Si" : "No",
+          budget_poll.public_worker ? "Si" : "No",
+          budget_poll.proposal_author ? "Si" : "No",
+          budget_poll.selected_proposal_author ? "Si" : "No"
         ]
       end
     end

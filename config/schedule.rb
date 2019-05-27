@@ -35,7 +35,7 @@ every 2.hours do
   rake "-s stats:generate"
 end
 
-every 1.day, at: '4:00 am', roles: [:cron] do
+every 1.day, at: "4:00 am", roles: [:cron] do
   rake "csv:export"
 end
 

@@ -21,6 +21,6 @@ var load_preselection_charts = function(){
 
 $(function(){
   $(document).ready(load_preselection_charts);
-  $(document).on('page:load', load_preselection_charts);
-  $(document).on('ajax:complete', load_preselection_charts);
+  $(document).on("page:load", load_preselection_charts);
+  $(document).on("ajax:complete", load_preselection_charts);
 });

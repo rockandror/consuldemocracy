@@ -21,6 +21,6 @@ var load_stats_charts = function(){
 
 $(function(){
   $(document).ready(load_stats_charts);
-  $(document).on('page:load', load_stats_charts);
-  $(document).on('ajax:complete', load_stats_charts);
+  $(document).on("page:load", load_stats_charts);
+  $(document).on("ajax:complete", load_stats_charts);
 });

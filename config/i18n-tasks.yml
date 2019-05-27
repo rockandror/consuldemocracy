@@ -220,7 +220,7 @@ ignore_unused:
   - admin.stats.polls.expired
   - "stats.polls.*_percentage"
   - landings.cambia_tu_ciudad.*
-  - 'seeds.settings.*'
+  - "seeds.settings.*"
   - "dashboard.polls.*.submit"
 ####
 ## Exclude these keys from the `i18n-tasks eq-base" report:

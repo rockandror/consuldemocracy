@@ -12,10 +12,10 @@ class Migrations::LegacyLegislation::Annotation
           author_id: old_annotation.user_id,
           created_at: old_annotation.created_at,
           updated_at: old_annotation.created_at,
-          range_start: old_annotation.ranges.first['start'],
-          range_start_offset: old_annotation.ranges.first['startOffset'],
-          range_end: old_annotation.ranges.first['end'],
-          range_end_offset: old_annotation.ranges.first['endOffset'],
+          range_start: old_annotation.ranges.first["start"],
+          range_start_offset: old_annotation.ranges.first["startOffset"],
+          range_end: old_annotation.ranges.first["end"],
+          range_end_offset: old_annotation.ranges.first["endOffset"],
           context: "<span class=annotator-hl>#{old_annotation.quote}</span>"
         }
         draft.annotations.create!(new_annotation_params) if new_annotation_params[:quote].present?

@@ -1,7 +1,7 @@
 App.LegislationProposals =
   checkProposalType: ->
     switch ($("#legislation_proposal_proposal_type").val())
-      when 'proposal'
+      when "proposal"
         $("#js-legislation-proposal-summary").show()
         $("#js-legislation-proposal-video-url").show()
         $(".js-legislation-proposal-documents").show()
@@ -9,7 +9,7 @@ App.LegislationProposals =
         $("#js-legislation-proposal-tags").show()
         $("#js-legislation-proposal-label-description").show()
         $("#js-legislation-proposal-label-question-description").hide()
-      when 'question'
+      when "question"
         $("#js-legislation-proposal-summary").hide()
         $("#js-legislation-proposal-video-url").hide()
         $("#js-legislation-proposal-documents").hide()

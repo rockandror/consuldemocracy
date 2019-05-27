@@ -71,9 +71,9 @@ class CensusApi
       def datos_habitante
         return {} if (data[:datos_habitante].blank? || data[:datos_habitante][:item].blank?)
         case data[:datos_habitante][:item].class.name
-          when 'Hash'
+          when "Hash"
             data[:datos_habitante][:item]
-          when 'Array'
+          when "Array"
             data[:datos_habitante][:item].last
           else
             {}
@@ -83,9 +83,9 @@ class CensusApi
       def datos_vivienda
         return {} if (data[:datos_vivienda].blank? && data[:datos_vivienda][:item].blank?)
         case data[:datos_vivienda][:item].class.name
-          when 'Hash'
+          when "Hash"
             data[:datos_vivienda][:item]
-          when 'Array'
+          when "Array"
             data[:datos_vivienda][:item].last
           else
             {}

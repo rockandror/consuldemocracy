@@ -45,8 +45,8 @@ module ActsAsTaggableOn
 
   Tag.class_eval do
 
-    has_many :proposals, through: :taggings, source: :taggable, source_type: 'Proposal'
-    has_many :debates, through: :taggings, source: :taggable, source_type: 'Debate'
+    has_many :proposals, through: :taggings, source: :taggable, source_type: "Proposal"
+    has_many :debates, through: :taggings, source: :taggable, source_type: "Debate"
 
     scope :category, -> { where(kind: "category") }
 
