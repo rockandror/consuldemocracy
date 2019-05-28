@@ -1265,6 +1265,7 @@ ActiveRecord::Schema.define(version: 20190521154459) do
     t.string   "sub_proceeding"
     t.integer  "community_id"
     t.datetime "published_at"
+    t.boolean  "selected",                       default: false
     t.index ["author_id", "hidden_at"], name: "index_proposals_on_author_id_and_hidden_at", using: :btree
     t.index ["author_id"], name: "index_proposals_on_author_id", using: :btree
     t.index ["cached_votes_up"], name: "index_proposals_on_cached_votes_up", using: :btree

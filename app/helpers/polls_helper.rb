@@ -51,11 +51,11 @@ module PollsHelper
 
   def link_to_poll(text, poll)
     if poll.results_enabled?
-      link_to text, results_poll_path(id: poll.slug)
+      link_to text, results_poll_path(id: poll.slug || poll.id)
     elsif poll.stats_enabled?
-      link_to text, stats_poll_path(id: poll.slug)
+      link_to text, stats_poll_path(id: poll.slug || poll.id)
     else
-      link_to text, poll
+      link_to text, poll_path(id: poll.slug || poll.id)
     end
   end
 

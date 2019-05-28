@@ -78,6 +78,8 @@ class Proposal < ApplicationRecord
   scope :successful,               -> { where("cached_votes_up >= ?", Proposal.votes_needed_for_success) }
   scope :unsuccessful,             -> { where("cached_votes_up < ?", Proposal.votes_needed_for_success) }
   scope :public_for_api,           -> { where("proposals.proceeding IS NULL or proposals.proceeding = ?", "Derechos Humanos") }
+  scope :selected,                 -> { where(selected: true) }
+  scope :not_selected,             -> { where(selected: false) }
   scope :proceedings,              -> { where.not(proceeding: nil) }
   scope :not_proceedings,          -> { where(proceeding: nil) }
   scope :not_supported_by_user,    ->(user) { where.not(id: user.find_voted_items(votable_type: "Proposal").compact.map(&:id)) }
