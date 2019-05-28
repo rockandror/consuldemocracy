@@ -1816,13 +1816,11 @@ feature "Successful proposals" do
     scenario "Create" do
       author = create(:user)
       login_as(author)
-
       visit proposals_path
 
       within("aside") do
         click_link "Create a proposal"
       end
-
       expect(current_path).to eq(new_proposal_path)
 
       fill_in "Proposal title", with: "Help refugees"
