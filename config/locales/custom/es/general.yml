@@ -118,7 +118,6 @@ es:
       external_link_blog: Blog
       help_translate: Ayúdanos a traducir
       help_translate_info: Cómo ayudar
-      delegation: Delegación
       collaborative_legislation: Procesos
   shared:
     comments:
@@ -133,9 +132,6 @@ es:
     youtube_link: "YouTube"
     telegram_link: "Telegram"
     instagram_link: "Instagram"
-  users:
-    show:
-      delegation: Lista de proyectos de gasto recomendados
   welcome:
     title: "Portal of citizen participation of the City of Madrid"
     recommended:

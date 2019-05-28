@@ -26,7 +26,6 @@ class User < ApplicationRecord
   has_many :debates, -> { with_hidden }, foreign_key: :author_id
   has_many :proposals, -> { with_hidden }, foreign_key: :author_id
   has_many :budget_investments, -> { with_hidden }, foreign_key: :author_id, class_name: "Budget::Investment"
-  has_many :budget_recommendations, class_name: "Budget::Recommendation"
   has_many :comments, -> { with_hidden }
   has_many :failed_census_calls
   has_many :notifications

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190507102732) do
+ActiveRecord::Schema.define(version: 20190521154459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -311,16 +311,6 @@ ActiveRecord::Schema.define(version: 20190507102732) do
     t.string   "reason"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-  end
-
-  create_table "budget_recommendations", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "investment_id"
-    t.integer  "budget_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "phase",         default: "selecting"
-    t.index ["user_id"], name: "index_budget_recommendations_on_user_id", using: :btree
   end
 
   create_table "budget_translations", force: :cascade do |t|
@@ -1692,7 +1682,6 @@ ActiveRecord::Schema.define(version: 20190507102732) do
 
   add_foreign_key "administrators", "users"
   add_foreign_key "budget_investments", "communities"
-  add_foreign_key "budget_recommendations", "users"
   add_foreign_key "dashboard_administrator_tasks", "users"
   add_foreign_key "dashboard_executed_actions", "dashboard_actions", column: "action_id"
   add_foreign_key "dashboard_executed_actions", "proposals"

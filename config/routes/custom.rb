@@ -38,8 +38,6 @@ resources :budgets, only: [:show, :index], path: "presupuestos" do
     resources :lines, controller: "budgets/ballot/lines", only: [:create, :destroy]
   end
 
-  resources :recommendations, controller: "budgets/recommendations", only: [:index, :new, :create, :destroy]
-
   resource :results, only: :show, controller: "budgets/results"
   resource :stats, only: :show, controller: "budgets/stats"
   resource :executions, only: :show, controller: "budgets/executions"

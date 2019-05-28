@@ -199,12 +199,6 @@ FactoryBot.define do
     reason "unfeasible"
   end
 
-  factory :budget_recommendation, class: "Budget::Recommendation" do
-    budget { investment.budget }
-    association :investment, factory: :budget_investment
-    user
-  end
-
   factory :valuator_group, class: ValuatorGroup do
     sequence(:name) { |n| "Valuator Group #{n}" }
   end

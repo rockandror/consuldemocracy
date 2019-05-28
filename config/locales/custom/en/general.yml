@@ -113,7 +113,6 @@ en:
       transparency_url: http://transparencia.madrid.es
       faq: technical assistance
     header:
-      delegation: Delegation
       collaborative_legislation: Processes
       external_link_opendata_url: http://datos.madrid.es
       external_link_transparency_url: http://transparencia.madrid.es
@@ -139,6 +138,3 @@ en:
         btn_text_link: See all recommended debates
       proposals:
         btn_text_link: See all recommended proposals
-  users:
-    show:
-      delegation: List of recommended investments projects
