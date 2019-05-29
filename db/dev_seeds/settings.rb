@@ -1,113 +1,28 @@
 section "Creating Settings" do
-  Setting["email_domain_for_officials"] = "madrid.es"
-  Setting.create(key: "official_level_1_name", value: "Empleados públicos")
-  Setting.create(key: "official_level_2_name", value: "Organización Municipal")
-  Setting.create(key: "official_level_3_name", value: "Directores generales")
-  Setting.create(key: "official_level_4_name", value: "Concejales")
-  Setting.create(key: "official_level_5_name", value: "Alcaldesa")
-  Setting.create(key: "max_ratio_anon_votes_on_debates", value: "50")
-  Setting.create(key: "max_votes_for_debate_edit", value: "1000")
-  Setting.create(key: "max_votes_for_proposal_edit", value: "1000")
-  Setting.create(key: "proposal_code_prefix", value: "MAD")
-  Setting.create(key: "votes_for_proposal_success", value: "100")
-  Setting.create(key: "months_to_archive_proposals", value: "12")
-  Setting.create(key: "comments_body_max_length", value: "1000")
+  Setting.reset_defaults
 
-  Setting.create(key: "twitter_handle", value: "@decidemadrid")
-  Setting.create(key: "twitter_hashtag", value: "#decidemadrid")
-  Setting.create(key: "facebook_handle", value: "decidemadrid")
-  Setting.create(key: "youtube_handle", value: "decidemadrid")
-  Setting.create(key: "telegram_handle", value: "decidemadrid")
-  Setting.create(key: "instagram_handle", value: "decidemadrid")
-  Setting.create(key: "blog_url", value: "https://diario.madrid.es/decidemadrid/")
-  Setting.create(key: "url", value: "http://localhost:3000")
-  Setting.create(key: "org_name", value: "Decide Madrid")
-
-  Setting.create(key: "process.debates", value: "true")
-  Setting.create(key: "process.proposals", value: "true")
-  Setting.create(key: "process.polls", value: "true")
-  Setting.create(key: "process.budgets", value: "true")
-  Setting.create(key: "process.legislation", value: "true")
-
-  Setting.create(key: "feature.featured_proposals", value: nil)
-  Setting.create(key: "feature.twitter_login", value: "true")
-  Setting.create(key: "feature.facebook_login", value: "true")
-  Setting.create(key: "feature.google_login", value: "true")
-  Setting.create(key: "feature.probe.plaza", value: "true")
-  Setting.create(key: "feature.human_rights.accepting", value: "true")
-  Setting.create(key: "feature.human_rights.voting", value: "true")
-  Setting.create(key: "feature.human_rights.closed", value: "true")
-  Setting.create(key: "feature.signature_sheets", value: "true")
-  Setting.create(key: "feature.user.recommendations", value: "true")
-  Setting.create(key: "feature.user.recommendations_on_debates", value: "true")
-  Setting.create(key: "feature.user.recommendations_on_proposals", value: "true")
-  Setting.create(key: "feature.user.skip_verification", value: "true")
-  Setting.create(key: "feature.community", value: "true")
-  Setting.create(key: "feature.map", value: "true")
-  Setting.create(key: "feature.allow_images", value: "true")
-  Setting.create(key: "feature.allow_attached_documents", value: "true")
-  Setting.create(key: "feature.public_stats", value: "true")
-  Setting.create(key: "feature.guides", value: true)
-  Setting.create(key: "feature.help_page", value: "true")
-  Setting.create(key: "feature.captcha", value: nil)
-
-  Setting.create(key: "html.per_page_code_head", value: "")
-  Setting.create(key: "html.per_page_code_body", value: "")
-
-  Setting.create(key: "comments_body_max_length", value: "1000")
-  Setting.create(key: "mailer_from_name", value: "Decide Madrid")
-  Setting.create(key: "mailer_from_address", value: "noreply@madrid.es")
-  Setting.create(key: "meta_description", value: "Citizen Participation and Open "\
-                                                 "Government Application")
-  Setting.create(key: "meta_title", value: "Decide Madrid")
-  Setting.create(key: "meta_description", value: "Citizen Participation & Open Gov Application")
-  Setting.create(key: "meta_keywords", value: "citizen participation, open government")
-  Setting.create(key: "verification_offices_url", value: "http://oficinas-atencion-ciudadano.url/")
-  Setting.create(key: "min_age_to_participate", value: "16")
-  Setting.create(key: "proposal_improvement_path", value: nil)
-  Setting.create(key: "map.latitude", value: 40.4332002)
-  Setting.create(key: "map.longitude", value: -3.7009591)
-  Setting.create(key: "map.zoom", value: 10)
-
-  Setting.create(key: "featured_proposals_number", value: 3)
-  Setting.create(key: "proposal_notification_minimum_interval_in_days", value: 0)
-  Setting.create(key: "direct_message_max_per_day", value: 3)
-  Setting.create(key: "related_content_score_threshold", value: -0.3)
-  Setting.create(key: "hot_score_period_in_days", value: 31)
-
-  # piwik_tracking_code_head = "<!-- Piwik -->
-  # <script type='text/javascript'>
-  #   var _paq = _paq || [];
-  #   _paq.push(['setDomains', ['*.decidedesa.madrid.es']]);
-  #   _paq.push(['trackPageView']);
-  #   _paq.push(['enableLinkTracking']);
-  #   (function() {
-  #     var u='//webanalytics01.madrid.es/';
-  #     _paq.push(['setTrackerUrl', u+'piwik.php']);
-  #     _paq.push(['setSiteId', '6']);
-  #     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-  #     g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-  #   })();
-  # </script>
-  # <!-- End Piwik Code -->"
-  # piwik_tracking_code_body = "<!-- Piwik -->
-  # <noscript><p><img src='//webanalytics01.madrid.es/piwik.php?idsite=6' style='border:0;' alt=' /></p></noscript>
-  # <!-- End Piwik Code -->"
-  # Setting["html.per_page_code_head"] = piwik_tracking_code_head
-  # Setting["html.per_page_code_body"] = piwik_tracking_code_body
-
-  Setting.create(key: "homepage.widgets.feeds.proposals", value: "true")
-  Setting.create(key: "homepage.widgets.feeds.debates", value: "true")
-  Setting.create(key: "homepage.widgets.feeds.processes", value: "true")
-
-  Setting.create(key: "proposals.successful_proposal_id", value: nil)
-  Setting.create(key: "proposals.poll_short_title", value: nil)
-  Setting.create(key: "proposals.poll_description", value: nil)
-  Setting.create(key: "proposals.poll_link", value: nil)
-  Setting.create(key: "proposals.email_short_title", value: nil)
-  Setting.create(key: "proposals.email_description", value: nil)
-
-  Setting.create(key: "dashboard.emails", value: nil)
-
-  Setting.create(key: "captcha.max_failed_login_attempts", value: 5)
+  {
+    "email_domain_for_officials": "madrid.es",
+    "facebook_handle": "decidemadrid",
+    "feature.human_rights.accepting": "true",
+    "feature.human_rights.closed": "true",
+    "feature.human_rights.voting": "true",
+    "feature.map": "true",
+    "feature.probe.plaza": "true",
+    "feature.user.skip_verification": "true",
+    "mailer_from_address": "noreply@madrid.es",
+    "mailer_from_name": "Decide Madrid",
+    "meta_description": "Citizen Participation & Open Gov Application",
+    "meta_keywords": "citizen participation, open government",
+    "meta_title": "Decide Madrid",
+    "proposal_notification_minimum_interval_in_days": 0,
+    "telegram_handle": "decidemadrid",
+    "twitter_handle": "@decidemadrid",
+    "url": "http://localhost:3000",
+    "verification_offices_url": "http://oficinas-atencion-ciudadano.url/",
+    "votes_for_proposal_success": "100",
+    "youtube_handle": "decidemadrid"
+  }.each do |name, value|
+    Setting[name] = value
+  end
 end
