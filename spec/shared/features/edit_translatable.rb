@@ -207,31 +207,30 @@ shared_examples "edit_translatable" do |factory_name, path_name, input_fields, t
       )
 
       visit path
-      expect_to_have_active_language('Français')
-      expect_to_have_inactive_language('English')
+      expect_to_have_language_selected('Français')
+      expect_not_to_have_language('English')
       click_button update_button_text
       expect(page).not_to have_css "#error_explanation"
 
       path = updated_path_for(translatable)
       visit path
 
-      expect_to_have_active_language('Français')
-      expect_to_have_inactive_language('English')
+      expect_to_have_language_selected('Français')
+      expect_not_to_have_language('English')
     end
 
     scenario "Remove a translation", :js do
       visit path
-      expect_to_have_active_language 'Español'
 
       select "Español", from: :add_language
       click_link "Remove language"
 
-      expect_to_have_inactive_language 'Español'
+      expect_not_to_have_language 'Español'
 
       click_button update_button_text
 
       visit path
-      expect_to_have_inactive_language 'Español'
+      expect_not_to_have_language 'Español'
     end
 
     scenario "Remove a translation with invalid data", :js do
@@ -250,8 +249,8 @@ shared_examples "edit_translatable" do |factory_name, path_name, input_fields, t
 
       expect(page).to have_css "#error_explanation"
       expect_page_to_have_translatable_field field, :en, with: ""
-      expect_to_have_active_language 'English'
-      expect_to_have_inactive_language 'Español'
+      expect_to_have_language_selected 'English'
+      expect_not_to_have_language 'Español'
 
       visit path
       select "Español", from: :add_language
@@ -294,14 +293,14 @@ shared_examples "edit_translatable" do |factory_name, path_name, input_fields, t
     scenario "Select current locale when its translation exists", :js do
       visit path
 
-      expect(page).to have_select "select_language", selected: 'English'
+      expect_to_have_language_selected 'English'
     end
 
     scenario "Select first locale of existing translations when current locale translation does not exists", :js do
       translatable.translations.where(locale: :en).destroy_all
       visit path
 
-      expect(page).to have_select "select_language", selected: 'Español'
+      expect_to_have_language_selected 'Español'
     end
 
     scenario "Show selected locale form", :js do
@@ -320,7 +319,7 @@ shared_examples "edit_translatable" do |factory_name, path_name, input_fields, t
 
       select "Français", from: :add_language
 
-      expect_to_have_active_language("Français")
+      expect_to_have_language_selected("Français")
       expect_page_to_have_translatable_field fields.sample, :fr, with: ""
     end
   end
@@ -357,16 +356,4 @@ def update_button_text
   else
     "Save changes"
   end
-end
-
-def front_end_path_to_visit?(path)
-  path[/admin|managment|valuation/].blank?
-end
-
-def expect_to_have_active_language(language)
-  expect(find("#select_language option", text: language)["style"]).not_to include("display: none;")
-end
-
-def expect_to_have_inactive_language(language)
-  expect(find("#select_language option", text: language)["style"]).to include("display: none;")
 end

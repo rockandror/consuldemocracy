@@ -127,7 +127,7 @@ shared_examples "new_translatable" do |factory_name, path_name, input_fields, te
     scenario "Highlight current locale", :js do
       visit new_translatable_path
 
-      expect(page).to have_select "select_language", selected: "English"
+      expect_to_have_language_selected "English"
     end
 
     scenario "Highlight new locale added", :js do
@@ -135,7 +135,7 @@ shared_examples "new_translatable" do |factory_name, path_name, input_fields, te
 
       select("Español", from: "add_language")
 
-      expect(page).to have_select "select_language", selected: "Español"
+      expect_to_have_language_selected "Español"
     end
 
     scenario "Select a locale and add it to the form", :js do
