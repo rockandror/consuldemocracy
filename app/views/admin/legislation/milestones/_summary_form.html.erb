@@ -1,5 +1,7 @@
 <%= render "shared/globalize_locales", resource: @process,
-           display_style: lambda { |locale| enable_translation_style(@process, locale) }%>
+           display_style: lambda { |locale| enable_translation_style(@process, locale) },
+           add_translations: false,
+           remove_translations: false %>
 
 <%= translatable_form_for [:admin, @process] do |f| %>
   <%= f.translatable_fields do |translations_form| %>

@@ -5,27 +5,32 @@
   <div class="small-6 large-3 columns">
     <small>
       <strong>
-        <div class="inline"><%= active_languages_text(resource) %></div>
+        <div class="inline"><%= active_languages_text(resource, add_translations) %></div>
       </strong>
     </small>
     <%= select_tag :select_language,
-                   active_languages(resource),
+                   active_languages(resource, add_translations),
                    prompt: "Choose language",
                    class: "js-select-language" %>
-    <div class="group-destroy-languages">
-      <% I18n.available_locales.each do |locale| %>
-        <%= link_to t("admin.translations.remove_language"), "#",
-                    style: display_destroy_locale_style(resource, locale),
-                    class: "delete js-delete-language js-delete-#{locale}",
-                    data: { locale: locale } %>
-      <% end %>
-    </div>
+    <% if remove_translations %>
+      <div class="group-destroy-languages">
+        <% I18n.available_locales.each do |locale| %>
+          <%= link_to t("admin.translations.remove_language"), "#",
+                      style: display_destroy_locale_style(resource, locale),
+                      class: "delete js-delete-language js-delete-#{locale}",
+                      data: { locale: locale } %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
+
   <div class="small-6 large-3 columns end">
     <br />
-    <%= select_tag :add_language,
-                   options_for_locale_select,
-                   prompt: t("admin.translations.add_language"),
-                   class: "js-add-language" %>
+    <% if add_translations %>
+      <%= select_tag :add_language,
+                     options_for_locale_select,
+                     prompt: t("admin.translations.add_language"),
+                     class: "js-add-language" %>
+    <% end %>
   </div>
 </div>

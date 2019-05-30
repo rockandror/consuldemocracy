@@ -12,9 +12,22 @@ module GlobalizeHelper
     resource.present? && resource.translations.any? && resource.translations.reject(&:_destroy).map(&:locale).include?(locale)
   end
 
-  def active_languages(resource)
-    locale = first_available_locale(resource)
-    options_for_select(available_locales(resource), locale)
+  def active_languages(resource, add_translations)
+    selected = first_available_locale(resource)
+    if add_translations
+      locales = available_locales(resource)
+    else
+      locales = all_available_locales(resource)
+    end
+    options_for_select(locales, selected)
+  end
+
+  def all_available_locales(resource)
+    options = []
+    I18n.available_locales.each do |locale|
+      options << [name_for_locale(locale), locale]
+    end
+    options
   end
 
   def available_locales(resource)
@@ -22,13 +35,15 @@ module GlobalizeHelper
     I18n.available_locales.each do |locale|
       next unless enabled_locale?(resource, locale)
 
-      options << [name_for_locale(locale), locale , { data: { locale: locale } }]
+      options << [name_for_locale(locale), locale]
     end
     options
   end
 
-  def active_languages_text(resource)
-    if resource.blank?
+  def active_languages_text(resource, add_translations = true)
+    if !add_translations
+      active_languages = I18n.available_locales.size
+    elsif resource.blank?
       active_languages = I18nContentTranslation.existing_languages.count
     else
       active_languages = resource.translations.reject(&:_destroy).map(&:locale).size > 0 ? resource.translations.reject(&:_destroy).map(&:locale).size : 1

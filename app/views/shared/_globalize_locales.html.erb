@@ -1,5 +1,7 @@
 <% if translations_interface_enabled? %>
   <%= render "shared/common_globalize_locales",
     resource: resource,
-    display_style: lambda { |locale| enable_translation_style(resource, locale) } %>
+    display_style: lambda { |locale| enable_translation_style(resource, locale) },
+    add_translations: local_assigns[:add_translations].nil? ? true : local_assigns[:add_translations],
+    remove_translations: local_assigns[:remove_translations].nil? ? true : local_assigns[:remove_translations] %>
 <% end %>

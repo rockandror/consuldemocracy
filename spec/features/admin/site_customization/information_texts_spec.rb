@@ -80,7 +80,7 @@ feature "Admin custom information texts" do
 
       visit admin_site_customization_information_texts_path
 
-      select "Français", from: :select_language
+      select "Français", from: :add_language
       fill_in "contents_content_#{key}values_value_fr", with: "Titre personalise again du débat"
 
       click_button "Save"
@@ -109,7 +109,7 @@ feature "Admin custom information texts" do
       click_link "Remove language"
       click_button "Save"
 
-      expect(page).not_to have_link "Español"
+      expect_not_to_have_language("Español")
 
       select "English", from: :select_language
       expect(page).to have_content "Start a new debate"

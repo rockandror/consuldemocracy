@@ -265,6 +265,7 @@ feature "Admin collaborative legislation" do
     scenario "Edit milestones summary", :js do
       visit admin_legislation_process_milestones_path(process)
 
+      sleep 10
       expect(page).not_to have_link "Remove language"
       expect(page).not_to have_field "translation_locale"
 
