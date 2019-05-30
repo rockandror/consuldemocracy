@@ -151,7 +151,7 @@ feature "Admin budget groups" do
 
       visit edit_admin_budget_group_path(budget, group)
 
-      select "Español", from: "translation_locale"
+      select "Español", from: :select_language
       fill_in "Group name", with: "Spanish name"
       click_button "Save group"
 
@@ -160,7 +160,7 @@ feature "Admin budget groups" do
 
       visit edit_admin_budget_group_path(budget, group)
 
-      click_link "English"
+      select "English", from: :select_language
       fill_in "Group name", with: "New English Name"
       click_button "Save group"
 
