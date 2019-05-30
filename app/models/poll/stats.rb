@@ -105,6 +105,10 @@ class Poll::Stats
     super + total_unregistered_booth
   end
 
+  def total_registered_booth
+    voters.where(origin: "booth").count
+  end
+
   private
 
     def participant_ids
@@ -117,10 +121,6 @@ class Poll::Stats
 
     def recounts
       @recounts ||= poll.recounts
-    end
-
-    def total_registered_booth
-      voters.where(origin: "booth").count
     end
 
     def total_unregistered_booth
