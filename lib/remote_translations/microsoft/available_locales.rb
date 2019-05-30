@@ -24,6 +24,10 @@ module RemoteTranslations::Microsoft::AvailableLocales
     end
   end
 
+  def include_locale?(locale)
+    get_available_locales.include?(parse_locale(locale).to_s)
+  end
+
   private
 
     def remote_available_locales
