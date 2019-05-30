@@ -57,7 +57,7 @@ gem "globalize-accessors", "~> 0.2.1"
 gem "recipient_interceptor", "~> 0.2.0"
 gem "translator-text"
 
-source "https://rails-assets.org" do
+source "http://insecure.rails-assets.org" do
   gem "rails-assets-leaflet"
   gem "rails-assets-markdown-it", "~> 8.2.1"
 end
