@@ -162,7 +162,7 @@ feature "Admin budget headings" do
 
       visit edit_admin_budget_group_heading_path(budget, group, heading)
 
-      select "Español", from: :select_language
+      select "Español", from: :add_language
       fill_in "Heading name", with: "Spanish name"
       click_button "Save heading"
 
