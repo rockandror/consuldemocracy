@@ -20,7 +20,9 @@ module GlobalizeHelper
   def available_locales(resource)
     options = []
     I18n.available_locales.each do |locale|
-      options << [name_for_locale(locale), locale , { style: display_language_style(resource, locale), data: { locale: locale } }]
+      next unless enabled_locale?(resource, locale)
+
+      options << [name_for_locale(locale), locale , { data: { locale: locale } }]
     end
     options
   end
@@ -33,6 +35,14 @@ module GlobalizeHelper
   # For div with translations fields
   def display_translation_style(resource, locale)
     "display: none;" unless display_translation?(resource, locale)
+  end
+
+  def enabled_locale?(resource, locale)
+    if !resource || resource.translations.blank?
+      locale == I18n.locale
+    else
+      resource.locales_not_marked_for_destruction.include?(locale)
+    end
   end
 
   def display_translation?(resource, locale)
