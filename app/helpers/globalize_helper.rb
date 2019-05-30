@@ -2,14 +2,14 @@ module GlobalizeHelper
 
   def first_available_locale(resource)
     return I18n.locale if translations_with_locale?(resource, I18n.locale)
-
-    return resource.translations.first.locale if resource.translations.any?
+    return resource.translations.first.locale if resource.present? && resource.translations.any?
+    return I18nContentTranslation.existing_languages.first if resource.nil?
 
     I18n.locale
   end
 
   def translations_with_locale?(resource, locale)
-    resource.translations.any? && resource.translations.reject(&:_destroy).map(&:locale).include?(locale)
+    resource.present? && resource.translations.any? && resource.translations.reject(&:_destroy).map(&:locale).include?(locale)
   end
 
   def active_languages(resource)
@@ -26,7 +26,11 @@ module GlobalizeHelper
   end
 
   def active_languages_text(resource)
-    active_languages = resource.translations.reject(&:_destroy).map(&:locale).size > 0 ? resource.translations.reject(&:_destroy).map(&:locale).size : 1
+    if resource.blank?
+      active_languages = I18nContentTranslation.existing_languages.count
+    else
+      active_languages = resource.translations.reject(&:_destroy).map(&:locale).size > 0 ? resource.translations.reject(&:_destroy).map(&:locale).size : 1
+    end
     t("shared.translation_interface.languages_in_use", count: active_languages).html_safe
   end
 
@@ -50,6 +54,7 @@ module GlobalizeHelper
   end
 
   def display_language_option?(resource, locale)
+    return site_customization_enable_translation?(locale) if resource.blank?
     return locale == I18n.locale if resource.translations.empty?
 
     resource.translations.reject(&:_destroy).map(&:locale).include?(locale)
@@ -95,9 +100,9 @@ module GlobalizeHelper
   #   "display: none;" unless display_translation?(resource, locale)
   # end
   #
-  # def translation_enabled_tag(locale, enabled)
-  #   hidden_field_tag("enabled_translations[#{locale}]", (enabled ? 1 : 0))
-  # end
+  def translation_enabled_tag(locale, enabled)
+    hidden_field_tag("enabled_translations[#{locale}]", (enabled ? 1 : 0))
+  end
   #
   # def enable_translation_style(resource, locale)
   #   "display: none;" unless enable_locale?(resource, locale)
@@ -115,11 +120,11 @@ module GlobalizeHelper
   #   "is-active" if display_translation?(resource, locale)
   # end
   #
-  # def globalize(locale, &block)
-  #   Globalize.with_locale(locale) do
-  #     yield
-  #   end
-  # end
+  def globalize(locale, &block)
+    Globalize.with_locale(locale) do
+      yield
+    end
+  end
   #
   # def same_locale?(locale1, locale2)
   #   locale1 == locale2
