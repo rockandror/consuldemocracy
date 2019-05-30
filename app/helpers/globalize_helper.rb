@@ -42,6 +42,9 @@ module GlobalizeHelper
   end
 
   def enabled_locale?(resource, locale)
+    if resource.nil?
+      return site_customization_enable_translation?(locale) if resource.blank?
+    end
     if !resource || resource.translations.blank?
       locale == I18n.locale
     else
