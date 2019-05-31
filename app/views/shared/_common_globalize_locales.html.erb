@@ -1,13 +1,16 @@
-<div class="row globalize-languages column <%= translations_interface_enabled? ? 'highlight' : '' %>">
+<div class="row globalize-languages column <%= highlight_translations %>"
+     data-zero-languages-description="<%= t("shared.translations.languages_in_use", count: 0) %>"
+     data-one-languages-description="<%= t("shared.translations.languages_in_use", count: 1) %>"
+     data-other-languages-description="<%= t("shared.translations.languages_in_use", count: 2) %>">
   <br />
   <div class="small-6 large-3 columns">
     <small>
       <strong>
-        <div class="inline"><%= active_languages_text(resource) %></div>
+        <div class="inline"><%= selected_languages_description(resource) %></div>
       </strong>
     </small>
     <%= select_tag :select_language,
-                   active_languages(resource),
+                   options_for_select_language(resource),
                    prompt: "Choose language",
                    class: "js-select-language" %>
 
@@ -26,7 +29,7 @@
     <% if can_manipulate_languages? %>
       <br />
       <%= select_tag :add_language,
-                     options_for_locale_select,
+                     options_for_add_language,
                      prompt: t("admin.translations.add_language"),
                      class: "js-add-language" %>
     <% end %>

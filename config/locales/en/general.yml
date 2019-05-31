@@ -617,6 +617,11 @@ en:
         title: Recommendations
         see_more: See more recommendations
         hide: Hide recommendations
+    translations:
+      languages_in_use:
+        zero: "<span class=\"js-languages-description\"><span class=\"js-languages-count\">0</span><span> languages in use</span></span>"
+        one: "<span class=\"js-languages-description\"><span class=\"js-languages-count\">1</span><span> language in use</span></span>"
+        other: "<span class=\"js-languages-description\"><span class=\"js-languages-count\">%{count}</span><span> languages in use</span></span>"
   social:
     facebook: "%{org} Facebook"
     twitter: "%{org} Twitter"
