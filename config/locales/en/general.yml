@@ -617,6 +617,8 @@ en:
         title: Recommendations
         see_more: See more recommendations
         hide: Hide recommendations
+    translations:
+        other: "<span class=\"js-languages-description\"><span class=\"js-languages-count\">%{count}</span><span> languages in use</span></span>"
   social:
     facebook: "%{org} Facebook"
     twitter: "%{org} Twitter"
