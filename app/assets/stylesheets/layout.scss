@@ -1055,6 +1055,18 @@ form {
   }
 }
 
+.translatable-fields {
+  &.highlight {
+    display: inline-block;
+    padding-top: $line-height;
+    width: 100%;
+  }
+}
+
+.translation-locale {
+  padding-top: $line-height;
+}
+
 // 07. Callout
 // -----------
 
