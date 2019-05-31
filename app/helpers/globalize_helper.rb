@@ -4,7 +4,7 @@ module GlobalizeHelper
     return I18n.locale if translations_with_locale?(resource, I18n.locale)
     return resource.translations.first.locale if resource.present? && resource.translations.any?
     if resource.nil?
-      if site_customization_enable_translation?(I18n.locale)
+      if I18nContentTranslation.existing_languages.include?(I18n.locale)
         return I18n.locale
       else
         return I18nContentTranslation.existing_languages.first
