@@ -1,0 +1,34 @@
+<div class="row globalize-languages column <%= translations_interface_enabled? ? 'highlight' : '' %>">
+  <br />
+  <div class="small-6 large-3 columns">
+    <small>
+      <strong>
+        <div class="inline"><%= active_languages_text(resource) %></div>
+      </strong>
+    </small>
+    <%= select_tag :select_language,
+                   active_languages(resource),
+                   prompt: "Choose language",
+                   class: "js-select-language" %>
+
+    <div class="group-destroy-languages">
+      <% if can_manipulate_languages? %>
+        <% I18n.available_locales.each do |locale| %>
+          <%= link_to t("admin.translations.remove_language"), "#",
+                      style: display_destroy_locale_style(resource, locale),
+                      class: "delete js-delete-language js-delete-#{locale}",
+                      data: { locale: locale } %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="small-6 large-3 columns end">
+    <% if can_manipulate_languages? %>
+      <br />
+      <%= select_tag :add_language,
+                     options_for_locale_select,
+                     prompt: t("admin.translations.add_language"),
+                     class: "js-add-language" %>
+    <% end %>
+  </div>
+</div>
