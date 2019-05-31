@@ -50,7 +50,7 @@ module Translations
       elsif textarea_type == :ckeditor
         within("div.js-globalize-attribute[data-locale='#{locale}'] .ckeditor [id$='#{field}']") do
           # Wait longer for iframe initialization
-          expect(page).to have_selector "iframe.cke_wysiwyg_frame", wait: 5
+          expect(page).to have_selector "iframe.cke_wysiwyg_frame", wait: 10
           within_frame(textarea_fields.keys.index(field)) { expect(page).to have_content with }
         end
       end
