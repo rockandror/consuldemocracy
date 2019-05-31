@@ -1,4 +1,4 @@
-<%= render "shared/globalize_locales", resource: @progress_bar, add_translations: false, remove_translations: false  %>
+<%= render "shared/globalize_locales", resource: @progress_bar, add_translations: true, remove_translations: false  %>
 
 <%= translatable_form_for [:admin, *resource_hierarchy_for(@progress_bar)] do |f| %>
 
