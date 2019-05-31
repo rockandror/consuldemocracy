@@ -1,4 +1,7 @@
-<div class="row globalize-languages column <%= translations_interface_enabled? ? 'highlight' : '' %>">
+<div class="row globalize-languages column <%= translations_interface_enabled? ? "highlight" : "" %>"
+     data-zero-languages-description="<%= t("shared.translations.languages_in_use", count: 0) %>"
+     data-one-languages-description="<%= t("shared.translations.languages_in_use", count: 1) %>"
+     data-other-languages-description="<%= t("shared.translations.languages_in_use", count: 2) %>">
   <br />
   <div class="small-6 large-3 columns">
     <small>
