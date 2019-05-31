@@ -12,20 +12,24 @@
                    active_languages(resource),
                    prompt: "Choose language",
                    class: "js-select-language" %>
-    <div class="group-destroy-languages">
-      <% I18n.available_locales.each do |locale| %>
-        <%= link_to t("admin.translations.remove_language"), "#",
-                    style: display_destroy_locale_style(resource, locale),
-                    class: "delete js-delete-language js-delete-#{locale}",
-                    data: { locale: locale } %>
-      <% end %>
+    <% if need_update_languages?(params) %>
+      <div class="group-destroy-languages">
+        <% I18n.available_locales.each do |locale| %>
+          <%= link_to t("admin.translations.remove_language"), "#",
+                      style: display_destroy_locale_style(resource, locale),
+                      class: "delete js-delete-language js-delete-#{locale}",
+                      data: { locale: locale } %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <% if need_update_languages?(params) %>
+    <div class="small-6 large-3 columns end">
+      <br />
+      <%= select_tag :add_language,
+                     options_for_locale_select,
+                     prompt: t("admin.translations.add_language"),
+                     class: "js-add-language" %>
     </div>
-  </div>
-  <div class="small-6 large-3 columns end">
-    <br />
-    <%= select_tag :add_language,
-                   options_for_locale_select,
-                   prompt: t("admin.translations.add_language"),
-                   class: "js-add-language" %>
-  </div>
+  <% end %>
 </div>

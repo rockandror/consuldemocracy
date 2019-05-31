@@ -3,8 +3,13 @@ module GlobalizeHelper
   def first_available_locale(resource)
     return I18n.locale if translations_with_locale?(resource, I18n.locale)
     return resource.translations.first.locale if resource.present? && resource.translations.any?
-    return I18nContentTranslation.existing_languages.first if resource.nil?
-
+    if resource.nil?
+      if site_customization_enable_translation?(I18n.locale)
+        return I18n.locale
+      else
+        return I18nContentTranslation.existing_languages.first
+      end
+    end
     I18n.locale
   end
 
@@ -99,6 +104,11 @@ module GlobalizeHelper
       [name_for_locale(locale), locale]
     end
   end
+
+  def need_update_languages?(params)
+    params[:controller] != "admin/legislation/milestones"
+  end
+
   #
   # def display_translation?(resource, locale)
   #   if !resource || resource.translations.blank? ||
