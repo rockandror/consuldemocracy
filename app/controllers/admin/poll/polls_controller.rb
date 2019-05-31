@@ -8,7 +8,7 @@ class Admin::Poll::PollsController < Admin::Poll::BaseController
   before_action :load_geozones, only: [:new, :create, :edit, :update]
 
   def index
-    @polls = Poll.not_budget.order(starts_at: :desc)
+    @polls = Poll.not_budget.created_by_admin.order(starts_at: :desc)
   end
 
   def show
@@ -64,15 +64,6 @@ class Admin::Poll::PollsController < Admin::Poll::BaseController
       redirect_to admin_poll_path(@poll), alert: t("admin.polls.destroy.unable_notice")
     else
       @poll.destroy
-
-      @poll.questions.each do |question|
-
-        question.answers.each do |answer|
-          answer.destroy
-        end
-
-        question.destroy
-      end
 
       redirect_to admin_polls_path, notice: t("admin.polls.destroy.success_notice")
     end

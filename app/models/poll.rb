@@ -25,7 +25,7 @@ class Poll < ApplicationRecord
   has_many :voters
   has_many :officer_assignments, through: :booth_assignments
   has_many :officers, through: :officer_assignments
-  has_many :questions, inverse_of: :poll
+  has_many :questions, inverse_of: :poll, dependent: :destroy
   has_many :comments, as: :commentable
   has_many :ballot_sheets
 
@@ -52,6 +52,7 @@ class Poll < ApplicationRecord
   scope :public_for_api, -> { all }
   scope :with_nvotes, -> { where.not(nvotes_poll_id: nil) }
   scope :not_budget,    -> { where(budget_id: nil) }
+  scope :created_by_admin, -> { where(related_type: nil) }
 
   scope :sort_for_list, -> { joins(:translations).order(:geozone_restricted, :starts_at, "poll_translations.name") }
 

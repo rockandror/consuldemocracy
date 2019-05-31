@@ -51,6 +51,14 @@ en:
         one: 1 response
         other: "%{count} responses"
         zero: No responses
+      responses_show:
+        one: "1 response (show)"
+        other: "%{count} responses (show)"
+        zero: No responses
+      responses_collapse:
+        one: "1 response (collapse)"
+        other: "%{count} responses (collapse)"
+        zero: No responses
       user_deleted: User deleted
       votes:
         one: 1 vote
@@ -371,6 +379,7 @@ en:
       retired_proposals: Retired proposals
       retired_proposals_link: "Proposals retired by the author"
       selected_proposals: Selected proposals
+      selected_proposals_link: View selected proposals
       archived_proposals: Archived proposals
       proposals_lists: Proposals lists
       retired_links:
@@ -475,6 +484,7 @@ en:
       mailing: E-mail
       poster: Poster
       recommended_actions: Recommended actions
+      messages: Message to users
     form:
       request: Request
     create_request:
@@ -536,6 +546,9 @@ en:
       debates: Debates
       comments: Comments
       latest_comments: Latest messages
+    messages:
+      send_notification: Send message to proposal supporters
+      previous_notifications: See previous notifications
     polls:
       index:
         title: Polls
@@ -558,7 +571,12 @@ en:
         edit_poll: Edit survey
         show_results: Show results
         show_results_help: If you check this box the results will be public and all users will be able to see them
+        delete: Delete survey
+        alert_notice: This action will remove the survey and all its associated questions.
+        success_notice: Survey deleted successfully
+        unable_notice: You cannot destroy a survey that has responses
       form:
+        name: Survey title
         add_question: Add question
       question_fields:
         remove_question: Remove question
@@ -957,8 +975,6 @@ en:
       url_placeholder: Link address
   communities:
     show:
-      send_notification: Send message to the community
-      author: Author
       surveys: Surveys
       complete_survey: Complete the survey
     subnav:

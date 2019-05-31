@@ -152,6 +152,14 @@
                       new_proposal_guide,
                       class: "button expanded" %>
         <% end %>
+
+        <div class="sidebar-divider"></div>
+        <h2 class="sidebar-title"><%= t("proposals.index.selected_proposals") %></h2>
+        <br>
+        <p class="small">
+          <%= link_to t("proposals.index.selected_proposals_link"), proposals_path(selected: "all") %>
+        </p>
+
         <% if params[:retired].blank? %>
           <%= render "categories" %>
           <% if request.path != human_rights_proposals_path %>

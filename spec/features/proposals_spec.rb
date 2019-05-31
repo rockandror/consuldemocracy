@@ -1060,7 +1060,7 @@ describe "Proposals" do
 
     scenario "show in selected proposals list" do
       visit proposals_path
-      click_link "Selected proposals"
+      click_link "View selected proposals"
 
       expect(page).to have_selector("#proposals .proposal", count: 1)
       expect(page).to have_content selected_proposal.title
@@ -1083,7 +1083,7 @@ describe "Proposals" do
       expect(page).to have_selector("#proposals .proposal-featured")
       expect(page).to have_selector("#featured-proposals")
 
-      click_link "Selected proposals"
+      click_link "View selected proposals"
 
       expect(page).not_to have_selector("#proposals .proposal-featured")
       expect(page).not_to have_selector("#featured-proposals")
@@ -1102,7 +1102,7 @@ describe "Proposals" do
       expect(page).to have_link "Recommended"
       expect(page).to have_link "See more recommendations"
 
-      click_link "Selected proposals"
+      click_link "View selected proposals"
 
       expect(page).not_to have_css ".recommendation"
       expect(page).not_to have_link "Recommended"
@@ -1117,7 +1117,7 @@ describe "Proposals" do
       expect(page).to have_link "highest rated"
       expect(page).to have_link "newest"
 
-      click_link "Selected proposals"
+      click_link "View selected proposals"
 
       expect(page).not_to have_css  "ul.submenu"
       expect(page).not_to have_link "most active"

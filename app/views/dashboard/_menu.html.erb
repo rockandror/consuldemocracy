@@ -35,7 +35,7 @@
       <ul class="no-bullet resources">
         <% if can?(:manage_polls, proposal) %>
           <li>
-            <%= link_to proposal_dashboard_polls_path(proposal.to_param),
+            <%= link_to proposal_dashboard_polls_path(proposal),
                         class: "#{"submenu-active" if polls_menu_active?}" do %>
               <span data-tooltip title="<%= Setting["proposals.poll_short_title"] ||
                                             t("dashboard.menu.polls") %>">
@@ -47,7 +47,7 @@
 
         <% if can?(:manage_mailing, proposal) %>
           <li>
-            <%= link_to new_proposal_dashboard_mailing_path(proposal.to_param),
+            <%= link_to new_proposal_dashboard_mailing_path(proposal),
                         class: "#{"submenu-active" if mailing_menu_active?}" do %>
               <span data-tooltip title="<%= Setting["proposals.email_short_title"] ||
                                             t("dashboard.menu.mailing") %>">
@@ -59,7 +59,7 @@
 
         <% if can?(:manage_poster, proposal) %>
           <li>
-            <%= link_to new_proposal_dashboard_poster_path(proposal.to_param),
+            <%= link_to new_proposal_dashboard_poster_path(proposal),
                         class: "#{"submenu-active" if poster_menu_active?}" do %>
               <span data-tooltip title="<%= Setting["proposals.poster_short_title"] ||
                                             t("dashboard.menu.poster") %>">
@@ -85,8 +85,15 @@
 
   <li class="section-title <%= "is-active" if community_menu_active? %>">
     <span class="icon-organizations"></span>
-    <%= link_to community_proposal_dashboard_path(proposal.to_param) do %>
+    <%= link_to community_proposal_dashboard_path(proposal) do %>
       <strong><%= t("dashboard.menu.community") %></strong>
+    <% end %>
+  </li>
+
+  <li class="section-title <%= "is-active" if messages_menu_active? %>">
+    <span class="icon-letter"></span>
+    <%= link_to messages_proposal_dashboard_path(proposal) do %>
+      <strong><%= t("dashboard.menu.messages") %></strong>
     <% end %>
   </li>
 </ul>
