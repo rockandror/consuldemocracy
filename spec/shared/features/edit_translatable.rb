@@ -329,6 +329,52 @@ shared_examples "edit_translatable" do |factory_name, path_name, input_fields, t
       expect_to_have_language_selected("Français")
       expect_page_to_have_translatable_field fields.sample, :fr, with: ""
     end
+
+    context "When translation interface feature setting" do
+      describe "At frontend" do
+        before do
+          unless front_end_path_to_visit?(path_name)
+            skip "When path is from backend"
+          end
+        end
+
+        scenario "is enabled translation interface should be rendered" do
+          visit path
+
+          expect(page).to have_css ".globalize-languages"
+        end
+
+        scenario "is disabled translation interface should not be rendered" do
+          Setting["feature.translation_interface"] = nil
+
+          visit path
+
+          expect(page).not_to have_css ".globalize-languages"
+        end
+      end
+
+      describe "At backend" do
+        before do
+          if front_end_path_to_visit?(path_name)
+            skip "When path is from frontend"
+          end
+        end
+
+        scenario "is enabled translation interface should be rendered" do
+          visit path
+
+          expect(page).to have_css ".globalize-languages"
+        end
+
+        scenario "is disabled translation interface should be rendered" do
+          Setting["feature.translation_interface"] = nil
+
+          visit path
+
+          expect(page).to have_css ".globalize-languages"
+        end
+      end
+    end
   end
 end
 
