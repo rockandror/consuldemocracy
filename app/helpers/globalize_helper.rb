@@ -106,7 +106,7 @@ module GlobalizeHelper
   end
 
   def need_update_languages?(params)
-    params[:controller] != "admin/legislation/milestones"
+    params[:controller] != "admin/legislation/milestones" && params[:controller] != "admin/legislation/homepages"
   end
 
   #
