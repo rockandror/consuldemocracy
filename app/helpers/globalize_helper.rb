@@ -37,9 +37,12 @@ module GlobalizeHelper
   end
 
   def first_i18n_content_translation_locale
-    return I18n.locale if I18nContentTranslation.existing_languages.include?(I18n.locale)
-
-    I18nContentTranslation.existing_languages.first
+    if I18nContentTranslation.existing_languages.count == 0 ||
+        I18nContentTranslation.existing_languages.include?(I18n.locale)
+      return I18n.locale
+    else
+      return I18nContentTranslation.existing_languages.first
+    end
   end
 
   def translations_for_locale?(resource, locale)
@@ -53,12 +56,17 @@ module GlobalizeHelper
 
   def active_languages_count(resource)
     if resource.blank?
-      I18nContentTranslation.existing_languages.count
+      languages_count
     elsif resource.locales_not_marked_for_destruction.size > 0
       resource.locales_not_marked_for_destruction.size
     else
       1
     end
+  end
+
+  def languages_count
+    count = I18nContentTranslation.existing_languages.count
+    count > 0 ? count : 1
   end
 
   def display_translation_style(resource, locale)
