@@ -48,9 +48,8 @@ namespace :settings do
     Setting.rename_key from: "feature.homepage.widgets.feeds.processes", to: "homepage.widgets.feeds.processes"
   end
 
-  desc "Add the reCAPTCHA settings"
-  task add_recaptcha_settings: :environment do
-    Setting["feature.captcha"] = nil
-    Setting["captcha.max_failed_login_attempts"] = 5
+  desc "Add new settings"
+  task add_new_settings: :environment do
+    Setting.add_new_settings
   end
 end

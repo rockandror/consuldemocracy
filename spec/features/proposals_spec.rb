@@ -1131,7 +1131,7 @@ describe "Proposals" do
       visit proposals_path
       expect(page).not_to have_content archived_proposal.title
 
-      click_link "Selected proposals"
+      click_link "View selected proposals"
       expect(page).to have_content archived_proposal.title
     end
   end
