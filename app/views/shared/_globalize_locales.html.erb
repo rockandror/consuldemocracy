@@ -1,5 +1,7 @@
 <% if translations_interface_enabled? %>
+  <% manipulate_languages_value = defined?(can_manipulate_languages) ? can_manipulate_languages : true %>
   <%= render "shared/common_globalize_locales",
     resource: resource,
-    display_style: lambda { |locale| enable_translation_style(resource, locale) } %>
+    display_style: lambda { |locale| enable_translation_style(resource, locale) },
+    can_manipulate_languages: manipulate_languages_value %>
 <% end %>
