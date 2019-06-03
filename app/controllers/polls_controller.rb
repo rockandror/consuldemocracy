@@ -13,8 +13,9 @@ class PollsController < ApplicationController
   has_orders %w[most_voted newest oldest], only: :show
 
   def index
-    @polls = @polls.public_polls.not_budget.send(@current_filter).includes(:geozones)
-                                .sort_for_list.page(params[:page])
+    @polls = Kaminari.paginate_array(
+      @polls.public_polls.not_budget.send(@current_filter).includes(:geozones).sort_for_list
+    ).page(params[:page])
   end
 
   def show

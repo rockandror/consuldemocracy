@@ -40,14 +40,7 @@ class Budget
 
     delegate :budget, :budget_id, to: :group, allow_nil: true
 
-    scope :i18n,                  -> { joins(:translations) }
-    scope :allow_custom_content,  -> { i18n.where(allow_custom_content: true).order("budget_heading_translations.name") }
-
-    def self.sort_by_name
-      all.sort do |heading, other_heading|
-        [other_heading.group.name, heading.name] <=> [heading.group.name, other_heading.name]
-      end
-    end
+    scope :allow_custom_content,  -> { where(allow_custom_content: true).sort_by(&:name) }
 
     def self.sort_by_name
       all.sort do |heading, other_heading|

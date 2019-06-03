@@ -76,9 +76,7 @@ class Valuation::BudgetInvestmentsController < Valuation::BaseController
 
     def heading_filters
       investments = @budget.investments.accesible_by_valuator(current_user.valuator)
-      investment_headings = Budget::Heading.joins(:translations)
-                                           .where(id: investments.pluck(:heading_id).uniq)
-                                           .order(name: :asc)
+      investment_headings = Budget::Heading.where(id: investments.pluck(:heading_id)).sort_by(&:name)
 
       all_headings_filter = [
                               {
