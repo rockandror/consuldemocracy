@@ -310,7 +310,7 @@ es:
       form:
         submit_button: Crear propuesta
     created:
-      title: ¡Enhorabuena! Has dado el primer paso.
+      title: '¡Enhorabuena! Has dado el primer paso.'
       motivation: "Es importante preparar la campaña de lanzamiento de tu propuesta para que tenga éxito. Los primeros días son decisivos."
       motivation_2_html: "<strong>Si quieres recomendaciones para preparar la publicación deja tu propuesta como borrador y te guiaremos.</strong>"
       publish: No, quiero publicar la propuesta ya
@@ -511,7 +511,7 @@ es:
     resource:
       required_days: "%{days} días necesarios"
       required_supports: "%{supports} apoyos necesarios"
-      and: y
+      and: "y"
       view_resource: Ver recurso
       resource_requested: Recurso solicitado
       request_resource: Solicitar recurso
@@ -588,9 +588,7 @@ es:
         title: Previsualización del poster
         poster_title: "No te quedes mirando,"
         poster_subtitle: "¡apóyame! ;)"
-        intro_text_html:
-          "<strong>Estoy participando en %{org}</strong> con mi propia propuesta ciudadana y sólo si tú también te sumas podré lograr el
-          apoyo necesario para hacer la ciudad que todos queremos."
+        intro_text_html: "<strong>Estoy participando en %{org}</strong> con mi propia propuesta ciudadana y sólo si tú también te sumas podré lograr el apoyo necesario para hacer la ciudad que todos queremos."
         proposal_code: "Código de la propuesta: %{code}"
         support: Apoya mi propuesta
         footer_html: "<strong>Entra en %{link} y apoya esta propuesta.</strong> Necesitamos ser muchos. Decide tu también. ¡Gracias!"
@@ -615,7 +613,7 @@ es:
         support_button: Apoyar esta propuesta
         share_in: Compartir en
         hi: "¡Hola!"
-        introduction: "Te escribo para comunicarte que estoy participando en %{org}, la plataforma para que podamos decidir qué ciudad queremos. Y para ello, he creado mi propia propuesta ciudadana y ahora, ¡voy a necesitar tu apoyo! Pero no te preocupes porque es muy sencillo."
+        introduction: Te escribo para comunicarte que estoy participando en %{org}, la plataforma para que podamos decidir qué ciudad queremos. Y para ello, he creado mi propia propuesta ciudadana y ahora, ¡voy a necesitar tu apoyo! Pero no te preocupes porque es muy sencillo.
         support: "Tan sólo tienes que hacer clic en el botón que verás a continuación 'Apoyar esta propuesta' y directamente podrás informarte acerca de ella antes de impulsarla. Sólo las propuestas que consigan el máximo apoyo se llevarán a cabo por parte del Ayuntamiento, y he pensado que tú ¡seguro que me ayudas a lograrlo!"
         share: "Y si además, me haces el gran favor de compartir mi propuesta con tus amigos, familiares y contactos ¡sería perfecto!"
   polls:
@@ -671,8 +669,8 @@ es:
         total_votes: "Nº total de votos emitidos"
         votes: "VOTOS"
         web: "WEB"
-        booth: "URNAS"
         mail: "CORREO"
+        booth: "URNAS"
         total: "TOTAL"
         valid: "Válidos"
         white: "Totalmente en blanco"
@@ -960,7 +958,7 @@ es:
       text: Para comentar este documento debes %{sign_in} o %{sign_up}. Después selecciona el texto que quieres comentar y pulsa en el botón con el lápiz.
       text_sign_in: iniciar sesión
       text_sign_up: registrarte
-      title: "¿Cómo puedo comentar este documento?"
+      title: '¿Cómo puedo comentar este documento?'
   links:
     form:
       delete_button: Borrar

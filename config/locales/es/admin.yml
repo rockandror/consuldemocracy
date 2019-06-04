@@ -401,13 +401,13 @@ es:
         edit:
           editing: Editar acción para el dashboard de propuestas
           back: Volver a la lista
+        delete:
+          success: Acción borrada con éxito
         form:
           submit_button: Guardar
           help_text: Introduce 0 para que este valor no se tenga en cuenta
-          published_proposal: ¿Para propuestas publicadas?
+          published_proposal: '¿Para propuestas publicadas?'
           published_proposal_help_text: Marca este checkbox para crear la acción solo para propuestas publicadas
-        delete:
-          success: Acción borrada con éxito
       administrator_tasks:
         index:
           description: "Los recursos publicados en el panel de progreso de las propuestas pueden incluir un botón para ser solicitados a los administradores. A continuación se muestran las solicitudes de los usuarios."
@@ -444,9 +444,9 @@ es:
         label_attachment: "Selecciona un documento"
         submit_button: "Subir documento"
       index:
-        title: "Documentos"
         new_link: "Subir un documento"
         no_documents: "No hay documentos."
+        title: "Documentos"
         format: "Formato"
         size: "Tamaño"
         url: "URL"
