@@ -236,6 +236,17 @@ shared_examples "edit_translatable" do |factory_name, path_name, input_fields, t
       expect_not_to_have_language "Español"
     end
 
+    scenario "Remove all translations should show an error message", :js do
+      visit path
+
+      click_link "Remove language"
+      click_link "Remove language"
+
+      click_button update_button_text
+
+      expect(page).to have_css "#error_explanation"
+    end
+
     scenario "Remove a translation with invalid data", :js do
       skip("can't have invalid translations") if required_fields.empty?
 
