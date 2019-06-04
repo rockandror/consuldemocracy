@@ -144,3 +144,25 @@ es:
     captcha:
       max_failed_login_attempts: "Número de intentos de autentificación fallidos permitidos"
       max_failed_login_attempts_description: "Después de ese número de intentos fallidos se mostrará un reCAPTCHA en el formulario de acceso si la funcionalidad está activada"
+    uploads:
+      images:
+        min_width: "Ancho mínimo de imagen"
+        min_width_description: "Ancho mínimo permitido al subir una imagen (en pixeles)"
+        min_height: "Alto mínimo de imagen"
+        min_height_description: "Alto mínimo permitido al subir una imagen (en pixeles)"
+        max_size: "Tamaño máximo de imagen"
+        max_size_description: "Tamaño máximo permitido al subir una imagen (en Megabytes/MB)"
+        content_types: "Tipos de imagenes permitidos"
+        content_types_description: "Selecciona todos los tipos permitidos para las imágenes subidas"
+        title:
+          min_length: "Longitud mínima del título de la imagen"
+          min_length_description: "El título es proporcionado por el usuario cuando se sube una imagen (usado como atributo HTML alt)"
+          max_length: "Longitud máxima del título de la imagen"
+          max_length_description: "El título es proporcionado por el usuario cuando se sube una imagen (usado como atributo HTML alt)"
+      documents:
+        max_amount: "Número máximo de documentos"
+        max_amount_description: "Número máximo de documentos que se pueden añadir a una propuesta, proyecto de gasto..."
+        max_size: "Tamaño máximo de documento"
+        max_size_description: "Tamaño máximo permitido al subir un documento (en Megabytes/MB)"
+        content_types: "Tipos de documentos permitidos"
+        content_types_description: "Selecciona todos los tipos permitidos para los documentos subidos"

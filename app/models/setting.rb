@@ -3,9 +3,12 @@ class Setting < ApplicationRecord
 
   default_scope { order(id: :asc) }
 
+  def prefix
+    key.split(".").first
+  end
+
   def type
-    prefix = key.split(".").first
-    if %w[feature process proposals map html homepage].include? prefix
+    if %w[feature process proposals map html homepage uploads].include? prefix
       prefix
     else
       "configuration"
@@ -14,6 +17,14 @@ class Setting < ApplicationRecord
 
   def enabled?
     value.present?
+  end
+
+  def content_type?
+    key.split(".").last == "content_types"
+  end
+
+  def content_type_group
+    key.split(".").second
   end
 
   class << self
@@ -39,6 +50,30 @@ class Setting < ApplicationRecord
     def remove(key)
       setting = where(key: key).first
       setting.destroy if setting.present?
+    end
+
+    def accepted_content_types_for(group)
+      mime_content_types = Setting["uploads.#{group}.content_types"]&.split(" ") || []
+      Setting.mime_types[group].select { |_, content_type| mime_content_types.include?(content_type) }.keys
+    end
+
+    def mime_types
+      {
+        "images" => {
+          "jpg"  => "image/jpeg",
+          "png"  => "image/png",
+          "gif"  => "image/gif"
+        },
+        "documents" => {
+          "pdf"  => "application/pdf",
+          "doc"  => "application/msword",
+          "docx" => "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "xls"  => "application/x-ole-storage",
+          "xlsx" => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "csv"  => "text/plain",
+          "zip"  => "application/zip"
+        }
+      }
     end
 
     def defaults
@@ -121,6 +156,16 @@ class Setting < ApplicationRecord
         "transparency_url": "http://transparencia.madrid.es/",
         "twitter_handle": "abriendomadrid",
         "twitter_hashtag": "#decidemadrid",
+        # Images and Documents
+        "uploads.images.title.min_length": 4,
+        "uploads.images.title.max_length": 80,
+        "uploads.images.min_width": 0,
+        "uploads.images.min_height": 475,
+        "uploads.images.max_size": 1,
+        "uploads.images.content_types": "image/jpeg",
+        "uploads.documents.max_amount": 3,
+        "uploads.documents.max_size": 3,
+        "uploads.documents.content_types": "application/pdf",
         "url": "https://decide.madrid.es", # Public-facing URL of the app.
         "verification_offices_url": "http://www.madrid.es/portales/munimadrid/es/Inicio/El-Ayuntamiento/Atencion-al-ciudadano/Oficinas-de-Atencion-al-Ciudadano?vgnextfmt=default&vgnextchannel=5b99cde2e09a4310VgnVCM1000000b205a0aRCRD",
         "votes_for_proposal_success": 53726,

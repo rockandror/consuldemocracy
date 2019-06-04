@@ -145,3 +145,25 @@ en:
     captcha:
       max_failed_login_attempts: "Number of allowed failed login attempts"
       max_failed_login_attempts_description: "After this number of failed attempts a reCAPTCHA will show in the login form if the feature is enabled"
+    uploads:
+      images:
+        min_width: "Image minimum width"
+        min_width_description: "Minimum width allowed for an uploaded image (in pixels)"
+        min_height: "Image minimum height"
+        min_height_description: "Minimum height allowed for an uploaded image (in pixels)"
+        max_size: "Image maximum size"
+        max_size_description: "Maximum size allowed for an uploaded image (in Megabytes/MB)"
+        content_types: "Accepted content types for images"
+        content_types_description: "Select all the content types allowed for uploaded images"
+        title:
+          min_length: "Image title minimum length"
+          min_length_description: "Title provided by the user when uploading an image (used as alt HTML attribute)"
+          max_length: "Image title maximum length"
+          max_length_description: "Title provided by the user when uploading an image (used as alt HTML attribute)"
+      documents:
+        max_amount: "Maximum number of documents"
+        max_amount_description: "Maximum number of documents that can be attached to a proposal, investment..."
+        max_size: "Document maximum size"
+        max_size_description: "Maximum size allowed for an uploaded document (in Megabytes/MB)"
+        content_types: "Accepted content types for documents"
+        content_types_description: "Select all the content types allowed for uploaded documents"
