@@ -16,8 +16,43 @@ module Translatable
 
     def validate_params(resource_model)
       if resource_without_translations?(resource_model)
-        avoid_destroy_last_translation
-        invalidate_translated_attributes(resource_model)
+        name = resource_model_name(resource_model)
+        avoid_destroy_last_translation(name)
+        invalidate_translated_attributes(resource_model, name)
+      end
+    end
+
+    def resource_model_name(resource_model)
+      if params[resource_model.class_name.downcase].present?
+        if params[resource_model.class_name.downcase][:translations_attributes].present?
+          return resource_model.class_name.downcase
+        end
+      elsif params[resource_model.to_s.parameterize("_")].present?
+        if params[resource_model.to_s.parameterize("_")][:translations_attributes].present?
+          return resource_model.to_s.parameterize("_")
+        end
+      elsif resource_model == Legislation::DraftVersion
+        if params[:legislation_draft_version][:translations_attributes].present?
+          return "legislation_draft_version"
+        end
+      elsif resource_model == ActivePoll
+        if params[:active_poll][:translations_attributes].present?
+          return "active_poll"
+        end
+      elsif resource_model == AdminNotification
+        if params[:admin_notification][:translations_attributes].present?
+          return "admin_notification"
+        end
+      elsif resource_model == ProgressBar
+        if params[:progress_bar][:translations_attributes].present?
+          return "progress_bar"
+        end
+      elsif resource_model == SiteCustomization::Page
+        if params[:site_customization_page][:translations_attributes].present?
+          return "site_customization_page"
+        end
+      else
+        return false
       end
     end
 
@@ -76,16 +111,16 @@ module Translatable
       return true
     end
 
-    def avoid_destroy_last_translation
+    def avoid_destroy_last_translation(resource_model_name)
       index_locale = I18n.available_locales.index(locale).to_s
-      destroy_path = ["debate", "translations_attributes", index_locale, "_destroy"]
+      destroy_path = [resource_model_name, "translations_attributes", index_locale, "_destroy"]
       update_value(params, destroy_path, "false")
     end
 
-    def invalidate_translated_attributes(resource_model)
+    def invalidate_translated_attributes(resource_model, resource_model_name)
       index_locale = I18n.available_locales.index(locale).to_s
       resource_model.translated_attribute_names.each do |attribute|
-        attribute_path = ["debate", "translations_attributes", index_locale, attribute]
+        attribute_path = [resource_model_name, "translations_attributes", index_locale, attribute]
         update_value(params, attribute_path, nil)
       end
     end
