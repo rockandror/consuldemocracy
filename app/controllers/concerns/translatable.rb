@@ -22,7 +22,6 @@ module Translatable
     end
 
     def resource_without_translations?(resource_model)
-      debugger
       if params[resource_model.class_name.downcase].present?
         if params[resource_model.class_name.downcase][:translations_attributes].present?
           translation_attributes = params[resource_model.class_name.downcase][:translations_attributes]
