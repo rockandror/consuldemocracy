@@ -3,4 +3,5 @@ class ActivePoll < ActiveRecord::Base
 
   translates :description, touch: true
   include Globalizable
+  validates_translation :description, presence: true
 end
