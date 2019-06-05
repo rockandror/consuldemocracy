@@ -1540,5 +1540,6 @@ en:
         card_title: Edit card
         submit_card: Save card
     translations:
-        remove_language: Remove language
-        add_language: Add language
+      select_language_prompt: "Choose language"
+      remove_language: Remove language
+      add_language: Add language
