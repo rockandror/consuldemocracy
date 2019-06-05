@@ -22,7 +22,7 @@ module Translatable
     end
 
     def resource_without_translations?(resource_model)
-      translation_attributes = params[resource_model.class_name.downcase][:translations_attributes]
+      translation_attributes = params[resource_model.class_name.downcase].present? ? params[resource_model.class_name.downcase][:translations_attributes] : params[resource_model.to_s.parameterize("_")][:translations_attributes]
       translation_attributes.each do |translation_params|
         translation_params = translation_params.last
         return false if translation_params.dig("_destroy") == "false"
