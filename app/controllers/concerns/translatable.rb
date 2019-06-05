@@ -22,7 +22,54 @@ module Translatable
     end
 
     def resource_without_translations?(resource_model)
-      translation_attributes = params[resource_model.class_name.downcase].present? ? params[resource_model.class_name.downcase][:translations_attributes] : params[resource_model.to_s.parameterize("_")][:translations_attributes]
+      debugger
+      if params[resource_model.class_name.downcase].present?
+        if params[resource_model.class_name.downcase][:translations_attributes].present?
+          translation_attributes = params[resource_model.class_name.downcase][:translations_attributes]
+        else
+          return false
+        end
+      elsif params[resource_model.to_s.parameterize("_")].present?
+        if params[resource_model.to_s.parameterize("_")][:translations_attributes].present?
+          translation_attributes = params[resource_model.to_s.parameterize("_")][:translations_attributes]
+        else
+          return false
+        end
+      elsif resource_model == Legislation::DraftVersion
+        if params[:legislation_draft_version][:translations_attributes].present?
+          translation_attributes = params[:legislation_draft_version][:translations_attributes]
+        else
+          return false
+        end
+      elsif resource_model == ActivePoll
+        if params[:active_poll][:translations_attributes].present?
+          translation_attributes = params[:active_poll][:translations_attributes]
+        else
+          return false
+        end
+      elsif resource_model == AdminNotification
+        if params[:admin_notification][:translations_attributes].present?
+          translation_attributes = params[:admin_notification][:translations_attributes]
+        else
+          return false
+        end
+      elsif resource_model == ProgressBar
+        if params[:progress_bar][:translations_attributes].present?
+          translation_attributes = params[:progress_bar][:translations_attributes]
+        else
+          return false
+        end
+      elsif resource_model == SiteCustomization::Page
+        if params[:site_customization_page][:translations_attributes].present?
+          translation_attributes = params[:site_customization_page][:translations_attributes]
+        else
+          return false
+        end
+      else
+        return false
+      end
+
+      # translation_attributes = params[resource_model.class_name.downcase].present? ? params[resource_model.class_name.downcase][:translations_attributes] : params[resource_model.to_s.parameterize("_")][:translations_attributes]
       translation_attributes.each do |translation_params|
         translation_params = translation_params.last
         return false if translation_params.dig("_destroy") == "false"
