@@ -301,6 +301,17 @@ shared_examples "edit_translatable" do |factory_name, path_name, input_fields, t
       field = fields.sample
       expect_page_to_have_translatable_field field, :"pt-BR", with: text_for(field, :"pt-BR")
     end
+
+    scenario "Remove all translations should show an error message", :js do
+      visit path
+
+      click_link "Remove language"
+      click_link "Remove language"
+
+      click_button update_button_text
+
+      expect(page).to have_css "#error_explanation"
+    end
   end
 
   context "Globalize javascript interface" do
