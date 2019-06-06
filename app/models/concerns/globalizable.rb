@@ -1,12 +1,24 @@
 module Globalizable
+  MIN_TRANSLATIONS = 1
   extend ActiveSupport::Concern
 
   included do
     globalize_accessors
     accepts_nested_attributes_for :translations, allow_destroy: true
 
+    validate :check_translations_number, on: :update, if: :translations_are_required?
+    after_validation :recover_current_locale_translation, on: :update, if: :translations_are_required?
+
     def locales_not_marked_for_destruction
-      translations.reject(&:_destroy).map(&:locale)
+      translations.reject(&:marked_for_destruction?).map(&:locale)
+    end
+
+    def locales_marked_for_destruction
+      I18n.available_locales - locales_not_marked_for_destruction
+    end
+
+    def locales_persisted_and_marked_for_destruction
+      translations.select{|t| t.persisted? && t.marked_for_destruction? }.map(&:locale)
     end
 
     def description
@@ -20,6 +32,34 @@ module Globalizable
     scope :with_translation, -> { joins("LEFT OUTER JOIN #{translations_table_name} ON #{table_name}.id = #{translations_table_name}.#{reflections["translations"].foreign_key} AND #{translations_table_name}.locale='#{I18n.locale }'") }
 
     private
+
+      def translations_are_required?
+        translated_attribute_names.each do |attribute|
+          return true if self.class.validators_on(attribute).map(&:class).include?(ActiveModel::Validations::PresenceValidator)
+        end
+        false
+      end
+
+      def check_translations_number
+        errors.add(:base, :translations_too_short) unless traslations_count_valid?
+      end
+
+      def traslations_count_valid?
+        translations.reject(&:marked_for_destruction?).count >= MIN_TRANSLATIONS
+      end
+
+      def recover_current_locale_translation
+        return if  traslations_count_valid?
+
+        if locales_persisted_and_marked_for_destruction.include?(I18n.locale)
+          locale = I18n.locale
+        else
+          locale = locales_persisted_and_marked_for_destruction.first
+        end
+
+        translation = translation_for(locale)
+        translation.errors.add(:base, I18n.t("activerecord.errors.models.translation.attributes.base.translations_too_short"))
+      end
 
       def searchable_globalized_values
         values = {}

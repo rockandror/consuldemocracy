@@ -244,7 +244,7 @@ shared_examples "edit_translatable" do |factory_name, path_name, input_fields, t
 
       click_button update_button_text
 
-      expect(page).to have_css "#error_explanation"
+      expect(page).to have_content "Is mandatory to provide one translation at least"
     end
 
     scenario "Remove a translation with invalid data", :js do
@@ -299,6 +299,7 @@ shared_examples "edit_translatable" do |factory_name, path_name, input_fields, t
       select("Português brasileiro", from: "locale-switcher")
 
       field = fields.sample
+
       expect_page_to_have_translatable_field field, :"pt-BR", with: text_for(field, :"pt-BR")
     end
   end

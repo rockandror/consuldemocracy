@@ -1,7 +1,19 @@
 module GlobalizeHelper
 
+  def select_language_error(resource)
+    return if resource.blank?
+
+    current_translation = resource.translation_for(selected_locale(resource))
+    if current_translation.errors.added? :base,
+      I18n.t("activerecord.errors.models.translation.attributes.base.translations_too_short")
+      content_tag :div, class: "small error" do
+        current_translation.errors[:base].join(", ")
+      end
+    end
+  end
+
   def options_for_select_language(resource)
-    options_for_select(available_locales(resource), first_available_locale(resource))
+    options_for_select(available_locales(resource), selected_locale(resource))
   end
 
   def available_locales(resource)
@@ -17,20 +29,22 @@ module GlobalizeHelper
   def enabled_locale?(resource, locale)
     return site_customization_enable_translation?(locale) if resource.blank?
 
-    if resource.translations.empty?
-      locale == I18n.locale
-    else
+    if resource.locales_not_marked_for_destruction.any?
       resource.locales_not_marked_for_destruction.include?(locale)
+    elsif resource.locales_persisted_and_marked_for_destruction.any?
+      locale == first_marked_for_destruction_translation(resource)
+    else
+      locale == I18n.locale
     end
   end
 
-  def first_available_locale(resource)
+  def selected_locale(resource)
     return first_i18n_content_translation_locale if resource.blank?
 
-    if translations_for_locale?(resource, I18n.locale)
-      I18n.locale
-    elsif resource.translations.any?
-      resource.translations.first.locale
+    if resource.locales_not_marked_for_destruction.any?
+      first_translation(resource)
+    elsif resource.locales_persisted_and_marked_for_destruction.any?
+      first_marked_for_destruction_translation(resource)
     else
       I18n.locale
     end
@@ -38,25 +52,40 @@ module GlobalizeHelper
 
   def first_i18n_content_translation_locale
     if I18nContentTranslation.existing_languages.count == 0 ||
-        I18nContentTranslation.existing_languages.include?(I18n.locale)
+       I18nContentTranslation.existing_languages.include?(I18n.locale)
       return I18n.locale
     else
       return I18nContentTranslation.existing_languages.first
     end
   end
 
-  def translations_for_locale?(resource, locale)
-    resource.present? && resource.translations.any? &&
-      resource.locales_not_marked_for_destruction.include?(locale)
+  def first_translation(resource)
+    if resource.locales_not_marked_for_destruction.include? I18n.locale
+      I18n.locale
+    else
+      resource.locales_not_marked_for_destruction.first
+    end
   end
 
-  def selected_languages_description(resource)
+  def first_marked_for_destruction_translation(resource)
+    if resource.locales_persisted_and_marked_for_destruction.include? I18n.locale
+      I18n.locale
+    else
+      resource.locales_persisted_and_marked_for_destruction.first
+    end
+  end
+
+  def translations_for_locale?(resource)
+    resource.locales_not_marked_for_destruction.any?
+  end
+
+  def languages_in_use(resource)
     t("shared.translations.languages_in_use", count: active_languages_count(resource)).html_safe
   end
 
   def active_languages_count(resource)
     if resource.blank?
-      languages_count
+      no_resource_languages_count
     elsif resource.locales_not_marked_for_destruction.size > 0
       resource.locales_not_marked_for_destruction.size
     else
@@ -64,7 +93,7 @@ module GlobalizeHelper
     end
   end
 
-  def languages_count
+  def no_resource_languages_count
     count = I18nContentTranslation.existing_languages.count
     count > 0 ? count : 1
   end
@@ -74,11 +103,14 @@ module GlobalizeHelper
   end
 
   def display_translation?(resource, locale)
-    if !resource || resource.translations.empty? ||
-       resource.locales_not_marked_for_destruction.include?(I18n.locale)
-      locale == I18n.locale
+    return locale == I18n.locale if resource.blank?
+
+    if resource.locales_not_marked_for_destruction.any?
+      locale == first_translation(resource)
+    elsif resource.locales_persisted_and_marked_for_destruction.any?
+      locale == first_marked_for_destruction_translation(resource)
     else
-      locale == resource.translations.first.locale
+      locale == I18n.locale
     end
   end
 
@@ -87,7 +119,7 @@ module GlobalizeHelper
   end
 
   def display_destroy_locale_link?(resource, locale)
-    first_available_locale(resource) == locale
+    selected_locale(resource) == locale
   end
 
   def options_for_add_language

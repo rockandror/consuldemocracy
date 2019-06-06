@@ -6,13 +6,14 @@
   <div class="small-6 large-3 columns">
     <small>
       <strong>
-        <div class="inline"><%= selected_languages_description(resource) %></div>
+        <div class="inline"><%= languages_in_use(resource) %></div>
       </strong>
     </small>
     <%= select_tag :select_language,
                    options_for_select_language(resource),
                    prompt: "Choose language",
                    class: "js-select-language" %>
+    <%= select_language_error(resource) %>
 
     <div class="group-destroy-languages">
       <% if manage_languages %>
