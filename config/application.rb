@@ -20,12 +20,18 @@ module Consul
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :es
     available_locales = [
+      "ar",
+      "bs",
+      "cs",
+      "da",
       "de",
+      "el",
       "en",
       "es",
       "fr",
       "gl",
       "he",
+      "hr",
       "id",
       "it",
       "nl",
@@ -36,6 +42,7 @@ module Consul
       "sq",
       "so",
       "sv",
+      "tr",
       "val",
       "zh-CN",
       "zh-TW"]
