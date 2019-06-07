@@ -410,6 +410,7 @@ es:
             valuation:
               cannot_comment_valuation: 'No puedes comentar una evaluación'
       messages:
+        translations_too_short: El obligatorio proporcionar una traducción como mínimo
         record_invalid: "Error de validación: %{errors}"
         restrict_dependent_destroy:
           has_one: "No se puede eliminar el registro porque existe una %{record} dependiente"
