@@ -237,6 +237,8 @@ shared_examples "edit_translatable" do |factory_name, path_name, input_fields, t
     end
 
     scenario "Remove all translations should show an error message", :js do
+      skip_if_not_translable(translatable)
+
       visit path
 
       click_link "Remove language"
@@ -446,4 +448,8 @@ def update_button_text
   else
     "Save changes"
   end
+end
+
+def skip_if_not_translable(resource)
+  skip "#{resource.class.name} doen not have mandatory translatable attributes" unless resource.translations_required?
 end

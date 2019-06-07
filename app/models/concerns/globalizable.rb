@@ -6,8 +6,8 @@ module Globalizable
     globalize_accessors
     accepts_nested_attributes_for :translations, allow_destroy: true
 
-    validate :check_translations_number, on: :update, if: :translations_are_required?
-    after_validation :recover_current_locale_translation, on: :update, if: :translations_are_required?
+    validate :check_translations_number, on: :update, if: :translations_required?
+    after_validation :recover_current_locale_translation, on: :update, if: :translations_required?
 
     def locales_not_marked_for_destruction
       translations.reject(&:marked_for_destruction?).map(&:locale)
@@ -21,6 +21,10 @@ module Globalizable
       translations.select{|t| t.persisted? && t.marked_for_destruction? }.map(&:locale)
     end
 
+    def translations_required?
+      translated_attribute_names.any?{|attr| required_attribute?(attr)}
+    end
+
     def description
       self.read_attribute(:description).try :html_safe
     end
@@ -32,10 +36,6 @@ module Globalizable
     scope :with_translation, -> { joins("LEFT OUTER JOIN #{translations_table_name} ON #{table_name}.id = #{translations_table_name}.#{reflections["translations"].foreign_key} AND #{translations_table_name}.locale='#{I18n.locale }'") }
 
     private
-
-      def translations_are_required?
-        translated_attribute_names.any?{|attr| required_attribute?(attr)}
-      end
 
       def required_attribute?(attribute)
         presence_validators = [ActiveModel::Validations::PresenceValidator,
