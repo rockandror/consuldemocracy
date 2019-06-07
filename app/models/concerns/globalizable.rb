@@ -34,10 +34,18 @@ module Globalizable
     private
 
       def translations_are_required?
-        translated_attribute_names.each do |attribute|
-          return true if self.class.validators_on(attribute).map(&:class).include?(ActiveModel::Validations::PresenceValidator)
-        end
-        false
+        translated_attribute_names.any?{|attr| required_attribute?(attr)}
+      end
+
+      def required_attribute?(attribute)
+        presence_validators = [ActiveModel::Validations::PresenceValidator,
+          ActiveRecord::Validations::PresenceValidator]
+
+        attribute_validators(attribute).any?{|validator| presence_validators.include? validator }
+      end
+
+      def attribute_validators(attribute)
+        self.class.validators_on(attribute).map(&:class)
       end
 
       def check_translations_number
