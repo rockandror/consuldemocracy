@@ -77,6 +77,12 @@ describe Budget::Investment do
     expect(investment.previous_heading_id).to eq heading_1.id
   end
 
+  it "stores original heading id" do
+    investment = create(:budget_investment)
+
+    expect(investment.original_heading_id).to eq investment.heading_id
+  end
+
   describe "#unfeasibility_explanation blank" do
     it "is valid if valuation not finished" do
       investment.unfeasibility_explanation = ""

@@ -97,6 +97,7 @@ class Budget
 
     scope :for_render, -> { includes(:heading) }
 
+    before_create :set_original_heading_id
     before_save :calculate_confidence_score
     after_save :recalculate_heading_winners
     before_validation :set_responsible_name
@@ -405,6 +406,10 @@ class Budget
       def set_denormalized_ids
         self.group_id = heading.try(:group_id) if heading_id_changed?
         self.budget_id ||= heading.try(:group).try(:budget_id)
+      end
+
+      def set_original_heading_id
+        self.original_heading_id = heading_id
       end
 
   end
