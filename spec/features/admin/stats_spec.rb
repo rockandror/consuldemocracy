@@ -205,6 +205,21 @@ describe "Stats" do
         within("#only_district_voters") {expect(page).to have_content 1}
         within("#only_city_voters") {expect(page).to have_content 1}
       end
+
+      scenario "hide final voting link" do
+        visit admin_stats_path
+        click_link "Participatory Budgets"
+
+        within("#budget_#{budget.id}") do
+          expect(page).not_to have_link "Final voting"
+        end
+      end
+
+      scenario "show message when accessing final voting stats" do
+        visit budget_balloting_admin_stats_path(budget_id: budget.id)
+
+        expect(page).to have_content "There isn't any data to show before the balloting phase."
+      end
     end
 
     context "Balloting phase" do

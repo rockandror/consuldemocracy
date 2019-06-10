@@ -1405,6 +1405,8 @@ en:
           other: "There is %{count} votes created from verified signatures."
         loading: "There are still signatures that are being verified by the Census, please refresh the page in a few moments"
     stats:
+      budgets:
+        no_data_before_balloting_phase: "There isn't any data to show before the balloting phase."
       show:
         stats_title: Stats
         summary:

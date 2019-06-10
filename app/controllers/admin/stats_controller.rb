@@ -78,6 +78,8 @@ class Admin::StatsController < Admin::BaseController
   def budget_balloting
     @budget = Budget.find(params[:budget_id])
 
+    authorize! :read_admin_stats, @budget, message: t("admin.stats.budgets.no_data_before_balloting_phase")
+
     budget_stats = Stat.hash("budget_#{@budget.id}_balloting_stats")
     @user_count = budget_stats["stats"]["user_count"]
     @vote_count = budget_stats["stats"]["vote_count"]
