@@ -410,6 +410,7 @@ en:
             valuation:
               cannot_comment_valuation: 'You cannot comment a valuation'
       messages:
+        translations_too_short: Is mandatory to provide one translation at least
         record_invalid: "Validation failed: %{errors}"
         restrict_dependent_destroy:
           has_one: "Cannot delete record because a dependent %{record} exists"
