@@ -86,6 +86,10 @@ class Poll < ApplicationRecord
     ends_at < timestamp
   end
 
+  def recounts_confirmed?
+    ends_at < 1.month.ago
+  end
+
   def self.current_or_recounting
     current + recounting
   end
