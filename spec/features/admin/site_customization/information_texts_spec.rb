@@ -87,7 +87,7 @@ describe "Admin custom information texts" do
 
       visit admin_site_customization_information_texts_path(tab: "proposals")
 
-      select "Français", from: :select_language
+      select "Français", from: :add_language
       fill_in "contents_content_#{key}values_value_fr", with: "Titre personalise de la proposition"
 
       click_button "Save"
