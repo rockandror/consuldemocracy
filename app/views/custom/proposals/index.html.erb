@@ -78,7 +78,7 @@
         </div>
       <% end %>
 
-      <% unless human_rights? %>
+      <% unless params[:selected].present? || human_rights? %>
         <div class="row">
           <div class="small-12 column">
             <%= render "view_mode" %>
