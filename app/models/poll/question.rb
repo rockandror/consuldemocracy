@@ -63,6 +63,6 @@ class Poll::Question < ApplicationRecord
   end
 
   def most_voted_answer_id
-    question_answers.max_by {|answer| answer.total_votes }.id
+    question_answers.max_by {|answer| answer.total_votes }&.id
   end
 end
