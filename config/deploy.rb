@@ -47,9 +47,9 @@ namespace :deploy do
   Rake::Task["delayed_job:default"].clear_actions
   Rake::Task["puma:smart_restart"].clear_actions
 
-  #before :starting, 'rvm1:install:rvm'  # install/update RVM
-  #before :starting, 'rvm1:install:ruby' # install Ruby and create gemset
-  #before :starting, 'install_bundler_gem' # install bundler gem
+  before :starting, "rvm1:install:rvm"
+  before :starting, "rvm1:install:ruby"
+  before :starting, "install_bundler_gem"
 
   after :publishing, "setup_puma"
 
