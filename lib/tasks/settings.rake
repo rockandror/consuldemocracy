@@ -38,4 +38,9 @@ namespace :settings do
     Setting.rename_key from: "feature.homepage.widgets.feeds.processes", to: "homepage.widgets.feeds.processes"
   end
 
+  desc "Create remote census configuration setting"
+  task create_remote_census_setting: :environment do
+    Setting["feature.remote_census"] = nil
+  end
+
 end

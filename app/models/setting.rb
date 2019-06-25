@@ -7,6 +7,8 @@ class Setting < ApplicationRecord
     prefix = key.split(".").first
     if %w[feature process proposals map html homepage].include? prefix
       prefix
+    elsif %w[remote_census].include? prefix
+      key.rpartition(".").first
     else
       "configuration"
     end

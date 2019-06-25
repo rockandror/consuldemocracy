@@ -50,6 +50,7 @@ section "Creating Settings" do
   Setting.create(key: "feature.allow_attached_documents", value: "true")
   Setting.create(key: "feature.public_stats", value: "true")
   Setting.create(key: "feature.help_page", value: "true")
+  Setting.create(key: "feature.remote_census", value: "")
 
   Setting.create(key: "html.per_page_code_head", value: "")
   Setting.create(key: "html.per_page_code_body", value: "")
@@ -84,4 +85,19 @@ section "Creating Settings" do
   Setting.create(key: "proposals.email_description", value: nil)
 
   Setting.create(key: "dashboard.emails", value: nil)
+
+  Setting.create(key: "remote_census.general.endpoint", value: "")
+  Setting.create(key: "remote_census.request.method_name", value: "")
+  Setting.create(key: "remote_census.request.structure", value: "")
+  Setting.create(key: "remote_census.request.document_type", value: "")
+  Setting.create(key: "remote_census.request.document_number", value: "")
+  Setting.create(key: "remote_census.request.date_of_birth", value: "")
+  Setting.create(key: "remote_census.request.postal_code", value: "")
+  Setting.create(key: "remote_census.response.date_of_birth", value: "")
+  Setting.create(key: "remote_census.response.postal_code", value: "")
+  Setting.create(key: "remote_census.response.district", value: "")
+  Setting.create(key: "remote_census.response.gender", value: "")
+  Setting.create(key: "remote_census.response.name", value: "")
+  Setting.create(key: "remote_census.response.surname", value: "")
+  Setting.create(key: "remote_census.response.valid", value: "")
 end

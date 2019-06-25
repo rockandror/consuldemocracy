@@ -89,6 +89,7 @@ Setting["feature.map"] = nil
 Setting["feature.allow_images"] = true
 Setting["feature.allow_attached_documents"] = true
 Setting["feature.help_page"] = true
+Setting["feature.remote_census"] = nil
 
 # Spending proposals feature flags
 Setting["feature.spending_proposal_features.voting_allowed"] = nil
@@ -122,6 +123,26 @@ Setting["homepage.widgets.feeds.processes"] = true
 
 # Votes hot_score configuration
 Setting["hot_score_period_in_days"] = 31
+
+# Remote Census configuration
+# General
+Setting["remote_census.general.endpoint"] = nil
+# Request
+Setting["remote_census.request.method_name"] = nil
+Setting["remote_census.request.structure"] = nil
+Setting["remote_census.request.document_type"] = nil
+Setting["remote_census.request.document_number"] = nil
+Setting["remote_census.request.date_of_birth"] = nil
+Setting["remote_census.request.postal_code"] = nil
+# Response
+Setting["remote_census.response.date_of_birth"] = nil
+Setting["remote_census.response.postal_code"] = nil
+Setting["remote_census.response.district"] = nil
+Setting["remote_census.response.gender"] = nil
+Setting["remote_census.response.name"] = nil
+Setting["remote_census.response.surname"] = nil
+Setting["remote_census.response.valid"] = nil
+
 
 WebSection.create(name: "homepage")
 WebSection.create(name: "debates")
