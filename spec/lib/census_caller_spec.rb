@@ -50,6 +50,10 @@ describe CensusCaller do
         access_residence_data = "get_habita_datos_response.get_habita_datos_return.datos_vivienda.item"
         Setting["remote_census.response.date_of_birth"] = "#{access_user_data}.fecha_nacimiento_string"
         Setting["remote_census.response.postal_code"] = "#{access_residence_data}.codigo_postal"
+        Setting["remote_census.response.district"] = "#{access_residence_data}.codigo_distrito"
+        Setting["remote_census.response.gender"] = "#{access_user_data}.descripcion_sexo"
+        Setting["remote_census.response.name"] = "#{access_user_data}.nombre"
+        Setting["remote_census.response.surname"] = "#{access_user_data}.apellido1"
         Setting["remote_census.response.valid"] = access_user_data
       end
 
