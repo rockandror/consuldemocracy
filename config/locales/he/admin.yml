@@ -586,13 +586,11 @@ he:
         new: New  דף חדש לחתימות
       new:
         title: New  דף חדש לחתימות
-        document_numbers_note: "נא לכתוב את המספרים מופרדים באמצעות פסיקים (,)"
+        document_numbers_note: "רשום את המספרים המופרדים בנקודות פסיק (;)"
         submit: יצירת דף לחתימות
       show:
         created_at: נוצר ב
         author: מחבר/ת
-        documents: מסמכים
-        document_count: "מספר המסמכים:"
         unverified_error: (לא מאומת על ידי מפקד האוכלוסין)
         loading: "עדיין נערך אימות חתימות על ידי מפקד האוכלוסין, בבקשה לרענן את הדף בעוד כמה רגעים"
     stats:
