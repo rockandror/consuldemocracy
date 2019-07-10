@@ -8,13 +8,7 @@ class Admin::SettingsController < Admin::BaseController
                 :poster_feature_short_title_setting, :poster_feature_description_setting
 
   def index
-    all_settings = Setting.all.group_by { |setting| setting.type }
-    @configuration_settings = all_settings["configuration"]
-    @feature_settings = all_settings["feature"]
-    @participation_processes_settings = all_settings["process"]
-    @map_configuration_settings = all_settings["map"]
-    @proposals_settings = all_settings["proposals"]
-    @uploads_settings = all_settings["uploads"]
+    @settings_sections = ["configuration", "process", "feature", "map", "uploads", "proposals"].freeze
   end
 
   def update
