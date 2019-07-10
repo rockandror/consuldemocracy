@@ -34,6 +34,13 @@ class Admin::SettingsController < Admin::BaseController
     redirect_to admin_settings_path, notice: t("admin.settings.flash.updated")
   end
 
+  def show
+    all_settings = Setting.all.group_by { |setting| setting.type }
+    @settings = all_settings[params[:id]]
+
+    render params[:id]
+  end
+
   private
 
     def settings_params
