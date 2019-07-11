@@ -214,6 +214,7 @@ ignore_unused:
   - "seeds.settings.*"
   - "dashboard.polls.*.submit"
   - "admin.settings.index.remote_census.*"
+  - "admin.settings.index.social.*"
 ####
 ## Exclude these keys from the `i18n-tasks eq-base" report:
 # ignore_eq_base:

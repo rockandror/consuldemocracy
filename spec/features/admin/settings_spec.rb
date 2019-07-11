@@ -39,6 +39,10 @@ describe "Admin settings" do
     expect(page).to have_content "Remote Census configuration"
     expect(page).to have_content "Allow configure remote census (SOAP)"
     expect(page).to have_link("Configure", href: admin_setting_path("remote_census"))
+
+    expect(page).to have_content "Registration with social networks"
+    expect(page).to have_content "Allow users to sign up with social networks (Twitter, Facebook, Google)"
+    expect(page).to have_link("Configure", href: admin_setting_path("social"))
   end
 
   scenario "Update" do

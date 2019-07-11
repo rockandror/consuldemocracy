@@ -1283,6 +1283,9 @@ en:
           disabled: "Feature disabled"
           enable: "Enable"
           disable: "Disable"
+        social:
+          title: "Registration with social networks"
+          description: "Allow users to sign up with social networks (Twitter, Facebook, Google)"
       setting: Feature
       setting_actions: Actions
       setting_name: Setting
