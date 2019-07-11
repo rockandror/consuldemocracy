@@ -199,9 +199,21 @@ en:
       twitter:
         login: "Twitter login"
         login_description: "Allow users to sign up with their Twitter account"
+        key: "API Key Twitter"
+        key_description: "API key to configure the registration via Twitter"
+        secret: "Secret Token Twitter"
+        secret_description: "Secret Token to configure the registration via Twitter"
       facebook:
         login: "Facebook login"
         login_description: "Allow users to sign up with their Facebook account"
+        key: "API Key Facebook"
+        key_description: "API key to configure the registration via Facebook"
+        secret: "Secret Token Facebook"
+        secret_description: "Secret token to configure the registration via Facebook"
       google:
         login: "Google login"
         login_description: "Allow users to sign up with their Google account"
+        key: "API Key Google"
+        key_description: "API key to configure the registration via Google"
+        secret: "Secret Token Google"
+        secret_description: "Secret token to configure the registration via Google"
