@@ -35,6 +35,10 @@ describe "Admin settings" do
     expect(page).to have_content "Proposals dashboard"
     expect(page).to have_content "Allows configuring the main fields to offer users a control panel for their proposals."
     expect(page).to have_link("Configure", href: admin_setting_path("proposals"))
+
+    expect(page).to have_content "Registration with social networks"
+    expect(page).to have_content "Allow users to sign up with social networks (Twitter, Facebook, Google)"
+    expect(page).to have_link("Configure", href: admin_setting_path("social"))
   end
 
   scenario "Update" do

@@ -1321,6 +1321,9 @@ es:
           disabled: "Funcionalidad desactivada"
           enable: "Activar"
           disable: "Desactivar"
+        social:
+          title: "Registro con Redes sociales"
+          description: "Permitir que los usuarios se registren con las Redes sociales (Twitter, Facebook, Google)"
       setting: Funcionalidad
       setting_actions: Acciones
       setting_name: Configuración
