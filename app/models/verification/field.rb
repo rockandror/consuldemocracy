@@ -8,7 +8,6 @@ class Verification::Field < ApplicationRecord
 
   validates_translation :label, presence: true, length: { minimum: 2 }
   validates :name, presence: true
-  validates :label, presence: true
   validates :position, presence: true
   validate  :handlers_exists, if: -> { handlers.present? }
 
