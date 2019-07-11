@@ -1,4 +1,4 @@
-<% if feature?(:twitter_login) || feature?(:facebook_login) || feature?(:google_login) %>
+<% if feature?("twitter.login") || feature?("facebook.login") || feature?("google.login") %>
 
   <% if current_page?(new_user_session_path) %>
     <div class="row">
@@ -8,7 +8,7 @@
         </div>
       </div>
 
-      <% if feature? :twitter_login %>
+      <% if feature?("twitter.login") %>
         <div class="small-12 medium-6 large-4 column end">
           <%= link_to t("omniauth.twitter.name"), user_twitter_omniauth_authorize_path,
                       title: t("omniauth.twitter.sign_in"),
@@ -16,7 +16,7 @@
         </div>
       <% end %>
 
-      <% if feature? :facebook_login %>
+      <% if feature?("facebook.login") %>
         <div class="small-12 medium-6 large-4 column end">
           <%= link_to t("omniauth.facebook.name"), user_facebook_omniauth_authorize_path,
                       title: t("omniauth.facebook.sign_in"),
@@ -24,7 +24,7 @@
         </div>
       <% end %>
 
-      <% if feature? :google_login %>
+      <% if feature?("google.login") %>
         <div class="small-12 medium-6 large-4 column end">
           <%= link_to t("omniauth.google_oauth2.name"), user_google_oauth2_omniauth_authorize_path,
                       title: t("omniauth.google_oauth2.sign_in"),
@@ -45,7 +45,7 @@
         </div>
       </div>
 
-      <% if feature? :twitter_login %>
+      <% if feature?("twitter.login") %>
         <div class="small-12 medium-6 large-4 column end">
           <%= link_to t("omniauth.twitter.name"), user_twitter_omniauth_authorize_path,
                       title: t("omniauth.twitter.sign_up"),
@@ -53,7 +53,7 @@
         </div>
       <% end %>
 
-      <% if feature? :facebook_login %>
+      <% if feature?("facebook.login") %>
         <div class="small-12 medium-6 large-4 column end">
           <%= link_to t("omniauth.facebook.name"), user_facebook_omniauth_authorize_path,
                       title: t("omniauth.facebook.sign_up"),
@@ -61,7 +61,7 @@
         </div>
       <% end %>
 
-      <% if feature? :google_login %>
+      <% if feature?("google.login") %>
         <div class="small-12 medium-6 large-4 column end">
           <%= link_to t("omniauth.google_oauth2.name"), user_google_oauth2_omniauth_authorize_path,
                       title: t("omniauth.google_oauth2.sign_up"),
