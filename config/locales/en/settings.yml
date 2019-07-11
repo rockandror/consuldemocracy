@@ -161,9 +161,21 @@ en:
       twitter:
         login: "Twitter login"
         login_description: "Allow users to sign up with their Twitter account"
+        key: "Key Twitter"
+        key_description: "Necessary key to configure the registration via Twitter"
+        secret: "Secret Twitter"
+        secret_description: "Necessary Secret to configure the registration via Twitter"
       facebook:
         login: "Facebook login"
         login_description: "Allow users to sign up with their Facebook account"
+        key: "Key Facebook"
+        key_description: "Necessary key to configure the registration via Facebook"
+        secret: "Secret Facebook"
+        secret_description: "Necessary Secret to configure the registration via Facebook"
       google:
         login: "Google login"
         login_description: "Allow users to sign up with their Google account"
+        key: "Key Google"
+        key_description: "Necessary key to configure the registration via Google"
+        secret: "Secret Google"
+        secret_description: "Necessary Secret to configure the registration via Google"

@@ -161,9 +161,21 @@ es:
       twitter:
         login: "Registro con Twitter"
         login_description: "Permitir que los usuarios se registren con su cuenta de Twitter"
+        key: "Key Twitter"
+        key_description: "Key necesaria para configurar el registro por Twitter"
+        secret: "Secret Twitter"
+        secret_description: "Secret necesario para configurar el registro por Twitter"
       facebook:
         login: "Registro con Facebook"
         login_description: "Permitir que los usuarios se registren con su cuenta de Facebook"
+        key: "Key Facebook"
+        key_description: "Key necesaria para configurar el registro por Facebook"
+        secret: "Secret Facebook"
+        secret_description: "Secret necesario para configurar el registro por Facebook"
       google:
         login: "Registro con Google"
         login_description: "Permitir que los usuarios se registren con su cuenta de Google"
+        key: "Key Google"
+        key_description: "Key necesaria para configurar el registro por Google"
+        secret: "Secret Google"
+        secret_description: "Secret necesario para configurar el registro por Google"
