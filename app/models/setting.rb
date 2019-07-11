@@ -79,9 +79,6 @@ class Setting < ApplicationRecord
     def defaults
       {
         "feature.featured_proposals": nil,
-        "feature.facebook_login": true,
-        "feature.google_login": true,
-        "feature.twitter_login": true,
         "feature.public_stats": true,
         "feature.signature_sheets": true,
         "feature.user.recommendations": true,
@@ -94,6 +91,9 @@ class Setting < ApplicationRecord
         "feature.allow_images": true,
         "feature.help_page": true,
         "feature.valuation_comment_notification": true,
+        "social.facebook.login": true,
+        "social.google.login": true,
+        "social.twitter.login": true,
         "homepage.widgets.feeds.debates": true,
         "homepage.widgets.feeds.processes": true,
         "homepage.widgets.feeds.proposals": true,
