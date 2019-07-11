@@ -248,7 +248,7 @@ Devise.setup do |config|
     twitter_secret =  Setting["social.twitter.secret"].present? ? Setting["social.twitter.secret"] : Rails.application.secrets.twitter_secret
     facebook_key = Setting["social.facebook.key"].present? ? Setting["social.facebook.key"] : Rails.application.secrets.facebook_key
     facebook_secret =  Setting["social.facebook.secret"].present? ? Setting["social.facebook.secret"] : Rails.application.secrets.facebook_secret
-    goolgle_key = Setting["social.goolgle.key"].present? ? Setting["social.goolgle.key"] : Rails.application.secrets.google_oauth2_key
+    google_key = Setting["social.goolgle.key"].present? ? Setting["social.goolgle.key"] : Rails.application.secrets.google_oauth2_key
     google_secret =  Setting["social.google.secret"].present? ? Setting["social.google.secret"] : Rails.application.secrets.google_oauth2_secret
 
     config.omniauth :twitter, twitter_key, twitter_secret
