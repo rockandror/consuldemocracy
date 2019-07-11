@@ -57,6 +57,11 @@ describe Setting do
       configuration_setting = Setting.create(key: "whatever")
       expect(configuration_setting.type).to eq "configuration"
     end
+
+    it "returns 'social.social_name' for 'social' settings" do
+      configuration_setting = Setting.create(key: "social.social_name.sample_setting")
+      expect(configuration_setting.type).to eq "social.social_name"
+    end
   end
 
   describe "#enabled?" do

@@ -136,6 +136,23 @@ describe "Admin settings" do
       expect(page).to have_css("#edit_setting_#{setting.id}")
     end
 
+    scenario "Should display social settings section" do
+      setting = Setting.create(key: "social.twitter.setting_sample")
+      admin = create(:administrator).user
+      login_as(admin)
+      visit admin_settings_path
+      within "#social-section" do
+        click_link "Configure"
+      end
+
+      expect(page).to have_content "Registration with social networks"
+      expect(page).to have_content "Twitter"
+      expect(page).to have_content "Facebook"
+      expect(page).to have_content "Google"
+      expect(page).to have_content "Note: For the changes made in this section to take effect, the application must be restarted."
+      expect(page).to have_css("#edit_setting_#{setting.id}")
+    end
+
   end
 
   describe "Update map" do

@@ -35,8 +35,7 @@ class Admin::SettingsController < Admin::BaseController
   end
 
   def show
-    all_settings = Setting.all.group_by { |setting| setting.type }
-    @settings = all_settings[params[:id]]
+    @settings = extract_settings(params[:id])
 
     render params[:id]
   end
@@ -49,6 +48,15 @@ class Admin::SettingsController < Admin::BaseController
 
     def content_type_params
       params.permit(:jpg, :png, :gif, :pdf, :doc, :docx, :xls, :xlsx, :csv, :zip)
+    end
+
+    def extract_settings(parent_key)
+      all_settings = Setting.all.group_by { |setting| setting.type }
+      if parent_key == "social"
+        [all_settings["social.facebook"]] + [all_settings["social.twitter"]] + [all_settings["social.google"]]
+      else
+        all_settings[params[:id]]
+      end
     end
 
 end
