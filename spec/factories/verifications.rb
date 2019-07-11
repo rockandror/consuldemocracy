@@ -63,4 +63,15 @@ FactoryBot.define do
     date_of_birth { Date.new(1980, 12, 31) }
     postal_code { "28013" }
   end
+
+  factory :verification_field, class: Verification::Field do
+    sequence(:name)     { |n| "field#{n}" }
+    sequence(:label)     { |n| "Label for field #{n}" }
+    sequence(:position) { |n| n  + 1 }
+    required false
+
+    trait :required do
+      required true
+    end
+  end
 end
