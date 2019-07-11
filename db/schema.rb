@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190607160900) do
+ActiveRecord::Schema.define(version: 20190711110020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1662,6 +1662,15 @@ ActiveRecord::Schema.define(version: 20190607160900) do
     t.boolean "can_comment",              default: true
     t.boolean "can_edit_dossier",         default: true
     t.index ["user_id"], name: "index_valuators_on_user_id", using: :btree
+  end
+
+  create_table "verification_fields", force: :cascade do |t|
+    t.string  "name"
+    t.string  "label"
+    t.integer "position"
+    t.string  "controller"
+    t.boolean "required"
+    t.index ["controller"], name: "index_verification_fields_on_controller", using: :btree
   end
 
   create_table "verified_users", force: :cascade do |t|

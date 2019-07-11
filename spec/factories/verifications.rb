@@ -50,4 +50,16 @@ FactoryBot.define do
     document_number
     document_type "dni"
   end
+
+  factory :verification_field, class: Verification::Field do
+    sequence(:name)     { |n| "field#{n}" }
+    sequence(:label)     { |n| "Label for field #{n}" }
+    sequence(:controller) { |n| "FieldController#{n}" }
+    sequence(:position) { |n| n  + 1 }
+    required false
+
+    trait :required do
+      required true
+    end
+  end
 end
