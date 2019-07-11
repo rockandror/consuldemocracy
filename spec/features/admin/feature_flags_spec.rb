@@ -70,7 +70,7 @@ describe "Admin feature flags" do
   end
 
   scenario "Disable a feature" do
-    setting = Setting.find_by(key: "feature.twitter_login")
+    setting = Setting.find_by(key: "feature.community")
 
     visit admin_settings_path
 
