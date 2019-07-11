@@ -46,6 +46,10 @@ namespace :settings do
     Setting.rename_key from: "feature.homepage.widgets.feeds.proposals", to: "homepage.widgets.feeds.proposals"
     Setting.rename_key from: "feature.homepage.widgets.feeds.debates",   to: "homepage.widgets.feeds.debates"
     Setting.rename_key from: "feature.homepage.widgets.feeds.processes", to: "homepage.widgets.feeds.processes"
+
+    Setting.rename_key from: "feature.facebook_login", to: "social.facebook.login"
+    Setting.rename_key from: "feature.google_login", to: "social.google.login"
+    Setting.rename_key from: "feature.twitter_login", to: "social.twitter.login"
   end
 
   desc "Add new settings"

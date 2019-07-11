@@ -83,12 +83,6 @@ en:
     direct_message_max_per_day: "Direct Message max number per day"
     direct_message_max_per_day_description: "Number max of direct messages one user can send per day"
     feature:
-      twitter_login: "Twitter login"
-      twitter_login_description: "Allow users to sign up with their Twitter account"
-      facebook_login: "Facebook login"
-      facebook_login_description: "Allow users to sign up with their Facebook account"
-      google_login: "Google login"
-      google_login_description: "Allow users to sign up with their Google Account"
       featured_proposals: "Featured proposals"
       featured_proposals_description: "Shows featured proposals on index proposals page"
       signature_sheets: "Signature sheets"
@@ -201,3 +195,13 @@ en:
         max_size_description: "Maximum size allowed for an uploaded document (in Megabytes/MB)"
         content_types: "Accepted content types for documents"
         content_types_description: "Select all the content types allowed for uploaded documents"
+    social:
+      twitter:
+        login: "Twitter login"
+        login_description: "Allow users to sign up with their Twitter account"
+      facebook:
+        login: "Facebook login"
+        login_description: "Allow users to sign up with their Facebook account"
+      google:
+        login: "Google login"
+        login_description: "Allow users to sign up with their Google account"
