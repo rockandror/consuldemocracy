@@ -243,9 +243,18 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :twitter, Rails.application.secrets.twitter_key, Rails.application.secrets.twitter_secret
-  config.omniauth :facebook, Rails.application.secrets.facebook_key, Rails.application.secrets.facebook_secret, scope: "email", info_fields: "email,name,verified"
-  config.omniauth :google_oauth2, Rails.application.secrets.google_oauth2_key, Rails.application.secrets.google_oauth2_secret
+  if ActiveRecord::Base.connection.data_source_exists?("settings")
+    twitter_key = Setting["social.twitter.key"].present? ? Setting["social.twitter.key"] : Rails.application.secrets.twitter_key
+    twitter_secret =  Setting["social.twitter.secret"].present? ? Setting["social.twitter.secret"] : Rails.application.secrets.twitter_secret
+    facebook_key = Setting["social.facebook.key"].present? ? Setting["social.facebook.key"] : Rails.application.secrets.facebook_key
+    facebook_secret =  Setting["social.facebook.secret"].present? ? Setting["social.facebook.secret"] : Rails.application.secrets.facebook_secret
+    goolgle_key = Setting["social.goolgle.key"].present? ? Setting["social.goolgle.key"] : Rails.application.secrets.google_oauth2_key
+    google_secret =  Setting["social.google.secret"].present? ? Setting["social.google.secret"] : Rails.application.secrets.google_oauth2_secret
+
+    config.omniauth :twitter, twitter_key, twitter_secret
+    config.omniauth :facebook, facebook_key, facebook_secret, scope: "email", info_fields: "email,name,verified"
+    config.omniauth :google_oauth2, google_key, google_secret
+  end
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

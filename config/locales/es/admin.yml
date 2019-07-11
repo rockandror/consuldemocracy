@@ -1321,6 +1321,11 @@ es:
           disabled: "Funcionalidad desactivada"
           enable: "Activar"
           disable: "Desactivar"
+        social:
+          title: "Registro con Redes sociales"
+          facebook: "Facebook"
+          twitter: "Twitter"
+          google: "Google"
       setting: Funcionalidad
       setting_actions: Acciones
       setting_name: Configuración

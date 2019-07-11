@@ -1,0 +1,7 @@
+<%= back_link_to %>
+<h2><%= t("admin.settings.index.social.title") %></h2>
+
+<% @settings.each do |setting_group| %>
+  <h2><%= t("admin.settings.index.social.#{setting_group.first.key.split(".").second}") %></h2>
+  <%= render "mixed_settings_table", settings: setting_group %>
+<% end %>
