@@ -550,6 +550,10 @@ en:
           attributes:
             valuation:
               cannot_comment_valuation: "You cannot comment a valuation"
+        verification/field:
+          attributes:
+            handlers:
+              handler_does_not_exists: Some of the selected handlers do not exist
       messages:
         translations_too_short: Is mandatory to provide one translation at least
         record_invalid: "Validation failed: %{errors}"
