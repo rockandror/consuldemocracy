@@ -83,12 +83,6 @@ es:
     direct_message_max_per_day: "Mensajes directos máximos por día"
     direct_message_max_per_day_description: "Número de mensajes directos máximos que un usuario puede enviar por día"
     feature:
-      twitter_login: "Registro con Twitter"
-      twitter_login_description: "Permitir que los usuarios se registren con su cuenta de Twitter"
-      facebook_login: "Registro con Facebook"
-      facebook_login_description: "Permitir que los usuarios se registren con su cuenta de Facebook"
-      google_login: "Registro con Google"
-      google_login_description: "Permitir que los usuarios se registren con su cuenta de Google"
       featured_proposals: "Propuestas destacadas"
       featured_proposals_description: "Muestra propuestas destacadas en la página principal de propuestas"
       signature_sheets: "Hojas de firmas"
@@ -201,3 +195,13 @@ es:
         max_size_description: "Tamaño máximo permitido al subir un documento (en Megabytes/MB)"
         content_types: "Tipos de documentos permitidos"
         content_types_description: "Selecciona todos los tipos permitidos para los documentos subidos"
+    social:
+      twitter:
+        login: "Registro con Twitter"
+        login_description: "Permitir que los usuarios se registren con su cuenta de Twitter"
+      facebook:
+        login: "Registro con Facebook"
+        login_description: "Permitir que los usuarios se registren con su cuenta de Facebook"
+      google:
+        login: "Registro con Google"
+        login_description: "Permitir que los usuarios se registren con su cuenta de Google"
