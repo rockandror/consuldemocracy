@@ -1503,6 +1503,33 @@ en:
       search:
         placeholder: Search user by email, name or document number
         search: Search
+    verification:
+      fields:
+        create:
+          notice: Verification field created successfully
+          error: Verification field couldn't be created
+        destroy:
+          notice: Verification field deleted successfully
+        edit:
+          form:
+            submit_button: Update field
+          title: Edit verification field
+        index:
+          controller: Controller
+          create: Create field
+          delete: Delete
+          edit: Edit
+          name: Name
+          label: Label
+          required: Required
+          title: Verification fields
+        new:
+          form:
+            submit_button: Create field
+          title: New verification field
+        update:
+          notice: Verification field updated successfully
+          error: Verification field couldn't be updated
     verifications:
       index:
         phone_not_given: Phone not given

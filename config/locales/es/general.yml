@@ -197,6 +197,7 @@ es:
     document: el documento
     topic: Tema
     image: Imagen
+    verification/field: Campo
   geozones:
     none: Toda la ciudad
   layouts:

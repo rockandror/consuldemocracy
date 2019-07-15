@@ -125,6 +125,9 @@ es:
       link:
         one: Enlace
         other: Enlaces
+      verification/field:
+        one: Field
+        others: Fields
     attributes:
       administrator:
         description: Descripción
@@ -373,6 +376,13 @@ es:
         valuator_group_id: Grupo de evaluación
         can_comment: Puede comentar
         can_edit_dossier: Puede editar informes
+      verification/field:
+        controller: Controlador
+        name: Nombre
+        position: Posición
+        required: Requerido?
+      verification/field/translation:
+        label: Etiqueta
     errors:
       models:
         user:

@@ -197,6 +197,7 @@ en:
     document: Document
     topic: Topic
     image: Image
+    verification/field: field
   geozones:
     none: All city
   layouts:
