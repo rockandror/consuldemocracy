@@ -129,6 +129,9 @@ en:
       local_census_record:
         one: Local census record
         other: Local census records
+      verification/field:
+        one: Field
+        others: Fields
     attributes:
       budget:
         name: "Name"
@@ -474,6 +477,13 @@ en:
         document_number: Document number
         date_of_birth: Date of birth
         postal_code: Postal code
+      verification/field:
+        controller: Controller
+        name: Name
+        position: Position
+        required: Required?
+      verification/field/translation:
+        label: Label
     errors:
       models:
         user:
