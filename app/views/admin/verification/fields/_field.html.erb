@@ -1,0 +1,16 @@
+<tr id="<%= dom_id(field) %>">
+  <td><%= field.name %></td>
+  <td><%= field.controller %></td>
+  <td><%= field.label %></td>
+  <td><%= field.required %></td>
+  <td>
+    <%= link_to t("admin.verification.fields.index.edit"),
+                edit_admin_verification_field_path(field),
+                class: "button hollow expanded" %>
+    <%= link_to t("admin.verification.fields.index.delete"),
+                admin_verification_field_path(field),
+                method: :delete,
+                class: "button hollow alert expanded",
+                data: { confirm: t("admin.actions.confirm") } %>
+  </td>
+</tr>

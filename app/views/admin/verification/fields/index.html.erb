@@ -1,0 +1,20 @@
+<%= link_to t("admin.verification.fields.index.create"),
+              new_admin_verification_field_path, class: "button float-right" %>
+
+<h2 class="inline-block"><%= t("admin.verification.fields.index.title") %></h2>
+
+<table>
+  <thead>
+    <tr>
+      <th scope="col"><%= t("admin.verification.fields.index.name")%></th>
+      <th scope="col"><%= t("admin.verification.fields.index.controller")%></th>
+      <th scope="col"><%= t("admin.verification.fields.index.label")%></th>
+      <th scope="col"><%= t("admin.verification.fields.index.required")%></th>
+      <th scope="col" class="small-4"><%= t("admin.actions.actions")%></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render partial: "field", collection: @fields %>
+  </tbody>
+</table>

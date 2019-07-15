@@ -1,0 +1,47 @@
+<%= render "shared/globalize_locales", resource: @field %>
+
+<%= translatable_form_for [:admin, @field] do |f| %>
+
+  <%= render "shared/errors", resource: @field %>
+
+  <div class="row">
+    <%= f.translatable_fields do |translations_form| %>
+      <div class="small-12 column">
+        <%= translations_form.text_field :label %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <div class="small-12 column">
+      <%= f.text_field :name %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 column">
+      <%= f.text_field :controller %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 column">
+      <%= f.number_field :position %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 column">
+    <%= f.label :required do %>
+      <%= f.check_box :required %>
+    <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 column">
+      <%= f.submit class: "button success expanded margin-top",
+                   value: t("admin.verification.fields.#{admin_submit_action(@field)}.submit_button") %>
+    </div>
+  </div>
+<% end %>
