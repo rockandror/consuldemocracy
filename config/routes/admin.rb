@@ -169,6 +169,9 @@ namespace :admin do
   resources :verifications, controller: :verifications, only: :index do
     get :search, on: :collection
   end
+  namespace :verification do
+    resources :fields
+  end
 
   resource :activity, controller: :activity, only: :show
 
