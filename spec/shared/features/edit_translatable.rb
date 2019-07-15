@@ -444,6 +444,8 @@ def update_button_text
     "Save group"
   when "Budget::Heading"
     "Save heading"
+  when "Verification::Field"
+    "Update field"
   else
     "Save changes"
   end
