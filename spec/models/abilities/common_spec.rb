@@ -97,6 +97,8 @@ describe Abilities::Common do
 
   it { should_not be_able_to(:manage, LocalCensusRecord) }
 
+  it { should_not be_able_to(:manage, Verification::Field) }
+
   describe "flagging content" do
     it { should be_able_to(:flag, debate)   }
     it { should be_able_to(:unflag, debate) }
