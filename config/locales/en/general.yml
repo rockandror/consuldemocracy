@@ -199,6 +199,7 @@ en:
     image: Image
     local_census_record: Local Census Record
     local_census_records/import: Local Census Records Import
+    verification/field: field
   geozones:
     none: All city
   layouts:

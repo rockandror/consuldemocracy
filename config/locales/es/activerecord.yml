@@ -128,6 +128,9 @@ es:
       local_census_record:
         one: Registro del censo local
         other: Registros del censo local
+      verification/field:
+        one: Field
+        others: Fields
     attributes:
       administrator:
         description: Descripción
@@ -381,6 +384,13 @@ es:
         document_number: Número de documento
         date_of_birth: Fecha de nacimiento
         postal_code: Código postal
+      verification/field:
+        controller: Controlador
+        name: Nombre
+        position: Posición
+        required: Requerido?
+      verification/field/translation:
+        label: Etiqueta
     errors:
       models:
         user:
