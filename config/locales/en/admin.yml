@@ -1295,6 +1295,7 @@ en:
       setting_status: Status
       setting_value: Value
       no_description: "No description"
+      restart_info: "Note: For the changes made in this section to take effect, the application must be restarted."
     shared:
       true_value: "Yes"
       false_value: "No"
