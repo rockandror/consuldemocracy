@@ -54,6 +54,8 @@ class Admin::SettingsController < Admin::BaseController
       all_settings = Setting.all.group_by { |setting| setting.type }
       if parent_key == "social"
         [all_settings["social.facebook"]] + [all_settings["social.twitter"]] + [all_settings["social.google"]]
+      elsif parent_key == "advanced"
+        [all_settings["advanced.auth"]]
       else
         all_settings[params[:id]]
       end

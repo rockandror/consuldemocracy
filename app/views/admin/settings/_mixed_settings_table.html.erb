@@ -17,7 +17,7 @@
           </span>
         </td>
 
-        <% if social_feature?(setting) %>
+        <% if social_feature?(setting) || advanced_feature?(setting) %>
           <td>
             <% if setting.enabled? %>
               <span class="enabled">
