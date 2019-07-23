@@ -135,6 +135,9 @@ class Setting < ApplicationRecord
         "uploads.documents.max_amount": 3,
         "uploads.documents.max_size": 3,
         "uploads.documents.content_types": "application/pdf",
+        "advanced.auth.http_basic_auth": nil,
+        "advanced.auth.http_basic_username": nil,
+        "advanced.auth.http_basic_password": nil,
         # Names for the moderation console, as a hint for moderators
         # to know better how to assign users with official positions
         "official_level_1_name": I18n.t("seeds.settings.official_level_1_name"),

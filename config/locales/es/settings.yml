@@ -179,3 +179,11 @@ es:
         key_description: "Key necesaria para configurar el registro por Google"
         secret: "Secret Google"
         secret_description: "Secret necesario para configurar el registro por Google"
+    advanced:
+      auth:
+        http_basic_auth: "Autenticación básica por http"
+        http_basic_auth_description: "Permitir Activar/Desactivar la autenticación básica po http"
+        http_basic_username: "Usuario para la autenticación básica por http"
+        http_basic_username_description: "Permitir setear el Usuario"
+        http_basic_password: "Contraseña para la autenticación básica por http"
+        http_basic_password_description: "Permitir setear la Contraseña"

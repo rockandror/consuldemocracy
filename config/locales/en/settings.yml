@@ -179,3 +179,11 @@ en:
         key_description: "Necessary key to configure the registration via Google"
         secret: "Secret Google"
         secret_description: "Necessary Secret to configure the registration via Google"
+    advanced:
+      auth:
+        http_basic_auth: "Http basic authentication"
+        http_basic_auth_description: "Allow Enable/Disable http basic authentication"
+        http_basic_username: "Http basic authentication Username"
+        http_basic_username_description: "Allow set Username"
+        http_basic_password: "Http basic authentication Password"
+        http_basic_password_description: "Allow set Password"
