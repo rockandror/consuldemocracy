@@ -1336,6 +1336,10 @@ en:
           facebook: "Facebook"
           twitter: "Twitter"
           google: "Google"
+        advanced:
+          title: "Advanced Configuration"
+          description: "Allow update advanced configuration"
+          auth: "Http basic authentication"
       setting: Feature
       setting_actions: Actions
       setting_name: Setting
