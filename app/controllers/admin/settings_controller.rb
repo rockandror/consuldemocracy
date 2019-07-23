@@ -8,7 +8,7 @@ class Admin::SettingsController < Admin::BaseController
                 :poster_feature_short_title_setting, :poster_feature_description_setting
 
   def index
-    @settings_sections = ["configuration", "process", "feature", "map", "uploads", "proposals", "social"].freeze
+    @settings_sections = ["configuration", "process", "feature", "map", "uploads", "proposals", "social", "advanced"].freeze
   end
 
   def update
