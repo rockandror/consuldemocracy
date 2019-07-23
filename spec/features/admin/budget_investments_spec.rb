@@ -1575,7 +1575,7 @@ describe "Admin budget investments" do
 
         click_link("Next")
 
-        expect(page).to have_link("Previous")
+        expect(page).to have_link("Previous", wait: 3)
       end
     end
   end
