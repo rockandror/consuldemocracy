@@ -57,6 +57,8 @@ class Admin::SettingsController < Admin::BaseController
         [all_settings["remote_census.general"]] + [all_settings["remote_census.request"]] + [all_settings["remote_census.response"]]
       when "social"
         [all_settings["social.facebook"]] + [all_settings["social.twitter"]] + [all_settings["social.google"]]
+      when "advanced"
+        [all_settings["advanced.auth"]]
       else
         all_settings[group]
       end
