@@ -1288,6 +1288,10 @@ es:
           facebook: "Facebook"
           twitter: "Twitter"
           google: "Google"
+        advanced:
+          title: "Configuración Avanzada"
+          description: "Permitir actualizar las configuraciones avanzadas"
+          auth: "Autenticación básica por http"
       setting: Funcionalidad
       setting_actions: Acciones
       setting_name: Configuración
