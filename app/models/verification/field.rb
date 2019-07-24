@@ -11,6 +11,8 @@ class Verification::Field < ApplicationRecord
   validates :position, presence: true
   validate  :handlers_exists, if: -> { handlers.present? }
 
+  scope :required, -> { where(required: true) }
+
   def handlers=(handlers)
     handlers = handlers.split(",") if handlers.is_a?(String)
     handlers = [handlers]          if handlers.is_a?(Symbol)
