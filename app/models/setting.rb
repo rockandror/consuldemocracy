@@ -143,6 +143,7 @@ class Setting < ApplicationRecord
         "advanced.auth.http_basic_auth": nil,
         "advanced.auth.http_basic_username": nil,
         "advanced.auth.http_basic_password": nil,
+        "advanced.tracking.rollbar_server_token": nil,
         # Names for the moderation console, as a hint for moderators
         # to know better how to assign users with official positions
         "official_level_1_name": I18n.t("seeds.settings.official_level_1_name"),
