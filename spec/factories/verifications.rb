@@ -74,4 +74,9 @@ FactoryBot.define do
       required true
     end
   end
+
+  factory :verification_process, class: Verification::Process do
+    user
+    initialize_with { new(attributes) }
+  end
 end
