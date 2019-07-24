@@ -58,7 +58,7 @@ class Admin::SettingsController < Admin::BaseController
       when "social"
         [all_settings["social.facebook"]] + [all_settings["social.twitter"]] + [all_settings["social.google"]]
       when "advanced"
-        [all_settings["advanced.auth"]]
+        [all_settings["advanced.auth"]] + [all_settings["advanced.tracking"]]
       else
         all_settings[group]
       end
