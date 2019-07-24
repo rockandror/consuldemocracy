@@ -1330,6 +1330,7 @@ en:
           title: "Advanced Configuration"
           description: "Allow update advanced configuration"
           auth: "Http basic authentication"
+          tracking: "Error tracking"
       setting: Feature
       setting_actions: Actions
       setting_name: Setting
