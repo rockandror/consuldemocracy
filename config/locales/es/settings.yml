@@ -225,3 +225,6 @@ es:
         http_basic_username_description: "Permitir setear el Usuario"
         http_basic_password: "Contraseña para la autenticación básica por http"
         http_basic_password_description: "Permitir setear la Contraseña"
+      tracking:
+        rollbar_server_token: "Rollbar server token"
+        rollbar_server_token_description: "Rollbar server token Descripción"

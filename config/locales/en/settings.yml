@@ -225,3 +225,6 @@ en:
         http_basic_username_description: "Allow set Username"
         http_basic_password: "Http basic authentication Password"
         http_basic_password_description: "Allow set Password"
+      tracking:
+        rollbar_server_token: "Rollbar server token"
+        rollbar_server_token_description: "Rollbar server token Description"
