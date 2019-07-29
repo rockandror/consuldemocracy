@@ -108,6 +108,11 @@ describe "Admin settings" do
 
       expect(page).to have_content "Map configuration"
       expect(page).to have_css("#edit_setting_#{setting.id}")
+      expect(page).to have_content "Latitude"
+      expect(page).to have_content "Longitude"
+      expect(page).to have_content "Zoom"
+      expect(page).to have_content "TMS(Tile Map Service) Provider"
+      expect(page).to have_content "Attribution from TMS Provider"
     end
 
     scenario "Should display uploads settings section" do
