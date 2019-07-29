@@ -119,6 +119,10 @@ es:
       longitude_description: "Longitud para mostrar la posición del mapa"
       zoom: "Zoom"
       zoom_description: "Zoom para mostrar la posición del mapa"
+      tiles_provider: "Proveedor de las especificaciones cartográficas - TMS(Tile Map Service)"
+      tiles_provider_description: "Valor de Ejemplo: '//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'"
+      tiles_provider_attribution: "Atribución al Proveedor de las especificaciones cartográficas - TMS(Tile Map Service)"
+      tiles_provider_attribution_description: "Valor de ejemplo: '&copy; <a href=\"http://osm.org/copyright\">OpenStreetMap</a> contributors'"
     process:
       debates: "Debates"
       debates_description: "El espacio de debates ciudadanos está dirigido a que cualquier persona pueda exponer temas que le preocupan y sobre los que quiera compartir puntos de vista con otras personas"
