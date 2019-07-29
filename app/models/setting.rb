@@ -115,6 +115,8 @@ class Setting < ApplicationRecord
         "map.latitude": 51.48,
         "map.longitude": 0.0,
         "map.zoom": 10,
+        "map.tiles_provider": nil,
+        "map.tiles_provider_attribution": nil,
         "process.debates": true,
         "process.proposals": true,
         "process.polls": true,
