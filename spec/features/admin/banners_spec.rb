@@ -132,7 +132,7 @@ describe "Admin banners magement" do
     click_button "Save changes"
     click_link "Edit banner"
 
-    expect(page).to have_link "Français"
+    expect(page).to have_link "Français", wait: 3
     expect(page).not_to have_link "English"
     expect(page).to have_field "Title", with: "En Français"
   end
