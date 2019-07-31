@@ -232,3 +232,18 @@ en:
       tracking:
         rollbar_server_token: "Rollbar server token"
         rollbar_server_token_description: "This token will give the application access to your Rollbar account."
+    smtp:
+      address: "SMTP Host"
+      address_description: "Configure SMTP Host. Example: 'smtp.example.com'"
+      port: "SMTP Port"
+      port_description: "Configure SMTP Port. Example: 587"
+      domain: "Domain"
+      domain_description: "Domain to allow configure SMTP. Example: 'example.com'"
+      username: "SMTP User"
+      username_description: "Configure SMTP User. Example: 'username'"
+      password: "SMTP Password"
+      password_description: "Configure SMTP Password. Example: 'password'"
+      authentication: "SMTP Authentication"
+      authentication_description: "Configure SMTP Authentication kind. Example: 'plain'"
+      enable_starttls_auto: "Enable SMTP TLS"
+      enable_starttls_auto_description: "Allow Enable TLS SMTP configuration."
