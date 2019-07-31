@@ -157,6 +157,27 @@ describe "Admin settings" do
       expect(page).to have_css("#edit_setting_#{setting.id}")
     end
 
+    scenario "Should display smtp settings section" do
+      setting = Setting.create(key: "smtp.setting_sample")
+      admin = create(:administrator).user
+      login_as(admin)
+      visit admin_settings_path
+      within "#smtp-section" do
+        click_link "Configure"
+      end
+
+      expect(page).to have_content "SMTP Configuration"
+      expect(page).to have_content "SMTP Host"
+      expect(page).to have_content "SMTP Port"
+      expect(page).to have_content "Domain"
+      expect(page).to have_content "SMTP User"
+      expect(page).to have_content "SMTP Password"
+      expect(page).to have_content "SMTP Authentication"
+      expect(page).to have_content "Enable SMTP TLS"
+      expect(page).to have_content "Note: For the changes made in this section to take effect, the application must be restarted."
+      expect(page).to have_css("#edit_setting_#{setting.id}")
+    end
+
   end
 
   describe "Update map" do

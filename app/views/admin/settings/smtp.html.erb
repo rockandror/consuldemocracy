@@ -1,0 +1,6 @@
+<%= back_link_to %>
+<h2><%= t("admin.settings.index.smtp.title") %></h2>
+<div class="callout primary">
+  <%= t("admin.settings.restart_info") %>
+</div>
+<%= render "mixed_settings_table", settings: @settings %>

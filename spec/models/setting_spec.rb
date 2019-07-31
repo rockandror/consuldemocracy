@@ -62,6 +62,11 @@ describe Setting do
       configuration_setting = Setting.create(key: "social.social_name.sample_setting")
       expect(configuration_setting.type).to eq "social.social_name"
     end
+
+    it "returns the key prefix for 'smtp' settings" do
+      map_setting = Setting.create(key: "smtp.whatever")
+      expect(map_setting.type).to eq "smtp"
+    end
   end
 
   describe "#enabled?" do
