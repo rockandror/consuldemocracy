@@ -43,6 +43,10 @@ describe "Admin settings" do
     expect(page).to have_content "Registration with social networks"
     expect(page).to have_content "Allow users to sign up with social networks (Twitter, Facebook, Google)"
     expect(page).to have_link("Configure", href: admin_setting_path("social"))
+
+    expect(page).to have_content "Languages and Time Zone"
+    expect(page).to have_content "Allow set default locale, available locales and time zone"
+    expect(page).to have_link("Configure", href: admin_setting_path("regional"))
   end
 
   scenario "Update" do
