@@ -10,7 +10,7 @@ class Setting < ApplicationRecord
   def type
     if %w[feature process proposals map html homepage uploads smtp].include? prefix
       prefix
-    elsif %w[remote_census social advanced].include? prefix
+    elsif %w[remote_census social advanced regional].include? prefix
       key.rpartition(".").first
     else
       "configuration"
