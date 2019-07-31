@@ -17,7 +17,7 @@
           </span>
         </td>
 
-        <% if social_feature?(setting) %>
+        <% if social_feature?(setting) || regional_feature?(setting) %>
           <td colspan="2">
             <% if setting.enabled? %>
               <span class="enabled small-6 column">
@@ -37,7 +37,17 @@
         <% else %>
           <td colspan="2">
             <%= form_for(setting, url: admin_setting_path(setting), html: { id: "edit_#{dom_id(setting)}"}) do |f| %>
-              <%= f.text_area :value, label: false, id: dom_id(setting), lines: 1, class: "small-6 column" %>
+              <% if regional_setting?(setting) %>
+                <div class="small-6 column">
+                  <% if setting.key == "regional.time_zone.key" %>
+                    <%= f.select :value, time_zone_options_for_select(Setting["regional.time_zone.key"], ActiveSupport::TimeZone.all), label: false, id: dom_id(setting) %>
+                  <% else %>
+                    <%= f.select :value, options_for_select(options_for_default_locale, Setting["regional.default_locale.key"]), label: false, id: dom_id(setting) %>
+                  <% end %>
+                </div>
+              <% else %>
+                <%= f.text_area :value, label: false, id: dom_id(setting), lines: 1, class: "small-6 column" %>
+              <% end %>
               <div class="small-6 column">
                 <%= f.submit(t("admin.settings.index.update_setting"), class: "button hollow expanded") %>
               </div>
