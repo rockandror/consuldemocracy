@@ -217,3 +217,7 @@ es:
         key_description: "API Key para configurar el registro por Google"
         secret: "Secret Token Google"
         secret_description: "Secret token para configurar el registro por Google"
+    regional:
+      default_locale:
+        key: "Idioma por defecto"
+        key_description: "Definir el idioma por defecto de la aplicación"
