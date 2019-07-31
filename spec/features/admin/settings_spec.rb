@@ -47,6 +47,10 @@ describe "Admin settings" do
     expect(page).to have_content "Advanced Configuration"
     expect(page).to have_content "Allow update advanced configuration"
     expect(page).to have_link("Configure", href: admin_setting_path("advanced"))
+
+    expect(page).to have_content "SMTP Configuration"
+    expect(page).to have_content "Allow define SMTP configuration to send emails."
+    expect(page).to have_link("Configure", href: admin_setting_path("smtp"))
   end
 
   scenario "Update" do

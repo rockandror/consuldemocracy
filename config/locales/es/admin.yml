@@ -1342,6 +1342,9 @@ es:
           description: "Permitir actualizar las configuraciones avanzadas"
           auth: "Autenticación básica por http"
           tracking: "Monitorización de errores"
+        smtp:
+          title: "Configuración SMTP"
+          description: "Permitir actualizar la configuración SMTP para el envio de emails."
       setting: Funcionalidad
       setting_actions: Acciones
       setting_name: Configuración
