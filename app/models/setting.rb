@@ -153,6 +153,8 @@ class Setting < ApplicationRecord
         "smtp.password": nil,
         "smtp.authentication": nil,
         "smtp.enable_starttls_auto": nil,
+        # Languages and Time Zone
+        "regional.default_locale.key": "en",
         # Names for the moderation console, as a hint for moderators
         # to know better how to assign users with official positions
         "official_level_1_name": I18n.t("seeds.settings.official_level_1_name"),
