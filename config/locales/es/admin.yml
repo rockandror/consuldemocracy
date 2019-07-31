@@ -1327,6 +1327,9 @@ es:
           facebook: "Facebook"
           twitter: "Twitter"
           google: "Google"
+        regional:
+          title: "Idiomas y Zona Horaria"
+          description: "Permitir definir el idioma por defecto, los idiomas disponibles y la zona horaria."
       setting: Funcionalidad
       setting_actions: Acciones
       setting_name: Configuración

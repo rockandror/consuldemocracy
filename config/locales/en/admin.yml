@@ -1326,6 +1326,9 @@ en:
           facebook: "Facebook"
           twitter: "Twitter"
           google: "Google"
+        regional:
+          title: "Languages and Time Zone"
+          description: "Allow set default locale, available locales and time zone"
       setting: Feature
       setting_actions: Actions
       setting_name: Setting
