@@ -62,6 +62,11 @@ describe Setting do
       configuration_setting = Setting.create(key: "social.social_name.sample_setting")
       expect(configuration_setting.type).to eq "social.social_name"
     end
+
+    it "returns 'regional.regional_section' for 'regional' settings" do
+      configuration_setting = Setting.create(key: "regional.regional_name.sample_setting")
+      expect(configuration_setting.type).to eq "regional.regional_name"
+    end
   end
 
   describe "#enabled?" do

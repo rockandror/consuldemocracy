@@ -12,4 +12,9 @@ module SettingsHelper
     key = setting.key.split(".")
     key.first == "social" && key.last == "login"
   end
+
+  def regional_feature?(setting)
+    key = setting.key.split(".")
+    key.first == "regional" && key.second == "available_locale"
+  end
 end

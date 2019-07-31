@@ -17,7 +17,7 @@
           </span>
         </td>
 
-        <% if social_feature?(setting) %>
+        <% if social_feature?(setting) || regional_feature?(setting) %>
           <td>
             <% if setting.enabled? %>
               <span class="enabled">
@@ -36,9 +36,15 @@
           </td>
         <% else %>
           <%= form_for(setting, url: admin_setting_path(setting), html: { id: "edit_#{dom_id(setting)}"}) do |f| %>
-            <td>
-              <%= f.text_area :value, label: false, id: dom_id(setting), lines: 1 %>
-            </td>
+            <% if setting.key == "regional.time_zone.key" %>
+              <td>
+                <%= f.select :value, time_zone_options_for_select(Setting["regional.time_zone.key"], ActiveSupport::TimeZone.all), label: false, id: dom_id(setting) %>
+              </td>
+            <% else %>
+              <td>
+                <%= f.text_area :value, label: false, id: dom_id(setting), lines: 1 %>
+              </td>
+            <% end %>
             <td>
               <%= f.submit(t("admin.settings.index.update_setting"), class: "button hollow expanded") %>
             </td>
