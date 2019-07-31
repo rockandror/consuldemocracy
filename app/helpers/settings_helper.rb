@@ -18,7 +18,12 @@ module SettingsHelper
     key.first == "advanced" && key.last == "http_basic_auth"
   end
 
+  def smtp_feature?(setting)
+    key = setting.key.split(".")
+    key.first == "smtp" && key.last == "enable_starttls_auto"
+  end
+
   def is_feature?(setting)
-    social_feature?(setting) || advanced_feature?(setting)
+    social_feature?(setting) || advanced_feature?(setting) || smtp_feature?(setting)
   end
 end
