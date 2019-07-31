@@ -179,3 +179,7 @@ es:
         key_description: "Key necesaria para configurar el registro por Google"
         secret: "Secret Google"
         secret_description: "Secret necesario para configurar el registro por Google"
+    regional:
+      default_locale:
+        key: "Idioma por defecto"
+        key_description: "Definir el idioma por defecto de la aplicación"
