@@ -167,6 +167,7 @@ class Setting < ApplicationRecord
         "regional.available_locale.val": true,
         "regional.available_locale.zh-CN": true,
         "regional.available_locale.zh-TW": true,
+        "regional.time_zone.key": "Madrid",
         # Names for the moderation console, as a hint for moderators
         # to know better how to assign users with official positions
         "official_level_1_name": I18n.t("seeds.settings.official_level_1_name"),

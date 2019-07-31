@@ -276,3 +276,6 @@ en:
         zh-CN_description: "Activate the Chinese language in the application"
         zh-TW: "Taiwanese"
         zh-TW_description: "Activate the Taiwanese language in the application"
+      time_zone:
+        key: "Time Zone"
+        key_description: "Define the Time Zone of the application"
