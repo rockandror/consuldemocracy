@@ -43,6 +43,10 @@ describe "Admin settings" do
     expect(page).to have_content "Registration with social networks"
     expect(page).to have_content "Allow users to sign up with social networks (Twitter, Facebook, Google)"
     expect(page).to have_link("Configure", href: admin_setting_path("social"))
+
+    expect(page).to have_content "SMTP Configuration"
+    expect(page).to have_content "Allow define SMTP configuration to send emails."
+    expect(page).to have_link("Configure", href: admin_setting_path("smtp"))
   end
 
   scenario "Update" do

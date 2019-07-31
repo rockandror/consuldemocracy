@@ -1336,6 +1336,9 @@ en:
           facebook: "Facebook"
           twitter: "Twitter"
           google: "Google"
+        smtp:
+          title: "SMTP Configuration"
+          description: "Allow define SMTP configuration to send emails."
       setting: Feature
       setting_actions: Actions
       setting_name: Setting
