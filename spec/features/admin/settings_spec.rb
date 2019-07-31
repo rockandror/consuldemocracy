@@ -176,6 +176,17 @@ describe "Admin settings" do
       expect(page).to have_css("#edit_setting_#{setting.id}")
     end
 
+    scenario "Should display regional settings section" do
+      setting = Setting.create(key: "regional.default_locale.setting_sample")
+
+      visit admin_setting_path("regional")
+
+      expect(page).to have_content "Application default locale"
+      expect(page).to have_content "Application available locales"
+      expect(page).to have_content "Time Zone"
+      expect(page).to have_css("#edit_setting_#{setting.id}")
+    end
+
   end
 
   describe "Update map" do

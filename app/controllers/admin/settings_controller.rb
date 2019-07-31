@@ -59,6 +59,8 @@ class Admin::SettingsController < Admin::BaseController
         [all_settings["social.facebook"]] + [all_settings["social.twitter"]] + [all_settings["social.google"]]
       when "advanced"
         [all_settings["advanced.auth"]] + [all_settings["advanced.tracking"]]
+      when "regional"
+        [all_settings["regional.default_locale"]] + [all_settings["regional.available_locale"]] + [all_settings["regional.time_zone"]]
       else
         all_settings[group]
       end

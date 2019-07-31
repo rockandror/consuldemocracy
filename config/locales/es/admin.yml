@@ -1300,6 +1300,9 @@ es:
         regional:
           title: "Idiomas y Zona Horaria"
           description: "Permitir definir el idioma por defecto, los idiomas disponibles y la zona horaria."
+          default_locale: "Idioma por defecto de la aplicación"
+          available_locale: "Idiomas disponibles de la aplicación"
+          timezone: "Zona horaria"
       setting: Funcionalidad
       setting_actions: Acciones
       setting_name: Configuración
