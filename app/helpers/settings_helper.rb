@@ -13,4 +13,8 @@ module SettingsHelper
     key.first == "social" && key.last == "login"
   end
 
+  def smtp_feature?(setting)
+    key = setting.key.split(".")
+    key.first == "smtp" && key.last == "enable_starttls_auto"
+  end
 end
