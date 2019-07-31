@@ -1,0 +1,9 @@
+<%= back_link_to %>
+<h2><%= t("admin.settings.index.regional.title") %></h2>
+<div class="callout primary">
+  <%= t("admin.settings.restart_info") %>
+</div>
+<% @settings.each do |setting_group| %>
+  <h3><%= t("admin.settings.index.regional.#{setting_group.first.key.split(".").second}") %></h3>
+  <%= render "mixed_settings_table", settings: setting_group %>
+<% end %>

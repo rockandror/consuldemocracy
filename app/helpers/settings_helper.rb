@@ -24,6 +24,22 @@ module SettingsHelper
   end
 
   def is_feature?(setting)
-    social_feature?(setting) || advanced_feature?(setting) || smtp_feature?(setting)
+    social_feature?(setting) || advanced_feature?(setting) || smtp_feature?(setting) || regional_feature?(setting)
   end
+
+  def regional_feature?(setting)
+    key = setting.key.split(".")
+    key.first == "regional" && key.second == "available_locale"
+  end
+
+  def options_for_default_locale
+    I18n.available_locales.map do |locale|
+      [name_for_locale(locale), locale]
+    end
+  end
+
+  def regional_setting?(setting)
+    setting.type.rpartition(".").first == "regional"
+  end
+
 end
