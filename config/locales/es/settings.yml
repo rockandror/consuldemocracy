@@ -238,3 +238,6 @@ es:
         zh-CN_description: "Activar el idioma Chino en la aplicación."
         zh-TW: "Taiwanés"
         zh-TW_description: Activar el idioma Taiwanés en la aplicación.
+      time_zone:
+        key: "Zona horaria"
+        key_description: "Selecciona la zona horaria de la aplicación"
