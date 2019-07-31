@@ -249,3 +249,7 @@ es:
       authentication_description: "Configura el mecanismo de autenticación del servidor SMTP. Ejemplo: 'plain'"
       enable_starttls_auto: "Activar TLS para SMTP"
       enable_starttls_auto_description: "Activar TLS del servidor SMTP."
+    regional:
+      default_locale:
+        key: "Idioma por defecto"
+        key_description: "Definir el idioma por defecto de la aplicación"
