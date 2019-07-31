@@ -59,6 +59,7 @@ module Consul
 
     config.after_initialize do
       Regional::Locales.load_default_and_available_locales
+      Regional::Timezone.load_timezone
       Globalize.set_fallbacks_to_all_available_locales
     end
 
