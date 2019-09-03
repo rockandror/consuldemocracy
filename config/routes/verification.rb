@@ -6,4 +6,8 @@ scope module: :verification do
   resource :letter, controller: "letter", only: [:new, :create, :show, :edit, :update]
 end
 
+namespace :verification do
+  resource :process, controller: "process", only: [:new, :create]
+end
+
 resource :verification, controller: "verification", only: [:show]
