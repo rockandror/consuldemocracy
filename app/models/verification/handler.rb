@@ -39,6 +39,7 @@ class Verification::Handler
   def self.inherited(receiver)
     receiver.extend(ClassDSLMethods)
     receiver.include(InstanceDSLMethods)
+    receiver.include(ActiveModel::Model)
   end
 end
 Dir[Rails.root.join("app/models/verification/handlers/*.rb")].each {|file| require_dependency file }
