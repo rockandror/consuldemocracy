@@ -31,6 +31,9 @@ describe Abilities::Everyone do
   it { should_not be_able_to(:create, LocalCensusRecords::Import) }
   it { should_not be_able_to(:show, LocalCensusRecords::Import) }
 
+  it { should_not be_able_to(:new, Verification::Process) }
+  it { should_not be_able_to(:create, Verification::Process) }
+
   context "when accessing poll results" do
     let(:results_enabled) { true }
     let(:poll) { create(:poll, :expired, results_enabled: results_enabled) }
