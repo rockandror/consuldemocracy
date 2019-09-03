@@ -126,6 +126,7 @@ module Abilities
       can [:update, :destroy], Topic, author_id: user.id
 
       can :disable_recommendations, [Debate, Proposal]
+      can :create, Verification::Process
     end
   end
 end
