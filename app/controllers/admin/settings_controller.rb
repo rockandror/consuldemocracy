@@ -8,22 +8,13 @@ class Admin::SettingsController < Admin::BaseController
                 :poster_feature_short_title_setting, :poster_feature_description_setting
 
   def index
-    all_settings = Setting.all.group_by { |setting| setting.type }
-    @configuration_settings = all_settings["configuration"]
-    @feature_settings = all_settings["feature"]
-    @participation_processes_settings = all_settings["process"]
-    @map_configuration_settings = all_settings["map"]
-    @proposals_settings = all_settings["proposals"]
-    @remote_census_general_settings = all_settings["remote_census.general"]
-    @remote_census_request_settings = all_settings["remote_census.request"]
-    @remote_census_response_settings = all_settings["remote_census.response"]
-    @uploads_settings = all_settings["uploads"]
+    @settings_sections = ["configuration", "process", "feature", "map", "uploads", "proposals", "remote_census"].freeze
   end
 
   def update
     @setting = Setting.find(params[:id])
     @setting.update(settings_params)
-    redirect_to request_referer, notice: t("admin.settings.flash.updated")
+    redirect_to request.referer, notice: t("admin.settings.flash.updated")
   end
 
   def update_map

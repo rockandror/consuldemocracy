@@ -1,0 +1,12 @@
+<tr id="<%= setting_section %>-section">
+  <td class="small-9">
+    <strong><%= t("admin.settings.index.#{setting_section}.title") %></strong>
+    <br>
+    <span class="small">
+      <%= t("admin.settings.index.#{setting_section}.description") %>
+    </span>
+  </td>
+  <td class="small-3">
+    <%= link_to t("admin.actions.configure"), admin_setting_path("#{setting_section}"), class: "button hollow" %>
+  </td>
+</tr>
