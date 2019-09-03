@@ -92,7 +92,7 @@ namespace :admin do
     get :search, on: :collection
   end
 
-  resources :settings, only: [:index, :update]
+  resources :settings, only: [:index, :update, :show]
   put :update_map, to: "settings#update_map"
   put :update_content_types, to: "settings#update_content_types"
 

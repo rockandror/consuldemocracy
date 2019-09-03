@@ -34,6 +34,12 @@ class Admin::SettingsController < Admin::BaseController
     redirect_to admin_settings_path, notice: t("admin.settings.flash.updated")
   end
 
+  def show
+    @settings = extract_settings(params[:id])
+
+    render params[:id]
+  end
+
   private
 
     def settings_params
@@ -44,8 +50,12 @@ class Admin::SettingsController < Admin::BaseController
       params.permit(:jpg, :png, :gif, :pdf, :doc, :docx, :xls, :xlsx, :csv, :zip)
     end
 
-    def request_referer
-      return request.referer + params[:setting][:tab] if params[:setting][:tab]
-      request.referer
+    def extract_settings(parent_key)
+      all_settings = Setting.all.group_by { |setting| setting.type }
+      if parent_key == "remote_census"
+        [all_settings["remote_census.general"]] + [all_settings["remote_census.request"]] + [all_settings["remote_census.response"]]
+      else
+        all_settings[params[:id]]
+      end
     end
 end
