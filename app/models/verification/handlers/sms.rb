@@ -2,7 +2,7 @@ class Verification::Handlers::Sms < Verification::Handler
   register_as :sms
   requires_confirmation true
 
-  attr_accessor :user, :confirmation_code
+  attr_accessor :user, :confirmation_code, :phone
 
   validates :phone, presence: true
   validates :phone, format: { with: /\A[\d \+]+\z/ }
