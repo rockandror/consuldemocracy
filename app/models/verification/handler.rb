@@ -41,3 +41,4 @@ class Verification::Handler
     receiver.include(InstanceDSLMethods)
   end
 end
+Dir[Rails.root.join("app/models/verification/handlers/*.rb")].each {|file| require_dependency file }
