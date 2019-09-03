@@ -2,7 +2,9 @@
   <thead>
     <tr>
       <th><%= t("admin.settings.setting") %></th>
-      <th><%= t("admin.settings.setting_status") %>/<%= t("admin.settings.setting_value") %></th>
+      <% if social_feature?(settings.first) || regional_feature?(settings.first) %>
+        <th><%= t("admin.settings.setting_status") %>/<%= t("admin.settings.setting_value") %></th>
+      <% end %>
       <th><%= t("admin.settings.setting_actions") %></th>
     </tr>
   </thead>
@@ -35,20 +37,20 @@
             <%= render "admin/settings/featured_settings_form", feature: setting %>
           </td>
         <% else %>
-          <%= form_for(setting, url: admin_setting_path(setting), html: { id: "edit_#{dom_id(setting)}"}) do |f| %>
-            <% if setting.key == "regional.time_zone.key" %>
-              <td>
+          <td class="small-6">
+            <%= form_for(setting, url: admin_setting_path(setting), html: { id: "edit_#{dom_id(setting)}"}) do |f| %>
+              <div class="small-12 medium-6 large-8 column">
+              <% if setting.key == "regional.time_zone.key" %>
                 <%= f.select :value, time_zone_options_for_select(Setting["regional.time_zone.key"], ActiveSupport::TimeZone.all), label: false, id: dom_id(setting) %>
-              </td>
-            <% else %>
-              <td>
+              <% else %>
                 <%= f.text_area :value, label: false, id: dom_id(setting), lines: 1 %>
-              </td>
+              <% end %>
+              </div>
+              <div class="small-12 medium-6 large-4 column">
+                <%= f.submit(t("admin.settings.index.update_setting"), class: "button hollow expanded") %>
+              </div>
             <% end %>
-            <td>
-              <%= f.submit(t("admin.settings.index.update_setting"), class: "button hollow expanded") %>
-            </td>
-          <% end %>
+          </td>
         <% end %>
       </tr>
     <% end %>
