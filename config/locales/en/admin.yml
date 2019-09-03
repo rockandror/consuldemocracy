@@ -1245,33 +1245,44 @@ en:
       flash:
         updated: Value updated
       index:
-        title: Settings
-        general: Configuration settings
-        update_setting: Update
-        participation_processes: "Participation processes"
-        images_and_documents: "Images and documents"
-        feature_flags: Features
-        features:
-          enabled: "Feature enabled"
-          disabled: "Feature disabled"
-          enable: "Enable"
-          disable: "Disable"
+        configuration:
+          title: Configuration settings
+          description: List of general configurations to customize the application.
+        process:
+          title: Participation processes
+          description: Selects the participation processes that will be available in the application.
+        uploads:
+          title: Images and documents
+          description: Customize the characteristics of the application attachments.
+        feature:
+          title: Features
+          description: Activates/deactivates the different functionalities offered by the application.
         map:
           title: Map configuration
+          description: Allows you to update the geolocation of the application, and define the zoom of the map that will be shown to users.
           help: Here you can customize the way the map is displayed to users. Drag map marker or click anywhere over the map, set desired zoom and click button "Update".
           flash:
             update: Map configuration updated succesfully.
           form:
             submit: Update
           how_to_enable: 'To show the map to users you must enable "Proposals and budget investments geolocation" on "Features" tab.'
-        dashboard:
+        proposals:
           title: Proposals dashboard
+          description: Allows configuring the main fields to offer users a control panel for their proposals.
         remote_census:
           title: Remote Census configuration
+          description: Allow configure remote census (SOAP)
           how_to_enable: 'To configure remote census (SOAP) you must enable "Configure connection to remote census (SOAP)" on "Features" tab.'
-      remote_census_general_name: General Information
-      remote_census_request_name: Request Data
-      remote_census_response_name: Response Data
+          general: General Information
+          request: Request Data
+          response: Response Data
+        update_setting: Update
+        feature_flags: Features
+        features:
+          enabled: "Feature enabled"
+          disabled: "Feature disabled"
+          enable: "Enable"
+          disable: "Disable"
       setting: Feature
       setting_actions: Actions
       setting_name: Setting

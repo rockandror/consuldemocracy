@@ -1244,33 +1244,44 @@ es:
       flash:
         updated: Valor actualizado
       index:
-        title: Configuración global
-        general: Configuración global
-        update_setting: Actualizar
-        participation_processes: "Procesos de participación"
-        images_and_documents: "Imágenes y documentos"
-        feature_flags: Funcionalidades
-        features:
-          enabled: "Funcionalidad activada"
-          disabled: "Funcionalidad desactivada"
-          enable: "Activar"
-          disable: "Desactivar"
+        configuration:
+          title: Configuración global
+          description: Listado de configuraciones generales para personalizar la aplicación.
+        process:
+          title: Procesos de participación
+          description: Selecciona los procesos de participación que estaran disponibles en la aplicación.
+        uploads:
+          title: Imágenes y documentos
+          description: Personaliza las características de los archivos adjuntos de la aplicación.
+        feature:
+          title: Funcionalidades
+          description: Activa/Desactiva las diferentes funcionalidades que ofrece la aplicación.
         map:
           title: Configuración del mapa
+          description: Permite actualizar la geolocalización de la aplicación, y definir el zoom del mapa que se mostrará a los usuarios.
           help: Aquí puedes personalizar la manera en la que se muestra el mapa a los usuarios. Arrastra el marcador o pulsa sobre cualquier parte del mapa, ajusta el zoom y pulsa el botón 'Actualizar'.
           flash:
             update: La configuración del mapa se ha guardado correctamente.
           form:
             submit: Actualizar
           how_to_enable: 'Para mostrar el mapa a los usuarios se debe de activar "Geolocalización de propuestas y proyectos de gasto" en la pestaña "Funcionalidades".'
-        dashboard:
+        proposals:
           title: Panel de progreso de propuestas
+          description: Permite configurar los principales campos para ofrecer a los usuarios un panel de control para sus propuestas.
         remote_census:
           title: Configuración del Censo Remoto
+          description: Permite configurar la conexión con el Censo Remoto (SOAP)
           how_to_enable: 'Para configurar la conexión con el Censo Remoto (SOAP) se debe activar "Configurar la conexión al censo remoto (SOAP)" en la pestaña "Funcionalidades".'
-      remote_census_general_name: Datos Generales
-      remote_census_request_name: Datos Petición
-      remote_census_response_name: Datos Respuesta
+          general: Datos Generales
+          request: Datos Petición
+          response: Datos Respuesta
+        update_setting: Actualizar
+        feature_flags: Funcionalidades
+        features:
+          enabled: "Funcionalidad activada"
+          disabled: "Funcionalidad desactivada"
+          enable: "Activar"
+          disable: "Desactivar"
       setting: Funcionalidad
       setting_actions: Acciones
       setting_name: Configuración
