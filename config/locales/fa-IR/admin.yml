@@ -945,13 +945,10 @@ fa:
         updated: ارزش به روز شد
       index:
         title: تنظیمات پیکربندی
-        update_setting: به روز رسانی
-        feature_flags: ویژگی ها
-        features:
-          enabled: "ویژگی فعال شده"
-          disabled: "ویژگی غیرفعال شده "
-          enable: "فعال کردن"
-          disable: "غیر فعال کردن"
+        configuration:
+          title: تنظیمات پیکربندی
+        feature:
+          title: ویژگی ها
         map:
           title: پیکربندی نقشه
           help: در اینجا شما می توانید نحوه نمایش نقشه به کاربران را سفارشی کنید. نشانگر نقشه را بکشید یا روی هر نقشه روی نقشه کلیک کنید، زوم مورد نظر را تنظیم کنید و دکمه "بروزرسانی" را کلیک کنید.
@@ -959,6 +956,12 @@ fa:
             update: پیکربندی نقشه با موفقیت به روز شد
           form:
             submit: به روز رسانی
+        update_setting: به روز رسانی
+        features:
+          enabled: "ویژگی فعال شده"
+          disabled: "ویژگی غیرفعال شده "
+          enable: "فعال کردن"
+          disable: "غیر فعال کردن"
       setting_actions: اقدامات
       setting_status: وضعیت ها
       setting_value: "ارزش\n"

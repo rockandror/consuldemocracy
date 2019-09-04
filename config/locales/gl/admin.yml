@@ -1129,13 +1129,10 @@ gl:
         updated: Valor actualizado
       index:
         title: Configuración global
-        update_setting: Actualizar
-        feature_flags: Funcionalidades
-        features:
-          enabled: "Funcionalidade activada"
-          disabled: "Funcionalidade desactivada"
-          enable: "Activar"
-          disable: "Desactivar"
+        configuration:
+          title: Configuración global
+        feature:
+          title: Funcionalidades
         map:
           title: Configuración do mapa
           help: Aquí podes personalizar o xeito en que os e as usuarias ven o mapa. Arrastra o marcador ou preme en calquera parte do mapa, axusta o zoom e preme o botón 'Actualizar'.
@@ -1143,6 +1140,12 @@ gl:
             update: A configuración do mapa gardouse correctamente.
           form:
             submit: Actualizar
+        update_setting: Actualizar
+        features:
+          enabled: "Funcionalidade activada"
+          disabled: "Funcionalidade desactivada"
+          enable: "Activar"
+          disable: "Desactivar"
       setting: Característica
       setting_actions: Accións
       setting_name: Axuste

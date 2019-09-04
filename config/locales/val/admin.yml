@@ -1087,13 +1087,10 @@ val:
         updated: Valor actualitzat
       index:
         title: Configuració global
-        update_setting: Actualitzar
-        feature_flags: Funcionalitats
-        features:
-          enabled: "Funcionalitat activada"
-          disabled: "Funcionalitat desactivada"
-          enable: "Activa"
-          disable: "Desactivar"
+        configuration:
+          title: Configuració global
+        feature:
+          title: Funcionalitats
         map:
           title: Configuració del mapa
           help: Ací pots personalitzar la manera en la que es mostra el mapa als usuaris. Arrastra el marcador o pulsa sobre quansevol part del mapa, ajusta el zoom i polsa el botó 'Actualitzar'.
@@ -1101,6 +1098,12 @@ val:
             update: La configuració del mapa s'ha guardat correctament.
           form:
             submit: Actualitzar
+        update_setting: Actualitzar
+        features:
+          enabled: "Funcionalitat activada"
+          disabled: "Funcionalitat desactivada"
+          enable: "Activa"
+          disable: "Desactivar"
       setting: Característica
       setting_actions: Accions
       setting_name: Configuració

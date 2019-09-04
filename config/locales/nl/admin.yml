@@ -1167,14 +1167,8 @@ nl:
         updated: Value updated
       index:
         title: Configuration settings
-        update_setting: Update
-        participation_processes: "Deelnameprocessen"
-        feature_flags: Features
-        features:
-          enabled: "Feature enabled"
-          disabled: "Feature disabled"
-          enable: "Enable"
-          disable: "Disable"
+        configuration:
+          title: Configuration settings
         map:
           title: Kaart instellingen
           help: Hier kunt u aanpassen hoe de kaart aan deelnemers wordt getoond. Sleep de kaartmarkering of klik ergens op de kaart, stel het gewenste zoomniveau in en klik "Pas aan".
@@ -1183,6 +1177,16 @@ nl:
           form:
             submit: Update
           how_to_enable: 'Om de kaart te tonen aan gebruikers moet "Voorstellen en begroting investeringen geolocation" zijn ingeschakeld op tabblad "Voorzieningen".'
+        feature:
+          title: Features
+        process:
+          title: Deelnameprocessen
+        update_setting: Update
+        features:
+          enabled: "Feature enabled"
+          disabled: "Feature disabled"
+          enable: "Enable"
+          disable: "Disable"
       setting: Functie
       setting_actions: Activiteiten
       setting_name: Instelling
