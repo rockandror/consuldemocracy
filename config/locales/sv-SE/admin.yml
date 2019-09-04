@@ -1084,13 +1084,10 @@ sv:
         updated: Uppdaterat
       index:
         title: Konfigurationsinställningar
-        update_setting: Uppdatera
-        feature_flags: Funktioner
-        features:
-          enabled: "Aktiverad funktion"
-          disabled: "Inaktiverad funktion"
-          enable: "Aktivera"
-          disable: "Inaktivera"
+        configuration:
+          title: Konfigurationsinställningar
+        feature:
+          title: Funktioner
         map:
           title: Kartinställningar
           help: Här kan du anpassa hur kartan visas för användare. Dra kartmarkören eller klicka på kartan, ställ in önskad zoom och klicka på knappen ”Uppdatera”.
@@ -1098,6 +1095,12 @@ sv:
             update: Kartinställningarna har uppdaterats.
           form:
             submit: Uppdatera
+        update_setting: Uppdatera
+        features:
+          enabled: "Aktiverad funktion"
+          disabled: "Inaktiverad funktion"
+          enable: "Aktivera"
+          disable: "Inaktivera"
       setting_actions: Åtgärder
       setting_status: Status
       setting_value: Kostnad
