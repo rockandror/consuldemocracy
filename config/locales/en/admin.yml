@@ -1245,6 +1245,7 @@ en:
       flash:
         updated: Value updated
       index:
+        title: Settings
         configuration:
           title: Configuration settings
           description: List of general configurations to customize the application.
@@ -1277,7 +1278,6 @@ en:
           request: Request Data
           response: Response Data
         update_setting: Update
-        feature_flags: Features
         features:
           enabled: "Feature enabled"
           disabled: "Feature disabled"

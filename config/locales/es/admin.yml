@@ -1244,6 +1244,7 @@ es:
       flash:
         updated: Valor actualizado
       index:
+        title: Configuración global
         configuration:
           title: Configuración global
           description: Listado de configuraciones generales para personalizar la aplicación.
@@ -1276,7 +1277,6 @@ es:
           request: Datos Petición
           response: Datos Respuesta
         update_setting: Actualizar
-        feature_flags: Funcionalidades
         features:
           enabled: "Funcionalidad activada"
           disabled: "Funcionalidad desactivada"
