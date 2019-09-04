@@ -1285,6 +1285,9 @@ es:
         social:
           title: "Registro con Redes sociales"
           description: "Permitir que los usuarios se registren con las Redes sociales (Twitter, Facebook, Google)"
+          facebook: "Facebook"
+          twitter: "Twitter"
+          google: "Google"
       setting: Funcionalidad
       setting_actions: Acciones
       setting_name: Configuración
