@@ -59,12 +59,8 @@ describe "Admin settings" do
 
     scenario "Should display configuration settings section" do
       setting = Setting.create(key: "configuration.setting_sample")
-      admin = create(:administrator).user
-      login_as(admin)
-      visit admin_settings_path
-      within "#configuration-section" do
-        click_link "Configure"
-      end
+
+      visit admin_setting_path("configuration")
 
       expect(page).to have_content "Configuration settings"
       expect(page).to have_css("#edit_setting_#{setting.id}")
@@ -72,12 +68,8 @@ describe "Admin settings" do
 
     scenario "Should display process settings section" do
       setting = Setting.create(key: "process.setting_sample")
-      admin = create(:administrator).user
-      login_as(admin)
-      visit admin_settings_path
-      within "#process-section" do
-        click_link "Configure"
-      end
+
+      visit admin_setting_path("process")
 
       expect(page).to have_content "Participation processes"
       expect(page).to have_css("#edit_setting_#{setting.id}")
@@ -85,12 +77,8 @@ describe "Admin settings" do
 
     scenario "Should display feature settings section" do
       setting = Setting.create(key: "feature.setting_sample")
-      admin = create(:administrator).user
-      login_as(admin)
-      visit admin_settings_path
-      within "#feature-section" do
-        click_link "Configure"
-      end
+
+      visit admin_setting_path("feature")
 
       expect(page).to have_content "Features"
       expect(page).to have_css("#edit_setting_#{setting.id}")
@@ -99,12 +87,8 @@ describe "Admin settings" do
     scenario "Should display map settings section" do
       Setting["feature.map"] = true
       setting = Setting.create(key: "map.setting_sample")
-      admin = create(:administrator).user
-      login_as(admin)
-      visit admin_settings_path
-      within "#map-section" do
-        click_link "Configure"
-      end
+
+      visit admin_setting_path("map")
 
       expect(page).to have_content "Map configuration"
       expect(page).to have_css("#edit_setting_#{setting.id}")
@@ -112,12 +96,8 @@ describe "Admin settings" do
 
     scenario "Should display uploads settings section" do
       setting = Setting.create(key: "uploads.setting_sample")
-      admin = create(:administrator).user
-      login_as(admin)
-      visit admin_settings_path
-      within "#uploads-section" do
-        click_link "Configure"
-      end
+
+      visit admin_setting_path("uploads")
 
       expect(page).to have_content "Images and documents"
       expect(page).to have_css("#edit_setting_#{setting.id}")
@@ -125,12 +105,8 @@ describe "Admin settings" do
 
     scenario "Should display proposals settings section" do
       setting = Setting.create(key: "proposals.setting_sample")
-      admin = create(:administrator).user
-      login_as(admin)
-      visit admin_settings_path
-      within "#proposals-section" do
-        click_link "Configure"
-      end
+
+      visit admin_setting_path("proposals")
 
       expect(page).to have_content "Proposals dashboard"
       expect(page).to have_css("#edit_setting_#{setting.id}")
@@ -139,12 +115,8 @@ describe "Admin settings" do
     scenario "Should display remote_census settings section" do
       Setting["feature.remote_census"] = true
       setting = Setting.create(key: "remote_census.response.setting_sample")
-      admin = create(:administrator).user
-      login_as(admin)
-      visit admin_settings_path
-      within "#remote_census-section" do
-        click_link "Configure"
-      end
+
+      visit admin_setting_path("remote_census")
 
       expect(page).to have_content "Remote Census configuration"
       expect(page).to have_css("#edit_setting_#{setting.id}")
@@ -156,12 +128,8 @@ describe "Admin settings" do
 
     scenario "Should not be able when map feature deactivated" do
       Setting["feature.map"] = false
-      admin = create(:administrator).user
-      login_as(admin)
-      visit admin_settings_path
-      within "#map-section" do
-        click_link "Configure"
-      end
+
+      visit admin_setting_path("map")
 
       expect(page).to have_content "To show the map to users you must enable " \
                                    '"Proposals and budget investments geolocation" ' \
@@ -171,12 +139,8 @@ describe "Admin settings" do
 
     scenario "Should be able when map feature activated" do
       Setting["feature.map"] = true
-      admin = create(:administrator).user
-      login_as(admin)
-      visit admin_settings_path
-      within "#map-section" do
-        click_link "Configure"
-      end
+
+      visit admin_setting_path("map")
 
       expect(page).to have_css("#admin-map")
       expect(page).not_to have_content "To show the map to users you must enable " \
@@ -186,12 +150,8 @@ describe "Admin settings" do
 
     scenario "Should show successful notice" do
       Setting["feature.map"] = true
-      admin = create(:administrator).user
-      login_as(admin)
-      visit admin_settings_path
-      within "#map-section" do
-        click_link "Configure"
-      end
+
+      visit admin_setting_path("map")
 
       within "#map-form" do
         click_on "Update"
@@ -202,13 +162,8 @@ describe "Admin settings" do
 
     scenario "Should display marker by default", :js do
       Setting["feature.map"] = true
-      admin = create(:administrator).user
-      login_as(admin)
 
-      visit admin_settings_path
-      within "#map-section" do
-        click_link "Configure"
-      end
+      visit admin_setting_path("map")
 
       expect(find("#latitude", visible: false).value).to eq "51.48"
       expect(find("#longitude", visible: false).value).to eq "0.0"
@@ -216,13 +171,9 @@ describe "Admin settings" do
 
     scenario "Should update marker", :js do
       Setting["feature.map"] = true
-      admin = create(:administrator).user
-      login_as(admin)
 
-      visit admin_settings_path
-      within "#map-section" do
-        click_link "Configure"
-      end
+      visit admin_setting_path("map")
+
       find("#admin-map").click
       within "#map-form" do
         click_on "Update"
@@ -242,12 +193,8 @@ describe "Admin settings" do
     scenario "stores the correct mime types", :js do
       setting = Setting.find_by(key: "uploads.images.content_types")
       setting.update(value: "image/png")
-      admin = create(:administrator).user
-      login_as(admin)
-      visit admin_settings_path
-      within "#uploads-section" do
-        click_link "Configure"
-      end
+
+      visit admin_setting_path("uploads")
 
       within "#edit_setting_#{setting.id}" do
         expect(find("#png")).to be_checked
@@ -284,12 +231,8 @@ describe "Admin settings" do
 
     scenario "Should not be able when remote census feature deactivated" do
       Setting["feature.remote_census"] = nil
-      admin = create(:administrator).user
-      login_as(admin)
-      visit admin_settings_path
-      within "#remote_census-section" do
-        click_link "Configure"
-      end
+
+      visit admin_setting_path("remote_census")
 
       expect(page).to have_content 'To configure remote census (SOAP) you must enable ' \
                                    '"Configure connection to remote census (SOAP)" ' \
@@ -297,12 +240,7 @@ describe "Admin settings" do
     end
 
     scenario "Should be able when remote census feature activated" do
-      admin = create(:administrator).user
-      login_as(admin)
-      visit admin_settings_path
-      within "#remote_census-section" do
-        click_link "Configure"
-      end
+      visit admin_setting_path("remote_census")
 
       expect(page).to have_content("General Information")
       expect(page).to have_content("Request Data")
@@ -320,10 +258,7 @@ describe "Admin settings" do
       Setting["feature.user.skip_verification"] = "true"
       setting = Setting.where(key: "feature.user.skip_verification").first
 
-      visit admin_settings_path
-      within "#feature-section" do
-        click_link "Configure"
-      end
+      visit admin_setting_path("feature")
 
       accept_alert do
         find("#edit_setting_#{setting.id} .button").click
@@ -336,10 +271,7 @@ describe "Admin settings" do
       Setting["feature.user.skip_verification"] = nil
       setting = Setting.where(key: "feature.user.skip_verification").first
 
-      visit admin_settings_path
-      within "#feature-section" do
-        click_link "Configure"
-      end
+      visit admin_setting_path("feature")
 
       accept_alert do
         find("#edit_setting_#{setting.id} .button").click
