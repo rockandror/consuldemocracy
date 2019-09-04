@@ -1189,13 +1189,10 @@ fr:
         updated: Valeur mise-à-jour
       index:
         title: Paramètres
-        update_setting: Mettre-à-jour
-        feature_flags: Fonctionnalités
-        features:
-          enabled: "Fonctionnalité activée"
-          disabled: "Fonctionnalité désactivée"
-          enable: "Activer"
-          disable: "Désactiver"
+        configuration:
+          title: Paramètres
+        feature:
+          title: Fonctionnalités
         map:
           title: Configuration de la carte
           help: Vous pouvez ici modifier la manière dont la carte est affichée pour les utilisateurs. Déplacez le marqueur ou cliquez à n'importe quel endroit sur la carte, définissez le niveau de zoom et cliquez sur le bouton "Mettre à jour".
@@ -1203,6 +1200,12 @@ fr:
             update: Configuration de la carte mise à jour avec succès.
           form:
             submit: Mettre-à-jour
+        update_setting: Mettre-à-jour
+        features:
+          enabled: "Fonctionnalité activée"
+          disabled: "Fonctionnalité désactivée"
+          enable: "Activer"
+          disable: "Désactiver"
       setting: Fonctionnalité
       setting_actions: Actions
       setting_name: Paramètres

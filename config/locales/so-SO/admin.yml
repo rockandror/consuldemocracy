@@ -1036,13 +1036,10 @@ so:
         updated: Cusboneysii Qimaha
       index:
         title: Dejinta Qaybinta
-        update_setting: Cusboneysiin
-        feature_flags: Soobandhigiidyo / Muqaalo
-        features:
-          enabled: "Muujin karo"
-          disabled: "Aan Muujin karin"
-          enable: "Karti leh"
-          disable: "Hawl gaab ah"
+        configuration:
+          title: Dejinta Qaybinta
+        feature:
+          title: Soobandhigiidyo / Muqaalo
         map:
           title: Qaybinta Khariirada
           help: Halkan waxaad ku habeyn kartaa qaabka khariidada loo soo bandhigo dadka isticmaala. Tijaabi calaamade khariidadda ama guji meel kasta oo ka mida khariidada, waxaad dhigataa mujin iyo guji badhan "Cusboneysii".
@@ -1050,6 +1047,12 @@ so:
             update: Qaabinta qaabka dib u cusbooneysiinta Khariirada.
           form:
             submit: Cusboneysiin
+        update_setting: Cusboneysiin
+        features:
+          enabled: "Muujin karo"
+          disabled: "Aan Muujin karin"
+          enable: "Karti leh"
+          disable: "Hawl gaab ah"
       setting: Soobandhigiid / Muqaal
       setting_actions: Tilaabooyin
       setting_name: Dejinta

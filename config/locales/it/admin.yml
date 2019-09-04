@@ -1031,13 +1031,8 @@ it:
         updated: Valore aggiornato
       index:
         title: Impostazioni di configurazione
-        update_setting: Aggiorna
-        feature_flags: Funzionalità
-        features:
-          enabled: "Funzionalità attivata"
-          disabled: "Funzionalità disabilitata"
-          enable: "Attivare"
-          disable: "Disattivare"
+        configuration:
+          title: Impostazioni di configurazione
         map:
           title: Configurazione della mappa
           help: Qui puoi personalizzare come la mappa viene visualizzata dagli utenti. Trascina il segnaposto o clicca in qualunque punto della mappa, imposta lo zoom desiderato e clicca sul tasto “Aggiorna”.
@@ -1045,6 +1040,14 @@ it:
             update: Configurazione dela mappa aggiornata con successo.
           form:
             submit: Aggiorna
+        feature:
+          title: Funzionalità
+        update_setting: Aggiorna
+        features:
+          enabled: "Funzionalità attivata"
+          disabled: "Funzionalità disabilitata"
+          enable: "Attivare"
+          disable: "Disattivare"
       setting: Funzionalità
       setting_actions: Azioni
       setting_name: Impostazione
