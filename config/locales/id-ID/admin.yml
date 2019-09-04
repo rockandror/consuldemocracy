@@ -924,19 +924,22 @@ id:
         updated: Nilai diperbarui
       index:
         title: Pengaturan konfigurasi
-        update_setting: Perbarui
-        feature_flags: Fitur
-        features:
-          enabled: "Fitur diaktifkan"
-          disabled: "Fitur dinonaktifkan"
-          enable: "Aktifkan"
-          disable: "Nonaktifkan"
+        configuration:
+          title: Pengaturan konfigurasi
         map:
           help: Di sini anda bisa menyesuaikan cara peta untuk ditampilkan kepada pengguna. Seret penanda peta atau klik di mana saja dari peta, mengatur zoom yang diinginkan dan klik tombol "Update".
           flash:
             update: Peta konfigurasi berhasil diperbarui.
           form:
             submit: Perbarui
+        feature:
+          title: Fitur
+        update_setting: Perbarui
+        features:
+          enabled: "Fitur diaktifkan"
+          disabled: "Fitur dinonaktifkan"
+          enable: "Aktifkan"
+          disable: "Nonaktifkan"
       setting_actions: Tindakan
       setting_status: Status
       setting_value: Nilai

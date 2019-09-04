@@ -1162,13 +1162,10 @@ tr:
         updated: Değer güncellendi
       index:
         title: Yapılandırma ayarları
-        update_setting: Güncelleme
-        feature_flags: Özellikler
-        features:
-          enabled: "Özellik etkinleştirildi"
-          disabled: "Özellik devre dışı"
-          enable: "Etkinleştir"
-          disable: "Devre dışı bırakma"
+        configuration:
+          title: Yapılandırma ayarları
+        feature:
+          title: Özellikler
         map:
           title: Harita yapılandırma
           help: Burada haritanın kullanıcılara gösterilme şeklini kişiselleştirebilirsiniz. Harita işaretçisini sürükleyin veya haritanın herhangi bir yerine tıklayın, istediğiniz yakınlaştırmayı ayarlayın ve "Güncelle" düğmesine tıklayın.
@@ -1176,6 +1173,12 @@ tr:
             update: Harita yapılandırma başarıyla güncellendi.
           form:
             submit: Güncelleme
+        update_setting: Güncelleme
+        features:
+          enabled: "Özellik etkinleştirildi"
+          disabled: "Özellik devre dışı"
+          enable: "Etkinleştir"
+          disable: "Devre dışı bırakma"
       setting: Özellik
       setting_actions: Aksiyon
       setting_name: Ayar

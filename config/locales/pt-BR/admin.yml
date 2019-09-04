@@ -1032,13 +1032,10 @@ pt-BR:
         updated: Valor atualizado
       index:
         title: Definições de configuração
-        update_setting: Atualizar
-        feature_flags: Atributos
-        features:
-          enabled: "Atributo habilitado"
-          disabled: "Atributo não habilitado"
-          enable: "Habilitar"
-          disable: "Desabilitar"
+        configuration:
+          title: Definições de configuração
+        feature:
+          title: Atributos
         map:
           title: Configuração do mapa
           help: Aqui você pode personalizar a maneira como o mapa é exibido para os usuários. Arraste o marcador do mapa ou clique em qualquer lugar do mapa, defina o zoom desejado e clique no botão "Atualizar".
@@ -1046,6 +1043,12 @@ pt-BR:
             update: Configuração do mapa atualizada com sucesso.
           form:
             submit: Atualizar
+        update_setting: Atualizar
+        features:
+          enabled: "Atributo habilitado"
+          disabled: "Atributo não habilitado"
+          enable: "Habilitar"
+          disable: "Desabilitar"
       setting: Caracteristica
       setting_actions: Ações
       setting_name: Configuração

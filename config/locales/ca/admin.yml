@@ -732,16 +732,19 @@ ca:
         updated: Valor actualitzat
       index:
         title: Configuració global
+        configuration:
+          title: Configuració global
+        feature:
+          title: Funcionalitats
+        map:
+          form:
+            submit: Actualitzar
         update_setting: Actualitzar
-        feature_flags: Funcionalitats
         features:
           enabled: "Funcionalitat activada"
           disabled: "Funcionalitat desactivada"
           enable: "Activa"
           disable: "Desactivar"
-        map:
-          form:
-            submit: Actualitzar
       setting_actions: Accions
       setting_status: Estat
       setting_value: valor

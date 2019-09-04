@@ -1237,14 +1237,12 @@ da:
         updated: Pris opdateret
       index:
         title: Konfigurationsindstillinger
-        update_setting: Opdater
-        participation_processes: "Deltagelsesprocesser"
-        feature_flags: Funktioner
-        features:
-          enabled: "Funktion aktiveret"
-          disabled: "Funktion deaktiveret"
-          enable: "Aktiver"
-          disable: "Deaktiver"
+        configuration:
+          title: Konfigurationsindstillinger
+        process:
+          title: Deltagelsesprocesser
+        feature:
+          title: Funktioner
         map:
           title: Kortindstillinger
           help: Her kan du indstille, hvordan kortet vises til brugerne. Træk kortmarkøren eller klik på kortet, indstil den ønskede zoom og klik på knappen "Opdater".
@@ -1253,8 +1251,14 @@ da:
           form:
             submit: Opdater
           how_to_enable: 'For at gøre kortet synligt for brugerne skal du aktivere "Borger- og budgetforslags geografiske område" under fanebladet "Funktioner".'
-        dashboard:
+        proposals:
           title: Dashboard for forslag
+        update_setting: Opdater
+        features:
+          enabled: "Funktion aktiveret"
+          disabled: "Funktion deaktiveret"
+          enable: "Aktiver"
+          disable: "Deaktiver"
       setting: Funktioner
       setting_actions: Handlinger
       setting_name: Indstillinger

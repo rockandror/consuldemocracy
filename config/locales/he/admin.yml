@@ -1268,14 +1268,8 @@ he:
         updated: הערך מעודכן
       index:
         title: הגדרות תצורה
-        update_setting: עדכן
-        participation_processes: "השתתפות בתהליכים"
-        feature_flags: מאפיינים
-        features:
-          enabled: "התכונה מופעלת"
-          disabled: "התכונה מושבתת"
-          enable: "לאפשר"
-          disable: "להשבית"
+        configuration:
+          title: הגדרות תצורה
         map:
           title: תצורת מפה
           help: כאן באפשרותך להתאים אישית את הדרך שהמפה מוצגת למשתמשים. גרור סמן מפה או לחץ במקום כלשהו על המפה, להגדיר זום הרצוי ולחץ על כפתור "עדכון".
@@ -1284,7 +1278,17 @@ he:
           form:
             submit: עדכן
           how_to_enable: 'כדי להציג את המפה למשתמשים עליך לאפשר "הצעות, תקציב השקעות איזורים גאוגרפיים" בכרטיסיה "תכונות".'
-        dashboard:
+        process:
+          title: "השתתפות בתהליכים"
+        feature:
+          title: מאפיינים
+        update_setting: עדכן
+        features:
+          enabled: "התכונה מופעלת"
+          disabled: "התכונה מושבתת"
+          enable: "לאפשר"
+          disable: "להשבית"
+        proposals:
           title: לוח מחוונים להצעות
       setting: מאפיינים
       setting_actions: פעולות
