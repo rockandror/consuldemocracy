@@ -8,7 +8,7 @@ class Admin::SettingsController < Admin::BaseController
                 :poster_feature_short_title_setting, :poster_feature_description_setting
 
   def index
-    @settings_sections = ["configuration", "process", "feature", "map", "uploads", "proposals", "remote_census"].freeze
+    @settings_groups = ["configuration", "process", "feature", "map", "uploads", "proposals", "remote_census"].freeze
   end
 
   def update
@@ -35,7 +35,7 @@ class Admin::SettingsController < Admin::BaseController
   end
 
   def show
-    @settings = extract_settings(params[:id])
+    @settings = settings_by_group(params[:id])
 
     render params[:id]
   end
@@ -50,12 +50,13 @@ class Admin::SettingsController < Admin::BaseController
       params.permit(:jpg, :png, :gif, :pdf, :doc, :docx, :xls, :xlsx, :csv, :zip)
     end
 
-    def extract_settings(parent_key)
+    def settings_by_group(group)
       all_settings = Setting.all.group_by { |setting| setting.type }
-      if parent_key == "remote_census"
+      case group
+      when "remote_census"
         [all_settings["remote_census.general"]] + [all_settings["remote_census.request"]] + [all_settings["remote_census.response"]]
       else
-        all_settings[params[:id]]
+        all_settings[group]
       end
     end
 end
