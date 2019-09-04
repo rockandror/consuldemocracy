@@ -2,9 +2,7 @@
 <div>
   <table>
     <tbody>
-      <% @settings_sections.each do |setting_section| %>
-        <%= render "settings_sections_list", setting_section: setting_section %>
-      <% end %>
+      <%= render partial: "settings_group", collection: @settings_groups %>
     </tbody>
   </table>
 </div>
