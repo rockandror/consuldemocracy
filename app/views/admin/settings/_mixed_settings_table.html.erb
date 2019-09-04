@@ -18,31 +18,31 @@
         </td>
 
         <% if social_feature?(setting) %>
-          <td>
+          <td colspan="2">
             <% if setting.enabled? %>
-              <span class="enabled">
+              <span class="enabled small-6 column">
                 <strong>
                   <%= t ("admin.settings.index.features.enabled") %>
                 </strong>
               </span>
             <% else %>
-              <span class="disabled">
+              <span class="disabled small-6 column">
                 <%= t("admin.settings.index.features.disabled") %>
               </span>
             <% end %>
-          </td>
-          <td class="text-right">
-            <%= render "admin/settings/featured_settings_form", feature: setting %>
+            <div class="small-6 column">
+              <%= render "admin/settings/featured_settings_form", feature: setting %>
+            </div>
           </td>
         <% else %>
-          <%= form_for(setting, url: admin_setting_path(setting), html: { id: "edit_#{dom_id(setting)}"}) do |f| %>
-            <td>
-              <%= f.text_area :value, label: false, id: dom_id(setting), lines: 1 %>
-            </td>
-            <td>
-              <%= f.submit(t("admin.settings.index.update_setting"), class: "button hollow expanded") %>
-            </td>
-          <% end %>
+          <td colspan="2">
+            <%= form_for(setting, url: admin_setting_path(setting), html: { id: "edit_#{dom_id(setting)}"}) do |f| %>
+              <%= f.text_area :value, label: false, id: dom_id(setting), lines: 1, class: "small-6 column" %>
+              <div class="small-6 column">
+                <%= f.submit(t("admin.settings.index.update_setting"), class: "button hollow expanded") %>
+              </div>
+            <% end %>
+          </td>
         <% end %>
       </tr>
     <% end %>
