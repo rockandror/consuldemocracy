@@ -217,6 +217,13 @@ $sidebar-active: #f4fcd0;
       color: #fff;
     }
 
+    @include breakpoint(medium) {
+      td .enabled,
+      td .disabled {
+        padding: $line-height / 2 0;
+      }
+    }
+
     th {
       background: $brand;
       color: #fff;
