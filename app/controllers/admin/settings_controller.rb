@@ -55,6 +55,8 @@ class Admin::SettingsController < Admin::BaseController
       case group
       when "remote_census"
         [all_settings["remote_census.general"]] + [all_settings["remote_census.request"]] + [all_settings["remote_census.response"]]
+      when "social"
+        [all_settings["social.facebook"]] + [all_settings["social.twitter"]] + [all_settings["social.google"]]
       else
         all_settings[group]
       end

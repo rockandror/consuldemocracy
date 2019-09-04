@@ -28,4 +28,18 @@ RSpec.describe SettingsHelper, type: :helper do
     end
   end
 
+  describe "#social_feature?" do
+    it "returns true when social setting is a feature flag" do
+      social_setting_flag = Setting.create(key: "social.sample_social.login")
+      social_setting_input = Setting.create(key: "social.sample_social.input")
+      social_setting_one_level = Setting.create(key: "social.one_level")
+      another_setting = Setting.create(key: "another_setting.sample_key")
+
+      expect(social_feature?(social_setting_flag)).to eq true
+      expect(social_feature?(social_setting_input)).to eq false
+      expect(social_feature?(social_setting_one_level)).to eq false
+      expect(social_feature?(another_setting)).to eq false
+    end
+  end
+
 end

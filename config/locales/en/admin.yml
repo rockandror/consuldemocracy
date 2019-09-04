@@ -1333,6 +1333,9 @@ en:
         social:
           title: "Registration with social networks"
           description: "Allow users to sign up with social networks (Twitter, Facebook, Google)"
+          facebook: "Facebook"
+          twitter: "Twitter"
+          google: "Google"
       setting: Feature
       setting_actions: Actions
       setting_name: Setting
