@@ -58,12 +58,6 @@ sq:
     min_age_to_participate_description: "Përdoruesit e kësaj moshe mund të marrin pjesë në të gjitha proceset"
     analytics_url: "URL e analitikës"
     feature:
-      twitter_login: "\nIdentifikohu në Twitter"
-      twitter_login_description: "\nLejo përdoruesit të regjistrohen me llogarinë e tyre në Twitter"
-      facebook_login: "Identifikohu në Facebook"
-      facebook_login_description: "\nLejo përdoruesit të regjistrohen me llogarinë e tyre në Facebook"
-      google_login: "Identifikohu në Google"
-      google_login_description: "\nLejo përdoruesit të regjistrohen me llogarinë e tyre në Google"
       signature_sheets: "Nënshkrimi i fletëve"
       signature_sheets_description: "Kjo lejon shtimin e nënshkrimit të paneleve të Administratës të mbledhura në vend të Propozimeve dhe projekteve të investimeve të buxheteve pjesëmarrëse"
       spending_proposals: "Shpenzimet e propozimeve"
@@ -94,3 +88,13 @@ sq:
       public_stats_description: "Shfaqni statistikat publike në panelin e Administratës"
       help_page: "Faqja ndihmëse"
       help_page_description: 'Shfaq një meny Ndihmë që përmban një faqe me një seksion informacioni rreth secilës janë të akitivizuar vecoritë'
+    social:
+      twitter:
+        login: "\nIdentifikohu në Twitter"
+        login_description: "\nLejo përdoruesit të regjistrohen me llogarinë e tyre në Twitter"
+      facebook:
+        login: "Identifikohu në Facebook"
+        login_description: "\nLejo përdoruesit të regjistrohen me llogarinë e tyre në Facebook"
+      google:
+        login: "Identifikohu në Google"
+        login_description: "\nLejo përdoruesit të regjistrohen me llogarinë e tyre në Google"

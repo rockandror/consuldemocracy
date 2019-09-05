@@ -58,12 +58,6 @@ de:
     min_age_to_participate_description: "Nutzer ab diesem Alter können an allen Prozessen teilnehmen"
     analytics_url: "Analytik-URL"
     feature:
-      twitter_login: "Twitter login"
-      twitter_login_description: "Anmeldung mit Twitter-Account erlauben"
-      facebook_login: "Facebook login"
-      facebook_login_description: "Anmeldung mit Facebook-Account erlauben"
-      google_login: "Google login"
-      google_login_description: "Anmeldung mit Google-Account erlauben"
       signature_sheets: "Unterschriftenbögen"
       spending_proposals: "Ausgabenvorschläge"
       spending_proposals_description: "⚠️ Hinweis: Diese Funktionalität wurde durch Bürgerhaushaltung ersetzt und verschwindet in neuen Versionen"
@@ -93,3 +87,13 @@ de:
       public_stats_description: "Öffentliche Statistiken im Administrationsbereich anzeigen"
       help_page: "Hilfeseite"
       help_page_description: 'Zeigt ein "Hilfe"-Menü an, das eine Seite mit Informationen über die einzelnen aktivierten Funktionen enthält'
+    social:
+      twitter:
+        login: "Twitter login"
+        login_description: "Anmeldung mit Twitter-Account erlauben"
+      facebook:
+        login: "Facebook login"
+        login_description: "Anmeldung mit Facebook-Account erlauben"
+      google:
+        login: "Google login"
+        login_description: "Anmeldung mit Google-Account erlauben"

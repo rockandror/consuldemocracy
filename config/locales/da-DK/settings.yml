@@ -83,12 +83,6 @@ da:
     direct_message_max_per_day: "Max antal direkte beskeder pr. dag"
     direct_message_max_per_day_description: "Det maksimale antal direkte beskeder en bruger kan sende om dagen"
     feature:
-      twitter_login: "Twitter login"
-      twitter_login_description: "Tillad brugere at registrere sig med Twitter"
-      facebook_login: "Facebook login"
-      facebook_login_description: "Tillad brugere at registrere sig med Facebook"
-      google_login: "Google login"
-      google_login_description: "Tillad brugere at registrere sig med Google"
       featured_proposals: "Udvalgte forslag"
       featured_proposals_description: "Viser udvalgte forslag på indeks"
       signature_sheets: "Signaturark"
@@ -144,3 +138,13 @@ da:
       per_page_code_head_description: "Denne kode vises i <head>. Brugbar i forhold til indlæsning af brugerdefinerede fremstillinger, analyser..."
       per_page_code_body: "Kode inkluderet på alle sidesektioner (<body>)"
       per_page_code_body_description: "Denne kode vises i <body>. Brugbar i forhold til indlæsning af brugerdefinerede fremsitllinger, analyser..."
+    social:
+      twitter:
+        login: "Twitter login"
+        login_description: "Tillad brugere at registrere sig med Twitter"
+      facebook:
+        login: "Facebook login"
+        login_description: "Tillad brugere at registrere sig med Facebook"
+      google:
+        login: "Google login"
+        login_description: "Tillad brugere at registrere sig med Google"

@@ -62,12 +62,6 @@ cs:
     min_age_to_participate_description: "Uživatelé od tohoto věku se mohou účastnit všech procesů"
     analytics_url: "Adresa URL služby Analytics"
     feature:
-      twitter_login: "Twutter přihlášení"
-      twitter_login_description: "Povolit uživatelům, aby se zaregistrovali se svým účtem Twitter"
-      facebook_login: "Facebook přihlášení"
-      facebook_login_description: "Povolit uživatelům, aby se zaregistrovali se svým účtem Facebook"
-      google_login: "Přihlášení Google"
-      google_login_description: "Povolit uživatelům, aby se zaregistrovali se svým účtem Google"
       featured_proposals: "Doporučené návrhy"
       featured_proposals_description: "Zobrazit doporučené návrhy na hlavní stránce návrhů"
       signature_sheets: "Podpisové archy"
@@ -100,3 +94,13 @@ cs:
       public_stats_description: "Zobrazit veřejné statistiky v panelu Administrace"
       help_page: "Stránka nápovědy"
       help_page_description: 'Zobrazí nabídku Nápověda obsahující stránku s informacemi o každé povolené funkci'
+    social:
+      twitter:
+        login: "Twutter přihlášení"
+        login_description: "Povolit uživatelům, aby se zaregistrovali se svým účtem Twitter"
+      facebook:
+        login: "Facebook přihlášení"
+        login_description: "Povolit uživatelům, aby se zaregistrovali se svým účtem Facebook"
+      google:
+        login: "Přihlášení Google"
+        login_description: "Povolit uživatelům, aby se zaregistrovali se svým účtem Google"

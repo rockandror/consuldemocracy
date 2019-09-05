@@ -58,12 +58,6 @@ so:
     min_age_to_participate_description: "Isticmaalayaasha da'adani way ka qaybqaadan karaan dhammaan hababka"
     analytics_url: "URLka falanqaynta"
     feature:
-      twitter_login: "Galitaanka bogga Twitter"
-      twitter_login_description: "U ogolow dadka isticmaala inay iska diiwaan galiyaan xisaabtooda Twitter"
-      facebook_login: "Gelintaanka Facebook"
-      facebook_login_description: "U ogolow dadka isticmaala inay iska diiwaan galiyaan xisaabtooda Facebook akoonka"
-      google_login: "Gelintaanka Google"
-      google_login_description: "U ogolow dadka isticmaala inay iska diiwaan galiyaan akoonka Google"
       signature_sheets: "Warqadaha Saxixyada"
       signature_sheets_description: "Waxay u ogolaataa in lagu daro golaha maamulka ee loo soo ururiyey barta-mashruucyada soo jeedinta iyo mashaariicda maalgashiga miisaaniyadda ka qaybqaadashada"
       spending_proposals: "Bixinta soo jeedinta"
@@ -94,3 +88,13 @@ so:
       public_stats_description: "Muuji tirooyinka dadweynaha ee guddiga maamulka"
       help_page: "Bogga Caawinta"
       help_page_description: 'Waxay muujisaa maqaallada caawimaadda oo ku jira bog leh qaybta macluumaadka ee ku saabsan muuqaal kasta oo awood leh'
+    social:
+      twitter:
+        login: "Galitaanka bogga Twitter"
+        login_description: "U ogolow dadka isticmaala inay iska diiwaan galiyaan xisaabtooda Twitter"
+      facebook:
+        login: "Gelintaanka Facebook"
+        login_description: "U ogolow dadka isticmaala inay iska diiwaan galiyaan xisaabtooda Facebook akoonka"
+      google:
+        login: "Gelintaanka Google"
+        login_description: "U ogolow dadka isticmaala inay iska diiwaan galiyaan akoonka Google"

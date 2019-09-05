@@ -66,12 +66,6 @@ ru:
     direct_message_max_per_day: "Максимальное количество прямых сообщений в день"
     direct_message_max_per_day_description: "Максимальное количество прямых сообщений, которое один пользователь может отправить за день"
     feature:
-      twitter_login: "Логин от Twitter"
-      twitter_login_description: "Позволяет пользователям регистрироваться при помощи их аккаунта в Twitter"
-      facebook_login: "Логин Facebook"
-      facebook_login_description: "Позволяет пользователям регистрироваться при помощи их аккаунтов на Facebook"
-      google_login: "Логин Google"
-      google_login_description: "Позволяет пользователям регистрироваться при помощи их аккаунтов в Google"
       featured_proposals: "Особенные предложения"
       featured_proposals_description: "Отображает особенные предложения на индексной странице предложений"
       signature_sheets: "Подписные листы"
@@ -127,3 +121,13 @@ ru:
       per_page_code_head_description: "Этот код появится внутри тега <head>. Полезно для внедрения произвольных скриптов, кодов аналитики..."
       per_page_code_body: "Код, включаемый на каждой странице (<body>)"
       per_page_code_body_description: "Этот код появится внутри тега <body>. Полезно для внедрения произвольных скриптов, кодов аналитики..."
+    social:
+      twitter:
+        login: "Логин от Twitter"
+        login_description: "Позволяет пользователям регистрироваться при помощи их аккаунта в Twitter"
+      facebook:
+        login: "Логин Facebook"
+        login_description: "Позволяет пользователям регистрироваться при помощи их аккаунтов на Facebook"
+      google:
+        login: "Логин Google"
+        login_description: "Позволяет пользователям регистрироваться при помощи их аккаунтов в Google"

@@ -62,12 +62,6 @@ zh-CN:
     min_age_to_participate_description: "超过此年龄的用户可以参与所有进程"
     analytics_url: "分析URL"
     feature:
-      twitter_login: "Twitter登录"
-      twitter_login_description: "允许用户使用他们的Twitter账户来注册"
-      facebook_login: "Facebook登录"
-      facebook_login_description: "允许用户使用他们的Facebook账户来注册"
-      google_login: "Google登录"
-      google_login_description: "允许用户使用他们的Google账户来注册"
       featured_proposals: "特色提议"
       featured_proposals_description: "在索引提议页面上显示特色提议"
       signature_sheets: "签名表"
@@ -100,3 +94,13 @@ zh-CN:
       public_stats_description: "在管理面板中显示公众统计数据"
       help_page: "帮助页面"
       help_page_description: '显示帮助菜单，其中包含一个页面，它含有每个已启用功能的资讯'
+    social:
+      twitter:
+        login: "Twitter登录"
+        login_description: "允许用户使用他们的Twitter账户来注册"
+      facebook:
+        login: "Facebook登录"
+        login_description: "允许用户使用他们的Facebook账户来注册"
+      google:
+        login: "Google登录"
+        login_description: "允许用户使用他们的Google账户来注册"

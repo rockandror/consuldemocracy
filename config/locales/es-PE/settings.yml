@@ -26,11 +26,15 @@ es-PE:
     meta_keywords: "Palabras clave (SEO)"
     min_age_to_participate: Edad mínima para participar
     feature:
-      twitter_login: "Registro con Twitter"
-      facebook_login: "Registro con Facebook"
-      google_login: "Registro con Google"
       signature_sheets: "Hojas de firmas"
       spending_proposals: "Propuestas de inversión"
       community: "Comunidad en propuestas y proyectos de inversión"
       map: "Geolocalización de propuestas y proyectos de inversión"
       allow_images: "Permitir subir y mostrar imágenes"
+    social:
+      twitter:
+        login: "Registro con Twitter"
+      facebook:
+        login: "Registro con Facebook"
+      google:
+        login: "Registro con Google"

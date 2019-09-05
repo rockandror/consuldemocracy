@@ -32,9 +32,6 @@ sv:
       email_short_title: E-post
       email_description: E-posts beskrivning
     feature:
-      twitter_login: "Twitter-inloggning"
-      facebook_login: "Facebook-inloggning"
-      google_login: "Google-inloggning"
       signature_sheets: "Namninsamlingar"
       spending_proposals: "Investeringsförslag"
       user:
@@ -57,3 +54,10 @@ sv:
       proposals: "Förslag"
       polls: "Omröstningar"
       legislation: "Planering"
+    social:
+      twitter:
+        login: "Twitter-inloggning"
+      facebook:
+        login: "Facebook-inloggning"
+      google:
+        login: "Google-inloggning"

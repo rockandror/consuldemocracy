@@ -66,12 +66,6 @@ nl:
     direct_message_max_per_day: "Maximaal aantal privé berichten per dag"
     direct_message_max_per_day_description: "Maximum aantal privé berichten dat gebruikers per dag mogen versturen"
     feature:
-      twitter_login: "Twitter login"
-      twitter_login_description: "Sta gebruikers to om aan te melden met hun Twitter account"
-      facebook_login: "Facebook login"
-      facebook_login_description: "Sta gebruikers to om aan te melden met hun Facebook account"
-      google_login: "Google login"
-      google_login_description: "Sta gebruikers to om aan te melden met hun Google account"
       featured_proposals: "Uitgelichte voorstellen"
       featured_proposals_description: "Toon de uitgelichte voorstellen op de voorstellen-pagina"
       signature_sheets: "Handtekeninglijsten"
@@ -127,3 +121,13 @@ nl:
       per_page_code_head_description: "Deze code verschijnt in het <head> -label. Handig voor het invoeren van aangepaste scripts en analyses."
       per_page_code_body: "Code die ingevoegd wordt op elke pagina(<body>)"
       per_page_code_body_description: "Deze code verschijnt in het <body> -label. Dit kan handig zijn voor het invoeren van aangepaste scripts en analyses."
+    social:
+      twitter:
+        login: "Twitter login"
+        login_description: "Sta gebruikers to om aan te melden met hun Twitter account"
+      facebook:
+        login: "Facebook login"
+        login_description: "Sta gebruikers to om aan te melden met hun Facebook account"
+      google:
+        login: "Google login"
+        login_description: "Sta gebruikers to om aan te melden met hun Google account"
