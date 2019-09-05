@@ -26,9 +26,6 @@ sl:
     meta_keywords: "Ključne besede (SEO)"
     min_age_to_participate: Minimalna starost za sodelovanje
     feature:
-      twitter_login: "Prijava v Twitter"
-      facebook_login: "Prijava v Facebook"
-      google_login: "Prijava v Google"
       signature_sheets: "Podpisni listi"
       spending_proposals: "Naložbeni projekti"
       spending_proposal_features:
@@ -40,3 +37,10 @@ sl:
       map: "Geolokacija predlogov in proračunskih naložb"
       allow_images: "Dovoli nalaganje in prikaz slik"
       allow_attached_documents: "Dovoli nalaganje in prikaz pripetih dokumentov"
+    social:
+      twitter:
+        login: "Prijava v Twitter"
+      facebook:
+        login: "Prijava v Facebook"
+      google:
+        login: "Prijava v Google"

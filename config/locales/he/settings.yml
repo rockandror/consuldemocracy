@@ -83,12 +83,6 @@ he:
     direct_message_max_per_day: "הודעה ישירה, מקסימום הודעות ליום"
     direct_message_max_per_day_description: "מקסימום הודעות שמשתמש אחד יכול לשלוח ביום"
     feature:
-      twitter_login: "טוויטר כניסה"
-      twitter_login_description: "לאפשר למשתמשים להירשם עם חשבון הטוויטר שלהם"
-      facebook_login: "כניסה עם חשבון פייסבוק"
-      facebook_login_description: "לאפשר למשתמשים להירשם עם חשבון הפייסבוק שלהם"
-      google_login: "כניסה עם חשבון גוגל"
-      google_login_description: "לאפשר למשתמשים להירשם עם חשבון הגוגל שלהם"
       featured_proposals: "הצעות מוצעות"
       featured_proposals_description: "מציג הצעות מובלטות בדף הבית של ההצעות"
       signature_sheets: "דפי חתימות"
@@ -144,3 +138,13 @@ he:
       per_page_code_head_description: "קוד זה יופיע בתוך תווית ה- <head>. שימושי עבור הזנת סקריפטים מותאמים אישית, אנליטיקה..."
       per_page_code_body: "קוד שייכלל בכל דף (<body>)"
       per_page_code_body_description: "קוד זה יופיע בתוך תווית ה- <body>. שימושי עבור הזנת סקריפטים מותאמים אישית, ואנליטיקה..."
+    social:
+      twitter:
+        login: "טוויטר כניסה"
+        login_description: "לאפשר למשתמשים להירשם עם חשבון הטוויטר שלהם"
+      facebook:
+        login: "כניסה עם חשבון פייסבוק"
+        login_description: "לאפשר למשתמשים להירשם עם חשבון הפייסבוק שלהם"
+      google:
+        login: "כניסה עם חשבון גוגל"
+        login_description: "לאפשר למשתמשים להירשם עם חשבון הגוגל שלהם"

@@ -66,12 +66,6 @@ pl:
     direct_message_max_per_day: "Maksymalna liczba bezpośrednich wiadomości w ciągu jednego dnia"
     direct_message_max_per_day_description: "Maksymalna liczba bezpośrednich wiadomości jaką jeden użytkownik może przesłać jednego dnia"
     feature:
-      twitter_login: "Login do Twittera"
-      twitter_login_description: "Zezwalaj użytkownikom na rejestrację za pomocą konta na Twitterze"
-      facebook_login: "Login do Facebooka"
-      facebook_login_description: "Zezwalaj użytkownikom na rejestrację za pomocą konta na Facebooku"
-      google_login: "Login do Google"
-      google_login_description: "Zezwalaj użytkownikom na rejestrację za pomocą konta Google"
       featured_proposals: "Wnioski rekomendowane"
       featured_proposals_description: "Pokazuje rekomendowane wnioski na stronie ze spisem wniosków"
       signature_sheets: "Arkusze podpisu"
@@ -127,3 +121,13 @@ pl:
       per_page_code_head_description: "Kod ten pojawi się wewnątrz etykiety <head>. Przydatny do wprowadzania własnych skryptów, analiz..."
       per_page_code_body: "Kod, który ma być zamieszczony na każdej stronie (<body>)"
       per_page_code_body_description: "Kod ten pojawi się wewnątrz etykiety <body> Przydatny do wprowadzania własnych skryptów, analiz..."
+    social:
+      twitter:
+        login: "Login do Twittera"
+        login_description: "Zezwalaj użytkownikom na rejestrację za pomocą konta na Twitterze"
+      facebook:
+        login: "Login do Facebooka"
+        login_description: "Zezwalaj użytkownikom na rejestrację za pomocą konta na Facebooku"
+      google:
+        login: "Login do Google"
+        login_description: "Zezwalaj użytkownikom na rejestrację za pomocą konta Google"

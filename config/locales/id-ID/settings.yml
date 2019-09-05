@@ -26,11 +26,15 @@ id:
     meta_keywords: "Kata kunci (SEO)"
     min_age_to_participate: Usia Minimum yang diperlukan untuk berpartisipasi
     feature:
-      twitter_login: "Twitter masuk"
-      facebook_login: "Facebook masuk"
-      google_login: "Google masuk"
       signature_sheets: "Lembaran tanda tangan"
       spending_proposals: "Pengeluaran proposal"
       community: "Masyarakat pada proposal dan investasi"
       map: "Proposal dan anggaran investasi"
       allow_images: "Mengizinkan unggah dan tampilkan gambar"
+    social:
+      twitter:
+        login: "Twitter masuk"
+      facebook:
+        login: "Facebook masuk"
+      google:
+        login: "Google masuk"

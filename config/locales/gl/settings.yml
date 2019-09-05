@@ -62,12 +62,6 @@ gl:
     min_age_to_participate_description: "Os usuarios maiores desta idade poden participar en todos os procesos"
     analytics_url: "URL de analytics"
     feature:
-      twitter_login: "Rexistro con Twitter"
-      twitter_login_description: "Permitir aos usuarios o inicio de sesión coa conta de Twitter"
-      facebook_login: "Rexistro con Facebook"
-      facebook_login_description: "Permitir aos usuarios o inicio de sesión coa conta de Facebook"
-      google_login: "Rexistro con Google"
-      google_login_description: "Permitir aos usuarios o inicio de sesión coa conta de Google"
       featured_proposals: "Propostas destacadas"
       featured_proposals_description: "Amosar as propostas destacadas na páxina principal das propostas"
       signature_sheets: "Follas de sinaturas"
@@ -100,3 +94,14 @@ gl:
       public_stats_description: "Amosa as estatísticas públicas no panel de administración"
       help_page: "Páxina de axuda"
       help_page_description: 'Amosa un menú de axuda que contén unha páxina con información sobre cada unha das características habilitadas'
+    social:
+      twitter:
+        login: "Rexistro con Twitter"
+      twitter:
+        login_description: "Permitir aos usuarios o inicio de sesión coa conta de Twitter"
+      facebook:
+        login: "Rexistro con Facebook"
+        login_description: "Permitir aos usuarios o inicio de sesión coa conta de Facebook"
+      google:
+        login: "Rexistro con Google"
+        login_description: "Permitir aos usuarios o inicio de sesión coa conta de Google"
