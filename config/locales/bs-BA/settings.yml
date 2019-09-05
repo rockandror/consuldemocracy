@@ -83,12 +83,6 @@ bs:
     direct_message_max_per_day: "Maksimalni broj direktnih poruka po danu"
     direct_message_max_per_day_description: "Maksimalni broj direktnih poruka koje korisnik može poslati u jednom danu"
     feature:
-      twitter_login: "Prijava preko Twittera"
-      twitter_login_description: "Omogući korisnicima da se prijave preko Twitter profila"
-      facebook_login: "Prijava preko Facebooka"
-      facebook_login_description: "Omogući korisnicima da se prijave preko Facebook profila"
-      google_login: "Prijava preko Googlea"
-      google_login_description: "Omogući korisnicima da se prijave preko Google profila"
       featured_proposals: "Istaknuti prijedlozi"
       featured_proposals_description: "Pokazuje istaknute prijedloge na strani sa indeksom prijedloga"
       signature_sheets: "Potpisni listovi"
@@ -144,3 +138,13 @@ bs:
       per_page_code_head_description: "Kod se pojavljuje u etiketi <head>. Korisno za unošenje prilagođenih skripti, analitike..."
       per_page_code_body: "Kod na svakoj strani (<body>)"
       per_page_code_body_description: "Kod se pojavljuje u etiketi <body>. Korisno za unošenje prilagođenih skripti, analitike..."
+    social:
+      twitter:
+        login: "Prijava preko Twittera"
+        login_description: "Omogući korisnicima da se prijave preko Twitter profila"
+      facebook:
+        login: "Prijava preko Facebooka"
+        login_description: "Omogući korisnicima da se prijave preko Facebook profila"
+      google:
+        login: "Prijava preko Googlea"
+        login_description: "Omogući korisnicima da se prijave preko Google profila"
