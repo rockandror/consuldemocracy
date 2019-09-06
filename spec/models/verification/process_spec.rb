@@ -32,15 +32,12 @@ describe Verification::Process do
     before do
       Class.new(Verification::Handler) do
         register_as :handler
-        attr_accessor :email, :email_confirmation
 
-        def verify
-          params = {email: email, email_confirmation: email_confirmation}
-          if email == email_confirmation
-            build_response(params)
-          else
-            Verification::Handlers::Response.new false, I18n.t("verification_handler_error"), params, nil
-          end
+        validates :email_confirmation, presence: true
+        validates :email, confirmation: { case_sensitive: false }
+
+        def self.model_name
+          ActiveModel::Name.new(self, nil, "temp")
         end
       end
 
@@ -50,16 +47,16 @@ describe Verification::Process do
 
     it "respond with a verification error it should not be valid" do
       process = build(:verification_process, email: "user@email.com",
-        email_confirmation: "user@email.com" )
+        email_confirmation: "another_user@email.com" )
 
-      expect(process).to be_valid
+      expect(process).not_to be_valid
     end
 
     it "respond with a successful verification it should be valid" do
       process = build(:verification_process, email: "user@email.com",
-        email_confirmation: "another_user@email.com" )
+        email_confirmation: "user@email.com" )
 
-      expect(process).not_to be_valid
+      expect(process).to be_valid
     end
   end
 

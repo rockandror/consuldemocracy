@@ -10,6 +10,7 @@ class Verification::ProcessController < ApplicationController
   def create
     @process = Verification::Process.new(process_params.merge(user: current_user))
     if @process.save
+      # process 
       continue
     else
       render :new
