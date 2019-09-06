@@ -55,4 +55,7 @@ namespace :settings do
     Setting.add_new_settings
   end
 
+  desc "Manage settings"
+  task manage_settings: [:rename_setting_keys, :add_new_settings]
+
 end
