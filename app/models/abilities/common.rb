@@ -127,6 +127,7 @@ module Abilities
 
       can :disable_recommendations, [Debate, Proposal]
       can :create, Verification::Process
+      can :create, Verification::Confirmation
     end
   end
 end
