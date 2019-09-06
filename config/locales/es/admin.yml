@@ -1331,12 +1331,19 @@ es:
           disabled: "Funcionalidad desactivada"
           enable: "Activar"
           disable: "Desactivar"
+        social:
+          title: "Registro con Redes sociales"
+          description: "Permitir que los usuarios se registren con las Redes sociales (Twitter, Facebook, Google)"
+          facebook: "Facebook"
+          twitter: "Twitter"
+          google: "Google"
       setting: Funcionalidad
       setting_actions: Acciones
       setting_name: Configuración
       setting_status: Estado
       setting_value: Valor
       no_description: "Sin descripción"
+      restart_info: "Nota: Para que surjan efecto los cambios realizados en esta sección debe reiniciarse la aplicación."
     shared:
       true_value: "Sí"
       false_value: "No"

@@ -23,8 +23,12 @@ ast:
     meta_keywords: "Palabras clave (SEO)"
     min_age_to_participate: Edad mínima para participar
     feature:
-      twitter_login: "Registro con Twitter"
-      facebook_login: "Registro con Facebook"
-      google_login: "Registro con Google"
       signature_sheets: "Hojas de firmas"
       spending_proposals: "Propuestes d'inversión"
+    social:
+      twitter:
+        login: "Registro con Twitter"
+      facebook:
+        login: "Registro con Facebook"
+      google:
+        login: "Registro con Google"

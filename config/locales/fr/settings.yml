@@ -66,12 +66,6 @@ fr:
     direct_message_max_per_day: "Nombre maximum de messages directs par jour"
     direct_message_max_per_day_description: "Nombre maximum de messages directs qu'un utilisateur peut envoyer par jour"
     feature:
-      twitter_login: "Se connecter avec Twitter"
-      twitter_login_description: "Autoriser les utilisateurs à s’inscrire avec leur compte Twitter"
-      facebook_login: "Se connecter avec Facebook"
-      facebook_login_description: "Autoriser les utilisateurs à s'inscrire avec leur compte Facebook"
-      google_login: "Se connecter avec Google"
-      google_login_description: "Autoriser les utilisateurs à s’inscrire avec leur compte Google"
       featured_proposals: "Propositions en vedette"
       featured_proposals_description: "Affiche les propositions en vedette sur la page d'index des propositions"
       signature_sheets: "Feuilles de signature"
@@ -122,3 +116,13 @@ fr:
       per_page_code_head_description: "Ce code apparaitra à l'intérieur de l'étiquette <head>. Utile pour les scripts personalisés, analytiques..."
       per_page_code_body: "Code à inclure dans chaque page (<body>)"
       per_page_code_body_description: "Ce code apparaitra à l'intérieur de l'étiquette <body>. Utile pour les scripts personalisés, analytiques..."
+    social:
+      twitter:
+        login: "Se connecter avec Twitter"
+        login_description: "Autoriser les utilisateurs à s’inscrire avec leur compte Twitter"
+      facebook:
+        login: "Se connecter avec Facebook"
+        login_description: "Autoriser les utilisateurs à s'inscrire avec leur compte Facebook"
+      google:
+        login: "Se connecter avec Google"
+        login_description: "Autoriser les utilisateurs à s’inscrire avec leur compte Google" 

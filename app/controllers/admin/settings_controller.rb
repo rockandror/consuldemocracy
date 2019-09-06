@@ -8,7 +8,7 @@ class Admin::SettingsController < Admin::BaseController
                 :poster_feature_short_title_setting, :poster_feature_description_setting
 
   def index
-    @settings_groups = ["configuration", "process", "feature", "map", "uploads", "proposals", "remote_census"].freeze
+    @settings_groups = ["configuration", "process", "feature", "map", "uploads", "proposals", "remote_census", "social"].freeze
   end
 
   def update
@@ -55,6 +55,8 @@ class Admin::SettingsController < Admin::BaseController
       case group
       when "remote_census"
         [all_settings["remote_census.general"]] + [all_settings["remote_census.request"]] + [all_settings["remote_census.response"]]
+      when "social"
+        [all_settings["social.facebook"]] + [all_settings["social.twitter"]] + [all_settings["social.google"]]
       else
         all_settings[group]
       end

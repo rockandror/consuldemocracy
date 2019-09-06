@@ -39,6 +39,10 @@ describe "Admin settings" do
     expect(page).to have_content "Remote Census configuration"
     expect(page).to have_content "Allow configure remote census (SOAP)"
     expect(page).to have_link("Configure", href: admin_setting_path("remote_census"))
+
+    expect(page).to have_content "Registration with social networks"
+    expect(page).to have_content "Allow users to sign up with social networks (Twitter, Facebook, Google)"
+    expect(page).to have_link("Configure", href: admin_setting_path("social"))
   end
 
   scenario "Update" do
@@ -119,6 +123,19 @@ describe "Admin settings" do
       visit admin_setting_path("remote_census")
 
       expect(page).to have_content "Remote Census configuration"
+      expect(page).to have_css("#edit_setting_#{setting.id}")
+    end
+
+    scenario "Should display social settings section" do
+      setting = Setting.create(key: "social.twitter.setting_sample")
+
+      visit admin_setting_path("social")
+
+      expect(page).to have_content "Registration with social networks"
+      expect(page).to have_content "Twitter"
+      expect(page).to have_content "Facebook"
+      expect(page).to have_content "Google"
+      expect(page).to have_content "Note: For the changes made in this section to take effect, the application must be restarted."
       expect(page).to have_css("#edit_setting_#{setting.id}")
     end
 

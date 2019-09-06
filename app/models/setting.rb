@@ -10,7 +10,7 @@ class Setting < ApplicationRecord
   def type
     if %w[feature process proposals map html homepage uploads].include? prefix
       prefix
-    elsif %w[remote_census].include? prefix
+    elsif %w[remote_census social].include? prefix
       key.rpartition(".").first
     else
       "configuration"
@@ -81,9 +81,6 @@ class Setting < ApplicationRecord
     def defaults
       {
         "feature.featured_proposals": nil,
-        "feature.facebook_login": true,
-        "feature.google_login": true,
-        "feature.twitter_login": true,
         "feature.public_stats": true,
         "feature.signature_sheets": true,
         "feature.user.recommendations": true,
@@ -99,6 +96,15 @@ class Setting < ApplicationRecord
         "feature.translation_interface": nil,
         "feature.remote_census": nil,
         "feature.valuation_comment_notification": true,
+        "social.facebook.login": true,
+        "social.facebook.key": nil,
+        "social.facebook.secret": nil,
+        "social.google.login": true,
+        "social.google.key": nil,
+        "social.google.secret": nil,
+        "social.twitter.login": true,
+        "social.twitter.key": nil,
+        "social.twitter.secret": nil,
         "homepage.widgets.feeds.debates": true,
         "homepage.widgets.feeds.processes": true,
         "homepage.widgets.feeds.proposals": true,
