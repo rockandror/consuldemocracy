@@ -43,7 +43,7 @@ class Verification::Handler
     end
 
     def define_attributes
-      Verification::Field.all.select { |f| f.handlers.include?(self.class.id) }.pluck(:name).each do |attr|
+      Verification::Field.all.select { |f| f.handlers.include?(self.class.id.to_s) }.pluck(:name).each do |attr|
         define_singleton_method attr do
           instance_variable_get "@#{attr}"
         end
