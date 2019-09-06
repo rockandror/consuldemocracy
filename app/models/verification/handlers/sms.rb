@@ -2,13 +2,13 @@ class Verification::Handlers::Sms < Verification::Handler
   register_as :sms
   requires_confirmation true
 
-  attr_accessor :user, :confirmation_code, :phone
+  attr_accessor :user, :confirmation_code
 
-  validates :phone, presence: true
   validates :phone, format: { with: /\A[\d \+]+\z/ }
-  validate :unique_phone
+  validates :phone, confirmation: true
+  validate :unique_phone, if: ->{ phone && phone_confirmation }
 
-  def verify
+  def confirmation
     if valid?
       update_user_phone_information
       send_sms

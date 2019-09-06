@@ -1,5 +1,25 @@
 class Verification::Handler
-  module ClassDSLMethods
+  include ActiveModel::Model
+
+  attr_accessor :response
+  delegate :success, to: :response, allow_nil: true
+  alias :success? :success
+
+  def initialize(attributes = {})
+    define_attributes
+
+    super
+  end
+
+  def verify(params)
+    @response = if defined?(super)
+                  super(params)
+                else
+                  build_response(params)
+                end
+  end
+
+  class << self
     attr_reader :id
 
     def register_as(id = nil)
@@ -7,7 +27,7 @@ class Verification::Handler
       Verification::Configuration.available_handlers[@id] = self
     end
 
-    def requires_confirmation(value = false)
+    def requires_confirmation(value = true)
       @requires_confirmation = value
     end
 
@@ -16,30 +36,22 @@ class Verification::Handler
     end
   end
 
-  module InstanceDSLMethods
-    attr_accessor :response
-    delegate :success, to: :response, allow_nil: true
-    alias :success? :success
+  private
 
-    def verify(params)
-      @response = if defined?(super)
-                    super(params)
-                  else
-                    build_response(params)
-                  end
+    def build_response(params)
+      Verification::Handlers::Response.new true, I18n.t("verification_handler_success"), params, nil
     end
 
-    private
+    def define_attributes
+      Verification::Field.all.select { |f| f.handlers.include?(self.class.id) }.pluck(:name).each do |attr|
+        define_singleton_method attr do
+          instance_variable_get "@#{attr}"
+        end
 
-      def build_response(params)
-        Verification::Handlers::Response.new true, I18n.t("verification_handler_success"), params, nil
+        define_singleton_method "#{attr}=" do |arg|
+          instance_variable_set "@#{attr}", arg
+        end
       end
-  end
-
-  def self.inherited(receiver)
-    receiver.extend(ClassDSLMethods)
-    receiver.include(InstanceDSLMethods)
-    receiver.include(ActiveModel::Model)
-  end
+    end
 end
 Dir[Rails.root.join("app/models/verification/handlers/*.rb")].each {|file| require_dependency file }
