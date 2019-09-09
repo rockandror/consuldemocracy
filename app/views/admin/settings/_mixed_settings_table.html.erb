@@ -16,9 +16,8 @@
             <%= t("settings.#{setting.key}_description", default: t("admin.settings.no_description")) %>
           </span>
         </td>
-
-        <% if social_feature?(setting) || advanced_feature?(setting) %>
-          <td colspan="2">
+        <td colspan="2">
+          <% if social_feature?(setting) || advanced_feature?(setting) %>
             <% if setting.enabled? %>
               <span class="enabled small-6 column">
                 <strong>
@@ -33,17 +32,15 @@
             <div class="small-6 column">
               <%= render "admin/settings/featured_settings_form", feature: setting %>
             </div>
-          </td>
-        <% else %>
-          <td colspan="2">
+          <% else %>
             <%= form_for(setting, url: admin_setting_path(setting), html: { id: "edit_#{dom_id(setting)}"}) do |f| %>
               <%= f.text_area :value, label: false, id: dom_id(setting), lines: 1, class: "small-6 column" %>
               <div class="small-6 column">
                 <%= f.submit(t("admin.settings.index.update_setting"), class: "button hollow expanded") %>
               </div>
             <% end %>
-          </td>
-        <% end %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
