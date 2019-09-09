@@ -1,0 +1,19 @@
+<tr id="<%= dom_id(resident) %>" class="resident">
+  <td>
+    <%= resident.id %>
+  </td>
+  <td>
+    <%= resident.data %>
+  </td>
+  <td>
+    <%= link_to t("admin.actions.edit"),
+                edit_admin_verification_resident_path(resident),
+                class: "button hollow" %>
+
+    <%= link_to t("admin.actions.delete"),
+                admin_verification_resident_path(resident),
+                method: :delete,
+                class: "button hollow alert",
+                data: { confirm: t("admin.actions.confirm") } %>
+  </td>
+</tr>

@@ -132,6 +132,9 @@ en:
       verification/field:
         one: Field
         others: Fields
+      verification/resident:
+        one: Resident
+        other: Residents
     attributes:
       budget:
         name: "Name"
@@ -484,6 +487,8 @@ en:
         required: Required?
       verification/field/translation:
         label: Label
+      verification/resident:
+        data: Data
     errors:
       models:
         user:

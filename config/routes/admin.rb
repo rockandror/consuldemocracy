@@ -176,6 +176,7 @@ namespace :admin do
         resources :fields, only: :create
       end
     end
+    resources :residents
   end
 
   resource :activity, controller: :activity, only: :show
