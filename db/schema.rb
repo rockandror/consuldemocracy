@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190607160900) do
+ActiveRecord::Schema.define(version: 20190906134638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1666,6 +1666,12 @@ ActiveRecord::Schema.define(version: 20190607160900) do
     t.boolean "can_comment",              default: true
     t.boolean "can_edit_dossier",         default: true
     t.index ["user_id"], name: "index_valuators_on_user_id", using: :btree
+  end
+
+  create_table "verification_residents", force: :cascade do |t|
+    t.jsonb "data", default: {}, null: false
+    t.index ["data"], name: "index_verification_residents_on_data", using: :gin
+    t.index ["data"], name: "unique_verification_residents_data", unique: true, using: :btree
   end
 
   create_table "verified_users", force: :cascade do |t|
