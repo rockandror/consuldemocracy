@@ -1,0 +1,21 @@
+<% if @residents.any? %>
+  <h3 class="margin"><%= page_entries_info @residents %></h3>
+  <table>
+    <thead>
+      <tr>
+        <th><%= t("admin.verification.residents.index.id") %></th>
+        <th><%= t("admin.verification.residents.index.data") %></th>
+        <th><%= t("admin.actions.actions") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: "resident", collection: @residents %>
+    </tbody>
+  </table>
+
+  <%= paginate @residents %>
+<% else %>
+  <div class="callout primary">
+    <%= t("admin.verification.residents.index.no_residents") %>
+  </div>
+<% end %>
