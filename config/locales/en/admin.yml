@@ -1715,3 +1715,21 @@ en:
           created: Created records
         local_census_records:
           no_records_found: No records found.
+    verification:
+      residents:
+        index:
+          title: Manage residents
+          create: Create new resident
+          no_residents: There are no residents defined.
+          data: Data
+          id: Id
+        new:
+          creating: Creating new resident
+        create:
+          notice: New resident created successfully!
+        edit:
+          editing: Editing resident
+        update:
+          notice: Resident updated successfully!
+        destroy:
+          notice: Resident removed successfully!

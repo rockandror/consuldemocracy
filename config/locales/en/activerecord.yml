@@ -128,6 +128,9 @@ en:
       local_census_record:
         one: Local census record
         other: Local census records
+      verification/resident:
+        one: Resident
+        other: Residents
     attributes:
       budget:
         name: "Name"
@@ -379,6 +382,8 @@ en:
         document_number: Document number
         date_of_birth: Date of birth
         postal_code: Postal code
+      verification/resident:
+        data: Data
     errors:
       models:
         user:
