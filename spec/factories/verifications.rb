@@ -63,4 +63,8 @@ FactoryBot.define do
     date_of_birth Date.new(1980, 12, 31)
     postal_code "28013"
   end
+
+  factory :verification_resident, class: Verification::Resident do
+    sequence(:data){|n| { email: "email#{n}@email.com", document_number: "#{n}"*9 }}
+  end
 end
