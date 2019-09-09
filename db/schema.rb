@@ -1687,6 +1687,12 @@ ActiveRecord::Schema.define(version: 20190926093934) do
     t.index ["handlers"], name: "index_verification_fields_on_handlers", using: :btree
   end
 
+  create_table "verification_residents", force: :cascade do |t|
+    t.jsonb "data", default: {}, null: false
+    t.index ["data"], name: "index_verification_residents_on_data", using: :gin
+    t.index ["data"], name: "unique_verification_residents_data", unique: true, using: :btree
+  end
+
   create_table "verification_values", force: :cascade do |t|
     t.integer "verification_field_id"
     t.integer "user_id"
