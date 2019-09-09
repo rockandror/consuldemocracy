@@ -85,4 +85,8 @@ FactoryBot.define do
     user
     verification_field
   end
+
+  factory :verification_resident, class: Verification::Resident do
+    sequence(:data){|n| { email: "email#{n}@email.com", document_number: "#{n}"*9 }}
+  end
 end
