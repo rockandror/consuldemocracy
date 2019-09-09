@@ -1,0 +1,9 @@
+<h2 class="inline-block"><%= t("admin.verification.residents.index.title") %></h2>
+
+<%= link_to t("admin.verification.residents.index.create"),
+            new_admin_verification_resident_path,
+            class: "button float-right" %>
+
+<div id="residents">
+  <%= render "residents" %>
+</div>
