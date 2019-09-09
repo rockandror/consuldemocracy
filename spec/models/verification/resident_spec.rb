@@ -25,4 +25,18 @@ describe Verification::Resident do
 
     expect(resident).not_to be_valid
   end
+
+  context ".find_by_data" do
+    it "Should allow us to find a record for any combination of information stored
+        at data column" do
+      resident = create(:verification_resident,
+        data: {email: "resident@email.com", document_number: "12345678A"})
+      another_resident = create(:verification_resident,
+        data: {email: "anotherresident@email.com", document_number: "12345678B"})
+
+      expect(described_class.find_by_data({ email: "resident@email.com" })).to eq(resident)
+      expect(described_class.find_by_data({ document_number: "12345678B" })).to eq(another_resident)
+      expect(described_class.find_by_data({ email: "resident@email.com", document_number: "12345678A" })).to eq(resident)
+    end
+  end
 end
