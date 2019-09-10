@@ -1731,3 +1731,27 @@ es:
           created: Registros creados
         local_census_records:
           no_records_found: No se han encontrado registros.
+    verification:
+      residents:
+        index:
+          title: Gestión de residentes
+          create: Crear nuevo residente
+          no_residents: No hay residentes definidos.
+          data: Datos
+          id: Id
+        new:
+          creating: Creando un nuevo residente
+        create:
+          notice: !Nuevo residente creado correctamente¡
+        edit:
+          editing: Editando residente
+        search:
+          key:
+            placeholder: Búsqueda por clave
+          submit: Buscar
+          value:
+            placeholder: Búsqueda por valor
+        update:
+          notice: !Residente actualizado correctamente¡
+        destroy:
+          notice: !Residente eliminado correctamente!
