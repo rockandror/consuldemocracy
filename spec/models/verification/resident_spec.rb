@@ -39,4 +39,13 @@ describe Verification::Resident do
       expect(described_class.find_by_data({ email: "resident@email.com", document_number: "12345678A" })).to eq(resident)
     end
   end
+
+  context ".search" do
+    it "Should return records with given term as value of any key of json structure" do
+      resident1 = create(:verification_resident, data: { address: "1th Street" })
+      resident2 = create(:verification_resident, data: { address: "2th Street" })
+
+      expect(described_class.search(:address, "Street")).to include(resident1, resident2)
+    end
+  end
 end

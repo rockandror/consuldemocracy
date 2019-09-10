@@ -45,6 +45,31 @@ feature "Admin verification residents" do
         expect(page).to have_link("2")
       end
     end
+
+    context "Search" do
+
+      let!(:resident) { create(:verification_resident, data: { document_number: "X66777888" }) }
+
+      scenario "Should show matching records by given key and value pair at first visit" do
+        create(:verification_resident, data: { document_number: "X11222333" })
+        visit admin_verification_residents_path(key: "document_number", value: "X66777888")
+
+        expect(page).to have_content "X66777888"
+        expect(page).not_to have_content "X11222333"
+      end
+
+      scenario "Should filter matching records by given key and value pair", :js do
+        create(:verification_resident, data: { document_number: "X11222333" })
+        visit admin_verification_residents_path
+
+        fill_in :key, with: "document_number"
+        fill_in :value, with: "X66777888"
+        click_on "Search"
+
+        expect(page).to have_content "X66777888"
+        expect(page).not_to have_content "X11222333"
+      end
+    end
   end
 
   context "Create" do
