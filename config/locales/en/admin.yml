@@ -1352,7 +1352,7 @@ en:
       setting_status: Status
       setting_value: Value
       no_description: "No description"
-      restart_info: "Note: For the changes made in this section to take effect, the application must be restarted."
+      restart_info: "Note: For changes to this section to take effect correctly, contact your system administrator to restart all services that are using the application."
     shared:
       true_value: "Yes"
       false_value: "No"
