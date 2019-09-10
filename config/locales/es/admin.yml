@@ -1349,7 +1349,7 @@ es:
       setting_status: Estado
       setting_value: Valor
       no_description: "Sin descripción"
-      restart_info: "Nota: Para que surjan efecto los cambios realizados en esta sección debe reiniciarse la aplicación."
+      restart_info: "Nota: Para que surjan efecto los cambios realizados en esta sección correctamente, contacte con su administrador de sistemas para que reinicie todos los servicios que esten usando la aplicación."
     shared:
       true_value: "Sí"
       false_value: "No"
