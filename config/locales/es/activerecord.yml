@@ -128,6 +128,9 @@ es:
       local_census_record:
         one: Registro del censo local
         other: Registros del censo local
+      verification/resident:
+        one: Residente
+        other: Residentes
     attributes:
       administrator:
         description: Descripción
@@ -381,6 +384,8 @@ es:
         document_number: Número de documento
         date_of_birth: Fecha de nacimiento
         postal_code: Código postal
+      verification/resident:
+        data: Datos
     errors:
       models:
         user:
