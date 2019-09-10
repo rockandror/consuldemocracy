@@ -131,6 +131,9 @@ es:
       verification/field:
         one: Field
         others: Fields
+      verification/resident:
+        one: Residente
+        other: Residentes
     attributes:
       administrator:
         description: Descripción
@@ -391,6 +394,8 @@ es:
         required: Requerido?
       verification/field/translation:
         label: Etiqueta
+      verification/resident:
+        data: Datos
     errors:
       models:
         user:
