@@ -1790,6 +1790,12 @@ en:
           notice: New resident created successfully!
         edit:
           editing: Editing resident
+        search:
+          key:
+            placeholder: Search by key
+          submit: Search
+          value:
+            placeholder: Search by value
         update:
           notice: Resident updated successfully!
         destroy:

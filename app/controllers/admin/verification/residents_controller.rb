@@ -4,6 +4,7 @@ class Admin::Verification::ResidentsController < Admin::Verification::BaseContro
 
   def index
     @residents = Verification::Resident.all
+    @residents = @residents.search(params[:key], params[:value]) if params[:key].present? && params[:value].present?
     @residents = @residents.page(params[:page])
   end
 
