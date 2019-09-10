@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   include HasFilters
   include HasOrders
   include AccessDeniedHandler
+  include RegionalSettings
 
   default_form_builder ConsulFormBuilder
   protect_from_forgery with: :exception

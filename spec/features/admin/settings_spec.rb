@@ -155,7 +155,7 @@ describe "Admin settings" do
       expect(page).to have_content "Twitter"
       expect(page).to have_content "Facebook"
       expect(page).to have_content "Google"
-      expect(page).to have_content "Note: For the changes made in this section to take effect, the application must be restarted."
+      expect(page).to have_content "Note: For changes to this section to take effect correctly, contact your system administrator to restart all services that are using the application."
       expect(page).to have_css("#edit_setting_#{setting.id}")
     end
 
@@ -310,6 +310,50 @@ describe "Admin settings" do
       expect(page).not_to have_content "To configure remote census (SOAP) you must enable " \
                                        '"Configure connection to remote census (SOAP)" ' \
                                        'on "Features" tab.'
+    end
+
+  end
+
+  describe "Update Regional Settings" do
+
+    scenario "Should update default_locale", :js do
+      setting = Setting.find_by(key: "regional.default_locale.key")
+
+      visit admin_setting_path("regional")
+
+      within("#edit_setting_#{setting.id}") do
+        select("Español", from: "setting_value")
+        click_button "Update"
+      end
+
+      expect(page).to have_content "Value updated"
+      expect(I18n.default_locale).to eq :es
+    end
+
+    scenario "Should update available_locales", :js do
+      setting = Setting.find_by(key: "regional.available_locale.es")
+      visit admin_setting_path("regional")
+      expect(I18n.available_locales).to include :es
+
+      accept_alert do
+        find("#edit_setting_#{setting.id} .button").click
+      end
+
+      expect(page).to have_content "Value updated"
+      expect(I18n.available_locales).not_to include :es
+    end
+
+    scenario "Should update time_zone" do
+      setting = Setting.find_by(key: "regional.time_zone.key")
+      visit admin_setting_path("regional")
+
+      within("#edit_setting_#{setting.id}") do
+        select("(GMT-05:00) Lima", from: "setting_value")
+        click_button "Update"
+      end
+
+      expect(page).to have_content "Value updated"
+      expect(Time.zone.name).to eq "Lima"
     end
 
   end
