@@ -1,0 +1,10 @@
+<%= render "admin/wizards/header_steps", current_step: 6,
+                                         total_steps: @total_steps,
+                                         back_step: admin_wizards_installer_path(:smtp),
+                                         next_step: admin_wizards_installer_path(:finish) %>
+
+<hr>
+
+<h2>Idiomas y Zona horaria</h2>
+<p>En este paso podrán configurar el idioma por defecto de la aplicación, los idiomas disponibles y la zona horaria en la que se encuentra.
+En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección "Configuración" > "Regional Settings" o volviendo a ejecutar el Asistente de Instalación</p>
