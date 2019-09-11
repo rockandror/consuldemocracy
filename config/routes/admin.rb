@@ -177,6 +177,9 @@ namespace :admin do
       end
     end
     resources :residents
+    namespace :residents do
+      resources :imports, only: [:new, :create, :show]
+    end
   end
 
   resource :activity, controller: :activity, only: :show

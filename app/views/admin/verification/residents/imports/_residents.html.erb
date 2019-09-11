@@ -1,0 +1,23 @@
+<h4><%= title %> (<%= residents.any? ? residents.size : 0 %>)</h4>
+<table id="<%= id %>" class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= t("admin.verification.residents.imports.show.id") %></th>
+      <th><%= t("admin.verification.residents.imports.show.data") %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if residents.any? %>
+      <% residents.each do |resident| %>
+        <%= render "resident", resident: resident %>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan="4" style="width: 100% !important;">
+          <%= t("admin.verification.residents.imports.show.no_records_found") %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

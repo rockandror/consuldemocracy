@@ -1,0 +1,9 @@
+<tr id="<%= dom_id(resident) %>" class="resident">
+  <td>
+    <%= resident.id %>
+  </td>
+  <td>
+    <%= resident.data %>
+    <%= errors_for resident, :data %>
+  </td>
+</tr>
