@@ -171,6 +171,9 @@ namespace :admin do
   end
   namespace :verification do
     resources :residents
+    namespace :residents do
+      resources :imports, only: [:new, :create, :show]
+    end
   end
 
   resource :activity, controller: :activity, only: :show

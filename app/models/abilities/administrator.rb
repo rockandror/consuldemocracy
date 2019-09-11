@@ -108,6 +108,7 @@ module Abilities
       can [:create, :read], LocalCensusRecords::Import
 
       can :manage, Verification::Resident
+      can [:create], Verification::Residents::Import
     end
   end
 end
