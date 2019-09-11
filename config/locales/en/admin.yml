@@ -1723,6 +1723,7 @@ en:
           no_residents: There are no residents defined.
           data: Data
           id: Id
+          import: Import CSV
         new:
           creating: Creating new resident
         create:
@@ -1739,3 +1740,18 @@ en:
           notice: Resident updated successfully!
         destroy:
           notice: Resident removed successfully!
+        imports:
+          new:
+            title: Residents
+            subtitle: Import CSV file
+          create:
+            notice: Verification residents import process executed successfully!
+          show:
+            created: Created records
+            errored: Errored rows
+            data: Data
+            id: Id
+            import: Import again
+            title: Manage residents
+            subtitle: Import process results
+            no_records_found: No records found.
