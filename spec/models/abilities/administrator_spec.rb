@@ -101,4 +101,5 @@ describe Abilities::Administrator do
   it { should be_able_to(:show, LocalCensusRecords::Import) }
 
   it { should be_able_to(:manage, Verification::Resident) }
+  it { should be_able_to(:create, Verification::Residents::Import) }
 end
