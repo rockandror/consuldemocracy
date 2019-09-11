@@ -16,8 +16,7 @@
             <%= t("settings.#{setting.key}_description", default: t("admin.settings.no_description")) %>
           </span>
         </td>
-
-        <% if social_feature?(setting) %>
+        <% if social_feature?(setting) || feature?(setting.key.rpartition(".").last) || setting.key == "feature.map" %>
           <td colspan="2">
             <% if setting.enabled? %>
               <span class="enabled small-6 column">
