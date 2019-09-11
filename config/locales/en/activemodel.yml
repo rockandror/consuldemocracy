@@ -4,6 +4,9 @@ en:
       verification:
         residence: "Residence"
         sms: "SMS"
+      verification/residents/import:
+        one: Resident import
+        other: Residents import
       local_census_record/import:
         one: Local census record import
         other: Local census records imports
@@ -38,6 +41,8 @@ en:
         year_of_birth: "Year born"
       local_census_record/import:
         file: File
+      verification/residents/import:
+        file: File
     errors:
       models:
         local_census_records/import:
@@ -45,3 +50,7 @@ en:
             file:
               extension: "Given file format is wrong. The allowed file format is: %{valid_extensions}."
               headers: "Given file headers are wrong. The file headers must have the following names: %{required_headers}."
+        verification/residents/import:
+          attributes:
+            file:
+              extension: "Given file format is wrong. The allowed file format is: %{valid_extensions}."
