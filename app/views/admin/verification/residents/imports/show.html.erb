@@ -1,0 +1,19 @@
+<%= back_link_to admin_verification_residents_path %>
+<br>
+<h2 class="inline-block"><%= t("admin.verification.residents.imports.show.title") %></h2>
+
+<%= link_to t("admin.verification.residents.imports.show.import"),
+            new_admin_verification_residents_import_path,
+            class: "button float-right hollow" %>
+
+<h3><%= t("admin.verification.residents.imports.show.subtitle") %></h3>
+
+<%= render partial: "residents", locals: {
+  title: t("admin.verification.residents.imports.show.errored"),
+  id: "invalid-residents",
+  residents: @import.invalid_records } %>
+
+<%= render partial: "residents", locals: {
+  title: t("admin.verification.residents.imports.show.created"),
+  id: "created-residents",
+  residents: @import.created_records } %>

@@ -4,6 +4,10 @@
             new_admin_verification_resident_path,
             class: "button float-right" %>
 
+<%= link_to t("admin.verification.residents.index.import"),
+            new_admin_verification_residents_import_path,
+            class: "button hollow float-right" %>
+
 <div class="small-12">
   <%= render "search" %>
 </div>

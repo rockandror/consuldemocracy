@@ -109,6 +109,7 @@ module Abilities
 
       can [:manage], Verification::Field
       can :manage, Verification::Resident
+      can [:create], Verification::Residents::Import
     end
   end
 end
