@@ -1739,6 +1739,7 @@ es:
           no_residents: No hay residentes definidos.
           data: Datos
           id: Id
+          import: Importar CSV
         new:
           creating: Creando un nuevo residente
         create:
@@ -1755,3 +1756,18 @@ es:
           notice: !Residente actualizado correctamente¡
         destroy:
           notice: !Residente eliminado correctamente!
+        imports:
+          new:
+            title: Residentes
+            subtitle: Importar archivo CSV
+          create:
+            notice: ¡Proceso de importación de residentes ejecutado correctamente!
+          show:
+            created: Registros creados
+            errored: Filas erróneas
+            data: Datos
+            id: Id
+            import: Importar otro fichero
+            title: Gestión de residentes
+            subtitle: Resultados del proceso de importación
+            no_records_found: No records found.

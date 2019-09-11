@@ -4,6 +4,9 @@ es:
       verification:
         residence: "Residencia"
         sms: "SMS"
+      verification/residents/import:
+        one: Importación de residentes
+        other: Importación de residentes
       local_census_records/import:
         one: Importación de registros del censo local
         other: Importaciones de registros del censo local
@@ -38,6 +41,8 @@ es:
         year_of_birth: "Año de nacimiento"
       local_census_records/import:
         file: Archivo
+      verification/residents/import:
+        file: Archivo
     errors:
       models:
         local_census_records/import:
@@ -45,3 +50,7 @@ es:
             file:
               extension: "El formato del fichero es incorrecto. El formato de archivo permitido es: %{valid_extensions}."
               headers: "Las cabeceras del fichero son incorrectas. Las cabeceras del fichero deben tener los nombres siguientes: %{required_headers}."
+        verification/residents/import:
+          attributes:
+            file:
+              extension: "El formato del fichero es incorrecto. El formato de archivo permitido es: %{valid_extensions}."
