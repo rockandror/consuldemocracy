@@ -89,4 +89,10 @@ FactoryBot.define do
   factory :verification_resident, class: Verification::Resident do
     sequence(:data){|n| { email: "email#{n}@email.com", document_number: "#{n}"*9 }}
   end
+  factory :verification_residents_import, class: "Verification::Residents::Import" do
+    file {
+      path = %w[spec fixtures files verification residents import valid.csv]
+      Rack::Test::UploadedFile.new(Rails.root.join(*path))
+    }
+  end
 end
