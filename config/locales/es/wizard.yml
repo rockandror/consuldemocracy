@@ -10,3 +10,5 @@ es:
       title: Bienvenido al asistente de instalación de Consul
       description: En este asistente realizaremos paso a paso toda la configuración necesaria para poder personalizar la aplicación a las necesidades de su Institución. Si no dispone de alguna información solicitada en el asistente podrá obviarlos y modificarlo en un futuro en la Sección de Settings relacionada o desde este mismo Asistente.
       btn_start: Empezar
+    general_settings:
+      description: En este paso podrá actualizar algunas de las Configuraciones Globales de la aplicación más importantes. En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección "Configuración" > "Configuración Global" o volviendo a ejecutar el Asistente de Instalación
