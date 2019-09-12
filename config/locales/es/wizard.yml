@@ -14,3 +14,5 @@ es:
       description: En este paso podrá actualizar algunas de las Configuraciones Globales de la aplicación más importantes. En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección "Configuración" > "Configuración Global" o volviendo a ejecutar el Asistente de Instalación
     partecipation_process:
       description: En este paso podrán activar/desactivar los procesos de participación que decida utilizar cada Institución. En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección "Configuración" > "Procesos de Participación" o volviendo a ejecutar el Asistente de Instalación
+    map:
+      description: En este paso podrán activar/desactivar la geolocalización de las propuestas y proyectos de gasto, y personalizar la manera en que se muestra el mapa a los usuarios. En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección "Configuración" > "Configuración del mapa" o volviendo a ejecutar el Asistente de Instalación
