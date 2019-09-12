@@ -3,11 +3,13 @@
                                          back_step: admin_wizards_installer_path(:general_settings),
                                          next_step: admin_wizards_installer_path(:map) %>
 
-<hr>
-
-<h2>Procesos de Participación</h2>
-<p>En este paso podrán activar/desactivar los procesos de participación que decida utilizar cada Institución.
-En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección "Configuración" > "Procesos de Participación" o volviendo a ejecutar el Asistente de Instalación</p>
-<% @settings.each do |setting_group| %>
-  <%= render "admin/settings/mixed_settings_table", settings: setting_group %>
-<% end %>
+<div class="medium-12 columns">
+  <div class="columns">
+    <h2>Procesos de Participación</h2>
+    <p>En este paso podrán activar/desactivar los procesos de participación que decida utilizar cada Institución.
+    En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección "Configuración" > "Procesos de Participación" o volviendo a ejecutar el Asistente de Instalación</p>
+    <% @settings.each do |setting_group| %>
+      <%= render "admin/settings/mixed_settings_table", settings: setting_group %>
+    <% end %>
+  </div>
+</div>
