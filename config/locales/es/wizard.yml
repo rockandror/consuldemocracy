@@ -1,2 +1,8 @@
 es:
   wizard:
+    header:
+      title: Asistente de instalación
+      step: Paso
+      step_of: de
+      back_step: Atrás
+      next_step: Siguiente
