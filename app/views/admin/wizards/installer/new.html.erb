@@ -1,10 +1,10 @@
 <%= render "admin/wizards/header_steps", current_step: 1,
                                          total_steps: @total_steps %>
-                                         
+
 <div class="medium-12 columns">
   <div class="columns">
-    <h2>Bienvenido al asistente de instalación de Consul</h2>
-    <p>En este asistente realizaremos paso a paso toda la configuración necesaria para poder personalizar la aplicación a las necesidades de su Institución. Si no dispone de alguna información solicitada en el asistente podrá obviarlos y modificarlo en un futuro en la Sección de Settings relacionada o desde este mismo Asistente.</p>
-    <%= link_to "Empezar", admin_wizards_installer_path(:general_settings), class: "button" %>
+    <h2><%= t("wizard.new.title") %></h2>
+    <p><%= t("wizard.new.description") %></p>
+    <%= link_to t("wizard.new.btn_start"), admin_wizards_installer_path(:general_settings), class: "button" %>
   </div>
 </div>
