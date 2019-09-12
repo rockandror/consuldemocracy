@@ -1,9 +1,19 @@
-<h3>Asistente de instalación</h3>
-Paso <%= current_step %> de <%= total_steps %>
+<div class="columns padding v-aligner">
+  <div class="medium-6 columns">
+    <h3>Asistente de instalación</h3>
+    <span class="current-step">Paso <%= current_step %> de <%= total_steps %></span>
+  </div>
 
-<% if defined?(back_step) %>
-  <%= link_to "Atrás", back_step %>
-<% end %>
-<% if defined?(next_step) %>
-  <%= link_to "Siguiente", next_step, class: "button" %>
-<% end %>
+  <div class="medium-6 columns text-right">
+    <% if defined?(back_step) %>
+      <%= link_to back_step, class: "btn-back-step" do %>
+        <i class="icon-arrow-left"></i>
+        <%= t("wizard.header.back_step") %>
+      <% end %>
+    <% end %>
+    <% if defined?(next_step) %>
+      <%= link_to "Siguiente", next_step, class: "button" %>
+    <% end %>
+  </div>
+</div>
+<hr>
