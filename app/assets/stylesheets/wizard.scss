@@ -1,2 +1,40 @@
 .wizard {
+  h3 {
+    margin-bottom: 0;
+  }
+
+  h3,
+  .current-step {
+    display: inline-block;
+  }
+
+  .current-step {
+    @include breakpoint(medium) {
+      margin-left: $line-height;
+    }
+  }
+
+  .btn-back-step {
+    margin-right: $line-height;
+  }
+
+  .btn-back-step i {
+    position: relative;
+    &:before {
+      position: absolute;
+      top: 2px;
+      left: -20px;
+    }
+  }
+
+  .v-aligner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .button {
+    margin-bottom: 0;
+  }
+
 }
