@@ -6,3 +6,7 @@ es:
       step_of: de
       back_step: Atrás
       next_step: Siguiente
+    new:
+      title: Bienvenido al asistente de instalación de Consul
+      description: En este asistente realizaremos paso a paso toda la configuración necesaria para poder personalizar la aplicación a las necesidades de su Institución. Si no dispone de alguna información solicitada en el asistente podrá obviarlos y modificarlo en un futuro en la Sección de Settings relacionada o desde este mismo Asistente.
+      btn_start: Empezar
