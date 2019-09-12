@@ -2,9 +2,10 @@
                                          total_steps: @total_steps,
                                          back_step: admin_wizards_installer_path(:regional) %>
 
-<hr>
-
-<h2>Asistente finalizado con éxito</h2>
-<p>En caso de querer modificar cualquier dato una vez realizado el Asistente podrá modificarlo en la sección "Configuración" o volviendo a ejecutar el Asistente de Instalación</p>
-
-<%= link_to "Finalizar Asistente", admin_root_path, class: "button" %>
+<div class="medium-12 columns">
+  <div class="columns">
+    <h2>Asistente finalizado con éxito</h2>
+    <p>En caso de querer modificar cualquier dato una vez realizado el Asistente podrá modificarlo en la sección "Configuración" o volviendo a ejecutar el Asistente de Instalación</p>
+    <%= link_to "Finalizar Asistente", admin_root_path, class: "button" %>
+  </div>
+</div>
