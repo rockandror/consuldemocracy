@@ -19,3 +19,6 @@ es:
     smtp:
       title: Conexión SMTP
       description: En este paso podrán configurar la conexión SMTP para poder enviar correos desde la aplicación En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección "Configuración" > "Conexión SMTP" o volviendo a ejecutar el Asistente de Instalación
+    regional:
+      title: Idiomas y Zona horaria
+      description: En este paso podrán configurar el idioma por defecto de la aplicación, los idiomas disponibles y la zona horaria en la que se encuentra. En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección "Configuración" > "Regional Settings" o volviendo a ejecutar el Asistente de Instalación
