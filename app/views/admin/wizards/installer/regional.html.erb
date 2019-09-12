@@ -5,12 +5,11 @@
 
 <div class="medium-12 columns">
   <div class="columns">
-    <h2>Idiomas y Zona horaria</h2>
-    <p>En este paso podrán configurar el idioma por defecto de la aplicación, los idiomas disponibles y la zona horaria en la que se encuentra.
-    En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección "Configuración" > "Regional Settings" o volviendo a ejecutar el Asistente de Instalación</p>
+    <h2><%= t("wizard.regional.title") %></h2>
+    <p><%= t("wizard.regional.description") %></p>
     <% @settings.each do |setting_group| %>
       <h3><%= t("admin.settings.index.regional.#{setting_group.first.key.split(".").second}") %></h3>
       <%= render "admin/settings/mixed_settings_table", settings: setting_group %>
-    <% end %>    
+    <% end %>
   </div>
 </div>
