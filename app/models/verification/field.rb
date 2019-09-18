@@ -18,6 +18,7 @@ class Verification::Field < ApplicationRecord
   def handlers=(handlers)
     handlers = handlers.split(",") if handlers.is_a?(String)
     handlers = [handlers]          if handlers.is_a?(Symbol)
+    handlers.map!(&:to_s)
     super(handlers)
   end
 
