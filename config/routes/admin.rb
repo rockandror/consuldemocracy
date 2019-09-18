@@ -171,6 +171,11 @@ namespace :admin do
   end
   namespace :verification do
     resources :fields
+    namespace :handlers do
+      namespace :sms do
+        resources :fields, only: :create
+      end
+    end
   end
 
   resource :activity, controller: :activity, only: :show
