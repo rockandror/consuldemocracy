@@ -11,11 +11,12 @@ class Verification::Field < ApplicationRecord
   validates_translation :label, presence: true, length: { minimum: 2 }
   validates :name, presence: true
   validates :position, presence: true
-  validate  :handlers_exists, if: -> { handlers.present? }
+  validate  :handlers_exists, if: -> { handlers.any?(&:present?) }
 
   scope :required, -> { where(required: true) }
 
   def handlers=(handlers)
+    handlers = []                  if handlers.blank?
     handlers = handlers.split(",") if handlers.is_a?(String)
     handlers = [handlers]          if handlers.is_a?(Symbol)
     handlers.map!(&:to_s)
