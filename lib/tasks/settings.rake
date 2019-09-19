@@ -72,6 +72,7 @@ namespace :settings do
   desc "Retrocompatibility smtp settings for existing installations"
   task update_smtp_settings: :environment do
     if Rails.application.config.action_mailer.delivery_method == :smtp
+      Setting["feature.smtp_configuration"] = true
       Setting["smtp.address"] = Rails.application.config.action_mailer.smtp_settings[:address]
       Setting["smtp.port"] = Rails.application.config.action_mailer.smtp_settings[:port]
       Setting["smtp.domain"] = Rails.application.config.action_mailer.smtp_settings[:domain]
