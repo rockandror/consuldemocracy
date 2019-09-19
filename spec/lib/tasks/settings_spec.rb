@@ -109,4 +109,44 @@ describe Setting do
 
   end
 
+  describe "Retrocompatibility smtp settings for existing installations" do
+
+    let :run_rake_task do
+      Rake::Task["settings:update_smtp_settings"].reenable
+      Rake.application.invoke_task "settings:update_smtp_settings"
+    end
+
+    context "#update_smtp_settings" do
+
+      before do
+        Rails.application.config.action_mailer.delivery_method = :smtp
+        Rails.application.config.action_mailer.smtp_settings = { address: "smtp.test.com",
+                                                                 port: 587,
+                                                                 domain: "mail.com",
+                                                                 user_name: "username test",
+                                                                 password: "password_test",
+                                                                 authentication: "plain",
+                                                                 enable_starttls_auto: true }
+      end
+
+      after do
+        Rails.application.config.action_mailer.delivery_method = :test
+        Rails.application.config.action_mailer.smtp_settings = nil
+      end
+
+      it "Update correctly SMTP settings with action_mailer application configuration" do
+        run_rake_task
+
+        expect(Setting["smtp.address"]).to eq "smtp.test.com"
+        expect(Setting["smtp.port"]).to eq "587"
+        expect(Setting["smtp.domain"]).to eq "mail.com"
+        expect(Setting["smtp.username"]).to eq "username test"
+        expect(Setting["smtp.password"]).to eq "password_test"
+        expect(Setting["smtp.authentication"]).to eq "plain"
+        expect(Setting["smtp.enable_starttls_auto"].present?).to eq true
+      end
+    end
+
+  end
+
 end
