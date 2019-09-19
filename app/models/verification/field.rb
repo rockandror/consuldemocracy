@@ -14,6 +14,7 @@ class Verification::Field < ApplicationRecord
   validate  :handlers_exists, if: -> { handlers.any?(&:present?) }
 
   scope :required, -> { where(required: true) }
+  scope :including_any_handlers, -> (handlers) { where(matching_handler_query(handlers)) }
 
   def handlers=(handlers)
     handlers = []                  if handlers.blank?
@@ -33,5 +34,9 @@ class Verification::Field < ApplicationRecord
 
     def handler_exists?(handler)
       Verification::Configuration.ids.include?(handler.to_s)
+    end
+
+    def self.matching_handler_query(handlers, condition_separator = 'OR')
+      handlers.map { |handler| "(handlers LIKE '%#{handler}%')" }.join(" #{condition_separator} ")
     end
 end
