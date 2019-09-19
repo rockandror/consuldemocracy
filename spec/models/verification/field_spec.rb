@@ -68,4 +68,25 @@ describe Verification::Field do
       expect(described_class.required).to eq([required_field])
     end
   end
+
+  describe ".including_any_handlers" do
+    let!(:my_handler) do
+      Class.new(Verification::Handler) do
+        register_as :my_handler
+      end
+    end
+    let!(:other_handler) do
+      Class.new(Verification::Handler) do
+        register_as :other_handler
+      end
+    end
+
+    it "Should return only fields with given handlers enabled" do
+      handler_field = create :verification_field, handlers: "my_handler"
+      other_handler_field = create :verification_field, handlers: "other_handler"
+
+      expect(described_class.including_any_handlers(["my_handler"])).to include(handler_field)
+      expect(described_class.including_any_handlers(["my_handler"])).not_to include(other_handler_field)
+    end
+  end
 end
