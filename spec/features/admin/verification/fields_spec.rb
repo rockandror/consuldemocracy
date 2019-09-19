@@ -84,6 +84,18 @@ describe "Fields" do
 
       expect(page).to have_content "Verification field couldn't be updated"
     end
+
+    scenario "Should allow to deactivate all handlers for a field" do
+      visit edit_admin_verification_field_path(field)
+      expect(page).to have_checked_field("verification_field_handlers_fake_handler")
+
+      uncheck "FakeHandler"
+      click_button "Update field"
+
+      expect(page).to have_content "Verification field updated successfully"
+      visit edit_admin_verification_field_path(field)
+      expect(page).to have_unchecked_field("verification_field_handlers_fake_handler")
+    end
   end
 
   describe "Destroy" do
