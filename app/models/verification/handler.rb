@@ -23,7 +23,7 @@ class Verification::Handler
     attr_reader :id
 
     def register_as(id = nil)
-      @id = id.to_sym
+      @id = id.to_s
       Verification::Configuration.available_handlers[@id] = self
     end
 

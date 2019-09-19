@@ -9,11 +9,11 @@ describe Verification::Handler do
 
   describe ".register_as" do
     it "sets handler's id" do
-      expect(handler.id).to eq(:my_handler)
+      expect(handler.id).to eq("my_handler")
     end
 
     it "add handlers to Verification::Configuration available_handlers" do
-      expect(Verification::Configuration.available_handlers).to include(:my_handler)
+      expect(Verification::Configuration.available_handlers).to include("my_handler")
     end
   end
 
