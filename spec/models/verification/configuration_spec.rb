@@ -9,7 +9,7 @@ describe Verification::Configuration do
 
   describe ".available_handlers" do
     it "should return registered handlers" do
-      expect(described_class.available_handlers).to include({ my_handler: handler })
+      expect(described_class.available_handlers).to include({ "my_handler" => handler })
     end
   end
 
@@ -25,7 +25,7 @@ describe Verification::Configuration do
         requires_confirmation true
       end
 
-      expect(described_class.required_confirmation_handlers).to include({ my_handler: handler })
+      expect(described_class.required_confirmation_handlers).to include({ "my_handler" => handler })
       expect(described_class.required_confirmation_handlers).not_to include without_confirmation_handler
     end
   end
