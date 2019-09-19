@@ -154,6 +154,7 @@ describe "Admin settings" do
 
     scenario "Should display smtp settings section" do
       setting = Setting.create(key: "smtp.setting_sample")
+      Setting["feature.smtp_configuration"] = true
 
       visit admin_setting_path("smtp")
 
