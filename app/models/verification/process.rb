@@ -34,7 +34,7 @@ class Verification::Process
       return if @handlers.none?
 
       @handlers.each do |handler|
-        handler_instance = Verification::Configuration.available_handlers[handler.to_sym].
+        handler_instance = Verification::Configuration.available_handlers[handler].
           new(fields_for_handler(handler))
         unless handler_instance.valid?
           handler_instance.errors.each do |field, error|
