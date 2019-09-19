@@ -1,7 +1,7 @@
 class Verification::Field < ApplicationRecord
   self.table_name = "verification_fields"
 
-  serialize :handlers
+  serialize :handlers, Array
 
   translates :label, touch: true
   include Globalizable
