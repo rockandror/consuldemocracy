@@ -116,6 +116,8 @@ en:
       translation_interface_description: "Displays the manual translation interface that allows users to enter their content in all application available languages. This option only affects user application forms and independently will always be active in the administration panel."
       remote_census: "Configure connection to remote census (SOAP)"
       remote_census_description: "Allows to configure the connection to the remote census of each institution"
+      smtp_configuration: "SMTP Configuration"
+      smtp_configuration_description: "Activate this feature to add SMTP configuration and send emails from the application."
       valuation_comment_notification: "Valuation comment notification"
       valuation_comment_notification_description: "Send an email to all associated users except valuation commenter to budget investment when a new valuation comment is created"
     remote_census:

@@ -96,6 +96,7 @@ class Setting < ApplicationRecord
         "feature.translation_interface": nil,
         "feature.remote_census": nil,
         "feature.valuation_comment_notification": true,
+        "feature.smtp_configuration": nil,
         "social.facebook.login": true,
         "social.facebook.key": nil,
         "social.facebook.secret": nil,
