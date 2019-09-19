@@ -1345,6 +1345,7 @@ es:
         smtp:
           title: "Configuración SMTP"
           description: "Permitir actualizar la configuración SMTP para el envio de emails."
+          how_to_enable: 'Para actualizar la configuración SMTP se debe activar "Configurar SMTP" en la pestaña "Funcionalidades".'
       setting: Funcionalidad
       setting_actions: Acciones
       setting_name: Configuración
