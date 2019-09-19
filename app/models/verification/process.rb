@@ -59,7 +59,7 @@ class Verification::Process
 
     # Return enabled handlers from defined verification fields
     def active_handlers
-      Verification::Field.all.where.not(handlers: [nil, ""]).pluck(:handlers).flatten.uniq
+      Verification::Field.including_any_handlers(Verification::Configuration.ids).pluck(:handlers).flatten.uniq
     end
 
     # Return {} with fields by name
@@ -69,7 +69,7 @@ class Verification::Process
       end
     end
 
-    # Return {} of fields for given handler by field name
+    # Return {} of fields for given handler by handler name
     def fields_for_handler(handler)
       params = {}
       @fields.each do |field_name, field|
