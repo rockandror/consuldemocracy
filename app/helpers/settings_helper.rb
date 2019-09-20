@@ -13,4 +13,8 @@ module SettingsHelper
     key.first == "social" && key.last == "login"
   end
 
+  def advanced_feature?(setting)
+    key = setting.key.split(".")
+    key.first == "advanced" && key.last == "http_basic_auth"
+  end
 end

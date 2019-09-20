@@ -221,3 +221,14 @@ es:
         key_description: "API Key para configurar el registro por Google"
         secret: "Secret Token Google"
         secret_description: "Secret token para configurar el registro por Google"
+    advanced:
+      auth:
+        http_basic_auth: "Autenticación básica por http"
+        http_basic_auth_description: "Permitir Activar/Desactivar la autenticación básica po http"
+        http_basic_username: "Usuario para la autenticación básica por http"
+        http_basic_username_description: "Permitir setear el Usuario"
+        http_basic_password: "Contraseña para la autenticación básica por http"
+        http_basic_password_description: "Permitir setear la Contraseña"
+      tracking:
+        rollbar_server_token: "Rollbar server token"
+        rollbar_server_token_description: "Rollbar server token Descripción"

@@ -10,7 +10,7 @@ class Setting < ApplicationRecord
   def type
     if %w[feature process proposals map html homepage uploads].include? prefix
       prefix
-    elsif %w[remote_census social].include? prefix
+    elsif %w[remote_census social advanced].include? prefix
       key.rpartition(".").first
     else
       "configuration"
@@ -140,6 +140,10 @@ class Setting < ApplicationRecord
         "uploads.documents.max_amount": 3,
         "uploads.documents.max_size": 3,
         "uploads.documents.content_types": "application/pdf",
+        "advanced.auth.http_basic_auth": nil,
+        "advanced.auth.http_basic_username": nil,
+        "advanced.auth.http_basic_password": nil,
+        "advanced.tracking.rollbar_server_token": nil,
         # Names for the moderation console, as a hint for moderators
         # to know better how to assign users with official positions
         "official_level_1_name": I18n.t("seeds.settings.official_level_1_name"),
