@@ -16,8 +16,9 @@
             <%= t("settings.#{setting.key}_description", default: t("admin.settings.no_description")) %>
           </span>
         </td>
-        <td colspan="2">
-          <% if social_feature?(setting) || advanced_feature?(setting) %>
+
+        <% if social_feature?(setting) || smtp_feature?(setting) || advanced_feature?(setting) %>
+          <td colspan="2">
             <% if setting.enabled? %>
               <span class="enabled small-6 column">
                 <strong>

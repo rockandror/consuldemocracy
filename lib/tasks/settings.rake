@@ -60,4 +60,18 @@ namespace :settings do
   desc "Manage settings"
   task manage_settings: [:rename_setting_keys, :add_new_settings]
 
+  desc "Retrocompatibility smtp settings for existing installations"
+  task update_smtp_settings: :environment do
+    if Rails.application.config.action_mailer.delivery_method == :smtp
+      Setting["feature.smtp_configuration"] = true
+      Setting["smtp.address"] = Rails.application.config.action_mailer.smtp_settings[:address]
+      Setting["smtp.port"] = Rails.application.config.action_mailer.smtp_settings[:port]
+      Setting["smtp.domain"] = Rails.application.config.action_mailer.smtp_settings[:domain]
+      Setting["smtp.username"] = Rails.application.config.action_mailer.smtp_settings[:user_name]
+      Setting["smtp.password"] = Rails.application.config.action_mailer.smtp_settings[:password]
+      Setting["smtp.authentication"] = Rails.application.config.action_mailer.smtp_settings[:authentication]
+      Setting["smtp.enable_starttls_auto"] = Rails.application.config.action_mailer.smtp_settings[:enable_starttls_auto]
+    end
+  end
+
 end
