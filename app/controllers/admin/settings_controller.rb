@@ -8,7 +8,7 @@ class Admin::SettingsController < Admin::BaseController
                 :poster_feature_short_title_setting, :poster_feature_description_setting
 
   def index
-    @settings_groups = ["configuration", "process", "feature", "map", "uploads", "proposals", "remote_census", "social", "advanced", "smtp"].freeze
+    @settings_groups = ["configuration", "process", "feature", "map", "uploads", "proposals", "remote_census", "social", "advanced", "smtp", "regional"].freeze
   end
 
   def update
@@ -59,8 +59,14 @@ class Admin::SettingsController < Admin::BaseController
         [all_settings["social.facebook"]] + [all_settings["social.twitter"]] + [all_settings["social.google"]]
       when "advanced"
         [all_settings["advanced.auth"]] + [all_settings["advanced.tracking"]]
+      when "regional"
+        [all_settings["regional.default_locale"]] + [valid_regional_available_locales(all_settings)] + [all_settings["regional.time_zone"]]
       else
         all_settings[group]
       end
+    end
+
+    def valid_regional_available_locales(all_settings)
+      all_settings["regional.available_locale"].select { |s| s.key.rpartition(".").last.to_sym != I18n.default_locale }
     end
 end

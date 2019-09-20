@@ -56,4 +56,18 @@ RSpec.describe SettingsHelper, type: :helper do
     end
   end
 
+  describe "#regional_feature?" do
+    it "returns true when regional setting is a feature flag" do
+      regional_setting_flag = Setting.create(key: "regional.available_locale.login")
+      regional_setting_input = Setting.create(key: "regional.sample_regional.input")
+      regional_setting_one_level = Setting.create(key: "regional.one_level")
+      another_setting = Setting.create(key: "another_setting.sample_key")
+
+      expect(regional_feature?(regional_setting_flag)).to eq true
+      expect(regional_feature?(regional_setting_input)).to eq false
+      expect(regional_feature?(regional_setting_one_level)).to eq false
+      expect(regional_feature?(another_setting)).to eq false
+    end
+  end
+
 end
