@@ -83,7 +83,6 @@
 //= require globalize
 //= require send_admin_notification_alert
 //= require modal_download
-//= require settings
 //= require cookies
 //= require columns_selector
 //= require budget_edit_associations.js.coffee
@@ -136,7 +135,6 @@ var initialize_modules = function() {
   App.Globalize.initialize();
   App.SendAdminNotificationAlert.initialize();
   App.ModalDownload.initialize();
-  App.Settings.initialize();
   App.Cookies.initialize();
   if ( $('#js-columns-selector').length )
     App.ColumnsSelector.initialize();
