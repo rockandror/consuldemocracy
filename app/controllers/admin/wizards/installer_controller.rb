@@ -26,10 +26,15 @@ class Admin::Wizards::InstallerController < Admin::BaseController
       when "map"
         @settings = [[Setting.find_by(key: "feature.map"), Setting.find_by(key: "map.latitude"), Setting.find_by(key: "map.longitude"), Setting.find_by(key: "map.zoom")]]
       when "smtp"
-        @settings = [Setting.find_by(key: "smpt."), Setting.find_by(key: "smtp.")]
+        @settings = [Setting.find_by(key: "feature.smtp_configuration"), Setting.find_by(key: "smtp.address"), Setting.find_by(key: "smtp.port"), Setting.find_by(key: "smtp.domain"), Setting.find_by(key: "smtp.username"), Setting.find_by(key: "smtp.password"), Setting.find_by(key: "smtp.authentication"), Setting.find_by(key: "smtp.enable_starttls_auto")]
       when "regional"
-        @settings = [Setting.find_by(key: "regional."), Setting.find_by(key: "regional.")]
+        all_settings = Setting.all.group_by { |setting| setting.type }
+        @settings = [all_settings["regional.default_locale"]] + [valid_regional_available_locales(all_settings)] + [all_settings["regional.time_zone"]]
       end
+    end
+
+    def valid_regional_available_locales(all_settings)
+      all_settings["regional.available_locale"].select { |s| s.key.rpartition(".").last.to_sym != I18n.default_locale }
     end
 
 end
