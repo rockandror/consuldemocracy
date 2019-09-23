@@ -5,8 +5,9 @@
                         data-map-center-latitude="<%= Setting["map.latitude"] %>"
                         data-map-center-longitude="<%= Setting["map.longitude"] %>"
                         data-map-zoom="<%= Setting["map.zoom"] %>"
-                        data-map-tiles-provider="<%= Rails.application.secrets.map_tiles_provider %>"
-                        data-map-tiles-provider-attribution="<%= Rails.application.secrets.map_tiles_provider_attribution %>"
+                        data-map-tiles-provider="<%= Retrocompatibility.calculate_value("map.tiles_provider", "map_tiles_provider") %>"
+                        data-map-tiles-provider-attribution="<%= Retrocompatibility.calculate_value("map.tiles_provider_attribution",
+                                                                                                    "map_tiles_provider_attribution") %>"
                         data-marker-editable="true"
                         data-marker-latitude="<%= Setting["map.latitude"] %>"
                         data-marker-longitude="<%= Setting["map.longitude"] %>"
