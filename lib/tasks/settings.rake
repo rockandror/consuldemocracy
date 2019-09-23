@@ -22,4 +22,11 @@ namespace :settings do
   desc "Manage settings"
   task manage_settings: [:rename_setting_keys, :add_new_settings]
 
+  desc "Copy http basic auth from secrets to settings"
+  task copy_http_basic_auth_to_settings: :environment do
+    Setting["advanced.auth.http_basic_auth"] = Rails.application.secrets["http_basic_auth"]
+    Setting["advanced.auth.http_basic_username"] = Rails.application.secrets["http_basic_username"]
+    Setting["advanced.auth.http_basic_password"] = Rails.application.secrets["http_basic_password"]
+  end
+
 end
