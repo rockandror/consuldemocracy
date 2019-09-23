@@ -1337,6 +1337,11 @@ es:
           facebook: "Facebook"
           twitter: "Twitter"
           google: "Google"
+        advanced:
+          title: "Configuración Avanzada"
+          description: "Permitir actualizar las configuraciones avanzadas"
+          auth: "Autenticación básica por http"
+          tracking: "Monitorización de errores"
       setting: Funcionalidad
       setting_actions: Acciones
       setting_name: Configuración

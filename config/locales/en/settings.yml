@@ -221,3 +221,14 @@ en:
         key_description: "API key to configure the registration via Google"
         secret: "Secret Token Google"
         secret_description: "Secret token to configure the registration via Google"
+    advanced:
+      auth:
+        http_basic_auth: "Http basic authentication"
+        http_basic_auth_description: "Allow Enable/Disable http basic authentication. In order to enable this field ensure have defined a user and password."
+        http_basic_username: "Http basic authentication Username."
+        http_basic_username_description: "Allow set Username. In order to update the User must first disable the Http Basic Authentication, update the User and re-enable the Http Basic Authentication."
+        http_basic_password: "Http basic authentication Password."
+        http_basic_password_description: "Allow set Password. In order to update the Password must first disable the Http Basic Authentication, update the Password and re-enable the Http Basic Authentication."
+      tracking:
+        rollbar_server_token: "Rollbar server token"
+        rollbar_server_token_description: "This token will give the application access to your Rollbar account."

@@ -8,7 +8,7 @@ class Admin::SettingsController < Admin::BaseController
                 :poster_feature_short_title_setting, :poster_feature_description_setting
 
   def index
-    @settings_groups = ["configuration", "process", "feature", "map", "uploads", "proposals", "remote_census", "social"].freeze
+    @settings_groups = ["configuration", "process", "feature", "map", "uploads", "proposals", "remote_census", "social", "advanced"].freeze
   end
 
   def update
@@ -57,6 +57,8 @@ class Admin::SettingsController < Admin::BaseController
         [all_settings["remote_census.general"]] + [all_settings["remote_census.request"]] + [all_settings["remote_census.response"]]
       when "social"
         [all_settings["social.facebook"]] + [all_settings["social.twitter"]] + [all_settings["social.google"]]
+      when "advanced"
+        [all_settings["advanced.auth"]] + [all_settings["advanced.tracking"]]
       else
         all_settings[group]
       end
