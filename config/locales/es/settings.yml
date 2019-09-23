@@ -224,11 +224,11 @@ es:
     advanced:
       auth:
         http_basic_auth: "Autenticación básica por http"
-        http_basic_auth_description: "Permitir Activar/Desactivar la autenticación básica por http"
+        http_basic_auth_description: "Permitir Activar/Desactivar la autenticación básica por http. Para habilitar este campo, asegúrese de haber definido un usuario y una contraseña."
         http_basic_username: "Usuario para la autenticación básica por http"
         http_basic_username_description: "Permitir setear el Usuario. Para poder actualizar el Usuario debe deshabilitar primero la Autenticación básica por http, actualizar el Usuario y volver a activar la Autenticación básica por http."
         http_basic_password: "Contraseña para la autenticación básica por http"
         http_basic_password_description: "Permitir setear la Contraseña. Para poder actualizar la Contraseña debe deshabilitar primero la Autenticación básica por http, actualizar la Contraseña y volver a activar la Autenticación básica por http."
       tracking:
-        rollbar_server_token: "Rollbar server token"
-        rollbar_server_token_description: "Rollbar server token Descripción"
+        rollbar_server_token: "Token de acceso a Rollbar"
+        rollbar_server_token_description: "Este token le dará a la aplicación acceso a su cuenta Rollbar."
