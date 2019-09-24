@@ -23,6 +23,8 @@ class Admin::Wizards::InstallerController < Admin::BaseController
         @settings = [Setting.find_by(key: "org_name"), Setting.find_by(key: "min_age_to_participate")]
       when "participation_process"
         @settings = [[Setting.find_by(key: "process.debates"), Setting.find_by(key: "process.proposals"), Setting.find_by(key: "votes_for_proposal_success"), Setting.find_by(key: "process.polls"), Setting.find_by(key: "process.budgets")]]
+      when "map"
+        @settings = [[Setting.find_by(key: "feature.map"), Setting.find_by(key: "map.latitude"), Setting.find_by(key: "map.longitude"), Setting.find_by(key: "map.zoom")]]
       end
     end
 
