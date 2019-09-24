@@ -1342,7 +1342,7 @@ en:
           how_to_enable: 'To update SMTP configuration you must enable "SMTP Configuration" on "Features" tab.'
         regional:
           title: "Languages and Time Zone"
-          description: "Allow set default locale, available locales and time zone"
+          description: "Set default locale, available locales and time zone"
           default_locale: "Application default locale"
           available_locale: "Application available locales"
           timezone: "Time Zone"
