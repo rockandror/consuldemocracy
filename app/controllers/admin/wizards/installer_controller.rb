@@ -25,6 +25,8 @@ class Admin::Wizards::InstallerController < Admin::BaseController
         @settings = [[Setting.find_by(key: "process.debates"), Setting.find_by(key: "process.proposals"), Setting.find_by(key: "votes_for_proposal_success"), Setting.find_by(key: "process.polls"), Setting.find_by(key: "process.budgets")]]
       when "map"
         @settings = [[Setting.find_by(key: "feature.map"), Setting.find_by(key: "map.latitude"), Setting.find_by(key: "map.longitude"), Setting.find_by(key: "map.zoom")]]
+      when "smtp"
+        @settings = [Setting.find_by(key: "feature.smtp_configuration"), Setting.find_by(key: "smtp.address"), Setting.find_by(key: "smtp.port"), Setting.find_by(key: "smtp.domain"), Setting.find_by(key: "smtp.username"), Setting.find_by(key: "smtp.password"), Setting.find_by(key: "smtp.authentication"), Setting.find_by(key: "smtp.enable_starttls_auto")]
       end
     end
 
