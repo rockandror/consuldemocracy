@@ -262,5 +262,8 @@ namespace :admin do
   end
 
   resources :wizards, only: :index
+  namespace :wizards do
+    resources :installer, only: [:new, :show]
+  end
 
 end
