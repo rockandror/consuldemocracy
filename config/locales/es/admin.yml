@@ -1299,7 +1299,7 @@ es:
           how_to_enable: 'Para activar la configuración SMTP debe activar "Configurar SMTP" en la pestaña "Funcionalidades".'
         regional:
           title: "Idiomas y Zona Horaria"
-          description: "Permitir definir el idioma por defecto, los idiomas disponibles y la zona horaria."
+          description: "Define el idioma por defecto, los idiomas disponibles y la zona horaria."
           default_locale: "Idioma por defecto de la aplicación"
           available_locale: "Idiomas disponibles de la aplicación"
           timezone: "Zona horaria"
@@ -1309,7 +1309,7 @@ es:
       setting_status: Estado
       setting_value: Valor
       no_description: "Sin descripción"
-      restart_info: "Nota: Para que surjan efecto los cambios realizados en esta sección correctamente, contacte con su administrador de sistemas para que reinicie todos los servicios que esten usando la aplicación."
+      restart_info: "Nota: Para que aplicar los cambios realizados en esta sección correctamente, contacte con su administrador de sistemas para que reinicie todos los servicios que esten usando la aplicación."
     shared:
       true_value: "Sí"
       false_value: "No"

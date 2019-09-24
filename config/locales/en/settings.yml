@@ -252,7 +252,7 @@ en:
     regional:
       default_locale:
         key: "Default locale"
-        key_description: "Define the default language of the application."
+        key_description: "Set application default language."
       available_locale:
         ar: "Arabic"
         ar_description: "Enable the Arabic language in the application"
