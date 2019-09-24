@@ -1341,6 +1341,10 @@ en:
           description: "Allow update advanced configuration"
           auth: "Http basic authentication"
           tracking: "Error tracking"
+        smtp:
+          title: "SMTP Configuration"
+          description: "Set SMTP server configuration to send emails."
+          how_to_enable: 'To update SMTP configuration you must enable "SMTP Configuration" on "Features" tab.'
       setting: Feature
       setting_actions: Actions
       setting_name: Setting

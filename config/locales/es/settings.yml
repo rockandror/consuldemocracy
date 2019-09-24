@@ -116,6 +116,8 @@ es:
       translation_interface_description: "Muestra la interfaz de traducción manual permitiendo a los usuarios introducir sus contenidos en todos los idiomas disponibles de la aplicación si así lo desean. Esta opción solo afecta a las vistas de usuarios de la aplicación, en el panel de administración está activa siempre."
       remote_census: "Configurar conexión al censo remoto (SOAP)"
       remote_census_description: "Permite configurar la conexión al censo remoto de cada institución"
+      smtp_configuration: "Configuración SMTP"
+      smtp_configuration_description: "Activa esta funcionalidad para poder añadir la configuración SMTP y poder enviar emails desde la aplicación."
       valuation_comment_notification: "Notificar comentarios de evaluación"
       valuation_comment_notification_description: "Envía un email a todos los usuarios menos al que haya comentado asociados a un presupuesto participativo cuando se cree un nuevo comentario de evaluación"
     remote_census:
@@ -232,3 +234,18 @@ es:
       tracking:
         rollbar_server_token: "Token de acceso a Rollbar"
         rollbar_server_token_description: "Este token le dará a la aplicación acceso a su cuenta Rollbar."
+    smtp:
+      address: "Host SMTP"
+      address_description: "Configura el host del servidor SMTP. Ejemplo: 'smtp.example.com'"
+      port: "Puerto SMTP"
+      port_description: "Configura el puerto del servidor SMTP. Ejemplo: 587"
+      domain: "Dominio"
+      domain_description: "Configura el dominio del servidor SMTP. Ejemplo: 'example.com'"
+      username: "Usuario SMTP"
+      username_description: "Configura el usuario del servidor SMTP. Ejemplo: 'username'"
+      password: "Contraseña SMTP"
+      password_description: "Configura la contraseña del servidor SMTP. Ejemplo: 'password'"
+      authentication: "Autenticación SMTP"
+      authentication_description: "Configura el mecanismo de autenticación del servidor SMTP. Ejemplo: 'plain'"
+      enable_starttls_auto: "Activar TLS para SMTP"
+      enable_starttls_auto_description: "Activar TLS del servidor SMTP."

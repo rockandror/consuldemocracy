@@ -116,6 +116,8 @@ en:
       translation_interface_description: "Displays the manual translation interface that allows users to enter their content in all application available languages. This option only affects user application forms and independently will always be active in the administration panel."
       remote_census: "Configure connection to remote census (SOAP)"
       remote_census_description: "Allows to configure the connection to the remote census of each institution"
+      smtp_configuration: "SMTP Configuration"
+      smtp_configuration_description: "Enable this feature to send emails through SMTP server."
       valuation_comment_notification: "Valuation comment notification"
       valuation_comment_notification_description: "Send an email to all associated users except valuation commenter to budget investment when a new valuation comment is created"
     remote_census:
@@ -232,3 +234,18 @@ en:
       tracking:
         rollbar_server_token: "Rollbar server token"
         rollbar_server_token_description: "This token will give the application access to your Rollbar account."
+    smtp:
+      address: "SMTP Host"
+      address_description: "Configure SMTP server host. Example: 'smtp.example.com'"
+      port: "SMTP Port"
+      port_description: "Configure SMTP server port. Example: 587"
+      domain: "Domain"
+      domain_description: "Configure SMTP server domain. Example: 'example.com'"
+      username: "SMTP User"
+      username_description: "Configure SMTP server user. Example: 'username'"
+      password: "SMTP Password"
+      password_description: "Configure SMTP server password. Example: 'password'"
+      authentication: "SMTP Authentication"
+      authentication_description: "Configure SMTP server authentication type. Example: 'plain'"
+      enable_starttls_auto: "Enable SMTP TLS"
+      enable_starttls_auto_description: "Configure SMTP server TLS configuration. Example: 'true'"

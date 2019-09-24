@@ -42,4 +42,18 @@ RSpec.describe SettingsHelper, type: :helper do
     end
   end
 
+  describe "#smtp_feature?" do
+    it "returns true when smtp setting is a feature flag" do
+      smtp_setting_flag = Setting.create(key: "smtp.sample_smtp.enable_starttls_auto")
+      smtp_setting_input = Setting.create(key: "smtp.sample_smtp.input")
+      smtp_setting_one_level = Setting.create(key: "smtp.one_level")
+      another_setting = Setting.create(key: "another_setting.sample_key")
+
+      expect(smtp_feature?(smtp_setting_flag)).to eq true
+      expect(smtp_feature?(smtp_setting_input)).to eq false
+      expect(smtp_feature?(smtp_setting_one_level)).to eq false
+      expect(smtp_feature?(another_setting)).to eq false
+    end
+  end
+
 end

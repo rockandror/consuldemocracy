@@ -1342,6 +1342,10 @@ es:
           description: "Permitir actualizar las configuraciones avanzadas"
           auth: "Autenticación básica por http"
           tracking: "Monitorización de errores"
+        smtp:
+          title: "Configuración SMTP"
+          description: "Configuración del servidor SMTP para el envio de emails."
+          how_to_enable: 'Para activar la configuración SMTP debe activar "Configurar SMTP" en la pestaña "Funcionalidades".'
       setting: Funcionalidad
       setting_actions: Acciones
       setting_name: Configuración
