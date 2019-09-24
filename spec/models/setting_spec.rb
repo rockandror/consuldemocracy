@@ -82,6 +82,11 @@ describe Setting do
       map_setting = Setting.create(key: "smtp.whatever")
       expect(map_setting.type).to eq "smtp"
     end
+
+    it "returns 'regional.regional_section' for 'regional' settings" do
+      configuration_setting = Setting.create(key: "regional.regional_name.sample_setting")
+      expect(configuration_setting.type).to eq "regional.regional_name"
+    end
   end
 
   describe "#enabled?" do

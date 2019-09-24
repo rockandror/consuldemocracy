@@ -1345,13 +1345,19 @@ en:
           title: "SMTP Configuration"
           description: "Set SMTP server configuration to send emails."
           how_to_enable: 'To update SMTP configuration you must enable "SMTP Configuration" on "Features" tab.'
+        regional:
+          title: "Languages and Time Zone"
+          description: "Set default locale, available locales and time zone"
+          default_locale: "Application default locale"
+          available_locale: "Application available locales"
+          timezone: "Time Zone"
       setting: Feature
       setting_actions: Actions
       setting_name: Setting
       setting_status: Status
       setting_value: Value
       no_description: "No description"
-      restart_info: "Note: For the changes made in this section to take effect, the application must be restarted."
+      restart_info: "Note: For changes to this section to take effect correctly, contact your system administrator to restart all services that are using the application."
     shared:
       true_value: "Yes"
       false_value: "No"
