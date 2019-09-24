@@ -29,7 +29,7 @@ namespace :settings do
     Setting["advanced.auth.http_basic_password"] = Rails.application.secrets["http_basic_password"]
   end
 
-  desc "Retrocompatibility smtp settings for existing installations"
+  desc "Copy existing SMTP configuration to settings database"
   task update_smtp_settings: :environment do
     if Rails.application.config.action_mailer.delivery_method == :smtp
       Setting["feature.smtp_configuration"] = true
