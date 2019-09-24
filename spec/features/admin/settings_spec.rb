@@ -49,7 +49,7 @@ describe "Admin settings" do
     expect(page).to have_link("Configure", href: admin_setting_path("advanced"))
 
     expect(page).to have_content "SMTP Configuration"
-    expect(page).to have_content "Allow define SMTP configuration to send emails."
+    expect(page).to have_content "Set SMTP server configuration to send emails."
     expect(page).to have_link("Configure", href: admin_setting_path("smtp"))
   end
 
