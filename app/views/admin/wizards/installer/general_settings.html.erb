@@ -1,0 +1,12 @@
+<%= render "admin/wizards/header_steps", current_step: 2,
+                                         total_steps: @total_steps,
+                                         back_step: new_admin_wizards_installer_path,
+                                         next_step: admin_wizards_installer_path(:participation_process) %>
+
+<hr>
+
+<h2>Configuración Global</h2>
+<p>En este paso podrá actualizar algunas de las Configuraciones Globales de la aplicación más importantes.
+En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección "Configuración" > "Configuración Global" o volviendo a ejecutar el Asistente de Instalación</p>
+
+<%= render "admin/settings/settings_table", settings: @settings %>
