@@ -1,0 +1,9 @@
+<h3>Asistente de instalación</h3>
+Paso <%= current_step %> de <%= total_steps %>
+
+<% if defined?(back_step) %>
+  <%= link_to "Atrás", back_step %>
+<% end %>
+<% if defined?(next_step) %>
+  <%= link_to "Siguiente", next_step, class: "button" %>
+<% end %>
