@@ -40,9 +40,9 @@
               <% if regional_setting?(setting) %>
                 <div class="small-6 column">
                   <% if setting.key == "regional.time_zone.key" %>
-                    <%= f.select :value, time_zone_options_for_select(Setting["regional.time_zone.key"], ActiveSupport::TimeZone.all), label: false, id: dom_id(setting) %>
+                    <%= f.select :value, time_zone_options_for_select(Time.zone.name, ActiveSupport::TimeZone.all), label: false, id: dom_id(setting) %>
                   <% else %>
-                    <%= f.select :value, options_for_select(options_for_default_locale, Setting["regional.default_locale.key"]), label: false, id: dom_id(setting) %>
+                    <%= f.select :value, options_for_select(options_for_default_locale, I18n.default_locale), label: false, id: dom_id(setting) %>
                   <% end %>
                 </div>
               <% else %>
