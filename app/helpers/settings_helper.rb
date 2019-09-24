@@ -24,7 +24,7 @@ module SettingsHelper
   end
 
   def is_feature?(setting)
-    social_feature?(setting) || advanced_feature?(setting) || smtp_feature?(setting) || regional_feature?(setting) || feature?(setting.key.rpartition(".").last) || setting.key == "feature.map"
+    social_feature?(setting) || advanced_feature?(setting) || smtp_feature?(setting) || regional_feature?(setting) || feature?(setting.key.rpartition(".").last) || setting.key == "feature.map" || setting.key == "feature.smtp_configuration"
   end
 
   def regional_feature?(setting)
