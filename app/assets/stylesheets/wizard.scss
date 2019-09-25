@@ -37,4 +37,9 @@
     margin-bottom: 0;
   }
 
+  @include breakpoint(small) {
+    input.button {
+      padding: 1em 0;
+    }
+  }
 }
