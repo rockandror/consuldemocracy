@@ -67,6 +67,11 @@ class Admin::SettingsController < Admin::BaseController
     end
 
     def valid_regional_available_locales(all_settings)
-      all_settings["regional.available_locale"].select { |s| s.key.rpartition(".").last.to_sym != I18n.default_locale }
+      all_settings["regional.available_locale"].select { |s| is_valid_available_locale?(s) }
+    end
+
+    def is_valid_available_locale?(setting)
+      setting_locale = setting.key.rpartition(".").last.to_sym
+      setting_locale != I18n.default_locale && setting_locale != I18n.locale
     end
 end
