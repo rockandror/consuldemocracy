@@ -48,7 +48,7 @@ module AdminHelper
 
   def menu_settings?
     controllers_names = ["settings", "tags", "geozones", "images", "content_blocks",
-      "local_census_records", "imports"]
+      "local_census_records", "imports", "wizards"]
     controllers_names.include?(controller_name) &&
       controller.class.parent != Admin::Poll::Questions::Answers
   end
