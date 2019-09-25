@@ -1,5 +1,9 @@
 en:
   wizard:
+    admin:
+      title: Wizard
+      module_title: Installation Wizard
+      description: Through this tool we present you the installation of the system.
     header:
       title: Installation Wizard
       step: Step

@@ -1,5 +1,9 @@
 es:
   wizard:
+    admin:
+      title: Asistente
+      module_title: Asistente de instalación
+      description: A través de esta herramienta le presentamos la instalación del sistema.
     header:
       title: Asistente de instalación
       step: Paso
