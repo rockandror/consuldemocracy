@@ -6,7 +6,7 @@
 <div class="medium-12 columns">
   <div class="columns">
     <h2><%= t("wizard.regional.title") %></h2>
-    <p><%= t("wizard.regional.description") %></p>
+    <p><%= t("wizard.regional.description_html") %></p>
     <% @settings.each do |setting_group| %>
       <h3><%= t("admin.settings.index.regional.#{setting_group.first.key.split(".").second}") %></h3>
       <%= render "admin/settings/mixed_settings_table", settings: setting_group %>
