@@ -54,4 +54,9 @@ module SettingsHelper
     setting.type.rpartition(".").first == "regional"
   end
 
+  def need_disable_language?(setting)
+    setting_locale = setting.key.rpartition(".").last.to_sym
+    setting_locale == I18n.default_locale || setting_locale == I18n.locale
+  end
+
 end
