@@ -709,6 +709,7 @@ en:
       debates: "Debates"
       comments: "Comments"
       local_census_records: Manage local census
+      wizards: Wizard
     administrators:
       index:
         title: Administrators

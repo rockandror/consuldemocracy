@@ -708,6 +708,7 @@ es:
       debates: "Debates"
       comments: "Comentarios"
       local_census_records: Gestionar censo local
+      wizards: Asistente
     administrators:
       index:
         title: Administradores
