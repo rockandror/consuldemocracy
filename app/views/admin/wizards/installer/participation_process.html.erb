@@ -6,7 +6,7 @@
 <div class="medium-12 columns">
   <div class="columns">
     <h2><%= t("admin.settings.index.process.title") %></h2>
-    <p><%= t("wizard.partecipation_process.description") %></p>
+    <p><%= t("wizard.partecipation_process.description_html") %></p>
     <% @settings.each do |setting_group| %>
       <%= render "admin/settings/mixed_settings_table", settings: setting_group %>
     <% end %>
