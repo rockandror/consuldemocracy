@@ -44,12 +44,8 @@ class Admin::Wizards::InstallerController < Admin::BaseController
                      Setting.find_by(key: "smtp.enable_starttls_auto")]
       when "regional"
         all_settings = Setting.all.group_by { |setting| setting.type }
-        @settings = [all_settings["regional.default_locale"]] + [valid_regional_available_locales(all_settings)] + [all_settings["regional.time_zone"]]
+        @settings = [all_settings["regional.default_locale"]] + [all_settings["regional.available_locale"]] + [all_settings["regional.time_zone"]]
       end
-    end
-
-    def valid_regional_available_locales(all_settings)
-      all_settings["regional.available_locale"].select { |s| s.key.rpartition(".").last.to_sym != I18n.default_locale }
     end
 
 end
