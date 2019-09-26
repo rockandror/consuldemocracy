@@ -4,6 +4,9 @@ App.FoundationExtras =
     $(document).foundation()
     $(window).trigger "resize"
 
+    $("#side_menu ul").on "down.zf.accordionMenu", (e) ->
+      Foundation.reInit $("[data-equalizer]")
+
     clearSticky = ->
       $("[data-sticky]").foundation("destroy") if $("[data-sticky]").length
 
