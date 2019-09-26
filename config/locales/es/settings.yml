@@ -120,6 +120,8 @@ es:
       smtp_configuration_description: "Activa esta funcionalidad para poder añadir la configuración SMTP y poder enviar emails desde la aplicación."
       valuation_comment_notification: "Notificar comentarios de evaluación"
       valuation_comment_notification_description: "Envía un email a todos los usuarios menos al que haya comentado asociados a un presupuesto participativo cuando se cree un nuevo comentario de evaluación"
+      custom_verification_process: "Proceso de verificación de usuario personalizable"
+      custom_verification_process_description: "Activa esta funcionalidad para utilizar el nuevo proceso de verificación en lugar del anterior."
     remote_census:
       general:
         endpoint: "Endpoint"
