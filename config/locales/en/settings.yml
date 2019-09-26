@@ -120,6 +120,8 @@ en:
       smtp_configuration_description: "Enable this feature to send emails through SMTP server."
       valuation_comment_notification: "Valuation comment notification"
       valuation_comment_notification_description: "Send an email to all associated users except valuation commenter to budget investment when a new valuation comment is created"
+      custom_verification_process: "Customizable user verification process"
+      custom_verification_process_description: "Enable this feature to use the new verification process instead the legacy one."
     remote_census:
       general:
         endpoint: "Endpoint"
