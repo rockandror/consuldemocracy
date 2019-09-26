@@ -79,4 +79,10 @@ FactoryBot.define do
     user
     initialize_with { new(attributes) }
   end
+
+  factory :verification_value, class: Verification::Value do
+    sequence(:value)     { |n| "value#{n}" }
+    user
+    verification_field
+  end
 end
