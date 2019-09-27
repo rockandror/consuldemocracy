@@ -17,6 +17,9 @@
       $(window).trigger("resize");
       $(document).on("page:before-unload", this.clearSticky);
       window.addEventListener("popstate", this.clearSticky, false);
+      $("#side_menu ul").on("down.zf.accordionMenu", function(e) {
+        Foundation.reInit($("[data-equalizer]"));
+      });
       $(function() {
         if ($(window).width() < 620) {
           App.FoundationExtras.mobile_ui_init();
