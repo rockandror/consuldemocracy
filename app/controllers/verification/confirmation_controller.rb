@@ -21,6 +21,6 @@ class Verification::ConfirmationController < ApplicationController
   private
 
     def confirmation_params
-      params.require(:verification_confirmation).permit(Verification::Field.all.pluck(:name))
+      params.require(:verification_confirmation).permit(Verification::Configuration.confirmation_fields)
     end
 end
