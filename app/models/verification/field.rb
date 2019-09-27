@@ -6,7 +6,7 @@ class Verification::Field < ApplicationRecord
   translates :label, touch: true
   include Globalizable
 
-  has_many :verification_values
+  has_many :verification_values, class_name: "Verification::Value", foreign_key: :verification_field_id
 
   validates_translation :label, presence: true, length: { minimum: 2 }
   validates :name, presence: true
