@@ -25,7 +25,6 @@ class Verification::Handler
 
     def register_as(id = nil)
       @id = id.to_s
-      Verification::Configuration.available_handlers[@id] = self
     end
 
     def requires_confirmation(value = true)
