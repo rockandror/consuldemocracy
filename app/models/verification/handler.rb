@@ -12,7 +12,7 @@ class Verification::Handler
     super
   end
 
-  def verify(params)
+  def verify(params = {})
     @response = if defined?(super)
                   super(params)
                 else
@@ -39,7 +39,7 @@ class Verification::Handler
 
   private
 
-    def build_response(params)
+    def build_response(params = {})
       Verification::Handlers::Response.new true, I18n.t("verification_handler_success"), params, nil
     end
 
