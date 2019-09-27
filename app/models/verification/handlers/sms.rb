@@ -17,6 +17,14 @@ class Verification::Handlers::Sms < Verification::Handler
     end
   end
 
+  def confirm
+    if user && verified?
+      build_response({})
+    else
+      Verification::Handlers::Response.new false, I18n.t("verification.handlers.verification.error"), {}, nil
+    end
+  end
+
   def update_user_phone_information
     user.update(unconfirmed_phone: phone, sms_confirmation_code: generate_confirmation_code)
   end
