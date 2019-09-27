@@ -28,7 +28,7 @@ describe "Wizard Installer" do
       expect(page).to have_link("Back", href: new_admin_wizards_installer_path)
       expect(page).to have_link("Next", href: admin_wizards_installer_path(:participation_process))
       within "#installer-general-settings" do
-        expect(page).to have_css("table tbody tr", count: 2)
+        expect(page).to have_css(".setting", count: 2)
         expect(page).to have_content "Site name"
         expect(page).to have_content "Minimum age needed to participate"
       end
@@ -44,7 +44,7 @@ describe "Wizard Installer" do
       expect(page).to have_link("Back", href: admin_wizards_installer_path(:general_settings))
       expect(page).to have_link("Next", href: admin_wizards_installer_path(:map))
       within "#installer-participation-process" do
-        expect(page).to have_css("table tbody tr", count: 5)
+        expect(page).to have_css(".setting", count: 5)
         expect(page).to have_content "Debates"
         expect(page).to have_content "Proposals"
         expect(page).to have_content "Number of supports necessary for approval of a Proposal"
@@ -63,7 +63,7 @@ describe "Wizard Installer" do
       expect(page).to have_link("Back", href: admin_wizards_installer_path(:participation_process))
       expect(page).to have_link("Next", href: admin_wizards_installer_path(:smtp))
       within "#installer-map" do
-        expect(page).to have_css("table tbody tr", count: 4)
+        expect(page).to have_css(".setting", count: 4)
         expect(page).to have_content "Proposals and budget investments geolocation"
         expect(page).to have_content "Latitude"
         expect(page).to have_content "Longitude"
@@ -81,7 +81,7 @@ describe "Wizard Installer" do
       expect(page).to have_link("Back", href: admin_wizards_installer_path(:map))
       expect(page).to have_link("Next", href: admin_wizards_installer_path(:regional))
       within "#installer-smtp" do
-        expect(page).to have_css("table tbody tr", count: 8)
+        expect(page).to have_css(".setting", count: 8)
         expect(page).to have_content "SMTP Configuration"
         expect(page).to have_content "SMTP Host"
         expect(page).to have_content "SMTP Port"
@@ -103,7 +103,7 @@ describe "Wizard Installer" do
       expect(page).to have_link("Back", href: admin_wizards_installer_path(:smtp))
       expect(page).to have_link("Next", href: admin_wizards_installer_path(:finish))
       within "#installer-regional" do
-        expect(page).to have_css("table tbody tr", count: 29)
+        expect(page).to have_css(".setting", count: 29)
         expect(page).to have_content "Application default locale"
         expect(page).to have_content "Application available locales"
         expect(page).to have_content "Time Zone"
