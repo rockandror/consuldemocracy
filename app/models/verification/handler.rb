@@ -7,6 +7,7 @@ class Verification::Handler
 
   def initialize(attributes = {})
     define_verification_form_fields
+    define_confirmation_form_fields
 
     super
   end
@@ -50,6 +51,18 @@ class Verification::Handler
 
         define_singleton_method "#{attr}=" do |arg|
           instance_variable_set "@#{attr}", arg
+        end
+      end
+    end
+
+    def define_confirmation_form_fields
+      Verification::Configuration.confirmation_fields.each do |confirmation_field|
+        define_singleton_method confirmation_field do
+          instance_variable_get "@#{confirmation_field}"
+        end
+
+        define_singleton_method "#{confirmation_field}=" do |arg|
+          instance_variable_set "@#{confirmation_field}", arg
         end
       end
     end
