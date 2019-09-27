@@ -9,15 +9,6 @@ describe "Fields" do
   end
   let!(:field) { create(:verification_field, label: "Email", name: "email",
                                              handlers: "fake_handler", position: 1) }
-  # Needed to use CommonActions::Translations module
-  let(:translatable_class) { ::Verification::Field }
-  let(:input_fields) { %w[label] }
-  let(:textarea_fields) { [] }
-
-  it_behaves_like "edit_translatable",
-                  "verification_field",
-                  "edit_admin_verification_field_path",
-                  %w[label]
 
   before do
     admin = create(:administrator)
@@ -44,7 +35,7 @@ describe "Fields" do
       visit new_admin_verification_field_path
 
       fill_in "Name", with: "Phone"
-      fill_in_field "label", "en", with: "Phone"
+      fill_in "Label", with: "Phone"
       check "FakeHandler"
       fill_in "Position", with: 1
       check "Required?"
