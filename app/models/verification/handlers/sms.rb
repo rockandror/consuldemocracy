@@ -26,7 +26,7 @@ class Verification::Handlers::Sms < Verification::Handler
   end
 
   def verified?
-    user.sms_confirmation_code == confirmation_code
+    user.sms_confirmation_code == sms_confirmation_code
   end
 
   private
