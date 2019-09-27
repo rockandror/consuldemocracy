@@ -7,7 +7,7 @@
 
   <div class="row column">
     <%= form_for @confirmation, url: verification_confirmation_path do |f| %>
-      <% @confirmation.fields.each do |field| %>
+      <% @confirmation.confirmation_fields.each do |field| %>
         <div class="small-12 column">
           <%= f.text_field field %>
         </div>
