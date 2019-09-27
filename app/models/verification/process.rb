@@ -9,7 +9,7 @@ class Verification::Process
     define_fields_accessors
     define_fields_validations
 
-    @responses = []
+    @responses = {}
     @fields = fields_by_name
     @handlers = Verification::Configuration.active_handlers
 
@@ -17,7 +17,7 @@ class Verification::Process
   end
 
   def save
-    valid?
+    verify_handlers if valid?
   end
 
   # Returs true if any of the active handlers requires a confirmation step
@@ -27,6 +27,15 @@ class Verification::Process
   end
 
   private
+
+    def verify_handlers
+      @handlers.each do |handler|
+        handler_instance = Verification::Configuration.available_handlers[handler].
+          new(fields_for_handler(handler))
+
+        @responses[handler] = handler_instance.verify
+      end
+    end
 
     # Validates each verification field through defined handlers and copy errors
     # to process fields
