@@ -134,7 +134,6 @@ var initialize_modules = function() {
   App.Globalize.initialize();
   App.SendAdminNotificationAlert.initialize();
   App.ModalDownload.initialize();
-  App.Cookies.initialize();
   if ( $('#js-columns-selector').length) {
     App.ColumnsSelector.initialize();
   }
