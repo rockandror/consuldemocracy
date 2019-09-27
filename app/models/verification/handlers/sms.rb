@@ -10,7 +10,7 @@ class Verification::Handlers::Sms < Verification::Handler
     if valid?
       update_user_phone_information
       send_sms
-      Lock.increase_tries(user)
+      # Lock.increase_tries(user)
       Verification::Handlers::Response.new true, I18n.t("verification_handler_success"), { phone: phone }, nil
     else
       Verification::Handlers::Response.new false, I18n.t("verification_handler_error"), { phone: phone }, nil
