@@ -2,8 +2,6 @@ class Verification::Handlers::Sms < Verification::Handler
   register_as :sms
   requires_confirmation true
 
-  attr_accessor :user, :confirmation_code
-
   validates :phone, format: { with: /\A[\d \+]+\z/ }
   validates :phone, confirmation: true
   validate :unique_phone, if: ->{ phone && phone_confirmation }
