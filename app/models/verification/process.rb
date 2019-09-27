@@ -45,6 +45,7 @@ class Verification::Process
       @handlers.each do |handler|
         handler_instance = Verification::Configuration.available_handlers[handler].
           new(fields_for_handler(handler))
+
         unless handler_instance.valid?
           handler_instance.errors.each do |field, error|
             errors.add field, error
@@ -79,6 +80,7 @@ class Verification::Process
       @fields.each do |field_name, field|
         params[field_name] = send(field_name) if field.handlers&.include?(handler)
       end
+      params[:user] = user
       params.symbolize_keys!
     end
 
