@@ -1,7 +1,7 @@
 class Verification::Handler
   include ActiveModel::Model
 
-  attr_accessor :response
+  attr_accessor :response, :user
   delegate :success, to: :response, allow_nil: true
   alias :success? :success
 
