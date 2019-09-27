@@ -11,7 +11,7 @@ class Verification::Process
 
     @responses = []
     @fields = fields_by_name
-    @handlers = active_handlers
+    @handlers = Verification::Configuration.active_handlers
 
     super
   end
@@ -55,11 +55,6 @@ class Verification::Process
           instance_variable_set "@#{attr}", arg
         end
       end
-    end
-
-    # Return enabled handlers from defined verification fields
-    def active_handlers
-      Verification::Field.including_any_handlers(Verification::Configuration.ids).pluck(:handlers).flatten.uniq
     end
 
     # Return {} with fields by name
