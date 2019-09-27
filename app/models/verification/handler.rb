@@ -6,7 +6,7 @@ class Verification::Handler
   alias :success? :success
 
   def initialize(attributes = {})
-    define_attributes
+    define_verification_form_fields
 
     super
   end
@@ -42,7 +42,7 @@ class Verification::Handler
       Verification::Handlers::Response.new true, I18n.t("verification_handler_success"), params, nil
     end
 
-    def define_attributes
+    def define_verification_form_fields
       Verification::Field.all.select { |f| f.handlers.include?(self.class.id.to_s) }.pluck(:name).each do |attr|
         define_singleton_method attr do
           instance_variable_get "@#{attr}"
