@@ -86,11 +86,11 @@ feature "Admin verification residents" do
     scenario "Should show successful notice after create valid record" do
       visit new_admin_verification_resident_path
 
-      fill_in :verification_resident_data, with: "{ email: \"user@email.com\"}"
+      fill_in :verification_resident_data, with: '{"email"=>"user@email.com"}'
       click_on "Save"
 
       expect(page).to have_content "New resident created successfully!"
-      expect(page).to have_content "{ email: \"user@email.com\"}"
+      expect(page).to have_content '{"email"=>"user@email.com"}'
     end
   end
 
@@ -111,11 +111,11 @@ feature "Admin verification residents" do
       visit edit_admin_verification_resident_path(resident)
 
       fill_in :verification_resident_data,
-        with: "{email: \"user@example.com\", document_number: \"#DOCUMENT_NUMBER\"}"
+        with: '{"email"=>"user@example.com", "document_number": "#DOCUMENT_NUMBER"}'
       click_on "Save"
 
       expect(page).to have_content "Resident updated successfully!"
-      expect(page).to have_content "{email: \"user@example.com\", document_number: \"#DOCUMENT_NUMBER\"}"
+      expect(page).to have_content '{"email"=>"user@example.com", "document_number"=>"#DOCUMENT_NUMBER"}'
     end
   end
 
