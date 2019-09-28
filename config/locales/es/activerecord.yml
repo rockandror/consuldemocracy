@@ -476,6 +476,10 @@ es:
           attributes:
             handlers:
               handler_does_not_exists: Alguno de los controladores de verificación seleccionado no existe
+        verification/resident:
+          attributes:
+            data:
+              invalid: "El formato introducido es inválido. El formato aceptado es: {\"key\"=>\"value\", \"key2\"=>\"value2\"}"
       messages:
         translations_too_short: El obligatorio proporcionar una traducción como mínimo
         record_invalid: "Error de validación: %{errors}"
