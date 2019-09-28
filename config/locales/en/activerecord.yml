@@ -474,6 +474,10 @@ en:
           attributes:
             handlers:
               handler_does_not_exists: Some of the selected handlers do not exist
+        verification/resident:
+          attributes:
+            data:
+              invalid: "Data format is invalid. An example of valid format could be: {\"key1\"=>\"value1\", \"key2\"=>\"value2\"}"
       messages:
         translations_too_short: Is mandatory to provide one translation at least
         record_invalid: "Validation failed: %{errors}"

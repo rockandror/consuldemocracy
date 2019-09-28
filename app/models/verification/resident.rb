@@ -3,6 +3,7 @@ class Verification::Resident < ApplicationRecord
 
   serialize :data, HashSerializer
   validates :data, presence: true, uniqueness: true
+  validates :data, format: /{("\w+":(\s)*"\w+"(,)*(\s)*)*}/, if: -> { data.is_a?(String) }
 
   scope :search, -> (key, value) { where("data->> '#{key}' ILIKE ?", "%#{value}%") }
 
