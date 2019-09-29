@@ -17,7 +17,9 @@ class Verification::Process
   end
 
   def save
-    verify_handlers if valid?
+    return false unless valid?
+
+    verify_handlers
   end
 
   # Returs true if any of the active handlers requires a confirmation step
@@ -30,10 +32,10 @@ class Verification::Process
 
     def verify_handlers
       @handlers.each do |handler|
-        handler_instance = Verification::Configuration.available_handlers[handler].
-          new(fields_for_handler(handler))
+        handler_class = Verification::Configuration.available_handlers[handler]
+        handler_instance = handler_class.new(fields_for_handler(handler))
 
-        @responses[handler] = handler_instance.verify
+        @responses[handler] = handler_instance.verify(fields_for_handler(handler))
       end
     end
 
