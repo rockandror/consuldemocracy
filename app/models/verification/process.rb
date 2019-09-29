@@ -37,6 +37,8 @@ class Verification::Process
 
         @responses[handler] = handler_instance.verify(fields_for_handler(handler))
       end
+
+      @responses.values.all?{|response| response.success? }
     end
 
     # Validates each verification field through defined handlers and copy errors
