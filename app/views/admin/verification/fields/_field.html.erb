@@ -1,9 +1,9 @@
 <tr id="<%= dom_id(field) %>">
-  <td><%= field.position %></td>
+  <td class="text-center"><%= field.position %></td>
   <td><%= field.name %></td>
   <td><%= handlers_text_representation(field).join(", ") %></td>
   <td><%= field.label %></td>
-  <td><%= boolean_text_representation(field.required)  %></td>
+  <td class="text-center"><%= boolean_text_representation(field.required)  %></td>
   <td>
     <%= link_to t("admin.verification.fields.index.edit"),
                 edit_admin_verification_field_path(field),
