@@ -1,7 +1,7 @@
 <tr id="<%= dom_id(field) %>">
   <td><%= field.position %></td>
   <td><%= field.name %></td>
-  <td><%= field.handlers %></td>
+  <td><%= handlers_text_representation(field).join(", ") %></td>
   <td><%= field.label %></td>
   <td><%= boolean_text_representation(field.required)  %></td>
   <td>
