@@ -76,4 +76,7 @@ module ApplicationHelper
     controller.class.to_s.include?("Management")
   end
 
+  def boolean_text_representation(boolean)
+    t("admin.shared.#{boolean}_value")
+  end
 end
