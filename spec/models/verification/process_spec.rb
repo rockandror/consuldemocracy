@@ -73,7 +73,7 @@ describe Verification::Process do
   end
 
   describe "#requires_confirmation?" do
-    it "should return true when any ot the active handlers requires confirmation" do
+    it "should return true when any of the active handlers requires confirmation" do
       Class.new(Verification::Handler) do
         register_as :handler
         requires_confirmation false
@@ -88,7 +88,7 @@ describe Verification::Process do
       expect(process.requires_confirmation?).to be(true)
     end
 
-    it "should return false when none ot the active handlers requires confirmation" do
+    it "should return false when none of the active handlers requires confirmation" do
       Class.new(Verification::Handler) do
         register_as :handler
         requires_confirmation false
