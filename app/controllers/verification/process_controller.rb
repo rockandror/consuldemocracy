@@ -10,10 +10,10 @@ class Verification::ProcessController < ApplicationController
   def create
     @process = Verification::Process.new(process_params.merge(user: current_user))
     if @process.save
-      # process
       save_verification_values
       continue
     else
+      flash.now[:error] = t("verification.process.create.error")
       render :new
     end
   end
