@@ -12,11 +12,11 @@ class Verification::Handler
     super
   end
 
-  def verify(params = {})
+  def verify(attributes = {})
     @response = if defined?(super)
-                  super(params)
+                  super(attributes)
                 else
-                  build_response(params)
+                  build_response(attributes)
                 end
   end
 
@@ -38,8 +38,8 @@ class Verification::Handler
 
   private
 
-    def build_response(params = {})
-      Verification::Handlers::Response.new true, I18n.t("verification_handler_success"), params, nil
+    def build_response(attributes = {})
+      Verification::Handlers::Response.new true, I18n.t("verification_handler_success"), attributes, nil
     end
 
     def define_verification_form_fields
