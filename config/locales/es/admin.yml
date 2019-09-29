@@ -1545,42 +1545,6 @@ es:
       search:
         placeholder: Buscar usuario por email, nombre o DNI
         search: Buscar
-    verification:
-      fields:
-        create:
-          notice: Campo de verificación creado correctamente
-          error: No se ha podido crear el campo de verificación
-        destroy:
-          notice: Campo de verificación eliminado correctamente
-        edit:
-          form:
-            submit_button: Actualizar campo
-          title: Editar campo de verificación
-        form:
-          handlers:
-            help: Este campo se verificará con los verificadores activos de la lista a continuación.
-            label: Verificadores
-        index:
-          controller: Controlador
-          create: Crear campo
-          delete: Eliminar
-          edit: Editar
-          name: Nombre
-          label: Etiqueta
-          required: Requerido
-          title: Campos de verificación
-        new:
-          form:
-            submit_button: Crear campo
-          title: Nuevo campo de verificación
-        update:
-          notice: Campo de verificación actualizado correctamente
-          error: No se ha podido actualizar el campo de verificación
-    verifications:
-      index:
-        phone_not_given: No ha dado su teléfono
-        sms_code_not_confirmed: No ha introducido su código de seguridad
-        title: Verificaciones incompletas
     site_customization:
       content_blocks:
         information: Información sobre los bloques de contenido
@@ -1776,6 +1740,36 @@ es:
         local_census_records:
           no_records_found: No se han encontrado registros.
     verification:
+      fields:
+        create:
+          notice: Campo de verificación creado correctamente
+          error: No se ha podido crear el campo de verificación
+        destroy:
+          notice: Campo de verificación eliminado correctamente
+        edit:
+          form:
+            submit_button: Actualizar campo
+          title: Editar campo de verificación
+        form:
+          handlers:
+            help: Este campo se verificará con los verificadores activos de la lista a continuación.
+            label: Verificadores
+        index:
+          controller: Controlador
+          create: Crear campo
+          delete: Eliminar
+          edit: Editar
+          name: Nombre
+          label: Etiqueta
+          required: Requerido
+          title: Campos de verificación
+        new:
+          form:
+            submit_button: Crear campo
+          title: Nuevo campo de verificación
+        update:
+          notice: Campo de verificación actualizado correctamente
+          error: No se ha podido actualizar el campo de verificación
       residents:
         index:
           title: Gestión de residentes
@@ -1815,3 +1809,8 @@ es:
             title: Gestión de residentes
             subtitle: Resultados del proceso de importación
             no_records_found: No records found.
+    verifications:
+      index:
+        phone_not_given: No ha dado su teléfono
+        sms_code_not_confirmed: No ha introducido su código de seguridad
+        title: Verificaciones incompletas
