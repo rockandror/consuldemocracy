@@ -6,7 +6,7 @@ class Verification::Handlers::Sms < Verification::Handler
   validates :phone, confirmation: true
   validate :unique_phone, if: ->{ phone && phone_confirmation }
 
-  def verify
+  def verify(attributes = {})
     if valid?
       update_user_phone_information
       send_sms
