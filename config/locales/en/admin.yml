@@ -1718,6 +1718,7 @@ en:
           edit: Edit
           name: Name
           label: Label
+          position: Position
           required: Required
           title: Verification fields
         new:
