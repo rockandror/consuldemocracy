@@ -98,4 +98,54 @@ describe Verification::Process do
       expect(process.requires_confirmation?).to be(false)
     end
   end
+
+  describe "#save" do
+    it "should return false when any handler response is error" do
+      Class.new(Verification::Handler) do
+        register_as :handler
+        requires_confirmation false
+
+        def verify(attributes = {})
+          Verification::Handlers::Response.new false, "Error", attributes, nil
+        end
+      end
+      create(:verification_field, name: :custom_field_name, handlers: :handler)
+
+      expect(process.save).to be(false)
+    end
+
+    it "should contain errors from errored handlers responses at :base" do
+      Class.new(Verification::Handler) do
+        register_as :handler
+        requires_confirmation false
+
+        def verify(attributes = {})
+          Verification::Handlers::Response.new false, "Verification error explanation", attributes, nil
+        end
+      end
+      create(:verification_field, name: :custom_field_name, handlers: :handler)
+
+      expect{process.save}.to change{ process.errors[:base] }.from([]).to([["Verification error explanation"]])
+    end
+
+    it "should return true when all handlers response are successful" do
+      Class.new(Verification::Handler) do
+        register_as :handler
+
+        def verify(attributes = {})
+          Verification::Handlers::Response.new true, "Success", attributes, nil
+        end
+      end
+      Class.new(Verification::Handler) do
+        register_as :other_handler
+
+        def verify(attributes = {})
+          Verification::Handlers::Response.new true, "Success", attributes, nil
+        end
+      end
+      create(:verification_field, name: :custom_field_name, handlers: :handler)
+
+      expect(process.save).to be(true)
+    end
+  end
 end
