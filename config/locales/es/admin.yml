@@ -1761,6 +1761,7 @@ es:
           edit: Editar
           name: Nombre
           label: Etiqueta
+          position: Posición
           required: Requerido
           title: Campos de verificación
         new:
