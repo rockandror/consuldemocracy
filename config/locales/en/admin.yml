@@ -1756,6 +1756,10 @@ en:
           handlers:
             help: This field will be send to enabled verification handlers from list below.
             label: Verification handlers
+        handlers:
+          name:
+            residents: Residents verifications (local database)
+            sms: Phone verification by SMS message
         index:
           controller: Controller
           create: Create field

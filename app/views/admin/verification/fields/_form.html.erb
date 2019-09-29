@@ -28,7 +28,7 @@
                             handler,
                             field_handler_enabled?(@field, handler),
                             id: field_handler_id(handler) %>
-          <%= handler.to_s.camelize %>
+          <%= handler_text_representation(handler) %>
         <% end %>
       <% end %>
     </div>
