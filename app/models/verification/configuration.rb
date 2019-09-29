@@ -20,8 +20,7 @@ class Verification::Configuration
     end
 
     def confirmation_fields
-      condition = Proc.new {|handler| active_handlers.include?(handler) && handler.requires_confirmation?}
-      handlers = available_handlers.select{condition}
+      handlers = available_handlers.select{ |id, handler| active_handlers.include?(id) && handler.requires_confirmation? }
 
       handlers.keys.each_with_object([]) do |handler, fields|
         handler_name = handler.downcase.underscore
