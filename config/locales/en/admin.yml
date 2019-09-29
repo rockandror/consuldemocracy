@@ -1546,42 +1546,6 @@ en:
       search:
         placeholder: Search user by email, name or document number
         search: Search
-    verification:
-      fields:
-        create:
-          notice: Verification field created successfully
-          error: Verification field couldn't be created
-        destroy:
-          notice: Verification field deleted successfully
-        edit:
-          form:
-            submit_button: Update field
-          title: Edit verification field
-        form:
-          handlers:
-            help: This field will be send to enabled verification handlers from list below.
-            label: Verification handlers
-        index:
-          controller: Controller
-          create: Create field
-          delete: Delete
-          edit: Edit
-          name: Name
-          label: Label
-          required: Required
-          title: Verification fields
-        new:
-          form:
-            submit_button: Create field
-          title: New verification field
-        update:
-          notice: Verification field updated successfully
-          error: Verification field couldn't be updated
-    verifications:
-      index:
-        phone_not_given: Phone not given
-        sms_code_not_confirmed: Has not confirmed the sms code
-        title: Incomplete verifications
     site_customization:
       content_blocks:
         information: Information about content blocks
@@ -1777,6 +1741,36 @@ en:
         local_census_records:
           no_records_found: No records found.
     verification:
+      fields:
+        create:
+          notice: Verification field created successfully
+          error: Verification field couldn't be created
+        destroy:
+          notice: Verification field deleted successfully
+        edit:
+          form:
+            submit_button: Update field
+          title: Edit verification field
+        form:
+          handlers:
+            help: This field will be send to enabled verification handlers from list below.
+            label: Verification handlers
+        index:
+          controller: Controller
+          create: Create field
+          delete: Delete
+          edit: Edit
+          name: Name
+          label: Label
+          required: Required
+          title: Verification fields
+        new:
+          form:
+            submit_button: Create field
+          title: New verification field
+        update:
+          notice: Verification field updated successfully
+          error: Verification field couldn't be updated
       residents:
         index:
           title: Manage residents
@@ -1816,3 +1810,8 @@ en:
             title: Manage residents
             subtitle: Import process results
             no_records_found: No records found.
+    verifications:
+      index:
+        phone_not_given: Phone not given
+        sms_code_not_confirmed: Has not confirmed the sms code
+        title: Incomplete verifications
