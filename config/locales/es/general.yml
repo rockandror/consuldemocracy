@@ -187,6 +187,7 @@ es:
     local_census_record: el registro del censo local
     local_census_records/import: la importación de registros del censo local
     verification/field: Campo
+    verification/process: proceso de verification
   geozones:
     none: Toda la ciudad
   layouts:
