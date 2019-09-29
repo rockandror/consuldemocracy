@@ -3,7 +3,8 @@ class Verification::Process
   attr_accessor :fields, :handlers, :responses, :user
 
   validates :user, presence: true
-  validate :handlers
+  validate :handlers_attributes
+  validate :handlers_verification
 
   def initialize(attributes = {})
     define_fields_accessors
@@ -17,9 +18,7 @@ class Verification::Process
   end
 
   def save
-    return false unless valid?
-
-    verify_handlers
+    valid?
   end
 
   # Returs true if any of the active handlers requires a confirmation step
@@ -30,7 +29,7 @@ class Verification::Process
 
   private
 
-    def verify_handlers
+    def handlers_verification
       @handlers.each do |handler|
         handler_class = Verification::Configuration.available_handlers[handler]
         handler_instance = handler_class.new(fields_for_handler(handler))
@@ -38,12 +37,14 @@ class Verification::Process
         @responses[handler] = handler_instance.verify(fields_for_handler(handler))
       end
 
-      @responses.values.all?{|response| response.success? }
+      if @responses.values.select{|response| response.error?}.any?
+        errors.add :base, @responses.values.select{|response| response.error?}.collect(&:message)
+      end
     end
 
-    # Validates each verification field through defined handlers and copy errors
-    # to process fields
-    def handlers
+    # Validates each verification process attributes through defined handlers and copy errors
+    # to process attributes
+    def handlers_attributes
       return if @handlers.none?
 
       @handlers.each do |handler|
