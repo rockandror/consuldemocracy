@@ -8,4 +8,8 @@ class Verification::Handlers::Response
     @submitted_data = submitted_data
     @response_data = response_data
   end
+
+  def error?
+    !success?
+  end
 end
