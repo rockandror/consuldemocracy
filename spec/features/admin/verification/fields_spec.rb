@@ -36,7 +36,7 @@ describe "Fields" do
 
       fill_in "Name", with: "Phone"
       fill_in "Label", with: "Phone"
-      check "FakeHandler"
+      check "Fake Handler"
       fill_in "Position", with: 1
       check "Required?"
       click_button "Create field"
@@ -80,7 +80,7 @@ describe "Fields" do
       visit edit_admin_verification_field_path(field)
       expect(page).to have_checked_field("verification_field_handlers_fake_handler")
 
-      uncheck "FakeHandler"
+      uncheck "Fake Handler"
       click_button "Update field"
 
       expect(page).to have_content "Verification field updated successfully"
