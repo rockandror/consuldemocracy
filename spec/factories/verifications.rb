@@ -75,6 +75,11 @@ FactoryBot.define do
     end
   end
 
+  factory :verification_confirmation, class: Verification::Confirmation do
+    user
+    initialize_with { new(attributes) }
+  end
+
   factory :verification_process, class: Verification::Process do
     user
     initialize_with { new(attributes) }
