@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190926093934) do
+ActiveRecord::Schema.define(version: 20190930142926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1674,6 +1674,7 @@ ActiveRecord::Schema.define(version: 20190926093934) do
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
     t.string   "label"
+    t.string   "hint"
     t.index ["locale"], name: "index_verification_field_translations_on_locale", using: :btree
     t.index ["verification_field_id"], name: "index_verification_field_translations_on_verification_field_id", using: :btree
   end
@@ -1684,6 +1685,7 @@ ActiveRecord::Schema.define(version: 20190926093934) do
     t.integer "position"
     t.text    "handlers"
     t.boolean "required"
+    t.string  "hint"
     t.index ["handlers"], name: "index_verification_fields_on_handlers", using: :btree
   end
 

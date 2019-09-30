@@ -4,7 +4,7 @@
   <% @process.fields.each do |_, field| %>
     <div class="small-12 column">
       <%= f.label field.name, field.label %>
-      <%= f.text_field field.name, label: false %>
+      <%= f.text_field field.name, label: false, hint: field_hint(field) %>
     </div>
   <% end %>
 
