@@ -184,13 +184,15 @@ describe "Admin settings" do
       expect(page).to have_css("#edit_setting_#{setting.id}")
     end
 
-    scenario "Should not display default_locale as available_locales feature" do
+    scenario "Should display with disabled style default_locale as available_locales feature" do
       default_locale = Setting.find_by(key: "regional.default_locale.key").value
       available_locale_setting_from_default_locale = Setting.find_by(key: "regional.available_locale.#{default_locale}")
 
       visit admin_setting_path("regional")
 
-      expect(page).not_to have_css("#edit_setting_#{available_locale_setting_from_default_locale.id}")
+      within "#edit_setting_#{available_locale_setting_from_default_locale.id}" do
+        expect(find("input[name='commit'][type='submit']").disabled?).to be true
+      end
     end
 
   end

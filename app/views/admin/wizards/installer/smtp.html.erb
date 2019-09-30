@@ -1,0 +1,12 @@
+<%= render "admin/wizards/header_steps", current_step: 5,
+                                         total_steps: @total_steps,
+                                         back_step: admin_wizards_installer_path(:map),
+                                         next_step: admin_wizards_installer_path(:regional) %>
+
+<div class="medium-12 columns">
+  <div id="installer-smtp" class="columns">
+    <h2><%= t("wizard.smtp.title") %></h2>
+    <p><%= t("wizard.smtp.description_html") %></p>
+    <%= render "admin/settings/mixed_settings_table", settings: @settings %>
+  </div>
+</div>

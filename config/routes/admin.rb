@@ -260,4 +260,10 @@ namespace :admin do
   namespace :local_census_records do
     resources :imports, only: [:new, :create, :show]
   end
+
+  resources :wizards, only: :index
+  namespace :wizards do
+    resources :installer, only: [:new, :show]
+  end
+
 end
