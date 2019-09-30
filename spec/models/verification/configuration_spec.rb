@@ -47,11 +47,7 @@ describe Verification::Configuration do
   end
 
   describe ".confirmation_fields" do
-    let(:without_confirmation_handler) do
-      Class.new(Verification::Handler) do
-        register_as :my_handler
-      end
-    end
+    let!(:field) { create(:verification_field, name: "phone", handlers: [:sms, :my_handler]) }
 
     it "should return confirmation fields names for handlers in use" do
       handler.class_eval do
