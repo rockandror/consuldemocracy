@@ -147,5 +147,11 @@ describe Verification::Process do
 
       expect(process.save).to be(true)
     end
+
+    it "should save one verification value for each verification field" do
+      create(:verification_field, name: :custom_field_name)
+
+      expect{ process.save }.to change{ Verification::Value.count}.by(1)
+    end
   end
 end
