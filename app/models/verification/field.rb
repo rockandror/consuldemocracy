@@ -4,6 +4,7 @@ class Verification::Field < ApplicationRecord
   serialize :handlers, Array
 
   translates :label, touch: true
+  translates :hint, touch: true
   include Globalizable
 
   has_many :verification_values, class_name: "Verification::Value", foreign_key: :verification_field_id

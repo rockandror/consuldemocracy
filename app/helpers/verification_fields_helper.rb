@@ -22,4 +22,8 @@ module VerificationFieldsHelper
   def handler_text_representation(handler)
     t("admin.verification.fields.handlers.name.#{handler}")
   end
+
+  def field_hint(field)
+    field.hint || false
+  end
 end
