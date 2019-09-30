@@ -18,7 +18,7 @@ class Verification::Process
   end
 
   def save
-    valid?
+    valid? && save_verification_values
   end
 
   # Returs true if any of the active handlers requires a confirmation step
@@ -99,6 +99,15 @@ class Verification::Process
         Verification::Field.required.each do |field|
           validates field.name, presence: true
         end
+      end
+    end
+
+    def save_verification_values
+      @fields.each do |name, field|
+        Verification::Value.create(
+          verification_field: field,
+          user: user,
+          value: send(name))
       end
     end
 end
