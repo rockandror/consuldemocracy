@@ -16,6 +16,7 @@ class Verification::Field < ApplicationRecord
 
   scope :required, -> { where(required: true) }
   scope :including_any_handlers, -> (handlers) { where(matching_handler_query(handlers)) }
+  scope :with_response_path, -> { where.not(response_path: [nil, '']) }
 
   def handlers=(handlers)
     handlers = []                  if handlers.blank?
