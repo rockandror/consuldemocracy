@@ -98,6 +98,7 @@ describe Abilities::Common do
   it { should_not be_able_to(:manage, LocalCensusRecord) }
 
   it { should_not be_able_to(:manage, Verification::Field) }
+  it { should_not be_able_to(:manage, Verification::Field::HandlerAssignment) }
 
   it { should be_able_to(:new, Verification::Process) }
   it { should be_able_to(:create, Verification::Process) }
