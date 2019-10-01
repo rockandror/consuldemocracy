@@ -20,6 +20,10 @@ class Verification::Handler
                 end
   end
 
+  def confirm(attributes = {})
+    build_confirmation_response(attributes)
+  end
+
   class << self
     attr_reader :id
 
@@ -39,7 +43,11 @@ class Verification::Handler
   private
 
     def build_response(attributes = {})
-      Verification::Handlers::Response.new true, I18n.t("verification_handler_success"), attributes, nil
+      Verification::Handlers::Response.new true, I18n.t("verification.handler.verification.success"), attributes, nil
+    end
+
+    def build_confirmation_response(attributes = {})
+      Verification::Handlers::Response.new true, I18n.t("verification.handler.confirmation.success"), attributes, nil
     end
 
     def define_verification_form_fields
