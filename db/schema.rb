@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191001075253) do
+ActiveRecord::Schema.define(version: 20191001105503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1691,6 +1691,15 @@ ActiveRecord::Schema.define(version: 20191001075253) do
     t.index ["handlers"], name: "index_verification_fields_on_handlers", using: :btree
   end
 
+  create_table "verification_handler_field_assignments", force: :cascade do |t|
+    t.integer  "verification_field_id"
+    t.string   "handler",               null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["handler"], name: "index_field_assignments_on_handler", using: :btree
+    t.index ["verification_field_id"], name: "index_field_assignments_on_field_id", using: :btree
+  end
+
   create_table "verification_residents", force: :cascade do |t|
     t.jsonb "data", default: {}, null: false
     t.index ["data"], name: "index_verification_residents_on_data", using: :gin
@@ -1876,5 +1885,6 @@ ActiveRecord::Schema.define(version: 20191001075253) do
   add_foreign_key "trackers", "users"
   add_foreign_key "users", "geozones"
   add_foreign_key "valuators", "users"
+  add_foreign_key "verification_handler_field_assignments", "verification_fields"
   add_foreign_key "votation_set_answers", "votation_types"
 end
