@@ -1,7 +1,10 @@
 require "rails_helper"
 
 describe Verification::Confirmation do
-  before { create(:verification_field, handlers: :sms) }
+  before do
+    field = create(:verification_field)
+    create(:verification_handler_field_assignment, verification_field: field, handler: :sms)
+  end
 
   context "Validations" do
     let(:confirmation) { build(:verification_confirmation) }

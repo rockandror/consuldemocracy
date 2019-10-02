@@ -83,8 +83,10 @@ describe Verification::Process do
         end
       end
 
-      create(:verification_field, name: :email, handlers: :handler)
-      create(:verification_field, name: :email_confirmation, handlers: :handler)
+      email_field = create(:verification_field, name: :email)
+      email_confirmation_field = create(:verification_field, name: :email_confirmation)
+      create(:verification_handler_field_assignment, verification_field: email_field, handler: :handler)
+      create(:verification_handler_field_assignment, verification_field: email_confirmation_field, handler: :handler)
     end
 
     it "respond with a verification error it should not be valid" do
@@ -124,8 +126,11 @@ describe Verification::Process do
         register_as :handler_with_required_confirmation
         requires_confirmation true
       end
-      create(:verification_field, name: :custom_field, handlers: :handler)
-      create(:verification_field, name: :other_custom_field, handlers: :handler_with_required_confirmation)
+      custom_field = create(:verification_field, name: :custom_field)
+      other_custom_field = create(:verification_field, name: :other_custom_field)
+
+      create(:verification_handler_field_assignment, verification_field: custom_field, handler: :handler)
+      create(:verification_handler_field_assignment, verification_field: other_custom_field, handler: :handler_with_required_confirmation)
 
       expect(process.requires_confirmation?).to be(true)
     end
@@ -135,7 +140,8 @@ describe Verification::Process do
         register_as :handler
         requires_confirmation false
       end
-      create(:verification_field, name: :custom_field_name, handlers: :handler)
+      field = create(:verification_field, name: :custom_field_name)
+      create(:verification_handler_field_assignment, verification_field: field, handler: :handler)
 
       expect(process.requires_confirmation?).to be(false)
     end
@@ -151,7 +157,8 @@ describe Verification::Process do
           Verification::Handlers::Response.new false, "Error", attributes, nil
         end
       end
-      create(:verification_field, name: :custom_field_name, handlers: :handler)
+      field = create(:verification_field, name: :custom_field_name)
+      create(:verification_handler_field_assignment, verification_field: field, handler: :handler)
 
       expect(process.save).to be(false)
     end
@@ -165,7 +172,8 @@ describe Verification::Process do
           Verification::Handlers::Response.new false, "Verification error explanation", attributes, nil
         end
       end
-      create(:verification_field, name: :custom_field_name, handlers: :handler)
+      field = create(:verification_field, name: :custom_field_name)
+      create(:verification_handler_field_assignment, verification_field: field, handler: :handler)
 
       expect{process.save}.to change{ process.errors[:base] }.from([]).to([["Verification error explanation"]])
     end
@@ -185,7 +193,8 @@ describe Verification::Process do
           Verification::Handlers::Response.new true, "Success", attributes, nil
         end
       end
-      create(:verification_field, name: :custom_field_name, handlers: :handler)
+      field = create(:verification_field, name: :custom_field_name)
+      create(:verification_handler_field_assignment, verification_field: field, handler: :handler)
 
       expect(process.save).to be(true)
     end
