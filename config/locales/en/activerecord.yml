@@ -476,6 +476,10 @@ en:
           attributes:
             handlers:
               handler_does_not_exists: Some of the selected handlers do not exist
+        verification/handler/field_assignment:
+          attributes:
+            verification_field_id:
+              only_phone_allowed: Phone verification by SMS only allows a field named phone.
         verification/resident:
           attributes:
             data:
