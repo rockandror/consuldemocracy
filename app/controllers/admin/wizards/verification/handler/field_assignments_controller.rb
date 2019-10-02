@@ -1,4 +1,5 @@
-class Admin::Verification::Handler::FieldAssignmentsController < Admin::Verification::BaseController
+class Admin::Wizards::Verification::Handler::FieldAssignmentsController < Admin::Verification::BaseController
+  layout "wizard"
   authorize_resource class: "Verification::Handler::FieldAssignment"
   before_action :set_handler
   before_action :set_field_assignment, only: [:edit, :update, :destroy]
@@ -12,11 +13,11 @@ class Admin::Verification::Handler::FieldAssignmentsController < Admin::Verifica
   end
 
   def create
-    debugger
     @field_assignment = Verification::Handler::FieldAssignment.new field_assignment_params
     if @field_assignment.save
-      redirect_to admin_verification_handler_field_assignments_path(@handler),
-        notice: "Create success"
+      notice = t("admin.wizards.verification.handler.create.notice")
+      redirect_to admin_wizards_verification_handler_field_assignments_path(@handler),
+        notice: notice
     else
       render :new
     end
@@ -26,10 +27,10 @@ class Admin::Verification::Handler::FieldAssignmentsController < Admin::Verifica
   end
 
   def update
-    debugger
     if @field_assignment.update(field_assignment_params)
-      redirect_to admin_verification_handler_field_assignments_path(@handler),
-        notice: "Update success"
+      notice = t("admin.wizards.verification.handler.update.notice")
+      redirect_to admin_wizards_verification_handler_field_assignments_path(@handler),
+        notice: notice
     else
       render :edit
     end
@@ -37,11 +38,13 @@ class Admin::Verification::Handler::FieldAssignmentsController < Admin::Verifica
 
   def destroy
     if @field_assignment.destroy
-      redirect_to admin_verification_handler_field_assignments_path(@handler),
-        notice: "Destroy success"
+      notice = t("admin.wizards.verification.handler.destroy.notice")
+      redirect_to admin_wizards_verification_handler_field_assignments_path(@handler),
+        notice: notice
     else
-      redirect_to admin_verification_handler_field_assignments_path(@handler),
-        alert: "Destroy error"
+      alert = t("admin.wizards.verification.handler.destroy.alert")
+      redirect_to admin_wizards_verification_handler_field_assignments_path(@handler),
+        alert: alert
     end
   end
 
