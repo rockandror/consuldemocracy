@@ -313,3 +313,13 @@ es:
       time_zone:
         key: "Zona horaria"
         key_description: "Selecciona la zona horaria de la aplicación"
+    custom_verification_process:
+      census_soap:
+        key: Verificar un usuario contra el Censo Remoto SOAP
+        key_description: Configurar el censo remoto para utilizarlo en la verificación de un usuario en la aplicación.
+      census_local:
+        key: Verificar un usuario contra el Censo Local
+        key_description: Configurar el censo local para utilizarlo en la verificación de un usuario en la aplicación.
+      sms:
+        key: Verificar el telefono de un usuario
+        key_description: Configurar la verificación del teléfono para utilizarlo en la verificación de un usuario en la aplicación.

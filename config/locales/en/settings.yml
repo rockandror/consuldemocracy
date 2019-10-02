@@ -313,3 +313,13 @@ en:
       time_zone:
         key: "Time Zone"
         key_description: "Define the Time Zone of the application"
+    custom_verification_process:
+      census_soap:
+        key: Verify a user against SOAP Remote Census
+        key_description: Configure the remote census to be used in the verification of a user in the application.
+      census_local:
+        key: Verify a user against the Local Census
+        key_description: Configure the local census to be used in the verification of a user in the application.
+      sms:
+        key: "Verify a user's phone"
+        key_description: "Configure the verification of the phone to use it in the verification of a user in the application."

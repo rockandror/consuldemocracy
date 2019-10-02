@@ -276,6 +276,9 @@ namespace :admin do
   resources :wizards, only: :index
   namespace :wizards do
     resources :installer, only: [:new, :show]
+    namespace :verification do
+      resources :handlers, only: :index
+    end
   end
 
 end
