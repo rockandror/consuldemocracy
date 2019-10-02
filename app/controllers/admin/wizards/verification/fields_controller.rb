@@ -1,4 +1,5 @@
-class Admin::Verification::FieldsController < Admin::Verification::BaseController
+class Admin::Wizards::Verification::FieldsController < Admin::Verification::BaseController
+  layout "wizard"
   include Translatable
 
   before_action :set_field, only: [:edit, :update, :destroy]
@@ -15,7 +16,7 @@ class Admin::Verification::FieldsController < Admin::Verification::BaseControlle
     @field = ::Verification::Field.new(verification_field_params)
     if @field.save
       notice = t("admin.verification.fields.create.notice")
-      redirect_to admin_verification_fields_path, notice: notice
+      redirect_to admin_wizards_verification_fields_path, notice: notice
     else
       flash.now[:error] = t("admin.verification.fields.create.error")
       render :new
@@ -28,7 +29,7 @@ class Admin::Verification::FieldsController < Admin::Verification::BaseControlle
   def update
     if @field.update(verification_field_params)
       notice = t("admin.verification.fields.update.notice")
-      redirect_to admin_verification_fields_path, notice: notice
+      redirect_to admin_wizards_verification_fields_path, notice: notice
     else
       flash.now[:error] = t("admin.verification.fields.update.error")
       render :edit
@@ -38,7 +39,7 @@ class Admin::Verification::FieldsController < Admin::Verification::BaseControlle
   def destroy
     @field.destroy
     notice = t("admin.verification.fields.destroy.notice")
-    redirect_to admin_verification_fields_path, notice: notice
+    redirect_to admin_wizards_verification_fields_path, notice: notice
   end
 
   private

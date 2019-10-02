@@ -1,6 +1,6 @@
 <%= render "shared/globalize_locales", resource: @field %>
 
-<%= translatable_form_for [:admin, @field] do |f| %>
+<%= translatable_form_for [:admin, :wizards, @field] do |f| %>
 
   <%= render "shared/errors", resource: @field %>
 
