@@ -18,4 +18,11 @@ describe Verification::Handler::FieldAssignment do
 
     expect(field_assignment).not_to be_valid
   end
+
+  it "When already exists a record for same field and same handler it should not be valid" do
+    field_assignment.save
+    repeated_field_assignment = build(:verification_handler_field_assignment, handler: field_assignment.handler, verification_field: field_assignment.verification_field )
+
+    expect(repeated_field_assignment).not_to be_valid
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191002104842) do
+ActiveRecord::Schema.define(version: 20191002145346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1697,6 +1697,7 @@ ActiveRecord::Schema.define(version: 20191002104842) do
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
     t.index ["handler"], name: "index_field_assignments_on_handler", using: :btree
+    t.index ["verification_field_id", "handler"], name: "unique_index_to_handler_and_verification_field_id", unique: true, using: :btree
     t.index ["verification_field_id"], name: "index_field_assignments_on_field_id", using: :btree
   end
 
