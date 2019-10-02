@@ -2,10 +2,10 @@
   <td><%= field_assignment.verification_field.name %></td>
   <td>
     <%= link_to t("admin.verification.field.handler_assignments.index.edit"),
-                edit_admin_verification_handler_field_assignment_path(@handler, field_assignment),
+                edit_admin_wizards_verification_handler_field_assignment_path(@handler, field_assignment),
                 class: "button hollow expanded" %>
     <%= link_to t("admin.verification.field.handler_assignments.index.delete"),
-                admin_verification_handler_field_assignment_path(@handler, field_assignment.id),
+                admin_wizards_verification_handler_field_assignment_path(@handler, field_assignment.id),
                 method: :delete,
                 class: "button hollow alert expanded",
                 data: { confirm: t("admin.actions.confirm") } %>
