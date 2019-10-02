@@ -96,7 +96,7 @@ FactoryBot.define do
   end
   factory :verification_handler_field_assignment, class: Verification::Handler::FieldAssignment do
     verification_field
-    handler { "sms" }
+    handler { "residents" }
   end
   factory :verification_residents_import, class: "Verification::Residents::Import" do
     file {
