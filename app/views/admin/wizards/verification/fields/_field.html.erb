@@ -8,10 +8,10 @@
   <td class="text-center"><%= field.format  %></td>
   <td>
     <%= link_to t("admin.verification.fields.index.edit"),
-                edit_admin_verification_field_path(field),
+                edit_admin_wizards_verification_field_path(field),
                 class: "button hollow expanded" %>
     <%= link_to t("admin.verification.fields.index.delete"),
-                admin_verification_field_path(field),
+                admin_wizards_verification_field_path(field),
                 method: :delete,
                 class: "button hollow alert expanded",
                 data: { confirm: t("admin.actions.confirm") } %>

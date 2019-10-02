@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Fields" do
+describe "Admin wizards verification fields" do
 
   let!(:fake_handler) do
     Class.new(Verification::Handler) do
@@ -17,14 +17,14 @@ describe "Fields" do
 
   describe "Index" do
     scenario "Should show defined verification fields" do
-      visit admin_verification_fields_path
+      visit admin_wizards_verification_fields_path
 
       expect(page).to have_content "Email"
     end
 
     scenario "Should show verification fields in defined order" do
       create(:verification_field, label: "Phone", position: 2)
-      visit admin_verification_fields_path
+      visit admin_wizards_verification_fields_path
 
       expect("Email").to appear_before "Phone"
     end
@@ -32,7 +32,7 @@ describe "Fields" do
 
   describe "Create" do
     scenario "Should show successful notice after creating a new field" do
-      visit new_admin_verification_field_path
+      visit new_admin_wizards_verification_field_path
 
       fill_in "Name", with: "Phone"
       fill_in "Label", with: "Phone"
@@ -47,7 +47,7 @@ describe "Fields" do
 
     scenario "Should show validation errors alert and message after submitting
               an invalid field" do
-      visit new_admin_verification_field_path
+      visit new_admin_wizards_verification_field_path
 
       click_button "Create field"
 
@@ -59,7 +59,7 @@ describe "Fields" do
 
   describe "Update" do
     scenario "Should show successful notice after creating a new field" do
-      visit edit_admin_verification_field_path(field)
+      visit edit_admin_wizards_verification_field_path(field)
 
       check "Required?"
       click_button "Update field"
@@ -69,7 +69,7 @@ describe "Fields" do
 
     scenario "Should show validation errors alert after submitting an invalid
               field" do
-      visit edit_admin_verification_field_path(field)
+      visit edit_admin_wizards_verification_field_path(field)
 
       fill_in "Name", with: ""
       click_button "Update field"
@@ -80,7 +80,7 @@ describe "Fields" do
 
   describe "Destroy" do
     scenario "Should show successful notice after delete a field" do
-      visit admin_verification_fields_path
+      visit admin_wizards_verification_fields_path
 
       click_link "Delete"
 

@@ -170,7 +170,6 @@ namespace :admin do
     get :search, on: :collection
   end
   namespace :verification do
-    resources :fields
     resources :field_assignments, controller: "handler/field_assignments",
                                   path: "handler/:handler_id/field_assignments",
                                   as: "handler_field_assignments"
@@ -282,6 +281,9 @@ namespace :admin do
     resources :field_assignments, controller: "/admin/verification/handler/field_assignments",
                                   path: "verification/handler/:handler_id/field_assignments",
                                   as: "handler_field_assignments"
+    namespace :verification do
+      resources :fields
+    end
   end
 
 end
