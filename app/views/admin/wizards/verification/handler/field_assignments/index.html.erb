@@ -1,12 +1,13 @@
-<%= link_to t("admin.verification.field.handler_assignments.index.create"),
+<%= link_to t("admin.wizards.verification.handler.field_assignments.index.create"),
               new_admin_wizards_verification_handler_field_assignment_path(@handler), class: "button float-right" %>
 
-<h2 class="inline-block"><%= t("admin.verification.handler.fields_assignments.index.title") %></h2>
+<h2 class="inline-block"><%= title_for_fields_assignments_by(@handler) %></h2>
+<p"><%= description_for_fields_assignments_by(@handler) %></p>
 
 <table>
   <thead>
     <tr>
-      <th scope="col"><%= t("admin.verification.field.handler_assignments.index.field")%></th>
+      <th scope="col"><%= t("admin.wizards.verification.handler.field_assignments.index.field")%></th>
       <th scope="col" class="small-4"><%= t("admin.actions.actions")%></th>
     </tr>
   </thead>
