@@ -7,10 +7,10 @@ describe "Fields" do
       register_as :fake_handler
     end
   end
-  let!(:field) { create(:verification_field, label: "Email", name: "email",
-                                             handlers: "fake_handler", position: 1) }
+  let!(:field) { create(:verification_field, label: "Email", name: "email", position: 1) }
 
   before do
+    create(:verification_handler_field_assignment, verification_field: field, handler: fake_handler.id)
     admin = create(:administrator)
     login_as(admin.user)
   end
@@ -36,7 +36,6 @@ describe "Fields" do
 
       fill_in "Name", with: "Phone"
       fill_in "Label", with: "Phone"
-      check "Fake Handler"
       fill_in "Position", with: 1
       check "Required?"
       check "Require confirmation field?"
@@ -76,18 +75,6 @@ describe "Fields" do
       click_button "Update field"
 
       expect(page).to have_content "Verification field couldn't be updated"
-    end
-
-    scenario "Should allow to deactivate all handlers for a field" do
-      visit edit_admin_verification_field_path(field)
-      expect(page).to have_checked_field("verification_field_handlers_fake_handler")
-
-      uncheck "Fake Handler"
-      click_button "Update field"
-
-      expect(page).to have_content "Verification field updated successfully"
-      visit edit_admin_verification_field_path(field)
-      expect(page).to have_unchecked_field("verification_field_handlers_fake_handler")
     end
   end
 

@@ -24,22 +24,6 @@
 
   <div class="row">
     <div class="small-12 column">
-      <%= label_tag "verification_field[handlers][]", t("admin.verification.fields.form.handlers.label") %>
-      <p class="help-text"><%= t("admin.verification.fields.form.handlers.help") %></p>
-      <% field_handlers.each do |handler, _| %>
-        <%= label_tag field_handler_id(handler) do %>
-          <%= check_box_tag "verification_field[handlers][]",
-                            handler,
-                            field_handler_enabled?(@field, handler),
-                            id: field_handler_id(handler) %>
-          <%= handler_text_representation(handler) %>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="small-12 column">
       <%= f.number_field :position %>
     </div>
   </div>

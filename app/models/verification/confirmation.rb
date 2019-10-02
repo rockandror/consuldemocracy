@@ -41,7 +41,7 @@ class Verification::Confirmation
     # Validates only required confirmation handlers
     def confirmations
       Verification::Configuration.required_confirmation_handlers.each do |id, handler|
-        handler_instance = handler.new(fields_for_handler(handler))
+        handler_instance = handler.new(fields_for_handler)
 
         response = handler_instance.confirm
         unless response.success?
@@ -51,7 +51,7 @@ class Verification::Confirmation
     end
 
     # Return {} of fields for given handler by handler name
-    def fields_for_handler(handler)
+    def fields_for_handler
       params = {}
       @confirmation_fields.each do |confirmation_field|
         params[confirmation_field] = send(confirmation_field)

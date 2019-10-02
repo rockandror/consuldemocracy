@@ -27,7 +27,6 @@ class Admin::Verification::FieldsController < Admin::Verification::BaseControlle
 
   def update
     if @field.update(verification_field_params)
-      @field.update(handlers: nil) if verification_field_params[:handlers].blank?
       notice = t("admin.verification.fields.update.notice")
       redirect_to admin_verification_fields_path, notice: notice
     else
@@ -45,7 +44,7 @@ class Admin::Verification::FieldsController < Admin::Verification::BaseControlle
   private
 
     def verification_field_params
-      attributes = [:name, :position, :required, :request_path, :response_path, :confirmation_validation, :format, handlers: []]
+      attributes = [:name, :position, :required, :request_path, :response_path, :confirmation_validation, :format]
       translations_attributes = translation_params(::Verification::Field)
 
       params.require(:verification_field).permit(*attributes, translations_attributes)
