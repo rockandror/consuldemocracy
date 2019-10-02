@@ -280,6 +280,7 @@ namespace :admin do
       resources :field_assignments, controller: "handler/field_assignments",
                                     path: "handler/:handler_id/field_assignments",
                                     as: "handler_field_assignments"
+      resources :handlers, only: :index
     end
   end
 
