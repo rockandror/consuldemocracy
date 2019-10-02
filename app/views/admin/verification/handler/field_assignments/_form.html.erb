@@ -1,0 +1,19 @@
+<%= form_for [:admin, @field_assignment],
+             url: @field_assignment.persisted? ? admin_verification_handler_field_assignment_path(@field_assignment.handler, @field_assignment.id) : admin_verification_handler_field_assignments_path(@field_assignment.handler)  do |f| %>
+
+  <%= render "shared/errors", resource: @field_assignment %>
+
+  <div class="row">
+    <div class="small-12 column">
+      <%= f.select :verification_field_id,
+                    Verification::Field.all.collect{|field| [field.name, field.id]} %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 column">
+      <%= f.submit class: "button success expanded margin-top",
+                   value: t("admin.verification.field.field_assignments.#{admin_submit_action(@field_assignment)}.form.submit_button") %>
+    </div>
+  </div>
+<% end %>

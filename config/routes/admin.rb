@@ -171,6 +171,9 @@ namespace :admin do
   end
   namespace :verification do
     resources :fields
+    resources :field_assignments, controller: "handler/field_assignments",
+                                  path: "handler/:handler_id/field_assignments",
+                                  as: "handler_field_assignments"
     namespace :handlers do
       namespace :sms do
         resources :fields, only: :create
@@ -276,6 +279,9 @@ namespace :admin do
   resources :wizards, only: :index
   namespace :wizards do
     resources :installer, only: [:new, :show]
+    resources :field_assignments, controller: "/admin/verification/handler/field_assignments",
+                                  path: "verification/handler/:handler_id/field_assignments",
+                                  as: "handler_field_assignments"
   end
 
 end
