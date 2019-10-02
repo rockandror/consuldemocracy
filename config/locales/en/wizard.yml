@@ -30,3 +30,30 @@ en:
       title: Assistant successfully completed
       description_html: If you want to modify any data once the Wizard has been carried out, you can modify it in the <strong>Configuration</strong> section or by running the Installation Wizard again.
       btn_finish: Finish Wizard
+  admin:
+    wizards:
+      verification:
+        handler:
+          field_assignments:
+            create:
+              notice: Field assignment created successfully!
+            destroy:
+              notice: Field assignment deleted successfully!
+              alert: Cannot delete field assignment!
+            form:
+              submit_button: Save
+            index:
+              delete: Delete
+              description:
+                handlers:
+                  remote_census: Add the verification fields you want to send to remote cesnsus.
+                  residents: Add the verification fields you want to check againt local census database.
+                  sms: Add the phone field to get phone from user and to verify it by SMS.
+              edit: Edit
+              title:
+                handlers:
+                  remote_census: Configure remote census verification process
+                  residents: Configure local census verification process
+                  sms: Configure phone verification process
+            update:
+              notice: Field assignment updated successfully!
