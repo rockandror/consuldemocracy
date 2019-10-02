@@ -26,4 +26,13 @@ describe Verification::Handler::FieldAssignment do
 
     expect(repeated_field_assignment).not_to be_valid
   end
+
+  context "When handler is sms" do
+    it "and verification field is not named exactly 'phone' it should not be valid" do
+      verification_field = create(:verification_field, name: "email")
+      field_assignment = build(:verification_handler_field_assignment, handler: "sms", verification_field: verification_field)
+
+      expect(field_assignment).not_to be_valid
+    end
+  end
 end

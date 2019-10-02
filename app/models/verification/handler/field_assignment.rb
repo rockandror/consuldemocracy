@@ -5,4 +5,15 @@ class Verification::Handler::FieldAssignment < ApplicationRecord
   validates :verification_field_id, presence: true
   validates :handler, presence: true
   validates :verification_field_id, uniqueness: { scope: :handler }
+  validate :sms_handler
+
+  private
+
+    def sms_handler
+      return unless handler == "sms"
+
+      unless verification_field.name == "phone"
+        errors.add :verification_field_id, :only_phone_allowed
+      end
+    end
 end
