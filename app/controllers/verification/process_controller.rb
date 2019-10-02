@@ -20,7 +20,13 @@ class Verification::ProcessController < ApplicationController
   private
 
     def process_params
-      params.require(:verification_process).permit(Verification::Field.all.pluck(:name))
+      attributes = Verification::Field.all.pluck(:name)
+      confirmation_attributes = confirmation_params
+      params.require(:verification_process).permit(attributes, confirmation_attributes)
+    end
+
+    def confirmation_params
+      Verification::Field.confirmation_validation.map { |field| "#{field.name}_confirmation" }
     end
 
     def continue

@@ -52,6 +52,22 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="small-12 column">
+    <%= f.label :confirmation_validation do %>
+      <%= f.check_box :confirmation_validation %>
+    <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 column">
+    <%= f.label :format do %>
+      <%= f.text_field :format, placeholder: "Añadir la expresión regular sin los escapados de inicio (/) y final(/)" %>
+    <% end %>
+    </div>
+  </div>
+
   <hr>
   <h3>Specific fields to verify against remote census</h3>
   <p>Before adding the fields for connection to the remote census, make sure you have properly filled in the following section: Settings > Remote Census Configuration.</p>

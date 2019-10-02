@@ -61,14 +61,25 @@ class Verification::Process
 
     # Defines attribute accessors for all verification fields
     def define_fields_accessors
-      Verification::Field.all.pluck(:name).each do |attr|
-        define_singleton_method attr do
-          instance_variable_get "@#{attr}"
+      Verification::Field.all.each do |field|
+        define_singleton_method field.name do
+          instance_variable_get "@#{field.name}"
         end
 
-        define_singleton_method "#{attr}=" do |arg|
-          instance_variable_set "@#{attr}", arg
+        define_singleton_method "#{field.name}=" do |arg|
+          instance_variable_set "@#{field.name}", arg
         end
+        define_confirmation_fields_accessors(field) if field.confirmation_validation?
+      end
+    end
+
+    def define_confirmation_fields_accessors(field)
+      define_singleton_method "#{field.name}_confirmation" do
+        instance_variable_get "@#{field.name}_confirmation"
+      end
+
+      define_singleton_method "#{field.name}_confirmation=" do |arg|
+        instance_variable_set "@#{field.name}_confirmation", arg
       end
     end
 
@@ -92,12 +103,30 @@ class Verification::Process
     # Define self validations from existing verification fields
     def define_fields_validations
       define_presence_validations
+      define_confirmation_validations
+      define_format_validations
     end
 
     def define_presence_validations
       self.singleton_class.class_eval do
         Verification::Field.required.each do |field|
           validates field.name, presence: true
+        end
+      end
+    end
+
+    def define_confirmation_validations
+      self.singleton_class.class_eval do
+        Verification::Field.confirmation_validation.each do |field|
+          validates field.name, confirmation: true
+        end
+      end
+    end
+
+    def define_format_validations
+      self.singleton_class.class_eval do
+        Verification::Field.with_format.each do |field|
+          validates field.name, format: { with: Regexp.new(field.format) }
         end
       end
     end
