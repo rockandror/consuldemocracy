@@ -12,7 +12,7 @@ class Verification::Configuration
     end
 
     def active_handlers
-      Verification::Field.including_any_handlers(Verification::Configuration.ids).pluck(:handlers).flatten.uniq
+      Verification::Handler::FieldAssignment.where(handler: Verification::Configuration.ids).pluck(:handler).uniq
     end
 
     def required_confirmation_handlers

@@ -23,7 +23,9 @@ describe Verification::Configuration do
 
   describe ".active_handlers" do
     it "should return only active handlers" do
-      create(:verification_field, name: "phone", handlers: [:sms, :my_handler])
+      field = create(:verification_field, name: "phone")
+      create(:verification_handler_field_assignment, verification_field: field, handler: :sms)
+      create(:verification_handler_field_assignment, verification_field: field, handler: :my_handler)
 
       expect(described_class.active_handlers).to eq(["sms", "my_handler"])
     end
@@ -47,9 +49,11 @@ describe Verification::Configuration do
   end
 
   describe ".confirmation_fields" do
-    let!(:field) { create(:verification_field, name: "phone", handlers: [:sms, :my_handler]) }
+    let!(:field) { create(:verification_field, name: "phone") }
 
     it "should return confirmation fields names for handlers in use" do
+      create(:verification_handler_field_assignment, verification_field: field, handler: :sms)
+      create(:verification_handler_field_assignment, verification_field: field, handler: :my_handler)
       handler.class_eval do
         requires_confirmation true
       end

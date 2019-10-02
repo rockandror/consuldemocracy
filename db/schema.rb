@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191002101057) do
+ActiveRecord::Schema.define(version: 20191002104842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1684,14 +1684,12 @@ ActiveRecord::Schema.define(version: 20191002101057) do
     t.string  "name"
     t.string  "label"
     t.integer "position"
-    t.text    "handlers"
     t.boolean "required"
     t.string  "hint"
     t.string  "request_path"
     t.string  "response_path"
     t.boolean "confirmation_validation"
     t.string  "format"
-    t.index ["handlers"], name: "index_verification_fields_on_handlers", using: :btree
   end
 
   create_table "verification_handler_field_assignments", force: :cascade do |t|
