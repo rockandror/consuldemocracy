@@ -15,8 +15,10 @@ class Verification::Field < ApplicationRecord
   validate  :handlers_exists, if: -> { handlers.any?(&:present?) }
 
   scope :required, -> { where(required: true) }
+  scope :confirmation_validation, -> { where(confirmation_validation: true) }
   scope :including_any_handlers, -> (handlers) { where(matching_handler_query(handlers)) }
   scope :with_response_path, -> { where.not(response_path: [nil, '']) }
+  scope :with_format, -> { where.not(format: [nil, '']) }
 
   def handlers=(handlers)
     handlers = []                  if handlers.blank?

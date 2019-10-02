@@ -28,6 +28,48 @@ describe Verification::Process do
     end
   end
 
+  describe "confirmation field validation" do
+    it "When confirmation validation field is not present it should not be valid" do
+      create(:verification_field, name: :custom_field, confirmation_validation: true)
+      process.custom_field = "some_value"
+      process.custom_field_confirmation = ""
+
+      expect(process).not_to be_valid
+    end
+
+    it "When confirmation validation field is present but is not equal it should not be valid" do
+      create(:verification_field, name: :custom_field, confirmation_validation: true)
+      process.custom_field = "some_value"
+      process.custom_field_confirmation = "another_value"
+
+      expect(process).not_to be_valid
+    end
+
+    it "When confirmation validation field is equal it should be valid" do
+      create(:verification_field, name: :custom_field, confirmation_validation: true)
+      process.custom_field = "some_value"
+      process.custom_field_confirmation = "some_value"
+
+      expect(process).to be_valid
+    end
+  end
+
+  describe "format validation" do
+    it "With wrong format it should not be valid" do
+      create(:verification_field, name: :custom_field, format: '\A[\d \+]+\z')
+      process.custom_field = "wrong format"
+
+      expect(process).not_to be_valid
+    end
+
+    it "With correct format it should be valid" do
+      create(:verification_field, name: :custom_field, format: '\A[\d \+]+\z')
+      process.custom_field = "666999999"
+
+      expect(process).to be_valid
+    end
+  end
+
   describe "handlers_verification validation" do
     before do
       Class.new(Verification::Handler) do

@@ -392,6 +392,8 @@ es:
         name: Nombre
         position: Posición
         required: Requerido?
+        confirmation_validation: Requiere campo de confirmación?
+        format: Formato
       verification/field/translation:
         label: Etiqueta
       verification/resident:

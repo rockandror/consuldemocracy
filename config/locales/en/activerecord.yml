@@ -390,6 +390,8 @@ en:
         name: Name
         position: Position
         required: Required?
+        confirmation_validation: Require confirmation field?
+        format: Format
       verification/field/translation:
         label: Label
       verification/resident:

@@ -39,6 +39,8 @@ describe "Fields" do
       check "Fake Handler"
       fill_in "Position", with: 1
       check "Required?"
+      check "Require confirmation field?"
+      fill_in "Format", with: "/\A[\d \+]+\z/"
       click_button "Create field"
 
       expect(page).to have_content "Verification field created successfully"
