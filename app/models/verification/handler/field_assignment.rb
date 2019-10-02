@@ -4,4 +4,5 @@ class Verification::Handler::FieldAssignment < ApplicationRecord
 
   validates :verification_field_id, presence: true
   validates :handler, presence: true
+  validates :verification_field_id, uniqueness: { scope: :handler }
 end
