@@ -4,6 +4,8 @@
   <td><%= handlers_text_representation(field).join(", ") %></td>
   <td><%= field.label %></td>
   <td class="text-center"><%= boolean_text_representation(field.required)  %></td>
+  <td class="text-center"><%= boolean_text_representation(field.confirmation_validation)  %></td>
+  <td class="text-center"><%= field.format  %></td>
   <td>
     <%= link_to t("admin.verification.fields.index.edit"),
                 edit_admin_verification_field_path(field),

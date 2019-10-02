@@ -1767,6 +1767,8 @@ es:
           label: Etiqueta
           position: Posición
           required: Requerido
+          confirmation_validation: Confirmación
+          format: Formato
           title: Campos de verificación
         new:
           form:

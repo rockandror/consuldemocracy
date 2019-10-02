@@ -45,7 +45,7 @@ class Admin::Verification::FieldsController < Admin::Verification::BaseControlle
   private
 
     def verification_field_params
-      attributes = [:name, :position, :required, :request_path, :response_path, handlers: []]
+      attributes = [:name, :position, :required, :request_path, :response_path, :confirmation_validation, :format, handlers: []]
       translations_attributes = translation_params(::Verification::Field)
 
       params.require(:verification_field).permit(*attributes, translations_attributes)

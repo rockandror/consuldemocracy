@@ -1769,6 +1769,8 @@ en:
           label: Label
           position: Position
           required: Required
+          confirmation_validation: Require confirmation
+          format: Format
           title: Verification fields
         new:
           form:
