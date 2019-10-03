@@ -60,6 +60,28 @@ describe "Admin wizards verification handler fields assignments" do
     end
   end
 
+  describe "Edit" do
+    scenario "Should show request and response path fields when handler is remote census" do
+      field_assignment = create(:verification_handler_field_assignment, verification_field: field,
+                                                                        handler: "remote_census")
+      create(:verification_field, label: "Phone", name: "phone", position: 2)
+      visit edit_admin_wizards_verification_handler_field_assignment_path("remote_census", field_assignment)
+
+      expect(page).to have_content "Request path"
+      expect(page).to have_content "Response path"
+    end
+
+    scenario "Should not show request and response path fields when handler is not remote census" do
+      field_assignment = create(:verification_handler_field_assignment, verification_field: field,
+                                                                        handler: fake_handler.id)
+      create(:verification_field, label: "Phone", name: "phone", position: 2)
+      visit edit_admin_wizards_verification_handler_field_assignment_path("fake_handler", field_assignment)
+
+      expect(page).not_to have_content "Request path"
+      expect(page).not_to have_content "Response path"
+    end
+  end
+
   describe "Destroy" do
     scenario "Should show successful notice after delete a field" do
       visit admin_wizards_verification_fields_path
