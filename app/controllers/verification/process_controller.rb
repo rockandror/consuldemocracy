@@ -34,9 +34,8 @@ class Verification::ProcessController < ApplicationController
         redirect_to new_verification_confirmation_path,
           notice: t("verification.process.create.flash.success")
       else
-        # TODO: Mark current user as verified if all handlers returned successful responses
-        redirect_to verified_user_path,
-          notice: t("verification.process.create.flash.success")
+        current_user.update(residence_verified_at: Time.current)
+        redirect_to verification_path, notice: t("verification.process.create.flash.success")
       end
     end
 end
