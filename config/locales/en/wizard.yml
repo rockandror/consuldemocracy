@@ -1,5 +1,13 @@
 en:
   wizard:
+    verification:
+      new:
+        title: Welcome to the verification process assistant
+        description_html: In this assistant we will carry out step by step all necessary configuration to be able to personalize the Verification system of the application to the needs of each institution.
+        exit_text: If you have modified the verification system and want to use your code DO NOT continue running this wizard.
+        exit_link: Ok, Exit this wizard for now!
+        take_effect_text: "For the changes made in this wizard to take effect, you must disabled 'skip verification' and enable 'Customizable user verification process'."
+        btn_start: Start
     admin:
       title: Wizard
       module_title: Installation Wizard

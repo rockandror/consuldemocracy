@@ -1,3 +1,6 @@
+<%= render "admin/wizards/header_steps", back_step: back_step_path(@handler),
+                                         next_step: next_step_path(@handler) %>
+
 <%= link_to t("admin.wizards.verification.handler.field_assignments.index.create"),
               new_admin_wizards_verification_handler_field_assignment_path(@handler), class: "button float-right" %>
 
