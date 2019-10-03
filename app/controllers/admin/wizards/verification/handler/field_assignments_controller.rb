@@ -59,7 +59,7 @@ class Admin::Wizards::Verification::Handler::FieldAssignmentsController < Admin:
     end
 
     def field_assignment_params
-      params.require(:verification_handler_field_assignment).permit(:verification_field_id).
+      params.require(:verification_handler_field_assignment).permit(:verification_field_id, :request_path, :response_path).
         merge(handler: @handler)
     end
 end

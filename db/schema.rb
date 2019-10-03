@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191002145346) do
+ActiveRecord::Schema.define(version: 20191003125408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1686,8 +1686,6 @@ ActiveRecord::Schema.define(version: 20191002145346) do
     t.integer "position"
     t.boolean "required"
     t.string  "hint"
-    t.string  "request_path"
-    t.string  "response_path"
     t.boolean "confirmation_validation"
     t.string  "format"
   end
@@ -1697,6 +1695,8 @@ ActiveRecord::Schema.define(version: 20191002145346) do
     t.string   "handler",               null: false
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+    t.string   "request_path"
+    t.string   "response_path"
     t.index ["handler"], name: "index_field_assignments_on_handler", using: :btree
     t.index ["verification_field_id", "handler"], name: "unique_index_to_handler_and_verification_field_id", unique: true, using: :btree
     t.index ["verification_field_id"], name: "index_field_assignments_on_field_id", using: :btree
