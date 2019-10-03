@@ -275,6 +275,7 @@ namespace :admin do
   resources :wizards, only: :index
   namespace :wizards do
     resources :installer, only: [:new, :show]
+    resources :verification, only: :new
     namespace :verification do
       resources :fields
       resources :field_assignments, controller: "handler/field_assignments",

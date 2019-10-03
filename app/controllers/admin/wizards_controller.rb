@@ -1,7 +1,7 @@
 class Admin::WizardsController < Admin::BaseController
 
   def index
-    @wizards = ["installation"].freeze
+    @wizards = ["installation", "verification"].freeze
   end
 
 end
