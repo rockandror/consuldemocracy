@@ -12,7 +12,7 @@ class Verification::ProcessController < ApplicationController
     if @process.save
       continue
     else
-      flash.now[:error] = t("verification.process.create.error")
+      flash.now[:error] = t("verification.process.create.flash.error")
       render :new
     end
   end
@@ -31,8 +31,7 @@ class Verification::ProcessController < ApplicationController
 
     def continue
       if @process.requires_confirmation?
-        redirect_to new_verification_confirmation_path,
-          notice: t("verification.process.create.flash.success")
+        redirect_to new_verification_confirmation_path
       else
         current_user.update(residence_verified_at: Time.current)
         redirect_to verification_path, notice: t("verification.process.create.flash.success")
