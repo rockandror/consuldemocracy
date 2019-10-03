@@ -1,7 +1,9 @@
 <div class="columns padding v-aligner">
   <div class="medium-6 columns">
     <h3><%= t("wizard.header.title") %></h3>
-    <span class="current-step"><%= t("wizard.header.step") %> <%= current_step %> <%= t("wizard.header.step_of") %> <%= total_steps %></span>
+    <% if defined?(current_step) %>
+      <span class="current-step"><%= t("wizard.header.step") %> <%= current_step %> <%= t("wizard.header.step_of") %> <%= total_steps %></span>
+    <% end %>
   </div>
 
   <div class="medium-6 columns text-right">

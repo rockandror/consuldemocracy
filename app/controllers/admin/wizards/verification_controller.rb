@@ -5,6 +5,8 @@ class Admin::Wizards::VerificationController < Admin::BaseController
   before_action :set_settings, only: :show
 
   def new
+    all_settings = Setting.all.group_by { |setting| setting.type }
+    @settings = [Setting.find_by(key: "feature.custom_verification_process"), Setting.find_by(key: "feature.user.skip_verification")]
   end
 
   def show
