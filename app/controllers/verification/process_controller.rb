@@ -1,5 +1,6 @@
 class Verification::ProcessController < ApplicationController
   before_action :authenticate_user!
+  before_action :redirect_already_verified_users, only: :new
   before_action :verify_lock
   authorize_resource
 
@@ -35,6 +36,12 @@ class Verification::ProcessController < ApplicationController
       else
         current_user.update(residence_verified_at: Time.current)
         redirect_to verification_path, notice: t("verification.process.create.flash.success")
+      end
+    end
+
+    def redirect_already_verified_users
+      if current_user.residence_verified_at.present?
+        redirect_to account_path, notice: t("verification.process.create.flash.already_verified")
       end
     end
 end
