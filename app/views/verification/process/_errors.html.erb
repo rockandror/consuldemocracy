@@ -12,6 +12,10 @@
       <% else %>
         <%= t("form.not_saved_html", resource: t("form.#{process.class.to_s.underscore}")) %>
       <% end %>
+
+      <% if process.errors[:base].any? %>
+        <p><%=  process.errors[:base].flatten.join(", ") %></p>
+      <% end %>
     </strong>
   </div>
 <% end %>

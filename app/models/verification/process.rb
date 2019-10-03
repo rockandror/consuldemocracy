@@ -85,7 +85,7 @@ class Verification::Process
 
     # Return {} with fields by name
     def fields_by_name
-      Verification::Field.all.each_with_object({}) do |field, hash|
+      Verification::Field.all.order(:position).each_with_object({}) do |field, hash|
         hash[field.name] = field
       end
     end

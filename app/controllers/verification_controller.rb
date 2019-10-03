@@ -11,6 +11,14 @@ class VerificationController < ApplicationController
   private
 
     def next_step_path(user = current_user)
+      if Setting["feature.custom_verification_process"].present?
+        verification_process_next_step(user)
+      else
+        verification_legacy_next_step(user)
+      end
+    end
+
+    def verification_legacy_next_step(user)
       if user.organization?
         { path: account_path }
       elsif user.level_three_verified?
@@ -30,4 +38,11 @@ class VerificationController < ApplicationController
       end
     end
 
+    def verification_process_next_step(user)
+      if user.residence_verified_at.present?
+        { path: account_path, notice: flash[:notice] }
+      else
+        { path: new_verification_process_path }
+      end
+    end
 end
