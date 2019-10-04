@@ -4,7 +4,9 @@ class Verification::Handlers::Sms < Verification::Handler
 
   validate :unique_phone
 
-  def verify(attributes = {})
+  def verify(attributes)
+    set_attributes(attributes)
+
     if valid?
       update_user_phone_information
       send_sms
@@ -15,8 +17,10 @@ class Verification::Handlers::Sms < Verification::Handler
     end
   end
 
-  def confirm
-    if user && verified?
+  def confirm(attributes)
+    set_attributes(attributes)
+
+    if user && confirmed?
       Verification::Handlers::Response.new true, I18n.t("verification.handlers.sms.confirm.sucess"), {}, nil
     else
       Verification::Handlers::Response.new false, I18n.t("verification.handlers.sms.confirm.error"), {}, nil
@@ -24,6 +28,12 @@ class Verification::Handlers::Sms < Verification::Handler
   end
 
   private
+
+    def set_attributes(attributes)
+      attributes.each do |attr, value|
+        send("#{attr}=", value)
+      end
+    end
 
     def unique_phone
       errors.add(:phone, :taken) if User.where(confirmed_phone: phone).any?
