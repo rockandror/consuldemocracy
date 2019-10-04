@@ -27,7 +27,7 @@ class Verification::Handlers::Sms < Verification::Handler
     set_attributes(attributes)
 
     if user && confirmed?
-      Verification::Handlers::Response.new true, I18n.t("verification.handlers.sms.confirm.sucess"), {}, nil
+      Verification::Handlers::Response.new true, I18n.t("verification.handlers.sms.confirm.success"), {}, nil
     else
       Verification::Handlers::Response.new false, I18n.t("verification.handlers.sms.confirm.error"), {}, nil
     end

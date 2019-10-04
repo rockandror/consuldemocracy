@@ -1,7 +1,7 @@
 class Admin::Verification::Handlers::Sms::FieldsController < Admin::Verification::BaseController
 
   RECOMMENDED_FIELD_ATTRIBUTES = {
-    label: I18n.t("admin.verification.handlers.sms.fields.create.phone.default_label"),
+    label: I18n.t("admin.verification.handlers.sms.fields.create.phone_default_label"),
     confirmation_validation: true,
     required: true
   }
