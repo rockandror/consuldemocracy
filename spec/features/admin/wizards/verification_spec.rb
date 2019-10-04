@@ -16,7 +16,7 @@ describe "Wizard Verifcation" do
       expect(page).to have_content "In this assistant we will carry out step by step all necessary configuration to be able to personalize the Verification system of the application to the needs of each institution."
       expect(page).to have_content "If you have modified the verification system and want to use your code DO NOT continue running this wizard."
       expect(page).to have_link("Ok, Exit this wizard for now!", href: admin_root_path)
-      expect(page).to have_content "For the changes made in this wizard to take effect, you must disabled 'skip verification' and enable 'Customizable user verification process'."
+      expect(page).to have_content "For the changes made in this wizard to take effect, you must disabled both 'skip verification' and 'Configure connection to remote census (SOAP) - Legacy version' and enable 'Customizable user verification process'."
       expect(page).to have_css(".setting", count: 2)
       expect(page).to have_content "Customizable user verification process"
       expect(page).to have_content "Skip user verification"
