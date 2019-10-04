@@ -60,8 +60,9 @@ class Admin::Wizards::Verification::Handler::FieldAssignmentsController < Admin:
     end
 
     def field_assignment_params
-      params.require(:verification_handler_field_assignment).permit(:verification_field_id, :request_path, :response_path).
-        merge(handler: @handler)
+      attributes = [:verification_field_id, :request_path, :response_path]
+
+      params.require(:verification_handler_field_assignment).permit(attributes).merge(handler: @handler)
     end
 
     def remote_census_settings
