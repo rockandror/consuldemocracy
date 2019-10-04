@@ -1,3 +1,8 @@
 <%= render "admin/wizards/header_steps", back_step: admin_wizards_verification_fields_path,
-                                         next_step: next_step_path("handlers") %>
+                                         next_step: next_step_path("handlers"),
+                                         wizard: "verification" %>
+
+<h2 class="inline-block"><%= t("admin.wizards.verification.handlers.index.title") %></h2>
+<p><%= t("admin.wizards.verification.handlers.index.description_html") %></p>
+
 <%= render "admin/settings/featured_settings_table", features: @settings %>

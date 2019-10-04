@@ -47,32 +47,15 @@
   <div class="row">
     <div class="small-12 column">
     <%= f.label :format do %>
-      <%= f.text_field :format, placeholder: "Añadir la expresión regular sin los escapados de inicio (/) y final(/)" %>
+      <%= f.text_field :format, placeholder: t("admin.wizards.verification.fields.form.format_placeholder") %>
     <% end %>
-    </div>
-  </div>
-
-  <hr>
-  <h3>Specific fields to verify against remote census</h3>
-  <p>Before adding the fields for connection to the remote census, make sure you have properly filled in the following section: Settings > Remote Census Configuration.</p>
-
-  <div class="row">
-    <div class="small-12 column">
-      <p>If the field you are defining needs to be sent to the Remote Census, fill in the value with the path of this field in the request. For example if the request structure is {'request': {'sample_field': ''}}, if we are defining the sample_field, we should fill this field with: "request.sample_field".</p>
-      <%= f.text_field :request_path %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="small-12 column">
-      <p>If the field you are defining needs to be validated with the remote census response, fill in the value with the path of this field in the response and it will be validated that the value of the field entered by the user is equal to the one sent in the response. For example if the response structure is {response: {sample_field: "sample value"}}, we should fill this field with: "response.sample_field".</p>
-      <%= f.text_field :response_path %>
     </div>
   </div>
 
   <div class="row">
     <div class="small-12 column">
       <%= f.submit class: "button success expanded margin-top",
-                   value: t("admin.verification.fields.#{admin_submit_action(@field)}.form.submit_button") %>
+                   value: t("admin.wizards.verification.fields.#{admin_submit_action(@field)}.form.submit_button") %>
     </div>
   </div>
 <% end %>

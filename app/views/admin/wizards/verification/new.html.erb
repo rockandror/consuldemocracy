@@ -1,21 +1,21 @@
-<%= render "admin/wizards/header_steps" %>
+<%= render "admin/wizards/header_steps", wizard: "verification" %>
 
 <div class="medium-12 columns">
   <div class="columns">
-    <h2><%= t("wizard.verification.new.title") %></h2>
-    <p><%= t("wizard.verification.new.description_html") %></p>
+    <h2><%= t("admin.wizards.verification.new.title") %></h2>
+    <p><%= t("admin.wizards.verification.new.description_html") %></p>
     <div class="callout primary">
-      <%= t("wizard.verification.new.exit_text") %>
-      <%= link_to t("wizard.verification.new.exit_link"), admin_root_path, class: "button hollow" %>
+      <%= t("admin.wizards.verification.new.exit_text") %>
+      <%= link_to t("admin.wizards.verification.new.exit_link"), admin_root_path, class: "button hollow" %>
     </div>
-    <% if wrong_configuration %>
+    <% if wrong_configuration? %>
       <hr>
       <div class="callout secondary">
-        <%= t("wizard.verification.new.take_effect_text") %>
+        <%= t("admin.wizards.verification.new.take_effect_text") %>
       </div>
     <% end %>
 
     <%= render "admin/settings/featured_settings_table", features: @settings %>
-    <%= link_to t("wizard.verification.new.btn_start"), admin_wizards_verification_fields_path, class: "button" %>
+    <%= link_to t("admin.wizards.verification.new.btn_start"), admin_wizards_verification_fields_path, class: "button" %>
   </div>
 </div>

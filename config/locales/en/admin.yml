@@ -744,7 +744,7 @@ en:
       debates: "Debates"
       comments: "Comments"
       local_census_records: Manage local census
-      wizards: Wizard
+      wizards: Wizards
     administrators:
       index:
         title: Administrators
@@ -1316,7 +1316,7 @@ en:
         remote_census:
           title: Remote Census configuration
           description: Allow configure remote census (SOAP)
-          how_to_enable: 'To configure remote census (SOAP) you must enable "Configure connection to remote census (SOAP)" on "Features" tab.'
+          how_to_enable: 'To configure remote census (SOAP) you must enable "Configure connection to remote census (SOAP)" and disable "Customizable user verification process" on "Features" tab.'
           general: General Information
           request: Request Data
           response: Response Data
@@ -1742,43 +1742,6 @@ en:
         local_census_records:
           no_records_found: No records found.
     verification:
-      fields:
-        create:
-          notice: Verification field created successfully
-          error: Verification field couldn't be created
-        destroy:
-          notice: Verification field deleted successfully
-        edit:
-          form:
-            submit_button: Update field
-          title: Edit verification field
-        form:
-          handlers:
-            help: This field will be send to enabled verification handlers from list below.
-            label: Verification handlers
-        handlers:
-          name:
-            residents: Residents verifications (local database)
-            sms: Phone verification by SMS message
-        index:
-          controller: Controller
-          create: Create field
-          delete: Delete
-          edit: Edit
-          name: Name
-          label: Label
-          position: Position
-          required: Required
-          confirmation_validation: Require confirmation
-          format: Format
-          title: Verification fields
-        new:
-          form:
-            submit_button: Create field
-          title: New verification field
-        update:
-          notice: Verification field updated successfully
-          error: Verification field couldn't be updated
       residents:
         index:
           title: Manage residents

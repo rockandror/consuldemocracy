@@ -20,7 +20,7 @@ module VerificationFieldsHelper
   end
 
   def handler_text_representation(handler)
-    t("admin.verification.fields.handlers.name.#{handler}")
+    t("admin.wizards.verification.fields.handlers.name.#{handler}")
   end
 
   def field_hint(field)

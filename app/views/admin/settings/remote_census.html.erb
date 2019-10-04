@@ -1,7 +1,7 @@
 <%= back_link_to admin_settings_path %>
 <h2><%= t("admin.settings.index.remote_census.title") %></h2>
 
-<% if feature?(:remote_census) %>
+<% if feature?(:remote_census) && feature?(:custom_verification_process).blank? %>
    <% @settings.each do |setting_group| %>
     <h2><%= t("admin.settings.index.remote_census.#{setting_group.first.key.split(".").second}") %></h2>
     <%= render "settings_table", settings: setting_group %>
