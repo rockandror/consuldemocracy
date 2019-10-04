@@ -6,6 +6,7 @@ class Admin::Wizards::Verification::Handler::FieldAssignmentsController < Admin:
 
   def index
     @field_assignments = Verification::Handler::FieldAssignment.where(handler: @handler)
+    @settings = remote_census_settings if @handler == "remote_census"
   end
 
   def new
@@ -61,5 +62,11 @@ class Admin::Wizards::Verification::Handler::FieldAssignmentsController < Admin:
     def field_assignment_params
       params.require(:verification_handler_field_assignment).permit(:verification_field_id, :request_path, :response_path).
         merge(handler: @handler)
+    end
+
+    def remote_census_settings
+      @settings = [Setting.find_by(key: "remote_census.general.endpoint"),
+                   Setting.find_by(key: "remote_census.request.method_name"),
+                   Setting.find_by(key: "remote_census.request.structure")]
     end
 end

@@ -25,3 +25,8 @@ Seguro que queremos esto?
     <%= render partial: "field_assignment", collection: @field_assignments %>
   </tbody>
 </table>
+
+<% if remote_census_handler?(@handler) %>
+   <p><%= t("admin.wizards.verification.handler.field_assignments.index.remote_census") %></p>
+   <%= render "admin/settings/settings_table", settings: @settings %>
+<% end %>
