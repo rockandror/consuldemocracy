@@ -22,7 +22,7 @@ describe Verification::Handlers::Resident do
         handler: :resident)
     end
 
-    it "returns error response when unique phone validation fails" do
+    it "returns error response when not match found" do
       response = resident_handler.verify({ document_number: "55222333T", postal_code: "00700", user: user })
 
       expect(response.success?).not_to be true
