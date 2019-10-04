@@ -306,6 +306,7 @@ describe "Admin settings" do
 
       expect(page).to have_content 'To configure remote census (SOAP) you must enable ' \
                                    '"Configure connection to remote census (SOAP)" ' \
+                                   'and disable "Customizable user verification process" ' \
                                    'on "Features" tab.'
     end
 
@@ -317,6 +318,7 @@ describe "Admin settings" do
       expect(page).to have_content("Response Data")
       expect(page).not_to have_content 'To configure remote census (SOAP) you must enable ' \
                                        '"Configure connection to remote census (SOAP)" ' \
+                                       'and disable "Customizable user verification process" ' \
                                        'on "Features" tab.'
     end
 

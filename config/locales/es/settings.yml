@@ -114,7 +114,7 @@ es:
       remote_translations_description: "Muestra un botón que permite a los usuarios solicitar una traducción de una página no traducida en su idioma."
       translation_interface: "Interfaz de traducción"
       translation_interface_description: "Muestra la interfaz de traducción manual permitiendo a los usuarios introducir sus contenidos en todos los idiomas disponibles de la aplicación si así lo desean. Esta opción solo afecta a las vistas de usuarios de la aplicación, en el panel de administración está activa siempre."
-      remote_census: "Configurar conexión al censo remoto (SOAP)"
+      remote_census: "Configurar conexión al censo remoto (SOAP) - Version antigua"
       remote_census_description: "Permite configurar la conexión al censo remoto de cada institución"
       smtp_configuration: "Configuración SMTP"
       smtp_configuration_description: "Activa esta funcionalidad para poder añadir la configuración SMTP y poder enviar emails desde la aplicación."
