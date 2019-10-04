@@ -18,10 +18,12 @@ class Verification::Confirmation
 
   private
 
-    # Defines confirmation fields for each enabled handler that requires a
-    # confirmation code
+    def confirmation_fields
+      Verification::Configuration.confirmation_fields
+    end
+
     def define_confirmation_fields
-      Verification::Configuration.confirmation_fields.each_with_object([]) do |confirmation_field, confirmation_fields|
+      confirmation_fields.each_with_object([]) do |confirmation_field, confirmation_fields|
         define_singleton_method confirmation_field do
           instance_variable_get "@#{confirmation_field}"
         end
@@ -35,10 +37,9 @@ class Verification::Confirmation
     end
 
     def confirmation_codes_present?
-      @confirmation_fields.all?{|confirmation_field| send(confirmation_field).present?}
+      @confirmation_fields.all? { |confirmation_field| send(confirmation_field).present? }
     end
 
-    # Validates only required confirmation handlers
     def confirmations
       Verification::Configuration.required_confirmation_handlers.each do |id, handler|
         handler_instance = handler.new
@@ -50,7 +51,6 @@ class Verification::Confirmation
       end
     end
 
-    # Return {} of fields for given handler by handler name
     def fields_for_handler
       params = {}
       @confirmation_fields.each do |confirmation_field|
@@ -60,7 +60,6 @@ class Verification::Confirmation
       params.symbolize_keys!
     end
 
-    # Define self validations from existing verification fields
     def define_fields_validations
       define_presence_validations
     end
