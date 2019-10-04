@@ -219,6 +219,7 @@ ignore_unused:
   - "admin.settings.index.social.*"
   - "admin.settings.index.advanced.*"
   - "admin.settings.index.regional.*"
+  - "admin.wizards.verification.fields.*.form.submit_button"
 ####
 ## Exclude these keys from the `i18n-tasks eq-base" report:
 # ignore_eq_base:
