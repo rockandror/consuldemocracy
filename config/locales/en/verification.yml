@@ -23,6 +23,11 @@ en:
           failure: Verification code incorrect
         flash:
           success: You are a verified user
+    handler:
+      confirmation:
+        success: User verification process was done successfully!
+      verification:
+        success: User confirmation process was done successfully!
     handlers:
       sms:
         verify:
@@ -31,6 +36,14 @@ en:
         confirm:
           error: Confirmation code does not match.
           success: Phone confirmation code was confirmed successfully.
+      remote_census:
+        verify:
+          error: Remote census user verification process cannot be done!
+          success: Remote census user verification process was successfully done!
+      resident:
+        verify:
+          error: Local residents user verification process cannot be done!
+          success: Local residents user verification process was successfully done!
     letter:
       alert:
         unconfirmed_code: You have not yet entered the confirmation code

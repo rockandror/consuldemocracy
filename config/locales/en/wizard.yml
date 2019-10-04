@@ -72,9 +72,14 @@ en:
             destroy:
               notice: Field assignment deleted successfully!
               alert: Cannot delete field assignment!
+            edit:
+              title: Editing field assignment
             form:
               submit_button: Save
             index:
+              create_sms_fields:
+                confirm: You are about to create or update a form verification field called \"phone\" with recommended configuration options and also the activation for the phone verification process through a code send by SMS. Are you sure you want to proceed?
+                link: Create Phone verification fields
               delete: Delete
               description:
                 handlers:
@@ -82,6 +87,7 @@ en:
                   resident: Add the verification fields you want to check against to local census database.
                   sms: Add the phone field to get phone from user and to verify it by SMS.
               edit: Edit
+              field: Verification form field assigment
               title:
                 handlers:
                   remote_census: Configure remote census verification process
@@ -89,6 +95,8 @@ en:
                   sms: Configure phone verification process
               create: Associate field to this verification process
               remote_census: "Configure the connection to the remote census"
+            new:
+              title: Add an assigment with a verification form field
             update:
               notice: Field assignment updated successfully!
         finish:

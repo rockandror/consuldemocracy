@@ -1742,6 +1742,12 @@ en:
         local_census_records:
           no_records_found: No records found.
     verification:
+      handlers:
+        sms:
+          fields:
+            create:
+              notice: It has been created a \"phone\" field and also wasautomatically enabled it to be using during phone verification process through SMS message.
+              phone_default_label: "Mobile phone"
       residents:
         index:
           title: Manage residents
