@@ -10,9 +10,8 @@ class Verification::ConfirmationController < ApplicationController
   def create
     @confirmation = Verification::Confirmation.new(confirmation_params.merge(user: current_user))
     if @confirmation.save
-      # TODO: Mark current user as verified if all handlers returned successful responses
-      redirect_to verified_user_path,
-        notice: t("verification.confirmation.create.flash.success")
+      current_user.update(residence_verified_at: Time.current)
+      redirect_to account_path, notice: t("verification.confirmation.create.flash.success")
     else
       render :new
     end

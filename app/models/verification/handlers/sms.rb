@@ -9,17 +9,17 @@ class Verification::Handlers::Sms < Verification::Handler
       update_user_phone_information
       send_sms
       # Lock.increase_tries(user)
-      Verification::Handlers::Response.new true, I18n.t("verification_handler_success"), { phone: phone }, nil
+      Verification::Handlers::Response.new true, I18n.t("verification.handlers.sms.verify.success"), { phone: phone }, nil
     else
-      Verification::Handlers::Response.new false, I18n.t("verification_handler_error"), { phone: phone }, nil
+      Verification::Handlers::Response.new false, I18n.t("verification.handlers.sms.verify.error"), { phone: phone }, nil
     end
   end
 
   def confirm
     if user && verified?
-      build_response({})
+      Verification::Handlers::Response.new true, I18n.t("verification.handlers.sms.confirm.sucess"), {}, nil
     else
-      Verification::Handlers::Response.new false, I18n.t("verification.handlers.verification.error"), {}, nil
+      Verification::Handlers::Response.new false, I18n.t("verification.handlers.sms.confirm.error"), {}, nil
     end
   end
 
