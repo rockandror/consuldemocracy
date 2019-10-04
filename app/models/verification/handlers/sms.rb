@@ -11,9 +11,15 @@ class Verification::Handlers::Sms < Verification::Handler
       update_user_phone_information
       send_sms
       # Lock.increase_tries(user)
-      Verification::Handlers::Response.new true, I18n.t("verification.handlers.sms.verify.success"), { phone: phone }, nil
+      Verification::Handlers::Response.new true,
+                                           I18n.t("verification.handlers.sms.verify.success"),
+                                           attributes,
+                                           nil
     else
-      Verification::Handlers::Response.new false, I18n.t("verification.handlers.sms.verify.error"), { phone: phone }, nil
+      Verification::Handlers::Response.new false,
+                                           I18n.t("verification.handlers.sms.verify.error"),
+                                           attributes,
+                                           nil
     end
   end
 
