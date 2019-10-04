@@ -13,15 +13,11 @@ class Verification::Handler
   end
 
   def verify(attributes = {})
-    @response = if defined?(super)
-                  super(attributes)
-                else
-                  build_response(attributes)
-                end
+    @response = build_verification_response(attributes)
   end
 
   def confirm(attributes = {})
-    build_confirmation_response(attributes)
+    @response = build_confirmation_response(attributes)
   end
 
   class << self
@@ -42,16 +38,27 @@ class Verification::Handler
 
   private
 
-    def build_response(attributes = {})
-      Verification::Handlers::Response.new true, I18n.t("verification.handler.verification.success"), attributes, nil
+    def build_verification_response(attributes = {})
+      Verification::Handlers::Response.new true,
+                                           I18n.t("verification.handler.verification.success"),
+                                           attributes,
+                                           nil
     end
 
     def build_confirmation_response(attributes = {})
-      Verification::Handlers::Response.new true, I18n.t("verification.handler.confirmation.success"), attributes, nil
+      Verification::Handlers::Response.new true,
+                                           I18n.t("verification.handler.confirmation.success"),
+                                          attributes,
+                                          nil
+    end
+
+    def verification_form_fields
+      Verification::Field.all.select { |f| f.handlers.include?(self.class.id.to_s) }
     end
 
     def define_verification_form_fields
-      Verification::Field.all.select { |f| f.handlers.include?(self.class.id.to_s) }.pluck(:name).each do |attr|
+      verification_form_fields.pluck(:name).each do |attr|
+
         define_singleton_method attr do
           instance_variable_get "@#{attr}"
         end
@@ -74,4 +81,4 @@ class Verification::Handler
       end
     end
 end
-Dir[Rails.root.join("app/models/verification/handlers/*.rb")].each {|file| require_dependency file }
+Dir[Rails.root.join("app/models/verification/handlers/*.rb")].each { |file| require_dependency file }
