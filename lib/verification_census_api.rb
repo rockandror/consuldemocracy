@@ -44,7 +44,9 @@ class VerificationCensusApi
       # structure = eval(Setting["remote_census.request.structure"])
       structure = JSON.parse(Setting["remote_census.request.structure"])
       attributes.each do |attribute|
-        fill_in(structure, Verification::Field.find_by(name: attribute.first).request_path, attribute.last)
+        field = Verification::Field.find_by(name: attribute.first)
+        request_path = field.assignments.from_remote_census.first.request_path
+        fill_in(structure, request_path, attribute.last)
       end
       structure
     end
@@ -69,7 +71,7 @@ class VerificationCensusApi
     end
 
     def end_point_available?
-      !Rails.env.staging? || Rails.env.preproduction? || Rails.env.production?
+      Rails.env.staging? || Rails.env.preproduction? || Rails.env.production?
     end
 
     def stubbed_response(attributes)
