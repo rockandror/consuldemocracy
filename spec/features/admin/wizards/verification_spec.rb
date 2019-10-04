@@ -89,8 +89,21 @@ describe "Wizard Verifcation" do
       expect(page).to have_content "Configure phone verification process"
       expect(page).to have_content "Add the phone field to get phone from user and to verify it by SMS."
       expect(page).to have_link("Back", href: admin_wizards_verification_handler_field_assignments_path(:resident))
-      expect(page).to have_link("Next", href: "")
+      expect(page).to have_link("Next", href: admin_wizards_verification_finish_path)
       expect(page).to have_link("Associate field to this verification process", href: new_admin_wizards_verification_handler_field_assignment_path(:sms))
+    end
+
+    scenario "Finish verification process step" do
+      Setting["custom_verification_process.sms"] = true
+
+      visit admin_wizards_verification_finish_path
+
+      expect(page).to have_content "Verification Wizard"
+      expect(page).to have_content "Assistant successfully completed"
+      expect(page).to have_content "Here you can see an overview of the fields configured during this wizard."
+      expect(page).to have_link("Back", href: admin_wizards_verification_handler_field_assignments_path(:sms))
+      expect(page).not_to have_link("Next")
+      expect(page).to have_link("Finish Wizard", href: admin_root_path)
     end
 
   end

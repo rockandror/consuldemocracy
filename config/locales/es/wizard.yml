@@ -38,7 +38,7 @@ es:
             format_placeholder: Añadir la expresión regular sin los escapados de inicio (/) y final(/)
           handlers:
             name:
-              residents: Verificación de residencia (base de datos local)
+              resident: Verificación de residencia (base de datos local)
               sms: Verificación de teléfono móvil por SMS
               remote_census: Verificación de residencia (censo remoto)
           index:
@@ -90,6 +90,10 @@ es:
               create: Asociar campo a este proceso de verificación
             update:
               notice: Asignación de campos actualizada con éxito!
+        finish:
+          title: Asistente completado con éxito
+          description_html: Aquí puede ver un resumen de los campos configurados durante este asistente.
+          btn_finish: Finalizar asistente
       installation:
         module_title: Asistente de instalación
         description: A través de esta herramienta le presentamos la instalación del sistema.

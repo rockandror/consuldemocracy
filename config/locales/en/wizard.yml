@@ -38,7 +38,7 @@ en:
             format_placeholder: Add the regular expression without the start (/) and end (/) escapes
           handlers:
             name:
-              residents: Residents verifications (local database)
+              resident: Residents verifications (local database)
               sms: Phone verification by SMS message
               remote_census: "Residents verification (remote census)"
           index:
@@ -90,6 +90,10 @@ en:
               create: Associate field to this verification process
             update:
               notice: Field assignment updated successfully!
+        finish:
+          title: Assistant successfully completed
+          description_html: Here you can see an overview of the fields configured during this wizard.
+          btn_finish: Finish Wizard
       installation:
         module_title: Installation Wizard
         description: Through this tool we present you the installation of the system.
