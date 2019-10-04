@@ -94,10 +94,16 @@ FactoryBot.define do
   factory :verification_resident, class: Verification::Resident do
     sequence(:data){|n| { email: "email#{n}@email.com", document_number: "#{n}"*9 }}
   end
+
   factory :verification_handler_field_assignment, class: Verification::Handler::FieldAssignment do
     verification_field
     handler { "residents" }
+
+    trait :remote_census do
+      handler { "remote_census" }
+    end
   end
+
   factory :verification_residents_import, class: "Verification::Residents::Import" do
     file {
       path = %w[spec fixtures files verification residents import valid.csv]
