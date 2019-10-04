@@ -18,12 +18,12 @@ class Verification::Confirmation
 
   private
 
-    def confirmation_fields
+    def load_confirmation_fields
       Verification::Configuration.confirmation_fields
     end
 
     def define_confirmation_fields
-      confirmation_fields.each_with_object([]) do |confirmation_field, confirmation_fields|
+      load_confirmation_fields.each_with_object([]) do |confirmation_field, confirmation_fields|
         define_singleton_method confirmation_field do
           instance_variable_get "@#{confirmation_field}"
         end
