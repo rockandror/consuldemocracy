@@ -32,9 +32,6 @@ en:
               submit_button: Update field
             title: Edit verification field
           form:
-            handlers:
-              help: This field will be send to enabled verification handlers from list below.
-              label: Verification handlers
             format_placeholder: Add the regular expression without the start (/) and end (/) escapes
           handlers:
             name:
