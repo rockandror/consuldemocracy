@@ -153,7 +153,7 @@ describe "Verification process" do
       click_button "Save"
 
       expect(page).not_to have_content "Your account was successfully verified!"
-      expect(page).to have_content "Enter confirmation codes"
+      expect(page).to have_content "Enter confirmation codes to verify your account"
       expect(page).to have_field "Sms confirmation code"
     end
 
@@ -168,7 +168,7 @@ describe "Verification process" do
       click_button "Save"
 
       expect(page).not_to have_content "Your account was successfully verified!"
-      expect(page).to have_content "Enter confirmation codes"
+      expect(page).to have_content "Enter confirmation codes to verify your account"
       expect(page).to have_field "Sms confirmation code"
     end
   end
