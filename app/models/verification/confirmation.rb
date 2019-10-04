@@ -41,9 +41,9 @@ class Verification::Confirmation
     # Validates only required confirmation handlers
     def confirmations
       Verification::Configuration.required_confirmation_handlers.each do |id, handler|
-        handler_instance = handler.new(fields_for_handler)
+        handler_instance = handler.new
 
-        response = handler_instance.confirm
+        response = handler_instance.confirm(fields_for_handler)
         unless response.success?
           errors.add "#{handler.id.downcase.underscore}_confirmation_code", response.message
         end
