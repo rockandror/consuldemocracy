@@ -14,6 +14,14 @@ en:
           failure: Verification code incorrect
         flash:
           success: You are a verified user
+    handlers:
+      sms:
+        verify:
+          error: SMS message with confirmation code could not be send!
+          success: SMS message with confirmation code was sent successfully!
+        confirm:
+          error: Confirmation code does not match.
+          success: Phone confirmation code was confirmed successfully.
     letter:
       alert:
         unconfirmed_code: You have not yet entered the confirmation code
