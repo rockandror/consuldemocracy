@@ -132,11 +132,17 @@ class Verification::Process
     end
 
     def save_verification_values
-      @fields.each do |name, field|
-        Verification::Value.create(
+      verification_values = []
+      @fields.each_with_object(verification_values) do |(name, field), verification_values|
+        verification_values << Verification::Value.create(
           verification_field: field,
           user: user,
           value: send(name))
       end
+
+      return true if verification_values.size == @fields.size && verification_values.all?(&:persisted?)
+
+      verification_values.select(&:persisted?).map(&:destroy)
+      false
     end
 end
