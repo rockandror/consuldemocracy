@@ -745,7 +745,7 @@ es:
       debates: "Debates"
       comments: "Comentarios"
       local_census_records: Gestionar censo local
-      wizards: Asistente
+      wizards: Asistentes
     administrators:
       index:
         title: Administradores
@@ -1740,43 +1740,6 @@ es:
         local_census_records:
           no_records_found: No se han encontrado registros.
     verification:
-      fields:
-        create:
-          notice: Campo de verificación creado correctamente
-          error: No se ha podido crear el campo de verificación
-        destroy:
-          notice: Campo de verificación eliminado correctamente
-        edit:
-          form:
-            submit_button: Actualizar campo
-          title: Editar campo de verificación
-        form:
-          handlers:
-            help: Este campo se verificará con los verificadores activos de la lista a continuación.
-            label: Verificadores
-        handlers:
-          name:
-            residents: Verificación de residencia (base de datos local)
-            sms: Verificación de teléfono móvil por SMS
-        index:
-          controller: Controlador
-          create: Crear campo
-          delete: Eliminar
-          edit: Editar
-          name: Nombre
-          label: Etiqueta
-          position: Posición
-          required: Requerido
-          confirmation_validation: Confirmación
-          format: Formato
-          title: Campos de verificación
-        new:
-          form:
-            submit_button: Crear campo
-          title: Nuevo campo de verificación
-        update:
-          notice: Campo de verificación actualizado correctamente
-          error: No se ha podido actualizar el campo de verificación
       residents:
         index:
           title: Gestión de residentes

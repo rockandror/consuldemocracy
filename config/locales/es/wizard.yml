@@ -1,40 +1,115 @@
 es:
-  wizard:
-    verification:
-      new:
-        title: Bienvenido al asistente del proceso de verificación
-        description_html: En este asistente realizaremos paso a paso toda la configuración necesaria para poder personalizar el sistema de Verificación de la aplicación a las necesidades de cada institución.
-        exit_text: Si ha modificado el sistema de verificación y desea utilizar su código, NO siga ejecutando este asistente.
-        exit_link: ¡Ok, salir de este asistente por ahora!
-        take_effect_text: "Para que se apliquen correctamente los cambios realizados en este asistente, debe deshabilitar 'Omitir verificación de usuarios' y habilitar 'Proceso de verificación de usuario personalizable'."
-        btn_start: Empezar
-    admin:
-      title: Asistente
-      module_title: Asistente de instalación
-      description: A través de esta herramienta le presentamos la instalación del sistema.
-    header:
-      title: Asistente de instalación
-      step: Paso
-      step_of: de
-      back_step: Atrás
-      next_step: Siguiente
-    new:
-      title: Bienvenido al asistente de instalación de Consul
-      description_html: En este asistente realizaremos paso a paso toda la configuración necesaria para poder personalizar la aplicación a las necesidades de su Institución. Si no dispone de alguna información solicitada en el asistente podrá obviarlos y modificarlo en un futuro en la Sección de Configuración relacionada o desde este mismo Asistente.
-      btn_start: Empezar
-    general_settings:
-      description_html: En este paso podrá actualizar algunas de las Configuraciones Globales de la aplicación más importantes. En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección <strong>"Configuración > Configuración Global"</strong> o volviendo a ejecutar el Asistente de Instalación
-    partecipation_process:
-      description_html: En este paso podrán activar/desactivar los procesos de participación que decida utilizar cada Institución. En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección <strong>"Configuración > Procesos de Participación"</strong> o volviendo a ejecutar el Asistente de Instalación
-    map:
-      description_html: En este paso podrán activar/desactivar la geolocalización de las propuestas y proyectos de gasto, y personalizar la manera en que se muestra el mapa a los usuarios. En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección <strong>"Configuración > Configuración del mapa"</strong> o volviendo a ejecutar el Asistente de Instalación
-    smtp:
-      title: Conexión SMTP
-      description_html: En este paso podrán configurar la conexión SMTP para poder enviar correos desde la aplicación En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección <strong>"Configuración > Conexión SMTP"</strong> o volviendo a ejecutar el Asistente de Instalación
-    regional:
-      title: Idiomas y Zona horaria
-      description_html: En este paso podrán configurar el idioma por defecto de la aplicación, los idiomas disponibles y la zona horaria en la que se encuentra. En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección <strong>"Configuración > Regional Settings"</strong> o volviendo a ejecutar el Asistente de Instalación
-    finish:
-      title: Asistente finalizado con éxito
-      description_html: En caso de querer modificar cualquier dato una vez realizado el Asistente podrá modificarlo en la sección <strong>Configuración</strong> o volviendo a ejecutar el Asistente de Instalación
-      btn_finish: Finalizar Asistente
+  admin:
+    wizards:
+      title: Asistentes
+      header:
+        step: Paso
+        step_of: de
+        back_step: Atrás
+        next_step: Siguiente
+        verification:
+          title: Asistente de Verificación
+        installation:
+          title: Asistente de instalación
+      verification:
+        module_title: Asistente de Verificación
+        description: A través de esta herramienta le presentamos la verificación de los usuarios en el sistema.
+        new:
+          title: Bienvenido al asistente del proceso de verificación
+          description_html: En este asistente realizaremos paso a paso toda la configuración necesaria para poder personalizar el sistema de Verificación de la aplicación a las necesidades de cada institución.
+          exit_text: Si ha modificado el sistema de verificación y desea utilizar su código, NO siga ejecutando este asistente.
+          exit_link: ¡Ok, salir de este asistente por ahora!
+          take_effect_text: "Para que se apliquen correctamente los cambios realizados en este asistente, debe deshabilitar 'Omitir verificación de usuarios' y habilitar 'Proceso de verificación de usuario personalizable'."
+          btn_start: Empezar
+        fields:
+          create:
+            notice: Campo de verificación creado correctamente
+            error: No se ha podido crear el campo de verificación
+          destroy:
+            notice: Campo de verificación eliminado correctamente
+          edit:
+            form:
+              submit_button: Actualizar campo
+            title: Editar campo de verificación
+          form:
+            handlers:
+              help: Este campo se verificará con los verificadores activos de la lista a continuación.
+              label: Verificadores
+            format_placeholder: Añadir la expresión regular sin los escapados de inicio (/) y final(/)
+          handlers:
+            name:
+              residents: Verificación de residencia (base de datos local)
+              sms: Verificación de teléfono móvil por SMS
+              remote_census: Verificación de residencia (censo remoto)
+          index:
+            controller: Controlador
+            create: Crear campo
+            delete: Eliminar
+            edit: Editar
+            name: Nombre
+            label: Etiqueta
+            position: Posición
+            required: Requerido
+            confirmation_validation: Confirmación
+            format: Formato
+            title: Campos de verificación
+            description_html: "Pending..."
+          new:
+            form:
+              submit_button: Crear campo
+            title: Nuevo campo de verificación
+          update:
+            notice: Campo de verificación actualizado correctamente
+            error: No se ha podido actualizar el campo de verificación
+        handlers:
+          index:
+            title: Métodos de verificación de usuario
+            description_html: Definir campos personalizados para preguntar al usuario durante el proceso de verificación. Pending...
+        handler:
+          field_assignments:
+            create:
+              notice: Asignación de campos creada con éxito!
+            destroy:
+              notice: Asignación de campos borrada con éxito!
+              alert: No se puede borrar la asignación de campos!
+            form:
+              submit_button: Guardar
+            index:
+              delete: Borrar
+              description:
+                handlers:
+                  remote_census: Agregue los campos de verificación que desea enviar al censo remoto.
+                  resident: Añada los campos de verificación que desea comprobar contra la base de datos del censo local.
+                  sms: Agregue el campo teléfono para obtener el teléfono del usuario y verificarlo por SMS.
+              edit: Editar
+              title:
+                handlers:
+                  remote_census: Configurar el proceso de verificación de censos remotos
+                  resident: Configurar el proceso de verificación del censo local
+                  sms: Configurar el proceso de verificación del teléfono
+              create: Asociar campo a este proceso de verificación
+            update:
+              notice: Asignación de campos actualizada con éxito!
+      installation:
+        module_title: Asistente de instalación
+        description: A través de esta herramienta le presentamos la instalación del sistema.
+        new:
+          title: Bienvenido al asistente de instalación de Consul
+          description_html: En este asistente realizaremos paso a paso toda la configuración necesaria para poder personalizar la aplicación a las necesidades de su Institución. Si no dispone de alguna información solicitada en el asistente podrá obviarlos y modificarlo en un futuro en la Sección de Configuración relacionada o desde este mismo Asistente.
+          btn_start: Empezar
+        general_settings:
+          description_html: En este paso podrá actualizar algunas de las Configuraciones Globales de la aplicación más importantes. En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección <strong>"Configuración > Configuración Global"</strong> o volviendo a ejecutar el Asistente de Instalación
+        participation_process:
+          description_html: En este paso podrán activar/desactivar los procesos de participación que decida utilizar cada Institución. En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección <strong>"Configuración > Procesos de Participación"</strong> o volviendo a ejecutar el Asistente de Instalación
+        map:
+          description_html: En este paso podrán activar/desactivar la geolocalización de las propuestas y proyectos de gasto, y personalizar la manera en que se muestra el mapa a los usuarios. En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección <strong>"Configuración > Configuración del mapa"</strong> o volviendo a ejecutar el Asistente de Instalación
+        smtp:
+          title: Conexión SMTP
+          description_html: En este paso podrán configurar la conexión SMTP para poder enviar correos desde la aplicación En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección <strong>"Configuración > Conexión SMTP"</strong> o volviendo a ejecutar el Asistente de Instalación
+        regional:
+          title: Idiomas y Zona horaria
+          description_html: En este paso podrán configurar el idioma por defecto de la aplicación, los idiomas disponibles y la zona horaria en la que se encuentra. En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección <strong>"Configuración > Regional Settings"</strong> o volviendo a ejecutar el Asistente de Instalación
+        finish:
+          title: Asistente finalizado con éxito
+          description_html: En caso de querer modificar cualquier dato una vez realizado el Asistente podrá modificarlo en la sección <strong>Configuración</strong> o volviendo a ejecutar el Asistente de Instalación
+          btn_finish: Finalizar Asistente

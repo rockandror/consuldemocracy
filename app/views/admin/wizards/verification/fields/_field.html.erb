@@ -7,10 +7,10 @@
   <td class="text-center"><%= boolean_text_representation(field.confirmation_validation)  %></td>
   <td class="text-center"><%= field.format  %></td>
   <td>
-    <%= link_to t("admin.verification.fields.index.edit"),
+    <%= link_to t("admin.wizards.verification.fields.index.edit"),
                 edit_admin_wizards_verification_field_path(field),
                 class: "button hollow expanded" %>
-    <%= link_to t("admin.verification.fields.index.delete"),
+    <%= link_to t("admin.wizards.verification.fields.index.delete"),
                 admin_wizards_verification_field_path(field),
                 method: :delete,
                 class: "button hollow alert expanded",

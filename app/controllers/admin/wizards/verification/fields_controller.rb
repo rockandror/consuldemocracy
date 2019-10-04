@@ -15,10 +15,10 @@ class Admin::Wizards::Verification::FieldsController < Admin::Verification::Base
   def create
     @field = ::Verification::Field.new(verification_field_params)
     if @field.save
-      notice = t("admin.verification.fields.create.notice")
+      notice = t("admin.wizards.verification.fields.create.notice")
       redirect_to admin_wizards_verification_fields_path, notice: notice
     else
-      flash.now[:error] = t("admin.verification.fields.create.error")
+      flash.now[:error] = t("admin.wizards.verification.fields.create.error")
       render :new
     end
   end
@@ -28,17 +28,17 @@ class Admin::Wizards::Verification::FieldsController < Admin::Verification::Base
 
   def update
     if @field.update(verification_field_params)
-      notice = t("admin.verification.fields.update.notice")
+      notice = t("admin.wizards.verification.fields.update.notice")
       redirect_to admin_wizards_verification_fields_path, notice: notice
     else
-      flash.now[:error] = t("admin.verification.fields.update.error")
+      flash.now[:error] = t("admin.wizards.verification.fields.update.error")
       render :edit
     end
   end
 
   def destroy
     @field.destroy
-    notice = t("admin.verification.fields.destroy.notice")
+    notice = t("admin.wizards.verification.fields.destroy.notice")
     redirect_to admin_wizards_verification_fields_path, notice: notice
   end
 

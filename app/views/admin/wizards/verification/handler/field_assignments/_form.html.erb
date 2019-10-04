@@ -11,9 +11,6 @@
   </div>
 
   <% if remote_census_handler?(@handler) %>
-    <!-- <h3>Specific fields to verify against remote census</h3>
-    <p>Before adding the fields for connection to the remote census, make sure you have properly filled in the following section: Settings > Remote Census Configuration.</p> -->
-
     <div class="row">
       <div class="small-12 column">
         <p>If the field you are defining needs to be sent to the Remote Census, fill in the value with the path of this field in the request. For example if the request structure is {'request': {'sample_field': ''}}, if we are defining the sample_field, we should fill this field with: "request.sample_field".</p>

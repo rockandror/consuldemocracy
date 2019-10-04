@@ -50,4 +50,8 @@ module Admin::WizardsHelper
     handler == "remote_census"
   end
 
+  def sms_handler?(handler)
+    handler == "sms"
+  end
+
 end
