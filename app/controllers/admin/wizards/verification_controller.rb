@@ -9,7 +9,8 @@ class Admin::Wizards::VerificationController < Admin::BaseController
     @settings = [Setting.find_by(key: "feature.custom_verification_process"), Setting.find_by(key: "feature.user.skip_verification")]
   end
 
-  def show
+  def finish
+    @fields = ::Verification::Field.all.order(:position)
   end
 
   private

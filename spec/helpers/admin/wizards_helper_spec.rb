@@ -56,7 +56,7 @@ describe Admin::WizardsHelper do
         Setting["custom_verification_process.census_local"] = false
         Setting["custom_verification_process.sms"] = false
 
-        expect(next_step_path("remote_census")).to eq("finish_path")
+        expect(next_step_path("remote_census")).to eq(admin_wizards_verification_finish_path)
       end
 
     end
@@ -72,7 +72,7 @@ describe Admin::WizardsHelper do
       it "return finish step path if sms Setting is disabled" do
         Setting["custom_verification_process.sms"] = false
 
-        expect(next_step_path("resident")).to eq("finish_path")
+        expect(next_step_path("resident")).to eq(admin_wizards_verification_finish_path)
       end
 
     end
@@ -80,7 +80,7 @@ describe Admin::WizardsHelper do
     describe "when current step is sms" do
 
       it "return finish_path" do
-        expect(next_step_path("sms")).to eq("finish_path")
+        expect(next_step_path("sms")).to eq(admin_wizards_verification_finish_path)
       end
 
     end

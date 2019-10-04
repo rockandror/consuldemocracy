@@ -277,6 +277,7 @@ namespace :admin do
     resources :installer, only: [:new, :show]
     resources :verification, only: :new
     namespace :verification do
+      get :finish
       resources :fields
       resources :field_assignments, controller: "handler/field_assignments",
                                     path: "handler/:handler_id/field_assignments",
