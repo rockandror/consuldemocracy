@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe Verification::Confirmation do
   before do
-    field = create(:verification_field)
+    field = create(:verification_field, name: :phone)
     create(:verification_handler_field_assignment, verification_field: field, handler: :sms)
   end
 
@@ -21,7 +21,7 @@ describe Verification::Confirmation do
     end
 
     it "When confirmation codes are present but do not match it should not be
-        valid " do
+        valid" do
       confirmation.sms_confirmation_code = "BADCODE"
       confirmation.user.update(sms_confirmation_code: "CODE")
 
