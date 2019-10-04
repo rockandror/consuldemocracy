@@ -32,7 +32,7 @@ class Verification::Process
     def handlers_verification
       @handlers.each do |handler|
         handler_class = Verification::Configuration.available_handlers[handler]
-        handler_instance = handler_class.new(fields_for_handler(handler))
+        handler_instance = handler_class.new
 
         @responses[handler] = handler_instance.verify(fields_for_handler(handler))
       end
