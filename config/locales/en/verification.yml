@@ -3,6 +3,15 @@ en:
     alert:
       lock: You have reached the maximum number of attempts. Please try again later.
     back: Return to my account
+    confirmation:
+      create:
+        flash:
+          success: Accout verification process was done successfully!
+      new:
+        form:
+          submit: "Confirm"
+        title: Verification process
+        subtitle: Enter confirmation codes to verify your account
     email:
       create:
         alert:
