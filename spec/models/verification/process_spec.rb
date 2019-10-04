@@ -181,17 +181,9 @@ describe Verification::Process do
     it "should return true when all handlers response are successful" do
       Class.new(Verification::Handler) do
         register_as :handler
-
-        def verify(attributes = {})
-          Verification::Handlers::Response.new true, "Success", attributes, nil
-        end
       end
       Class.new(Verification::Handler) do
         register_as :other_handler
-
-        def verify(attributes = {})
-          Verification::Handlers::Response.new true, "Success", attributes, nil
-        end
       end
       field = create(:verification_field, name: :custom_field_name)
       create(:verification_handler_field_assignment, verification_field: field, handler: :handler)
