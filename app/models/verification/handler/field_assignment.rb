@@ -7,6 +7,8 @@ class Verification::Handler::FieldAssignment < ApplicationRecord
   validates :verification_field_id, uniqueness: { scope: :handler }
   validate :sms_handler
 
+  scope :from_remote_census, -> { where(handler: "remote_census") }
+
   private
 
     def sms_handler
