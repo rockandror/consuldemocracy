@@ -1,25 +1,32 @@
 class Admin::Verification::Handlers::Sms::FieldsController < Admin::Verification::BaseController
 
+  RECOMMENDED_FIELD_ATTRIBUTES = {
+    label: I18n.t("admin.verification.handlers.sms.fields.create.phone.default_label"),
+    confirmation_validation: true,
+    required: true
+  }
+
   def create
     create_default_handler_settings
-    notice = t("admin.verification.handlers.sms.create.notice")
-    redirect_to admin_verification_fields_path, notice: notice
+    notice = t("admin.verification.handlers.sms.fields.create.notice")
+    redirect_to admin_wizards_verification_handler_field_assignments_path(handler_id),
+      notice: notice
   end
 
   private
 
     def create_default_handler_settings
-      Setting["feature.verification.handler.sms"] = true
+      field = Verification::Field.find_or_create_by(name: "phone")
+      field.update(RECOMMENDED_FIELD_ATTRIBUTES.merge(position: last_position))
 
-      Verification::Field.create(name: :phone,
-                                 label: "Mobile phone",
-                                 position: Verification::Field.maximum(:position) || 1,
-                                 handlers: :sms) unless Verification::Field.find_by(name: :phone)
+      Verification::Handler::FieldAssignment.find_or_create_by(verification_field: field, handler: handler_id)
+    end
 
+    def last_position
+      Verification::Field.maximum(:position) + 1 || 1
+    end
 
-      Verification::Field.create(name: :phone_confirmation,
-                                 label: "Mobile phone confirmation",
-                                 position: Verification::Field.maximum(:position),
-                                 handlers: :sms) unless Verification::Field.find_by(name: :phone_confirmation)
+    def handler_id
+      Verification::Handlers::Sms.id
     end
 end
