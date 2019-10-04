@@ -6,9 +6,9 @@
               new_admin_wizards_verification_handler_field_assignment_path(@handler), class: "button float-right" %>
 
 <% if sms_handler?(@handler) %>
-Seguro que queremos esto?
-  <%= link_to t("admin.verification.fields.index.create_sms_fields"),
-                admin_verification_handlers_sms_fields_path, class: "button float-right", method: :post %>
+  <%= link_to t("admin.wizards.verification.handler.field_assignments.index.create_sms_fields.link"),
+                admin_verification_handlers_sms_fields_path, class: "button hollow float-right",
+                method: :post, data: { confirm: t("admin.wizards.verification.handler.field_assignments.index.create_sms_fields.confirm") } %>
 <% end %>
 <h2 class="inline-block"><%= title_for_fields_assignments_by(@handler) %></h2>
 <p><%= description_for_fields_assignments_by(@handler) %></p>
