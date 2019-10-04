@@ -88,6 +88,7 @@ en:
                   resident: Configure local census verification process
                   sms: Configure phone verification process
               create: Associate field to this verification process
+              remote_census: "Configure the connection to the remote census"
             update:
               notice: Field assignment updated successfully!
         finish:
