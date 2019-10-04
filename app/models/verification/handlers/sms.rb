@@ -23,22 +23,22 @@ class Verification::Handlers::Sms < Verification::Handler
     end
   end
 
-  def update_user_phone_information
-    user.update(unconfirmed_phone: phone, sms_confirmation_code: generate_confirmation_code)
-  end
-
-  def send_sms
-    SMSApi.new.sms_deliver(user.unconfirmed_phone, user.sms_confirmation_code)
-  end
-
-  def verified?
-    user.sms_confirmation_code == sms_confirmation_code
-  end
-
   private
 
     def unique_phone
       errors.add(:phone, :taken) if User.where(confirmed_phone: phone).any?
+    end
+
+    def update_user_phone_information
+      user.update(unconfirmed_phone: phone, sms_confirmation_code: generate_confirmation_code)
+    end
+
+    def send_sms
+      SMSApi.new.sms_deliver(user.unconfirmed_phone, user.sms_confirmation_code)
+    end
+
+    def confirmed?
+      user.sms_confirmation_code == sms_confirmation_code
     end
 
     def generate_confirmation_code
