@@ -1274,7 +1274,7 @@ en:
         remote_census:
           title: Remote Census configuration
           description: Allow configure remote census (SOAP)
-          how_to_enable: 'To configure remote census (SOAP) you must enable "Configure connection to remote census (SOAP)" on "Features" tab.'
+          how_to_enable: 'To configure remote census (SOAP) you must enable "Configure connection to remote census (SOAP)" and disable "Customizable user verification process" on "Features" tab.'
           general: General Information
           request: Request Data
           response: Response Data

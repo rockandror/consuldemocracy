@@ -8,7 +8,7 @@
       <%= t("admin.wizards.verification.new.exit_text") %>
       <%= link_to t("admin.wizards.verification.new.exit_link"), admin_root_path, class: "button hollow" %>
     </div>
-    <% if wrong_configuration %>
+    <% if wrong_configuration? %>
       <hr>
       <div class="callout secondary">
         <%= t("admin.wizards.verification.new.take_effect_text") %>

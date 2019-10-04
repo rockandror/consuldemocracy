@@ -114,7 +114,7 @@ en:
       remote_translations_description: "Displays a button that allows users to request a translation when there are not contents in their language."
       translation_interface: "Translation interface"
       translation_interface_description: "Displays the manual translation interface that allows users to enter their content in all application available languages. This option only affects user application forms and independently will always be active in the administration panel."
-      remote_census: "Configure connection to remote census (SOAP)"
+      remote_census: "Configure connection to remote census (SOAP) - Legacy version"
       remote_census_description: "Allows to configure the connection to the remote census of each institution"
       smtp_configuration: "SMTP Configuration"
       smtp_configuration_description: "Enable this feature to send emails through SMTP server."

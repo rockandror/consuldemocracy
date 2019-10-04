@@ -19,7 +19,7 @@ es:
           description_html: En este asistente realizaremos paso a paso toda la configuración necesaria para poder personalizar el sistema de Verificación de la aplicación a las necesidades de cada institución.
           exit_text: Si ha modificado el sistema de verificación y desea utilizar su código, NO siga ejecutando este asistente.
           exit_link: ¡Ok, salir de este asistente por ahora!
-          take_effect_text: "Para que se apliquen correctamente los cambios realizados en este asistente, debe deshabilitar 'Omitir verificación de usuarios' y habilitar 'Proceso de verificación de usuario personalizable'."
+          take_effect_text: "Para que se apliquen correctamente los cambios realizados en este asistente, debe deshabilitar tanto 'Omitir verificación de usuarios' como 'Configurar conexión al censo remoto (SOAP) - Version antigua' y habilitar 'Proceso de verificación de usuario personalizable'."
           btn_start: Empezar
         fields:
           create:

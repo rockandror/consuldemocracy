@@ -47,8 +47,8 @@ module Admin::WizardsHelper
     end
   end
 
-  def wrong_configuration
-    !Setting["feature.custom_verification_process"].present? || Setting["feature.user.skip_verification"].present?
+  def wrong_configuration?
+    !Setting["feature.custom_verification_process"].present? || Setting["feature.user.skip_verification"].present? || Setting["feature.remote_census"].present?
   end
 
   def remote_census_handler?(handler)

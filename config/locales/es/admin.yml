@@ -1273,7 +1273,7 @@ es:
         remote_census:
           title: Configuración del Censo Remoto
           description: Permite configurar la conexión con el Censo Remoto (SOAP)
-          how_to_enable: 'Para configurar la conexión con el Censo Remoto (SOAP) se debe activar "Configurar la conexión al censo remoto (SOAP)" en la pestaña "Funcionalidades".'
+          how_to_enable: 'Para configurar la conexión con el Censo Remoto (SOAP) se debe activar "Configurar la conexión al censo remoto (SOAP)" y desactivar "Proceso de verificación de usuario personalizable" en la pestaña "Funcionalidades".'
           general: Datos Generales
           request: Datos Petición
           response: Datos Respuesta
