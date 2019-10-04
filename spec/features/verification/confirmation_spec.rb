@@ -42,8 +42,11 @@ describe "Verification confirmation" do
         register_as :my_handler
         requires_confirmation true
 
-        def confirm
-          Verification::Handlers::Response.new false, "My handler confirtmation code does not match", {}, nil
+        def confirm(attributes)
+          Verification::Handlers::Response.new false,
+                                               "My handler confirtmation code does not match",
+                                               attributes,
+                                               nil
         end
       end
       user.update(sms_confirmation_code: "ABCD")
@@ -62,13 +65,13 @@ describe "Verification confirmation" do
         register_as :my_handler
         requires_confirmation true
 
-        def confirm
-          if my_handler_confirmation_code == "QWER"
-            Verification::Handlers::Response.new true, "Success!", {}, nil
+        def confirm(attributes)
+          if attributes[:my_handler_confirmation_code] == "QWER"
+            Verification::Handlers::Response.new true, "Success!", (attributes), nil
           else
             Verification::Handlers::Response.new(false,
                                                  "My handler confirtmation code does not match",
-                                                 {},
+                                                 (attributes),
                                                  nil)
           end
         end
