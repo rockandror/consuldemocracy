@@ -1,10 +1,15 @@
-class Verification::Process
-  include ActiveModel::Model
+class Verification::Process < ApplicationRecord
+  self.table_name = "verification_processes"
+
   attr_accessor :fields, :handlers, :responses, :user
 
   validates :user, presence: true
   validate :handlers_attributes
   validate :handlers_verification
+
+  belongs_to :user
+
+  before_save :save_verification_values
 
   def initialize(attributes = {})
     define_fields_accessors
@@ -17,14 +22,22 @@ class Verification::Process
     super
   end
 
-  def save
-    valid? && save_verification_values
-  end
-
   # Returs true if any of the active handlers requires a confirmation step
   def requires_confirmation?
     Verification::Handler.descendants.select{|k| @handlers.include?(k.id)}.
       any?(&:requires_confirmation?)
+  end
+
+  def verified?
+    verified_at.present?
+  end
+
+  def verified_phone?
+    phone_verified_at.present?
+  end
+
+  def verified_residence?
+    residence_verified_at.present?
   end
 
   private

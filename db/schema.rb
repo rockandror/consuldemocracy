@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191003125408) do
+ActiveRecord::Schema.define(version: 20191005105540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1702,6 +1702,16 @@ ActiveRecord::Schema.define(version: 20191003125408) do
     t.index ["verification_field_id"], name: "index_field_assignments_on_field_id", using: :btree
   end
 
+  create_table "verification_processes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "verified_at"
+    t.datetime "phone_verified_at"
+    t.datetime "residence_verified_at"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["user_id"], name: "index_verification_processes_on_user_id", using: :btree
+  end
+
   create_table "verification_residents", force: :cascade do |t|
     t.jsonb "data", default: {}, null: false
     t.index ["data"], name: "index_verification_residents_on_data", using: :gin
@@ -1888,5 +1898,6 @@ ActiveRecord::Schema.define(version: 20191003125408) do
   add_foreign_key "users", "geozones"
   add_foreign_key "valuators", "users"
   add_foreign_key "verification_handler_field_assignments", "verification_fields"
+  add_foreign_key "verification_processes", "users"
   add_foreign_key "votation_set_answers", "votation_types"
 end
