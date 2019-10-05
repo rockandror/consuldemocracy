@@ -109,6 +109,7 @@ describe Verification::Process do
       create(:verification_field, name: :custom_field_name)
 
       expect(process).to respond_to(:custom_field_name)
+      expect(process).to respond_to(:custom_field_name=)
     end
 
     it "should not include attr accessor when no field with given name defined" do
@@ -195,6 +196,48 @@ describe Verification::Process do
       create(:verification_field, name: :custom_field_name)
 
       expect{ process.save }.to change{ Verification::Value.count}.by(1)
+    end
+  end
+
+  describe "#verified?" do
+    let(:process) { create(:verification_process) }
+
+    it "is false when process verified_at is not present" do
+      expect(process.verified?).to be(false)
+    end
+
+    it "is true when process verified_at is defined" do
+      process.update(verified_at: Time.current)
+
+      expect(process.verified?).to be(true)
+    end
+  end
+
+  describe "#verified_phone?" do
+    let(:process) { create(:verification_process) }
+
+    it "is false when process phone_verified_at is not present" do
+      expect(process.verified_phone?).to be(false)
+    end
+
+    it "is true when process phone_verified_at is defined" do
+      process.update(phone_verified_at: Time.current)
+
+      expect(process.verified_phone?).to be(true)
+    end
+  end
+
+  describe "#verified_residence?" do
+    let(:process) { create(:verification_process) }
+
+    it "is false when process residence_verified_at is not present" do
+      expect(process.verified_residence?).to be(false)
+    end
+
+    it "is true when process residence_verified_at is defined" do
+      process.update(residence_verified_at: Time.current)
+
+      expect(process.verified_residence?).to be(true)
     end
   end
 end
