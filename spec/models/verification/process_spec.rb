@@ -82,7 +82,7 @@ describe Verification::Process do
           ActiveModel::Name.new(self, nil, "temp")
         end
       end
-
+      Setting["custom_verification_process.handler"] = true
       email_field = create(:verification_field, name: :email)
       email_confirmation_field = create(:verification_field, name: :email_confirmation)
       create(:verification_handler_field_assignment, verification_field: email_field, handler: :handler)
@@ -126,6 +126,8 @@ describe Verification::Process do
         register_as :handler_with_required_confirmation
         requires_confirmation true
       end
+      Setting["custom_verification_process.handler"] = true
+      Setting["custom_verification_process.handler_with_required_confirmation"] = true
       custom_field = create(:verification_field, name: :custom_field)
       other_custom_field = create(:verification_field, name: :other_custom_field)
 
@@ -140,6 +142,7 @@ describe Verification::Process do
         register_as :handler
         requires_confirmation false
       end
+      Setting["custom_verification_process.handler"] = true
       field = create(:verification_field, name: :custom_field_name)
       create(:verification_handler_field_assignment, verification_field: field, handler: :handler)
 
@@ -157,6 +160,7 @@ describe Verification::Process do
           Verification::Handlers::Response.new false, "Error", attributes, nil
         end
       end
+      Setting["custom_verification_process.handler"] = true
       field = create(:verification_field, name: :custom_field_name)
       create(:verification_handler_field_assignment, verification_field: field, handler: :handler)
 
@@ -172,6 +176,7 @@ describe Verification::Process do
           Verification::Handlers::Response.new false, "Verification error explanation", attributes, nil
         end
       end
+      Setting["custom_verification_process.handler"] = true
       field = create(:verification_field, name: :custom_field_name)
       create(:verification_handler_field_assignment, verification_field: field, handler: :handler)
 
@@ -185,6 +190,8 @@ describe Verification::Process do
       Class.new(Verification::Handler) do
         register_as :other_handler
       end
+      Setting["custom_verification_process.handler"] = true
+      Setting["custom_verification_process.other_handler"] = true
       field = create(:verification_field, name: :custom_field_name)
       create(:verification_handler_field_assignment, verification_field: field, handler: :handler)
 

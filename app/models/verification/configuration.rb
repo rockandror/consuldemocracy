@@ -7,12 +7,13 @@ class Verification::Configuration
       end
     end
 
-    def ids
-      available_handlers.keys.map(&:to_s)
+    def active_handlers_ids
+      all_settings = Setting.all.group_by { |setting| setting.type }
+      all_settings["custom_verification_process"].map {|setting| setting.key.rpartition(".").last if setting.enabled?}
     end
 
     def active_handlers
-      Verification::Handler::FieldAssignment.where(handler: Verification::Configuration.ids).pluck(:handler).uniq
+      Verification::Handler::FieldAssignment.where(handler: active_handlers_ids).pluck(:handler).uniq
     end
 
     def required_confirmation_handlers

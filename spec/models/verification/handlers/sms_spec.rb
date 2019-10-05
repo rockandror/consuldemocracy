@@ -63,6 +63,7 @@ describe Verification::Handlers::Sms do
     let(:sms) { Verification::Handlers::Sms.new }
 
     before do
+      Setting["custom_verification_process.sms"] = true
       field = create(:verification_field, name: :phone)
       create(:verification_handler_field_assignment, verification_field: field, handler: :sms)
     end

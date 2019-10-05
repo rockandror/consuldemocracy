@@ -11,6 +11,9 @@ describe "Verification process" do
 
   before do
     Setting["feature.custom_verification_process"] = true
+    Setting["custom_verification_process.remote_census"] = true
+    Setting["custom_verification_process.residents"] = true
+    Setting["custom_verification_process.sms"] = true
     login_as(user)
   end
 
