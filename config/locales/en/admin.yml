@@ -1746,7 +1746,7 @@ en:
         sms:
           fields:
             create:
-              notice: It has been created a \"phone\" field and also wasautomatically enabled it to be using during phone verification process through SMS message.
+              notice: It has been created a \"phone\" field and also was automatically enabled it to be using during phone verification process through SMS message.
               phone_default_label: "Mobile phone"
       residents:
         index:
