@@ -314,9 +314,9 @@ en:
         key: "Time Zone"
         key_description: "Define the Time Zone of the application"
     custom_verification_process:
-      census_soap: Verify a user against SOAP Remote Census
-      census_soap_description: Configure the remote census to be used in the verification of a user in the application.
-      census_local: Verify a user against the Local Census
-      census_local_description: Configure the local census to be used in the verification of a user in the application.
+      remote_census: Verify a user against SOAP Remote Census
+      remote_census_description: Configure the remote census to be used in the verification of a user in the application.
+      residents: Verify a user against the Local Census
+      residents_description: Configure the local census to be used in the verification of a user in the application.
       sms: "Verify a user's phone"
       sms_description: "Configure the verification of the phone to use it in the verification of a user in the application."

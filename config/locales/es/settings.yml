@@ -314,9 +314,9 @@ es:
         key: "Zona horaria"
         key_description: "Selecciona la zona horaria de la aplicación"
     custom_verification_process:
-      census_soap: Verificar un usuario contra el Censo Remoto SOAP
-      census_soap_description: Configurar el censo remoto para utilizarlo en la verificación de un usuario en la aplicación.
-      census_local: Verificar un usuario contra el Censo Local
-      census_local_description: Configurar el censo local para utilizarlo en la verificación de un usuario en la aplicación.
+      remote_census: Verificar un usuario contra el Censo Remoto SOAP
+      remote_census_description: Configurar el censo remoto para utilizarlo en la verificación de un usuario en la aplicación.
+      residents: Verificar un usuario contra el Censo Local
+      residents_description: Configurar el censo local para utilizarlo en la verificación de un usuario en la aplicación.
       sms: Verificar el telefono de un usuario
       sms_description: Configurar la verificación del teléfono para utilizarlo en la verificación de un usuario en la aplicación.

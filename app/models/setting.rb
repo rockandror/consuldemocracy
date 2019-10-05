@@ -237,8 +237,8 @@ class Setting < ApplicationRecord
         "remote_census.response.name": "",
         "remote_census.response.surname": "",
         "remote_census.response.valid": "",
-        "custom_verification_process.census_soap": nil,
-        "custom_verification_process.census_local": nil,
+        "custom_verification_process.remote_census": nil,
+        "custom_verification_process.residents": nil,
         "custom_verification_process.sms": nil
       }
     end
