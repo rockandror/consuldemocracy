@@ -7,6 +7,9 @@ describe "Verification confirmation" do
   before do
     create(:verification_handler_field_assignment, verification_field: phone_field, handler: "sms")
     Setting["feature.custom_verification_process"] = true
+    Setting["custom_verification_process.remote_census"] = true
+    Setting["custom_verification_process.residents"] = true
+    Setting["custom_verification_process.sms"] = true
     login_as(user)
   end
 
@@ -16,6 +19,7 @@ describe "Verification confirmation" do
         register_as :my_handler
         requires_confirmation true
       end
+      Setting["custom_verification_process.my_handler"] = true
       create(:verification_handler_field_assignment, verification_field: phone_field, handler: "my_handler")
       visit new_verification_confirmation_path
 
@@ -30,6 +34,7 @@ describe "Verification confirmation" do
         register_as :my_handler
         requires_confirmation true
       end
+      Setting["custom_verification_process.my_handler"] = true
       create(:verification_handler_field_assignment, verification_field: phone_field, handler: "my_handler")
       visit new_verification_confirmation_path
       click_button "Confirm"
@@ -44,11 +49,12 @@ describe "Verification confirmation" do
 
         def confirm(attributes)
           Verification::Handlers::Response.new false,
-                                               "My handler confirtmation code does not match",
+                                               "My handler confirmation code does not match",
                                                attributes,
                                                nil
         end
       end
+      Setting["custom_verification_process.my_handler"] = true
       user.update(sms_confirmation_code: "ABCD")
       create(:verification_handler_field_assignment, verification_field: phone_field, handler: "my_handler")
       visit new_verification_confirmation_path
@@ -57,7 +63,7 @@ describe "Verification confirmation" do
       click_button "Confirm"
 
       expect(page).to have_content "Confirmation code does not match"
-      expect(page).to have_content "My handler confirtmation code does not match"
+      expect(page).to have_content "My handler confirmation code does not match"
     end
 
     scenario "when confirmation codes are introduced successfully should redirect user to account page" do
@@ -70,12 +76,13 @@ describe "Verification confirmation" do
             Verification::Handlers::Response.new true, "Success!", (attributes), nil
           else
             Verification::Handlers::Response.new(false,
-                                                 "My handler confirtmation code does not match",
+                                                 "My handler confirmation code does not match",
                                                  (attributes),
                                                  nil)
           end
         end
       end
+      Setting["custom_verification_process.my_handler"] = true      
       user.update(sms_confirmation_code: "ABCD")
       create(:verification_handler_field_assignment, verification_field: phone_field, handler: "my_handler")
       visit new_verification_confirmation_path

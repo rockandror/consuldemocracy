@@ -7,6 +7,13 @@ describe Verification::Configuration do
     end
   end
 
+  before do
+    Setting["custom_verification_process.remote_census"] = true
+    Setting["custom_verification_process.residents"] = true
+    Setting["custom_verification_process.sms"] = true
+    Setting["custom_verification_process.my_handler"] = true
+  end
+
   describe ".available_handlers" do
     it "should return registered handlers" do
       defined_handlers = { "my_handler" => handler, "sms" => Verification::Handlers::Sms }
@@ -15,9 +22,13 @@ describe Verification::Configuration do
     end
   end
 
-  describe ".ids" do
+  describe ".active_handlers_ids" do
     it "should return registered handlers ids" do
-      expect(described_class.ids).to include("sms", "my_handler")
+      expect(described_class.active_handlers_ids).to include("sms", "remote_census", "residents", "my_handler")
+    end
+    it "should not return inactive handlers id" do
+      Setting["custom_verification_process.remote_census"] = false
+      expect(described_class.active_handlers_ids).not_to include("remote_census")
     end
   end
 

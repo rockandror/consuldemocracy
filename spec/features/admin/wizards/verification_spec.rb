@@ -35,7 +35,7 @@ describe "Wizard Verifcation" do
     end
 
     scenario "User verification methods step" do
-      Setting["custom_verification_process.census_soap"] = true
+      Setting["custom_verification_process.remote_census"] = true
 
       visit admin_wizards_verification_handlers_path
 
@@ -51,8 +51,8 @@ describe "Wizard Verifcation" do
     end
 
     scenario "Configure remote census verification process step" do
-      Setting["custom_verification_process.census_soap"] = true
-      Setting["custom_verification_process.census_local"] = true
+      Setting["custom_verification_process.remote_census"] = true
+      Setting["custom_verification_process.residents"] = true
 
       visit admin_wizards_verification_handler_field_assignments_path(:remote_census)
 
@@ -60,7 +60,7 @@ describe "Wizard Verifcation" do
       expect(page).to have_content "Configure remote census verification process"
       expect(page).to have_content "Add the verification fields you want to send to remote census."
       expect(page).to have_link("Back", href: admin_wizards_verification_handlers_path)
-      expect(page).to have_link("Next", href: admin_wizards_verification_handler_field_assignments_path(:resident))
+      expect(page).to have_link("Next", href: admin_wizards_verification_handler_field_assignments_path(:residents))
       expect(page).to have_link("Associate field to this verification process", href: new_admin_wizards_verification_handler_field_assignment_path(:remote_census))
       expect(page).to have_content "Configure the connection to the remote census"
       expect(page).to have_css(".setting", count: 3)
@@ -70,22 +70,22 @@ describe "Wizard Verifcation" do
     end
 
     scenario "Configure local census verification process step" do
-      Setting["custom_verification_process.census_soap"] = true
-      Setting["custom_verification_process.census_local"] = true
+      Setting["custom_verification_process.remote_census"] = true
+      Setting["custom_verification_process.residents"] = true
       Setting["custom_verification_process.sms"] = true
 
-      visit admin_wizards_verification_handler_field_assignments_path(:resident)
+      visit admin_wizards_verification_handler_field_assignments_path(:residents)
 
       expect(page).to have_content "Verification Wizard"
       expect(page).to have_content "Configure local census verification process"
       expect(page).to have_content "Add the verification fields you want to check against to local census database."
       expect(page).to have_link("Back", href: admin_wizards_verification_handler_field_assignments_path(:remote_census))
       expect(page).to have_link("Next", href: admin_wizards_verification_handler_field_assignments_path(:sms))
-      expect(page).to have_link("Associate field to this verification process", href: new_admin_wizards_verification_handler_field_assignment_path(:resident))
+      expect(page).to have_link("Associate field to this verification process", href: new_admin_wizards_verification_handler_field_assignment_path(:residents))
     end
 
     scenario "Configure phone verification process step" do
-      Setting["custom_verification_process.census_local"] = true
+      Setting["custom_verification_process.residents"] = true
       Setting["custom_verification_process.sms"] = true
 
       visit admin_wizards_verification_handler_field_assignments_path(:sms)
@@ -93,7 +93,7 @@ describe "Wizard Verifcation" do
       expect(page).to have_content "Verification Wizard"
       expect(page).to have_content "Configure phone verification process"
       expect(page).to have_content "Add the phone field to get phone from user and to verify it by SMS."
-      expect(page).to have_link("Back", href: admin_wizards_verification_handler_field_assignments_path(:resident))
+      expect(page).to have_link("Back", href: admin_wizards_verification_handler_field_assignments_path(:residents))
       expect(page).to have_link("Next", href: admin_wizards_verification_finish_path)
       expect(page).to have_link("Associate field to this verification process", href: new_admin_wizards_verification_handler_field_assignment_path(:sms))
     end
