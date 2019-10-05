@@ -7,7 +7,11 @@ describe "Verification process" do
   let!(:phone_field)       { create(:verification_field, name: "phone", label: "Phone", position: 3) }
   let!(:postal_code_field) { create(:verification_field, name: "postal_code", label: "Postal code",
                                                          position: 4) }
-  let(:user)               { create(:user) }
+  let!(:document_type_field)   { create(:verification_field, name: "document_type", label: "Document type",
+                                                             position: 5) }
+  let!(:document_number_field) { create(:verification_field, name: "document_number", label: "Document number",
+                                                             position: 6) }
+  let(:user)                   { create(:user) }
 
   before do
     Setting["feature.custom_verification_process"] = true
@@ -130,6 +134,28 @@ describe "Verification process" do
       fill_in "Email", with: "email@example.com"
       fill_in "Phone", with: "111222333"
       fill_in "Postal code", with: "00700"
+      click_button "Save"
+
+      expect(page).to have_content "Your account was successfully verified!"
+    end
+
+    scenario "When one step verification process with remote_census active handler has not errors
+              user should be marked as verified user and redirect to profile page with a notice" do
+      valid_response_path = "get_habita_datos_response.get_habita_datos_return.datos_habitante.item"
+      Setting["remote_census.response.valid"] = valid_response_path
+      postal_code_response_path = "get_habita_datos_response.get_habita_datos_return.datos_vivienda.item.codigo_postal"
+      create(:verification_handler_field_assignment, verification_field: document_type_field,
+        handler: "remote_census", request_path: "request.document_type")
+      create(:verification_handler_field_assignment, verification_field: document_number_field,
+        handler: "remote_census", request_path: "request.document_number")
+      create(:verification_handler_field_assignment, verification_field: postal_code_field,
+        handler: "remote_census", response_path: postal_code_response_path)
+
+      visit new_verification_process_path
+
+      fill_in "Document type", with: "1"
+      fill_in "Document number", with: "12345678Z"
+      fill_in "Postal code", with: "28013"
       click_button "Save"
 
       expect(page).to have_content "Your account was successfully verified!"
