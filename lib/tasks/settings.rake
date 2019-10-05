@@ -83,4 +83,11 @@ namespace :settings do
     end
   end
 
+  desc "Copy sms api configuration from secrets to settings"
+  task copy_sms_configuration_to_settings: :environment do
+    Setting["sms.endpoint"] = Rails.application.secrets["sms_end_point"]
+    Setting["sms.username"] = Rails.application.secrets["sms_username"]
+    Setting["sms.password"] = Rails.application.secrets["sms_password"]
+  end
+
 end
