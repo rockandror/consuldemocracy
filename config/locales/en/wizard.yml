@@ -35,7 +35,7 @@ en:
             format_placeholder: Add the regular expression without the start (/) and end (/) escapes
           handlers:
             name:
-              resident: Residents verifications (local database)
+              residents: Residents verifications (local database)
               sms: Phone verification by SMS message
               remote_census: "Residents verification (remote census)"
           index:
@@ -81,14 +81,14 @@ en:
               description:
                 handlers:
                   remote_census: Add the verification fields you want to send to remote census.
-                  resident: Add the verification fields you want to check against to local census database.
+                  residents: Add the verification fields you want to check against to local census database.
                   sms: Add the phone field to get phone from user and to verify it by SMS.
               edit: Edit
               field: Verification form field assigment
               title:
                 handlers:
                   remote_census: Configure remote census verification process
-                  resident: Configure local census verification process
+                  residents: Configure local census verification process
                   sms: Configure phone verification process
               create: Associate field to this verification process
               remote_census: "Configure the connection to the remote census"

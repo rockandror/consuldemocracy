@@ -12,15 +12,15 @@ module Admin::WizardsHelper
   def next_step_path(step)
     case step
     when "handlers"
-      return admin_wizards_verification_handler_field_assignments_path(:remote_census) if Setting["custom_verification_process.census_soap"].present?
-      return admin_wizards_verification_handler_field_assignments_path(:resident) if Setting["custom_verification_process.census_local"].present?
+      return admin_wizards_verification_handler_field_assignments_path(:remote_census) if Setting["custom_verification_process.remote_census"].present?
+      return admin_wizards_verification_handler_field_assignments_path(:residents) if Setting["custom_verification_process.residents"].present?
       return admin_wizards_verification_handler_field_assignments_path(:sms) if Setting["custom_verification_process.sms"].present?
       admin_wizards_verification_handlers_path
     when "remote_census"
-      return admin_wizards_verification_handler_field_assignments_path(:resident) if Setting["custom_verification_process.census_local"].present?
+      return admin_wizards_verification_handler_field_assignments_path(:residents) if Setting["custom_verification_process.residents"].present?
       return admin_wizards_verification_handler_field_assignments_path(:sms) if Setting["custom_verification_process.sms"].present?
        admin_wizards_verification_finish_path
-    when "resident"
+    when "residents"
       return admin_wizards_verification_handler_field_assignments_path(:sms) if Setting["custom_verification_process.sms"].present?
        admin_wizards_verification_finish_path
     when "sms"
@@ -32,17 +32,17 @@ module Admin::WizardsHelper
     case step
     when "remote_census"
       admin_wizards_verification_handlers_path
-    when "resident"
-      return admin_wizards_verification_handler_field_assignments_path(:remote_census)  if  Setting["custom_verification_process.census_soap"].present?
+    when "residents"
+      return admin_wizards_verification_handler_field_assignments_path(:remote_census)  if  Setting["custom_verification_process.remote_census"].present?
       admin_wizards_verification_handlers_path
     when "sms"
-      return admin_wizards_verification_handler_field_assignments_path(:resident) if Setting["custom_verification_process.census_local"].present?
-      return admin_wizards_verification_handler_field_assignments_path(:remote_census)  if  Setting["custom_verification_process.census_soap"].present?
+      return admin_wizards_verification_handler_field_assignments_path(:residents) if Setting["custom_verification_process.residents"].present?
+      return admin_wizards_verification_handler_field_assignments_path(:remote_census)  if  Setting["custom_verification_process.remote_census"].present?
       admin_wizards_verification_handlers_path
     when "finish"
       return admin_wizards_verification_handler_field_assignments_path(:sms) if Setting["custom_verification_process.sms"].present?
-      return admin_wizards_verification_handler_field_assignments_path(:resident) if Setting["custom_verification_process.census_local"].present?
-      return admin_wizards_verification_handler_field_assignments_path(:remote_census) if Setting["custom_verification_process.census_soap"].present?
+      return admin_wizards_verification_handler_field_assignments_path(:residents) if Setting["custom_verification_process.residents"].present?
+      return admin_wizards_verification_handler_field_assignments_path(:remote_census) if Setting["custom_verification_process.remote_census"].present?
       admin_wizards_verification_handlers_path
     end
   end

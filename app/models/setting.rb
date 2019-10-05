@@ -240,8 +240,8 @@ class Setting < ApplicationRecord
         "sms.endpoint": nil,
         "sms.username": nil,
         "sms.password": nil,
-        "custom_verification_process.census_soap": nil,
-        "custom_verification_process.census_local": nil,
+        "custom_verification_process.remote_census": nil,
+        "custom_verification_process.residents": nil,
         "custom_verification_process.sms": nil
       }
     end
