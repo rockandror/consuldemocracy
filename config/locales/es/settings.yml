@@ -311,3 +311,10 @@ es:
       time_zone:
         key: "Zona horaria"
         key_description: "Selecciona la zona horaria de la aplicación"
+    sms:
+      endpoint: "SMS endpoint"
+      endpoint_description: "Nombre del host donde se encuentra el servicio de SMS"
+      username: "Usuario para el servicio de SMS"
+      username_description: "Permitir setear el usuario"
+      password: "Password para el servicio de SMS"
+      password_description: "Permitir setear el password"

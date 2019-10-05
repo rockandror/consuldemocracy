@@ -235,7 +235,10 @@ class Setting < ApplicationRecord
         "remote_census.response.gender": "",
         "remote_census.response.name": "",
         "remote_census.response.surname": "",
-        "remote_census.response.valid": ""
+        "remote_census.response.valid": "",
+        "sms.endpoint": nil,
+        "sms.username": nil,
+        "sms.password": nil
       }
     end
 
