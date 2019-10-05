@@ -1304,6 +1304,9 @@ es:
           default_locale: "Idioma por defecto de la aplicación"
           available_locale: "Idiomas disponibles de la aplicación"
           timezone: "Zona horaria"
+        sms:
+          title: Configuración SMS
+          description: "Configurar las credenciales del servicio SMS para el envio de sms para verificar un usuario."
       setting: Funcionalidad
       setting_actions: Acciones
       setting_name: Configuración

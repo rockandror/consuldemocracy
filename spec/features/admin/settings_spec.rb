@@ -55,6 +55,10 @@ describe "Admin settings" do
     expect(page).to have_content "Languages and Time Zone"
     expect(page).to have_content "Set default locale, available locales and time zone"
     expect(page).to have_link("Configure", href: admin_setting_path("regional"))
+
+    expect(page).to have_content "SMS Configuration"
+    expect(page).to have_content "Set SMS configuration to send sms for verification users."
+    expect(page).to have_link("Configure", href: admin_setting_path("sms"))
   end
 
   scenario "Update" do
