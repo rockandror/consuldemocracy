@@ -39,8 +39,9 @@ class VerificationController < ApplicationController
     end
 
     def verification_process_next_step(user)
-      if user.residence_verified_at.present?
+      if user.residence_verified?
         { path: account_path, notice: flash[:notice] }
+      #TODO: Si hay códigos pendientes de introducir mostrar la página de introducción de códigos de confirmación
       else
         { path: new_verification_process_path }
       end

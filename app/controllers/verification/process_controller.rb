@@ -34,7 +34,7 @@ class Verification::ProcessController < ApplicationController
       if @process.requires_confirmation?
         redirect_to new_verification_confirmation_path
       else
-        current_user.update(residence_verified_at: Time.current)
+        @process.update(verified_at: Time.current)
         redirect_to verification_path, notice: t("verification.process.create.flash.success")
       end
     end
