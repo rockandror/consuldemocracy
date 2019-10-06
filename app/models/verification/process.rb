@@ -1,7 +1,7 @@
 class Verification::Process < ApplicationRecord
   self.table_name = "verification_processes"
 
-  attr_accessor :fields, :handlers, :responses, :user
+  attr_accessor :fields, :handlers, :responses
 
   validates :user, presence: true
   validate :handlers_attributes

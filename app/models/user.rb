@@ -37,6 +37,8 @@ class User < ApplicationRecord
   has_many :budgets, through: :budget_rol_assignments
   has_many :votation_set_answers
   has_many :verification_values, class_name: "Verification::Value", foreign_key: :user_id
+  has_many :verification_processes, class_name: "Verification::Process", foreign_key: :user_id
+
   belongs_to :geozone
 
   validates :username, presence: true, if: :username_required?
