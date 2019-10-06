@@ -14,39 +14,64 @@ module Verification
     Setting["feature.user.skip_verification"].present?
   end
 
+  def legacy_verification?
+    Setting["feature.user.skip_verification"].blank? &&
+      Setting["feature.custom_verification_process"].blank?
+  end
+
+  def process_verification?
+    Setting["feature.user.skip_verification"].blank? &&
+      Setting["feature.custom_verification_process"].present?
+  end
+
   def verification_email_sent?
-    return true if skip_verification?
+    return true if skip_verification? || process_verification?
+
     email_verification_token.present?
   end
 
   def verification_sms_sent?
-    return true if skip_verification?
+    return true if skip_verification? || process_verification?
+
     unconfirmed_phone.present? && sms_confirmation_code.present?
   end
 
   def verification_letter_sent?
-    return true if skip_verification?
+    return true if skip_verification? || process_verification?
+
     letter_requested_at.present? && letter_verification_code.present?
   end
 
   def residence_verified?
     return true if skip_verification?
-    residence_verified_at.present?
+
+    return residence_verified_at.present? if legacy_verification?
+
+    is_last_verification_process_verified?
   end
 
   def sms_verified?
     return true if skip_verification?
-    confirmed_phone.present?
+
+    return confirmed_phone.present? if legacy_verification?
+
+    last_verification_process.present? && last_verification_process.verified_phone?
   end
 
   def level_two_verified?
     return true if skip_verification?
-    level_two_verified_at.present? || (residence_verified? && sms_verified?)
+
+    return level_two_verified_at.present? || (residence_verified? && sms_verified?) if legacy_verification?
+
+    is_last_verification_process_verified?
   end
 
   def level_three_verified?
     return true if skip_verification?
-    verified_at.present?
+
+    return verified_at.present? if legacy_verification?
+
+    is_last_verification_process_verified?
   end
 
   def level_two_or_three_verified?
@@ -77,5 +102,13 @@ module Verification
 
   def sms_code_not_confirmed?
     !sms_verified?
+  end
+
+  def last_verification_process
+    verification_processes.last
+  end
+
+  def is_last_verification_process_verified?
+    last_verification_process.present? && last_verification_process.verified?
   end
 end

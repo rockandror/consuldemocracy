@@ -244,4 +244,129 @@ shared_examples_for "verifiable" do
     end
   end
 
+  describe "methods modified by Setting feature.custom_verification_process" do
+    let(:user) { create(:user) }
+
+    before do
+      Setting["feature.user.skip_verification"] = nil
+      Setting["feature.custom_verification_process"] = "true"
+    end
+
+    describe "#residence_verified?" do
+      it "is true when user has a verified verification process" do
+        create(:verification_process, verified_at: Time.current, user: user)
+        user.reload
+
+        expect(user.residence_verified?).to eq(true)
+      end
+
+      it "is false when user has not a verified verification process" do
+        expect(user.residence_verified?).to eq(false)
+
+        create(:verification_process, user: user)
+        user.reload
+
+        expect(user.residence_verified?).to eq(false)
+      end
+    end
+
+    describe "#sms_verified?" do
+      it "is true when user has a verified phone verification process" do
+        create(:verification_process, user: user, phone_verified_at: Time.current)
+        user.reload
+
+        expect(user.sms_verified?).to eq(true)
+      end
+
+      it "is false when user has not a verified phone verification process" do
+        expect(user.sms_verified?).to eq(false)
+
+        create(:verification_process, user: user)
+        user.reload
+
+        expect(user.sms_verified?).to eq(false)
+      end
+    end
+
+    describe "#level_two_verified?" do
+      it "is true when user has a verified verification process" do
+        create(:verification_process, user: user, verified_at: Time.current)
+        user.reload
+
+        expect(user.level_two_verified?).to eq(true)
+      end
+
+      it "is false when user has not a verified verification process" do
+        expect(user.level_two_verified?).to eq(false)
+
+        create(:verification_process, user: user)
+        user.reload
+
+        expect(user.level_two_verified?).to eq(false)
+      end
+    end
+
+    describe "#level_three_verified?" do
+      it "is true when user has a verified verification process" do
+        create(:verification_process, user: user, verified_at: Time.current)
+        user.reload
+
+        expect(user.level_two_verified?).to eq(true)
+      end
+
+      it "is false when user has not a verified verification process" do
+        expect(user.level_two_verified?).to eq(false)
+
+        create(:verification_process, user: user)
+        user.reload
+
+        expect(user.level_two_verified?).to eq(false)
+      end
+    end
+
+    describe "#verification_email_sent?" do
+      it "is true no matter the real status" do
+        expect(user.verification_email_sent?).to eq(true)
+      end
+    end
+
+    describe "#verification_sms_sent?" do
+      it "is true no matter the real status" do
+        expect(user.verification_sms_sent?).to eq(true)
+      end
+    end
+
+    describe "#verification_letter_sent?" do
+      it "is true no matter the real status" do
+        expect(user.verification_letter_sent?).to eq(true)
+      end
+    end
+
+    describe "#last_verification_process" do
+      it "returns user last verification process" do
+        process = create(:verification_process, user: user)
+        user.reload
+
+        expect(user.last_verification_process).to eq(process)
+      end
+    end
+
+    describe "#is_last_verification_process_verified?" do
+      it "returns true when user has a verified verification process" do
+        create(:verification_process, user: user, verified_at: Time.current)
+        user.reload
+
+        expect(user.is_last_verification_process_verified?).to eq(true)
+      end
+
+      it "returns false when user has not a verified verification process" do
+        expect(user.is_last_verification_process_verified?).to eq(false)
+
+        create(:verification_process, user: user)
+        user.reload
+
+        expect(user.is_last_verification_process_verified?).to eq(false)
+      end
+    end
+  end
 end
