@@ -2,6 +2,7 @@ require "rails_helper"
 
 describe Verification::Confirmation do
   before do
+    Setting["custom_verification_process.sms"] = true
     field = create(:verification_field, name: :phone)
     create(:verification_handler_field_assignment, verification_field: field, handler: :sms)
   end
