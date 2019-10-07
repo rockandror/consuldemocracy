@@ -26,6 +26,19 @@ describe "Verification confirmation" do
       expect(page).to have_field "verification_confirmation_sms_confirmation_code"
       expect(page).to have_field "verification_confirmation_my_handler_confirmation_code"
     end
+
+    scenario "Shows resend confirmation code info" do
+      Class.new(Verification::Handler) do
+        register_as :my_handler
+        requires_confirmation true
+      end
+      Setting["custom_verification_process.my_handler"] = true
+      create(:verification_handler_field_assignment, verification_field: phone_field, handler: "my_handler")
+      visit new_verification_confirmation_path
+
+      expect(page).to have_content "Didn't get a text with your confirmation codes?"
+      expect(page).to have_link("Click here to send it again", href: new_verification_process_path)
+    end
   end
 
   describe "Create" do
@@ -82,7 +95,7 @@ describe "Verification confirmation" do
           end
         end
       end
-      Setting["custom_verification_process.my_handler"] = true      
+      Setting["custom_verification_process.my_handler"] = true
       user.update(sms_confirmation_code: "ABCD")
       create(:verification_handler_field_assignment, verification_field: phone_field, handler: "my_handler")
       visit new_verification_confirmation_path
