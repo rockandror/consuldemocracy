@@ -27,6 +27,10 @@ class Verification::Process < ApplicationRecord
       any?(&:requires_confirmation?)
   end
 
+  def confirmations_pending?
+    requires_confirmation? && !confirmed?
+  end
+
   def mark_as_verified
     update_column(:verified_at, Time.current)
   end

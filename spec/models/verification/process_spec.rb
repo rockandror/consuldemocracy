@@ -325,4 +325,38 @@ describe Verification::Process do
       expect(process.confirmed?).to be(true)
     end
   end
+
+  describe "#confirmations_pending?" do
+    it "is false when process confirmed_at is already set" do
+      process = create(:verification_process)
+
+      expect(process.confirmations_pending?).to be(false)
+    end
+
+    it "is false when process confirmed_at is already set" do
+      Setting["custom_verification_process.sms"] = true
+      user = create(:user)
+      field = create(:verification_field, name: :phone)
+      create(:verification_handler_field_assignment, verification_field: field, handler: :sms)
+      process = build(:verification_process, user: user)
+      process.phone = "333444555"
+      process.save
+      confirmation = build(:verification_confirmation, user: user,
+        sms_confirmation_code: user.reload.sms_confirmation_code)
+      confirmation.save
+
+      expect(process.reload.confirmations_pending?).to be(false)
+    end
+
+    it "is true when process confirmed_at is not defined and process requires confirmation" do
+      Setting["custom_verification_process.sms"] = true
+      field = create(:verification_field, name: :phone)
+      create(:verification_handler_field_assignment, verification_field: field, handler: :sms)
+      process = build(:verification_process)
+      process.phone = "333444555"
+      process.save
+
+      expect(process.confirmations_pending?).to be(true)
+    end
+  end
 end
