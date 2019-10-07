@@ -394,6 +394,8 @@ es:
         required: Requerido?
         confirmation_validation: Requiere campo de confirmación?
         format: Formato
+        is_checkbox: Es un checkbox?
+        checkbox_link: Slug de una página de la aplicación
       verification/field/translation:
         label: Etiqueta
       verification/resident:

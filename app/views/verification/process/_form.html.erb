@@ -3,11 +3,19 @@
 <%= form_for @process, url: verification_process_path do |f| %>
   <% @process.fields.each do |_, field| %>
     <div class="small-12 column">
-      <%= f.label field.name, field.label %>
-      <%= f.text_field field.name, label: false, hint: field_hint(field) %>
-      <% if field.confirmation_validation? %>
-          <%= f.label "#{field.name}_confirmation", "#{field.label} confirmation" %>
-          <%= f.text_field "#{field.name}_confirmation", label: false, hint: "Confirme su #{field.name}" %>
+      <% if field.is_checkbox? %>
+        <%= f.label field.name, "#{field.label} (#{link_to("link", SiteCustomization::Page.find_by(slug: field.checkbox_link).url, target: "_blank")})" %>
+        <%#= link_to "link",
+                    SiteCustomization::Page.find_by(slug: field.checkbox_link).url,
+                    target: "_blank" %>
+        <%= f.check_box field.name, label: false, hint: field_hint(field) %>
+      <% else %>
+        <%= f.label field.name, field.label %>
+        <%= f.text_field field.name, label: false, hint: field_hint(field) %>
+        <% if field.confirmation_validation? %>
+            <%= f.label "#{field.name}_confirmation", "#{field.label} confirmation" %>
+            <%= f.text_field "#{field.name}_confirmation", label: false, hint: "Confirme su #{field.name}" %>
+        <% end %>
       <% end %>
     </div>
   <% end %>
