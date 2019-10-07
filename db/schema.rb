@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191007091923) do
+ActiveRecord::Schema.define(version: 20191007192848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1711,6 +1711,7 @@ ActiveRecord::Schema.define(version: 20191007091923) do
     t.datetime "residence_verified_at"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+    t.datetime "confirmed_at"
     t.index ["user_id"], name: "index_verification_processes_on_user_id", using: :btree
   end
 

@@ -11,6 +11,7 @@ class Verification::Process < ApplicationRecord
 
   after_save :save_verification_values
   after_save :mark_as_verified, unless: :requires_confirmation?
+  after_save :mark_as_confirmed, unless: :requires_confirmation?
   after_save :mark_as_residence_verified, if: :is_residence_verification_active?
   after_find :add_attributes_from_verification_fields_definition
 
@@ -38,6 +39,10 @@ class Verification::Process < ApplicationRecord
     update_column(:residence_verified_at, Time.current)
   end
 
+  def mark_as_confirmed
+    update_column(:confirmed_at, Time.current)
+  end
+
   def verified?
     verified_at.present?
   end
@@ -48,6 +53,10 @@ class Verification::Process < ApplicationRecord
 
   def verified_residence?
     residence_verified_at.present?
+  end
+
+  def confirmed?
+    confirmed_at.present?
   end
 
   private

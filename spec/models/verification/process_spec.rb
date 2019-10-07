@@ -311,4 +311,18 @@ describe Verification::Process do
       expect(process.verified_residence?).to be(true)
     end
   end
+
+  describe "#confirmed?" do
+    let(:process) { build(:verification_process) }
+
+    it "is false when process confirmed_at is not present" do
+      expect(process.confirmed?).to be(false)
+    end
+
+    it "is true when process confirmed_at is defined" do
+      process.save
+
+      expect(process.confirmed?).to be(true)
+    end
+  end
 end
