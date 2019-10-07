@@ -15,7 +15,7 @@ module Admin::WizardsHelper
       return admin_wizards_verification_handler_field_assignments_path(:remote_census) if Setting["custom_verification_process.remote_census"].present?
       return admin_wizards_verification_handler_field_assignments_path(:residents) if Setting["custom_verification_process.residents"].present?
       return admin_wizards_verification_handler_field_assignments_path(:sms) if Setting["custom_verification_process.sms"].present?
-      admin_wizards_verification_handlers_path
+      admin_wizards_verification_finish_path
     when "remote_census"
       return admin_wizards_verification_handler_field_assignments_path(:residents) if Setting["custom_verification_process.residents"].present?
       return admin_wizards_verification_handler_field_assignments_path(:sms) if Setting["custom_verification_process.sms"].present?
