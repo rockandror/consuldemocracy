@@ -27,12 +27,12 @@ describe Admin::WizardsHelper do
         expect(next_step_path("handlers")).to eq(admin_wizards_verification_handler_field_assignments_path(:sms))
       end
 
-      it "return handlers step path if all Settings are disabled" do
+      it "return finish step path if all Settings are disabled" do
         Setting["custom_verification_process.remote_census"] = false
         Setting["custom_verification_process.residents"] = false
         Setting["custom_verification_process.sms"] = false
 
-        expect(next_step_path("handlers")).to eq(admin_wizards_verification_handlers_path)
+        expect(next_step_path("handlers")).to eq(admin_wizards_verification_finish_path)
       end
 
     end
