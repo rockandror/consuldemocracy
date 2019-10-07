@@ -17,7 +17,7 @@ class Verification::Confirmation
 
     user.last_verification_process.mark_as_verified
     user.last_verification_process.mark_as_phone_verified if sms_confirmation_code.present?
-    user.last_verification_process.save
+    user.last_verification_process.mark_as_confirmed
   end
 
   private
