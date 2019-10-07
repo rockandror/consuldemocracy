@@ -21,7 +21,6 @@ class Verification::Process < ApplicationRecord
     super
   end
 
-  # Returs true if any of the active handlers requires a confirmation step
   def requires_confirmation?
     Verification::Handler.descendants.select { |k| @handlers.include?(k.id) }.
       any?(&:requires_confirmation?)
