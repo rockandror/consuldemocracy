@@ -4,28 +4,38 @@ class Verification::Process < ApplicationRecord
   attr_accessor :fields, :handlers, :responses
 
   validates :user, presence: true
-  validate :handlers_attributes
-  validate :handlers_verification
+  validate :handlers_attributes, on: :create
+  validate :handlers_verification, on: :create
 
   belongs_to :user
 
-  before_save :save_verification_values
+  after_save :save_verification_values
+  after_save :mark_as_verified, unless: :requires_confirmation?
+  after_save :mark_as_residence_verified, if: :is_residence_verification_active?
+  after_find :add_attributes_from_verification_fields_definition
 
   def initialize(attributes = {})
-    define_fields_accessors
-    define_fields_validations
-
-    @responses = {}
-    @fields = fields_by_name
-    @handlers = Verification::Configuration.active_handlers
+    add_attributes_from_verification_fields_definition
 
     super
   end
 
   # Returs true if any of the active handlers requires a confirmation step
   def requires_confirmation?
-    Verification::Handler.descendants.select{|k| @handlers.include?(k.id)}.
+    Verification::Handler.descendants.select { |k| @handlers.include?(k.id) }.
       any?(&:requires_confirmation?)
+  end
+
+  def mark_as_verified
+    update_column(:verified_at, Time.current)
+  end
+
+  def mark_as_phone_verified
+    update_column(:phone_verified_at, Time.current)
+  end
+
+  def mark_as_residence_verified
+    update_column(:residence_verified_at, Time.current)
   end
 
   def verified?
@@ -42,6 +52,15 @@ class Verification::Process < ApplicationRecord
 
   private
 
+    def add_attributes_from_verification_fields_definition
+      define_fields_accessors
+      define_fields_validations
+
+      @responses = {}
+      @fields = fields_by_name
+      @handlers = Verification::Configuration.active_handlers
+    end
+
     def handlers_verification
       @handlers.each do |handler|
         handler_class = Verification::Configuration.available_handlers[handler]
@@ -50,8 +69,8 @@ class Verification::Process < ApplicationRecord
         @responses[handler] = handler_instance.verify(fields_for_handler(handler))
       end
 
-      if @responses.values.select{|response| response.error?}.any?
-        errors.add :base, @responses.values.select{|response| response.error?}.collect(&:message)
+      if @responses.values.select { |response| response.error? }.any?
+        errors.add :base, @responses.values.select { |response| response.error? }.collect(&:message)
       end
     end
 
@@ -166,5 +185,9 @@ class Verification::Process < ApplicationRecord
 
       verification_values.select(&:persisted?).map(&:destroy)
       false
+    end
+
+    def is_residence_verification_active?
+      ["remote_census", "residents"].any? { |handler| @handlers.include?(handler) }
     end
 end

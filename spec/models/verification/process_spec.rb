@@ -215,22 +215,70 @@ describe Verification::Process do
       expect(process.save).to be(true)
     end
 
-    it "should save one verification value for each verification field" do
+    it "saves one verification value for each verification field" do
       create(:verification_field, name: :custom_field_name)
 
-      expect{ process.save }.to change{ Verification::Value.count}.by(1)
+      expect { process.save }.to change { Verification::Value.count }.by(1)
+    end
+  end
+
+  describe "#after_save" do
+    it "marks verified_at with current time when process do not need any confirmation codes" do
+      create(:verification_resident, data: { document_number: "4433221Z" })
+      field = create(:verification_field, name: :document_number)
+      create(:verification_handler_field_assignment, verification_field: field, handler: :residents)
+
+      process.document_number = "4433221Z"
+
+      expect { process.save }.to change { process.verified_at }.from(nil).to(Time)
+    end
+
+    it "do not mark verified_at when any handler with required confirmation is enabled" do
+      field = create(:verification_field, name: :phone)
+      create(:verification_handler_field_assignment, verification_field: field, handler: :sms)
+      process.phone = "666444000"
+
+      expect { process.save }.to change { process.verified_at }.from(nil).to(Time)
+    end
+
+    it "marks residence_verified_at with current time when Resident verification handler is enabled" do
+      Setting["custom_verification_process.residents"] = true
+      create(:verification_resident, data: { document_number: "4433221Z" })
+      field = create(:verification_field, name: :document_number)
+      create(:verification_handler_field_assignment, verification_field: field, handler: :residents)
+
+      process.document_number = "4433221Z"
+
+      expect { process.save }.to change { process.residence_verified_at }.from(nil).to(Time)
+    end
+
+    it "marks residence_verified_at with current time when RemoteCensus verification handler is enabled" do
+      Setting["custom_verification_process.remote_census"] = true
+      chain = "get_habita_datos_response.get_habita_datos_return.datos_habitante.item"
+      Setting["remote_census.response.valid"] = chain
+      document_number_field = create(:verification_field, name: :document_number)
+      document_type_field = create(:verification_field, name: :document_type)
+      create(:verification_handler_field_assignment, verification_field: document_number_field,
+                                                     handler: :remote_census)
+      create(:verification_handler_field_assignment, verification_field: document_type_field,
+                                                     handler: :remote_census)
+
+      process.document_number = "12345678Z"
+      process.document_type = "1"
+
+      expect { process.save }.to change { process.residence_verified_at }.from(nil).to(Time)
     end
   end
 
   describe "#verified?" do
-    let(:process) { create(:verification_process) }
+    let(:process) { build(:verification_process) }
 
     it "is false when process verified_at is not present" do
       expect(process.verified?).to be(false)
     end
 
     it "is true when process verified_at is defined" do
-      process.update(verified_at: Time.current)
+      process.save
 
       expect(process.verified?).to be(true)
     end
