@@ -1,13 +1,13 @@
 <tr id="<%= dom_id(field_assignment) %>">
   <td><%= field_assignment.verification_field.name %></td>
-  <td>
+  <td class="float-right">
     <%= link_to t("admin.wizards.verification.handler.field_assignments.index.edit"),
                 edit_admin_wizards_verification_handler_field_assignment_path(@handler, field_assignment),
-                class: "button hollow expanded" %>
+                class: "button hollow" %>
     <%= link_to t("admin.wizards.verification.handler.field_assignments.index.delete"),
                 admin_wizards_verification_handler_field_assignment_path(@handler, field_assignment.id),
                 method: :delete,
-                class: "button hollow alert expanded",
+                class: "button hollow alert",
                 data: { confirm: t("admin.actions.confirm") } %>
   </td>
 </tr>

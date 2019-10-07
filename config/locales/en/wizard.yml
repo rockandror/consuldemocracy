@@ -33,6 +33,7 @@ en:
             title: Edit verification field
           form:
             format_placeholder: Add the regular expression without the start (/) and end (/) escapes
+            checkbox_link: "This field must be filled with the slug of a page created in the admin section 'Site content' > 'Custom pages'."
           handlers:
             name:
               residents: Residents verifications (local database)

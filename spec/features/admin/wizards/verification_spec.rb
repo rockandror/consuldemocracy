@@ -63,10 +63,11 @@ describe "Wizard Verifcation" do
       expect(page).to have_link("Next", href: admin_wizards_verification_handler_field_assignments_path(:residents))
       expect(page).to have_link("Associate field to this verification process", href: new_admin_wizards_verification_handler_field_assignment_path(:remote_census))
       expect(page).to have_content "Configure the connection to the remote census"
-      expect(page).to have_css(".setting", count: 3)
+      expect(page).to have_css(".setting", count: 4)
       expect(page).to have_content "Endpoint"
       expect(page).to have_content "Request method name"
       expect(page).to have_content "Request Structure"
+      expect(page).to have_content "Condition for detecting a valid response"
     end
 
     scenario "Configure local census verification process step" do

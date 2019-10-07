@@ -137,6 +137,7 @@ class Verification::Process < ApplicationRecord
       define_presence_validations
       define_confirmation_validations
       define_format_validations
+      define_checkbox_validations
     end
 
     def define_presence_validations
@@ -159,6 +160,14 @@ class Verification::Process < ApplicationRecord
       self.singleton_class.class_eval do
         Verification::Field.with_format.each do |field|
           validates field.name, format: { with: Regexp.new(field.format) }
+        end
+      end
+    end
+
+    def define_checkbox_validations
+      self.singleton_class.class_eval do
+        Verification::Field.with_checkbox_required.each do |field|
+          validates field.name, acceptance: true
         end
       end
     end
