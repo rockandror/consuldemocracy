@@ -68,6 +68,7 @@ class Admin::Wizards::Verification::Handler::FieldAssignmentsController < Admin:
     def remote_census_settings
       @settings = [Setting.find_by(key: "remote_census.general.endpoint"),
                    Setting.find_by(key: "remote_census.request.method_name"),
-                   Setting.find_by(key: "remote_census.request.structure")]
+                   Setting.find_by(key: "remote_census.request.structure"),
+                   Setting.find_by(key: "remote_census.response.valid")]
     end
 end
