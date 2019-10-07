@@ -117,6 +117,24 @@ describe "Verification process" do
       expect(page).to have_content "Your account was successfully verified!"
     end
 
+    scenario "When one step verification process with required checkbox without active handlers
+              has not errors user should be display related link and marked as verified user and
+              redirect to profile page with a notice" do
+
+      custom_page = create(:site_customization_page, slug: "new_page_tos_slug")
+      create(:verification_field, name: "tos", label: "Terms of service", position: 7, is_checkbox: true,
+                                  required: true, checkbox_link: "new_page_tos_slug")
+      visit new_verification_process_path
+
+      check "verification_process_tos"
+
+      expect(page).to have_link("link", href: custom_page.url)
+
+      click_button "Save"
+
+      expect(page).to have_content "Your account was successfully verified!"
+    end
+
     scenario "When one step verification process with residents active handler has not errors
               user should be marked as verified user and redirect to profile page with a notice" do
       create(:verification_resident, data: { name: "Fabulous Name",

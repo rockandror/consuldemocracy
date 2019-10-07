@@ -487,6 +487,8 @@ en:
         required: Required?
         confirmation_validation: Require confirmation field?
         format: Format
+        is_checkbox: Is checkbox?
+        checkbox_link: Slug from application page
       verification/field/translation:
         label: Label
       verification/resident:

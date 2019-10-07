@@ -52,6 +52,22 @@
     </div>
   </div>
 
+  <hr>
+  <div class="row">
+    <div class="small-12 column">
+    <%= f.label :is_checkbox do %>
+      <%= f.check_box :is_checkbox %>
+    <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 column">
+      <%= f.text_field :checkbox_link %>
+      <p class="help-text"><%= t("admin.wizards.verification.fields.form.checkbox_link") %></p>
+    </div>
+  </div>
+  <hr>
   <div class="row">
     <div class="small-12 column">
       <%= f.submit class: "button success expanded margin-top",
