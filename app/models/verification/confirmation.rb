@@ -13,7 +13,11 @@ class Verification::Confirmation
   end
 
   def save
-    valid?
+    return false unless valid?
+
+    user.last_verification_process.mark_as_verified
+    user.last_verification_process.mark_as_phone_verified if sms_confirmation_code.present?
+    user.last_verification_process.save
   end
 
   private

@@ -10,7 +10,6 @@ class Verification::ConfirmationController < ApplicationController
   def create
     @confirmation = Verification::Confirmation.new(confirmation_params.merge(user: current_user))
     if @confirmation.save
-      current_user.update(residence_verified_at: Time.current)
       redirect_to account_path, notice: t("verification.confirmation.create.flash.success")
     else
       render :new

@@ -96,10 +96,10 @@ describe "Verification confirmation" do
         end
       end
       Setting["custom_verification_process.my_handler"] = true
-      user.update(sms_confirmation_code: "ABCD")
       create(:verification_handler_field_assignment, verification_field: phone_field, handler: "my_handler")
+      create(:verification_process, user: user, phone: "666555444")
       visit new_verification_confirmation_path
-      fill_in "Sms confirmation code", with: "ABCD"
+      fill_in "Sms confirmation code", with: user.reload.sms_confirmation_code
       fill_in "My handler confirmation code", with: "QWER"
       click_button "Confirm"
 
