@@ -35,4 +35,32 @@ describe Verification::Confirmation do
       expect(confirmation).not_to be_valid
     end
   end
+
+  describe "#save" do
+    before do
+      field = create(:verification_field, name: "phone")
+      create(:verification_handler_field_assignment, verification_field: field, handler: "sms")
+      Setting["custom_verification_process.sms"] = true
+    end
+
+    let(:user)         { create(:user) }
+    let!(:process)     { create(:verification_process, user: user, phone: "333444555") }
+    let(:confirmation) { build(:verification_confirmation, user: user) }
+
+    it "When all confirmation codes matches it should mark verification process as verified" do
+      confirmation.sms_confirmation_code = user.reload.sms_confirmation_code
+
+      expect {
+        confirmation.save
+      }.to change { process.reload.verified_at }.from(nil).to(Time)
+    end
+
+    it "When all confirmation codes matches and phone is really verified through sms 'Handler'
+        it should mark verification process as phone_verified also" do
+      confirmation.sms_confirmation_code = user.reload.sms_confirmation_code
+      expect {
+        confirmation.save
+      }.to change { process.reload.phone_verified_at }.from(nil).to(Time)
+    end
+  end
 end
