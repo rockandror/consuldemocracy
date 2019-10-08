@@ -189,7 +189,7 @@ class Verification::Process < ApplicationRecord
       @fields.each_with_object(verification_values) do |(name, field), verification_values|
         verification_values << Verification::Value.create(
           verification_field: field,
-          user: user,
+          verification_process: self,
           value: send(name))
       end
 

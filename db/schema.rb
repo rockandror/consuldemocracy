@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191008111728) do
+ActiveRecord::Schema.define(version: 20191008130204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1724,8 +1724,9 @@ ActiveRecord::Schema.define(version: 20191008111728) do
 
   create_table "verification_values", force: :cascade do |t|
     t.integer "verification_field_id"
-    t.integer "user_id"
     t.string  "value"
+    t.integer "verification_process_id"
+    t.index ["verification_process_id"], name: "index_verification_values_on_verification_process_id", using: :btree
   end
 
   create_table "verified_users", force: :cascade do |t|
@@ -1903,5 +1904,6 @@ ActiveRecord::Schema.define(version: 20191008111728) do
   add_foreign_key "valuators", "users"
   add_foreign_key "verification_handler_field_assignments", "verification_fields"
   add_foreign_key "verification_processes", "users"
+  add_foreign_key "verification_values", "verification_processes"
   add_foreign_key "votation_set_answers", "votation_types"
 end

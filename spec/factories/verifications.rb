@@ -88,7 +88,7 @@ FactoryBot.define do
 
   factory :verification_value, class: Verification::Value do
     sequence(:value)     { |n| "value#{n}" }
-    user
+    verification_process
     verification_field
   end
 
