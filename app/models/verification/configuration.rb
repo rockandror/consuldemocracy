@@ -9,7 +9,8 @@ class Verification::Configuration
 
     def active_handlers_ids
       all_settings = Setting.all.group_by { |setting| setting.type }
-      all_settings["custom_verification_process"].map {|setting| setting.key.rpartition(".").last if setting.enabled?}
+      all_settings["custom_verification_process"].select { |setting| setting.enabled? }.
+                                                  collect { |setting| setting.key.rpartition(".").last }
     end
 
     def active_handlers
@@ -23,7 +24,8 @@ class Verification::Configuration
     end
 
     def confirmation_fields
-      handlers = available_handlers.select{ |id, handler| active_handlers.include?(id) && handler.requires_confirmation? }
+      condition = lambda { |id, handler| active_handlers.include?(id) && handler.requires_confirmation? }
+      handlers = available_handlers.select(&condition)
 
       handlers.keys.each_with_object([]) do |handler, fields|
         handler_name = handler.downcase.underscore
@@ -33,4 +35,6 @@ class Verification::Configuration
     end
   end
 end
-Dir[Rails.root.join("app/models/verification/handlers/*.rb")].each {|file| require_dependency file }
+
+dir = Rails.root.join("app", "models", "verification", "handlers", "*.rb")
+Dir[dir].each { |file| require_dependency file }

@@ -15,30 +15,30 @@ describe Verification::Configuration do
   end
 
   describe ".available_handlers" do
-    it "should return registered handlers" do
+    it "return registered handlers" do
       defined_handlers = { "my_handler" => handler, "sms" => Verification::Handlers::Sms }
 
-      expect(described_class.available_handlers).to include(defined_handlers)
+      expect(Verification::Configuration.available_handlers).to include(defined_handlers)
     end
   end
 
   describe ".active_handlers_ids" do
-    it "should return registered handlers ids" do
-      expect(described_class.active_handlers_ids).to include("sms", "remote_census", "residents", "my_handler")
-    end
-    it "should not return inactive handlers id" do
+    it "return all enabled registered handlers ids" do
+      expected_handler_ids = ["sms", "remote_census", "residents", "my_handler"]
+      expect(Verification::Configuration.active_handlers_ids).to include(*expected_handler_ids)
+
       Setting["custom_verification_process.remote_census"] = false
-      expect(described_class.active_handlers_ids).not_to include("remote_census")
+      expect(Verification::Configuration.active_handlers_ids).not_to include("remote_census")
     end
   end
 
   describe ".active_handlers" do
-    it "should return only active handlers" do
+    it "return only active handlers" do
       field = create(:verification_field, name: "phone")
       create(:verification_handler_field_assignment, verification_field: field, handler: :sms)
       create(:verification_handler_field_assignment, verification_field: field, handler: :my_handler)
 
-      expect(described_class.active_handlers).to eq(["sms", "my_handler"])
+      expect(Verification::Configuration.active_handlers).to eq(["sms", "my_handler"])
     end
   end
 
@@ -64,14 +64,14 @@ describe Verification::Configuration do
   describe ".confirmation_fields" do
     let!(:field) { create(:verification_field, name: "phone") }
 
-    it "should return confirmation fields names for handlers in use" do
+    it "return confirmation fields names for handlers in use" do
       create(:verification_handler_field_assignment, verification_field: field, handler: :sms)
       create(:verification_handler_field_assignment, verification_field: field, handler: :my_handler)
       handler.class_eval do
         requires_confirmation true
       end
 
-      confirmation_fields = described_class.confirmation_fields
+      confirmation_fields = Verification::Configuration.confirmation_fields
 
       expect(confirmation_fields).to include("sms_confirmation_code", "my_handler_confirmation_code")
     end
