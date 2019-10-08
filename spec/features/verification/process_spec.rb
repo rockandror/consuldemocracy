@@ -122,8 +122,8 @@ describe "Verification process" do
               redirect to profile page with a notice" do
 
       custom_page = create(:site_customization_page, slug: "new_page_tos_slug")
-      create(:verification_field, name: "tos", label: "Terms of service", position: 7, is_checkbox: true,
-                                  required: true, checkbox_link: "new_page_tos_slug", kind: "checkbox")
+      create(:verification_field, name: "tos", label: "Terms of service", position: 7, required: true,
+                                  checkbox_link: "new_page_tos_slug", kind: "checkbox")
       visit new_verification_process_path
 
       check "verification_process_tos"

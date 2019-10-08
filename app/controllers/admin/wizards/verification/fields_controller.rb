@@ -45,7 +45,7 @@ class Admin::Wizards::Verification::FieldsController < Admin::Verification::Base
   private
 
     def verification_field_params
-      attributes = [:name, :position, :required, :confirmation_validation, :format, :is_checkbox, :checkbox_link, :kind]
+      attributes = [:name, :position, :required, :confirmation_validation, :format, :checkbox_link, :kind]
       translations_attributes = translation_params(::Verification::Field)
 
       params.require(:verification_field).permit(*attributes, translations_attributes)

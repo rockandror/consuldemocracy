@@ -60,8 +60,9 @@ describe Verification::Field do
 
   describe ".with_checkbox_required" do
     it "Should return only with_checkbox_required fields" do
-      with_checkbox_required_field = create :verification_field, is_checkbox: true, required: true
-      create :verification_field, is_checkbox: false, required: true
+      with_checkbox_required_field = create :verification_field, kind: "checkbox", required: true
+      create :verification_field, kind: "text", required: true
+      create :verification_field, kind: "checkbox", required: false
 
       expect(described_class.with_checkbox_required).to eq([with_checkbox_required_field])
     end

@@ -73,14 +73,14 @@ describe Verification::Process do
 
   describe "checkbox fields validation" do
     it "When checkbox fields with required defined are not checked it should not be valid" do
-      create(:verification_field, name: :custom_field, required: true, is_checkbox: true)
+      create(:verification_field, name: :custom_field, required: true, kind: "checkbox")
       process.custom_field = false
 
       expect(process).not_to be_valid
     end
 
     it "When checkbox fields with required defined are checked it should be valid" do
-      create(:verification_field, name: :custom_field, required: true, is_checkbox: true)
+      create(:verification_field, name: :custom_field, required: true, kind: "checkbox")
       process.custom_field = true
 
       expect(process).to be_valid
