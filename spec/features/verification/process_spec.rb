@@ -23,8 +23,8 @@ describe "Verification process" do
 
   describe "New" do
     scenario "Redirect already verified users to accoung page showing a notice" do
-      user.update(residence_verified_at: Time.current)
-
+      create(:verification_process, user: user)
+      user.reload
       visit new_verification_process_path
 
       expect(page).to have_content "My account"
