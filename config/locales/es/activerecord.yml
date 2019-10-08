@@ -489,7 +489,7 @@ es:
         required: Requerido?
         confirmation_validation: Requiere campo de confirmación?
         format: Formato
-        checkbox_link: Slug de una página de la aplicación
+        checkbox_link: Link que se mostrará al lado de un campo del tipo checkbox
       verification/field/kind:
         text: "Campo de texto"
         checkbox: "Campo checkbox"
