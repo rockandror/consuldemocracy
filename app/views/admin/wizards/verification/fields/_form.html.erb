@@ -26,8 +26,7 @@
     <div class="small-12 medium-1 column"></div>
     <div class="small-12 medium-5 column">
         <label><%= t("admin.wizards.verification.fields.form.label_checkbox") %></label>
-          <%= f.check_box :is_checkbox,
-                        :onclick => "document.getElementById('input-checkbox-link').style.display = (this.checked ? 'block' : 'none');"  %>
+          <%= f.enum_select :kind %>
         <br>
         <div id="input-checkbox-link">
           <%= f.text_field :checkbox_link %>
