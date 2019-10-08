@@ -17,7 +17,9 @@ class Verification::Configuration
     end
 
     def required_confirmation_handlers
-      available_handlers.select{|_, handler| handler.requires_confirmation?}
+      condition = lambda { |id, handler| handler.requires_confirmation? && active_handlers.include?(id) }
+
+      available_handlers.select(&condition)
     end
 
     def confirmation_fields

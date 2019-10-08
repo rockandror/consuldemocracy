@@ -49,13 +49,15 @@ describe Verification::Configuration do
       end
     end
 
-    it "should return handlers which requires user confirmation" do
+    it "return enabled and active handlers which requires a confirmation code" do
       handler.class_eval do
         requires_confirmation true
       end
+      create(:verification_handler_field_assignment, handler: :my_handler)
 
-      expect(described_class.required_confirmation_handlers).to include({ "my_handler" => handler })
-      expect(described_class.required_confirmation_handlers).not_to include without_confirmation_handler
+      handlers = Verification::Configuration.required_confirmation_handlers
+      expect(handlers).to include({ "my_handler" => handler })
+      expect(handlers).not_to include without_confirmation_handler
     end
   end
 
