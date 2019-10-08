@@ -120,7 +120,7 @@ describe "Verification path" do
       visit verification_path
 
       expect(page).to have_current_path(new_verification_process_path)
-      expect(page).to have_content "Verification process"
+      expect(page).to have_content "Verify your account"
     end
 
     scenario "User has started a verification process with required confirmation but not finished yet" do
