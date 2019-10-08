@@ -39,7 +39,7 @@ class Verification::ProcessController < ApplicationController
     end
 
     def redirect_already_verified_users
-      if current_user.residence_verified_at.present?
+      if current_user.residence_verified?
         redirect_to account_path, notice: t("verification.process.create.flash.already_verified")
       end
     end
