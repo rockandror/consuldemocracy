@@ -105,6 +105,7 @@ es:
         finish:
           title: Asistente completado con éxito
           description_html: Aquí puede ver un resumen de los campos configurados durante este asistente.
+          no_configure: No has añadido ningun campo. Vuelve a empezar.
           btn_finish: Finalizar asistente
       installation:
         module_title: Asistente de instalación
