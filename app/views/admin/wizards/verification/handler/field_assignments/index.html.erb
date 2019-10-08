@@ -2,23 +2,27 @@
                                          next_step: next_step_path(@handler),
                                          wizard: "verification" %>
 <div class="medium-12 columns">
-  <%= link_to t("admin.wizards.verification.handler.field_assignments.index.create"),
-                new_admin_wizards_verification_handler_field_assignment_path(@handler), class: "button float-right" %>
+  <div class="medium-8 columns">
+    <h2 class="inline-block"><%= title_for_fields_assignments_by(@handler) %></h2>
+    <p><%= description_for_fields_assignments_by(@handler) %></p>
+  </div>
 
-  <% if sms_handler?(@handler) %>
-    <%= link_to t("admin.wizards.verification.handler.field_assignments.index.create_sms_fields.link"),
-                  admin_verification_handlers_sms_fields_path, class: "button hollow float-right",
-                  method: :post, data: { confirm: t("admin.wizards.verification.handler.field_assignments.index.create_sms_fields.confirm") } %>
-  <% end %>
+  <div class="medium-4 columns text-right">
+    <% if sms_handler?(@handler) %>
+      <%= link_to t("admin.wizards.verification.handler.field_assignments.index.create_sms_fields.link"),
+                    admin_verification_handlers_sms_fields_path, class: "button hollow",
+                    method: :post, data: { confirm: t("admin.wizards.verification.handler.field_assignments.index.create_sms_fields.confirm") } %>
+    <% end %>
+    <%= link_to t("admin.wizards.verification.handler.field_assignments.index.create"),
+                  new_admin_wizards_verification_handler_field_assignment_path(@handler), class: "button margin-top" %>
+  </div>
 
-  <h2 class="inline-block"><%= title_for_fields_assignments_by(@handler) %></h2>
-  <p><%= description_for_fields_assignments_by(@handler) %></p>
-
+<div class="medium-12 columns margin-top">
   <table>
     <thead>
       <tr>
         <th scope="col"><%= t("admin.wizards.verification.handler.field_assignments.index.field")%></th>
-        <th scope="col" class="small-4"><%= t("admin.actions.actions")%></th>
+        <th scope="col" class="small-4 text-right"><%= t("admin.actions.actions")%></th>
       </tr>
     </thead>
 
