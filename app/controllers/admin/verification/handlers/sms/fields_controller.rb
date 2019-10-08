@@ -17,13 +17,14 @@ class Admin::Verification::Handlers::Sms::FieldsController < Admin::Verification
 
     def create_default_handler_settings
       field = Verification::Field.find_or_create_by(name: "phone")
-      field.update(RECOMMENDED_FIELD_ATTRIBUTES.merge(position: last_position))
+      field.update(RECOMMENDED_FIELD_ATTRIBUTES.merge(position: next_position))
 
       Verification::Handler::FieldAssignment.find_or_create_by(verification_field: field, handler: handler_id)
     end
 
-    def last_position
-      Verification::Field.maximum(:position) + 1 || 1
+    def next_position
+      max_position = Verification::Field.maximum(:position)
+      max_position.is_a?(Integer) ? max_position + 1 : 1
     end
 
     def handler_id
