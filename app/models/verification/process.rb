@@ -8,6 +8,9 @@ class Verification::Process < ApplicationRecord
   validate :handlers_verification, on: :create
 
   belongs_to :user
+  has_many :verification_values, dependent: :destroy,
+                                 class_name: "Verification::Value",
+                                 foreign_key: :verification_process_id
 
   after_save :save_verification_values
   after_save :mark_as_verified, unless: :requires_confirmation?
