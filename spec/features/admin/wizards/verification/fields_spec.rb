@@ -7,7 +7,8 @@ describe "Admin wizards verification fields" do
       register_as :fake_handler
     end
   end
-  let!(:field) { create(:verification_field, label: "Email", name: "email", position: 1) }
+  let!(:field) { create(:verification_field, label: "Email", name: "email", format: "sample_regex",
+                                             position: 1, kind: "text") }
 
   before do
     create(:verification_handler_field_assignment, verification_field: field, handler: fake_handler.id)
@@ -20,6 +21,8 @@ describe "Admin wizards verification fields" do
       visit admin_wizards_verification_fields_path
 
       expect(page).to have_content "Email"
+      expect(page).to have_content "sample_regex"
+      expect(page).to have_content "Text field"
     end
 
     scenario "Should show verification fields in defined order" do
@@ -40,6 +43,7 @@ describe "Admin wizards verification fields" do
       check "Required?"
       check "Require confirmation field?"
       fill_in "Format", with: "/\A[\d \+]+\z/"
+      select "Text field", from: :verification_field_kind
       click_button "Create field"
 
       expect(page).to have_content "Verification field created successfully"

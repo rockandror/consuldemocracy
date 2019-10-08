@@ -61,6 +61,7 @@ es:
             position: Posición
             required: Requerido
             confirmation_validation: Confirmación
+            kind: Tipo
             format: Formato
             title: Campos de verificación
             description_html: "Pending..."
