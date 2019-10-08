@@ -22,8 +22,9 @@ describe Verification::Handlers::RemoteCensus do
         handler: :remote_census)
     end
 
-    it "returns error response when force with attribues sended a stubbed_invalid_response" do
-      response = remote_census_handler.verify({ document_number: "12345678Z", document_type: "invalid_document_type", user: user })
+    it "returns error response when force with attributes sended a stubbed_invalid_response" do
+      attributes = { document_number: "12345678Z", document_type: "invalid_document_type", user: user }
+      response = remote_census_handler.verify(attributes)
 
       expect(response.success?).not_to be true
       expect(response.error?).to be true
@@ -31,7 +32,8 @@ describe Verification::Handlers::RemoteCensus do
 
     it "returns error response when response not contains valid condition defined" do
       Setting["remote_census.response.valid"] = "path.that_is_not_contained.on_response"
-      response = remote_census_handler.verify({ document_number: "12345678Z", document_type: "1", user: user })
+      attributes = { document_number: "12345678Z", document_type: "1", user: user }
+      response = remote_census_handler.verify(attributes)
 
       expect(response.success?).not_to be true
       expect(response.error?).to be true
@@ -40,12 +42,13 @@ describe Verification::Handlers::RemoteCensus do
     it "returns error response when verification response fields is not valid" do
       valid_response_path = "get_habita_datos_response.get_habita_datos_return.datos_habitante.item"
       Setting["remote_census.response.valid"] = valid_response_path
-      postal_code_field = create(:verification_field, name: :postal_code)
-      postal_code_response_path = "get_habita_datos_response.get_habita_datos_return.datos_vivienda.item.codigo_postal"
-      create(:verification_handler_field_assignment, verification_field: postal_code_field,
-        handler: :remote_census, response_path: postal_code_response_path)
+      field = create(:verification_field, name: :postal_code)
+      response_path = "get_habita_datos_response.get_habita_datos_return.datos_vivienda.item.codigo_postal"
+      create(:verification_handler_field_assignment, verification_field: field,
+        handler: :remote_census, response_path: response_path)
 
-      response = remote_census_handler.verify({ document_number: "12345678Z", document_type: "1", postal_code: "00001", user: user })
+      attributes = { document_number: "12345678Z", document_type: "1", postal_code: "00001", user: user }
+      response = remote_census_handler.verify(attributes)
 
       expect(response.success?).not_to be true
       expect(response.error?).to be true
@@ -54,12 +57,13 @@ describe Verification::Handlers::RemoteCensus do
     it "returns success response when all validation passes" do
       valid_response_path = "get_habita_datos_response.get_habita_datos_return.datos_habitante.item"
       Setting["remote_census.response.valid"] = valid_response_path
-      postal_code_field = create(:verification_field, name: :postal_code)
-      postal_code_response_path = "get_habita_datos_response.get_habita_datos_return.datos_vivienda.item.codigo_postal"
-      create(:verification_handler_field_assignment, verification_field: postal_code_field,
-        handler: :remote_census, response_path: postal_code_response_path)
+      field = create(:verification_field, name: :postal_code)
+      response_path = "get_habita_datos_response.get_habita_datos_return.datos_vivienda.item.codigo_postal"
+      create(:verification_handler_field_assignment, verification_field: field,
+        handler: :remote_census, response_path: response_path)
 
-      response = remote_census_handler.verify({ document_number: "12345678Z", document_type: "1", postal_code: "28013", user: user })
+      attributes = { document_number: "12345678Z", document_type: "1", postal_code: "28013", user: user }
+      response = remote_census_handler.verify(attributes)
 
       expect(response.success?).to be true
       expect(response.error?).not_to be true
