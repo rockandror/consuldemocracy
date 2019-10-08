@@ -201,7 +201,7 @@ describe "Verification process" do
 
       expect(page).not_to have_content "Your account was successfully verified!"
       expect(page).to have_content "Enter confirmation codes to verify your account"
-      expect(page).to have_field "Sms confirmation code"
+      expect(page).to have_field "SMS confirmation code"
     end
 
     scenario "When two step verification process has not errors user
@@ -216,7 +216,7 @@ describe "Verification process" do
 
       expect(page).not_to have_content "Your account was successfully verified!"
       expect(page).to have_content "Enter confirmation codes to verify your account"
-      expect(page).to have_field "Sms confirmation code"
+      expect(page).to have_field "SMS confirmation code"
     end
   end
 end
