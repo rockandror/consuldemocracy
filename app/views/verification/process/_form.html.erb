@@ -4,22 +4,28 @@
   <% @process.fields.each do |_, field| %>
     <div class="small-12 column">
       <% if field.checkbox? %>
+
         <%= f.label field.name do %>
           <%= f.check_box field.name, label: false %>
           <span class="checkbox">
             <%= checkbox_label(field) %>
           </span>
         <% end %>
-      <% end %>
-      <% if field.text? %>
-        <%= f.label field.name, field.label %>
-        <%= f.text_field field.name, label: false, hint: field_hint(field) %>
-        <% if field.confirmation_validation? %>
-            <%= f.label "#{field.name}_confirmation", "#{field.label} confirmation" %>
-            <%= f.text_field "#{field.name}_confirmation", label: false, hint: "Confirme su #{field.name}" %>
-        <% end %>
+
+      <% else %>
+
+        <%= f.text_field field.name, label: field.label, hint: field_hint(field) %>
+
       <% end %>
     </div>
+
+    <% if field.confirmation_validation? %>
+      <div class="small-12 column">
+        <%= f.text_field confirmation_field_name(field),
+                         label: confirmation_field_label(field),
+                         hint: confirmation_field_hint(field) %>
+      </div>
+    <% end %>
   <% end %>
 
   <div class="actions small-12 column">
