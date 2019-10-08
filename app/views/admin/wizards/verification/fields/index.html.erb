@@ -10,23 +10,27 @@
     <h2 class="inline-block"><%= t("admin.wizards.verification.fields.index.title") %></h2>
     <p><%= t("admin.wizards.verification.fields.index.description_html") %></p>
 
-    <table class="scroll">
-      <thead>
-        <tr>
-          <th scope="col" class="text-center"><%= t("admin.wizards.verification.fields.index.position")%></th>
-          <th scope="col"><%= t("admin.wizards.verification.fields.index.name")%></th>
-          <th scope="col"><%= t("admin.wizards.verification.fields.index.controller")%></th>
-          <th scope="col"><%= t("admin.wizards.verification.fields.index.label")%></th>
-          <th scope="col" class="text-center"><%= t("admin.wizards.verification.fields.index.required")%></th>
-          <th scope="col" class="text-center small-4"><%= t("admin.wizards.verification.fields.index.confirmation_validation")%></th>
-          <th scope="col" class="text-center"><%= t("admin.wizards.verification.fields.index.format")%></th>
-          <th scope="col" class="small-4 text-right"><%= t("admin.actions.actions")%></th>
-        </tr>
-      </thead>
+    <% if @fields.empty? %>
+      <%= t("admin.wizards.verification.fields.index.field_without_table")%>
+    <% else %>
+      <table class="scroll">
+        <thead>
+          <tr>
+            <th scope="col" class="text-center"><%= t("admin.wizards.verification.fields.index.position")%></th>
+            <th scope="col"><%= t("admin.wizards.verification.fields.index.name")%></th>
+            <th scope="col"><%= t("admin.wizards.verification.fields.index.controller")%></th>
+            <th scope="col"><%= t("admin.wizards.verification.fields.index.label")%></th>
+            <th scope="col" class="text-center"><%= t("admin.wizards.verification.fields.index.required")%></th>
+            <th scope="col" class="text-center small-4"><%= t("admin.wizards.verification.fields.index.confirmation_validation")%></th>
+            <th scope="col" class="text-center"><%= t("admin.wizards.verification.fields.index.format")%></th>
+            <th scope="col" class="small-4 text-right"><%= t("admin.actions.actions")%></th>
+          </tr>
+        </thead>
 
-      <tbody>
-        <%= render partial: "field", collection: @fields %>
-      </tbody>
-    </table>
+        <tbody>
+          <%= render partial: "field", collection: @fields %>
+        </tbody>
+      </table>
+    <% end %>
   </div>
 </div>
