@@ -65,7 +65,8 @@ es:
             format: Formato
             title: Campos de verificación
             description_html: "Pending..."
-            field_without_table: No hay ningun campo creado. Crea tu primer campo.
+            field_without_table: No hay ningún campo creado.
+            field_without_table_create_field: Crea tu primer campo
           new:
             form:
               submit_button: Crear campo

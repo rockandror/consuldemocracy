@@ -65,6 +65,8 @@ en:
             format: Format
             title: Verification fields
             description_html: "Pending..."
+            field_without_table: There is no field created.
+            field_without_table_create_field: Create your first field
           new:
             form:
               submit_button: Create field
