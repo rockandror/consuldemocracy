@@ -3,6 +3,7 @@ class Admin::Verification::Handlers::Sms::FieldsController < Admin::Verification
   RECOMMENDED_FIELD_ATTRIBUTES = {
     label: I18n.t("admin.verification.handlers.sms.fields.create.phone_default_label"),
     confirmation_validation: true,
+    kind: :text,
     required: true
   }
 
