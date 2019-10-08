@@ -1,11 +1,13 @@
 <%= form_for @confirmation, url: verification_confirmation_path do |f| %>
   <% @confirmation.confirmation_fields.each do |field| %>
     <div class="small-12 column">
-      <%= f.text_field field %>
+      <%= f.text_field field,
+                       label: confirmation_field_label(field),
+                       hint:  confirmation_field_hint(field)%>
     </div>
   <% end %>
 
   <div class="actions small-12 column">
-    <%= f.submit t("verification.confirmation.new.form.submit") %>
+    <%= f.submit t("verification.confirmation.form.submit") %>
   </div>
 <% end %>
