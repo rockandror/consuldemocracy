@@ -1,6 +1,7 @@
 require "rails_helper"
 
 describe Verification::Process do
+  before { Setting["feature.custom_verification_process"] = true }
   let(:process) { build(:verification_process) }
 
   it "Should be valid" do
@@ -338,11 +339,9 @@ describe Verification::Process do
       user = create(:user)
       field = create(:verification_field, name: :phone)
       create(:verification_handler_field_assignment, verification_field: field, handler: :sms)
-      process = build(:verification_process, user: user)
-      process.phone = "333444555"
-      process.save
-      confirmation = build(:verification_confirmation, user: user,
-        sms_confirmation_code: user.reload.sms_confirmation_code)
+      process = create(:verification_process, user: user, phone: "333444555")
+      user.reload
+      confirmation = build(:verification_confirmation, user: user, sms_confirmation_code: user.sms_confirmation_code)
       confirmation.save
 
       expect(process.reload.confirmations_pending?).to be(false)
