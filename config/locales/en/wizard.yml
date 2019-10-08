@@ -34,6 +34,18 @@ en:
           form:
             format_placeholder: Add the regular expression without the start (/) and end (/) escapes
             checkbox_link: "This field must be filled with the slug of a page created in the admin section 'Site content' > 'Custom pages'."
+            handlers:
+              input_label_help: "Adds a name to the verification field, e.g.: document_number or document_type"
+              input_hint_help: Write a help to understand what the field does..
+              input_name_help: "Ex: Document Type"
+              input_position_help: "Put the positions in which you want to put the field in the form module. Ex: 1,2,3,4"
+              request_path: "If the field you are defining needs to be sent to the Remote Census, fill in the value with the path of this field in the request. For example if the request structure is {'request': {'sample_field': ''}}, if we are defining the sample_field, we should fill this field with: 'request.sample_field'."
+              response_path: "If the field you are defining needs to be validated with the remote census response, fill in the value with the path of this field in the response and it will be validated that the value of the field entered by the user is equal to the one sent in the response. For example if the response structure is {response: {sample_field: 'sample value'}}, we should fill this field with: 'response.sample_field'"
+            label_required: Is a field required?
+            label_checkbox: You want it to be a checkbox
+            label_confirmation_validation: Do you want to add a confirmation field?
+            format_placeholder: Add the regular expression without the start (/) and end (/) escapes
+            checkbox_link: "This field must be filled with the slug of a page created in the administrators' section 'Site content' > 'Custom pages'."
           handlers:
             name:
               residents: Residents verifications (local database)

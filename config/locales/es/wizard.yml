@@ -35,6 +35,15 @@ es:
             handlers:
               help: Este campo se verificará con los verificadores activos de la lista a continuación.
               label: Verificadores
+              input_label_help: "Añade un nombre al campo de verificacion, ej: document_number o document_type"
+              input_hint_help: Escribe un ayuda a entender que hace el campo.
+              input_name_help: "Ej: Document Type"
+              input_position_help: "Pon la posiciones en la cual quire poner el campo en el modulo del formulario. Ej: 1,2,3,4"
+              request_path: "Si el campo que está definiendo necesita ser enviado al Censo Remoto, llene el valor con la ruta de este campo en la solicitud. Por ejemplo, si la estructura de petición es {'request': {'sample_field': ''}}, si estamos definiendo el campo_de_muestreo, debemos rellenar este campo con: 'request.sample_field'."
+              response_path: "Si el campo que está definiendo necesita ser validado con la respuesta del censo remoto, rellene el valor con la ruta de este campo en la respuesta y se validará que el valor del campo introducido por el usuario es igual al enviado en la respuesta. Por ejemplo, si la estructura de respuesta es {response: {sample_field: 'sample value'}}, debemos rellenar este campo con: 'response.sample_field'."
+            label_required: Es un campo requeridos?
+            label_checkbox: Quieres que sea un checkbox?
+            label_confirmation_validation: Quieres añadir un campo de confirmacion?
             format_placeholder: Añadir la expresión regular sin los escapados de inicio (/) y final(/)
             checkbox_link: "Este campo se debe rellenar con el slug de una página creada en la sección de administradores 'Contenido del sitio' > 'Personalizar páginas'"
           handlers:

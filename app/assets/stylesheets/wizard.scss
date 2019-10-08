@@ -44,11 +44,48 @@
     }
   }
 
-  .back {
-    margin: 1em 0;
+  .verification-new {
+    margin: 0 auto;
+
+    .row.globalize-languages.column {
+      margin: 0 auto;
+    }
+
+    input[type="checkbox"]{
+      margin-bottom: $line-height;
+      margin-top: $line-height;
+    }
+
+    label[for="verification_field_is_checkbox"],
+    label[for="verification_field_required"],
+    label[for="verification_field_confirmation_validation"]{
+      font-weight: normal;
+    }
+
+    #input-checkbox-link {
+      display: none;
+    }
+
+    label, input, small {
+      margin-left: 0;
+    }
+
+    .back {
+      margin: $line-height 0;
+    }
   }
 
-  .row.globalize-languages.column {
+  .field-assignments-new {
     margin: 0 auto;
+
+    .back {
+      margin: $line-height 0;
+    }
+  }
+
+  table {
+    .button.hollow {
+      margin-bottom: 0.5rem;
+    }
   }
 }

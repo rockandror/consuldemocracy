@@ -1,8 +1,8 @@
-<%= render "admin/wizards/header_steps", back_step: new_admin_wizards_verification_path,
-                                         next_step: admin_wizards_verification_handlers_path,
-                                         wizard: "verification" %>
-
 <div class="medium-12 columns">
+  <%= render "admin/wizards/header_steps", back_step: new_admin_wizards_verification_path,
+                                           next_step: admin_wizards_verification_handlers_path,
+                                           wizard: "verification" %>
+
   <div class="columns">
     <%= link_to t("admin.wizards.verification.fields.index.create"),
                   new_admin_wizards_verification_field_path, class: "button float-right" %>
@@ -18,9 +18,9 @@
           <th scope="col"><%= t("admin.wizards.verification.fields.index.controller")%></th>
           <th scope="col"><%= t("admin.wizards.verification.fields.index.label")%></th>
           <th scope="col" class="text-center"><%= t("admin.wizards.verification.fields.index.required")%></th>
-          <th scope="col" class="text-center"><%= t("admin.wizards.verification.fields.index.confirmation_validation")%></th>
+          <th scope="col" class="text-center small-4"><%= t("admin.wizards.verification.fields.index.confirmation_validation")%></th>
           <th scope="col" class="text-center"><%= t("admin.wizards.verification.fields.index.format")%></th>
-          <th scope="col" class="small-4"><%= t("admin.actions.actions")%></th>
+          <th scope="col" class="small-4 text-right"><%= t("admin.actions.actions")%></th>
         </tr>
       </thead>
 

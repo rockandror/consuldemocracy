@@ -16,7 +16,7 @@
           <th scope="col" class="text-center"><%= t("admin.wizards.verification.fields.index.required")%></th>
           <th scope="col" class="text-center"><%= t("admin.wizards.verification.fields.index.confirmation_validation")%></th>
           <th scope="col" class="text-center"><%= t("admin.wizards.verification.fields.index.format")%></th>
-          <th scope="col" class="small-4"><%= t("admin.actions.actions")%></th>
+          <th scope="col" class="small-4 text-right"><%= t("admin.actions.actions")%></th>
         </tr>
       </thead>
 
@@ -24,7 +24,8 @@
         <%= render partial: "admin/wizards/verification/fields/field", collection: @fields %>
       </tbody>
     </table>
-
-    <%= link_to t("admin.wizards.verification.finish.btn_finish"), admin_root_path, class: "button" %>
+    <div class="margin-bottom">
+      <%= link_to t("admin.wizards.verification.finish.btn_finish"), admin_root_path, class: "button" %>
+    </div>
   </div>
 </div>

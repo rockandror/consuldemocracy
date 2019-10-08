@@ -6,7 +6,7 @@
   <td class="text-center"><%= boolean_text_representation(field.required)  %></td>
   <td class="text-center"><%= boolean_text_representation(field.confirmation_validation)  %></td>
   <td class="text-center"><%= field.format  %></td>
-  <td class="float-right">
+  <td class="text-right">
     <%= link_to t("admin.wizards.verification.fields.index.edit"),
                 edit_admin_wizards_verification_field_path(field),
                 class: "button hollow" %>
