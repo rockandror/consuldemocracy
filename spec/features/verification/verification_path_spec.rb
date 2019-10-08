@@ -99,4 +99,42 @@ describe "Verification path" do
     end
   end
 
+  describe "Verification Process" do
+    before { Setting["feature.custom_verification_process"] = "true" }
+
+    let!(:user) { create(:user) }
+
+    scenario "User is already verified" do
+      create(:verification_process, user: user)
+      user.reload
+      login_as(user)
+
+      visit verification_path
+
+      expect(page).to have_current_path(account_path)
+      expect(page).to have_content "Your account is already verified"
+    end
+
+    scenario "User has not started verification process" do
+      login_as(user)
+      visit verification_path
+
+      expect(page).to have_current_path(new_verification_process_path)
+      expect(page).to have_content "Verification process"
+    end
+
+    scenario "User has started a verification process with required confirmation but not finished yet" do
+      Setting["custom_verification_process.sms"] = "true"
+      field = create(:verification_field, name: :phone)
+      create(:verification_handler_field_assignment, verification_field: field, handler: :sms)
+      create(:verification_process, user: user, phone: "555444666")
+      user.reload
+      login_as(user)
+
+      visit verification_path
+
+      expect(page).to have_current_path(new_verification_confirmation_path)
+      expect(page).to have_content("Enter confirmation codes to verify your account")
+    end
+  end
 end
