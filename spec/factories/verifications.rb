@@ -69,6 +69,7 @@ FactoryBot.define do
     sequence(:label)     { |n| "Label for field #{n}" }
     sequence(:position) { |n| n  + 1 }
     required false
+    kind "text"
 
     trait :required do
       required true

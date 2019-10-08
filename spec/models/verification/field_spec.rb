@@ -25,6 +25,12 @@ describe Verification::Field do
     expect(field).not_to be_valid
   end
 
+  it "Should not be valid without kind" do
+    field.kind = nil
+
+    expect(field).not_to be_valid
+  end
+
   describe ".required" do
     it "Should return only required fields" do
       required_field = create :verification_field, required: true

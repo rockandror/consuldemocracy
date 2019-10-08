@@ -15,6 +15,7 @@ class Verification::Field < ApplicationRecord
   validates_translation :label, presence: true, length: { minimum: 2 }
   validates :name, presence: true
   validates :position, presence: true
+  validates :kind, presence: true
 
   scope :required, -> { where(required: true) }
   scope :confirmation_validation, -> { where(confirmation_validation: true) }
