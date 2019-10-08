@@ -45,7 +45,13 @@ describe Verification::Configuration do
   describe ".required_confirmation_handlers" do
     let(:without_confirmation_handler) do
       Class.new(Verification::Handler) do
-        register_as :my_handler
+        register_as :without_confirmation_handler
+      end
+    end
+    let(:required_confirmation_handler) do
+      Class.new(Verification::Handler) do
+        register_as :required_confirmation_handler
+        requires_confirmation true
       end
     end
 
@@ -57,7 +63,8 @@ describe Verification::Configuration do
 
       handlers = Verification::Configuration.required_confirmation_handlers
       expect(handlers).to include({ "my_handler" => handler })
-      expect(handlers).not_to include without_confirmation_handler
+      expect(handlers).not_to include({ "without_confirmation_handler" => without_confirmation_handler })
+      expect(handlers).not_to include({ "required_confirmation_handler" => required_confirmation_handler })
     end
   end
 
