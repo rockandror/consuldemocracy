@@ -73,6 +73,12 @@ en:
           error: Your account could not be verified!
           success: Your account was successfully verified!
           already_verified: Your account is already verified
+      form:
+        confirmation_hint: "Please, confirm the %{original_label} field"
+        confirmation_label: "%{original_label} confirmation"
+        submit: Verify my account
+      new:
+        title: Verify your account
     redirect_notices:
       already_verified: Your account is already verified
       email_already_sent: We have already sent an email with a confirmation link. If you cannot locate the email, you can request a reissue here

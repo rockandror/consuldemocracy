@@ -61,7 +61,7 @@ describe "Verification process" do
       name_field.update(required: true)
       visit new_verification_process_path
 
-      click_button "Save"
+      click_button "Verify my account"
 
       expect(page).to have_content "1 error prevented this Verification/Process from being saved"
       expect(page).to have_content "can't be blank"
@@ -73,7 +73,7 @@ describe "Verification process" do
 
       fill_in "Phone", with: "666555444"
       fill_in "Phone confirmation", with: "666555443"
-      click_button "Save"
+      click_button "Verify my account"
 
       expect(page).to have_content "1 error prevented this Verification/Process from being saved"
       expect(page).to have_content "doesn't match"
@@ -84,7 +84,7 @@ describe "Verification process" do
       visit new_verification_process_path
 
       fill_in "Phone", with: "234 234 234A"
-      click_button "Save"
+      click_button "Verify my account"
 
       expect(page).to have_content "1 error prevented this Verification/Process from being saved"
       expect(page).to have_content "invalid"
@@ -99,7 +99,7 @@ describe "Verification process" do
       fill_in "Name", with: "My Fabolous Name"
       fill_in "Email", with: "email@example.com"
       fill_in "Phone", with: "234234234"
-      click_button "Save"
+      click_button "Verify my account"
 
       expect(page).to have_content "2 errors prevented this Verification/Process from being saved"
       expect(page).to have_content "has already been taken"
@@ -112,7 +112,7 @@ describe "Verification process" do
       fill_in "Name", with: "My Fabolous Name"
       fill_in "Email", with: "email@example.com"
       fill_in "Phone", with: "234234234"
-      click_button "Save"
+      click_button "Verify my account"
 
       expect(page).to have_content "Your account was successfully verified!"
     end
@@ -130,7 +130,7 @@ describe "Verification process" do
 
       expect(page).to have_link("link", href: custom_page.url)
 
-      click_button "Save"
+      click_button "Verify my account"
 
       expect(page).to have_content "Your account was successfully verified!"
     end
@@ -152,7 +152,7 @@ describe "Verification process" do
       fill_in "Email", with: "email@example.com"
       fill_in "Phone", with: "111222333"
       fill_in "Postal code", with: "00700"
-      click_button "Save"
+      click_button "Verify my account"
 
       expect(page).to have_content "Your account was successfully verified!"
     end
@@ -174,7 +174,7 @@ describe "Verification process" do
       fill_in "Document type", with: "1"
       fill_in "Document number", with: "12345678Z"
       fill_in "Postal code", with: "28013"
-      click_button "Save"
+      click_button "Verify my account"
 
       expect(page).to have_content "Your account was successfully verified!"
     end
@@ -197,7 +197,7 @@ describe "Verification process" do
       fill_in "Email", with: "email@example.com"
       fill_in "Phone", with: "111222333"
       fill_in "Postal code", with: "00700"
-      click_button "Save"
+      click_button "Verify my account"
 
       expect(page).not_to have_content "Your account was successfully verified!"
       expect(page).to have_content "Enter confirmation codes to verify your account"
@@ -212,7 +212,7 @@ describe "Verification process" do
       fill_in "Name", with: "My Fabolous Name"
       fill_in "Email", with: "email@example.com"
       fill_in "Phone", with: "234234234"
-      click_button "Save"
+      click_button "Verify my account"
 
       expect(page).not_to have_content "Your account was successfully verified!"
       expect(page).to have_content "Enter confirmation codes to verify your account"
