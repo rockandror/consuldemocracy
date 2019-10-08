@@ -1,6 +1,4 @@
-class Admin::Wizards::InstallerController < Admin::BaseController
-  layout "wizard"
-
+class Admin::Wizards::InstallerController < Admin::Wizards::BaseController
   before_action :set_total_steps
   before_action :set_settings, only: :show
 

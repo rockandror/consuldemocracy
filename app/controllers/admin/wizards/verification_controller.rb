@@ -1,6 +1,4 @@
-class Admin::Wizards::VerificationController < Admin::BaseController
-  layout "wizard"
-
+class Admin::Wizards::VerificationController < Admin::Wizards::BaseController
   def new
     @settings = [Setting.find_by(key: "feature.custom_verification_process"),
                  Setting.find_by(key: "feature.user.skip_verification"),

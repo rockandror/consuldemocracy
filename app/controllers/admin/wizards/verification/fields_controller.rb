@@ -1,5 +1,4 @@
-class Admin::Wizards::Verification::FieldsController < Admin::Verification::BaseController
-  layout "wizard"
+class Admin::Wizards::Verification::FieldsController < Admin::Wizards::BaseController
   include Translatable
 
   before_action :set_field, only: [:edit, :update, :destroy]

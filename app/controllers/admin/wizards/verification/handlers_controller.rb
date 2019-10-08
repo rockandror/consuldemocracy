@@ -1,6 +1,4 @@
-class Admin::Wizards::Verification::HandlersController < Admin::BaseController
-  layout "wizard"
-
+class Admin::Wizards::Verification::HandlersController < Admin::Wizards::BaseController
   before_action :set_settings, only: :index
 
   def index

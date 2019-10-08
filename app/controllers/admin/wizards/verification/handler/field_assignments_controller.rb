@@ -1,5 +1,4 @@
-class Admin::Wizards::Verification::Handler::FieldAssignmentsController < Admin::Verification::BaseController
-  layout "wizard"
+class Admin::Wizards::Verification::Handler::FieldAssignmentsController < Admin::Wizards::BaseController
   authorize_resource class: "Verification::Handler::FieldAssignment"
   before_action :set_handler
   before_action :set_field_assignment, only: [:edit, :update, :destroy]
