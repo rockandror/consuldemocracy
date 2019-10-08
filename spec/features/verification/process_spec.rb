@@ -2,15 +2,15 @@ require "rails_helper"
 
 describe "Verification process" do
 
-  let!(:name_field)        { create(:verification_field, name: "name", label: "Name", position: 1) }
-  let!(:email_field)       { create(:verification_field, name: "email", label: "Email", position: 2) }
-  let!(:phone_field)       { create(:verification_field, name: "phone", label: "Phone", position: 3) }
+  let!(:name_field)        { create(:verification_field, name: "name", label: "Name", position: 1, kind: "text") }
+  let!(:email_field)       { create(:verification_field, name: "email", label: "Email", position: 2, kind: "text") }
+  let!(:phone_field)       { create(:verification_field, name: "phone", label: "Phone", position: 3, kind: "text") }
   let!(:postal_code_field) { create(:verification_field, name: "postal_code", label: "Postal code",
-                                                         position: 4) }
+                                                         position: 4, kind: "text") }
   let!(:document_type_field)   { create(:verification_field, name: "document_type", label: "Document type",
-                                                             position: 5) }
+                                                             position: 5, kind: "text") }
   let!(:document_number_field) { create(:verification_field, name: "document_number", label: "Document number",
-                                                             position: 6) }
+                                                             position: 6, kind: "text") }
   let(:user)                   { create(:user) }
 
   before do
@@ -123,7 +123,7 @@ describe "Verification process" do
 
       custom_page = create(:site_customization_page, slug: "new_page_tos_slug")
       create(:verification_field, name: "tos", label: "Terms of service", position: 7, is_checkbox: true,
-                                  required: true, checkbox_link: "new_page_tos_slug")
+                                  required: true, checkbox_link: "new_page_tos_slug", kind: "checkbox")
       visit new_verification_process_path
 
       check "verification_process_tos"

@@ -55,6 +55,13 @@
   <hr>
   <div class="row">
     <div class="small-12 column">
+      <%= f.enum_select :kind %>
+    </div>
+  </div>
+
+  <hr>
+  <div class="row">
+    <div class="small-12 column">
     <%= f.label :is_checkbox do %>
       <%= f.check_box :is_checkbox %>
     <% end %>

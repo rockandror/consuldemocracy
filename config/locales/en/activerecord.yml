@@ -489,6 +489,9 @@ en:
         format: Format
         is_checkbox: Is checkbox?
         checkbox_link: Slug from application page
+      verification/field/kind:
+        text: "Text field"
+        checkbox: "Checkbox field"
       verification/field/translation:
         label: Label
       verification/resident:

@@ -1,6 +1,8 @@
 class Verification::Field < ApplicationRecord
   self.table_name = "verification_fields"
 
+  enum kind: { text: 0, checkbox: 1 }
+
   translates :label, touch: true
   translates :hint, touch: true
   include Globalizable

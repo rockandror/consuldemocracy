@@ -491,6 +491,9 @@ es:
         format: Formato
         is_checkbox: Es un checkbox?
         checkbox_link: Slug de una página de la aplicación
+      verification/field/kind:
+        text: "Campo de texto"
+        checkbox: "Campo checkbox"
       verification/field/translation:
         label: Etiqueta
       verification/resident:
