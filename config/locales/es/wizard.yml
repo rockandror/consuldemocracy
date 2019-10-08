@@ -86,6 +86,8 @@ es:
             form:
               submit_button: Guardar
             index:
+              create_sms_fields:
+                link: Crear campos de verificación telefónica
               delete: Borrar
               description:
                 handlers:
