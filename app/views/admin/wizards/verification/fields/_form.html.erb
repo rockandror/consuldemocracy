@@ -7,34 +7,25 @@
   <div class="row">
     <%= f.translatable_fields do |translations_form| %>
       <div class="small-12 column">
-        <%= translations_form.text_field :label %>
-        <p class="help-text"><%= t("admin.wizards.verification.fields.form.handlers.input_label_help") %></p>
+        <%= translations_form.text_field :label, hint: t("admin.wizards.verification.fields.form.handlers.input_label_help") %>
       </div>
 
       <div class="small-12 column">
-        <%= translations_form.text_field :hint %>
-        <p class="help-text"><%= t("admin.wizards.verification.fields.form.handlers.input_hint_help") %></p>
+        <%= translations_form.text_field :hint, hint: t("admin.wizards.verification.fields.form.handlers.input_hint_help") %>
       </div>
     <% end %>
   </div>
 
   <div class="row margin-top">
     <div class="small-12 medium-6 column">
-      <%= f.text_field :name %>
-      <p class="help-text"><%= t("admin.wizards.verification.fields.form.handlers.input_name_help") %></p>
+      <%= f.text_field :name, hint: t("admin.wizards.verification.fields.form.handlers.input_name_help")%>
     </div>
     <div class="small-12 medium-1 column"></div>
     <div class="small-12 medium-5 column">
-        <label><%= t("admin.wizards.verification.fields.form.label_checkbox") %></label>
-          <%= f.enum_select :kind %>
-        <br>
-        <div id="input-checkbox-link">
-          <%= f.text_field :checkbox_link %>
-          <p class="help-text"><%= t("admin.wizards.verification.fields.form.checkbox_link") %></p>
-      </div>
+      <%= f.number_field :position, hint: t("admin.wizards.verification.fields.form.handlers.input_position_help") %>
     </div>
   </div>
-
+  <hr>
   <div class="row margin-top">
     <div class="small-12 medium-6 column">
       <label><%= t("admin.wizards.verification.fields.form.label_required") %></label>
@@ -44,9 +35,14 @@
     </div>
     <div class="small-12 medium-1 column"></div>
     <div class="small-12 medium-5 column">
-    <label><%= t("admin.wizards.verification.fields.form.label_confirmation_validation")%></label>
-    <%= f.check_box :confirmation_validation %>
+      <label><%= t("admin.wizards.verification.fields.form.label_confirmation_validation")%></label>
+      <%= f.check_box :confirmation_validation %>
     </div>
+  </div>
+  <div class="small-12 column margin-bottom">
+    <%= f.label :format do %>
+      <%= f.text_field :format, placeholder: t("admin.wizards.verification.fields.form.format_placeholder"), hint: t("admin.wizards.verification.fields.form.format_placeholder") %>
+    <% end %>
   </div>
   <hr>
   <div class="row">
@@ -55,16 +51,15 @@
     </div>
   </div>
   <div class="row margin-top">
-    <div class="small-12 medium-6 column">
-      <%= f.label :format do %>
-        <%= f.text_field :format, placeholder: t("admin.wizards.verification.fields.form.format_placeholder") %>
-      <% end %>
-      <p class="help-text"><%= t("admin.wizards.verification.fields.form.format_placeholder") %>.</p>
+    <div class="small-12 medium-4 column">
+      <label><%= t("admin.wizards.verification.fields.form.label_checkbox") %></label>
+        <%= f.enum_select :kind %>
+      <br>
     </div>
-    <div class="small-12 medium-1 column"></div>
-    <div class="small-12 medium-5 column">
-      <%= f.number_field :position %>
-      <p class="help-text"><%= t("admin.wizards.verification.fields.form.handlers.input_position_help") %></p>
+    <div class="small-12 medium-8 column">
+        <div id="input-checkbox-link" style="<%= display_checkbox_link(@field) %>">
+        <%= f.text_field :checkbox_link, hint: t("admin.wizards.verification.fields.form.checkbox_link") %>
+      </div>
     </div>
   </div>
   <hr>

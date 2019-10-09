@@ -47,6 +47,15 @@
   .verification-new {
     margin: 0 auto;
 
+    label.hint,
+    .hint {
+      color: $text-medium;
+      margin-top: -0.5rem;
+      font-size: 0.8125rem;
+      font-style: italic;
+      font-weight: normal;
+    }
+
     .row.globalize-languages.column {
       margin: 0 auto;
     }
@@ -58,8 +67,12 @@
 
     label[for="verification_field_is_checkbox"],
     label[for="verification_field_required"],
-    label[for="verification_field_confirmation_validation"]{
+    label[for="verification_field_confirmation_validation"] {
       font-weight: normal;
+    }
+
+    label[for="verification_field_kind"]{
+      display: none;
     }
 
     label, input, small {

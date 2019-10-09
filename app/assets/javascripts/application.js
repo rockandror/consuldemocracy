@@ -86,6 +86,7 @@
 //= require columns_selector
 //= require budget_edit_associations
 //= require votations
+//= require wizard
 
 var initialize_modules = function() {
   "use strict";
@@ -135,6 +136,7 @@ var initialize_modules = function() {
   App.Globalize.initialize();
   App.SendAdminNotificationAlert.initialize();
   App.ModalDownload.initialize();
+  App.Wizard.initialize();
   if ( $('#js-columns-selector').length) {
     App.ColumnsSelector.initialize();
   }
