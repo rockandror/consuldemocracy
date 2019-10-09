@@ -23,9 +23,10 @@ class Verification::Process < ApplicationRecord
   def initialize(attributes = {})
     add_attributes_from_verification_fields_definition
 
+    super
+
     parse_date_fields(attributes)
     remove_date_fields_attibutes(attributes)
-    super
   end
 
   def requires_confirmation?
@@ -132,7 +133,7 @@ class Verification::Process < ApplicationRecord
 
     def remove_date_fields_attibutes(attributes)
       Verification::Field.where(kind: :date).each do |field|
-        attributes = remove_date("date_of_birth", attrs)
+        attributes = remove_date("date_of_birth", attributes)
       end
     end
 
