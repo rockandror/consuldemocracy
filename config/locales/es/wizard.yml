@@ -110,6 +110,8 @@ es:
           title: Asistente completado con éxito
           description_html: Aquí puede ver un resumen de los campos configurados durante este asistente.
           btn_finish: Finalizar asistente
+          no_fields_defined_html: "Si no ha configurado ningún campo de verificación, su proceso de verificación estará vacío. Por favor, cree algunos campos o deshabilite el proceso de verificación a través de Configuración -> Configuración Global  -> Funcionalidades -> %{link}."
+          skip_user_verification: Omitir la verificación de usuario
       installation:
         module_title: Asistente de instalación
         description: A través de esta herramienta le presentamos la instalación del sistema.
