@@ -8,7 +8,9 @@ class Verification::Field < ApplicationRecord
   include Globalizable
 
   has_many :verification_values, class_name: "Verification::Value", foreign_key: :verification_field_id
-  has_many :verification_field_options, class_name: "Verification::Field::Option", foreign_key: :verification_field_id, dependent: :destroy
+  has_many :verification_field_options, class_name: "Verification::Field::Option",
+                                        foreign_key: :verification_field_id,
+                                        dependent: :destroy
   has_many :assignments, class_name: "Verification::Handler::FieldAssignment",
                          foreign_key: :verification_field_id,
                          dependent: :destroy
