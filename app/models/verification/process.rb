@@ -158,7 +158,11 @@ class Verification::Process < ApplicationRecord
     def fields_for_handler(handler)
       params = {}
       @fields.each do |field_name, field|
-        params[field_name] = send(field_name) if field.handlers&.include?(handler)
+        next unless field.handlers&.include?(handler)
+
+        value = send(field_name)
+        value = value.to_s if field.date?
+        params[field_name] = value
       end
       params[:user] = user
       params.symbolize_keys!
