@@ -7,7 +7,7 @@
     <p><%= t("admin.wizards.verification.finish.description_html") %></p>
 
     <% if @fields.empty? %>
-      <%= t("admin.wizards.verification.finish.no_configure")%>
+      <%= verification_fields_no_fields_defined %>
     <% else %>
       <table class="scroll">
         <thead>

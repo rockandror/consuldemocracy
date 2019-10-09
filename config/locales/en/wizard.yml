@@ -54,6 +54,7 @@ en:
           index:
             controller: Controller
             create: Create field
+            create_first: Create the first one
             delete: Delete
             edit: Edit
             name: Name
@@ -116,6 +117,8 @@ en:
           title: Assistant successfully completed
           description_html: Here you can see an overview of the fields configured during this wizard.
           btn_finish: Finish Wizard
+          no_fields_defined_html: "You have not configured any verification field then your verification process will be empty. Please create some fields or disable the verification process through Settings -> Global Settings -> Features -> %{link}."
+          skip_user_verification: Skip user verification
       installation:
         module_title: Installation Wizard
         description: Through this tool we present you the installation of the system.
