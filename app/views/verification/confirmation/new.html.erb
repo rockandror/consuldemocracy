@@ -1,16 +1,12 @@
 <div class="verification-process row">
-
-  <div class="small-12 medium-9 column">
+  <div class="medium-6 medium-centered">
     <h1><%= t("verification.confirmation.new.title") %></h1>
-    <h2><%= t("verification.confirmation.new.subtitle") %></h2>
-  </div>
-
-  <div class="row column">
+    <h3><%= t("verification.confirmation.new.subtitle") %></h3>
     <%= render "form" %>
+    <p>
+      <strong><%= t("verification.confirmation.new.resend_confirmation_code_text") %></strong><br>
+      <%= link_to t("verification.confirmation.new.resend_confirmation_code_link"),
+                  new_verification_process_path %>
+    </p>
   </div>
-
-  <p>
-    <strong><%= t("verification.confirmation.new.resend_confirmation_code_text") %></strong><br>
-    <%= link_to t("verification.confirmation.new.resend_confirmation_code_link"), new_verification_process_path %>
-  </p>
 </div>
