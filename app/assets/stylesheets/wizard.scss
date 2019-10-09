@@ -97,4 +97,11 @@
       margin-bottom: 0.5rem;
     }
   }
+
+  .horizontal-scroll {
+    overflow: hidden;
+    overflow-x: auto;
+    clear: both;
+    width: 100%;
+  }
 }

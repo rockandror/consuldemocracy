@@ -9,12 +9,14 @@
 
   <div class="medium-4 columns text-right">
     <% if sms_handler?(@handler) %>
-      <%= link_to t("admin.wizards.verification.handler.field_assignments.index.create_sms_fields.link"),
+      <div class="margin-bottom">
+        <%= link_to t("admin.wizards.verification.handler.field_assignments.index.create_sms_fields.link"),
                     admin_verification_handlers_sms_fields_path, class: "button hollow",
                     method: :post, data: { confirm: t("admin.wizards.verification.handler.field_assignments.index.create_sms_fields.confirm") } %>
+      </div>
     <% end %>
     <%= link_to t("admin.wizards.verification.handler.field_assignments.index.create"),
-                  new_admin_wizards_verification_handler_field_assignment_path(@handler), class: "button margin-top" %>
+                  new_admin_wizards_verification_handler_field_assignment_path(@handler), class: "button" %>
   </div>
 
 <div class="medium-12 columns margin-top">
