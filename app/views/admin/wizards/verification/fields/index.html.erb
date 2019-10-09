@@ -24,22 +24,14 @@
           <th scope="col" class="small-4 text-right"><%= t("admin.actions.actions")%></th>
         </tr>
       </thead>
-
-      <% if @fields.empty? %>
-        <tbody>
-          <tr>
-            <td colspan="9">
-              <%= t("admin.wizards.verification.fields.index.field_without_table")%>
-              <%= link_to t("admin.wizards.verification.fields.index.field_without_table_create_field"),
-                          new_admin_wizards_verification_field_path %>
-            </td>
-          </tr>
-        </tbody>
-      <% else %>
-        <tbody>
+      <tbody>
+        <tr>
+        <% if @fields.empty? %>
+          <td colspan="9"><%= verification_fields_no_results_message %></td>
+        <% else %>
           <%= render partial: "field", collection: @fields %>
-        </tbody>
-      <% end %>
+        <% end %>
+      </tbody>
     </table>
   </div>
 </div>

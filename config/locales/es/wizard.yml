@@ -53,6 +53,7 @@ es:
               remote_census: Verificación de residencia (censo remoto)
           index:
             controller: Controlador
+            create_first: Crea el primero
             create: Crear campo
             delete: Eliminar
             edit: Editar
@@ -65,8 +66,7 @@ es:
             format: Formato
             title: Campos de verificación
             description_html: "Pending..."
-            field_without_table: No hay ningún campo creado.
-            field_without_table_create_field: Crea tu primer campo
+            no_results_html: "No hay campos de formulario de verificación definidos. %{link}."
           new:
             form:
               submit_button: Crear campo
@@ -109,7 +109,6 @@ es:
         finish:
           title: Asistente completado con éxito
           description_html: Aquí puede ver un resumen de los campos configurados durante este asistente.
-          no_configure: No has añadido ningun campo. Vuelve a empezar.
           btn_finish: Finalizar asistente
       installation:
         module_title: Asistente de instalación

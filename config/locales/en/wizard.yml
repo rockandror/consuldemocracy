@@ -66,8 +66,7 @@ en:
             format: Format
             title: Verification fields
             description_html: "Pending..."
-            field_without_table: There is no field created.
-            field_without_table_create_field: Create your first field
+            no_results_html: "There is no verification form fields defined. %{link}."
           new:
             form:
               submit_button: Create field
@@ -116,7 +115,6 @@ en:
         finish:
           title: Assistant successfully completed
           description_html: Here you can see an overview of the fields configured during this wizard.
-          no_configure: You haven't added any fields. Start over.
           btn_finish: Finish Wizard
           no_fields_defined_html: "You have not configured any verification field then your verification process will be empty. Please create some fields or disable the verification process through Settings -> Global Settings -> Features -> %{link}."
           skip_user_verification: Skip user verification
