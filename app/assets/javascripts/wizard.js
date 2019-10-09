@@ -4,8 +4,19 @@
     selecKind: function() {
       $("#verification_field_kind").on("change", function() {
         var selected = $(this).find(":selected").val();
+        console.log(selected)
         var checkBoxLink = $("#input-checkbox-link");
-        selected == "checkbox" ? checkBoxLink.show() : checkBoxLink.hide();
+        var fieldVerificationOptionsSection = $("#field-verification-options-section");
+        if (selected == "checkbox") {
+          fieldVerificationOptionsSection.hide();
+          checkBoxLink.show();
+        } else if (selected == "selector") {
+          checkBoxLink.hide();
+          fieldVerificationOptionsSection.show();
+        } else {
+          checkBoxLink.hide();
+          fieldVerificationOptionsSection.hide();
+        }
       });
     },
     initialize: function() {

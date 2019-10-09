@@ -1,0 +1,15 @@
+<div class="nested-fields small-12 columns">
+  <div class="row">
+    <div class="small-2columns left">
+        <%= f.translatable_fields do |translations_form| %>
+          <%= translations_form.text_field :label %>
+        <% end %>
+        <%= f.text_field :value %>
+    </div>
+    <div class="small-3 columns left">
+      <%= link_to_remove_association f, class: "delete" do %>
+        <%= t("admin.wizards.verification.fields.form.option_fields.remove_option") %>
+      <% end %>
+    </div>
+  </div>
+</div>

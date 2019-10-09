@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191008132544) do
+ActiveRecord::Schema.define(version: 20191008171115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1669,6 +1669,23 @@ ActiveRecord::Schema.define(version: 20191008132544) do
     t.index ["user_id"], name: "index_valuators_on_user_id", using: :btree
   end
 
+  create_table "verification_field_option_translations", force: :cascade do |t|
+    t.integer  "verification_field_option_id", null: false
+    t.string   "locale",                       null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.string   "label"
+    t.index ["locale"], name: "index_verification_field_option_translations_on_locale", using: :btree
+    t.index ["verification_field_option_id"], name: "index_5cb3b6ed70df00bd61aed4ec10259e8721d06f9f", using: :btree
+  end
+
+  create_table "verification_field_options", force: :cascade do |t|
+    t.integer "verification_field_id"
+    t.string  "label"
+    t.string  "value"
+    t.index ["verification_field_id"], name: "index_verification_field_options_on_verification_field_id", using: :btree
+  end
+
   create_table "verification_field_translations", force: :cascade do |t|
     t.integer  "verification_field_id", null: false
     t.string   "locale",                null: false
@@ -1901,6 +1918,7 @@ ActiveRecord::Schema.define(version: 20191008132544) do
   add_foreign_key "trackers", "users"
   add_foreign_key "users", "geozones"
   add_foreign_key "valuators", "users"
+  add_foreign_key "verification_field_options", "verification_fields"
   add_foreign_key "verification_handler_field_assignments", "verification_fields"
   add_foreign_key "verification_processes", "users"
   add_foreign_key "verification_values", "verification_processes"

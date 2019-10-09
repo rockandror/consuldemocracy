@@ -46,8 +46,9 @@ class Admin::Wizards::Verification::FieldsController < Admin::Wizards::BaseContr
     def verification_field_params
       attributes = [:name, :position, :required, :confirmation_validation, :format, :checkbox_link, :kind]
       translations_attributes = translation_params(::Verification::Field)
+      nested_translations_attributes = translation_params(::Verification::Field::Option)
 
-      params.require(:verification_field).permit(*attributes, translations_attributes)
+      params.require(:verification_field).permit(*attributes, translations_attributes, verification_field_options_attributes: [:id, :value, :_destroy, nested_translations_attributes])
     end
 
     def set_field

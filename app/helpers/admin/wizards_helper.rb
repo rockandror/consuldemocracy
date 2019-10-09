@@ -59,4 +59,16 @@ module Admin::WizardsHelper
     handler == "sms"
   end
 
+  def display_checkbox_link(field)
+    unless field.checkbox?
+      "display:none"
+    end
+  end
+
+  def display_field_verification_options_section(field)
+    unless field.selector?
+      "display:none"
+    end
+  end
+
 end

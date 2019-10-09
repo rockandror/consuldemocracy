@@ -1,16 +1,19 @@
 class Verification::Field < ApplicationRecord
   self.table_name = "verification_fields"
 
-  enum kind: { text: 0, checkbox: 1 }
+  enum kind: { text: 0, checkbox: 1, selector: 2 }
 
   translates :label, touch: true
   translates :hint, touch: true
   include Globalizable
 
   has_many :verification_values, class_name: "Verification::Value", foreign_key: :verification_field_id
+  has_many :verification_field_options, class_name: "Verification::Field::Option", foreign_key: :verification_field_id
   has_many :assignments, class_name: "Verification::Handler::FieldAssignment",
                          foreign_key: :verification_field_id,
                          dependent: :destroy
+
+  accepts_nested_attributes_for :verification_field_options, allow_destroy: true
 
   validates_translation :label, presence: true, length: { minimum: 2 }
   validates :name, presence: true
