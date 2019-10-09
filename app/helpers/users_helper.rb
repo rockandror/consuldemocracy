@@ -60,16 +60,6 @@ module UsersHelper
     current_user && current_user.tracker?
   end
 
-  def can_support_proposals?
-    current_user.level_two_or_three_verified? ||
-      (current_user.residence_verified_at.present? && Setting["feature.custom_verification_process"].present?)
-  end
-
-  def can_vote_proposals?
-    current_user.level_three_verified? ||
-      (current_user.residence_verified_at.present? && Setting["feature.custom_verification_process"].present?)
-  end
-
   def show_admin_menu?(user = nil)
     current_administrator? || current_moderator? || current_valuator? || current_manager? ||
       current_tracker? || (user && user.administrator?) || current_poll_officer?
