@@ -64,22 +64,25 @@
       <div id="input-checkbox-link" style="<%= display_checkbox_link(@field) %>">
         <%= f.text_field :checkbox_link, hint: t("admin.wizards.verification.fields.form.checkbox_link") %>
       </div>
-    </div>
-    <div id="field-verification-options-section" style="<%= display_field_verification_options_section(@field) %>">
-      <div id="nested-verification-field-options" class="nested-options small-12 medium-8 column">
-        <%= f.fields_for :verification_field_options do |f| %>
-          <%= render "option_fields", f: f %>
-        <% end %>
-      </div>
-      <%= link_to_add_association t("admin.wizards.verification.fields.form.option_fields.add_option"), f,
+
+      <div id="field-verification-options-section" style="<%= display_field_verification_options_section(@field) %>">
+        <div id="nested-verification-field-options" class="nested-options small-12">
+          <%= f.fields_for :verification_field_options do |f| %>
+            <%= render "option_fields", f: f %>
+          <% end %>
+        </div>
+        <div class="small-12 column margin-top">
+          <%= link_to_add_association t("admin.wizards.verification.fields.form.option_fields.add_option"), f,
                                 :verification_field_options,
                                 partial: "admin/wizards/verification/fields/option_fields",
                                 id: "new-verification-field-option-link",
-                                class: "button tiny radius info",
+                                class: "button radius expanded info",
                                 data: {
                                   association_insertion_node: "#nested-verification-field-options",
                                   association_insertion_method: "append"
                                 } %>
+        </div>
+      </div>
     </div>
   </div>
 

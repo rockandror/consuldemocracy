@@ -1,12 +1,16 @@
 <div class="nested-fields small-12 columns">
-  <div class="row">
-    <div class="small-2columns left">
+  <div class="row margin-bottom">
+    <div class="small-12">
         <%= f.translatable_fields do |translations_form| %>
-          <%= translations_form.text_field :label %>
+          <div class="column">
+            <%= translations_form.text_field :label %>
+          </div>
         <% end %>
-        <%= f.text_field :value %>
+        <div class="column">
+          <%= f.text_field :value %>
+        </div>
     </div>
-    <div class="small-3 columns left">
+    <div class="small-12 text-right column">
       <%= link_to_remove_association f, class: "delete" do %>
         <%= t("admin.wizards.verification.fields.form.option_fields.remove_option") %>
       <% end %>
