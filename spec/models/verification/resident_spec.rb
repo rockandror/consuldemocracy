@@ -23,7 +23,7 @@ describe Verification::Resident do
     resident.data = '{email=>"resident@email.com", document_number=>"12345678A"}'
 
     expect(resident).not_to be_valid
-    message = "Data format is invalid. An example of valid format could be:" +
+    message = "Data format is invalid. An example of valid format could be: " \
               "{\"key1\"=>\"value1\", \"key2\"=>\"value2\"}"
     expect(resident.errors[:data]).to include(message)
   end
