@@ -23,6 +23,13 @@
                       options_for_select(select_options),
                       prompt: "Selecciona un tipo de documento",
                       label: "Tipo de documento" %>
+
+      <% elsif field.date? %>
+        <%= f.date_select field.name,
+                          prompt: true,
+                          start_year: 1900, end_year: Date.current.year,
+                          label: field.label,
+                          hint: field.hint %>
       <% end %>
     </div>
 

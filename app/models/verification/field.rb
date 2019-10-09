@@ -1,7 +1,7 @@
 class Verification::Field < ApplicationRecord
   self.table_name = "verification_fields"
 
-  enum kind: { text: 0, checkbox: 1, selector: 2 }
+  enum kind: { text: 0, checkbox: 1, selector: 2, date: 3 }
 
   translates :label, touch: true
   translates :hint, touch: true

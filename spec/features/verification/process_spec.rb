@@ -11,7 +11,9 @@ describe "Verification process" do
                                                              position: 5) }
   let!(:document_number_field) { create(:verification_field, name: "document_number", label: "Document number",
                                                              position: 6) }
-  let(:user)                   { create(:user) }
+  let!(:date_of_birth)     { create(:verification_field, name: "date_of_birth", label: "Date of birth",
+                                                         position: 7, kind: :date) }
+  let(:user)               { create(:user) }
 
   before do
     Setting["feature.custom_verification_process"] = true
@@ -38,6 +40,9 @@ describe "Verification process" do
       expect(page).to have_field "verification_process_email"
       expect(page).to have_field "verification_process_phone"
       expect(page).to have_field "verification_process_postal_code"
+      expect(page).to have_field "verification_process_document_number"
+      expect(page).to have_field "verification_process_document_type"
+      expect(page).to have_field "verification_process_date_of_birth"
     end
 
     scenario "Shows confirmation fields next to parent fields" do

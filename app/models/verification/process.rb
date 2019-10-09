@@ -1,4 +1,6 @@
 class Verification::Process < ApplicationRecord
+  include ActiveModel::Dates
+
   self.table_name = "verification_processes"
 
   attr_accessor :fields, :handlers, :responses
@@ -21,6 +23,8 @@ class Verification::Process < ApplicationRecord
   def initialize(attributes = {})
     add_attributes_from_verification_fields_definition
 
+    parse_date_fields(attributes)
+    remove_date_fields_attibutes(attributes)
     super
   end
 
@@ -117,6 +121,18 @@ class Verification::Process < ApplicationRecord
           instance_variable_set "@#{field.name}", arg
         end
         define_confirmation_fields_accessors(field) if field.confirmation_validation?
+      end
+    end
+
+    def parse_date_fields(attributes)
+      Verification::Field.where(kind: :date).each do |field|
+        send("#{field.name}=", parse_date(field.name, attributes))
+      end
+    end
+
+    def remove_date_fields_attibutes(attributes)
+      Verification::Field.where(kind: :date).each do |field|
+        attributes = remove_date("date_of_birth", attrs)
       end
     end
 
