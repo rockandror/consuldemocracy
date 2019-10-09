@@ -101,7 +101,7 @@ describe Abilities::Administrator do
   it { should be_able_to(:show, LocalCensusRecords::Import) }
 
   it { should be_able_to(:manage, Verification::Field) }
-  it { should be_able_to(:manage, Verification::Field::HandlerAssignment) }
+  it { should be_able_to(:manage, Verification::Handler::FieldAssignment) }
   it { should be_able_to(:manage, Verification::Resident) }
   it { should be_able_to(:create, Verification::Residents::Import) }
 end
