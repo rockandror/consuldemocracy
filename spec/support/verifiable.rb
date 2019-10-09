@@ -254,18 +254,13 @@ shared_examples_for "verifiable" do
 
     describe "#residence_verified?" do
       it "is true when user has a verified verification process" do
-        create(:verification_process, verified_at: Time.current, user: user)
+        create(:verification_process, user: user)
         user.reload
 
         expect(user.residence_verified?).to eq(true)
       end
 
       it "is false when user has not a verified verification process" do
-        expect(user.residence_verified?).to eq(false)
-
-        create(:verification_process, user: user)
-        user.reload
-
         expect(user.residence_verified?).to eq(false)
       end
     end
@@ -290,37 +285,27 @@ shared_examples_for "verifiable" do
 
     describe "#level_two_verified?" do
       it "is true when user has a verified verification process" do
-        create(:verification_process, user: user, verified_at: Time.current)
+        create(:verification_process, user: user)
         user.reload
 
         expect(user.level_two_verified?).to eq(true)
       end
 
       it "is false when user has not a verified verification process" do
-        expect(user.level_two_verified?).to eq(false)
-
-        create(:verification_process, user: user)
-        user.reload
-
         expect(user.level_two_verified?).to eq(false)
       end
     end
 
     describe "#level_three_verified?" do
       it "is true when user has a verified verification process" do
-        create(:verification_process, user: user, verified_at: Time.current)
-        user.reload
-
-        expect(user.level_two_verified?).to eq(true)
-      end
-
-      it "is false when user has not a verified verification process" do
-        expect(user.level_two_verified?).to eq(false)
-
         create(:verification_process, user: user)
         user.reload
 
-        expect(user.level_two_verified?).to eq(false)
+        expect(user.level_three_verified?).to eq(true)
+      end
+
+      it "is false when user has not a verified verification process" do
+        expect(user.level_three_verified?).to eq(false)
       end
     end
 
@@ -353,18 +338,13 @@ shared_examples_for "verifiable" do
 
     describe "#is_last_verification_process_verified?" do
       it "returns true when user has a verified verification process" do
-        create(:verification_process, user: user, verified_at: Time.current)
+        create(:verification_process, user: user)
         user.reload
 
         expect(user.is_last_verification_process_verified?).to eq(true)
       end
 
       it "returns false when user has not a verified verification process" do
-        expect(user.is_last_verification_process_verified?).to eq(false)
-
-        create(:verification_process, user: user)
-        user.reload
-
         expect(user.is_last_verification_process_verified?).to eq(false)
       end
     end
