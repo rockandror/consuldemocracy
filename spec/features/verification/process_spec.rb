@@ -59,6 +59,28 @@ describe "Verification process" do
 
       expect(page).to have_content("Name hint")
     end
+
+    context "with other kinds field" do
+
+      scenario "Show defined checkbox fields" do
+        create(:verification_field, name: "checkbox_field", label: "TOS", position: 7, kind: "checkbox")
+
+        visit new_verification_process_path
+
+        expect(page).to have_field "TOS"
+      end
+
+      scenario "Show defined selector fields" do
+        selector_field = create(:verification_field, name: "selector_field", label: "Sample selector field",
+                                                     position: 7, kind: "selector")
+        create(:verification_field_option, label: "Option 1", value: "1", verification_field: selector_field)
+
+        visit new_verification_process_path
+
+        expect(page).to have_select "verification_process_selector_field"
+        expect(page).to have_content "Sample selector field"
+      end
+    end
   end
 
   describe "Create" do
@@ -135,6 +157,21 @@ describe "Verification process" do
 
       expect(page).to have_link("link", href: custom_page.url)
 
+      click_button "Verify my account"
+
+      expect(page).to have_content "Your account was successfully verified!"
+    end
+
+    scenario "When one step verification process with required selector without active handlers
+              has not errors user should be display related link and marked as verified user and
+              redirect to profile page with a notice" do
+
+      selector_field = create(:verification_field, name: "selector_field", label: "Sample selector field",
+                                                   position: 7, kind: "selector", required: true)
+      create(:verification_field_option, label: "Option 1", value: "1", verification_field: selector_field)
+
+      visit new_verification_process_path
+      select "Option 1", from: :verification_process_selector_field
       click_button "Verify my account"
 
       expect(page).to have_content "Your account was successfully verified!"

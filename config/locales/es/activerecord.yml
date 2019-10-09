@@ -490,10 +490,15 @@ es:
         confirmation_validation: Requiere campo de confirmación?
         format: Formato
         checkbox_link: Link que se mostrará al lado de un campo del tipo checkbox
+      verification/field/option:
+        value: Valor
       verification/field/kind:
-        text: "Campo de texto"
-        checkbox: "Campo checkbox"
+        text: Campo de texto
+        checkbox: Campo checkbox
+        selector: Campo selector
       verification/field/translation:
+        label: Etiqueta
+      verification/field/option/translation:
         label: Etiqueta
       verification/resident:
         data: Datos

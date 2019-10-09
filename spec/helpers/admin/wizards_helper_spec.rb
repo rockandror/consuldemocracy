@@ -139,4 +139,35 @@ describe Admin::WizardsHelper do
 
   end
 
+  describe "#display_checkbox_link" do
+
+    it "return display none when field is not checkbox kind" do
+      text_field =  create(:verification_field)
+
+      expect(display_checkbox_link(text_field)).to eq "display:none"
+    end
+
+    it "return blank when field is checkbox kind" do
+      checkbox_field =  create(:verification_field, kind: "checkbox")
+
+      expect(display_checkbox_link(checkbox_field)).to eq nil
+    end
+
+  end
+
+  describe "#display_field_verification_options_section" do
+
+    it "return display none when field is not selector kind" do
+      text_field =  create(:verification_field)
+
+      expect(display_field_verification_options_section(text_field)).to eq "display:none"
+    end
+
+    it "return blank when field is selector kind" do
+      selector_field =  create(:verification_field, kind: "selector")
+
+      expect(display_field_verification_options_section(selector_field)).to eq nil
+    end
+
+  end
 end

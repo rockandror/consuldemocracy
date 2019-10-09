@@ -65,7 +65,7 @@
         <%= f.text_field :checkbox_link, hint: t("admin.wizards.verification.fields.form.checkbox_link") %>
       </div>
 
-      <div id="field-verification-options-section" style="<%= display_field_verification_options_section(@field) %>">
+      <div id="field_verification_options_section" style="<%= display_field_verification_options_section(@field) %>">
         <div id="nested-verification-field-options" class="nested-options small-12">
           <%= f.fields_for :verification_field_options do |f| %>
             <%= render "option_fields", f: f %>

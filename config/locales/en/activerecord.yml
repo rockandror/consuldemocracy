@@ -488,10 +488,15 @@ en:
         confirmation_validation: Require confirmation field?
         format: Format
         checkbox_link: Link that will be shown next to a checkbox kind field
+      verification/field/option:
+        value: "Value"
       verification/field/kind:
-        text: "Text field"
-        checkbox: "Checkbox field"
+        text: Text field
+        checkbox: Checkbox field
+        selector: Selector field
       verification/field/translation:
+        label: Label
+      verification/field/option/translation:
         label: Label
       verification/resident:
         data: Data

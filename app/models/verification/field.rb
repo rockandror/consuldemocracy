@@ -15,7 +15,7 @@ class Verification::Field < ApplicationRecord
                          foreign_key: :verification_field_id,
                          dependent: :destroy
 
-  accepts_nested_attributes_for :verification_field_options, allow_destroy: true
+  accepts_nested_attributes_for :verification_field_options, reject_if: :all_blank, allow_destroy: true
 
   validates_translation :label, presence: true, length: { minimum: 2 }
   validates :name, presence: true

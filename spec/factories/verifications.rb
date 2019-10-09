@@ -76,6 +76,11 @@ FactoryBot.define do
     end
   end
 
+  factory :verification_field_option, class: Verification::Field::Option do
+    sequence(:label)     { |n| "Label for field #{n}" }
+    sequence(:value)     { |n| n  + 1 }
+  end
+
   factory :verification_confirmation, class: Verification::Confirmation do
     user
     initialize_with { new(attributes) }

@@ -6,7 +6,7 @@
         var selected = $(this).find(":selected").val();
         console.log(selected)
         var checkBoxLink = $("#input-checkbox-link");
-        var fieldVerificationOptionsSection = $("#field-verification-options-section");
+        var fieldVerificationOptionsSection = $("#field_verification_options_section");
         if (selected == "checkbox") {
           fieldVerificationOptionsSection.hide();
           checkBoxLink.show();

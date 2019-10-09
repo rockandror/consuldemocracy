@@ -81,6 +81,8 @@ en:
         confirmation_hint: "Please, confirm the %{original_label} field"
         confirmation_label: "%{original_label} confirmation"
         submit: Verify my account
+        select:
+          prompt: Please select
       new:
         title: Verify your account
     redirect_notices:

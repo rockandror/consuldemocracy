@@ -21,8 +21,8 @@
         <% select_options = field.verification_field_options.map { |p| [p.label, p.value] } %>
         <%= f.select field.name,
                       options_for_select(select_options),
-                      prompt: "Selecciona un tipo de documento",
-                      label: "Tipo de documento" %>
+                      prompt: t("verification.process.form.select.prompt"),
+                      label: field.label %>
 
       <% elsif field.date? %>
         <%= f.date_select field.name,

@@ -47,8 +47,8 @@ en:
             format_placeholder: Add the regular expression without the start (/) and end (/) escapes
             checkbox_link: "This field must be filled with the slug of a page created in the administrators' section 'Site content' > 'Custom pages'."
             option_fields:
-              add_option: Add new option for select.
-              remove_option: Remove option.
+              add_option: Add new option for select
+              remove_option: Remove option
           handlers:
             name:
               residents: Residents verifications (local database)
