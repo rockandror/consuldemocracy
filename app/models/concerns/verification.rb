@@ -2,12 +2,26 @@ module Verification
   extend ActiveSupport::Concern
 
   included do
-    scope :residence_verified, -> { where.not(residence_verified_at: nil) }
-    scope :level_three_verified, -> { where.not(verified_at: nil) }
-    scope :level_two_verified, -> { where("users.level_two_verified_at IS NOT NULL OR (users.confirmed_phone IS NOT NULL AND users.residence_verified_at IS NOT NULL) AND verified_at IS NULL") }
-    scope :level_two_or_three_verified, -> { where("users.verified_at IS NOT NULL OR users.level_two_verified_at IS NOT NULL OR (users.confirmed_phone IS NOT NULL AND users.residence_verified_at IS NOT NULL)") }
-    scope :unverified, -> { where("users.verified_at IS NULL AND (users.level_two_verified_at IS NULL AND (users.residence_verified_at IS NULL OR users.confirmed_phone IS NULL))") }
-    scope :incomplete_verification, -> { where("(users.residence_verified_at IS NULL AND users.failed_census_calls_count > ?) OR (users.residence_verified_at IS NOT NULL AND (users.unconfirmed_phone IS NULL OR users.confirmed_phone IS NULL))", 0) }
+    scope :residence_verified, -> { Setting["feature.custom_verification_process"].present? ? new_residence_verified : legacy_residence_verified }
+    scope :level_three_verified, -> { Setting["feature.custom_verification_process"].present? ? new_level_three_verified : legacy_level_three_verified }
+    scope :level_two_verified, -> { Setting["feature.custom_verification_process"].present? ? new_level_two_verified : legacy_level_two_verified }
+    scope :level_two_or_three_verified, -> { Setting["feature.custom_verification_process"].present? ? new_level_two_or_three_verified : legacy_level_two_or_three_verified }
+    scope :unverified, -> { Setting["feature.custom_verification_process"].present? ? new_unverified : legacy_unverified }
+    scope :incomplete_verification, -> { Setting["feature.custom_verification_process"].present? ? new_incomplete_verification : legacy_incomplete_verification }
+
+    scope :new_residence_verified, -> { new_level_two_verified.where.not("verification_processes.residence_verified_at": nil) }
+    scope :new_level_three_verified, -> { new_level_two_verified }
+    scope :new_level_two_verified, -> { joins(:last_verification_process).where.not("verification_processes.verified_at": nil) }
+    scope :new_level_two_or_three_verified, -> { new_level_two_verified }
+    scope :new_unverified, -> { left_outer_joins(:last_verification_process).where("verification_processes.verified_at": nil) }
+    scope :new_incomplete_verification, -> { joins(:last_verification_process).where("verification_processes.verified_at": nil) }
+
+    scope :legacy_residence_verified, -> { where.not(residence_verified_at: nil) }
+    scope :legacy_level_three_verified, -> { where.not(verified_at: nil) }
+    scope :legacy_level_two_verified, -> { where("users.level_two_verified_at IS NOT NULL OR (users.confirmed_phone IS NOT NULL AND users.residence_verified_at IS NOT NULL) AND verified_at IS NULL") }
+    scope :legacy_level_two_or_three_verified, -> { where("users.verified_at IS NOT NULL OR users.level_two_verified_at IS NOT NULL OR (users.confirmed_phone IS NOT NULL AND users.residence_verified_at IS NOT NULL)") }
+    scope :legacy_unverified, -> { where("users.verified_at IS NULL AND (users.level_two_verified_at IS NULL AND (users.residence_verified_at IS NULL OR users.confirmed_phone IS NULL))") }
+    scope :legacy_incomplete_verification, -> { where("(users.residence_verified_at IS NULL AND users.failed_census_calls_count > ?) OR (users.residence_verified_at IS NOT NULL AND (users.unconfirmed_phone IS NULL OR users.confirmed_phone IS NULL))", 0) }
   end
 
   def skip_verification?

@@ -20,6 +20,8 @@ class User < ApplicationRecord
   has_one :poll_officer, class_name: "Poll::Officer"
   has_one :organization
   has_one :lock
+  has_one :last_verification_process, -> { limit(1).order("id desc") }, class_name: "Verification::Process"
+
   has_many :flags
   has_many :identities, dependent: :destroy
   has_many :debates, -> { with_hidden }, foreign_key: :author_id

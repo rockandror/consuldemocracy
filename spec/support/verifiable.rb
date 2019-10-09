@@ -74,6 +74,73 @@ shared_examples_for "verifiable" do
     end
   end
 
+  describe "#scopes modified by Setting feature.custom_verification_process" do
+    before { Setting["feature.custom_verification_process"] = true }
+
+    describe "#level_three_verified" do
+      it "returns users with last verification process verified" do
+        user1 = create(:user)
+        user2 = create(:user)
+        create(:verification_process, user: user1)
+
+        expect(model.level_three_verified).to include(user1)
+        expect(model.level_three_verified).not_to include(user2)
+      end
+    end
+
+    describe "#level_two_verified" do
+      it "returns users with last verification process verified" do
+        user1 = create(:user)
+        user2 = create(:user)
+        create(:verification_process, user: user1)
+
+        expect(model.level_two_verified).to include(user1)
+        expect(model.level_two_verified).not_to include(user2)
+      end
+    end
+
+    describe "#level_two_or_three_verified" do
+      it "returns users with last verification process verified" do
+        user1 = create(:user)
+        user2 = create(:user)
+        create(:verification_process, user: user1)
+
+        expect(model.level_two_or_three_verified).to include(user1)
+        expect(model.level_two_or_three_verified).not_to include(user2)
+      end
+    end
+
+    describe "#unverified" do
+      it "returns users that do not have last verification process marked as verified" do
+        user1 = create(:user)
+        user2 = create(:user)
+        create(:verification_process, user: user2)
+        user3 = create(:user)
+        process = create(:verification_process, user: user3)
+        process.update_column(:verified_at, nil)
+
+        expect(model.unverified).to include(user1)
+        expect(model.unverified).not_to include(user2)
+        expect(model.unverified).to include(user3)
+      end
+    end
+
+    describe "#incomplete_verification" do
+      it "returns users with incomplete verifications" do
+        user1 = create(:user)
+        user2 = create(:user)
+        create(:verification_process, user: user2)
+        user3 = create(:user)
+        process = create(:verification_process, user: user3)
+        process.update_column(:verified_at, nil)
+
+        expect(model.incomplete_verification).not_to include(user1)
+        expect(model.incomplete_verification).not_to include(user2)
+        expect(model.incomplete_verification).to include(user3)
+      end
+    end
+  end
+
   describe "#methods" do
     it "residence_verified? is true only if residence_verified_at" do
       user = create(:user, residence_verified_at: Time.current)
