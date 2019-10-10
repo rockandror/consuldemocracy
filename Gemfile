@@ -38,6 +38,7 @@ gem 'paperclip', '~> 5.2.1'
 gem 'paranoia', '~> 2.4.1'
 gem 'pg', '~> 0.20.0'
 gem 'pg_search', '~> 2.0.1'
+gem "puma", "~> 4.2.1"
 gem 'redcarpet', '~> 3.4.0'
 gem 'responders', '~> 2.4.0'
 gem 'rinku', '~> 2.0.2', require: 'rails_rinku'
@@ -50,7 +51,6 @@ gem 'sprockets', '~> 3.7.2'
 gem 'turbolinks', '~> 2.5.3'
 gem 'turnout', '~> 2.4.0'
 gem 'uglifier', '~> 4.1.19'
-gem 'unicorn', '~> 5.4.1'
 gem 'whenever', '~> 0.10.0', require: false
 gem 'globalize', '~> 5.0.0'
 gem 'globalize-accessors', '~> 0.2.1'
@@ -87,6 +87,7 @@ group :development do
   gem 'capistrano-bundler', '~> 1.2', require: false
   gem 'capistrano-rails', '~> 1.4.0', require: false
   gem 'capistrano3-delayed-job', '~> 1.7.3'
+  gem "capistrano3-puma", "~> 4.0.0"
   gem 'mdl', '~> 0.5.0', require: false
   gem 'rubocop', '~> 0.54.0', require: false
   gem 'rubocop-rspec', '~> 1.26.0', require: false
