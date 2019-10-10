@@ -92,6 +92,8 @@ en:
               title: Editing field assignment
             form:
               submit_button: Save
+              format:
+                help: "Enter a valid ISO 8601 expression if you want to convert this date field into a ISO 8601 string. If left empty it will apply '%F' as default formatting expression before to send it to the handler."
             index:
               create_sms_fields:
                 confirm: You are about to create or update a form verification field called \"phone\" with recommended configuration options and also the activation for the phone verification process through a code send by SMS. Are you sure you want to proceed?

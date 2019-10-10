@@ -90,6 +90,8 @@ es:
               alert: No se puede borrar la asignación de campos!
             form:
               submit_button: Guardar
+              format:
+                help: Introduzca una expresión ISO 8601 válida si desea convertir este campo de fecha en una cadena ISO 8601. Si se deja vacío se aplicará '%F' como el formato por defecto antes de enviarla al handler.
             index:
               create_sms_fields:
                 link: Crear campos de verificación telefónica

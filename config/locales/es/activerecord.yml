@@ -500,6 +500,11 @@ es:
         label: Etiqueta
       verification/field/option/translation:
         label: Etiqueta
+      verification/handler/field_assignment:
+        format: Formato
+        request_path: Ruta del campo en la solicitud
+        response_path: Ruta del campo en la respuesta
+        verification_field_id: Campo de verificación
       verification/resident:
         data: Datos
     errors:

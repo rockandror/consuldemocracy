@@ -498,8 +498,11 @@ en:
         label: Label
       verification/field/option/translation:
         label: Label
-      verification/handler/field_assigment:
+      verification/handler/field_assignment:
         format: Format
+        request_path: Path of the field in the request
+        response_path: Path of the field in the response
+        verification_field_id: Verification field
       verification/resident:
         data: Data
     errors:

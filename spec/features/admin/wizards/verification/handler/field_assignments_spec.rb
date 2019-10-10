@@ -75,14 +75,15 @@ describe "Admin wizards verification handler fields assignments" do
   end
 
   describe "Edit" do
-    scenario "Should show request and response path fields when handler is remote census" do
+    scenario "Should show request and response path fields when handler is remote census", :js do
       field_assignment = create(:verification_handler_field_assignment, verification_field: field,
                                                                         handler: "remote_census")
       create(:verification_field, label: "Phone", name: "phone", position: 2)
       visit edit_admin_wizards_verification_handler_field_assignment_path("remote_census", field_assignment)
 
-      expect(page).to have_content "Request path"
-      expect(page).to have_content "Response path"
+      save_screenshot
+      expect(page).to have_content "Path of the field in the request"
+      expect(page).to have_content "Path of the field in the response"
     end
 
     scenario "Should not show request and response path fields when handler is not remote census" do
@@ -91,8 +92,8 @@ describe "Admin wizards verification handler fields assignments" do
       create(:verification_field, label: "Phone", name: "phone", position: 2)
       visit edit_admin_wizards_verification_handler_field_assignment_path("fake_handler", field_assignment)
 
-      expect(page).not_to have_content "Request path"
-      expect(page).not_to have_content "Response path"
+      expect(page).not_to have_content "Path of the field in the request"
+      expect(page).not_to have_content "Path of the field in the response"
     end
   end
 
