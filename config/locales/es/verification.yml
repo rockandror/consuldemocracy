@@ -3,6 +3,21 @@ es:
     alert:
       lock: Has llegado al máximo número de intentos. Por favor intentalo de nuevo más tarde.
     back: Volver a mi cuenta
+    confirmation:
+      create:
+        flash:
+          success: El proceso de verificación de cuentas se realizó con éxito!
+      form:
+        submit: "Confirmar"
+        fields:
+          sms_confirmation_code:
+            label: "Código de confirmación SMS"
+            hint: "Por favor, introduzca el código que le enviamos por mensaje SMS."
+      new:
+        title: Proceso de verificación
+        subtitle: Ingrese los códigos de confirmación para verificar su cuenta
+        resend_confirmation_code_text: ¿No recibiste un mensaje con tus códigos de confirmación?
+        resend_confirmation_code_link: Haga clic aquí para enviarlo de nuevo
     email:
       create:
         alert:
@@ -35,6 +50,20 @@ es:
       update:
         flash:
           success: Código correcto. Tu cuenta ya está verificada
+    process:
+      create:
+        flash:
+          error: Su cuenta no ha podido ser verificada!
+          success: Su cuenta ha sido verificada con éxito!
+          already_verified: Su cuenta ya está verificada
+      form:
+        confirmation_hint: "Por favor, confirme la %{original_label} campo"
+        confirmation_label: "%{original_label} confirmación"
+        submit: Verificar mi cuenta
+        select:
+          prompt: Por favor, seleccione
+      new:
+        title: Verificar su cuenta
     redirect_notices:
       already_verified: Tu cuenta ya está verificada
       email_already_sent: Ya te enviamos un email con un enlace de confirmación, si no lo encuentras puedes solicitar aquí que te lo reenviemos
