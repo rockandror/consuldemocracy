@@ -1772,6 +1772,7 @@ es:
               submit_button: Actualizar campo
             title: Editar campo de verificación
           form:
+            add_field_option: Añadir nueva opción para el selector
             handlers:
               help: Este campo se verificará con los verificadores activos de la lista a continuación.
               label: Verificadores
@@ -1786,9 +1787,8 @@ es:
             label_confirmation_validation: Quieres añadir un campo de confirmacion?
             format_placeholder: Añadir la expresión regular sin los escapados de inicio (/) y final(/)
             checkbox_link: "Este campo se debe rellenar con el slug de una página creada en la sección de administradores 'Contenido del sitio' > 'Personalizar páginas'"
-            option_fields:
-              add_option: Añadir nueva opción para el selector
-              remove_option: Eliminar opción
+          option_fields:
+            remove_option: Eliminar opción
           handlers:
             name:
               residents: Verificación de residencia (base de datos local)

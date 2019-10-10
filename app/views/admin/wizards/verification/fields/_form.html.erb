@@ -46,7 +46,7 @@
     <div class="small-12 column margin-bottom">
       <%= f.label :format do %>
         <%= f.text_field :format,
-                         placeholder: t("admin.wizards.verification.fields.form.format_placeholder"), 
+                         placeholder: t("admin.wizards.verification.fields.form.format_placeholder"),
                          hint: t("admin.wizards.verification.fields.form.format_placeholder") %>
       <% end %>
     </div>
@@ -76,7 +76,7 @@
           <% end %>
         </div>
         <div class="small-12 column margin-top">
-          <%= link_to_add_association t("admin.wizards.verification.fields.form.option_fields.add_option"), f,
+          <%= link_to_add_association t("admin.wizards.verification.fields.form.add_field_option"), f,
                                       :verification_field_options,
                                       partial: "admin/wizards/verification/fields/option_fields",
                                       id: "new-verification-field-option-link",
