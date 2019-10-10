@@ -44,6 +44,20 @@ describe "Admin wizards verification handler fields assignments" do
       expect(page).to have_content message
       expect(page).to have_content "has already been taken"
     end
+
+    scenario "Should show format field when selected field is a date", :js do
+      text_field = create(:verification_field, kind: :text, name: "text")
+      date_field = create(:verification_field, kind: :date, name: "date")
+      create(:verification_handler_field_assignment, verification_field: text_field, handler: fake_handler.id)
+      create(:verification_handler_field_assignment, verification_field: date_field, handler: fake_handler.id)
+      visit new_admin_wizards_verification_handler_field_assignment_path("fake_handler")
+
+      select "text", from: "Verification field"
+      expect(page).not_to have_field "Format"
+
+      select "date", from: "Verification field"
+      expect(page).to have_field "Format"
+    end
   end
 
   describe "Update" do
