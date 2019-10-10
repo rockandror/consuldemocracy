@@ -9,10 +9,8 @@ describe "Verification process" do
                                                          position: 4) }
   let!(:document_type_field)   { create(:verification_field, name: "document_type", label: "Document type",
                                                              position: 5) }
-  let!(:document_number_field) { create(:verification_field, name: "document_number", label: "Document number",
-                                                             position: 6) }
-  let!(:date_of_birth)     { create(:verification_field, name: "date_of_birth", label: "Date of birth",
-                                                         position: 7, kind: :date) }
+  let!(:document_number_field) { create(:verification_field, name: "document_number",
+                                                             label: "Document number", position: 6) }
   let(:user)               { create(:user) }
 
   before do
@@ -34,6 +32,8 @@ describe "Verification process" do
     end
 
     scenario "Shows all defined verification fields" do
+      create(:verification_field, name: "date_of_birth", label: "Date of birth", position: 7, kind: :date)
+
       visit new_verification_process_path
 
       expect(page).to have_field "verification_process_name"
@@ -42,7 +42,9 @@ describe "Verification process" do
       expect(page).to have_field "verification_process_postal_code"
       expect(page).to have_field "verification_process_document_number"
       expect(page).to have_field "verification_process_document_type"
-      expect(page).to have_field "verification_process_date_of_birth"
+      expect(page).to have_select "verification_process_date_of_birth_1i"
+      expect(page).to have_select "verification_process_date_of_birth_2i"
+      expect(page).to have_select "verification_process_date_of_birth_3i"
     end
 
     scenario "Shows confirmation fields next to parent fields" do
