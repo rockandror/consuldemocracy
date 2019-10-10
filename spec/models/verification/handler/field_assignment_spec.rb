@@ -19,6 +19,24 @@ describe Verification::Handler::FieldAssignment do
     expect(field_assignment).not_to be_valid
   end
 
+  context "When related field is a date" do
+    let(:field) { create(:verification_field, kind: :date) }
+
+    it "and format is not a valid ISO 8601 expression it should be valid" do
+      field_assignment = build(:verification_handler_field_assignment, verification_field: field,
+                                                                       format: "%F")
+
+      expect(field_assignment).to be_valid
+    end
+
+    it "and format is not a valid ISO 8601 expression it should not be valid" do
+      field_assignment = build(:verification_handler_field_assignment, verification_field: field,
+                                                                       format: "DDMMYYYY")
+
+      expect(field_assignment).not_to be_valid
+    end
+  end
+
   it "When already exists a record for same field and same handler it should not be valid" do
     field_assignment.save
     repeated_field_assignment = build(:verification_handler_field_assignment,

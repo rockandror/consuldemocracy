@@ -582,6 +582,12 @@ es:
           attributes:
             handlers:
               handler_does_not_exists: Alguno de los controladores de verificación seleccionado no existe
+        verification/handler/field_assignment:
+          attributes:
+            format:
+              invalid: La expresión no es válida. Debe proporcionat una expresión ISO 8601 válida para covertir la fecha al formato que necesita para realizar la comprobación.
+            verification_field_id:
+              only_phone_allowed: La verificación del teléfono por SMS sólo acepta un campo con el nombre phone.
         verification/resident:
           attributes:
             data:
