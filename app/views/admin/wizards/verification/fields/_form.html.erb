@@ -7,10 +7,12 @@
   <div class="row">
     <%= f.translatable_fields do |translations_form| %>
       <div class="small-12 column">
-        <%= translations_form.text_field :label, hint: t("admin.wizards.verification.fields.form.handlers.input_label_help") %>
+        <%= translations_form.text_field :label,
+                                         hint: t("admin.wizards.verification.fields.form.handlers.input_label_help") %>
       </div>
       <div class="small-12 column">
-        <%= translations_form.text_field :hint, hint: t("admin.wizards.verification.fields.form.handlers.input_hint_help") %>
+        <%= translations_form.text_field :hint,
+                                         hint: t("admin.wizards.verification.fields.form.handlers.input_hint_help") %>
       </div>
     <% end %>
   </div>
@@ -43,7 +45,9 @@
     </div>
     <div class="small-12 column margin-bottom">
       <%= f.label :format do %>
-        <%= f.text_field :format, placeholder: t("admin.wizards.verification.fields.form.format_placeholder"), hint: t("admin.wizards.verification.fields.form.format_placeholder") %>
+        <%= f.text_field :format,
+                         placeholder: t("admin.wizards.verification.fields.form.format_placeholder"), 
+                         hint: t("admin.wizards.verification.fields.form.format_placeholder") %>
       <% end %>
     </div>
   </div>
@@ -73,14 +77,14 @@
         </div>
         <div class="small-12 column margin-top">
           <%= link_to_add_association t("admin.wizards.verification.fields.form.option_fields.add_option"), f,
-                                :verification_field_options,
-                                partial: "admin/wizards/verification/fields/option_fields",
-                                id: "new-verification-field-option-link",
-                                class: "button radius expanded info",
-                                data: {
-                                  association_insertion_node: "#nested-verification-field-options",
-                                  association_insertion_method: "append"
-                                } %>
+                                      :verification_field_options,
+                                      partial: "admin/wizards/verification/fields/option_fields",
+                                      id: "new-verification-field-option-link",
+                                      class: "button radius expanded info",
+                                      data: {
+                                        association_insertion_node: "#nested-verification-field-options",
+                                        association_insertion_method: "append"
+                                      } %>
         </div>
       </div>
     </div>
