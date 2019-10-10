@@ -33,6 +33,7 @@ describe "Verification process" do
 
     scenario "Shows all defined verification fields" do
       create(:verification_field, name: "date_of_birth", label: "Date of birth", position: 7, kind: :date)
+      create(:verification_field, name: "field_with_visible_false", label: "Sample field", position: 8, visible: false)
 
       visit new_verification_process_path
 
@@ -45,6 +46,7 @@ describe "Verification process" do
       expect(page).to have_select "verification_process_date_of_birth_1i"
       expect(page).to have_select "verification_process_date_of_birth_2i"
       expect(page).to have_select "verification_process_date_of_birth_3i"
+      expect(page).not_to have_field "verification_process_field_with_visible_false"
     end
 
     scenario "Shows confirmation fields next to parent fields" do

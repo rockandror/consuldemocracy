@@ -26,6 +26,7 @@ class Verification::Field < ApplicationRecord
   scope :confirmation_validation, -> { where(confirmation_validation: true) }
   scope :with_format, -> { where.not(format: [nil, ""]) }
   scope :with_checkbox_required, -> { checkbox.where(required: true) }
+  scope :visible, -> { where(visible: true) }
 
   def handlers
     assignments.collect(&:handler)

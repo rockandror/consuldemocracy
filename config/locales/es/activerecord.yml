@@ -490,6 +490,9 @@ es:
         confirmation_validation: Requiere campo de confirmación?
         format: Formato
         checkbox_link: Link que se mostrará al lado de un campo del tipo checkbox
+        visible: ¿Visualizar el campo?
+        represent_geozone: ¿zona geográfica?
+        represent_min_age_to_participate: ¿Fecha de nacimiento?
       verification/field/option:
         value: Valor
       verification/field/kind:

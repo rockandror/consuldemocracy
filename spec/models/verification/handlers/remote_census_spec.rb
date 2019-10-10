@@ -39,34 +39,129 @@ describe Verification::Handlers::RemoteCensus do
       expect(response.error?).to be true
     end
 
-    it "returns error response when verification response fields is not valid" do
-      valid_response_path = "get_habita_datos_response.get_habita_datos_return.datos_habitante.item"
-      Setting["remote_census.response.valid"] = valid_response_path
-      field = create(:verification_field, name: :postal_code)
-      response_path = "get_habita_datos_response.get_habita_datos_return.datos_vivienda.item.codigo_postal"
-      create(:verification_handler_field_assignment, verification_field: field,
-        handler: :remote_census, response_path: response_path)
+    context "verification sended fields with response" do
 
-      attributes = { document_number: "12345678Z", document_type: "1", postal_code: "00001", user: user }
-      response = remote_census_handler.verify(attributes)
+      it "returns error response when verification response fields is not valid" do
+        valid_response_path = "get_habita_datos_response.get_habita_datos_return.datos_habitante.item"
+        Setting["remote_census.response.valid"] = valid_response_path
+        field = create(:verification_field, name: :postal_code)
+        response_path = "get_habita_datos_response.get_habita_datos_return.datos_vivienda.item.codigo_postal"
+        create(:verification_handler_field_assignment, verification_field: field,
+          handler: :remote_census, response_path: response_path)
 
-      expect(response.success?).not_to be true
-      expect(response.error?).to be true
+        attributes = { document_number: "12345678Z", document_type: "1", postal_code: "00001", user: user }
+        response = remote_census_handler.verify(attributes)
+
+        expect(response.success?).not_to be true
+        expect(response.error?).to be true
+      end
+
+      it "returns success response when all validation passes" do
+        valid_response_path = "get_habita_datos_response.get_habita_datos_return.datos_habitante.item"
+        Setting["remote_census.response.valid"] = valid_response_path
+        field = create(:verification_field, name: :postal_code)
+        response_path = "get_habita_datos_response.get_habita_datos_return.datos_vivienda.item.codigo_postal"
+        create(:verification_handler_field_assignment, verification_field: field,
+          handler: :remote_census, response_path: response_path)
+
+        attributes = { document_number: "12345678Z", document_type: "1", postal_code: "28013", user: user }
+        response = remote_census_handler.verify(attributes)
+
+        expect(response.success?).to be true
+        expect(response.error?).not_to be true
+      end
+
     end
 
-    it "returns success response when all validation passes" do
-      valid_response_path = "get_habita_datos_response.get_habita_datos_return.datos_habitante.item"
-      Setting["remote_census.response.valid"] = valid_response_path
-      field = create(:verification_field, name: :postal_code)
-      response_path = "get_habita_datos_response.get_habita_datos_return.datos_vivienda.item.codigo_postal"
-      create(:verification_handler_field_assignment, verification_field: field,
-        handler: :remote_census, response_path: response_path)
+    context "verification valid age" do
 
-      attributes = { document_number: "12345678Z", document_type: "1", postal_code: "28013", user: user }
-      response = remote_census_handler.verify(attributes)
+      it "returns success response when the age on response fields is valid" do
+        valid_response_path = "get_habita_datos_response.get_habita_datos_return.datos_habitante.item"
+        Setting["remote_census.response.valid"] = valid_response_path
+        field = create(:verification_field, name: :date_of_birth, represent_min_age_to_participate: true)
+        response_path = "get_habita_datos_response.get_habita_datos_return.datos_habitante.item.fecha_nacimiento_string"
+        create(:verification_handler_field_assignment, verification_field: field,
+          handler: :remote_census, response_path: response_path)
 
-      expect(response.success?).to be true
-      expect(response.error?).not_to be true
+        attributes = { document_number: "12345678Z", document_type: "1", date_of_birth: "31-12-1980", user: user }
+        response = remote_census_handler.verify(attributes)
+
+        expect(response.success?).to be true
+        expect(response.error?).not_to be true
+      end
+
+      it "returns error response when the age on response fields is not valid" do
+        valid_response_path = "get_habita_datos_response.get_habita_datos_return.datos_habitante.item"
+        Setting["remote_census.response.valid"] = valid_response_path
+        field = create(:verification_field, name: :date_of_birth, represent_min_age_to_participate: true)
+        response_path = "get_habita_datos_response.get_habita_datos_return.datos_habitante.item.fecha_nacimiento_string"
+        create(:verification_handler_field_assignment, verification_field: field,
+          handler: :remote_census, response_path: response_path)
+
+        attributes = { document_number: "00000000Z", document_type: "1", date_of_birth: "31-12-2010", user: user }
+        response = remote_census_handler.verify(attributes)
+
+        expect(response.success?).not_to be true
+        expect(response.error?).to be true
+      end
+
     end
+
+    context "geozone" do
+
+      it "update user with geozone response successfully when exists geozone field on response" do
+        valid_response_path = "get_habita_datos_response.get_habita_datos_return.datos_habitante.item"
+        Setting["remote_census.response.valid"] = valid_response_path
+        field = create(:verification_field, name: :district, represent_geozone: true, visible: false)
+        response_path = "get_habita_datos_response.get_habita_datos_return.datos_vivienda.item.codigo_distrito"
+        create(:verification_handler_field_assignment, verification_field: field,
+          handler: :remote_census, response_path: response_path)
+        geozone = create(:geozone, :in_census)
+
+        attributes = { document_number: "12345678Z", document_type: "1", user: user }
+        response = remote_census_handler.verify(attributes)
+        user.reload
+
+        expect(response.success?).to be true
+        expect(user.geozone).to eq geozone
+      end
+
+      it "Not update user with geozone response when not exists geozone field on response" do
+        valid_response_path = "get_habita_datos_response.get_habita_datos_return.datos_habitante.item"
+        Setting["remote_census.response.valid"] = valid_response_path
+        field = create(:verification_field, name: :district, visible: false, represent_geozone: false)
+        response_path = "get_habita_datos_response.get_habita_datos_return.datos_vivienda.item.codigo_distrito"
+        create(:verification_handler_field_assignment, verification_field: field,
+          handler: :remote_census, response_path: response_path)
+        geozone = create(:geozone, :in_census)
+
+        attributes = { document_number: "12345678Z", document_type: "1", user: user }
+        response = remote_census_handler.verify(attributes)
+        user.reload
+
+        expect(response.success?).to be true
+        expect(user.geozone).to eq nil
+      end
+
+      it "Not update user with geozone response when response is not valid" do
+        invalid_response_path = "invalid"
+        Setting["remote_census.response.valid"] = invalid_response_path
+        field = create(:verification_field, name: :district, visible: false, represent_geozone: true)
+        response_path = "get_habita_datos_response.get_habita_datos_return.datos_vivienda.item.codigo_distrito"
+        create(:verification_handler_field_assignment, verification_field: field,
+          handler: :remote_census, response_path: response_path)
+        geozone = create(:geozone, :in_census)
+
+        attributes = { document_number: "12345678Z", document_type: "1", user: user }
+        response = remote_census_handler.verify(attributes)
+        user.reload
+
+        expect(response.success?).to be false
+        expect(user.geozone).to eq nil
+      end
+
+    end
+
+
   end
 end

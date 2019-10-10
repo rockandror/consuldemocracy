@@ -70,6 +70,7 @@ FactoryBot.define do
     sequence(:position) { |n| n  + 1 }
     required false
     kind "text"
+    visible true
 
     trait :required do
       required true

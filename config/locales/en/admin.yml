@@ -1792,9 +1792,14 @@ en:
             label_required: Is a field required?
             label_checkbox: You want it to be a checkbox
             label_confirmation_validation: Do you want to add a confirmation field?
+            label_visible: Do you want the field to be displayed?
+            label_represent_geozone: Does this field represent the geozone?
+            label_represent_min_age_to_participate: Does this field represent the minimum age to particpate?
             format_placeholder: Add the regular expression without the start (/) and end (/) escapes
             checkbox_link: "This field must be filled with the slug of a page created in the administrators' section 'Site content' > 'Custom pages'."
+            retrocompatibility_info: "Si usted marca alguno de los siguientes campos solo seran enviados al Censo Remoto y al Censo Local. Esta sección le permite asociar un campo a una fecha de nacimiento para que la aplicación valide si la persona verficada es mayor de edad (o mayor a la edad configurada en la aplicación). Esta sección tambien permite asociar un campo al concepto de zona geografica....pending"
           option_fields:
+            add_option: Add new option for select
             remove_option: Remove option
           handlers:
             name:

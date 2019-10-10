@@ -89,6 +89,9 @@ describe "Admin wizards verification fields" do
       fill_in "Position", with: 1
       check "Required?"
       check "Require confirmation field?"
+      check "Display field?"
+      check "Is geozone field?"
+      check "Is date of birth field?"
       fill_in "Format", with: "/\A[\d \+]+\z/"
       select "Text field", from: :verification_field_kind
       click_button "Create field"

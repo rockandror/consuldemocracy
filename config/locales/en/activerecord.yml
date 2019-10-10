@@ -488,6 +488,9 @@ en:
         confirmation_validation: Require confirmation field?
         format: Format
         checkbox_link: Link that will be shown next to a checkbox kind field
+        visible: Display field?
+        represent_geozone: Is geozone field?
+        represent_min_age_to_participate: Is date of birth field?
       verification/field/option:
         value: "Value"
       verification/field/kind:

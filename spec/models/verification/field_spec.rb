@@ -67,4 +67,13 @@ describe Verification::Field do
       expect(described_class.with_checkbox_required).to eq([with_checkbox_required_field])
     end
   end
+
+  describe ".visible" do
+    it "Should return only visible fields" do
+      visible_field = create :verification_field, visible: true
+      create :verification_field, visible: false
+
+      expect(described_class.visible).to eq([visible_field])
+    end
+  end
 end
