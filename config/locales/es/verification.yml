@@ -29,6 +29,27 @@ es:
           failure: Código de verificación incorrecto
         flash:
           success: Eres un usuario verificado
+    handler:
+      confirmation:
+        success: El proceso de verificación de usuario se realizó con éxito!
+      verification:
+        success: El proceso de confirmación del usuario se ha realizado con éxito!
+    handlers:
+      sms:
+        verify:
+          error: El mensaje SMS con el código de confirmación no pudo ser enviado!
+          success: El mensaje SMS con el código de confirmación ha sido enviado con éxito!
+        confirm:
+          error: El código de confirmación no coincide.
+          success: El código de confirmación telefónica se ha confirmado correctamente.
+      remote_census:
+        verify:
+          error: El Censo no pudo verificar su información. Por favor, confirme que los detalles de su censo son correctos llamando al Ayuntamiento o visitando una Oficina de Apoyo al Ciudadano.
+          success: El proceso de verificación remota de usuarios del censo se llevó a cabo con éxito!
+      resident:
+        verify:
+          error: El Censo no pudo verificar su información. Por favor, confirme que los detalles de su censo son correctos llamando al Ayuntamiento o visitando una Oficina de Apoyo al Ciudadano.
+          success: El proceso de verificación de usuarios de los residentes locales se llevó a cabo con éxito hecho!
     letter:
       alert:
         unconfirmed_code: Todavía no has introducido el código de confirmación

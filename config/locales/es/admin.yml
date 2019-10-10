@@ -1696,6 +1696,12 @@ es:
         local_census_records:
           no_records_found: No se han encontrado registros.
     verification:
+      handlers:
+        sms:
+          fields:
+            create:
+              notice: Se ha creado un campo 'teléfono' y también se le ha habilitado automáticamente para que lo utilice durante el proceso de verificación telefónica a través de un mensaje SMS.
+              phone_default_label: Teléfono móvil
       residents:
         index:
           title: Gestión de residentes
@@ -1835,12 +1841,15 @@ es:
             destroy:
               notice: Asignación de campos borrada con éxito!
               alert: No se puede borrar la asignación de campos!
+            edit:
+              title: Editando campo asignado
             form:
               submit_button: Guardar
               format:
                 help: Introduzca una expresión ISO 8601 válida si desea convertir este campo de fecha en una cadena ISO 8601. Si se deja vacío se aplicará '%F' como el formato por defecto antes de enviarla al handler.
             index:
               create_sms_fields:
+                confirm: Está a punto de crear o actualizar un campo de verificación de formulario llamado 'teléfono' con las opciones de configuración recomendadas y también la activación para el proceso de verificación telefónica a través de un código enviado por SMS. ¿Estás seguro de que quieres proceder?
                 link: Crear campos de verificación telefónica
               delete: Borrar
               description:
@@ -1849,6 +1858,7 @@ es:
                   residents: Añada los campos de verificación que desea comprobar contra la base de datos del censo local.
                   sms: Agregue el campo teléfono para obtener el teléfono del usuario y verificarlo por SMS.
               edit: Editar
+              field: Asignación de campos del formulario de verificación
               title:
                 handlers:
                   remote_census: Configurar el proceso de verificación de censos remotos
@@ -1856,6 +1866,8 @@ es:
                   sms: Configurar el proceso de verificación del teléfono
               create: Asociar campo a este proceso de verificación
               remote_census: "Configurar la conexión al censo remoto"
+            new:
+              title: Asignación de un campo del formulario de verificación
             update:
               notice: Asignación de campos actualizada con éxito!
         finish:
