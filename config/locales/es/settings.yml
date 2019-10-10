@@ -91,7 +91,7 @@ es:
         recommendations: "Recomendaciones"
         recommendations_description: "Muestra a los usuarios recomendaciones en la homepage basado en las etiquetas de los elementos que sigue"
         skip_verification: "Omitir verificación de usuarios"
-        skip_verification_description: "Esto deshabilitará la verificación de usuarios y todos los usuarios registrados podrán participar en todos los procesos"
+        skip_verification_description: "Esto deshabilitará la verificación de usuarios y cualquier usuario registrados tendrá los mismos permisos que un usuarios verificado."
         recommendations_on_debates: "Recomendaciones en debates"
         recommendations_on_debates_description: "Muestra a los usuarios recomendaciones en la página de debates basado en las etiquetas de los elementos que sigue"
         recommendations_on_proposals: "Recomendaciones en propuestas"

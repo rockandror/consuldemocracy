@@ -1763,9 +1763,9 @@ en:
         description: Through this tool we present you the verification of the users.
         new:
           title: Welcome to the verification process wizard
-          description_html: In this wizard we will carry out step by step all necessary configuration to be able to personalize the Verification system of the application to the needs of each institution.
-          exit_text: If you have modified the verification system and want to use your code DO NOT continue running this wizard.
-          exit_link: Ok, Exit this wizard for now!
+          description_html: In this wizard we will carry out step by step all necessary configuration to be able to customize users verification process of the application to suite your verification needs.
+          exit_text_html: "If you have modified the legacy Consul verification system and want to keep using it <strong>do not continue running this wizard</strong>."
+          exit_link: Ok, get me out of here!
           take_effect_text: "For the changes made in this wizard to take effect, you must disabled both 'skip verification' and 'Configure connection to remote census (SOAP) - Legacy version' and enable 'Customizable user verification process'."
           btn_start: Start
         fields:
@@ -1815,7 +1815,7 @@ en:
             kind: Kind
             format: Format
             title: Verification fields
-            description_html: "Pending..."
+            description_html: "Define the fields of the user verification form."
             no_results_html: "There is no verification form fields defined. %{link}."
           new:
             form:

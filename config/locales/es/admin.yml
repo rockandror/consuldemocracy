@@ -1756,9 +1756,9 @@ es:
         description: A través de esta herramienta le presentamos la verificación de los usuarios en el sistema.
         new:
           title: Bienvenido al asistente del proceso de verificación
-          description_html: En este asistente realizaremos paso a paso toda la configuración necesaria para poder personalizar el sistema de Verificación de la aplicación a las necesidades de cada institución.
-          exit_text: Si ha modificado el sistema de verificación y desea utilizar su código, NO siga ejecutando este asistente.
-          exit_link: ¡Ok, salir de este asistente por ahora!
+          description_html: En este asistente realizaremos paso a paso toda la configuración necesaria para poder personalizar el sistema de verificación de usuarios de la aplicación a las necesidades de cada institución.
+          exit_text_html: "Si ha modificado el sistema de verificación de Consul y desea seguir usándolo <fuerte> no siga ejecutando este asistente </fuerte>."
+          exit_link: ¡Ok, sácame de aquí!
           take_effect_text: "Para que se apliquen correctamente los cambios realizados en este asistente, debe deshabilitar tanto 'Omitir verificación de usuarios' como 'Configurar conexión al censo remoto (SOAP) - Version antigua' y habilitar 'Proceso de verificación de usuario personalizable'."
           btn_start: Empezar
         fields:
@@ -1808,7 +1808,7 @@ es:
             kind: Tipo
             format: Formato
             title: Campos de verificación
-            description_html: "Pending..."
+            description_html: "Define los campos del formulario de verificación de usuarios."
             no_results_html: "No hay campos de formulario de verificación definidos. %{link}."
           new:
             form:
