@@ -6,7 +6,7 @@
   h3,
   .current-step {
     display: inline-block;
-    padding: .7em 0;
+    padding: 0.7em 0;
   }
 
   .current-step {
@@ -21,11 +21,12 @@
 
   .btn-back-step i {
     position: relative;
-    &:before {
-      position: absolute;
-      top: 2px;
-      left: -20px;
-    }
+  }
+
+  .btn-back-step i::before {
+    position: absolute;
+    top: 2px;
+    left: -20px;
   }
 
   .v-aligner {
@@ -38,16 +39,9 @@
     margin-bottom: 0;
   }
 
-  @include breakpoint(small) {
-    input.button {
-      padding: 1em 0;
-    }
-  }
-
   .verification-new {
     margin: 0 auto;
 
-    label.hint,
     .hint {
       color: $text-medium;
       margin-top: -0.5rem;
@@ -60,22 +54,24 @@
       margin: 0 auto;
     }
 
-    input[type="checkbox"]{
+    [type="checkbox"] {
       margin-bottom: $line-height;
       margin-top: $line-height;
     }
 
-    label[for="verification_field_is_checkbox"],
-    label[for="verification_field_required"],
-    label[for="verification_field_confirmation_validation"] {
+    [for="verification_field_is_checkbox"],
+    [for="verification_field_required"],
+    [for="verification_field_confirmation_validation"] {
       font-weight: normal;
     }
 
-    label[for="verification_field_kind"]{
+    [for="verification_field_kind"] {
       display: none;
     }
 
-    label, input, small {
+    label,
+    input,
+    small {
       margin-left: 0;
     }
 
@@ -103,5 +99,22 @@
     overflow-x: auto;
     clear: both;
     width: 100%;
+  }
+}
+
+.verification-process {
+  .date-select {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  select {
+    flex: 0 0 33%;
+  }
+
+  .hint,
+  label {
+    flex: 0 0 100%;
   }
 }

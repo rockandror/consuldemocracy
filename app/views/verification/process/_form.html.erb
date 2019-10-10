@@ -25,11 +25,13 @@
                       label: field.label %>
 
       <% elsif field.date? %>
+      <div class="date-select">
         <%= f.date_select field.name,
                           prompt: true,
                           start_year: 1900, end_year: Date.current.year,
                           label: field.label,
                           hint: field.hint %>
+      </div>
       <% end %>
     </div>
 
