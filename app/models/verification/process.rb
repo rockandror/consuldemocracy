@@ -161,7 +161,7 @@ class Verification::Process < ApplicationRecord
         next unless field.handlers&.include?(handler)
 
         value = send(field_name)
-        value = value.to_s if field.date?
+        value = convert_date_field(field, handler, value) if field.date?
         params[field_name] = value
       end
       params[:user] = user
@@ -225,5 +225,15 @@ class Verification::Process < ApplicationRecord
 
     def is_residence_verification_active?
       ["remote_census", "residents"].any? { |handler| @handlers.include?(handler) }
+    end
+
+    def convert_date_field(field, handler, value)
+      assignment = field.assignments.by_handler(handler).first
+
+      if assignment.format.present?
+        value.strftime(assignment.format)
+      else
+        value.strftime("%F")
+      end
     end
 end

@@ -106,6 +106,39 @@ describe Verification::Process do
       create(:verification_handler_field_assignment, verification_field: email_confirmation_field, handler: :handler)
     end
 
+    it "converts date fields to a string with given format" do
+      user = create(:user)
+      Setting["custom_verification_process.residents"] = true
+      Verification::Field.destroy_all
+      field = create(:verification_field, name: "date", kind: :date)
+      create(:verification_handler_field_assignment, verification_field: field, handler: :residents,
+                                                     format: "%d/%m/%Y")
+      process = build(:verification_process, user: user)
+      current_date = Date.current
+      process.date = current_date
+
+      expected_arguments = { date: current_date.strftime("%d/%m/%Y"), user: user }
+      expect_any_instance_of(Verification::Handlers::Resident).
+        to receive(:verify).with(expected_arguments).and_call_original
+      process.save
+    end
+
+    it "convert date fields to a string with date ISO 8601 '%F' when format is not defined" do
+      user = create(:user)
+      Setting["custom_verification_process.residents"] = true
+      Verification::Field.destroy_all
+      field = create(:verification_field, name: "date", kind: :date)
+      create(:verification_handler_field_assignment, verification_field: field, handler: :residents)
+      process = build(:verification_process, user: user)
+      current_date = Date.current
+      process.date = current_date
+
+      expected_arguments = { date: current_date.strftime("%F"), user: user }
+      expect_any_instance_of(Verification::Handlers::Resident).
+        to receive(:verify).with(expected_arguments).and_call_original
+      process.save
+    end
+
     it "respond with a verification error it should not be valid" do
       process = build(:verification_process, email: "user@email.com",
         email_confirmation: "another_user@email.com" )
