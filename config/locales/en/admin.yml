@@ -1797,10 +1797,12 @@ en:
             label_represent_min_age_to_participate: Does this field represent the minimum age to particpate?
             format_placeholder: Add the regular expression without the start (/) and end (/) escapes
             checkbox_link: "This field must be filled with the slug of a page created in the administrators' section 'Site content' > 'Custom pages'."
+            geozone_info: "This section allows you to mark a field of the geographical area type. This field will have to be associated with the Remote Census and/or the Local Census in the following steps. The purpose of this field is to be able to retrieve from the Remote Census or from the local Census the data referring to the geolocation and to be able to save it directly to the verified user."
             retrocompatibility_info: "Si usted marca alguno de los siguientes campos solo seran enviados al Censo Remoto y al Censo Local. Esta sección le permite asociar un campo a una fecha de nacimiento para que la aplicación valide si la persona verficada es mayor de edad (o mayor a la edad configurada en la aplicación). Esta sección tambien permite asociar un campo al concepto de zona geografica....pending"
-          option_fields:
-            add_option: Add new option for select
-            remove_option: Remove option
+            min_age_to_participate: "This section allows you to mark a field of the date of birth type. This field will have to be associated with the Remote Census and/or the Local Census in the following steps. The purpose of this field is to be able to retrieve the date of birth from the Remote Census or the local Census and validate that the verified user meets the age restriction defined in the application."
+            option_fields:
+              add_option: Add new option for select
+              remove_option: Remove option
           handlers:
             name:
               residents: Residents verifications (local database)

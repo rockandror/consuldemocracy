@@ -32,18 +32,17 @@
     </div>
   </div>
   <div class="row">
-    <div class="small-12 medium-6 column">
+    <div class="small-12 medium-4 column">
       <label><%= t("admin.wizards.verification.fields.form.label_required") %></label>
       <%= f.label :required do %>
         <%= f.check_box :required %>
       <% end %>
     </div>
-    <div class="small-12 medium-1 column"></div>
-    <div class="small-12 medium-5 column">
+    <div class="small-12 medium-4 column">
       <label><%= t("admin.wizards.verification.fields.form.label_confirmation_validation")%></label>
       <%= f.check_box :confirmation_validation %>
     </div>
-    <div class="cuoghi, mete esto al lado del confirmation_validation porfavor">
+    <div class="small-12 medium-4 column">
       <label><%= t("admin.wizards.verification.fields.form.label_visible")%></label>
       <%= f.check_box :visible %>
     </div>
@@ -101,17 +100,26 @@
   </div>
 
   <div class="row">
-    <%= t("admin.wizards.verification.fields.form.retrocompatibility_info") %>
-    <div class="small-12 medium-6 column">
+    <div class="small-12 medium-12 column">
       <label><%= t("admin.wizards.verification.fields.form.label_represent_geozone") %></label>
       <%= f.label :represent_geozone do %>
         <%= f.check_box :represent_geozone %>
       <% end %>
+      <p class="help-text"><%= t("admin.wizards.verification.fields.form.geozone_info") %></p>
     </div>
-    <div class="small-12 medium-1 column"></div>
-    <div class="small-12 medium-5 column">
+  </div>
+
+  <div class="row">
+    <div class="column">
+      <hr>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 medium-12 column">
       <label><%= t("admin.wizards.verification.fields.form.label_represent_min_age_to_participate")%></label>
       <%= f.check_box :represent_min_age_to_participate %>
+      <p class="help-text"><%= t("admin.wizards.verification.fields.form.min_age_to_participate") %></p>
     </div>
   </div>
 
