@@ -143,23 +143,6 @@ describe Verification::Handlers::RemoteCensus do
         expect(user.geozone).to eq nil
       end
 
-      it "Not update user with geozone response when response is not valid" do
-        invalid_response_path = "invalid"
-        Setting["remote_census.response.valid"] = invalid_response_path
-        field = create(:verification_field, name: :district, visible: false, represent_geozone: true)
-        response_path = "get_habita_datos_response.get_habita_datos_return.datos_vivienda.item.codigo_distrito"
-        create(:verification_handler_field_assignment, verification_field: field,
-          handler: :remote_census, response_path: response_path)
-        geozone = create(:geozone, :in_census)
-
-        attributes = { document_number: "12345678Z", document_type: "1", user: user }
-        response = remote_census_handler.verify(attributes)
-        user.reload
-
-        expect(response.success?).to be false
-        expect(user.geozone).to eq nil
-      end
-
     end
 
 

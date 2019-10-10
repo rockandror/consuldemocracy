@@ -69,8 +69,8 @@ class Verification::Handlers::RemoteCensus < Verification::Handler
 
     def update_user(response, assignment, attributes)
       response_value = get_response_value(response, assignment)
-      user = attributes[:user]
       geozone = get_geozone(response_value)
+      user = attributes[:user]
 
       user.update(geozone: geozone)
     end

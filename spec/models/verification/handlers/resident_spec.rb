@@ -36,5 +36,62 @@ describe Verification::Handlers::Resident do
       expect(response.success?).to be true
       expect(response.error?).not_to be true
     end
+
+    context "verification valid age" do
+
+      it "returns success response when the age on response fields is valid" do
+        create(:verification_resident, data: { document_number: "55222333T", postal_code: "00700", date_of_birth: "31/12/1980" })
+        field = create(:verification_field, name: :date_of_birth, represent_min_age_to_participate: true)
+        create(:verification_handler_field_assignment, verification_field: field, handler: :residents)
+
+        response = resident_handler.verify({ document_number: "55222333T", postal_code: "00700", user: user })
+
+        expect(response.success?).to be true
+        expect(response.error?).not_to be true
+      end
+
+      it "returns error response when the age on response fields is not valid" do
+        create(:verification_resident, data: { document_number: "55222333T", postal_code: "00700", date_of_birth: "31/12/2010" })
+        field = create(:verification_field, name: :date_of_birth, represent_min_age_to_participate: true)
+        create(:verification_handler_field_assignment, verification_field: field, handler: :residents)
+
+        response = resident_handler.verify({ document_number: "55222333T", postal_code: "00700", user: user })
+
+        expect(response.success?).not_to be true
+        expect(response.error?).to be true
+      end
+
+    end
+
+    context "geozone" do
+
+      it "update user with geozone response successfully when exists geozone field on response" do
+        create(:verification_resident, data: { document_number: "55222333T", postal_code: "00700", district: "01" })
+        field = create(:verification_field, name: :district, represent_geozone: true, visible: false)
+        create(:verification_handler_field_assignment, verification_field: field, handler: :residents)
+        geozone = create(:geozone, :in_census)
+
+        response = resident_handler.verify({ document_number: "55222333T", postal_code: "00700", user: user })
+        user.reload
+
+        expect(response.success?).to be true
+        expect(user.geozone).to eq geozone
+      end
+
+      it "Not update user with geozone response when not exists geozone field on response" do
+        create(:verification_resident, data: { document_number: "55222333T", postal_code: "00700", district: "01" })
+        field = create(:verification_field, name: :district, visible: false, represent_geozone: false)
+        create(:verification_handler_field_assignment, verification_field: field, handler: :residents)
+        geozone = create(:geozone, :in_census)
+
+        response = resident_handler.verify({ document_number: "55222333T", postal_code: "00700", user: user })
+        user.reload
+
+        expect(response.success?).to be true
+        expect(user.geozone).to eq nil
+      end
+
+    end
+
   end
 end
