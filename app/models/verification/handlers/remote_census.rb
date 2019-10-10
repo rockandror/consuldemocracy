@@ -3,7 +3,8 @@ class Verification::Handlers::RemoteCensus < Verification::Handler
 
   def verify(attributes)
     response = VerificationCensusApi.new.call(attributes.except(:user))
-    if verified_user?(response, attributes)
+
+    if response.valid? && verified_user?(response, attributes)
       update_user_with_geozone(response, attributes)
       successful_response(attributes)
     else
@@ -14,87 +15,64 @@ class Verification::Handlers::RemoteCensus < Verification::Handler
   private
 
     def verified_user?(response, attributes)
-      response.valid? && verification_sended_fields_with_response(response, attributes)
+      match_request_with_response_fields?(response, attributes) && allowed_age?(response, attributes)
     end
 
-    def verification_sended_fields_with_response(response, attributes)
-      attributes.except(:user).each do |key, value|
-        field = get_field(key)
-        assignment = get_remote_census_assignment(field)
-        return false if unverify_attribute(response, attributes, field, assignment)
+    def match_request_with_response_fields?(response, attributes)
+      return true unless is_match_verification_required?
+
+      field_assignments_to_match.each do |field_assignment|
+        next unless field_assignment.verification_field.visible?
+
+        name = field_assignment.verification_field.name.to_sym
+        return false if attributes[name] != get_response_value(response, field_assignment)
       end
-      return true
     end
 
-    def get_field(key)
-      Verification::Field.find_by(name: key)
+    def allowed_age?(response, attributes)
+      return true unless is_age_verifcation_required?
+
+      assignment = field_represent_min_age_to_participate.first
+      birth_date = get_response_value(response, assignment)
+      Age.in_years(Date.parse(birth_date)) >= User.minimum_required_age
     end
 
-    def get_remote_census_assignment(field)
-      field.assignments.by_handler(:remote_census).first
+    def is_match_verification_required?
+      field_assignments_to_match.any?
     end
 
-    def has_response_path?(assignment)
-      assignment.present? && assignment.response_path.present?
+    def is_age_verifcation_required?
+      field_represent_min_age_to_participate.any?
     end
 
-    def unverify_attribute(response, attributes, field, assignment)
-      return false unless has_response_path?(assignment)
+    def field_represent_min_age_to_participate
+      field_assignments_to_match.joins(:verification_field).where("verification_fields.represent_min_age_to_participate": true)
+    end
 
-      response_value = get_response_value(response, assignment)
-      sended_value = get_sended_value(attributes, field)
+    def geozone_assignments
+      field_assignments_to_match.joins(:verification_field).where("verification_fields.represent_geozone": true)
+    end
 
-      return true if invalid_expected_value?(response_value, sended_value, field) ||
-                      invalid_age_to_participate?(field, response_value)
+    def field_assignments_to_match
+      Verification::Handler::FieldAssignment.by_handler("remote_census").with_response_path
     end
 
     def get_response_value(response, assignment)
       response.extract_value(assignment.response_path)
     end
 
-    def get_sended_value(attributes, field)
-      attributes[field.name.to_sym]
-    end
-
-    def invalid_expected_value?(response_value, sended_value, field)
-      return false unless field.visible?
-      response_value != sended_value
-    end
-
-    def invalid_age_to_participate?(field, response_value)
-      return false unless field.represent_min_age_to_participate?
-      Age.in_years(Date.parse(response_value)) <  User.minimum_required_age
-    end
-
     def update_user_with_geozone(response, attributes)
-      geozone_field = calculate_geozone_field(attributes)
-      if geozone_field.present?
-        assignment = get_remote_census_assignment(geozone_field)
-        if has_response_path?(assignment)
-          update_user(response, assignment, attributes)
-        end
-      end
-    end
+      return if geozone_assignments.blank?
 
-    def calculate_geozone_field(attributes)
-      field = Verification::Field.find_by(represent_geozone: true)
-      if field.present?
-        field_assignment = field.assignments.by_handler(:remote_census).first
-        return field if field_assignment.present? && field.represent_geozone?
-      end
-      return false
+      update_user(response, geozone_assignments.first, attributes)
     end
 
     def update_user(response, assignment, attributes)
       response_value = get_response_value(response, assignment)
-      user = get_user(attributes)
+      user = attributes[:user]
       geozone = get_geozone(response_value)
 
       user.update(geozone: geozone)
-    end
-
-    def get_user(attributes)
-      User.find(attributes[:user][:id])
     end
 
     def get_geozone(response_value)
