@@ -2,7 +2,7 @@
 
 <%= form_for @process, url: verification_process_path do |f| %>
   <% @process.fields.each do |_, field| %>
-    <div class="small-12 column margin-top">
+    <div class="small-12 margin-top">
       <% if field.checkbox? %>
 
         <%= f.label field.name do %>
@@ -28,14 +28,14 @@
       <% end %>
     </div>
     <% if field.confirmation_validation? %>
-      <div class="small-12 column">
+      <div class="small-12">
         <%= f.text_field process_field_name(field),
                          label: process_field_label(field),
                          hint: process_field_hint(field) %>
       </div>
     <% end %>
   <% end %>
-  <div class="actions small-12 column margin-top">
+  <div class="actions small-12 margin-top">
     <%= f.submit t("verification.process.form.submit"), class:"button expanded success" %>
   </div>
 <% end %>

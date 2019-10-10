@@ -104,6 +104,12 @@
 
 .verification-process {
 
+  @include breakpoint(small) {
+    h1 {
+      font-size: 1.8rem;
+    }
+  }
+
   .error {
     margin: 0;
   }
@@ -130,5 +136,11 @@
 
   label {
     flex: 0 0 100%;
+  }
+
+  [for="verification_process_Terms_of_service"] {
+    span {
+      display: inline-block;
+    }
   }
 }
