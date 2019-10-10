@@ -18,16 +18,16 @@ class Verification::Handlers::RemoteCensus < Verification::Handler
     end
 
     def verification_sended_fields_with_response(response, attributes)
-      attributes.except(:user).each do |attribute|
-        field = get_field(attribute)
+      attributes.except(:user).each do |key, value|
+        field = get_field(key)
         assignment = get_remote_census_assignment(field)
-        return false if unverify_attribute(response, attribute, attributes, field, assignment)
+        return false if unverify_attribute(response, attributes, field, assignment)
       end
       return true
     end
 
-    def get_field(attribute)
-      Verification::Field.find_by(name: attribute.first)
+    def get_field(key)
+      Verification::Field.find_by(name: key)
     end
 
     def get_remote_census_assignment(field)
@@ -38,7 +38,7 @@ class Verification::Handlers::RemoteCensus < Verification::Handler
       assignment.present? && assignment.response_path.present?
     end
 
-    def unverify_attribute(response, attribute, attributes, field, assignment)
+    def unverify_attribute(response, attributes, field, assignment)
       return false unless has_response_path?(assignment)
 
       response_value = get_response_value(response, assignment)
