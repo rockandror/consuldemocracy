@@ -1740,3 +1740,143 @@ es:
         phone_not_given: No ha dado su teléfono
         sms_code_not_confirmed: No ha introducido su código de seguridad
         title: Verificaciones incompletas
+    wizards:
+      title: Asistentes
+      header:
+        step: Paso
+        step_of: de
+        back_step: Atrás
+        next_step: Siguiente
+        verification:
+          title: Asistente de Verificación
+        installation:
+          title: Asistente de instalación
+      verification:
+        module_title: Asistente de Verificación
+        description: A través de esta herramienta le presentamos la verificación de los usuarios en el sistema.
+        new:
+          title: Bienvenido al asistente del proceso de verificación
+          description_html: En este asistente realizaremos paso a paso toda la configuración necesaria para poder personalizar el sistema de Verificación de la aplicación a las necesidades de cada institución.
+          exit_text: Si ha modificado el sistema de verificación y desea utilizar su código, NO siga ejecutando este asistente.
+          exit_link: ¡Ok, salir de este asistente por ahora!
+          take_effect_text: "Para que se apliquen correctamente los cambios realizados en este asistente, debe deshabilitar tanto 'Omitir verificación de usuarios' como 'Configurar conexión al censo remoto (SOAP) - Version antigua' y habilitar 'Proceso de verificación de usuario personalizable'."
+          btn_start: Empezar
+        fields:
+          create:
+            notice: Campo de verificación creado correctamente
+            error: No se ha podido crear el campo de verificación
+          destroy:
+            notice: Campo de verificación eliminado correctamente
+          edit:
+            form:
+              submit_button: Actualizar campo
+            title: Editar campo de verificación
+          form:
+            handlers:
+              help: Este campo se verificará con los verificadores activos de la lista a continuación.
+              label: Verificadores
+              input_label_help: "Añade un nombre al campo de verificacion, ej: document_number o document_type"
+              input_hint_help: Escribe un ayuda a entender que hace el campo.
+              input_name_help: "Ej: Document Type"
+              input_position_help: "Pon la posiciones en la cual quire poner el campo en el modulo del formulario. Ej: 1,2,3,4"
+              request_path: "Si el campo que está definiendo necesita ser enviado al Censo Remoto, llene el valor con la ruta de este campo en la solicitud. Por ejemplo, si la estructura de petición es {'request': {'sample_field': ''}}, si estamos definiendo el campo_de_muestreo, debemos rellenar este campo con: 'request.sample_field'."
+              response_path: "Si el campo que está definiendo necesita ser validado con la respuesta del censo remoto, rellene el valor con la ruta de este campo en la respuesta y se validará que el valor del campo introducido por el usuario es igual al enviado en la respuesta. Por ejemplo, si la estructura de respuesta es {response: {sample_field: 'sample value'}}, debemos rellenar este campo con: 'response.sample_field'."
+            label_required: Es un campo requeridos?
+            label_checkbox: Quieres que sea un checkbox?
+            label_confirmation_validation: Quieres añadir un campo de confirmacion?
+            format_placeholder: Añadir la expresión regular sin los escapados de inicio (/) y final(/)
+            checkbox_link: "Este campo se debe rellenar con el slug de una página creada en la sección de administradores 'Contenido del sitio' > 'Personalizar páginas'"
+            option_fields:
+              add_option: Añadir nueva opción para el selector
+              remove_option: Eliminar opción
+          handlers:
+            name:
+              residents: Verificación de residencia (base de datos local)
+              sms: Verificación de teléfono móvil por SMS
+              remote_census: Verificación de residencia (censo remoto)
+          index:
+            controller: Controlador
+            create_first: Crea el primero
+            create: Crear campo
+            delete: Eliminar
+            edit: Editar
+            name: Nombre
+            label: Etiqueta
+            position: Posición
+            required: Requerido
+            confirmation_validation: Confirmación
+            kind: Tipo
+            format: Formato
+            title: Campos de verificación
+            description_html: "Pending..."
+            no_results_html: "No hay campos de formulario de verificación definidos. %{link}."
+          new:
+            form:
+              submit_button: Crear campo
+            title: Nuevo campo de verificación
+          update:
+            notice: Campo de verificación actualizado correctamente
+            error: No se ha podido actualizar el campo de verificación
+        handlers:
+          index:
+            title: Métodos de verificación de usuario
+            description_html: Definir campos personalizados para preguntar al usuario durante el proceso de verificación. Pending...
+        handler:
+          field_assignments:
+            create:
+              notice: Asignación de campos creada con éxito!
+            destroy:
+              notice: Asignación de campos borrada con éxito!
+              alert: No se puede borrar la asignación de campos!
+            form:
+              submit_button: Guardar
+              format:
+                help: Introduzca una expresión ISO 8601 válida si desea convertir este campo de fecha en una cadena ISO 8601. Si se deja vacío se aplicará '%F' como el formato por defecto antes de enviarla al handler.
+            index:
+              create_sms_fields:
+                link: Crear campos de verificación telefónica
+              delete: Borrar
+              description:
+                handlers:
+                  remote_census: Agregue los campos de verificación que desea enviar al censo remoto.
+                  residents: Añada los campos de verificación que desea comprobar contra la base de datos del censo local.
+                  sms: Agregue el campo teléfono para obtener el teléfono del usuario y verificarlo por SMS.
+              edit: Editar
+              title:
+                handlers:
+                  remote_census: Configurar el proceso de verificación de censos remotos
+                  residents: Configurar el proceso de verificación del censo local
+                  sms: Configurar el proceso de verificación del teléfono
+              create: Asociar campo a este proceso de verificación
+              remote_census: "Configurar la conexión al censo remoto"
+            update:
+              notice: Asignación de campos actualizada con éxito!
+        finish:
+          title: Asistente completado con éxito
+          description_html: Aquí puede ver un resumen de los campos configurados durante este asistente.
+          btn_finish: Finalizar asistente
+          no_fields_defined_html: "Si no ha configurado ningún campo de verificación, su proceso de verificación estará vacío. Por favor, cree algunos campos o deshabilite el proceso de verificación a través de Configuración -> Configuración Global  -> Funcionalidades -> %{link}."
+          skip_user_verification: Omitir la verificación de usuario
+      installation:
+        module_title: Asistente de instalación
+        description: A través de esta herramienta le presentamos la instalación del sistema.
+        new:
+          title: Bienvenido al asistente de instalación de Consul
+          description_html: En este asistente realizaremos paso a paso toda la configuración necesaria para poder personalizar la aplicación a las necesidades de su Institución. Si no dispone de alguna información solicitada en el asistente podrá obviarlos y modificarlo en un futuro en la Sección de Configuración relacionada o desde este mismo Asistente.
+          btn_start: Empezar
+        general_settings:
+          description_html: En este paso podrá actualizar algunas de las Configuraciones Globales de la aplicación más importantes. En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección <strong>"Configuración > Configuración Global"</strong> o volviendo a ejecutar el Asistente de Instalación
+        participation_process:
+          description_html: En este paso podrán activar/desactivar los procesos de participación que decida utilizar cada Institución. En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección <strong>"Configuración > Procesos de Participación"</strong> o volviendo a ejecutar el Asistente de Instalación
+        map:
+          description_html: En este paso podrán activar/desactivar la geolocalización de las propuestas y proyectos de gasto, y personalizar la manera en que se muestra el mapa a los usuarios. En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección <strong>"Configuración > Configuración del mapa"</strong> o volviendo a ejecutar el Asistente de Instalación
+        smtp:
+          title: Conexión SMTP
+          description_html: En este paso podrán configurar la conexión SMTP para poder enviar correos desde la aplicación En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección <strong>"Configuración > Conexión SMTP"</strong> o volviendo a ejecutar el Asistente de Instalación
+        regional:
+          title: Idiomas y Zona horaria
+          description_html: En este paso podrán configurar el idioma por defecto de la aplicación, los idiomas disponibles y la zona horaria en la que se encuentra. En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección <strong>"Configuración > Regional Settings"</strong> o volviendo a ejecutar el Asistente de Instalación
+        finish:
+          title: Asistente finalizado con éxito
+          description_html: En caso de querer modificar cualquier dato una vez realizado el Asistente podrá modificarlo en la sección <strong>Configuración</strong> o volviendo a ejecutar el Asistente de Instalación
+          btn_finish: Finalizar Asistente
