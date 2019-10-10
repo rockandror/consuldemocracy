@@ -20,7 +20,7 @@ class Verification::Handlers::RemoteCensus < Verification::Handler
     def verification_response_fields(response, attributes)
       attributes.each do |attribute|
         field = Verification::Field.find_by(name: attribute.first)
-        field_assignment = field.assignments.from_remote_census.first
+        field_assignment = field.assignments.by_handler(:remote_census).first
         if field_assignment.response_path.present?
           path_value = field_assignment.response_path
           return false if response.extract_value(path_value) != attributes[field.name.to_sym]

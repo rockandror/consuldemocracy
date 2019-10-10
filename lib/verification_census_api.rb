@@ -45,7 +45,7 @@ class VerificationCensusApi
       structure = JSON.parse(Setting["remote_census.request.structure"])
       attributes.each do |attribute|
         field = Verification::Field.find_by(name: attribute.first)
-        request_path = field.assignments.from_remote_census.first.request_path
+        request_path = field.assignments.by_handler(:remote_census).first.request_path
         fill_in(structure, request_path, attribute.last)
       end
       structure

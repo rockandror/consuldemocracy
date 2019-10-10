@@ -8,7 +8,7 @@ class Verification::Handler::FieldAssignment < ApplicationRecord
   validate :sms_handler
   validate :format_iso_8601, if: -> { format.present? && verification_field.date? }
 
-  scope :from_remote_census, -> { where(handler: "remote_census") }
+  scope :by_handler, -> (handler) { where(handler: handler) }
 
   private
 

@@ -1,6 +1,7 @@
 require "rails_helper"
 
 describe Verification::Handler::FieldAssignment do
+  let(:model) { Verification::Handler::FieldAssignment }
   let(:field_assignment) { build(:verification_handler_field_assignment) }
 
   it "Default factory should be valid" do
@@ -47,10 +48,25 @@ describe Verification::Handler::FieldAssignment do
 
   context "When handler is sms" do
     it "and verification field is not named exactly 'phone' it should not be valid" do
-      verification_field = create(:verification_field, name: "email")
-      field_assignment = build(:verification_handler_field_assignment, handler: "sms", verification_field: verification_field)
+      field = create(:verification_field, name: "email")
+      field_assignment = build(:verification_handler_field_assignment, handler: "sms",
+                                                                       verification_field: field)
 
       expect(field_assignment).not_to be_valid
+    end
+  end
+
+  context ".by_handler" do
+    it "returns fields_assignments for given handler" do
+      name_field = create(:verification_field, name: "text", kind: :text)
+      name_field_assignment = create(:verification_handler_field_assignment, verification_field: name_field,
+                                                                             handler: :remote_census)
+      date_field = create(:verification_field, name: "date", kind: :date)
+      date_field_assignment = create(:verification_handler_field_assignment, verification_field: date_field,
+                                                                             handler: :residents)
+
+      expect(model.by_handler(:residents)).to include(date_field_assignment)
+      expect(model.by_handler(:residents)).not_to include(name_field_assignment)
     end
   end
 end
