@@ -103,17 +103,31 @@
 }
 
 .verification-process {
+
+  .error {
+    margin: 0;
+  }
+
   .date-select {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
   }
 
+  .date-select label {
+    margin-bottom: 1px;
+  }
+
   select {
     flex: 0 0 33%;
   }
 
-  .hint,
+  .hint {
+    flex: none;
+    display: block;
+    width: 100%;
+  }
+
   label {
     flex: 0 0 100%;
   }

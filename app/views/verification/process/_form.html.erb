@@ -2,28 +2,21 @@
 
 <%= form_for @process, url: verification_process_path do |f| %>
   <% @process.fields.each do |_, field| %>
-    <div class="small-12 column">
+    <div class="small-12 column margin-top">
       <% if field.checkbox? %>
 
         <%= f.label field.name do %>
           <%= f.check_box field.name, label: false %>
-          <span class="checkbox">
-            <%= checkbox_label(field) %>
-          </span>
+          <span><%= checkbox_label(field) %></span>
         <% end %>
-
       <% elsif field.text? %>
-
         <%= f.text_field field.name, label: field.label, hint: field_hint(field) %>
-
       <% elsif field.selector? %>
-
         <% select_options = field.verification_field_options.map { |p| [p.label, p.value] } %>
         <%= f.select field.name,
                       options_for_select(select_options),
                       prompt: t("verification.process.form.select.prompt"),
                       label: field.label %>
-
       <% elsif field.date? %>
       <div class="date-select">
         <%= f.date_select field.name,
@@ -34,7 +27,6 @@
       </div>
       <% end %>
     </div>
-
     <% if field.confirmation_validation? %>
       <div class="small-12 column">
         <%= f.text_field process_field_name(field),
@@ -43,7 +35,6 @@
       </div>
     <% end %>
   <% end %>
-
   <div class="actions small-12 column margin-top">
     <%= f.submit t("verification.process.form.submit"), class:"button expanded success" %>
   </div>
