@@ -44,11 +44,11 @@ en:
           success: Phone confirmation code was confirmed successfully.
       remote_census:
         verify:
-          error: Remote census user verification process cannot be done!
+          error: The Census was unable to verify your information. Please confirm that your census details are correct by calling to City Council or visit one Citizen Support Office.
           success: Remote census user verification process was successfully done!
       resident:
         verify:
-          error: Local residents user verification process cannot be done!
+          error: The Census was unable to verify your information. Please confirm that your census details are correct by calling to City Council or visit one Citizen Support Office.
           success: Local residents user verification process was successfully done!
     letter:
       alert:

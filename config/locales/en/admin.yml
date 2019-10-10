@@ -1701,8 +1701,8 @@ en:
         sms:
           fields:
             create:
-              notice: It has been created a \"phone\" field and also was automatically enabled it to be using during phone verification process through SMS message.
-              phone_default_label: "Mobile phone"
+              notice: It has been created a 'phone' field and also was automatically enabled it to be using during phone verification process through SMS message.
+              phone_default_label: Mobile phone
       residents:
         index:
           title: Manage residents
@@ -1859,7 +1859,7 @@ en:
                   residents: Add the verification fields you want to check against to local census database.
                   sms: Add the phone field to get phone from user and to verify it by SMS.
               edit: Edit
-              field: Verification form field assigment
+              field: Verification form fields assigment
               title:
                 handlers:
                   remote_census: Configure remote census verification process
