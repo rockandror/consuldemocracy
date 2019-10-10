@@ -85,6 +85,7 @@
 //= require cookies
 //= require columns_selector
 //= require budget_edit_associations
+//= require verification_handler_field_assignments
 //= require votations
 //= require wizard
 
@@ -137,6 +138,9 @@ var initialize_modules = function() {
   App.SendAdminNotificationAlert.initialize();
   App.ModalDownload.initialize();
   App.Wizard.initialize();
+  if ( $("#js-verification-handler-field-assigment-format").length) {
+    App.VerificationHandlerFieldAssignments.initialize()
+  }
   if ( $('#js-columns-selector').length) {
     App.ColumnsSelector.initialize();
   }

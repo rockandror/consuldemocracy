@@ -6,7 +6,7 @@
   <div class="row">
     <div class="row small-12 column">
       <%= f.select :verification_field_id,
-                    Verification::Field.all.collect{|field| [field.name, field.id]} %>
+                   options_for_verification_handler_field_assigment_verification_field %>
     </div>
   </div>
 
@@ -26,6 +26,13 @@
       </div>
     </div>
   <% end %>
+
+  <div id="js-verification-handler-field-assigment-format" class="row"
+       style="<% verification_handler_field_assignment_style(@field_assignment) %>">
+    <div class="row small-12 column">
+      <%= f.text_field :format, hint: t("admin.wizards.verification.handler.field_assignments.form.format.help") %>
+    </div>
+  </div>
 
   <div class="row margin-bottom">
     <div class="row small-12 column">

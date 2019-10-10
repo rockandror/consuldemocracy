@@ -498,6 +498,8 @@ en:
         label: Label
       verification/field/option/translation:
         label: Label
+      verification/handler/field_assigment:
+        format: Format
       verification/resident:
         data: Data
     errors:
