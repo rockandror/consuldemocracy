@@ -1762,8 +1762,8 @@ en:
         module_title: Verification Wizard
         description: Through this tool we present you the verification of the users.
         new:
-          title: Welcome to the verification process assistant
-          description_html: In this assistant we will carry out step by step all necessary configuration to be able to personalize the Verification system of the application to the needs of each institution.
+          title: Welcome to the verification process wizard
+          description_html: In this wizard we will carry out step by step all necessary configuration to be able to personalize the Verification system of the application to the needs of each institution.
           exit_text: If you have modified the verification system and want to use your code DO NOT continue running this wizard.
           exit_link: Ok, Exit this wizard for now!
           take_effect_text: "For the changes made in this wizard to take effect, you must disabled both 'skip verification' and 'Configure connection to remote census (SOAP) - Legacy version' and enable 'Customizable user verification process'."
@@ -1865,7 +1865,7 @@ en:
             update:
               notice: Field assignment updated successfully!
         finish:
-          title: Assistant successfully completed
+          title: Wizard successfully completed
           description_html: Here you can see an overview of the fields configured during this wizard.
           btn_finish: Finish Wizard
           no_fields_defined_html: "You have not configured any verification field then your verification process will be empty. Please create some fields or disable the verification process through Settings -> Global Settings -> Features -> %{link}."
@@ -1890,6 +1890,6 @@ en:
           title: Languages and Time Zone
           description_html: In this step you can set the default language of the application, the available languages and the time zone you are in. If you want to modify any of them once the Wizard has been carried out, you can go to the <strong>"Configuration > Regional Settings"</strong> section or by running the Installation Wizard again.
         finish:
-          title: Assistant successfully completed
+          title: Wizard successfully completed
           description_html: If you want to modify any data once the Wizard has been carried out, you can modify it in the <strong>Configuration</strong> section or by running the Installation Wizard again.
           btn_finish: Finish Wizard

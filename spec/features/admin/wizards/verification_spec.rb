@@ -12,8 +12,8 @@ describe "Wizard Verifcation" do
       visit new_admin_wizards_verification_path
 
       expect(page).to have_content "Verification Wizard"
-      expect(page).to have_content "Welcome to the verification process assistant"
-      expect(page).to have_content "In this assistant we will carry out step by step all necessary configuration to be able to personalize the Verification system of the application to the needs of each institution."
+      expect(page).to have_content "Welcome to the verification process wizard"
+      expect(page).to have_content "In this wizard we will carry out step by step all necessary configuration to be able to personalize the Verification system of the application to the needs of each institution."
       expect(page).to have_content "If you have modified the verification system and want to use your code DO NOT continue running this wizard."
       expect(page).to have_link("Ok, Exit this wizard for now!", href: admin_root_path)
       expect(page).to have_content "For the changes made in this wizard to take effect, you must disabled both 'skip verification' and 'Configure connection to remote census (SOAP) - Legacy version' and enable 'Customizable user verification process'."
@@ -105,7 +105,7 @@ describe "Wizard Verifcation" do
       visit admin_wizards_verification_finish_path
 
       expect(page).to have_content "Verification Wizard"
-      expect(page).to have_content "Assistant successfully completed"
+      expect(page).to have_content "Wizard successfully completed"
       expect(page).to have_content "Here you can see an overview of the fields configured during this wizard."
       expect(page).to have_link("Back", href: admin_wizards_verification_handler_field_assignments_path(:sms))
       expect(page).not_to have_link("Next")

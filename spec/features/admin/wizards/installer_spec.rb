@@ -110,7 +110,7 @@ describe "Wizard Installer" do
 
       expect(page).to have_content "Installation Wizard"
       expect(page).to have_content "Step 7 of 7"
-      expect(page).to have_content "Assistant successfully completed"
+      expect(page).to have_content "Wizard successfully completed"
       expect(page).to have_link("Back", href: admin_wizards_installer_path(:regional))
     end
   end
