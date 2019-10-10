@@ -23,10 +23,10 @@ describe "Wizard verification" do
       expect(page).to have_link("Start", href: admin_wizards_verification_fields_path)
     end
 
-    scenario "Verification fields step" do
+    scenario "User verification form. step" do
       visit admin_wizards_verification_fields_path
 
-      expect(page).to have_content "Verification fields"
+      expect(page).to have_content "User verification form."
       expect(page).to have_content "Create field"
       expect(page).to have_link("Back", href: new_admin_wizards_verification_path)
       expect(page).to have_link("Next", href: admin_wizards_verification_handlers_path)

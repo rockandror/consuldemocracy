@@ -1814,7 +1814,7 @@ en:
             confirmation_validation: Require confirmation
             kind: Kind
             format: Format
-            title: Verification fields
+            title: User verification form
             description_html: "Define the fields of the user verification form."
             no_results_html: "There is no verification form fields defined. %{link}."
           new:

@@ -1807,7 +1807,7 @@ es:
             confirmation_validation: Confirmación
             kind: Tipo
             format: Formato
-            title: Campos de verificación
+            title: Formulario de verificación de usuarios
             description_html: "Define los campos del formulario de verificación de usuarios."
             no_results_html: "No hay campos de formulario de verificación definidos. %{link}."
           new:
