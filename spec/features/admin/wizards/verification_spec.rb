@@ -1,34 +1,32 @@
 require "rails_helper"
 
-describe "Wizard Verifcation" do
+describe "Wizard verification" do
 
   before do
-    @admin = create(:administrator)
-    login_as(@admin.user)
+    admin = create(:administrator)
+    login_as(admin.user)
   end
 
-  context "Steps" do
+  describe "Steps" do
     scenario "Initial step" do
       visit new_admin_wizards_verification_path
 
-      expect(page).to have_content "Verification Wizard"
       expect(page).to have_content "Welcome to the verification process wizard"
-      expect(page).to have_content "In this wizard we will carry out step by step all necessary configuration to be able to personalize the Verification system of the application to the needs of each institution."
-      expect(page).to have_content "If you have modified the verification system and want to use your code DO NOT continue running this wizard."
-      expect(page).to have_link("Ok, Exit this wizard for now!", href: admin_root_path)
-      expect(page).to have_content "For the changes made in this wizard to take effect, you must disabled both 'skip verification' and 'Configure connection to remote census (SOAP) - Legacy version' and enable 'Customizable user verification process'."
+      expect(page).to have_content "If you have modified the legacy Consul verification " \
+                                   "system and want to keep using it do not continue running this wizard."
+      expect(page).to have_link("Ok, get me out of here!", href: admin_root_path)
+      expect(page).to have_content "For the changes made in this wizard to take effect, " \
+                                   "you must disabled both 'skip verification' and 'Configure " \
+                                   "connection to remote census (SOAP) - Legacy version' and enable " \
+                                   "'Customizable user verification process'."
       expect(page).to have_css(".setting", count: 3)
-      expect(page).to have_content "Customizable user verification process"
-      expect(page).to have_content "Skip user verification"
       expect(page).to have_link("Start", href: admin_wizards_verification_fields_path)
     end
 
     scenario "Verification fields step" do
       visit admin_wizards_verification_fields_path
 
-      expect(page).to have_content "Verification Wizard"
       expect(page).to have_content "Verification fields"
-      expect(page).to have_content "Pending..."
       expect(page).to have_content "Create field"
       expect(page).to have_link("Back", href: new_admin_wizards_verification_path)
       expect(page).to have_link("Next", href: admin_wizards_verification_handlers_path)
@@ -39,11 +37,10 @@ describe "Wizard Verifcation" do
 
       visit admin_wizards_verification_handlers_path
 
-      expect(page).to have_content "Verification Wizard"
       expect(page).to have_content "User verification methods"
-      expect(page).to have_content 'Define custom fields to ask user during verification process. Pending...'
       expect(page).to have_link("Back", href: admin_wizards_verification_fields_path)
-      expect(page).to have_link("Next", href: admin_wizards_verification_handler_field_assignments_path(:remote_census))
+      next_path = admin_wizards_verification_handler_field_assignments_path(:remote_census)
+      expect(page).to have_link("Next", href: next_path)
       expect(page).to have_css(".setting", count: 3)
       expect(page).to have_content "Verify a user against SOAP Remote Census"
       expect(page).to have_content "Verify a user against the Local Census"
@@ -56,13 +53,12 @@ describe "Wizard Verifcation" do
 
       visit admin_wizards_verification_handler_field_assignments_path(:remote_census)
 
-      expect(page).to have_content "Verification Wizard"
       expect(page).to have_content "Configure remote census verification process"
-      expect(page).to have_content "Add the verification fields you want to send to remote census."
       expect(page).to have_link("Back", href: admin_wizards_verification_handlers_path)
-      expect(page).to have_link("Next", href: admin_wizards_verification_handler_field_assignments_path(:residents))
-      expect(page).to have_link("Associate field to this verification process", href: new_admin_wizards_verification_handler_field_assignment_path(:remote_census))
-      expect(page).to have_content "Configure the connection to the remote census"
+      next_path = admin_wizards_verification_handler_field_assignments_path(:residents)
+      expect(page).to have_link("Next", href: next_path)
+      previous_path = new_admin_wizards_verification_handler_field_assignment_path(:remote_census)
+      expect(page).to have_link("Associate field to this verification process", href: previous_path)
       expect(page).to have_css(".setting", count: 4)
       expect(page).to have_content "Endpoint"
       expect(page).to have_content "Request method name"
@@ -77,12 +73,13 @@ describe "Wizard Verifcation" do
 
       visit admin_wizards_verification_handler_field_assignments_path(:residents)
 
-      expect(page).to have_content "Verification Wizard"
       expect(page).to have_content "Configure local census verification process"
-      expect(page).to have_content "Add the verification fields you want to check against to local census database."
-      expect(page).to have_link("Back", href: admin_wizards_verification_handler_field_assignments_path(:remote_census))
-      expect(page).to have_link("Next", href: admin_wizards_verification_handler_field_assignments_path(:sms))
-      expect(page).to have_link("Associate field to this verification process", href: new_admin_wizards_verification_handler_field_assignment_path(:residents))
+      previous_path = admin_wizards_verification_handler_field_assignments_path(:remote_census)
+      expect(page).to have_link("Back", href: previous_path)
+      next_path = admin_wizards_verification_handler_field_assignments_path(:sms)
+      expect(page).to have_link("Next", href: next_path)
+      new_assignation_path = new_admin_wizards_verification_handler_field_assignment_path(:residents)
+      expect(page).to have_link("Associate field to this verification process", href: new_assignation_path)
     end
 
     scenario "Configure phone verification process step" do
@@ -91,12 +88,13 @@ describe "Wizard Verifcation" do
 
       visit admin_wizards_verification_handler_field_assignments_path(:sms)
 
-      expect(page).to have_content "Verification Wizard"
       expect(page).to have_content "Configure phone verification process"
-      expect(page).to have_content "Add the phone field to get phone from user and to verify it by SMS."
-      expect(page).to have_link("Back", href: admin_wizards_verification_handler_field_assignments_path(:residents))
-      expect(page).to have_link("Next", href: admin_wizards_verification_finish_path)
-      expect(page).to have_link("Associate field to this verification process", href: new_admin_wizards_verification_handler_field_assignment_path(:sms))
+      previous_path = admin_wizards_verification_handler_field_assignments_path(:residents)
+      expect(page).to have_link("Back", href: previous_path)
+      next_path = admin_wizards_verification_finish_path
+      expect(page).to have_link("Next", href: next_path)
+      new_assignation_path = new_admin_wizards_verification_handler_field_assignment_path(:sms)
+      expect(page).to have_link("Associate field to this verification process", href: new_assignation_path)
     end
 
     scenario "Finish verification process step" do
@@ -104,14 +102,10 @@ describe "Wizard Verifcation" do
 
       visit admin_wizards_verification_finish_path
 
-      expect(page).to have_content "Verification Wizard"
       expect(page).to have_content "Wizard successfully completed"
-      expect(page).to have_content "Here you can see an overview of the fields configured during this wizard."
       expect(page).to have_link("Back", href: admin_wizards_verification_handler_field_assignments_path(:sms))
       expect(page).not_to have_link("Next")
       expect(page).to have_link("Finish Wizard", href: admin_root_path)
     end
-
   end
-
 end
