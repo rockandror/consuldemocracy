@@ -322,8 +322,8 @@ es:
       password_description: "Permitir setear el password"
     custom_verification_process:
       remote_census: Verificar un usuario contra el Censo Remoto SOAP
-      remote_census_description: Configurar el censo remoto para utilizarlo en la verificación de un usuario en la aplicación.
+      remote_census_description: Configurar el censo remoto para utilizarlo durante el proceso de verificación de usuarios.
       residents: Verificar un usuario contra el Censo Local
-      residents_description: Configurar el censo local para utilizarlo en la verificación de un usuario en la aplicación.
-      sms: Verificar el telefono de un usuario
-      sms_description: Configurar la verificación del teléfono para utilizarlo en la verificación de un usuario en la aplicación.
+      residents_description: Configurar el censo local para utilizarlo durante el proceso de verificación de usuarios.
+      sms: Verificar el teléfono de un usuario por SMS
+      sms_description: Configurar la verificación del teléfono por SMS para utilizarlo durante el proceso de verificación de usuarios.

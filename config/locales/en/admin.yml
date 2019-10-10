@@ -1832,7 +1832,7 @@ en:
         handlers:
           index:
             title: User verification methods
-            description_html: Define custom fields to ask user during verification process. Pending...
+            description_html: Enable or disable the available user verification methods you want. You can combine them to suite your needs.
         handler:
           field_assignments:
             create:

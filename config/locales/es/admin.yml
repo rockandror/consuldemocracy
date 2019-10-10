@@ -1824,8 +1824,8 @@ es:
             error: No se ha podido actualizar el campo de verificación
         handlers:
           index:
-            title: Métodos de verificación de usuario
-            description_html: Definir campos personalizados para preguntar al usuario durante el proceso de verificación. Pending...
+            title: Métodos de verificación de usuarios
+            description_html: Habilite o deshabilite los métodos de verificación de usuario disponibles que desee.
         handler:
           field_assignments:
             create:

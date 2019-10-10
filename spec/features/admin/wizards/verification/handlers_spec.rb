@@ -12,13 +12,13 @@ describe "Wizard Verification Handlers" do
       visit admin_wizards_verification_handlers_path
 
       expect(page).to have_content "Verify a user against SOAP Remote Census"
-      expect(page).to have_content "Configure the remote census to be used in the verification of a user in the application."
+      expect(page).to have_content "Configure the remote census to be used during user verification process."
 
       expect(page).to have_content "Verify a user against the Local Census"
       expect(page).to have_content "Configure the local census to be used in the verification of a user in the application."
 
       expect(page).to have_content "Verify a user's phone"
-      expect(page).to have_content "Configure the verification of the phone to use it in the verification of a user in the application."
+      expect(page).to have_content "Configure user's phone verification to use it during the verification process. "
     end
 
     scenario "Allow enable a new custom verification process setting" do
