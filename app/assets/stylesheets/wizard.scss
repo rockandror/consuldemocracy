@@ -42,14 +42,7 @@
   .verification-new {
     margin: 0 auto;
 
-    .hint {
-      color: $text-medium;
-      margin-top: -0.5rem;
-      font-size: 0.8125rem;
-      font-style: italic;
-      font-weight: normal;
-    }
-
+    @include hint();
     .row.globalize-languages.column {
       margin: 0 auto;
     }
@@ -127,6 +120,8 @@
   select {
     flex: 0 0 33%;
   }
+
+  @include hint();
 
   .hint {
     flex: none;

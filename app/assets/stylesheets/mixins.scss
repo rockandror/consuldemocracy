@@ -3,6 +3,7 @@
 // 01. Logo
 // 02. Orbit bullets
 // 03. Direct uploads
+// 04. Hint (help-text)
 // ------------------
 
 // 01. Logo
@@ -123,5 +124,18 @@
 
   .loading-bar.no-transition {
     transition: none;
+  }
+}
+
+// 04. Hint
+// ------------------
+
+@mixin hint(){
+  .hint {
+    color: $text-medium;
+    margin-top: -0.5rem;
+    font-size: 0.8125rem;
+    font-style: italic;
+    font-weight: normal;
   }
 }
