@@ -29,28 +29,8 @@ class Verification::Handlers::RemoteCensus < Verification::Handler
       end
     end
 
-    def allowed_age?(response, attributes)
-      return true unless is_age_verifcation_required?
-
-      assignment = field_represent_min_age_to_participate.first
-      birth_date = get_response_value(response, assignment)
-      Age.in_years(Date.parse(birth_date)) >= User.minimum_required_age
-    end
-
     def is_match_verification_required?
       field_assignments_to_match.any?
-    end
-
-    def is_age_verifcation_required?
-      field_represent_min_age_to_participate.any?
-    end
-
-    def field_represent_min_age_to_participate
-      field_assignments_to_match.joins(:verification_field).where("verification_fields.represent_min_age_to_participate": true)
-    end
-
-    def geozone_assignments
-      field_assignments_to_match.joins(:verification_field).where("verification_fields.represent_geozone": true)
     end
 
     def field_assignments_to_match
@@ -61,10 +41,30 @@ class Verification::Handlers::RemoteCensus < Verification::Handler
       response.extract_value(assignment.response_path)
     end
 
+    def allowed_age?(response, attributes)
+      return true unless is_age_verifcation_required?
+
+      assignment = field_represent_min_age_to_participate.first
+      birth_date = get_response_value(response, assignment)
+      Age.in_years(Date.parse(birth_date)) >= User.minimum_required_age
+    end
+
+    def is_age_verifcation_required?
+      field_represent_min_age_to_participate.any?
+    end
+
+    def field_represent_min_age_to_participate
+      field_assignments_to_match.joins(:verification_field).where("verification_fields.represent_min_age_to_participate": true)
+    end
+
     def update_user_with_geozone(response, attributes)
       return if geozone_assignments.blank?
 
       update_user(response, geozone_assignments.first, attributes)
+    end
+
+    def geozone_assignments
+      field_assignments_to_match.joins(:verification_field).where("verification_fields.represent_geozone": true)
     end
 
     def update_user(response, assignment, attributes)

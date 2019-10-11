@@ -14,12 +14,12 @@ class Verification::Handlers::Resident < Verification::Handler
 
   private
 
-    def verified?(resident)
-      resident.present? && allowed_age?(resident)
-    end
-
     def get_resident(attributes)
       Verification::Resident.find_by_data(attributes)
+    end
+
+    def verified?(resident)
+      resident.present? && allowed_age?(resident)
     end
 
     def allowed_age?(resident)
