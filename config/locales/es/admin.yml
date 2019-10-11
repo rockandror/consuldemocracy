@@ -1836,6 +1836,8 @@ es:
             description_html: Habilite o deshabilite los métodos de verificación de usuario disponibles que desee.
         handler:
           field_assignments:
+            no_results_html: "No hay campos asignados. %{link}."
+            associate_field: Asociar campo
             create:
               notice: Asignación de campos creada con éxito!
             destroy:
