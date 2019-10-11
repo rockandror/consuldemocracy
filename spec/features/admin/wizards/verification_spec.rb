@@ -59,6 +59,7 @@ describe "Wizard verification" do
       expect(page).to have_link("Next", href: next_path)
       previous_path = new_admin_wizards_verification_handler_field_assignment_path(:remote_census)
       expect(page).to have_link("Associate field to this verification process", href: previous_path)
+      expect(page).to have_content "Configure the connection to the remote census"
       expect(page).to have_css(".setting", count: 4)
       expect(page).to have_content "Endpoint"
       expect(page).to have_content "Request method name"
@@ -95,6 +96,11 @@ describe "Wizard verification" do
       expect(page).to have_link("Next", href: next_path)
       new_assignation_path = new_admin_wizards_verification_handler_field_assignment_path(:sms)
       expect(page).to have_link("Associate field to this verification process", href: new_assignation_path)
+      expect(page).to have_content "Configure the connection to the SMS service"
+      expect(page).to have_css(".setting", count: 3)
+      expect(page).to have_content "SMS endpoint"
+      expect(page).to have_content "SMS service username"
+      expect(page).to have_content "SMS service password"
     end
 
     scenario "Finish verification process step" do

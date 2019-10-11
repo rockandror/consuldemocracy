@@ -33,8 +33,9 @@
     </tbody>
   </table>
 
-  <% if remote_census_handler?(@handler) %>
-     <p><%= t("admin.wizards.verification.handler.field_assignments.index.remote_census") %></p>
-     <%= render "admin/settings/settings_table", settings: @settings %>
+  <% if render_related_setting_table?(@handler) %>
+    <p><%= t("admin.wizards.verification.handler.field_assignments.index.#{@handler}") %></p>
+    <%= render "admin/settings/settings_table", settings: @settings %>
   <% end %>
+
 </div>

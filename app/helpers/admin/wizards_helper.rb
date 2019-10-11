@@ -51,6 +51,10 @@ module Admin::WizardsHelper
     !Setting["feature.custom_verification_process"].present? || Setting["feature.user.skip_verification"].present? || Setting["feature.remote_census"].present?
   end
 
+  def render_related_setting_table?(handler)
+    remote_census_handler?(handler) || sms_handler?(handler)
+  end
+
   def remote_census_handler?(handler)
     handler == "remote_census"
   end

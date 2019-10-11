@@ -5,7 +5,7 @@ class Admin::Wizards::Verification::Handler::FieldAssignmentsController < Admin:
 
   def index
     @field_assignments = Verification::Handler::FieldAssignment.where(handler: @handler)
-    @settings = remote_census_settings if @handler == "remote_census"
+    @settings = settings_by_handler(@handler)
   end
 
   def new
@@ -64,10 +64,24 @@ class Admin::Wizards::Verification::Handler::FieldAssignmentsController < Admin:
       params.require(:verification_handler_field_assignment).permit(attributes).merge(handler: @handler)
     end
 
+    def settings_by_handler(handler)
+      case handler
+      when "remote_census"
+        remote_census_settings
+      when "sms"
+        sms_settings
+      end
+    end
+
     def remote_census_settings
-      @settings = [Setting.find_by(key: "remote_census.general.endpoint"),
-                   Setting.find_by(key: "remote_census.request.method_name"),
-                   Setting.find_by(key: "remote_census.request.structure"),
-                   Setting.find_by(key: "remote_census.response.valid")]
+      [Setting.find_by(key: "remote_census.general.endpoint"),
+       Setting.find_by(key: "remote_census.request.method_name"),
+       Setting.find_by(key: "remote_census.request.structure"),
+       Setting.find_by(key: "remote_census.response.valid")]
+    end
+
+    def sms_settings
+      all_settings = Setting.all.group_by { |setting| setting.type }
+      all_settings["sms"]
     end
 end

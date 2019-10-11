@@ -1866,6 +1866,7 @@ es:
                   sms: Configurar el proceso de verificación del teléfono
               create: Asociar campo a este proceso de verificación
               remote_census: "Configurar la conexión al censo remoto"
+              sms: "Configurar la conexión al servicio SMS"
             new:
               title: Asignación de un campo del formulario de verificación
             update:
