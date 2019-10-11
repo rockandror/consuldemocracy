@@ -132,6 +132,11 @@
     width: 100%;
   }
 
+  input.error + .hint,
+  select.error + .hint {
+    margin-top: .5em;
+  }
+
   label {
     flex: 0 0 100%;
   }
