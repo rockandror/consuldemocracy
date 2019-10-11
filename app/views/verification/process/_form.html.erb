@@ -16,7 +16,8 @@
         <%= f.select field.name,
                       options_for_select(select_options),
                       prompt: t("verification.process.form.select.prompt"),
-                      label: field.label %>
+                      label: field.label,
+                      hint: field.hint %>
       <% elsif field.date? %>
       <div class="date-select">
         <%= f.date_select field.name,
