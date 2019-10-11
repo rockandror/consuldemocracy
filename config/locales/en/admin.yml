@@ -1347,6 +1347,9 @@ en:
           default_locale: "Application default locale"
           available_locale: "Application available locales"
           timezone: "Time Zone"
+        sms:
+          title: SMS Configuration
+          description: "Set SMS configuration to send sms for verification users."
       setting: Feature
       setting_actions: Actions
       setting_name: Setting

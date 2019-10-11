@@ -311,3 +311,10 @@ en:
       time_zone:
         key: "Time Zone"
         key_description: "Define the Time Zone of the application"
+    sms:
+      endpoint: "SMS endpoint"
+      endpoint_description: "Host name where the sms service is available"
+      username: "SMS service username"
+      username_description: "Allow set username"
+      password: "SMS service password"
+      password_description: "Allow set password"
