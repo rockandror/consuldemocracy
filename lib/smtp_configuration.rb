@@ -1,6 +1,6 @@
 class SmtpConfiguration
   def self.set_configuration
-    if (Rails.env.production? || Rails.env.staging? || Rails.env.preproduction?) && Setting[:smtp_configuration]
+    if (Rails.env.production? || Rails.env.staging? || Rails.env.preproduction?) && Setting["feature.smtp_configuration"].present?
       ActionMailer::Base.delivery_method = :smtp
       ActionMailer::Base.smtp_settings = {
         address:              Setting["smtp.address"],
