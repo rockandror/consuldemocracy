@@ -1,5 +1,6 @@
 class Admin::LocalCensusRecordsController < Admin::BaseController
   load_and_authorize_resource class: "LocalCensusRecord"
+  before_action :redirect, if: -> { Setting["feature.custom_verification_process"].present? }
 
   def index
     @local_census_records = @local_census_records.search(params[:search])
@@ -36,5 +37,9 @@ class Admin::LocalCensusRecordsController < Admin::BaseController
     def local_census_record_params
       attributes = [:document_type, :document_number, :date_of_birth, :postal_code]
       params.require(:local_census_record).permit(*attributes)
+    end
+
+    def redirect
+      redirect_to admin_verification_residents_path
     end
 end

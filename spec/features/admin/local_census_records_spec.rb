@@ -6,6 +6,21 @@ describe "Admin local census records" do
     login_as(create(:administrator).user)
   end
 
+  context "Redirect to admin residents controllers" do
+    scenario "When setting 'feature.custom_verification_process' is disabled should not be done" do
+      Setting["feature.custom_verification_process"] = true
+      visit admin_local_census_records_path
+
+      expect(page).to have_current_path(admin_verification_residents_path)
+    end
+
+    scenario "When setting 'feature.custom_verification_process' is enabled should be done" do
+      visit admin_local_census_records_path
+
+      expect(page).to have_current_path(admin_local_census_records_path)
+    end
+  end
+
   context "Index" do
     let!(:local_census_record) { create(:local_census_record) }
 
