@@ -54,7 +54,10 @@
 
     [for="verification_field_is_checkbox"],
     [for="verification_field_required"],
-    [for="verification_field_confirmation_validation"] {
+    [for="verification_field_confirmation_validation"],
+    [for="verification_field_visible"],
+    [for="verification_field_represent_geozone"],
+    [for="verification_field_represent_min_age_to_participate"] {
       font-weight: normal;
     }
 
