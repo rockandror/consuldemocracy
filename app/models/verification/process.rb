@@ -7,7 +7,6 @@ class Verification::Process < ApplicationRecord
 
   validates :user, presence: true
   validate :handlers_attributes, on: :create
-  validate :handlers_verification, on: :create
 
   belongs_to :user
   has_many :verification_values, dependent: :destroy,
@@ -18,6 +17,7 @@ class Verification::Process < ApplicationRecord
   after_save :mark_as_verified, unless: :requires_confirmation?
   after_save :mark_as_confirmed, unless: :requires_confirmation?
   after_save :mark_as_residence_verified, if: :is_residence_verification_active?
+  before_create :handlers_verification
   after_find :add_attributes_from_verification_fields_definition
 
   def initialize(attributes = {})
