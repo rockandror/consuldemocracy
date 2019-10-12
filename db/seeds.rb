@@ -110,7 +110,7 @@ Setting['direct_message_max_per_day'] = 3
 
 # Email settings
 Setting['mailer_from_name'] = 'CONSUL'
-Setting['mailer_from_address'] = "(#{ENV["MAIL_USER"] || "noreply"}@#{ENV["MAIL_DOMAIN"] || "consul.dev"})"
+Setting['mailer_from_address'] = "(#{Rails.application.secrets.smtp_settings&.user_name || "noreply"}@#{Rails.application.secrets.smtp_settings&.domain || "consul.dev"})"
 
 # Verification settings
 Setting['verification_offices_url'] = 'http://oficinas-atencion-ciudadano.url/'
