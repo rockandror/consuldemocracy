@@ -91,6 +91,7 @@ class Verification::Process < ApplicationRecord
 
       if @responses.values.select { |response| response.error? }.any?
         errors.add :base, @responses.values.select { |response| response.error? }.collect(&:message)
+        throw :abort
       end
     end
 
