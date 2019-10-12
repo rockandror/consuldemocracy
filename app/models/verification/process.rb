@@ -13,11 +13,11 @@ class Verification::Process < ApplicationRecord
                                  class_name: "Verification::Value",
                                  foreign_key: :verification_process_id
 
-  after_save :save_verification_values
-  after_save :mark_as_verified, unless: :requires_confirmation?
-  after_save :mark_as_confirmed, unless: :requires_confirmation?
-  after_save :mark_as_residence_verified, if: :is_residence_verification_active?
   before_create :handlers_verification
+  after_create :save_verification_values
+  after_create :mark_as_verified, unless: :requires_confirmation?
+  after_create :mark_as_confirmed, unless: :requires_confirmation?
+  after_create :mark_as_residence_verified, if: :is_residence_verification_active?
   after_find :add_attributes_from_verification_fields_definition
 
   def initialize(attributes = {})
