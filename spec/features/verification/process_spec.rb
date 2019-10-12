@@ -132,7 +132,7 @@ describe "Verification process" do
       fill_in "Phone", with: "234234234"
       click_button "Verify my account"
 
-      expect(page).to have_content "2 errors prevented this Verification/Process from being saved"
+      expect(page).to have_content "1 error prevented this Verification/Process from being saved"
       expect(page).to have_content "has already been taken"
     end
 
