@@ -1790,7 +1790,7 @@ en:
               request_path: "If the field you are defining needs to be sent to the Remote Census, fill in the value with the path of this field in the request. For example if the request structure is {'request': {'sample_field': ''}}, if we are defining the sample_field, we should fill this field with: 'request.sample_field'."
               response_path: "If the field you are defining needs to be validated with the remote census response, fill in the value with the path of this field in the response and it will be validated that the value of the field entered by the user is equal to the one sent in the response. For example if the response structure is {response: {sample_field: 'sample value'}}, we should fill this field with: 'response.sample_field'"
             label_required: Is it a required field in the form?
-            label_checkbox: You want it to be a checkbox
+            label_kind: Field type
             label_confirmation_validation: Do you want to add a confirmation field?
             label_visible: Do you want the field to be displayed?
             label_represent_geozone: Does this field represent the geozone?

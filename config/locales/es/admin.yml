@@ -1789,7 +1789,7 @@ es:
               request_path: "Si el campo que está definiendo necesita ser enviado al Censo Remoto, llene el valor con la ruta de este campo en la solicitud. Por ejemplo, si la estructura de petición es {'request': {'sample_field': ''}}, si estamos definiendo el campo_de_muestreo, debemos rellenar este campo con: 'request.sample_field'."
               response_path: "Si el campo que está definiendo necesita ser validado con la respuesta del censo remoto, rellene el valor con la ruta de este campo en la respuesta y se validará que el valor del campo introducido por el usuario es igual al enviado en la respuesta. Por ejemplo, si la estructura de respuesta es {response: {sample_field: 'sample value'}}, debemos rellenar este campo con: 'response.sample_field'."
             label_required: Es un campo obligatorio en el formulario?
-            label_checkbox: Quieres que sea un checkbox?
+            label_kind: Tipo del campo
             label_confirmation_validation: Quieres añadir un campo de confirmacion?
             label_visible: ¿Desea que se visualice el campo?
             label_represent_geozone: ¿Este campo representa la zona geográfica?

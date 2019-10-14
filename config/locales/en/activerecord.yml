@@ -497,6 +497,7 @@ en:
         text: Text field
         checkbox: Checkbox field
         selector: Selector field
+        date: Date field
       verification/field/translation:
         label: Label
         hint: Hint

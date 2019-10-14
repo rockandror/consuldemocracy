@@ -499,6 +499,7 @@ es:
         text: Campo de texto
         checkbox: Campo checkbox
         selector: Campo selector
+        date: Campo fecha
       verification/field/translation:
         label: Etiqueta
         hint: Ayuda
