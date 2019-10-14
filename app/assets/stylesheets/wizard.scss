@@ -48,8 +48,12 @@
     }
 
     [type="checkbox"] {
-      margin-bottom: $line-height;
-      margin-top: $line-height;
+      float: left;
+      margin-top: 3px;
+    }
+
+    [type="checkbox"] + span {
+      display: flex;
     }
 
     [for="verification_field_is_checkbox"],
@@ -59,6 +63,8 @@
     [for="verification_field_represent_geozone"],
     [for="verification_field_represent_min_age_to_participate"] {
       font-weight: normal;
+      margin-top: $line-height;
+      margin-bottom: $line-height;
     }
 
     [for="verification_field_kind"] {
