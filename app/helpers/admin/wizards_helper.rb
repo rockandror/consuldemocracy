@@ -75,4 +75,8 @@ module Admin::WizardsHelper
     end
   end
 
+  def visible_value(field)
+    field.visible.nil? ? true : field.visible?
+  end
+
 end

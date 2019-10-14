@@ -44,7 +44,7 @@
     </div>
     <div class="small-12 medium-4 column">
       <label><%= t("admin.wizards.verification.fields.form.label_visible") %></label>
-      <%= f.check_box :visible, checked: true %>
+      <%= f.check_box :visible, checked: visible_value(@field) %>
     </div>
     <div class="small-12 column margin-bottom">
       <%= f.label :format do %>
