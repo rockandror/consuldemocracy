@@ -92,7 +92,7 @@ describe Admin::WizardsHelper do
     describe "when current step is remote_census" do
 
       it "return handlers index path" do
-        expect(back_step_path("remote_census")).to eq(admin_wizards_verification_handlers_path)
+        expect(back_step_path("remote_census")).to eq(admin_wizards_verification_fields_path)
       end
 
     end
@@ -108,7 +108,7 @@ describe Admin::WizardsHelper do
       it "return handler index path if remote_census Setting is disabled" do
         Setting["custom_verification_process.remote_census"] = false
 
-        expect(back_step_path("residents")).to eq(admin_wizards_verification_handlers_path)
+        expect(back_step_path("residents")).to eq(admin_wizards_verification_fields_path)
       end
 
     end
@@ -132,7 +132,7 @@ describe Admin::WizardsHelper do
         Setting["custom_verification_process.residents"] = false
         Setting["custom_verification_process.remote_census"] = false
 
-        expect(back_step_path("sms")).to eq(admin_wizards_verification_handlers_path)
+        expect(back_step_path("sms")).to eq(admin_wizards_verification_fields_path)
       end
 
     end

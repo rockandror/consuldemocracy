@@ -20,31 +20,31 @@ describe "Wizard verification" do
                                    "connection to remote census (SOAP) - Legacy version' and enable " \
                                    "'Customizable user verification process'."
       expect(page).to have_css(".setting", count: 3)
-      expect(page).to have_link("Start", href: admin_wizards_verification_fields_path)
-    end
-
-    scenario "User verification form. step" do
-      visit admin_wizards_verification_fields_path
-
-      expect(page).to have_content "User verification form"
-      expect(page).to have_content "Create field"
-      expect(page).to have_link("Back", href: new_admin_wizards_verification_path)
-      expect(page).to have_link("Next", href: admin_wizards_verification_handlers_path)
+      expect(page).to have_link("Start", href: admin_wizards_verification_handlers_path)
     end
 
     scenario "User verification methods step" do
-      Setting["custom_verification_process.remote_census"] = true
-
       visit admin_wizards_verification_handlers_path
 
       expect(page).to have_content "User verification methods"
-      expect(page).to have_link("Back", href: admin_wizards_verification_fields_path)
-      next_path = admin_wizards_verification_handler_field_assignments_path(:remote_census)
-      expect(page).to have_link("Next", href: next_path)
+      expect(page).to have_link("Back", href: new_admin_wizards_verification_path)
+      expect(page).to have_link("Next", href: admin_wizards_verification_fields_path)
       expect(page).to have_css(".setting", count: 3)
       expect(page).to have_content "Verify a user against SOAP Remote Census"
       expect(page).to have_content "Verify a user against the Local Census"
       expect(page).to have_content "Verify a user's phone"
+    end
+
+    scenario "User verification form step" do
+      Setting["custom_verification_process.remote_census"] = true
+
+      visit admin_wizards_verification_fields_path
+
+      expect(page).to have_content "User verification form"
+      expect(page).to have_content "Create field"
+      expect(page).to have_link("Back", href: admin_wizards_verification_handlers_path)
+      next_path = admin_wizards_verification_handler_field_assignments_path(:remote_census)
+      expect(page).to have_link("Next", href: next_path)
     end
 
     scenario "Configure remote census verification process step" do
@@ -54,7 +54,7 @@ describe "Wizard verification" do
       visit admin_wizards_verification_handler_field_assignments_path(:remote_census)
 
       expect(page).to have_content "Configure remote census verification process"
-      expect(page).to have_link("Back", href: admin_wizards_verification_handlers_path)
+      expect(page).to have_link("Back", href: admin_wizards_verification_fields_path)
       next_path = admin_wizards_verification_handler_field_assignments_path(:residents)
       expect(page).to have_link("Next", href: next_path)
       previous_path = new_admin_wizards_verification_handler_field_assignment_path(:remote_census)
