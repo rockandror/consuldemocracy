@@ -3,12 +3,12 @@
     <div class="small-12">
       <%= f.text_field field,
                        label: confirmation_field_label(field),
-                       hint:  confirmation_field_hint(field)%>
+                       hint:  confirmation_field_hint(field) %>
     </div>
   <% end %>
 
   <div class="actions small-12 margin-top">
     <%= f.submit t("verification.confirmation.form.submit"),
-                  class:"button expanded success" %>
+                 class: "button expanded success" %>
   </div>
 <% end %>

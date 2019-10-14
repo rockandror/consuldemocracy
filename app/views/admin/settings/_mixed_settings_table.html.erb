@@ -36,7 +36,7 @@
           </td>
         <% else %>
           <td colspan="2">
-            <%= form_for(setting, url: admin_setting_path(setting), html: { id: "edit_#{dom_id(setting)}"}) do |f| %>
+            <%= form_for(setting, url: admin_setting_path(setting), html: { id: "edit_#{dom_id(setting)}" }) do |f| %>
               <% if regional_setting?(setting) %>
                 <div class="small-6 column">
                   <% if setting.key == "regional.time_zone.key" %>

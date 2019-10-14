@@ -3,5 +3,5 @@
   <%= f.submit(t("admin.settings.index.features.#{feature.enabled? ? "disable" : "enable"}"),
                class: "button expanded #{feature.enabled? ? "hollow alert" : "success"}",
                disabled: need_disable_language?(feature),
-               data: {confirm: t("admin.actions.confirm") }) %>
+               data: { confirm: t("admin.actions.confirm") }) %>
 <% end %>

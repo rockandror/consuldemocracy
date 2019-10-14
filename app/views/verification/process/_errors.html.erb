@@ -14,7 +14,7 @@
       <% end %>
 
       <% if process.errors[:base].any? %>
-        <p><%=  process.errors[:base].flatten.join(", ") %></p>
+        <p><%= process.errors[:base].flatten.join(", ") %></p>
       <% end %>
     </strong>
   </div>
