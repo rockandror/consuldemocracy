@@ -499,6 +499,7 @@ en:
         selector: Selector field
       verification/field/translation:
         label: Label
+        hint: Hint
       verification/field/option/translation:
         label: Label
       verification/handler/field_assignment:

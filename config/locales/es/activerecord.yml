@@ -501,6 +501,7 @@ es:
         selector: Campo selector
       verification/field/translation:
         label: Etiqueta
+        hint: Ayuda
       verification/field/option/translation:
         label: Etiqueta
       verification/handler/field_assignment:
