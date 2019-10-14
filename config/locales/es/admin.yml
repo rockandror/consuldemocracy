@@ -1783,7 +1783,7 @@ es:
               help: Este campo se verificará con los verificadores activos de la lista a continuación.
               label: Verificadores
               input_label_help: "Añade un nombre al campo de verificacion, ej: Número de documento ó Tipo de documento"
-              input_hint_help: Escribe un ayuda a entender que hace el campo.
+              input_hint_help: Escribe una ayuda para mostrarla al lado del campo en el formulario.
               input_name_help: "Ej: document_type"
               input_position_help: "Posicion del campo en el formulario. Ej: 1,2,3,4"
               request_path: "Si el campo que está definiendo necesita ser enviado al Censo Remoto, llene el valor con la ruta de este campo en la solicitud. Por ejemplo, si la estructura de petición es {'request': {'sample_field': ''}}, si estamos definiendo el campo_de_muestreo, debemos rellenar este campo con: 'request.sample_field'."

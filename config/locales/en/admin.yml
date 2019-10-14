@@ -1784,7 +1784,7 @@ en:
             checkbox_link: "This field must be filled with the slug of a page created in the admin section 'Site content' > 'Custom pages'."
             handlers:
               input_label_help: "Adds a name to the verification field, e.g.: Document Number or Document Type"
-              input_hint_help: Write a help to understand what the field does..
+              input_hint_help: Write a help to show it next to the field in the form.
               input_name_help: "Ex: document_type"
               input_position_help: "Position of the field in the form. Ex: 1,2,3,4"
               request_path: "If the field you are defining needs to be sent to the Remote Census, fill in the value with the path of this field in the request. For example if the request structure is {'request': {'sample_field': ''}}, if we are defining the sample_field, we should fill this field with: 'request.sample_field'."
