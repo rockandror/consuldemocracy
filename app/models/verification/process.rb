@@ -13,7 +13,7 @@ class Verification::Process < ApplicationRecord
                                  class_name: "Verification::Value",
                                  foreign_key: :verification_process_id
 
-  before_create :handlers_verification
+  before_create :handlers_verification, if: -> (process) { process.errors.none? }
   after_create :save_verification_values
   after_create :mark_as_verified, unless: :requires_confirmation?
   after_create :mark_as_confirmed, unless: :requires_confirmation?

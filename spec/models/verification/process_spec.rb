@@ -152,6 +152,18 @@ describe Verification::Process do
 
       expect(process).to be_valid
     end
+
+    it "is not called when validation phase ends up with any error" do
+      user = create(:user)
+      Setting["custom_verification_process.residents"] = true
+      Verification::Field.destroy_all
+      field = create(:verification_field, name: "name", kind: "text", required: true)
+      create(:verification_handler_field_assignment, verification_field: field, handler: :residents)
+      process = build(:verification_process, user: user)
+
+      expect_any_instance_of(Verification::Handlers::Resident).not_to receive(:verify)
+      process.save
+    end
   end
 
   describe "fields accessors" do
