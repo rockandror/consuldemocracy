@@ -187,7 +187,7 @@ class Verification::Process < ApplicationRecord
 
     def define_confirmation_validations
       self.singleton_class.class_eval do
-        Verification::Field.confirmation_validation.each do |field|
+        Verification::Field.confirmation_validation.find_each do |field|
           validates field.name, confirmation: true
         end
       end
@@ -195,7 +195,7 @@ class Verification::Process < ApplicationRecord
 
     def define_format_validations
       self.singleton_class.class_eval do
-        Verification::Field.with_format.each do |field|
+        Verification::Field.with_format.find_each do |field|
           validates field.name, format: { with: Regexp.new(field.format) }
         end
       end
@@ -203,7 +203,7 @@ class Verification::Process < ApplicationRecord
 
     def define_checkbox_validations
       self.singleton_class.class_eval do
-        Verification::Field.with_checkbox_required.each do |field|
+        Verification::Field.with_checkbox_required.find_each do |field|
           validates field.name, acceptance: true
         end
       end
