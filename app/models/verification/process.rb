@@ -11,7 +11,8 @@ class Verification::Process < ApplicationRecord
   belongs_to :user
   has_many :verification_values, dependent: :destroy,
                                  class_name: "Verification::Value",
-                                 foreign_key: :verification_process_id
+                                 foreign_key: :verification_process_id,
+                                 inverse_of: :verification_process
 
   before_create :handlers_verification, if: -> (process) { process.errors.none? }
   after_create :save_verification_values
