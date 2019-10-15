@@ -23,10 +23,10 @@ class Verification::Process < ApplicationRecord
   def initialize(attributes = {})
     add_attributes_from_verification_fields_definition
 
-    super
-
     parse_date_fields(attributes)
     remove_date_fields_attibutes(attributes)
+
+    super
   end
 
   def requires_confirmation?
