@@ -38,22 +38,6 @@ class Verification::Process < ApplicationRecord
     requires_confirmation? && !confirmed?
   end
 
-  def mark_as_verified
-    update_column(:verified_at, Time.current)
-  end
-
-  def mark_as_phone_verified
-    update_column(:phone_verified_at, Time.current)
-  end
-
-  def mark_as_residence_verified
-    update_column(:residence_verified_at, Time.current)
-  end
-
-  def mark_as_confirmed
-    update_column(:confirmed_at, Time.current)
-  end
-
   def verified?
     verified_at.present?
   end
@@ -68,6 +52,22 @@ class Verification::Process < ApplicationRecord
 
   def confirmed?
     confirmed_at.present?
+  end
+
+  def mark_as_verified
+    update_column(:verified_at, Time.current)
+  end
+
+  def mark_as_phone_verified
+    update_column(:phone_verified_at, Time.current)
+  end
+
+  def mark_as_residence_verified
+    update_column(:residence_verified_at, Time.current)
+  end
+
+  def mark_as_confirmed
+    update_column(:confirmed_at, Time.current)
   end
 
   private
