@@ -56,19 +56,19 @@ class Verification::Process < ApplicationRecord
   end
 
   def mark_as_verified
-    update_column(:verified_at, Time.current)
+    update(verified_at: Time.current)
   end
 
   def mark_as_phone_verified
-    update_column(:phone_verified_at, Time.current)
+    update(phone_verified_at: Time.current)
   end
 
   def mark_as_residence_verified
-    update_column(:residence_verified_at, Time.current)
+    update(residence_verified_at: Time.current)
   end
 
   def mark_as_confirmed
-    update_column(:confirmed_at, Time.current)
+    update(confirmed_at: Time.current)
   end
 
   private
@@ -181,7 +181,7 @@ class Verification::Process < ApplicationRecord
     def define_presence_validations
       self.singleton_class.class_eval do
         Verification::Field.required.where.not(kind: :checkbox).find_each do |field|
-          validates field.name, presence: true
+          validates field.name, presence: true, on: :create
         end
       end
     end
@@ -189,7 +189,7 @@ class Verification::Process < ApplicationRecord
     def define_confirmation_validations
       self.singleton_class.class_eval do
         Verification::Field.confirmation_validation.find_each do |field|
-          validates field.name, confirmation: true
+          validates field.name, confirmation: true, on: :create
         end
       end
     end
@@ -197,7 +197,7 @@ class Verification::Process < ApplicationRecord
     def define_format_validations
       self.singleton_class.class_eval do
         Verification::Field.with_format.find_each do |field|
-          validates field.name, format: { with: Regexp.new(field.format) }
+          validates field.name, format: { with: Regexp.new(field.format) }, on: :create
         end
       end
     end
@@ -205,7 +205,7 @@ class Verification::Process < ApplicationRecord
     def define_checkbox_validations
       self.singleton_class.class_eval do
         Verification::Field.with_checkbox_required.find_each do |field|
-          validates field.name, acceptance: true
+          validates field.name, acceptance: true, on: :create
         end
       end
     end
