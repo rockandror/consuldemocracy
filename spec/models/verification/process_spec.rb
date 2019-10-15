@@ -2,274 +2,158 @@ require "rails_helper"
 
 describe Verification::Process do
   before { Setting["feature.custom_verification_process"] = true }
+  let(:model) { Verification::Process }
   let(:process) { build(:verification_process) }
 
-  it "Should be valid" do
+  it "Is valid" do
     expect(process).to be_valid
   end
 
-  it "When no user is defined it should not be valid" do
+  it "Is not valid without a user defined" do
     process.user = nil
 
     expect(process).not_to be_valid
   end
 
-  describe "required_fields validation" do
-    it "When required fields defined are not present it should not be valid" do
-      create(:verification_field, name: :custom_field, required: true)
-
-      expect(process).not_to be_valid
-    end
-
-    it "When required fields defined are present it should be valid" do
-      create(:verification_field, name: :custom_field, required: true)
-      process.custom_field = "some_value"
-
-      expect(process).to be_valid
-    end
-  end
-
-  describe "confirmation field validation" do
-    it "When confirmation validation field is not present it should not be valid" do
-      create(:verification_field, name: :custom_field, confirmation_validation: true)
-      process.custom_field = "some_value"
-      process.custom_field_confirmation = ""
-
-      expect(process).not_to be_valid
-    end
-
-    it "When confirmation validation field is present but is not equal it should not be valid" do
-      create(:verification_field, name: :custom_field, confirmation_validation: true)
-      process.custom_field = "some_value"
-      process.custom_field_confirmation = "another_value"
-
-      expect(process).not_to be_valid
-    end
-
-    it "When confirmation validation field is equal it should be valid" do
-      create(:verification_field, name: :custom_field, confirmation_validation: true)
-      process.custom_field = "some_value"
-      process.custom_field_confirmation = "some_value"
-
-      expect(process).to be_valid
-    end
-  end
-
-  describe "format validation" do
-    it "With wrong format it should not be valid" do
-      create(:verification_field, name: :custom_field, format: '\A[\d \+]+\z')
-      process.custom_field = "wrong format"
-
-      expect(process).not_to be_valid
-    end
-
-    it "With correct format it should be valid" do
-      create(:verification_field, name: :custom_field, format: '\A[\d \+]+\z')
-      process.custom_field = "666999999"
-
-      expect(process).to be_valid
-    end
-  end
-
-  describe "checkbox fields validation" do
-    it "When checkbox fields with required defined are not checked it should not be valid" do
-      create(:verification_field, name: :custom_field, required: true, kind: "checkbox")
-      process.custom_field = false
-
-      expect(process).not_to be_valid
-    end
-
-    it "When checkbox fields with required defined are checked it should be valid" do
-      create(:verification_field, name: :custom_field, required: true, kind: "checkbox")
-      process.custom_field = true
-
-      expect(process).to be_valid
-    end
-  end
-
-  describe "handlers_verification validation" do
-    before do
-      Class.new(Verification::Handler) do
-        register_as :handler
-
-        validates :email_confirmation, presence: true
-        validates :email, confirmation: { case_sensitive: false }
-
-        def self.model_name
-          ActiveModel::Name.new(self, nil, "temp")
-        end
-      end
-      Setting["custom_verification_process.handler"] = true
-      email_field = create(:verification_field, name: :email)
-      email_confirmation_field = create(:verification_field, name: :email_confirmation)
-      create(:verification_handler_field_assignment, verification_field: email_field, handler: :handler)
-      create(:verification_handler_field_assignment, verification_field: email_confirmation_field, handler: :handler)
-    end
-
-    it "converts date fields to a string with given format" do
-      user = create(:user)
-      Setting["custom_verification_process.residents"] = true
-      Verification::Field.destroy_all
-      field = create(:verification_field, name: "date", kind: :date)
-      create(:verification_handler_field_assignment, verification_field: field, handler: :residents,
-                                                     format: "%d/%m/%Y")
-      process = build(:verification_process, user: user)
-      current_date = Date.current
-      process.date = current_date
-
-      expected_arguments = { date: current_date.strftime("%d/%m/%Y"), user: user }
-      expect_any_instance_of(Verification::Handlers::Resident).
-        to receive(:verify).with(expected_arguments).and_call_original
-      process.save
-    end
-
-    it "convert date fields to a string with date ISO 8601 '%F' when format is not defined" do
-      user = create(:user)
-      Setting["custom_verification_process.residents"] = true
-      Verification::Field.destroy_all
-      field = create(:verification_field, name: "date", kind: :date)
-      create(:verification_handler_field_assignment, verification_field: field, handler: :residents)
-      process = build(:verification_process, user: user)
-      current_date = Date.current
-      process.date = current_date
-
-      expected_arguments = { date: current_date.strftime("%F"), user: user }
-      expect_any_instance_of(Verification::Handlers::Resident).
-        to receive(:verify).with(expected_arguments).and_call_original
-      process.save
-    end
-
-    it "respond with a verification error it should not be valid" do
-      process = build(:verification_process, email: "user@email.com",
-        email_confirmation: "another_user@email.com" )
-
-      expect(process).not_to be_valid
-    end
-
-    it "respond with a successful verification it should be valid" do
-      process = build(:verification_process, email: "user@email.com",
-        email_confirmation: "user@email.com" )
-
-      expect(process).to be_valid
-    end
-
-    it "is not called when validation phase ends up with any error" do
-      user = create(:user)
-      Setting["custom_verification_process.residents"] = true
-      Verification::Field.destroy_all
-      field = create(:verification_field, name: "name", kind: "text", required: true)
-      create(:verification_handler_field_assignment, verification_field: field, handler: :residents)
-      process = build(:verification_process, user: user)
-
-      expect_any_instance_of(Verification::Handlers::Resident).not_to receive(:verify)
-      process.save
-    end
-  end
-
-  describe "fields accessors" do
-    it "should include attr accessor for each verification field defined" do
+  describe "#initialize" do
+    it "Create one attribute accessor per defined verification field" do
       create(:verification_field, name: :custom_field_name)
 
       expect(process).to respond_to(:custom_field_name)
       expect(process).to respond_to(:custom_field_name=)
     end
 
-    it "should not include attr accessor when no field with given name defined" do
-      expect(process).not_to respond_to(:custom_field_name)
+    it "Create one confirmation attribute accessor per defined verification field" do
+      create(:verification_field, name: :custom_field_name, confirmation_validation: true)
+
+      expect(process).to respond_to(:custom_field_name_confirmation)
+      expect(process).to respond_to(:custom_field_name_confirmation=)
     end
+
+    it "Add presence validation to attribute accessor when related verification field is required" do
+      create(:verification_field, name: :required_field_name, required: true)
+
+      process.required_field_name = nil
+
+      expect(process).not_to be_valid
+      expect(process.errors[:required_field_name]).to include("can't be blank")
+      process.required_field_name = "Something to pass validation"
+      expect(process).to be_valid
+    end
+
+    it "Add confirmation validation to attribute accessor when related verification field
+        confirmation_validation is enabled" do
+      create(:verification_field, name: :name, confirmation_validation: true)
+
+      process.name = "James Bond"
+      process.name_confirmation = "James Bond 007"
+
+      expect(process).not_to be_valid
+      expect(process.errors[:name_confirmation]).to include("doesn't match Name")
+      process.name_confirmation = "James Bond"
+      expect(process).to be_valid
+    end
+
+    it "Add format validation to attribute accessor when related verification field
+        has a format validation defined" do
+      create(:verification_field, name: :phone, format: '\A[\d \+]+\z')
+
+      process.phone = "wrong format"
+
+      expect(process).not_to be_valid
+      expect(process.errors[:phone]).to include("is invalid")
+      process.phone = "666777888"
+      expect(process).to be_valid
+    end
+
+    it "Add acceptance validation to attribute accessor when related verification field
+        is required and has kind 'checkbox'" do
+      create(:verification_field, name: :tos, required: true, kind: :checkbox)
+
+      process.tos = "0"
+      expect(process).not_to be_valid
+      expect(process.errors[:tos]).to include("must be accepted")
+      process.tos = "1"
+      expect(process).to be_valid
+    end
+
+    # TODO: Check dates parsing
   end
 
-  describe "#requires_confirmation?" do
-    it "should return true when any of the active handlers requires confirmation" do
-      Class.new(Verification::Handler) do
-        register_as :handler
-        requires_confirmation false
-      end
-      Class.new(Verification::Handler) do
-        register_as :handler_with_required_confirmation
-        requires_confirmation true
-      end
-      Setting["custom_verification_process.handler"] = true
-      Setting["custom_verification_process.handler_with_required_confirmation"] = true
-      custom_field = create(:verification_field, name: :custom_field)
-      other_custom_field = create(:verification_field, name: :other_custom_field)
+  describe "#before_create" do
+    before { Setting["custom_verification_process.residents"] = true }
 
-      create(:verification_handler_field_assignment, verification_field: custom_field, handler: :handler)
-      create(:verification_handler_field_assignment, verification_field: other_custom_field, handler: :handler_with_required_confirmation)
+    it "will call handlers_verification method when there is not validation errors" do
+      create(:verification_field, name: :custom_field)
 
-      expect(process.requires_confirmation?).to be(true)
+      expect(process).to receive(:handlers_verification)
+      expect(process.save).to be(true)
     end
 
-    it "should return false when none of the active handlers requires confirmation" do
-      Class.new(Verification::Handler) do
-        register_as :handler
-        requires_confirmation false
-      end
-      Setting["custom_verification_process.handler"] = true
-      field = create(:verification_field, name: :custom_field_name)
-      create(:verification_handler_field_assignment, verification_field: field, handler: :handler)
+    it "wont call handlers_verification method when there is any validation error" do
+      create(:verification_field, name: :custom_field, required: true)
 
-      expect(process.requires_confirmation?).to be(false)
+      expect(process).not_to receive(:handlers_verification)
+      expect(process.save).to be(false)
     end
-  end
 
-  describe "#save" do
-    it "should return false when any handler response is error" do
-      Class.new(Verification::Handler) do
-        register_as :handler
-        requires_confirmation false
-
-        def verify(attributes = {})
-          Verification::Handlers::Response.new false, "Error", attributes, nil
-        end
-      end
-      Setting["custom_verification_process.handler"] = true
-      field = create(:verification_field, name: :custom_field_name)
-      create(:verification_handler_field_assignment, verification_field: field, handler: :handler)
+    it "stops saving the process when any handler verification responds with an error" do
+      field = create(:verification_field, name: :custom_field)
+      create(:verification_handler_field_assignment, verification_field: field, handler: :residents)
 
       expect(process.save).to be(false)
     end
 
-    it "should contain errors from errored handlers responses at :base" do
-      Class.new(Verification::Handler) do
-        register_as :handler
-        requires_confirmation false
-
-        def verify(attributes = {})
-          Verification::Handlers::Response.new false, "Verification error explanation", attributes, nil
-        end
-      end
-      Setting["custom_verification_process.handler"] = true
+    it "copy errors from errored handlers to process :base" do
       field = create(:verification_field, name: :custom_field_name)
-      create(:verification_handler_field_assignment, verification_field: field, handler: :handler)
+      create(:verification_handler_field_assignment, verification_field: field, handler: :residents)
 
-      expect{process.save}.to change{ process.errors[:base] }.from([]).to([["Verification error explanation"]])
+      error = "The Census was unable to verify your information. Please confirm "   \
+              "that your census details are correct by calling to City Council or " \
+              "visit one Citizen Support Office."
+      expect do
+        process.save
+      end.to change { process.errors[:base] }.from([]).to([[error]])
     end
 
-    it "should return true when all handlers response are successful" do
-      Class.new(Verification::Handler) do
-        register_as :handler
-      end
-      Class.new(Verification::Handler) do
-        register_as :other_handler
-      end
-      Setting["custom_verification_process.handler"] = true
-      Setting["custom_verification_process.other_handler"] = true
-      field = create(:verification_field, name: :custom_field_name)
-      create(:verification_handler_field_assignment, verification_field: field, handler: :handler)
+    it "converts :date fields to a string with defined format" do
+      Setting["custom_verification_process.residents"] = true
+      Verification::Field.destroy_all
+      field = create(:verification_field, name: :date, kind: :date)
+      create(:verification_handler_field_assignment, verification_field: field, handler: :residents,
+                                                     format: "%d/%m/%Y")
+      process = build(:verification_process)
+      process.date = Date.current
 
-      expect(process.save).to be(true)
+      expected_arguments = { date: process.date.strftime("%d/%m/%Y"), user: process.user }
+      expect_any_instance_of(Verification::Handlers::Resident).
+        to receive(:verify).with(expected_arguments).and_call_original
+      process.save
     end
 
+    it "convert date fields to a string with date ISO 8601 '%F' when format is not defined" do
+      Setting["custom_verification_process.residents"] = true
+      Verification::Field.destroy_all
+      field = create(:verification_field, name: :date, kind: :date)
+      create(:verification_handler_field_assignment, verification_field: field, handler: :residents)
+      process = build(:verification_process)
+      process.date = Date.current
+
+      expected_arguments = { date: process.date.strftime("%F"), user: process.user }
+      expect_any_instance_of(Verification::Handlers::Resident).
+        to receive(:verify).with(expected_arguments).and_call_original
+      process.save
+    end
+  end
+
+  describe "#after_create" do
     it "saves one verification value for each verification field" do
       create(:verification_field, name: :custom_field_name)
 
       expect { process.save }.to change { Verification::Value.count }.by(1)
     end
-  end
 
-  describe "#after_save" do
-    it "marks verified_at with current time when process do not need any confirmation codes" do
+    it "marks process as verified when process do not need any confirmation codes" do
       create(:verification_resident, data: { document_number: "4433221Z" })
       field = create(:verification_field, name: :document_number)
       create(:verification_handler_field_assignment, verification_field: field, handler: :residents)
@@ -279,9 +163,10 @@ describe Verification::Process do
       expect { process.save }.to change { process.verified_at }.from(nil).to(Time)
     end
 
-    it "do not mark verified_at when any handler with required confirmation is enabled" do
+    it "do not mark process as verified when any of the active handlers requires confirmation" do
       field = create(:verification_field, name: :phone)
       create(:verification_handler_field_assignment, verification_field: field, handler: :sms)
+
       process.phone = "666444000"
 
       expect { process.save }.to change { process.verified_at }.from(nil).to(Time)
@@ -316,6 +201,54 @@ describe Verification::Process do
     end
   end
 
+  describe "#after_find"
+
+  describe "#requires_confirmation?" do
+    before do
+      Setting["custom_verification_process.sms"] = true
+      Setting["custom_verification_process.residents"] = true
+    end
+
+    it "when any of the active handlers requires confirmation it should return true" do
+      field = create(:verification_field, name: :phone)
+
+      create(:verification_handler_field_assignment, verification_field: field, handler: :sms)
+
+      expect(process.requires_confirmation?).to be(true)
+    end
+
+    it "when none of the active handlers requires confirmation it should return false" do
+      field = create(:verification_field, name: :field)
+      create(:verification_handler_field_assignment, verification_field: field, handler: :residents)
+
+      expect(process.requires_confirmation?).to be(false)
+    end
+  end
+
+  describe "#confirmations_pending?" do
+    it "is false when process confirmed_at is already set" do
+      process = create(:verification_process)
+
+      expect(process.confirmations_pending?).to be(false)
+    end
+
+    it "is false when process confirmed_at is already set" do
+      process = create(:verification_process, confirmed_at: Time.current)
+
+      expect(process.confirmations_pending?).to be(false)
+    end
+
+    it "is true when process confirmed_at is not defined and process requires confirmation" do
+      Setting["custom_verification_process.sms"] = true
+      field = create(:verification_field, name: :phone)
+      create(:verification_handler_field_assignment, verification_field: field, handler: :sms)
+      process.phone = "333444555"
+      process.save!
+
+      expect(process.confirmations_pending?).to be(true)
+    end
+  end
+
   describe "#verified?" do
     let(:process) { build(:verification_process) }
 
@@ -324,7 +257,7 @@ describe Verification::Process do
     end
 
     it "is true when process verified_at is defined" do
-      process.save
+      expect { process.save }.to change { process.verified? }
 
       expect(process.verified?).to be(true)
     end
@@ -338,7 +271,7 @@ describe Verification::Process do
     end
 
     it "is true when process phone_verified_at is defined" do
-      process.update(phone_verified_at: Time.current)
+      process.update!(phone_verified_at: Time.current)
 
       expect(process.verified_phone?).to be(true)
     end
@@ -352,7 +285,7 @@ describe Verification::Process do
     end
 
     it "is true when process residence_verified_at is defined" do
-      process.update(residence_verified_at: Time.current)
+      process.update!(residence_verified_at: Time.current)
 
       expect(process.verified_residence?).to be(true)
     end
@@ -366,41 +299,9 @@ describe Verification::Process do
     end
 
     it "is true when process confirmed_at is defined" do
-      process.save
+      process.save!
 
       expect(process.confirmed?).to be(true)
-    end
-  end
-
-  describe "#confirmations_pending?" do
-    it "is false when process confirmed_at is already set" do
-      process = create(:verification_process)
-
-      expect(process.confirmations_pending?).to be(false)
-    end
-
-    it "is false when process confirmed_at is already set" do
-      Setting["custom_verification_process.sms"] = true
-      user = create(:user)
-      field = create(:verification_field, name: :phone)
-      create(:verification_handler_field_assignment, verification_field: field, handler: :sms)
-      process = create(:verification_process, user: user, phone: "333444555")
-      user.reload
-      confirmation = build(:verification_confirmation, user: user, sms_confirmation_code: user.sms_confirmation_code)
-      confirmation.save
-
-      expect(process.reload.confirmations_pending?).to be(false)
-    end
-
-    it "is true when process confirmed_at is not defined and process requires confirmation" do
-      Setting["custom_verification_process.sms"] = true
-      field = create(:verification_field, name: :phone)
-      create(:verification_handler_field_assignment, verification_field: field, handler: :sms)
-      process = build(:verification_process)
-      process.phone = "333444555"
-      process.save
-
-      expect(process.confirmations_pending?).to be(true)
     end
   end
 end
