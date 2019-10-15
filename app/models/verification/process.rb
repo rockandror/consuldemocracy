@@ -115,7 +115,7 @@ class Verification::Process < ApplicationRecord
 
     # Defines attribute accessors for all verification fields
     def define_fields_accessors
-      Verification::Field.all.each do |field|
+      Verification::Field.all.find_each do |field|
         define_singleton_method field.name do
           instance_variable_get "@#{field.name}"
         end
@@ -128,13 +128,13 @@ class Verification::Process < ApplicationRecord
     end
 
     def parse_date_fields(attributes)
-      Verification::Field.where(kind: :date).each do |field|
+      Verification::Field.where(kind: :date).find_each do |field|
         send("#{field.name}=", parse_date(field.name, attributes))
       end
     end
 
     def remove_date_fields_attibutes(attributes)
-      Verification::Field.where(kind: :date).each do |field|
+      Verification::Field.where(kind: :date).find_each do |field|
         attributes = remove_date("date_of_birth", attributes)
       end
     end
