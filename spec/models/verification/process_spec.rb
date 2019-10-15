@@ -16,6 +16,14 @@ describe Verification::Process do
   end
 
   describe "#initialize" do
+    it "Build a new instance with given attributes" do
+      create(:verification_field, name: :date, kind: :date)
+      date = Date.current
+      process = model.new(date: date)
+
+      expect(process.date).to eq(date)
+    end
+
     it "Create one attribute accessor per defined verification field" do
       create(:verification_field, name: :custom_field_name)
 
@@ -122,8 +130,7 @@ describe Verification::Process do
       field = create(:verification_field, name: :date, kind: :date)
       create(:verification_handler_field_assignment, verification_field: field, handler: :residents,
                                                      format: "%d/%m/%Y")
-      process = build(:verification_process)
-      process.date = Date.current
+      process = build(:verification_process, date: Date.current)
 
       expected_arguments = { date: process.date.strftime("%d/%m/%Y"), user: process.user }
       expect_any_instance_of(Verification::Handlers::Resident).
@@ -136,8 +143,7 @@ describe Verification::Process do
       Verification::Field.destroy_all
       field = create(:verification_field, name: :date, kind: :date)
       create(:verification_handler_field_assignment, verification_field: field, handler: :residents)
-      process = build(:verification_process)
-      process.date = Date.current
+      process = build(:verification_process, date: Date.current)
 
       expected_arguments = { date: process.date.strftime("%F"), user: process.user }
       expect_any_instance_of(Verification::Handlers::Resident).
