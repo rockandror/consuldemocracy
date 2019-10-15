@@ -179,7 +179,7 @@ class Verification::Process < ApplicationRecord
 
     def define_presence_validations
       self.singleton_class.class_eval do
-        Verification::Field.required.each do |field|
+        Verification::Field.required.where.not(kind: :checkbox).find_each do |field|
           validates field.name, presence: true
         end
       end
