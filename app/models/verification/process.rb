@@ -15,7 +15,7 @@ class Verification::Process < ApplicationRecord
                                  inverse_of: :verification_process
 
   before_create :handlers_verification, if: -> (process) { process.errors.none? }
-  after_create :save_verification_values
+  after_create :store_verification_values
   after_create :mark_as_verified, unless: :requires_confirmation?
   after_create :mark_as_confirmed, unless: :requires_confirmation?
   after_create :mark_as_residence_verified, if: :is_residence_verification_active?
@@ -210,19 +210,13 @@ class Verification::Process < ApplicationRecord
       end
     end
 
-    def save_verification_values
-      verification_values = []
-      @fields.each_with_object(verification_values) do |(name, field), verification_values|
-        verification_values << Verification::Value.create(
+    def store_verification_values
+      @fields.each_with_object([]) do |(name, field), objects|
+        objects << Verification::Value.create(
           verification_field: field,
           verification_process: self,
           value: send(name))
       end
-
-      return true if verification_values.size == @fields.size && verification_values.all?(&:persisted?)
-
-      verification_values.select(&:persisted?).map(&:destroy)
-      false
     end
 
     def is_residence_verification_active?
