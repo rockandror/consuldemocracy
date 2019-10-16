@@ -13,8 +13,6 @@ describe VerificationCensusApi do
       create(:verification_handler_field_assignment, :remote_census, verification_field: document_type, request_path: "request.document_type" )
       create(:verification_handler_field_assignment, :remote_census, verification_field: document_number, request_path: "request.document_number" )
       create(:verification_handler_field_assignment, :remote_census, verification_field: another_field_required, request_path: "request.another_field_required" )
-      # Setting["feature.custom_verification_process"] = true
-      # Setting["remote_census.request.structure"] = "{'request': {'static_field':  1, 'document_number': nil, 'document_type': nil, 'another_field_required': nil }}"
       Setting["remote_census.request.structure"] = '{ "request":
                                                       { "static_field": "1",
                                                         "document_type": "nil",
