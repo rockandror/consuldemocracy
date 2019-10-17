@@ -30,7 +30,7 @@
       <tbody>
         <% if @fields.empty? %>
           <tr>
-            <td colspan="9"><%= verification_fields_no_results_message %></td>
+            <td colspan="10"><%= verification_fields_no_results_message %></td>
           </tr>
         <% else %>
           <%= render partial: "field", collection: @fields %>
