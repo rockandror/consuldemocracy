@@ -14,12 +14,16 @@ class Verification::Process < ApplicationRecord
                                  foreign_key: :verification_process_id,
                                  inverse_of: :verification_process
 
+  has_many :verification_fields, through: :verification_values,
+                                 class_name: "Verification::Field"
+
   before_create :handlers_verification, if: -> (process) { process.errors.none? }
   after_create :store_verification_values
   after_create :mark_as_verified, unless: :requires_confirmation?
   after_create :mark_as_confirmed, unless: :requires_confirmation?
   after_create :mark_as_residence_verified, if: :is_residence_verification_active?
   after_find :add_attributes_from_verification_fields_definition
+  after_find :load_attributes_from_verification_values
 
   def initialize(attributes = {})
     add_attributes_from_verification_fields_definition
@@ -181,7 +185,7 @@ class Verification::Process < ApplicationRecord
     def define_presence_validations
       self.singleton_class.class_eval do
         Verification::Field.required.where.not(kind: :checkbox).find_each do |field|
-          validates field.name, presence: true, on: :create
+          validates field.name, presence: true
         end
       end
     end
@@ -189,7 +193,7 @@ class Verification::Process < ApplicationRecord
     def define_confirmation_validations
       self.singleton_class.class_eval do
         Verification::Field.confirmation_validation.find_each do |field|
-          validates field.name, confirmation: true, on: :create
+          validates field.name, confirmation: true
         end
       end
     end
@@ -197,7 +201,7 @@ class Verification::Process < ApplicationRecord
     def define_format_validations
       self.singleton_class.class_eval do
         Verification::Field.with_format.find_each do |field|
-          validates field.name, format: { with: Regexp.new(field.format) }, on: :create
+          validates field.name, format: { with: Regexp.new(field.format) }
         end
       end
     end
@@ -205,7 +209,7 @@ class Verification::Process < ApplicationRecord
     def define_checkbox_validations
       self.singleton_class.class_eval do
         Verification::Field.with_checkbox_required.find_each do |field|
-          validates field.name, acceptance: true, on: :create
+          validates field.name, acceptance: true
         end
       end
     end
@@ -230,6 +234,13 @@ class Verification::Process < ApplicationRecord
         value.strftime(assignment.format)
       else
         value.strftime("%F")
+      end
+    end
+
+    def load_attributes_from_verification_values
+      verification_values.find_each do |verification_value|
+        attribute = verification_value.verification_field.name
+        send("#{attribute}=", verification_value.value)
       end
     end
 end

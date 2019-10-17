@@ -207,7 +207,17 @@ describe Verification::Process do
     end
   end
 
-  describe "#after_find"
+  describe "#after_find" do
+    it "load attributes from related verification values to keep object valid" do
+      field = create(:verification_field, name: :name, required: true)
+      create(:verification_handler_field_assignment, verification_field: field)
+      process = create(:verification_process, name: "A name")
+
+      process = model.find(process.id)
+      expect(process.name).to eq("A name")
+      expect(process).to be_valid
+    end
+  end
 
   describe "#requires_confirmation?" do
     before do
@@ -308,21 +318,6 @@ describe Verification::Process do
       process.save!
 
       expect(process.confirmed?).to be(true)
-    end
-  end
-
-  describe "#update" do
-    it "Will not apply dynamic validations during or after updates" do
-      field = create(:verification_field, name: :name, required: true)
-      create(:verification_handler_field_assignment, verification_field: field)
-
-      process = create(:verification_process, name: "A name")
-      expect(process.name).to eq("A name")
-      expect(process).to be_valid
-
-      process = model.find(process.id)
-      expect(process).to be_valid
-      expect(process.name).to be_blank
     end
   end
 end
