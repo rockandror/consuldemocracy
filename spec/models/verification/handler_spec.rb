@@ -48,9 +48,9 @@ describe Verification::Handler do
 
     it "returns succesful response when handler does not implement verify method" do
 
-      expect {
+      expect do
         subject.verify({})
-      }.to change { subject.response }.from(nil).to(Verification::Handlers::Response)
+      end.to change { subject.response }.from(nil).to(Verification::Handlers::Response)
       expect(subject.success?).to be true
       expect(subject.success).to be true
     end
@@ -69,16 +69,16 @@ describe Verification::Handler do
       end
 
       it "returns successful response when handler does implement verify method" do
-        expect {
+        expect do
           subject.verify({ email: "user@email.com", email_cofirmation: "user@email.com" })
-        }.to change { subject.response }.from(nil).to(Verification::Handlers::Response)
+        end.to change { subject.response }.from(nil).to(Verification::Handlers::Response)
         expect(subject.success?).to be true
       end
 
       it "returns error response when handler does implement verify method" do
-        expect {
+        expect do
           subject.verify({ email: "user@email.com", email_cofirmation: "user@email.net" })
-        }.to change { subject.response }.from(nil).to(Verification::Handlers::Response)
+        end.to change { subject.response }.from(nil).to(Verification::Handlers::Response)
         expect(subject.success?).to be false
       end
     end
