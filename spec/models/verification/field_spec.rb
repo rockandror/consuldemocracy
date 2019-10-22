@@ -1,79 +1,80 @@
 require "rails_helper"
 
 describe Verification::Field do
+  let(:model) { Verification::Field }
   let(:field) { build(:verification_field) }
 
-  it "Should be valid" do
+  it "is be valid" do
     expect(field).to be_valid
   end
 
-  it "Should not be valid without name" do
+  it "is not be valid without name" do
     field.name = nil
 
     expect(field).not_to be_valid
   end
 
-  it "Should not be valid without label" do
+  it "is not valid without label" do
     field.label = nil
 
     expect(field).not_to be_valid
   end
 
-  it "Should not be valid without position" do
+  it "is not valid without position" do
     field.position = nil
 
     expect(field).not_to be_valid
   end
 
-  it "Should not be valid without kind" do
+  it "is not valid without kind" do
     field.kind = nil
 
     expect(field).not_to be_valid
   end
 
   describe ".required" do
-    it "Should return only required fields" do
+    it "returns only required fields" do
       required_field = create :verification_field, required: true
       create :verification_field, required: false
 
-      expect(described_class.required).to eq([required_field])
+      expect(model.required).to eq([required_field])
     end
   end
 
   describe ".confirmation_validation" do
-    it "Should return only confirmation_validation fields" do
+    it "returns only confirmation_validation fields" do
       confirmation_validation_field = create :verification_field, confirmation_validation: true
       create :verification_field, confirmation_validation: false
 
-      expect(described_class.confirmation_validation).to eq([confirmation_validation_field])
+      expect(model.confirmation_validation).to eq([confirmation_validation_field])
     end
   end
 
   describe ".with_format" do
-    it "Should return only with_format fields" do
+    it "returns only with_format fields" do
       with_format_field = create :verification_field, format: "format_defined"
       create :verification_field, format: ""
 
-      expect(described_class.with_format).to eq([with_format_field])
+      expect(model.with_format).to eq([with_format_field])
     end
   end
 
   describe ".with_checkbox_required" do
-    it "Should return only with_checkbox_required fields" do
+    it "returns only with_checkbox_required fields" do
       with_checkbox_required_field = create :verification_field, kind: "checkbox", required: true
       create :verification_field, kind: "text", required: true
       create :verification_field, kind: "checkbox", required: false
 
-      expect(described_class.with_checkbox_required).to eq([with_checkbox_required_field])
+      expect(model.with_checkbox_required).to eq([with_checkbox_required_field])
     end
   end
 
   describe ".visible" do
-    it "Should return only visible fields" do
+    it "return only visible fields" do
       visible_field = create :verification_field, visible: true
       create :verification_field, visible: false
 
-      expect(described_class.visible).to eq([visible_field])
+      expect(model.visible).to eq([visible_field])
     end
   end
 end
