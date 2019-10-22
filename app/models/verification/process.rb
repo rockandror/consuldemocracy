@@ -13,7 +13,6 @@ class Verification::Process < ApplicationRecord
                                  class_name: "Verification::Value",
                                  foreign_key: :verification_process_id,
                                  inverse_of: :verification_process
-
   has_many :verification_fields, through: :verification_values,
                                  class_name: "Verification::Field"
 
