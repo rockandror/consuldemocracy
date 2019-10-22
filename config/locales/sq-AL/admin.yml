@@ -1038,13 +1038,8 @@ sq:
         updated: Vlera e përditësuar
       index:
         title: Cilësimet e konfigurimit
-        update_setting: Përditëso
-        feature_flags: Karakteristikat
-        features:
-          enabled: "Funksioni i aktivizuar"
-          disabled: "Funksioni i caktivizuar"
-          enable: "Aktivizuar"
-          disable: "Caktivizo"
+        configuration:
+          title: Cilësimet e konfigurimit
         map:
           title: Konfigurimi i hartës
           help: Këtu mund të personalizoni mënyrën se si hartë shfaqet tek përdoruesit. Zvarrit shënuesin e hartës ose kliko kudo mbi hartën, vendosni zmadhimin e dëshiruar dhe klikoni butonin "Përditëso".
@@ -1052,6 +1047,14 @@ sq:
             update: Konfigurimi i hartave u rifreskua me sukses.
           form:
             submit: Përditëso
+        feature:
+          title: Karakteristikat
+        update_setting: Përditëso
+        features:
+          enabled: "Funksioni i aktivizuar"
+          disabled: "Funksioni i caktivizuar"
+          enable: "Aktivizuar"
+          disable: "Caktivizo"
       setting: Karakteristikat
       setting_actions: Veprimet
       setting_name: Opsione

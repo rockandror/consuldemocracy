@@ -24,11 +24,8 @@ fa:
     meta_title: "عنوان سایت (SEO)"
     meta_description: "توضیحات سایت (SEO)"
     meta_keywords: "واژه هاي كليدي (SEO)"
-    min_age_to_participate: حداقل سن مورد نیاز برای شرکت 
+    min_age_to_participate: حداقل سن مورد نیاز برای شرکت
     feature:
-      twitter_login: "ورود توییتر"
-      facebook_login: "ورود فیس بوک"
-      google_login: "ورود به سایت گوگل"
       signature_sheets: "ورق امضا"
       spending_proposals: "هزینه های طرح ها"
       user:
@@ -38,3 +35,10 @@ fa:
       map: "پیشنهادات و جغرافیای سرمایه گذاری بودجه"
       allow_images: "اجازه آپلود و نمایش تصاویر"
       allow_attached_documents: "اجازه آپلود و نمایش اسناد متصل"
+    social:
+      twitter:
+        login: "ورود توییتر"
+      facebook:
+        login: "ورود فیس بوک"
+      google:
+        login: "ورود به سایت گوگل"

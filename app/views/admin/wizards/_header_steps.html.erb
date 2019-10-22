@@ -1,0 +1,19 @@
+<div class="columns padding v-aligner">
+  <div class="medium-6 columns">
+    <h3><%= t("wizard.header.title") %></h3>
+    <span class="current-step"><%= t("wizard.header.step") %> <%= current_step %> <%= t("wizard.header.step_of") %> <%= total_steps %></span>
+  </div>
+
+  <div class="medium-6 columns text-right">
+    <% if defined?(back_step) %>
+      <%= link_to back_step, class: "btn-back-step" do %>
+        <i class="icon-arrow-left"></i>
+        <%= t("wizard.header.back_step") %>
+      <% end %>
+    <% end %>
+    <% if defined?(next_step) %>
+      <%= link_to t("wizard.header.next_step"), next_step, class: "button" %>
+    <% end %>
+  </div>
+</div>
+<hr>

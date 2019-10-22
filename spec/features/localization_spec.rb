@@ -62,6 +62,7 @@ describe "Localization" do
     let!(:default_locales) { I18n.available_locales.dup }
 
     before do
+      Setting["regional.available_locale.wl"] = true
       I18n.enforce_available_locales = false
       I18n.available_locales = default_locales + [:wl]
       I18n.locale = :wl

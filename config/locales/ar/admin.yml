@@ -1258,24 +1258,27 @@ ar:
       flash:
         updated: تم تحديث القيمة
       index:
-        update_setting: تحديث
-        participation_processes: "عمليات المشاركة"
-        feature_flags: المميزات
-        features:
-          enabled: "تم تفعيل الميزة"
-          disabled: "تم إلغاء الميزة"
-          enable: "تفعيل"
-          disable: "تعطيل"
+        process:
+          title: "عمليات المشاركة"
+        feature:
+          title: المميزات
         map:
-          title: تعديل الخريطة
+          title:  تعديل الخريطة
           help: هنا يمكنك تخصيص طريقة عرض الخريطة للمستخدمين. اسحب محدد الخريطة أو انقر في أي مكان على الخريطة، حدد التكبير المطلوب وانقر على زر "تحديث".
           flash:
             update: تم تحديث تعديلات الخريطة بنجاح.
           form:
             submit: تحديث
           how_to_enable: 'لإظهار الخريطة للمستخدمين، يجب تفعيل "الموقع الجغرافي للمقترحات والاستثمارات في الميزانية" في علامة التبويب "الميزات".'
-        dashboard:
-          title: لوحة القيادة الخاصة بالمقترحات
+        proposals:
+          title:  لوحة القيادة الخاصة بالمقترحات
+        update_setting: تحديث
+        feature_flags: المميزات
+        features:
+          enabled: "تم تفعيل الميزة"
+          disabled: "تم إلغاء الميزة"
+          enable: "تفعيل"
+          disable: "تعطيل"
       setting: الميزة
       setting_actions: الإجراءات
       setting_name: إعداد

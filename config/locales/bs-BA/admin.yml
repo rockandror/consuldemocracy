@@ -1270,14 +1270,12 @@ bs:
         updated: Vrijednost ažurirana
       index:
         title: Postavke za konfiguraciju
-        update_setting: Ažuriraj
-        participation_processes: "Participativni procesi"
-        feature_flags: Značajke
-        features:
-          enabled: "Značajke uključene"
-          disabled: "Značajke isključene"
-          enable: "Uključi"
-          disable: "Isključi"
+        configuration:
+          title: Postavke za konfiguraciju
+        process:
+          title: "Participativni procesi"
+        feature:
+          title: Značajke
         map:
           title: Konfiguracija mape
           help: Ovdje možete prilagoditi način na koji se mapa prikazuje korisnicima. Vucite marker ili kliknite bilo gdje iznad mape, podesite zumiranje i pritisnite dugme za ažuriranje podataka.
@@ -1286,8 +1284,14 @@ bs:
           form:
             submit: Ažuriraj
           how_to_enable: 'Kako bi se pokazala mapa korisnicima, u tabu "Značajke" morate uključiti "Geolociranje prijedloga i budžetskih investicija".'
-        dashboard:
+        proposals:
           title: Kontrolna ploča za prijedloge
+        update_setting: Ažuriraj
+        features:
+          enabled: "Značajke uključene"
+          disabled: "Značajke isključene"
+          enable: "Uključi"
+          disable: "Isključi"
       setting: Značajka
       setting_actions: Radnje
       setting_name: Postavke

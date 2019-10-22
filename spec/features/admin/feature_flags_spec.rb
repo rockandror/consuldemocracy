@@ -21,7 +21,9 @@ describe "Admin feature flags" do
     budget = create(:budget)
 
     visit admin_settings_path
-    within("#settings-tabs") { click_link "Participation processes" }
+    within "#process-section" do
+      click_link "Configure"
+    end
 
     within("#edit_setting_#{setting.id}") do
       expect(page).to have_button "Disable"
@@ -50,7 +52,9 @@ describe "Admin feature flags" do
     end
 
     visit admin_settings_path
-    within("#settings-tabs") { click_link "Participation processes" }
+    within "#process-section" do
+      click_link "Configure"
+    end
 
     within("#edit_setting_#{setting.id}") do
       expect(page).to have_button "Enable"
@@ -66,9 +70,13 @@ describe "Admin feature flags" do
   end
 
   scenario "Disable a feature" do
-    setting = Setting.find_by(key: "feature.twitter_login")
+    setting = Setting.find_by(key: "feature.community")
 
     visit admin_settings_path
+
+    within "#feature-section" do
+      click_link "Configure"
+    end
 
     within("#edit_setting_#{setting.id}") do
       expect(page).to have_button "Disable"
@@ -88,6 +96,9 @@ describe "Admin feature flags" do
     setting = Setting.find_by(key: "feature.map")
 
     visit admin_settings_path
+    within "#feature-section" do
+      click_link "Configure"
+    end
 
     within("#edit_setting_#{setting.id}") do
       expect(page).to have_button "Enable"

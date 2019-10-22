@@ -1,0 +1,12 @@
+<%= render "admin/wizards/header_steps", current_step: 2,
+                                         total_steps: @total_steps,
+                                         back_step: new_admin_wizards_installer_path,
+                                         next_step: admin_wizards_installer_path(:participation_process) %>
+
+<div class="medium-12 columns">
+  <div id="installer-general-settings" class="columns">
+    <h2><%= t("admin.menu.settings") %></h2>
+    <p><%= t("wizard.general_settings.description_html") %></p>
+    <%= render "admin/settings/settings_table", settings: @settings %>
+  </div>
+</div>

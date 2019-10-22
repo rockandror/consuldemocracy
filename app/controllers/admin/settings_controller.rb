@@ -8,29 +8,20 @@ class Admin::SettingsController < Admin::BaseController
                 :poster_feature_short_title_setting, :poster_feature_description_setting
 
   def index
-    all_settings = Setting.all.group_by { |setting| setting.type }
-    @configuration_settings = all_settings["configuration"]
-    @feature_settings = all_settings["feature"]
-    @participation_processes_settings = all_settings["process"]
-    @map_configuration_settings = all_settings["map"]
-    @proposals_settings = all_settings["proposals"]
-    @remote_census_general_settings = all_settings["remote_census.general"]
-    @remote_census_request_settings = all_settings["remote_census.request"]
-    @remote_census_response_settings = all_settings["remote_census.response"]
-    @uploads_settings = all_settings["uploads"]
+    @settings_groups = ["configuration", "process", "feature", "map", "uploads", "proposals", "remote_census", "social", "advanced", "smtp", "regional", "sms"].freeze
   end
 
   def update
     @setting = Setting.find(params[:id])
     @setting.update(settings_params)
-    redirect_to request_referer, notice: t("admin.settings.flash.updated")
+    redirect_to request.referer, notice: t("admin.settings.flash.updated")
   end
 
   def update_map
     Setting["map.latitude"] = params[:latitude].to_f
     Setting["map.longitude"] = params[:longitude].to_f
     Setting["map.zoom"] = params[:zoom].to_i
-    redirect_to admin_settings_path, notice: t("admin.settings.index.map.flash.update")
+    redirect_to request.referer, notice: t("admin.settings.index.map.flash.update")
   end
 
   def update_content_types
@@ -43,6 +34,12 @@ class Admin::SettingsController < Admin::BaseController
     redirect_to admin_settings_path, notice: t("admin.settings.flash.updated")
   end
 
+  def show
+    @settings = settings_by_group(params[:id])
+
+    render params[:id]
+  end
+
   private
 
     def settings_params
@@ -53,8 +50,20 @@ class Admin::SettingsController < Admin::BaseController
       params.permit(:jpg, :png, :gif, :pdf, :doc, :docx, :xls, :xlsx, :csv, :zip)
     end
 
-    def request_referer
-      return request.referer + params[:setting][:tab] if params[:setting][:tab]
-      request.referer
+    def settings_by_group(group)
+      all_settings = Setting.all.group_by { |setting| setting.type }
+      case group
+      when "remote_census"
+        [all_settings["remote_census.general"]] + [all_settings["remote_census.request"]] + [all_settings["remote_census.response"]]
+      when "social"
+        [all_settings["social.facebook"]] + [all_settings["social.twitter"]] + [all_settings["social.google"]]
+      when "advanced"
+        [all_settings["advanced.auth"]] + [all_settings["advanced.tracking"]]
+      when "regional"
+        [all_settings["regional.default_locale"]] + [all_settings["regional.available_locale"]] + [all_settings["regional.time_zone"]]
+      else
+        all_settings[group]
+      end
     end
+
 end

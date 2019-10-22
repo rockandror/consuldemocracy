@@ -28,12 +28,45 @@ RSpec.describe SettingsHelper, type: :helper do
     end
   end
 
-  describe "#display_setting_name" do
-    it "returns correct setting_name" do
-      expect(display_setting_name("setting")).to eq("Setting")
-      expect(display_setting_name("remote_census_general_name")).to eq("General Information")
-      expect(display_setting_name("remote_census_request_name")).to eq("Request Data")
-      expect(display_setting_name("remote_census_response_name")).to eq("Response Data")
+  describe "#social_feature?" do
+    it "returns true when social setting is a feature flag" do
+      social_setting_flag = Setting.create(key: "social.sample_social.login")
+      social_setting_input = Setting.create(key: "social.sample_social.input")
+      social_setting_one_level = Setting.create(key: "social.one_level")
+      another_setting = Setting.create(key: "another_setting.sample_key")
+
+      expect(social_feature?(social_setting_flag)).to eq true
+      expect(social_feature?(social_setting_input)).to eq false
+      expect(social_feature?(social_setting_one_level)).to eq false
+      expect(social_feature?(another_setting)).to eq false
+    end
+  end
+
+  describe "#smtp_feature?" do
+    it "returns true when smtp setting is a feature flag" do
+      smtp_setting_flag = Setting.create(key: "smtp.enable_starttls_auto")
+      smtp_setting_input = Setting.create(key: "smtp.sample_smtp.input")
+      smtp_setting_one_level = Setting.create(key: "smtp.one_level")
+      another_setting = Setting.create(key: "another_setting.sample_key")
+
+      expect(smtp_feature?(smtp_setting_flag)).to eq true
+      expect(smtp_feature?(smtp_setting_input)).to eq false
+      expect(smtp_feature?(smtp_setting_one_level)).to eq false
+      expect(smtp_feature?(another_setting)).to eq false
+    end
+  end
+
+  describe "#regional_feature?" do
+    it "returns true when regional setting is a feature flag" do
+      regional_setting_flag = Setting.create(key: "regional.available_locale.login")
+      regional_setting_input = Setting.create(key: "regional.sample_regional.input")
+      regional_setting_one_level = Setting.create(key: "regional.one_level")
+      another_setting = Setting.create(key: "another_setting.sample_key")
+
+      expect(regional_feature?(regional_setting_flag)).to eq true
+      expect(regional_feature?(regional_setting_input)).to eq false
+      expect(regional_feature?(regional_setting_one_level)).to eq false
+      expect(regional_feature?(another_setting)).to eq false
     end
   end
 

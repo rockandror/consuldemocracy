@@ -58,12 +58,6 @@ zh-TW:
     min_age_to_participate_description: "超過此年齡的用戶可以參與所有進程"
     analytics_url: "分析 URL"
     feature:
-      twitter_login: "Twitter 登錄"
-      twitter_login_description: "允許用戶使用他們的Twitter帳戶登記"
-      facebook_login: "Facebook 登錄"
-      facebook_login_description: "允許用戶使用他們的Facebook 帳戶登記"
-      google_login: "Google 登錄"
-      google_login_description: "允許用戶使用他們的Google 帳戶登記"
       signature_sheets: "簽名表"
       signature_sheets_description: "這允許從現場收集的管理面板簽名加到參與預算的提案和投資項目"
       spending_proposals: "支出建議"
@@ -94,3 +88,13 @@ zh-TW:
       public_stats_description: "在管理面板中顯示公眾統計數據"
       help_page: "幫助頁"
       help_page_description: '顯示説明菜單，其中包含一個頁面，內有每個已啟用功能的資訊'
+    social:
+      twitter:
+        login: "Twitter 登錄"
+        login_description: "允許用戶使用他們的Twitter帳戶登記"
+      facebook:
+        login: "Facebook 登錄"
+        login_description: "允許用戶使用他們的Facebook 帳戶登記"
+      google:
+        login: "Google 登錄"
+        login_description: "允許用戶使用他們的Google 帳戶登記"

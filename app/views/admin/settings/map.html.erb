@@ -1,7 +1,8 @@
+<%= back_link_to admin_settings_path %>
 <% if feature?(:map) %>
   <h2><%= t("admin.settings.index.map.title") %></h2>
 
-  <%= render "settings_table", settings: @map_configuration_settings, setting_name: "setting", tab: "#tab-map-configuration" %>
+  <%= render "settings_table", settings: @settings %>
 
   <p><%= t("admin.settings.index.map.help") %></p>
 

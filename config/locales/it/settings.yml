@@ -25,11 +25,15 @@ it:
     meta_keywords: "Parole chiave (SEO)"
     min_age_to_participate: Età minima necessaria per partecipare
     feature:
-      twitter_login: "Accesso con Twitter"
-      facebook_login: "Accesso con Facebook"
-      google_login: "Accesso con Google"
       signature_sheets: "Fogli firma"
       spending_proposals: "Proposte di spesa"
       user:
         recommendations: "Raccomandazioni"
       help_page: "Guida"
+    social:
+      twitter:
+        login: "Accesso con Twitter"
+      facebook:
+        login: "Accesso con Facebook"
+      google:
+        login: "Accesso con Google"

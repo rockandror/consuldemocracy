@@ -12,15 +12,63 @@ describe "Admin settings" do
 
     visit admin_settings_path
 
-    expect(page).to have_content "First"
-    expect(page).to have_content "Second"
-    expect(page).to have_content "Third"
+    expect(page).to have_content "Configuration settings"
+    expect(page).to have_content "List of general configurations to customize the application."
+    expect(page).to have_link("Configure", href: admin_setting_path("configuration"))
+
+    expect(page).to have_content "Participation processes"
+    expect(page).to have_content "Selects the participation processes that will be available in the application."
+    expect(page).to have_link("Configure", href: admin_setting_path("process"))
+
+    expect(page).to have_content "Features"
+    expect(page).to have_content "Activates/deactivates the different functionalities offered by the application."
+    expect(page).to have_link("Configure", href: admin_setting_path("feature"))
+
+    expect(page).to have_content "Map configuration"
+    expect(page).to have_content "Allows you to update the geolocation of the application, and define the zoom of the map that will be shown to users."
+    expect(page).to have_link("Configure", href: admin_setting_path("map"))
+
+    expect(page).to have_content "Images and documents"
+    expect(page).to have_content "Customize the characteristics of the application attachments."
+    expect(page).to have_link("Configure", href: admin_setting_path("uploads"))
+
+    expect(page).to have_content "Proposals dashboard"
+    expect(page).to have_content "Allows configuring the main fields to offer users a control panel for their proposals."
+    expect(page).to have_link("Configure", href: admin_setting_path("proposals"))
+
+    expect(page).to have_content "Remote Census configuration"
+    expect(page).to have_content "Allow configure remote census (SOAP)"
+    expect(page).to have_link("Configure", href: admin_setting_path("remote_census"))
+
+    expect(page).to have_content "Registration with social networks"
+    expect(page).to have_content "Allow users to sign up with social networks (Twitter, Facebook, Google)"
+    expect(page).to have_link("Configure", href: admin_setting_path("social"))
+
+    expect(page).to have_content "Advanced Configuration"
+    expect(page).to have_content "Allow update advanced configuration"
+    expect(page).to have_link("Configure", href: admin_setting_path("advanced"))
+
+    expect(page).to have_content "SMTP Configuration"
+    expect(page).to have_content "Set SMTP server configuration to send emails."
+    expect(page).to have_link("Configure", href: admin_setting_path("smtp"))
+
+    expect(page).to have_content "Languages and Time Zone"
+    expect(page).to have_content "Set default locale, available locales and time zone"
+    expect(page).to have_link("Configure", href: admin_setting_path("regional"))
+
+    expect(page).to have_content "SMS Configuration"
+    expect(page).to have_content "Set SMS configuration to send sms for verification users."
+    expect(page).to have_link("Configure", href: admin_setting_path("sms"))
   end
 
   scenario "Update" do
     setting = create(:setting, key: "super.users.first")
 
     visit admin_settings_path
+
+    within "#configuration-section" do
+      click_link "Configure"
+    end
 
     within("#edit_setting_#{setting.id}") do
       fill_in "setting_#{setting.id}", with: "Super Users of level 1"
@@ -30,14 +78,138 @@ describe "Admin settings" do
     expect(page).to have_content "Value updated"
   end
 
+  describe "Show" do
+
+    scenario "Should display configuration settings section" do
+      setting = Setting.create(key: "configuration.setting_sample")
+
+      visit admin_setting_path("configuration")
+
+      expect(page).to have_content "Configuration settings"
+      expect(page).to have_css("#edit_setting_#{setting.id}")
+    end
+
+    scenario "Should display process settings section" do
+      setting = Setting.create(key: "process.setting_sample")
+
+      visit admin_setting_path("process")
+
+      expect(page).to have_content "Participation processes"
+      expect(page).to have_css("#edit_setting_#{setting.id}")
+    end
+
+    scenario "Should display feature settings section" do
+      setting = Setting.create(key: "feature.setting_sample")
+
+      visit admin_setting_path("feature")
+
+      expect(page).to have_content "Features"
+      expect(page).to have_css("#edit_setting_#{setting.id}")
+    end
+
+    scenario "Should display map settings section" do
+      Setting["feature.map"] = true
+      setting = Setting.create(key: "map.setting_sample")
+
+      visit admin_setting_path("map")
+
+      expect(page).to have_content "Map configuration"
+      expect(page).to have_css("#edit_setting_#{setting.id}")
+      expect(page).to have_content "Latitude"
+      expect(page).to have_content "Longitude"
+      expect(page).to have_content "Zoom"
+      expect(page).to have_content "TMS(Tile Map Service) Provider"
+      expect(page).to have_content "Attribution from TMS Provider"
+    end
+
+    scenario "Should display uploads settings section" do
+      setting = Setting.create(key: "uploads.setting_sample")
+
+      visit admin_setting_path("uploads")
+
+      expect(page).to have_content "Images and documents"
+      expect(page).to have_css("#edit_setting_#{setting.id}")
+    end
+
+    scenario "Should display proposals settings section" do
+      setting = Setting.create(key: "proposals.setting_sample")
+
+      visit admin_setting_path("proposals")
+
+      expect(page).to have_content "Proposals dashboard"
+      expect(page).to have_css("#edit_setting_#{setting.id}")
+    end
+
+    scenario "Should display remote_census settings section" do
+      Setting["feature.remote_census"] = true
+      setting = Setting.create(key: "remote_census.response.setting_sample")
+
+      visit admin_setting_path("remote_census")
+
+      expect(page).to have_content "Remote Census configuration"
+      expect(page).to have_css("#edit_setting_#{setting.id}")
+    end
+
+    scenario "Should display social settings section" do
+      setting = Setting.create(key: "social.twitter.setting_sample")
+
+      visit admin_setting_path("social")
+
+      expect(page).to have_content "Registration with social networks"
+      expect(page).to have_content "Twitter"
+      expect(page).to have_content "Facebook"
+      expect(page).to have_content "Google"
+      expect(page).to have_content "Note: For changes to this section to take effect correctly, contact your system administrator to restart all services that are using the application."
+      expect(page).to have_css("#edit_setting_#{setting.id}")
+    end
+
+    scenario "Should display smtp settings section" do
+      setting = Setting.create(key: "smtp.setting_sample")
+      Setting["feature.smtp_configuration"] = true
+
+      visit admin_setting_path("smtp")
+
+      expect(page).to have_content "SMTP Configuration"
+      expect(page).to have_content "SMTP Host"
+      expect(page).to have_content "SMTP Port"
+      expect(page).to have_content "Domain"
+      expect(page).to have_content "SMTP User"
+      expect(page).to have_content "SMTP Password"
+      expect(page).to have_content "SMTP Authentication"
+      expect(page).to have_content "Enable SMTP TLS"
+      expect(page).to have_css("#edit_setting_#{setting.id}")
+    end
+
+    scenario "Should display regional settings section" do
+      setting = Setting.create(key: "regional.default_locale.setting_sample")
+
+      visit admin_setting_path("regional")
+
+      expect(page).to have_content "Application default locale"
+      expect(page).to have_content "Application available locales"
+      expect(page).to have_content "Time Zone"
+      expect(page).to have_css("#edit_setting_#{setting.id}")
+    end
+
+    scenario "Should display with disabled style default_locale as available_locales feature" do
+      default_locale = Setting.find_by(key: "regional.default_locale.key").value
+      available_locale_setting_from_default_locale = Setting.find_by(key: "regional.available_locale.#{default_locale}")
+
+      visit admin_setting_path("regional")
+
+      within "#edit_setting_#{available_locale_setting_from_default_locale.id}" do
+        expect(find("input[name='commit'][type='submit']").disabled?).to be true
+      end
+    end
+
+  end
+
   describe "Update map" do
 
     scenario "Should not be able when map feature deactivated" do
       Setting["feature.map"] = false
-      admin = create(:administrator).user
-      login_as(admin)
-      visit admin_settings_path
-      find("#map-tab").click
+
+      visit admin_setting_path("map")
 
       expect(page).to have_content "To show the map to users you must enable " \
                                    '"Proposals and budget investments geolocation" ' \
@@ -47,10 +219,8 @@ describe "Admin settings" do
 
     scenario "Should be able when map feature activated" do
       Setting["feature.map"] = true
-      admin = create(:administrator).user
-      login_as(admin)
-      visit admin_settings_path
-      find("#map-tab").click
+
+      visit admin_setting_path("map")
 
       expect(page).to have_css("#admin-map")
       expect(page).not_to have_content "To show the map to users you must enable " \
@@ -60,9 +230,8 @@ describe "Admin settings" do
 
     scenario "Should show successful notice" do
       Setting["feature.map"] = true
-      admin = create(:administrator).user
-      login_as(admin)
-      visit admin_settings_path
+
+      visit admin_setting_path("map")
 
       within "#map-form" do
         click_on "Update"
@@ -73,10 +242,8 @@ describe "Admin settings" do
 
     scenario "Should display marker by default", :js do
       Setting["feature.map"] = true
-      admin = create(:administrator).user
-      login_as(admin)
 
-      visit admin_settings_path
+      visit admin_setting_path("map")
 
       expect(find("#latitude", visible: false).value).to eq "51.48"
       expect(find("#longitude", visible: false).value).to eq "0.0"
@@ -84,30 +251,27 @@ describe "Admin settings" do
 
     scenario "Should update marker", :js do
       Setting["feature.map"] = true
-      admin = create(:administrator).user
-      login_as(admin)
 
-      visit admin_settings_path
-      find("#map-tab").click
+      visit admin_setting_path("map")
+
       find("#admin-map").click
       within "#map-form" do
         click_on "Update"
       end
 
-      expect(find("#latitude", visible: false).value).not_to eq "51.48"
       expect(page).to have_content "Map configuration updated succesfully"
+      expect(find("#latitude", visible: false).value).not_to eq "51.48"
     end
 
   end
 
   describe "Update content types" do
 
-    scenario "stores the correct mime types" do
-      setting = Setting.create(key: "upload.images.content_types", value: "image/png")
-      admin = create(:administrator).user
-      login_as(admin)
-      visit admin_settings_path
-      find("#images-and-documents-tab").click
+    scenario "stores the correct mime types", :js do
+      setting = Setting.find_by(key: "uploads.images.content_types")
+      setting.update(value: "image/png")
+
+      visit admin_setting_path("uploads")
 
       within "#edit_setting_#{setting.id}" do
         expect(find("#png")).to be_checked
@@ -120,10 +284,12 @@ describe "Admin settings" do
       end
 
       expect(page).to have_content "Value updated"
-      expect(Setting["upload.images.content_types"]).to include "image/png"
-      expect(Setting["upload.images.content_types"]).to include "image/gif"
+      expect(Setting["uploads.images.content_types"]).to include "image/png"
+      expect(Setting["uploads.images.content_types"]).to include "image/gif"
 
-      visit admin_settings_path(anchor: "tab-images-and-documents")
+      within "#uploads-section" do
+        click_link "Configure"
+      end
 
       within "#edit_setting_#{setting.id}" do
         expect(find("#png")).to be_checked
@@ -142,10 +308,8 @@ describe "Admin settings" do
 
     scenario "Should not be able when remote census feature deactivated" do
       Setting["feature.remote_census"] = nil
-      admin = create(:administrator).user
-      login_as(admin)
-      visit admin_settings_path
-      find("#remote-census-tab").click
+
+      visit admin_setting_path("remote_census")
 
       expect(page).to have_content "To configure remote census (SOAP) you must enable " \
                                    '"Configure connection to remote census (SOAP)" ' \
@@ -153,10 +317,7 @@ describe "Admin settings" do
     end
 
     scenario "Should be able when remote census feature activated" do
-      admin = create(:administrator).user
-      login_as(admin)
-      visit admin_settings_path
-      find("#remote-census-tab").click
+      visit admin_setting_path("remote_census")
 
       expect(page).to have_content("General Information")
       expect(page).to have_content("Request Data")
@@ -168,115 +329,48 @@ describe "Admin settings" do
 
   end
 
-  describe "Should redirect to same tab after update setting" do
+  describe "Update Regional Settings" do
 
-    context "remote census" do
+    scenario "Should update default_locale", :js do
+      setting = Setting.find_by(key: "regional.default_locale.key")
 
-      before do
-        Setting["feature.remote_census"] = true
-      end
+      visit admin_setting_path("regional")
 
-      scenario "On #tab-remote-census-configuration", :js do
-        remote_census_setting = create(:setting, key: "remote_census.general.whatever")
-        admin = create(:administrator).user
-        login_as(admin)
-        visit admin_settings_path
-        find("#remote-census-tab").click
-
-        within("#edit_setting_#{remote_census_setting.id}") do
-          fill_in "setting_#{remote_census_setting.id}", with: "New value"
-          click_button "Update"
-        end
-
-        expect(page).to have_current_path(admin_settings_path)
-        expect(page).to have_css("div#tab-remote-census-configuration.is-active")
-      end
-    end
-
-    scenario "On #tab-configuration", :js do
-      configuration_setting = Setting.create(key: "whatever")
-      admin = create(:administrator).user
-      login_as(admin)
-      visit admin_settings_path
-      find("#tab-configuration").click
-
-      within("#edit_setting_#{configuration_setting.id}") do
-        fill_in "setting_#{configuration_setting.id}", with: "New value"
+      within("#edit_setting_#{setting.id}") do
+        select("Español", from: "setting_value")
         click_button "Update"
       end
 
-      expect(page).to have_current_path(admin_settings_path)
-      expect(page).to have_css("div#tab-configuration.is-active")
+      expect(page).to have_content "Value updated"
+      expect(I18n.default_locale).to eq :es
     end
 
-    context "map configuration" do
+    scenario "Should update available_locales", :js do
+      setting = Setting.find_by(key: "regional.available_locale.es")
+      visit admin_setting_path("regional")
+      expect(I18n.available_locales).to include :es
 
-      before do
-        Setting["feature.map"] = true
+      accept_alert do
+        find("#edit_setting_#{setting.id} .button").click
       end
 
-      scenario "On #tab-map-configuration", :js do
-        map_setting = Setting.create(key: "map.whatever")
-        admin = create(:administrator).user
-        login_as(admin)
-        visit admin_settings_path
-        find("#map-tab").click
-
-        within("#edit_setting_#{map_setting.id}") do
-          fill_in "setting_#{map_setting.id}", with: "New value"
-          click_button "Update"
-        end
-
-        expect(page).to have_current_path(admin_settings_path)
-        expect(page).to have_css("div#tab-map-configuration.is-active")
-      end
+      expect(page).to have_content "Value updated"
+      expect(I18n.available_locales).not_to include :es
     end
 
-    scenario "On #tab-proposals", :js do
-      proposal_dashboard_setting = Setting.create(key: "proposals.whatever")
-      admin = create(:administrator).user
-      login_as(admin)
-      visit admin_settings_path
-      find("#proposals-tab").click
+    scenario "Should update time_zone" do
+      setting = Setting.find_by(key: "regional.time_zone.key")
+      visit admin_setting_path("regional")
 
-      within("#edit_setting_#{proposal_dashboard_setting.id}") do
-        fill_in "setting_#{proposal_dashboard_setting.id}", with: "New value"
+      within("#edit_setting_#{setting.id}") do
+        select("(GMT-05:00) Lima", from: "setting_value")
         click_button "Update"
       end
 
-      expect(page).to have_current_path(admin_settings_path)
-      expect(page).to have_css("div#tab-proposals.is-active")
+      expect(page).to have_content "Value updated"
+      expect(Time.zone.name).to eq "Lima"
     end
 
-    scenario "On #tab-participation-processes", :js do
-      process_setting = Setting.create(key: "process.whatever")
-      admin = create(:administrator).user
-      login_as(admin)
-      visit admin_settings_path
-      find("#participation-processes-tab").click
-
-      accept_alert do
-        find("#edit_setting_#{process_setting.id} .button").click
-      end
-
-      expect(page).to have_current_path(admin_settings_path)
-      expect(page).to have_css("div#tab-participation-processes.is-active")
-    end
-
-    scenario "On #tab-feature-flags", :js do
-      feature_setting = Setting.create(key: "feature.whatever")
-      admin = create(:administrator).user
-      login_as(admin)
-      visit admin_settings_path
-      find("#features-tab").click
-
-      accept_alert do
-        find("#edit_setting_#{feature_setting.id} .button").click
-      end
-
-      expect(page).to have_current_path(admin_settings_path)
-      expect(page).to have_css("div#tab-feature-flags.is-active")
-    end
   end
 
   describe "Skip verification" do
@@ -285,8 +379,7 @@ describe "Admin settings" do
       Setting["feature.user.skip_verification"] = "true"
       setting = Setting.where(key: "feature.user.skip_verification").first
 
-      visit admin_settings_path
-      find("#features-tab").click
+      visit admin_setting_path("feature")
 
       accept_alert do
         find("#edit_setting_#{setting.id} .button").click
@@ -299,8 +392,7 @@ describe "Admin settings" do
       Setting["feature.user.skip_verification"] = nil
       setting = Setting.where(key: "feature.user.skip_verification").first
 
-      visit admin_settings_path
-      find("#features-tab").click
+      visit admin_setting_path("feature")
 
       accept_alert do
         find("#edit_setting_#{setting.id} .button").click

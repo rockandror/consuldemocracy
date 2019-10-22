@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   include HasFilters
   include HasOrders
   include AccessDeniedHandler
+  include RegionalSettings
 
   default_form_builder ConsulFormBuilder
   protect_from_forgery with: :exception
@@ -28,12 +29,13 @@ class ApplicationController < ActionController::Base
 
     def authenticate_http_basic
       authenticate_or_request_with_http_basic do |username, password|
-        username == Rails.application.secrets.http_basic_username && password == Rails.application.secrets.http_basic_password
+        username == Retrocompatibility.calculate_value("advanced.auth.http_basic_username", "http_basic_username") &&
+        password == Retrocompatibility.calculate_value("advanced.auth.http_basic_password", "http_basic_password")
       end
     end
 
     def http_basic_auth_site?
-      Rails.application.secrets.http_basic_auth
+      Retrocompatibility.calculate_value("advanced.auth.http_basic_auth", "http_basic_auth")
     end
 
     def verify_lock

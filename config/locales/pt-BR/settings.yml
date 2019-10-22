@@ -58,12 +58,6 @@ pt-BR:
     min_age_to_participate_description: "Usuários acima dessa idade podem participar de todo o processo"
     analytics_url: "URL das análises"
     feature:
-      twitter_login: "Login do Twitter"
-      twitter_login_description: "Permitir usuários de inscrever-se com sua conta do twitter"
-      facebook_login: "Login do Facebook"
-      facebook_login_description: "Permitir usuários de inscrever-se com sua conta do Facebook"
-      google_login: "Login do Google"
-      google_login_description: "Permitir usuários de inscrever-se com sua conta do Google"
       signature_sheets: "Folhas de assinatura"
       signature_sheets_description: "Permite adicionar do painel de administração as assinaturas coletadas no site para propostas e projetos de investimento do orçamento participativo"
       spending_proposals: "Propostas de gastos"
@@ -94,3 +88,13 @@ pt-BR:
       public_stats_description: "Mostra estatísticas públicas no painel de administração"
       help_page: "Página de ajuda"
       help_page_description: 'Mostra um menu de Ajuda contendo a página com a seção de informações sobre cada recurso abilitado'
+    social:
+      twitter:
+        login: "Login do Twitter"
+        login_description: "Permitir usuários de inscrever-se com sua conta do twitter"
+      facebook:
+        login: "Login do Facebook"
+        login_description: "Permitir usuários de inscrever-se com sua conta do Facebook"
+      google:
+        login: "Login do Google"
+        login_description: "Permitir usuários de inscrever-se com sua conta do Google" 

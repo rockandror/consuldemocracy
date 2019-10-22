@@ -68,12 +68,6 @@ tr:
     direct_message_max_per_day: "Günlük maksimum Doğrudan Mesaj sayısı"
     direct_message_max_per_day_description: "Bir kullanıcının günlük olarak gönderebileceği maksimum doğrudan mesajların sayısı"
     feature:
-      twitter_login: "Twitter girişi"
-      twitter_login_description: "Kullanıcıların Twitter hesapları ile kayıt olmalarına izin ver"
-      facebook_login: "Facebook girişi"
-      facebook_login_description: "Kullanıcıların Facebook hesapları ile kayıt olmalarına izin ver"
-      google_login: "Google girişi"
-      google_login_description: "Kullanıcıların Google Hesapları ile kayıt olmalarına izin ver"
       featured_proposals: "Öne Çıkan öneriler"
       featured_proposals_description: "Dizin önerileri sayfasında öne çıkan önerileri gösterir"
       signature_sheets: "İmza sayfaları"
@@ -106,3 +100,13 @@ tr:
       public_stats_description: "Yönetim panelinde kamu istatistiklerini görüntüleme"
       help_page: "Yardım sayfası"
       help_page_description: 'Etkinleştirilen her özellik hakkında bir bilgi bölümü içeren bir sayfa içeren bir Yardım menüsü görüntüler. Ayrıca "Özel sayfalar" ve "Özel içerik blokları" bölümlerinde özel sayfalar ve menüler oluşturulabilir'
+    social:
+      twitter:
+        login: "Twitter girişi"
+        login_description: "Kullanıcıların Twitter hesapları ile kayıt olmalarına izin ver"
+      facebook:
+        login: "Facebook girişi"
+        login_description: "Kullanıcıların Facebook hesapları ile kayıt olmalarına izin ver"
+      google:
+        login: "Google girişi"
+        login_description: "Kullanıcıların Google Hesapları ile kayıt olmalarına izin ver"

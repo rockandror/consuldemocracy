@@ -21,8 +21,12 @@ ca:
     meta_keywords: "Paraules clau (SEO)"
     min_age_to_participate: Edat mínima per participar
     feature:
-      twitter_login: "Registre amb Twitter"
-      facebook_login: "Registre amb Facebook"
-      google_login: "Registre amb Google"
       signature_sheets: "Fulla de signatures"
       spending_proposals: "Propuestas de inversión"
+    social:
+      twitter:
+        login: "Registre amb Twitter"
+      facebook:
+        login: "Registre amb Facebook"
+      google:
+        login: "Registre amb Google"

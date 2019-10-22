@@ -48,6 +48,7 @@ data:
     - config/locales/%{locale}/stats.yml
     - config/locales/%{locale}/download.yml
     - config/locales/%{locale}/tracking.yml
+    - config/locales/%{locale}/wizard.yml
 
   # Locale files to write new keys to, based on a list of key pattern => file rules. Matched from top to bottom:
   # `i18n-tasks normalize -p` will force move the keys according to these rules
@@ -213,6 +214,10 @@ ignore_unused:
   - landings.cambia_tu_ciudad.*
   - "seeds.settings.*"
   - "dashboard.polls.*.submit"
+  - "admin.settings.index.remote_census.*"
+  - "admin.settings.index.social.*"
+  - "admin.settings.index.advanced.*"
+  - "admin.settings.index.regional.*"
 ####
 ## Exclude these keys from the `i18n-tasks eq-base" report:
 # ignore_eq_base:

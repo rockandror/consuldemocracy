@@ -1,5 +1,5 @@
 <div class="admin-sidebar" data-equalizer-watch>
-  <ul id="admin_menu" data-accordion-menu data-multi-open="false">
+  <ul id="admin_menu" data-accordion-menu>
     <% if feature?(:proposals) %>
       <li class="section-title">
         <%= link_to admin_proposals_path do %>
@@ -305,6 +305,10 @@
 
         <li <%= "class=is-active" if submenu_local_census_records? %>>
           <%= link_to t("admin.menu.local_census_records"), admin_local_census_records_path %>
+        </li>
+
+        <li <%= "class=is-active" if controller_name == "wizards" %>>
+          <%= link_to t("admin.menu.wizards"), admin_wizards_path %>
         </li>
       </ul>
     </li>

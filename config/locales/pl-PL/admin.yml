@@ -1160,14 +1160,10 @@ pl:
         updated: Wartość zaktualizowana
       index:
         title: Ustawienia konfiguracji
-        update_setting: Zaktualizuj
-        participation_processes: "Procesy partycypacyjne"
-        feature_flags: Funkcje
-        features:
-          enabled: "Funkcja włączona"
-          disabled: "Funkcja wyłączona"
-          enable: "Włącz"
-          disable: "Wyłącz"
+        configuration:
+          title: Ustawienia konfiguracji
+        feature:
+          title: Funkcje
         map:
           title: Konfiguracja mapy
           help: Tutaj możesz dostosować sposób wyświetlania mapy użytkownikom. Przeciągnij znacznik mapy lub kliknij w dowolnym miejscu na mapie, ustaw żądane przybliżenie i kliknij przycisk "Aktualizuj".
@@ -1176,6 +1172,14 @@ pl:
           form:
             submit: Zaktualizuj
           how_to_enable: 'Aby pokazać mapę użytkownikom musisz włączyć opcję "Propozycje i geolokalizacja inwestycji budżetowych" w zakładce Ustawienia -> Ustawienia globalne'
+        process:
+          title: Procesy partycypacyjne
+        update_setting: Zaktualizuj
+        features:
+          enabled: "Funkcja włączona"
+          disabled: "Funkcja wyłączona"
+          enable: "Włącz"
+          disable: "Wyłącz"
       setting: Funkcja
       setting_actions: Akcje
       setting_name: Ustawienie

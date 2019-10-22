@@ -1,0 +1,60 @@
+<table>
+  <thead>
+    <tr>
+      <th><%= t("admin.settings.setting") %></th>
+      <th><%= t("admin.settings.setting_status") %>/<%= t("admin.settings.setting_value") %></th>
+      <th><%= t("admin.settings.setting_actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% settings.each do |setting| %>
+      <tr class="setting">
+        <td class="small-6">
+          <strong><%= t("settings.#{setting.key}") %></strong>
+          <br>
+          <span class="small">
+            <%= t("settings.#{setting.key}_description", default: t("admin.settings.no_description")) %>
+          </span>
+        </td>
+
+        <% if is_feature?(setting) %>
+          <td colspan="2">
+            <% if setting.enabled? %>
+              <span class="enabled small-6 column">
+                <strong>
+                  <%= t ("admin.settings.index.features.enabled") %>
+                </strong>
+              </span>
+            <% else %>
+              <span class="disabled small-6 column">
+                <%= t("admin.settings.index.features.disabled") %>
+              </span>
+            <% end %>
+            <div class="small-6 column">
+              <%= render "admin/settings/featured_settings_form", feature: setting %>
+            </div>
+          </td>
+        <% else %>
+          <td colspan="2">
+            <%= form_for(setting, url: admin_setting_path(setting), html: { id: "edit_#{dom_id(setting)}"}) do |f| %>
+              <% if regional_setting?(setting) %>
+                <div class="small-6 column">
+                  <% if setting.key == "regional.time_zone.key" %>
+                    <%= f.select :value, time_zone_options_for_select(Time.zone.name, ActiveSupport::TimeZone.all), label: false, id: dom_id(setting) %>
+                  <% else %>
+                    <%= f.select :value, options_for_select(options_for_default_locale, I18n.default_locale), label: false, id: dom_id(setting) %>
+                  <% end %>
+                </div>
+              <% else %>
+                <%= f.text_area :value, label: false, id: dom_id(setting), lines: 1, class: "small-6 column" %>
+              <% end %>
+              <div class="small-6 column">
+                <%= f.submit(t("admin.settings.index.update_setting"), class: "button hollow expanded") %>
+              </div>
+            <% end %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

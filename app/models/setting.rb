@@ -8,9 +8,9 @@ class Setting < ApplicationRecord
   end
 
   def type
-    if %w[feature process proposals map html homepage uploads].include? prefix
+    if %w[feature process proposals map html homepage uploads smtp sms].include? prefix
       prefix
-    elsif %w[remote_census].include? prefix
+    elsif %w[remote_census social advanced regional].include? prefix
       key.rpartition(".").first
     else
       "configuration"
@@ -81,9 +81,6 @@ class Setting < ApplicationRecord
     def defaults
       {
         "feature.featured_proposals": nil,
-        "feature.facebook_login": true,
-        "feature.google_login": true,
-        "feature.twitter_login": true,
         "feature.public_stats": true,
         "feature.signature_sheets": true,
         "feature.user.recommendations": true,
@@ -99,6 +96,16 @@ class Setting < ApplicationRecord
         "feature.translation_interface": nil,
         "feature.remote_census": nil,
         "feature.valuation_comment_notification": true,
+        "feature.smtp_configuration": nil,
+        "social.facebook.login": true,
+        "social.facebook.key": nil,
+        "social.facebook.secret": nil,
+        "social.google.login": true,
+        "social.google.key": nil,
+        "social.google.secret": nil,
+        "social.twitter.login": true,
+        "social.twitter.key": nil,
+        "social.twitter.secret": nil,
         "homepage.widgets.feeds.debates": true,
         "homepage.widgets.feeds.processes": true,
         "homepage.widgets.feeds.proposals": true,
@@ -109,6 +116,8 @@ class Setting < ApplicationRecord
         "map.latitude": 51.48,
         "map.longitude": 0.0,
         "map.zoom": 10,
+        "map.tiles_provider": nil,
+        "map.tiles_provider_attribution": nil,
         "process.debates": true,
         "process.proposals": true,
         "process.polls": true,
@@ -132,6 +141,48 @@ class Setting < ApplicationRecord
         "uploads.documents.max_amount": 3,
         "uploads.documents.max_size": 3,
         "uploads.documents.content_types": "application/pdf",
+        "advanced.auth.http_basic_auth": nil,
+        "advanced.auth.http_basic_username": nil,
+        "advanced.auth.http_basic_password": nil,
+        "advanced.tracking.rollbar_server_token": nil,
+        # SMTP Configuration
+        "smtp.address": nil,
+        "smtp.port": nil,
+        "smtp.domain": nil,
+        "smtp.username": nil,
+        "smtp.password": nil,
+        "smtp.authentication": nil,
+        "smtp.enable_starttls_auto": nil,
+        # Languages and Time Zone
+        "regional.default_locale.key": "en",
+        "regional.available_locale.ar": true,
+        "regional.available_locale.bs": true,
+        "regional.available_locale.cs": true,
+        "regional.available_locale.da": true,
+        "regional.available_locale.de": true,
+        "regional.available_locale.el": true,
+        "regional.available_locale.en": true,
+        "regional.available_locale.es": true,
+        "regional.available_locale.fa": true,
+        "regional.available_locale.fr": true,
+        "regional.available_locale.gl": true,
+        "regional.available_locale.he": true,
+        "regional.available_locale.hr": true,
+        "regional.available_locale.id": true,
+        "regional.available_locale.it": true,
+        "regional.available_locale.nl": true,
+        "regional.available_locale.pl": true,
+        "regional.available_locale.pt-BR": true,
+        "regional.available_locale.ru": true,
+        "regional.available_locale.sl": true,
+        "regional.available_locale.sq": true,
+        "regional.available_locale.so": true,
+        "regional.available_locale.sv": true,
+        "regional.available_locale.tr": true,
+        "regional.available_locale.val": true,
+        "regional.available_locale.zh-CN": true,
+        "regional.available_locale.zh-TW": true,
+        "regional.time_zone.key": "Madrid",
         # Names for the moderation console, as a hint for moderators
         # to know better how to assign users with official positions
         "official_level_1_name": I18n.t("seeds.settings.official_level_1_name"),
@@ -184,7 +235,10 @@ class Setting < ApplicationRecord
         "remote_census.response.gender": "",
         "remote_census.response.name": "",
         "remote_census.response.surname": "",
-        "remote_census.response.valid": ""
+        "remote_census.response.valid": "",
+        "sms.endpoint": nil,
+        "sms.username": nil,
+        "sms.password": nil
       }
     end
 

@@ -92,7 +92,7 @@ namespace :admin do
     get :search, on: :collection
   end
 
-  resources :settings, only: [:index, :update]
+  resources :settings, only: [:index, :update, :show]
   put :update_map, to: "settings#update_map"
   put :update_content_types, to: "settings#update_content_types"
 
@@ -260,4 +260,10 @@ namespace :admin do
   namespace :local_census_records do
     resources :imports, only: [:new, :create, :show]
   end
+
+  resources :wizards, only: :index
+  namespace :wizards do
+    resources :installer, only: [:new, :show]
+  end
+
 end

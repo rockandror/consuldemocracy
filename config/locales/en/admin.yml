@@ -709,6 +709,7 @@ en:
       debates: "Debates"
       comments: "Comments"
       local_census_records: Manage local census
+      wizards: Wizard
     administrators:
       index:
         title: Administrators
@@ -1246,38 +1247,74 @@ en:
         updated: Value updated
       index:
         title: Settings
-        general: Configuration settings
-        update_setting: Update
-        participation_processes: "Participation processes"
-        images_and_documents: "Images and documents"
-        feature_flags: Features
-        features:
-          enabled: "Feature enabled"
-          disabled: "Feature disabled"
-          enable: "Enable"
-          disable: "Disable"
+        configuration:
+          title: Configuration settings
+          description: List of general configurations to customize the application.
+        process:
+          title: Participation processes
+          description: Selects the participation processes that will be available in the application.
+        uploads:
+          title: Images and documents
+          description: Customize the characteristics of the application attachments.
+        feature:
+          title: Features
+          description: Activates/deactivates the different functionalities offered by the application.
         map:
           title: Map configuration
+          description: Allows you to update the geolocation of the application, and define the zoom of the map that will be shown to users.
           help: Here you can customize the way the map is displayed to users. Drag map marker or click anywhere over the map, set desired zoom and click button "Update".
           flash:
             update: Map configuration updated succesfully.
           form:
             submit: Update
           how_to_enable: 'To show the map to users you must enable "Proposals and budget investments geolocation" on "Features" tab.'
-        dashboard:
+        proposals:
           title: Proposals dashboard
+          description: Allows configuring the main fields to offer users a control panel for their proposals.
         remote_census:
           title: Remote Census configuration
+          description: Allow configure remote census (SOAP)
           how_to_enable: 'To configure remote census (SOAP) you must enable "Configure connection to remote census (SOAP)" on "Features" tab.'
-      remote_census_general_name: General Information
-      remote_census_request_name: Request Data
-      remote_census_response_name: Response Data
+          general: General Information
+          request: Request Data
+          response: Response Data
+        update_setting: Update
+        features:
+          enabled: "Feature enabled"
+          disabled: "Feature disabled"
+          enable: "Enable"
+          disable: "Disable"
+        social:
+          title: "Registration with social networks"
+          description: "Allow users to sign up with social networks (Twitter, Facebook, Google)"
+          facebook: "Facebook"
+          twitter: "Twitter"
+          google: "Google"
+        advanced:
+          title: "Advanced Configuration"
+          description: "Allow update advanced configuration"
+          auth: "Http basic authentication"
+          tracking: "Error tracking"
+        smtp:
+          title: "SMTP Configuration"
+          description: "Set SMTP server configuration to send emails."
+          how_to_enable: 'To update SMTP configuration you must enable "SMTP Configuration" on "Features" tab.'
+        regional:
+          title: "Languages and Time Zone"
+          description: "Set default locale, available locales and time zone"
+          default_locale: "Application default locale"
+          available_locale: "Application available locales"
+          timezone: "Time Zone"
+        sms:
+          title: SMS Configuration
+          description: "Set SMS configuration to send sms for verification users."
       setting: Feature
       setting_actions: Actions
       setting_name: Setting
       setting_status: Status
       setting_value: Value
       no_description: "No description"
+      restart_info: "Note: For changes to this section to take effect correctly, contact your system administrator to restart all services that are using the application."
     shared:
       true_value: "Yes"
       false_value: "No"

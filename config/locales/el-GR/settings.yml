@@ -83,12 +83,6 @@ el:
     direct_message_max_per_day: "Μέγιστος αριθμός άμεσων μηνυμάτων ανά ημέρα"
     direct_message_max_per_day_description: "Μέγιστος αριθμός των άμεσων μηνυμάτων που μπορεί να στείλει ένας χρήστης ανά ημέρα"
     feature:
-      twitter_login: "Σύνδεση στο Twitter"
-      twitter_login_description: "Να επιτρέπεται στους χρήστες να υπογράφουν με το λογαριασμό τους στο Twitter"
-      facebook_login: "Σύνδεση με Facebook"
-      facebook_login_description: "Να επιτρέπεται στους χρήστες να εγγράφονται με το λογαριασμό τους στο Facebook"
-      google_login: "Σύνδεση με Google"
-      google_login_description: "Να επιτρέπεται στους χρήστες η εγγραφή με τον Google λογαριασμό τους"
       featured_proposals: "Προτεινόμενες προτάσεις"
       featured_proposals_description: "Εμφανίζει προτεινόμενες προτάσεις στη σελίδα περιεχόμενο προτάσεων"
       signature_sheets: "Φύλλα υπογραφών"
@@ -144,3 +138,13 @@ el:
       per_page_code_head_description: "Αυτός ο κωδικός θα εμφανιστεί μέσα σε ετικέτα <head>. Χρήσιμος για την εισαγωγή προσαρμοσμένων δεσμών ενεργειών..."
       per_page_code_body: "Κωδικός που πρέπει να περιλαμβάνονται σε κάθε σελίδα (<body>)"
       per_page_code_body_description: "Αυτός ο κωδικός θα εμφανιστεί μέσα σε ετικέτα <body>. Χρήσιμος για την εισαγωγή προσαρμοσμένων δεσμών ενεργειών..."
+    social:
+      twitter:
+        login: "Σύνδεση στο Twitter"
+        login_description: "Να επιτρέπεται στους χρήστες να υπογράφουν με το λογαριασμό τους στο Twitter"
+      facebook:
+        login: "Σύνδεση με Facebook"
+        login_description: "Να επιτρέπεται στους χρήστες να εγγράφονται με το λογαριασμό τους στο Facebook"
+      google:
+        login: "Σύνδεση με Google"
+        login_description: "Να επιτρέπεται στους χρήστες η εγγραφή με τον Google λογαριασμό τους"

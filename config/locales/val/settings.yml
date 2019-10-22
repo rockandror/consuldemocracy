@@ -62,12 +62,6 @@ val:
     min_age_to_participate_description: "Els usuaris majors d'edat podran participar en tots els processos"
     analytics_url: "URL d'estadístiques externes"
     feature:
-      twitter_login: "Registre amb Twitter"
-      twitter_login_description: "Permetre que els usuaris es registren amb el seu compte de Twiter"
-      facebook_login: "Registre amb Facebook"
-      facebook_login_description: "Permetre que els usuaris es registren amb el seu compte de Facebook"
-      google_login: "Registre amb Google"
-      google_login_description: "Permetre que els usuaris es registren amb el seu compte de Google"
       featured_proposals: "Propostes destacades"
       featured_proposals_description: "Mostrar les propostes destacades en la pàgina principal de les propostes"
       signature_sheets: "Fulles de signatures"
@@ -100,3 +94,13 @@ val:
       public_stats_description: "Mostra les estadístiques públiques en el panell d'Administració"
       help_page: "Pàgina d'ajuda"
       help_page_description: 'Mostra un menú Ajuda que conté una pàgina amb una secció d''informació sobre cada funcionalitat habilitada'
+    social:
+      twitter:
+        login: "Registre amb Twitter"
+        login_description: "Permetre que els usuaris es registren amb el seu compte de Twiter"
+      facebook:
+        login: "Registre amb Facebook"
+        login_description: "Permetre que els usuaris es registren amb el seu compte de Facebook"
+      google:
+        login: "Registre amb Google"
+        login_description: "Permetre que els usuaris es registren amb el seu compte de Google"

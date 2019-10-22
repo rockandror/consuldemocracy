@@ -1,0 +1,32 @@
+es:
+  wizard:
+    admin:
+      title: Asistente
+      module_title: Asistente de instalación
+      description: A través de esta herramienta le presentamos la instalación del sistema.
+    header:
+      title: Asistente de instalación
+      step: Paso
+      step_of: de
+      back_step: Atrás
+      next_step: Siguiente
+    new:
+      title: Bienvenido al asistente de instalación de Consul
+      description_html: En este asistente realizaremos paso a paso toda la configuración necesaria para poder personalizar la aplicación a las necesidades de su Institución. Si no dispone de alguna información solicitada en el asistente podrá obviarlos y modificarlo en un futuro en la Sección de Configuración relacionada o desde este mismo Asistente.
+      btn_start: Empezar
+    general_settings:
+      description_html: En este paso podrá actualizar algunas de las Configuraciones Globales de la aplicación más importantes. En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección <strong>"Configuración > Configuración Global"</strong> o volviendo a ejecutar el Asistente de Instalación
+    partecipation_process:
+      description_html: En este paso podrán activar/desactivar los procesos de participación que decida utilizar cada Institución. En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección <strong>"Configuración > Procesos de Participación"</strong> o volviendo a ejecutar el Asistente de Instalación
+    map:
+      description_html: En este paso podrán activar/desactivar la geolocalización de las propuestas y proyectos de gasto, y personalizar la manera en que se muestra el mapa a los usuarios. En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección <strong>"Configuración > Configuración del mapa"</strong> o volviendo a ejecutar el Asistente de Instalación
+    smtp:
+      title: Conexión SMTP
+      description_html: En este paso podrán configurar la conexión SMTP para poder enviar correos desde la aplicación En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección <strong>"Configuración > Conexión SMTP"</strong> o volviendo a ejecutar el Asistente de Instalación
+    regional:
+      title: Idiomas y Zona horaria
+      description_html: En este paso podrán configurar el idioma por defecto de la aplicación, los idiomas disponibles y la zona horaria en la que se encuentra. En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección <strong>"Configuración > Regional Settings"</strong> o volviendo a ejecutar el Asistente de Instalación
+    finish:
+      title: Asistente finalizado con éxito
+      description_html: En caso de querer modificar cualquier dato una vez realizado el Asistente podrá modificarlo en la sección <strong>Configuración</strong> o volviendo a ejecutar el Asistente de Instalación
+      btn_finish: Finalizar Asistente
