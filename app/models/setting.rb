@@ -10,7 +10,7 @@ class Setting < ApplicationRecord
   def type
     if %w[feature process proposals map html homepage uploads smtp sms custom_verification_process].include? prefix
       prefix
-    elsif %w[remote_census social advanced regional].include? prefix
+    elsif %w[remote_census social advanced regional verification_remote_census].include? prefix
       key.rpartition(".").first
     else
       "configuration"
@@ -242,7 +242,11 @@ class Setting < ApplicationRecord
         "sms.password": nil,
         "custom_verification_process.remote_census": nil,
         "custom_verification_process.residents": nil,
-        "custom_verification_process.sms": nil
+        "custom_verification_process.sms": nil,
+        "verification_remote_census.general.endpoint": "",
+        "verification_remote_census.request.method_name": "",
+        "verification_remote_census.request.structure": "",
+        "verification_remote_census.response.valid": ""
       }
     end
 

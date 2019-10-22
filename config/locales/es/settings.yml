@@ -327,3 +327,15 @@ es:
       residents_description: Configurar el censo local para utilizarlo durante el proceso de verificación de usuarios.
       sms: Verificar el teléfono de un usuario por SMS
       sms_description: Configurar la verificación del teléfono por SMS para utilizarlo durante el proceso de verificación de usuarios.
+    verification_remote_census:
+      general:
+        endpoint: "Endpoint"
+        endpoint_description: "Nombre del host donde se encuentra el servicio del censo (wsdl)"
+      request:
+        method_name: "Nombre del método de la petición"
+        method_name_description: "Nombre del método que acepta el WebService del Censo del Ayuntamiento."
+        structure: "Estructura de la petición"
+        structure_description: 'Estructura de la petición que recibe el WebService del Censo del Ayuntamiento. Los valores "fijos" de esta petición deberan informarse. Los valores relacionado con Tipo de Documento, Número de Documento, Fecha de Nacimiento y Código Postal deberán dejarse con valor null. Ejemplo de formato válido: { "request": { "codigo_institucion": 1, "codigo_portal": 1, "codigo_usuario": 1, "documento": null, "tipo_documento": null, "codigo_idioma": 102, "nivel": 3 } }'
+      response:
+        valid: "Condición para detectar una respuesta válida"
+        valid_description: "Que ruta de la respuesta tiene que venir informado para considerarse una respuesta válida"
