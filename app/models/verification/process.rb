@@ -9,23 +9,23 @@ class Verification::Process < ApplicationRecord
   validate :handlers_attributes, on: :create
 
   belongs_to :user
-  has_many :verification_values, dependent: :destroy,
-                                 class_name: "Verification::Value",
-                                 foreign_key: :verification_process_id,
-                                 inverse_of: :verification_process
-  has_many :verification_fields, through: :verification_values,
-                                 class_name: "Verification::Field"
+  has_many :values, dependent: :destroy,
+                    class_name: "Verification::Value",
+                    foreign_key: :verification_process_id,
+                    inverse_of: :verification_process
+  has_many :fields, through: :values,
+                    class_name: "Verification::Field"
 
   before_create :handlers_verification, if: -> (process) { process.errors.none? }
-  after_create :store_verification_values
+  after_create :store_values
   after_create :mark_as_verified, unless: :requires_confirmation?
   after_create :mark_as_confirmed, unless: :requires_confirmation?
   after_create :mark_as_residence_verified, if: :is_residence_verification_active?
-  after_find :add_attributes_from_verification_fields_definition
-  after_find :load_attributes_from_verification_values
+  after_find :add_attributes_from_fields_definition
+  after_find :load_attributes_from_values
 
   def initialize(attributes = {})
-    add_attributes_from_verification_fields_definition
+    add_attributes_from_fields_definition
 
     parse_date_fields(attributes)
     remove_date_fields_attibutes(attributes)
@@ -76,7 +76,7 @@ class Verification::Process < ApplicationRecord
 
   private
 
-    def add_attributes_from_verification_fields_definition
+    def add_attributes_from_fields_definition
       define_fields_accessors
       define_fields_validations
 
@@ -213,7 +213,7 @@ class Verification::Process < ApplicationRecord
       end
     end
 
-    def store_verification_values
+    def store_values
       @fields.each_with_object([]) do |(name, field), objects|
         objects << Verification::Value.create(
           verification_field: field,
@@ -236,8 +236,8 @@ class Verification::Process < ApplicationRecord
       end
     end
 
-    def load_attributes_from_verification_values
-      verification_values.find_each do |verification_value|
+    def load_attributes_from_values
+      values.find_each do |verification_value|
         attribute = verification_value.verification_field.name
         send("#{attribute}=", verification_value.value)
       end
