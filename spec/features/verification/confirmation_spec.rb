@@ -80,27 +80,10 @@ describe "Verification confirmation" do
     end
 
     scenario "when confirmation codes are introduced successfully should redirect user to account page" do
-      Class.new(Verification::Handler) do
-        register_as :my_handler
-        requires_confirmation true
-
-        def confirm(attributes)
-          if attributes[:my_handler_confirmation_code] == "QWER"
-            Verification::Handlers::Response.new true, "Success!", (attributes), nil
-          else
-            Verification::Handlers::Response.new(false,
-                                                 "My handler confirmation code does not match",
-                                                 (attributes),
-                                                 nil)
-          end
-        end
-      end
       Setting["custom_verification_process.my_handler"] = true
-      create(:verification_handler_field_assignment, verification_field: phone_field, handler: "my_handler")
       create(:verification_process, user: user, phone: "666555444")
       visit new_verification_confirmation_path
       fill_in "SMS confirmation code", with: user.reload.sms_confirmation_code
-      fill_in "My handler confirmation code", with: "QWER"
       click_button "Confirm"
 
       expect(page).to have_content "Accout verification process was done successfully!"
