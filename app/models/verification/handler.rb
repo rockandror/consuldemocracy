@@ -42,13 +42,6 @@ class Verification::Handler
 
   private
 
-    def build_confirmation_response(attributes = {})
-      Verification::Handlers::Response.new true,
-                                           I18n.t("verification.handler.confirmation.success"),
-                                          attributes,
-                                          nil
-    end
-
     def verification_form_fields
       Verification::Field.all.select { |f| f.handlers.include?(self.class.id.to_s) }
     end
