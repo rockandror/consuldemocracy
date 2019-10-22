@@ -4,6 +4,83 @@ describe Verification::Handler do
   let!(:handler) do
     Class.new(Verification::Handler) do
       register_as :my_handler
+
+      def verify(attributes = {})
+        @response = Verification::Handlers::Response.new true,
+                                                         "Verification process was successfully completed!",
+                                                         attributes,
+                                                         nil
+      end
+    end
+  end
+
+  describe "#verify" do
+    it "when does not implement verify method raise an exception" do
+      handler_test_class = Class.new(Verification::Handler) do
+        register_as :invalid_handler_definition
+      end
+
+      expect do
+        handler_test_class.new.verify
+      end.to raise_error(Verification::Handler::MissingMethodImplementation,
+                         "You must implement the verify method!")
+    end
+
+    it "when does implement verify method should raise an exception" do
+      handler_test_class = Class.new(Verification::Handler) do
+        register_as :invalid_handler_definition
+
+        def verify; end
+      end
+
+      expect do
+        handler_test_class.new.verify
+      end.not_to raise_error
+    end
+  end
+
+  describe "#confirm" do
+    it "when handler does requires a confirmation step and does not implement confirm method
+        should raise an exception" do
+      handler_test_class = Class.new(Verification::Handler) do
+        register_as :invalid_handler_definition
+        requires_confirmation true
+
+        def verify; end
+      end
+
+      expect do
+        handler_test_class.new.confirm
+      end.to raise_error(Verification::Handler::MissingMethodImplementation,
+                         "You must implement the confirm method!")
+    end
+
+    it "when handler does not requires a confirmation step should not raise an exception" do
+      handler_test_class = Class.new(Verification::Handler) do
+        register_as :invalid_handler_definition
+        requires_confirmation false
+
+        def verify; end
+      end
+
+      expect do
+        handler_test_class.new.confirm
+      end.not_to raise_error
+    end
+
+    it "when handler does requires a confirmation step and does implement confirm method
+        should not raise an exception" do
+      handler_test_class = Class.new(Verification::Handler) do
+        register_as :invalid_handler_definition
+        requires_confirmation true
+
+        def verify; end
+        def confirm; end
+      end
+
+      expect do
+        handler_test_class.new.confirm
+      end.not_to raise_error
     end
   end
 

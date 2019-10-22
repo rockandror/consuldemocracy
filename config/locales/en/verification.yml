@@ -32,8 +32,6 @@ en:
     handler:
       confirmation:
         success: User verification process was done successfully!
-      verification:
-        success: User confirmation process was done successfully!
     handlers:
       sms:
         verify:

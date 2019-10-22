@@ -13,11 +13,13 @@ class Verification::Handler
   end
 
   def verify(attributes = {})
-    @response = build_verification_response(attributes)
+    raise MissingMethodImplementation, "You must implement the verify method!"
   end
 
   def confirm(attributes = {})
-    @response = build_confirmation_response(attributes)
+    if self.class.requires_confirmation?
+      raise MissingMethodImplementation, "You must implement the confirm method!"
+    end
   end
 
   class << self
@@ -36,14 +38,9 @@ class Verification::Handler
     end
   end
 
-  private
+  class MissingMethodImplementation < Exception; end
 
-    def build_verification_response(attributes = {})
-      Verification::Handlers::Response.new true,
-                                           I18n.t("verification.handler.verification.success"),
-                                           attributes,
-                                           nil
-    end
+  private
 
     def build_confirmation_response(attributes = {})
       Verification::Handlers::Response.new true,
