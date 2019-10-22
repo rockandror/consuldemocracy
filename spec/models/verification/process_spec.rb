@@ -135,7 +135,7 @@ describe Verification::Process do
       expected_arguments = { date: process.date.strftime("%d/%m/%Y"), user: process.user }
       expect_any_instance_of(Verification::Handlers::Resident).
         to receive(:verify).with(expected_arguments).and_call_original
-      process.save
+      expect(process.save).to be(false)
     end
 
     it "convert date fields to a string with date ISO 8601 '%F' when format is not defined" do
@@ -148,7 +148,7 @@ describe Verification::Process do
       expected_arguments = { date: process.date.strftime("%F"), user: process.user }
       expect_any_instance_of(Verification::Handlers::Resident).
         to receive(:verify).with(expected_arguments).and_call_original
-      process.save
+      expect(process.save).to be(false)
     end
   end
 
