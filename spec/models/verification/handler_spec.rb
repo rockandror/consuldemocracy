@@ -185,5 +185,6 @@ describe Verification::Handler do
     subject { handler.new }
 
     it { should respond_to(:success) }
+    it { should respond_to(:success?) }
   end
 end
