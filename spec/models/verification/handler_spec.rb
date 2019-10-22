@@ -14,6 +14,38 @@ describe Verification::Handler do
     end
   end
 
+  describe ".register_as" do
+    it "sets handler's id" do
+      expect(handler.id).to eq("my_handler")
+    end
+
+    it "add handlers to Verification::Configuration available_handlers" do
+      expect(Verification::Configuration.available_handlers).to include("my_handler")
+    end
+  end
+
+  describe ".requires_confirmation?" do
+    it "returns true when explicitly enabled at handler" do
+      handler.class_eval do
+        requires_confirmation true
+      end
+
+      expect(handler.requires_confirmation?).to eq(true)
+    end
+
+    it "returns false when not declared" do
+      expect(handler.requires_confirmation?).to eq(false)
+    end
+
+    it "returns false when explicitly disabled at handler" do
+      handler.class_eval do
+        requires_confirmation false
+      end
+
+      expect(handler.requires_confirmation?).to eq(false)
+    end
+  end
+
   describe "#initialize" do
     before do
       Setting["custom_verification_process.my_handler"] = true
@@ -101,38 +133,6 @@ describe Verification::Handler do
       expect do
         handler_test_class.new.confirm
       end.not_to raise_error
-    end
-  end
-
-  describe ".register_as" do
-    it "sets handler's id" do
-      expect(handler.id).to eq("my_handler")
-    end
-
-    it "add handlers to Verification::Configuration available_handlers" do
-      expect(Verification::Configuration.available_handlers).to include("my_handler")
-    end
-  end
-
-  describe ".requires_confirmation?" do
-    it "returns true when explicitly enabled at handler" do
-      handler.class_eval do
-        requires_confirmation true
-      end
-
-      expect(handler.requires_confirmation?).to eq(true)
-    end
-
-    it "returns false when not declared" do
-      expect(handler.requires_confirmation?).to eq(false)
-    end
-
-    it "returns false when explicitly disabled at handler" do
-      handler.class_eval do
-        requires_confirmation false
-      end
-
-      expect(handler.requires_confirmation?).to eq(false)
     end
   end
 
