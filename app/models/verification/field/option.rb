@@ -8,5 +8,4 @@ class Verification::Field::Option < ApplicationRecord
 
   validates_translation :label, presence: true, length: { minimum: 2 }
   validates :value, presence: true
-
 end
