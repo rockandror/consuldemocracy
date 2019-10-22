@@ -14,6 +14,26 @@ describe Verification::Handler do
     end
   end
 
+  describe "#initialize" do
+    before do
+      Setting["custom_verification_process.my_handler"] = true
+      phone_field = create(:verification_field, name: :phone)
+      create(:verification_handler_field_assignment, handler: :my_handler, verification_field: phone_field)
+      handler.class_eval do
+        requires_confirmation true
+      end
+    end
+
+    it "creates attributes dynamically from verification handler fields assignments definition" do
+      instance = handler.new
+
+      expect(instance).to respond_to "phone"
+      expect(instance).to respond_to "phone="
+      expect(instance).to respond_to "my_handler_confirmation_code"
+      expect(instance).to respond_to "my_handler_confirmation_code="
+    end
+  end
+
   describe "#verify" do
     it "when does not implement verify method raise an exception" do
       handler_test_class = Class.new(Verification::Handler) do
