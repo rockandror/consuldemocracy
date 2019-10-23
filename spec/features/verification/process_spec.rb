@@ -1,16 +1,18 @@
 require "rails_helper"
 
 describe "Verification process" do
-
   let!(:name_field)        { create(:verification_field, name: "name", label: "Name", position: 1) }
   let!(:email_field)       { create(:verification_field, name: "email", label: "Email", position: 2) }
   let!(:phone_field)       { create(:verification_field, name: "phone", label: "Phone", position: 3) }
-  let!(:postal_code_field) { create(:verification_field, name: "postal_code", label: "Postal code",
-                                                         position: 4) }
-  let!(:document_type_field)   { create(:verification_field, name: "document_type", label: "Document type",
-                                                             position: 5) }
-  let!(:document_number_field) { create(:verification_field, name: "document_number",
-                                                             label: "Document number", position: 6) }
+  let!(:postal_code_field) do
+    create(:verification_field, name: "postal_code", label: "Postal code", position: 4)
+  end
+  let!(:document_type_field) do
+    create(:verification_field, name: "document_type", label: "Document type", position: 5)
+  end
+  let!(:document_number_field) do
+    create(:verification_field, name: "document_number", label: "Document number", position: 6)
+  end
   let(:user)               { create(:user) }
 
   before do
@@ -33,7 +35,8 @@ describe "Verification process" do
 
     scenario "Shows all defined verification fields" do
       create(:verification_field, name: "date_of_birth", label: "Date of birth", position: 7, kind: :date)
-      create(:verification_field, name: "field_with_visible_false", label: "Sample field", position: 8, visible: false)
+      create(:verification_field, name: "field_with_visible_false", label: "Sample field", position: 8,
+                                  visible: false)
 
       visit new_verification_process_path
 
@@ -50,7 +53,7 @@ describe "Verification process" do
     end
 
     scenario "Shows confirmation fields next to parent fields" do
-      name_field.update(confirmation_validation: true)
+      name_field.update!(confirmation_validation: true)
       visit new_verification_process_path
 
       expect("Name").to appear_before("Name confirmation")
@@ -58,7 +61,7 @@ describe "Verification process" do
     end
 
     scenario "when fields hints are defined it should be shown" do
-      name_field.update(hint: "Name hint")
+      name_field.update!(hint: "Name hint")
       visit new_verification_process_path
 
       expect(page).to have_content("Name hint")
@@ -89,7 +92,7 @@ describe "Verification process" do
 
   describe "Create" do
     scenario "Shows fields presence validation errors" do
-      name_field.update(required: true)
+      name_field.update!(required: true)
       visit new_verification_process_path
 
       click_button "Verify my account"
@@ -99,7 +102,7 @@ describe "Verification process" do
     end
 
     scenario "Shows fields confirmation validation errors" do
-      phone_field.update(confirmation_validation: true)
+      phone_field.update!(confirmation_validation: true)
       visit new_verification_process_path
 
       fill_in "Phone", with: "666555444"
@@ -111,7 +114,7 @@ describe "Verification process" do
     end
 
     scenario "Shows fields format validation errors" do
-      phone_field.update(format: '\A[\d \+]+\z')
+      phone_field.update!(format: '\A[\d \+]+\z')
       visit new_verification_process_path
 
       fill_in "Phone", with: "234 234 234A"
@@ -123,7 +126,7 @@ describe "Verification process" do
 
     scenario "Shows special validations from handlers" do
       create(:user, confirmed_phone: "234234234")
-      phone_field.update(format: '\A[\d \+]+\z')
+      phone_field.update!(format: '\A[\d \+]+\z')
       create(:verification_field_assignment, verification_field: phone_field, handler: "sms")
       visit new_verification_process_path
 
@@ -207,7 +210,8 @@ describe "Verification process" do
               user should be marked as verified user and redirect to profile page with a notice" do
       valid_response_path = "get_habita_datos_response.get_habita_datos_return.datos_habitante.item"
       Setting["remote_census.response.valid"] = valid_response_path
-      postal_code_response_path = "get_habita_datos_response.get_habita_datos_return.datos_vivienda.item.codigo_postal"
+      postal_code_response_path = "get_habita_datos_response.get_habita_datos_return.datos_vivienda." \
+                                  "item.codigo_postal"
       create(:verification_field_assignment, verification_field: document_type_field,
         handler: "remote_census", request_path: "request.document_type")
       create(:verification_field_assignment, verification_field: document_number_field,
