@@ -1,8 +1,8 @@
 require "rails_helper"
 
-feature "Admin verification residents" do
+describe "Admin verification residents" do
 
-  background do
+  before do
     login_as(create(:administrator).user)
   end
 
@@ -47,8 +47,7 @@ feature "Admin verification residents" do
     end
 
     context "Search" do
-
-      let!(:resident) { create(:verification_resident, data: { document_number: "X66777888" }) }
+      before { create(:verification_resident, data: { document_number: "X66777888" }) }
 
       scenario "Should show matching records by given key and value pair at first visit" do
         create(:verification_resident, data: { document_number: "X11222333" })
