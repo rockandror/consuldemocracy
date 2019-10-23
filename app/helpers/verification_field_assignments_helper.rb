@@ -1,4 +1,4 @@
-module VerificationHandlerFieldAssignmentsHelper
+module VerificationFieldAssignmentsHelper
   def title_for_fields_assignments_by(handler)
     t("admin.wizards.verification.handler.field_assignments.index.title.handlers.#{handler}")
   end
@@ -11,7 +11,9 @@ module VerificationHandlerFieldAssignmentsHelper
     "display: none;" unless field_assignment&.verification_field&.date?
   end
 
-  def options_for_verification_handler_field_assigment_verification_field
-    Verification::Field.all.order(:position).collect{|field| [field.name, field.id, data: { "field-kind": field.kind }]}
+  def options_for_verification_fields
+    to_collect = lambda { |field| [field.name, field.id, data: { "field-kind": field.kind }] }
+
+    Verification::Field.all.order(:position).collect(&to_collect)
   end
 end
