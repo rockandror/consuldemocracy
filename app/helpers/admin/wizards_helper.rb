@@ -12,19 +12,13 @@ module Admin::WizardsHelper
   def next_step_path(step)
     case step
     when "handlers"
-      return admin_wizards_verification_field_assignments_path(:remote_census) if Setting["custom_verification_process.remote_census"].present?
-      return admin_wizards_verification_field_assignments_path(:residents) if Setting["custom_verification_process.residents"].present?
-      return admin_wizards_verification_field_assignments_path(:sms) if Setting["custom_verification_process.sms"].present?
-      admin_wizards_verification_finish_path
+      first_field_assignments_step
     when "remote_census"
-      return admin_wizards_verification_field_assignments_path(:residents) if Setting["custom_verification_process.residents"].present?
-      return admin_wizards_verification_field_assignments_path(:sms) if Setting["custom_verification_process.sms"].present?
-       admin_wizards_verification_finish_path
+      remote_census_next_field_assignments_step
     when "residents"
-      return admin_wizards_verification_field_assignments_path(:sms) if Setting["custom_verification_process.sms"].present?
-       admin_wizards_verification_finish_path
-    when "sms"
-       admin_wizards_verification_finish_path
+      residents_next_field_assignments_step
+    else
+      admin_wizards_verification_finish_path
     end
   end
 
@@ -33,22 +27,78 @@ module Admin::WizardsHelper
     when "remote_census"
       admin_wizards_verification_fields_path
     when "residents"
-      return admin_wizards_verification_field_assignments_path(:remote_census)  if  Setting["custom_verification_process.remote_census"].present?
-      admin_wizards_verification_fields_path
+      residents_previous_field_assignments_step
     when "sms"
-      return admin_wizards_verification_field_assignments_path(:residents) if Setting["custom_verification_process.residents"].present?
-      return admin_wizards_verification_field_assignments_path(:remote_census)  if  Setting["custom_verification_process.remote_census"].present?
-      admin_wizards_verification_fields_path
+      sms_previous_field_assignments_step
     when "finish"
-      return admin_wizards_verification_field_assignments_path(:sms) if Setting["custom_verification_process.sms"].present?
-      return admin_wizards_verification_field_assignments_path(:residents) if Setting["custom_verification_process.residents"].present?
-      return admin_wizards_verification_field_assignments_path(:remote_census) if Setting["custom_verification_process.remote_census"].present?
+      finish_previous_field_assignments_step
+    end
+  end
+
+  def first_field_assignments_step
+    if Setting["custom_verification_process.remote_census"].present?
+      admin_wizards_verification_field_assignments_path(:remote_census)
+    elsif Setting["custom_verification_process.residents"].present?
+      admin_wizards_verification_field_assignments_path(:residents)
+    elsif Setting["custom_verification_process.sms"].present?
+      admin_wizards_verification_field_assignments_path(:sms)
+    else
+      admin_wizards_verification_finish_path
+    end
+  end
+
+  def remote_census_next_field_assignments_step
+    if Setting["custom_verification_process.residents"].present?
+      admin_wizards_verification_field_assignments_path(:residents)
+    elsif Setting["custom_verification_process.sms"].present?
+      admin_wizards_verification_field_assignments_path(:sms)
+    else
+      admin_wizards_verification_finish_path
+    end
+  end
+
+  def residents_next_field_assignments_step
+    if Setting["custom_verification_process.sms"].present?
+      return admin_wizards_verification_field_assignments_path(:sms)
+    else
+      admin_wizards_verification_finish_path
+    end
+  end
+
+  def residents_previous_field_assignments_step
+    if Setting["custom_verification_process.remote_census"].present?
+      admin_wizards_verification_field_assignments_path(:remote_census)
+    else
+      admin_wizards_verification_fields_path
+    end
+  end
+
+  def sms_previous_field_assignments_step
+    if Setting["custom_verification_process.residents"].present?
+      admin_wizards_verification_field_assignments_path(:residents)
+    elsif Setting["custom_verification_process.remote_census"].present?
+      admin_wizards_verification_field_assignments_path(:remote_census)
+    else
+      admin_wizards_verification_fields_path
+    end
+  end
+
+  def finish_previous_field_assignments_step
+    if Setting["custom_verification_process.sms"].present?
+      admin_wizards_verification_field_assignments_path(:sms)
+    elsif Setting["custom_verification_process.residents"].present?
+      admin_wizards_verification_field_assignments_path(:residents)
+    elsif Setting["custom_verification_process.remote_census"].present?
+      admin_wizards_verification_field_assignments_path(:remote_census)
+    else
       admin_wizards_verification_fields_path
     end
   end
 
   def wrong_configuration?
-    !Setting["feature.custom_verification_process"].present? || Setting["feature.user.skip_verification"].present? || Setting["feature.remote_census"].present?
+    Setting["feature.custom_verification_process"].blank? ||
+    Setting["feature.user.skip_verification"].present? ||
+    Setting["feature.remote_census"].present?
   end
 
   def render_related_setting_table?(handler)
@@ -78,5 +128,4 @@ module Admin::WizardsHelper
   def visible_value(field)
     field.visible.nil? ? true : field.visible?
   end
-
 end
