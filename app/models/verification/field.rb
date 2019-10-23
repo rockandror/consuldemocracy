@@ -11,16 +11,15 @@ class Verification::Field < ApplicationRecord
                                  foreign_key: :verification_field_id,
                                  inverse_of: :verification_field,
                                  dependent: :destroy
-  has_many :verification_field_options, class_name: "Verification::Field::Option",
-                                        foreign_key: :verification_field_id,
-                                        inverse_of: :verification_field,
-                                        dependent: :destroy
+  has_many :options, foreign_key: :verification_field_id,
+                     inverse_of: :verification_field,
+                     dependent: :destroy
   has_many :assignments, class_name: "Verification::Handler::FieldAssignment",
                          foreign_key: :verification_field_id,
                          inverse_of: :verification_field,
                          dependent: :destroy
 
-  accepts_nested_attributes_for :verification_field_options, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :options, reject_if: :all_blank, allow_destroy: true
 
   validates_translation :label, presence: true, length: { minimum: 2 }
   validates :name, presence: true

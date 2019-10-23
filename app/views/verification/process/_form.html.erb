@@ -12,7 +12,7 @@
       <% elsif field.text? %>
         <%= f.text_field field.name, label: field.label, hint: field_hint(field) %>
       <% elsif field.selector? %>
-        <% select_options = field.verification_field_options.map { |p| [p.label, p.value] } %>
+        <% select_options = field.options.map { |p| [p.label, p.value] } %>
         <%= f.select field.name,
                       options_for_select(select_options),
                       prompt: t("verification.process.form.select.prompt"),
