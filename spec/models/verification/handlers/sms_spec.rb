@@ -45,9 +45,9 @@ describe Verification::Handlers::Sms do
       end
 
       it "updates user unconfirmed_phone" do
-        expect {
+        expect do
           sms.verify({ phone: "555222333", user: user })
-        }.to change { user.unconfirmed_phone }.from(nil).to("555222333")
+        end.to change { user.unconfirmed_phone }.from(nil).to("555222333")
       end
 
       it "sends a sms message to user unconfirmed_phone" do
