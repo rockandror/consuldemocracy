@@ -85,7 +85,7 @@
 //= require cookies
 //= require columns_selector
 //= require budget_edit_associations
-//= require verification_handler_field_assignments
+//= require verification_field_assignments
 //= require votations
 //= require wizard
 

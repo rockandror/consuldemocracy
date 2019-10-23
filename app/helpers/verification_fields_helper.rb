@@ -26,7 +26,7 @@ module VerificationFieldsHelper
   def verification_field_assignments_no_results_message
     t("admin.wizards.verification.handler.field_assignments.no_results_html",
       link: link_to(t("admin.wizards.verification.handler.field_assignments.associate_field"),
-                    new_admin_wizards_verification_handler_field_assignment_path))
+                    new_admin_wizards_verification_field_assignment_path))
   end
 
   def field_hint(field)

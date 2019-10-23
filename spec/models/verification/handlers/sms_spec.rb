@@ -11,7 +11,7 @@ describe Verification::Handlers::Sms do
 
   it "when there is already another user with same phone it should not be valid" do
     field = create(:verification_field, name: :phone)
-    create(:verification_handler_field_assignment, verification_field: field, handler: :sms)
+    create(:verification_field_assignment, verification_field: field, handler: :sms)
     create(:user, confirmed_phone: "111222333")
     sms = Verification::Handlers::Sms.new
     sms.phone = "111222333"
@@ -25,7 +25,7 @@ describe Verification::Handlers::Sms do
 
     before do
       field = create(:verification_field, name: :phone)
-      create(:verification_handler_field_assignment, verification_field: field, handler: :sms)
+      create(:verification_field_assignment, verification_field: field, handler: :sms)
     end
 
     it "returns error response when unique phone validation fails" do
@@ -65,7 +65,7 @@ describe Verification::Handlers::Sms do
     before do
       Setting["custom_verification_process.sms"] = true
       field = create(:verification_field, name: :phone)
-      create(:verification_handler_field_assignment, verification_field: field, handler: :sms)
+      create(:verification_field_assignment, verification_field: field, handler: :sms)
     end
 
     it "Returns error response when confirmation code provided by user

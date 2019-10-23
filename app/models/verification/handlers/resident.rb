@@ -39,7 +39,7 @@ class Verification::Handlers::Resident < Verification::Handler
     end
 
     def field_assignments_to_match
-      Verification::Handler::FieldAssignment.by_handler("residents")
+      Verification::Field::Assignment.by_handler("residents")
     end
 
     def update_user_with_geozone(resident, attributes)

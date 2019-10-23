@@ -13,7 +13,7 @@ class Verification::Field < ApplicationRecord
   has_many :options, foreign_key: :verification_field_id,
                      inverse_of: :verification_field,
                      dependent: :destroy
-  has_many :assignments, class_name: "Verification::Handler::FieldAssignment",
+  has_many :assignments, class_name: "Verification::Field::Assignment",
                          foreign_key: :verification_field_id,
                          inverse_of: :verification_field,
                          dependent: :destroy

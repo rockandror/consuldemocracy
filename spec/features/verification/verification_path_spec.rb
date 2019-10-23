@@ -126,7 +126,7 @@ describe "Verification path" do
     scenario "User has started a verification process with required confirmation but not finished yet" do
       Setting["custom_verification_process.sms"] = "true"
       field = create(:verification_field, name: :phone)
-      create(:verification_handler_field_assignment, verification_field: field, handler: :sms)
+      create(:verification_field_assignment, verification_field: field, handler: :sms)
       create(:verification_process, user: user, phone: "555444666")
       user.reload
       login_as(user)

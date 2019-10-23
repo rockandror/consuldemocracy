@@ -11,7 +11,7 @@ describe "Admin wizards verification fields" do
                                              position: 1, kind: "text") }
 
   before do
-    create(:verification_handler_field_assignment, verification_field: field, handler: fake_handler.id)
+    create(:verification_field_assignment, verification_field: field, handler: fake_handler.id)
     admin = create(:administrator)
     login_as(admin.user)
   end

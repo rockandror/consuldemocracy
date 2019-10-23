@@ -4,7 +4,7 @@ describe Verification::Confirmation do
   before do
     Setting["custom_verification_process.sms"] = true
     field = create(:verification_field, name: :phone)
-    create(:verification_handler_field_assignment, verification_field: field, handler: :sms)
+    create(:verification_field_assignment, verification_field: field, handler: :sms)
   end
 
   context "Validations" do
@@ -39,7 +39,7 @@ describe Verification::Confirmation do
   describe "#save" do
     before do
       field = create(:verification_field, name: "phone")
-      create(:verification_handler_field_assignment, verification_field: field, handler: "sms")
+      create(:verification_field_assignment, verification_field: field, handler: "sms")
       Setting["custom_verification_process.sms"] = true
     end
 

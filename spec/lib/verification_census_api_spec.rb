@@ -10,9 +10,9 @@ describe VerificationCensusApi do
     let!(:another_field_required) { create(:verification_field, name: "another_field_required") }
 
     before do
-      create(:verification_handler_field_assignment, :remote_census, verification_field: document_type, request_path: "request.document_type" )
-      create(:verification_handler_field_assignment, :remote_census, verification_field: document_number, request_path: "request.document_number" )
-      create(:verification_handler_field_assignment, :remote_census, verification_field: another_field_required, request_path: "request.another_field_required" )
+      create(:verification_field_assignment, :remote_census, verification_field: document_type, request_path: "request.document_type" )
+      create(:verification_field_assignment, :remote_census, verification_field: document_number, request_path: "request.document_number" )
+      create(:verification_field_assignment, :remote_census, verification_field: another_field_required, request_path: "request.another_field_required" )
       Setting["remote_census.request.structure"] = '{ "request":
                                                       { "static_field": "1",
                                                         "document_type": "nil",

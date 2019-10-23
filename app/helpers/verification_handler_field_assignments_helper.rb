@@ -7,7 +7,7 @@ module VerificationHandlerFieldAssignmentsHelper
     t("admin.wizards.verification.handler.field_assignments.index.description.handlers.#{handler}")
   end
 
-  def verification_handler_field_assignment_style(field_assignment)
+  def verification_field_assignment_style(field_assignment)
     "display: none;" unless field_assignment&.verification_field&.date?
   end
 

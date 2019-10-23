@@ -108,7 +108,7 @@ module Abilities
       can [:create, :read], LocalCensusRecords::Import
 
       can [:manage], Verification::Field
-      can [:manage], Verification::Handler::FieldAssignment
+      can [:manage], Verification::Field::Assignment
       can :manage, Verification::Resident
       can [:create], Verification::Residents::Import
     end

@@ -14,7 +14,7 @@ class Verification::Configuration
     end
 
     def active_handlers
-      Verification::Handler::FieldAssignment.where(handler: active_handlers_ids).pluck(:handler).uniq
+      Verification::Field::Assignment.where(handler: active_handlers_ids).pluck(:handler).uniq
     end
 
     def required_confirmation_handlers

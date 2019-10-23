@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191010103943) do
+ActiveRecord::Schema.define(version: 20191023113835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1669,6 +1669,19 @@ ActiveRecord::Schema.define(version: 20191010103943) do
     t.index ["user_id"], name: "index_valuators_on_user_id", using: :btree
   end
 
+  create_table "verification_field_assignments", force: :cascade do |t|
+    t.integer  "verification_field_id"
+    t.string   "handler",               null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.string   "request_path"
+    t.string   "response_path"
+    t.string   "format"
+    t.index ["handler"], name: "index_field_assignments_on_handler", using: :btree
+    t.index ["verification_field_id", "handler"], name: "unique_index_to_handler_and_verification_field_id", unique: true, using: :btree
+    t.index ["verification_field_id"], name: "index_field_assignments_on_field_id", using: :btree
+  end
+
   create_table "verification_field_option_translations", force: :cascade do |t|
     t.integer  "verification_field_option_id", null: false
     t.string   "locale",                       null: false
@@ -1710,19 +1723,6 @@ ActiveRecord::Schema.define(version: 20191010103943) do
     t.boolean "visible"
     t.boolean "represent_geozone"
     t.boolean "represent_min_age_to_participate"
-  end
-
-  create_table "verification_handler_field_assignments", force: :cascade do |t|
-    t.integer  "verification_field_id"
-    t.string   "handler",               null: false
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-    t.string   "request_path"
-    t.string   "response_path"
-    t.string   "format"
-    t.index ["handler"], name: "index_field_assignments_on_handler", using: :btree
-    t.index ["verification_field_id", "handler"], name: "unique_index_to_handler_and_verification_field_id", unique: true, using: :btree
-    t.index ["verification_field_id"], name: "index_field_assignments_on_field_id", using: :btree
   end
 
   create_table "verification_processes", force: :cascade do |t|
@@ -1922,8 +1922,8 @@ ActiveRecord::Schema.define(version: 20191010103943) do
   add_foreign_key "trackers", "users"
   add_foreign_key "users", "geozones"
   add_foreign_key "valuators", "users"
+  add_foreign_key "verification_field_assignments", "verification_fields"
   add_foreign_key "verification_field_options", "verification_fields"
-  add_foreign_key "verification_handler_field_assignments", "verification_fields"
   add_foreign_key "verification_processes", "users"
   add_foreign_key "verification_values", "verification_processes"
   add_foreign_key "votation_set_answers", "votation_types"

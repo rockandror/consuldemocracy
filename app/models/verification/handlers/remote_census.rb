@@ -34,7 +34,7 @@ class Verification::Handlers::RemoteCensus < Verification::Handler
     end
 
     def field_assignments_to_match
-      Verification::Handler::FieldAssignment.by_handler("remote_census").with_response_path
+      Verification::Field::Assignment.by_handler("remote_census").with_response_path
     end
 
     def get_response_value(response, assignment)

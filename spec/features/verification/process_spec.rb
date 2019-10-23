@@ -124,7 +124,7 @@ describe "Verification process" do
     scenario "Shows special validations from handlers" do
       create(:user, confirmed_phone: "234234234")
       phone_field.update(format: '\A[\d \+]+\z')
-      create(:verification_handler_field_assignment, verification_field: phone_field, handler: "sms")
+      create(:verification_field_assignment, verification_field: phone_field, handler: "sms")
       visit new_verification_process_path
 
       fill_in "Name", with: "My Fabolous Name"
@@ -187,10 +187,10 @@ describe "Verification process" do
                                              email: "email@example.com",
                                              phone: "111222333",
                                              postal_code: "00700" })
-      create(:verification_handler_field_assignment, verification_field: name_field, handler: "residents")
-      create(:verification_handler_field_assignment, verification_field: email_field, handler: "residents")
-      create(:verification_handler_field_assignment, verification_field: phone_field, handler: "residents")
-      create(:verification_handler_field_assignment, verification_field: postal_code_field,
+      create(:verification_field_assignment, verification_field: name_field, handler: "residents")
+      create(:verification_field_assignment, verification_field: email_field, handler: "residents")
+      create(:verification_field_assignment, verification_field: phone_field, handler: "residents")
+      create(:verification_field_assignment, verification_field: postal_code_field,
         handler: "residents")
       visit new_verification_process_path
 
@@ -208,11 +208,11 @@ describe "Verification process" do
       valid_response_path = "get_habita_datos_response.get_habita_datos_return.datos_habitante.item"
       Setting["remote_census.response.valid"] = valid_response_path
       postal_code_response_path = "get_habita_datos_response.get_habita_datos_return.datos_vivienda.item.codigo_postal"
-      create(:verification_handler_field_assignment, verification_field: document_type_field,
+      create(:verification_field_assignment, verification_field: document_type_field,
         handler: "remote_census", request_path: "request.document_type")
-      create(:verification_handler_field_assignment, verification_field: document_number_field,
+      create(:verification_field_assignment, verification_field: document_number_field,
         handler: "remote_census", request_path: "request.document_number")
-      create(:verification_handler_field_assignment, verification_field: postal_code_field,
+      create(:verification_field_assignment, verification_field: postal_code_field,
         handler: "remote_census", response_path: postal_code_response_path)
 
       visit new_verification_process_path
@@ -231,12 +231,12 @@ describe "Verification process" do
                                              email: "email@example.com",
                                              phone: "111222333",
                                              postal_code: "00700" })
-      create(:verification_handler_field_assignment, verification_field: name_field, handler: "residents")
-      create(:verification_handler_field_assignment, verification_field: email_field, handler: "residents")
-      create(:verification_handler_field_assignment, verification_field: phone_field, handler: "residents")
-      create(:verification_handler_field_assignment, verification_field: postal_code_field,
+      create(:verification_field_assignment, verification_field: name_field, handler: "residents")
+      create(:verification_field_assignment, verification_field: email_field, handler: "residents")
+      create(:verification_field_assignment, verification_field: phone_field, handler: "residents")
+      create(:verification_field_assignment, verification_field: postal_code_field,
         handler: "residents")
-      create(:verification_handler_field_assignment, verification_field: phone_field, handler: "sms")
+      create(:verification_field_assignment, verification_field: phone_field, handler: "sms")
       visit new_verification_process_path
 
       fill_in "Name", with: "Fabulous Name"
@@ -252,7 +252,7 @@ describe "Verification process" do
 
     scenario "When two step verification process has not errors user
               should be redirected to confirmation codes page" do
-      create(:verification_handler_field_assignment, verification_field: phone_field, handler: "sms")
+      create(:verification_field_assignment, verification_field: phone_field, handler: "sms")
       visit new_verification_process_path
 
       fill_in "Name", with: "My Fabolous Name"

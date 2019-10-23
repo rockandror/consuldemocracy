@@ -107,14 +107,14 @@ describe Verification::Process do
 
     it "stops saving the process when any handler verification responds with an error" do
       field = create(:verification_field, name: :custom_field)
-      create(:verification_handler_field_assignment, verification_field: field, handler: :residents)
+      create(:verification_field_assignment, verification_field: field, handler: :residents)
 
       expect(process.save).to be(false)
     end
 
     it "copy errors from errored handlers to process :base" do
       field = create(:verification_field, name: :custom_field_name)
-      create(:verification_handler_field_assignment, verification_field: field, handler: :residents)
+      create(:verification_field_assignment, verification_field: field, handler: :residents)
 
       error = "The Census was unable to verify your information. Please confirm "   \
               "that your census details are correct by calling to City Council or " \
@@ -128,7 +128,7 @@ describe Verification::Process do
       Setting["custom_verification_process.residents"] = true
       Verification::Field.destroy_all
       field = create(:verification_field, name: :date, kind: :date)
-      create(:verification_handler_field_assignment, verification_field: field, handler: :residents,
+      create(:verification_field_assignment, verification_field: field, handler: :residents,
                                                      format: "%d/%m/%Y")
       process = build(:verification_process, date: Date.current)
 
@@ -142,7 +142,7 @@ describe Verification::Process do
       Setting["custom_verification_process.residents"] = true
       Verification::Field.destroy_all
       field = create(:verification_field, name: :date, kind: :date)
-      create(:verification_handler_field_assignment, verification_field: field, handler: :residents)
+      create(:verification_field_assignment, verification_field: field, handler: :residents)
       process = build(:verification_process, date: Date.current)
 
       expected_arguments = { date: process.date.strftime("%F"), user: process.user }
@@ -162,7 +162,7 @@ describe Verification::Process do
     it "marks process as verified when process do not need any confirmation codes" do
       create(:verification_resident, data: { document_number: "4433221Z" })
       field = create(:verification_field, name: :document_number)
-      create(:verification_handler_field_assignment, verification_field: field, handler: :residents)
+      create(:verification_field_assignment, verification_field: field, handler: :residents)
 
       process.document_number = "4433221Z"
 
@@ -171,7 +171,7 @@ describe Verification::Process do
 
     it "do not mark process as verified when any of the active handlers requires confirmation" do
       field = create(:verification_field, name: :phone)
-      create(:verification_handler_field_assignment, verification_field: field, handler: :sms)
+      create(:verification_field_assignment, verification_field: field, handler: :sms)
 
       process.phone = "666444000"
 
@@ -182,7 +182,7 @@ describe Verification::Process do
       Setting["custom_verification_process.residents"] = true
       create(:verification_resident, data: { document_number: "4433221Z" })
       field = create(:verification_field, name: :document_number)
-      create(:verification_handler_field_assignment, verification_field: field, handler: :residents)
+      create(:verification_field_assignment, verification_field: field, handler: :residents)
 
       process.document_number = "4433221Z"
 
@@ -195,9 +195,9 @@ describe Verification::Process do
       Setting["remote_census.response.valid"] = chain
       document_number_field = create(:verification_field, name: :document_number)
       document_type_field = create(:verification_field, name: :document_type)
-      create(:verification_handler_field_assignment, verification_field: document_number_field,
+      create(:verification_field_assignment, verification_field: document_number_field,
                                                      handler: :remote_census)
-      create(:verification_handler_field_assignment, verification_field: document_type_field,
+      create(:verification_field_assignment, verification_field: document_type_field,
                                                      handler: :remote_census)
 
       process.document_number = "12345678Z"
@@ -210,7 +210,7 @@ describe Verification::Process do
   describe "#after_find" do
     it "load attributes from related verification values to keep object valid" do
       field = create(:verification_field, name: :name, required: true)
-      create(:verification_handler_field_assignment, verification_field: field)
+      create(:verification_field_assignment, verification_field: field)
       process = create(:verification_process, name: "A name")
 
       process = model.find(process.id)
@@ -228,14 +228,14 @@ describe Verification::Process do
     it "when any of the active handlers requires confirmation it should return true" do
       field = create(:verification_field, name: :phone)
 
-      create(:verification_handler_field_assignment, verification_field: field, handler: :sms)
+      create(:verification_field_assignment, verification_field: field, handler: :sms)
 
       expect(process.requires_confirmation?).to be(true)
     end
 
     it "when none of the active handlers requires confirmation it should return false" do
       field = create(:verification_field, name: :field)
-      create(:verification_handler_field_assignment, verification_field: field, handler: :residents)
+      create(:verification_field_assignment, verification_field: field, handler: :residents)
 
       expect(process.requires_confirmation?).to be(false)
     end
@@ -257,7 +257,7 @@ describe Verification::Process do
     it "is true when process confirmed_at is not defined and process requires confirmation" do
       Setting["custom_verification_process.sms"] = true
       field = create(:verification_field, name: :phone)
-      create(:verification_handler_field_assignment, verification_field: field, handler: :sms)
+      create(:verification_field_assignment, verification_field: field, handler: :sms)
       process.phone = "333444555"
       process.save!
 

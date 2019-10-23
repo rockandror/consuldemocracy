@@ -279,9 +279,9 @@ namespace :admin do
     namespace :verification do
       get :finish
       resources :fields
-      resources :field_assignments, controller: "handler/field_assignments",
-                                    path: "handler/:handler_id/field_assignments",
-                                    as: "handler_field_assignments"
+      resources :assignments, controller: "field/assignments",
+                              path: "handler/:handler_id/assignments",
+                              as: "field_assignments"
       resources :handlers, only: :index
     end
   end

@@ -1,22 +1,22 @@
-class Admin::Wizards::Verification::Handler::FieldAssignmentsController < Admin::Wizards::BaseController
-  authorize_resource class: "Verification::Handler::FieldAssignment"
+class Admin::Wizards::Verification::Field::AssignmentsController < Admin::Wizards::BaseController
+  authorize_resource class: "Verification::Field::Assignment"
   before_action :set_handler
   before_action :set_field_assignment, only: [:edit, :update, :destroy]
 
   def index
-    @field_assignments = Verification::Handler::FieldAssignment.where(handler: @handler)
+    @field_assignments = Verification::Field::Assignment.where(handler: @handler)
     @settings = settings_by_handler(@handler)
   end
 
   def new
-    @field_assignment = Verification::Handler::FieldAssignment.new handler: @handler
+    @field_assignment = Verification::Field::Assignment.new handler: @handler
   end
 
   def create
-    @field_assignment = Verification::Handler::FieldAssignment.new field_assignment_params
+    @field_assignment = Verification::Field::Assignment.new field_assignment_params
     if @field_assignment.save
       notice = t("admin.wizards.verification.handler.field_assignments.create.notice")
-      redirect_to admin_wizards_verification_handler_field_assignments_path(@handler),
+      redirect_to admin_wizards_verification_field_assignments_path(@handler),
         notice: notice
     else
       render :new
@@ -29,7 +29,7 @@ class Admin::Wizards::Verification::Handler::FieldAssignmentsController < Admin:
   def update
     if @field_assignment.update(field_assignment_params)
       notice = t("admin.wizards.verification.handler.field_assignments.update.notice")
-      redirect_to admin_wizards_verification_handler_field_assignments_path(@handler),
+      redirect_to admin_wizards_verification_field_assignments_path(@handler),
         notice: notice
     else
       render :edit
@@ -39,11 +39,11 @@ class Admin::Wizards::Verification::Handler::FieldAssignmentsController < Admin:
   def destroy
     if @field_assignment.destroy
       notice = t("admin.wizards.verification.handler.field_assignments.destroy.notice")
-      redirect_to admin_wizards_verification_handler_field_assignments_path(@handler),
+      redirect_to admin_wizards_verification_field_assignments_path(@handler),
         notice: notice
     else
       alert = t("admin.wizards.verification.handler.field_assignments.destroy.alert")
-      redirect_to admin_wizards_verification_handler_field_assignments_path(@handler),
+      redirect_to admin_wizards_verification_field_assignments_path(@handler),
         alert: alert
     end
   end
@@ -55,13 +55,13 @@ class Admin::Wizards::Verification::Handler::FieldAssignmentsController < Admin:
     end
 
     def set_field_assignment
-      @field_assignment = Verification::Handler::FieldAssignment.find(params[:id])
+      @field_assignment = ::Verification::Field::Assignment.find(params[:id])
     end
 
     def field_assignment_params
       attributes = [:format, :request_path, :response_path, :verification_field_id]
 
-      params.require(:verification_handler_field_assignment).permit(attributes).merge(handler: @handler)
+      params.require(:verification_field_assignment).permit(attributes).merge(handler: @handler)
     end
 
     def settings_by_handler(handler)

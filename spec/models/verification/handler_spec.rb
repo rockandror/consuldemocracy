@@ -50,7 +50,7 @@ describe Verification::Handler do
     before do
       Setting["custom_verification_process.my_handler"] = true
       phone_field = create(:verification_field, name: :phone)
-      create(:verification_handler_field_assignment, handler: :my_handler, verification_field: phone_field)
+      create(:verification_field_assignment, handler: :my_handler, verification_field: phone_field)
       handler.class_eval do
         requires_confirmation true
       end

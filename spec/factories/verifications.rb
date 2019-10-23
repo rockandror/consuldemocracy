@@ -102,7 +102,7 @@ FactoryBot.define do
     sequence(:data){|n| { email: "email#{n}@email.com", document_number: "#{n}"*9 }}
   end
 
-  factory :verification_handler_field_assignment, class: Verification::Handler::FieldAssignment do
+  factory :verification_field_assignment, class: Verification::Field::Assignment do
     verification_field
     handler { "residents" }
 

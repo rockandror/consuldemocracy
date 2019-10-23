@@ -10,7 +10,7 @@ class Admin::Verification::Handlers::Sms::FieldsController < Admin::Verification
   def create
     create_default_handler_settings
     notice = t("admin.verification.handlers.sms.fields.create.notice")
-    redirect_to admin_wizards_verification_handler_field_assignments_path(handler_id),
+    redirect_to admin_wizards_verification_field_assignments_path(handler_id),
       notice: notice
   end
 
@@ -20,7 +20,7 @@ class Admin::Verification::Handlers::Sms::FieldsController < Admin::Verification
       field = Verification::Field.find_or_create_by(name: "phone")
       field.update(RECOMMENDED_FIELD_ATTRIBUTES.merge(position: next_position))
 
-      Verification::Handler::FieldAssignment.find_or_create_by(verification_field: field, handler: handler_id)
+      Verification::Field::Assignment.find_or_create_by(verification_field: field, handler: handler_id)
     end
 
     def next_position

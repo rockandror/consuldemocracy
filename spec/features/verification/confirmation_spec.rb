@@ -5,7 +5,7 @@ describe "Verification confirmation" do
   let(:user)               { create(:user) }
 
   before do
-    create(:verification_handler_field_assignment, verification_field: phone_field, handler: "sms")
+    create(:verification_field_assignment, verification_field: phone_field, handler: "sms")
     Setting["feature.custom_verification_process"] = true
     Setting["custom_verification_process.remote_census"] = true
     Setting["custom_verification_process.residents"] = true
@@ -20,7 +20,7 @@ describe "Verification confirmation" do
         requires_confirmation true
       end
       Setting["custom_verification_process.my_handler"] = true
-      create(:verification_handler_field_assignment, verification_field: phone_field, handler: "my_handler")
+      create(:verification_field_assignment, verification_field: phone_field, handler: "my_handler")
       visit new_verification_confirmation_path
 
       expect(page).to have_field "verification_confirmation_sms_confirmation_code"
@@ -33,7 +33,7 @@ describe "Verification confirmation" do
         requires_confirmation true
       end
       Setting["custom_verification_process.my_handler"] = true
-      create(:verification_handler_field_assignment, verification_field: phone_field, handler: "my_handler")
+      create(:verification_field_assignment, verification_field: phone_field, handler: "my_handler")
       visit new_verification_confirmation_path
 
       expect(page).to have_content "Didn't get a text with your confirmation codes?"
@@ -48,7 +48,7 @@ describe "Verification confirmation" do
         requires_confirmation true
       end
       Setting["custom_verification_process.my_handler"] = true
-      create(:verification_handler_field_assignment, verification_field: phone_field, handler: "my_handler")
+      create(:verification_field_assignment, verification_field: phone_field, handler: "my_handler")
       visit new_verification_confirmation_path
       click_button "Confirm"
 
@@ -69,7 +69,7 @@ describe "Verification confirmation" do
       end
       Setting["custom_verification_process.my_handler"] = true
       user.update(sms_confirmation_code: "ABCD")
-      create(:verification_handler_field_assignment, verification_field: phone_field, handler: "my_handler")
+      create(:verification_field_assignment, verification_field: phone_field, handler: "my_handler")
       visit new_verification_confirmation_path
       fill_in "SMS confirmation code", with: "ABCE"
       fill_in "My handler confirmation code", with: "QWER"

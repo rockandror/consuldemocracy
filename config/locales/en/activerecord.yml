@@ -503,7 +503,7 @@ en:
         hint: Hint
       verification/field/option/translation:
         label: Label
-      verification/handler/field_assignment:
+      verification/field/assignment:
         format: Format
         request_path: Path of the field in the request
         response_path: Path of the field in the response

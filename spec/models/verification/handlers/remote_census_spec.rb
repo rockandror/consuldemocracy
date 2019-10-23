@@ -16,9 +16,9 @@ describe Verification::Handlers::RemoteCensus do
     before do
       document_number_field = create(:verification_field, name: :document_number)
       document_type_field = create(:verification_field, name: :document_type)
-      create(:verification_handler_field_assignment, verification_field: document_number_field,
+      create(:verification_field_assignment, verification_field: document_number_field,
         handler: :remote_census)
-      create(:verification_handler_field_assignment, verification_field: document_type_field,
+      create(:verification_field_assignment, verification_field: document_type_field,
         handler: :remote_census)
     end
 
@@ -46,7 +46,7 @@ describe Verification::Handlers::RemoteCensus do
         Setting["remote_census.response.valid"] = valid_response_path
         field = create(:verification_field, name: :postal_code)
         response_path = "get_habita_datos_response.get_habita_datos_return.datos_vivienda.item.codigo_postal"
-        create(:verification_handler_field_assignment, verification_field: field,
+        create(:verification_field_assignment, verification_field: field,
           handler: :remote_census, response_path: response_path)
 
         attributes = { document_number: "12345678Z", document_type: "1", postal_code: "00001", user: user }
@@ -61,7 +61,7 @@ describe Verification::Handlers::RemoteCensus do
         Setting["remote_census.response.valid"] = valid_response_path
         field = create(:verification_field, name: :postal_code)
         response_path = "get_habita_datos_response.get_habita_datos_return.datos_vivienda.item.codigo_postal"
-        create(:verification_handler_field_assignment, verification_field: field,
+        create(:verification_field_assignment, verification_field: field,
           handler: :remote_census, response_path: response_path)
 
         attributes = { document_number: "12345678Z", document_type: "1", postal_code: "28013", user: user }
@@ -80,7 +80,7 @@ describe Verification::Handlers::RemoteCensus do
         Setting["remote_census.response.valid"] = valid_response_path
         field = create(:verification_field, name: :date_of_birth, represent_min_age_to_participate: true)
         response_path = "get_habita_datos_response.get_habita_datos_return.datos_habitante.item.fecha_nacimiento_string"
-        create(:verification_handler_field_assignment, verification_field: field,
+        create(:verification_field_assignment, verification_field: field,
           handler: :remote_census, response_path: response_path)
 
         attributes = { document_number: "12345678Z", document_type: "1", date_of_birth: "31-12-1980", user: user }
@@ -95,7 +95,7 @@ describe Verification::Handlers::RemoteCensus do
         Setting["remote_census.response.valid"] = valid_response_path
         field = create(:verification_field, name: :date_of_birth, represent_min_age_to_participate: true)
         response_path = "get_habita_datos_response.get_habita_datos_return.datos_habitante.item.fecha_nacimiento_string"
-        create(:verification_handler_field_assignment, verification_field: field,
+        create(:verification_field_assignment, verification_field: field,
           handler: :remote_census, response_path: response_path)
 
         attributes = { document_number: "00000000Z", document_type: "1", date_of_birth: "31-12-2010", user: user }
@@ -114,7 +114,7 @@ describe Verification::Handlers::RemoteCensus do
         Setting["remote_census.response.valid"] = valid_response_path
         field = create(:verification_field, name: :district, represent_geozone: true, visible: false)
         response_path = "get_habita_datos_response.get_habita_datos_return.datos_vivienda.item.codigo_distrito"
-        create(:verification_handler_field_assignment, verification_field: field,
+        create(:verification_field_assignment, verification_field: field,
           handler: :remote_census, response_path: response_path)
         geozone = create(:geozone, :in_census)
 
@@ -131,7 +131,7 @@ describe Verification::Handlers::RemoteCensus do
         Setting["remote_census.response.valid"] = valid_response_path
         field = create(:verification_field, name: :district, visible: false, represent_geozone: false)
         response_path = "get_habita_datos_response.get_habita_datos_return.datos_vivienda.item.codigo_distrito"
-        create(:verification_handler_field_assignment, verification_field: field,
+        create(:verification_field_assignment, verification_field: field,
           handler: :remote_census, response_path: response_path)
         geozone = create(:geozone, :in_census)
 
