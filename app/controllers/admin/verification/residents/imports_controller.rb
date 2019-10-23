@@ -4,7 +4,7 @@ class Admin::Verification::Residents::ImportsController < Admin::Verification::R
   def create
     @import = Verification::Residents::Import.new(verification_residents_import_params)
     if @import.save
-      flash.now[:notice] =  t("admin.verification.residents.imports.create.notice")
+      flash.now[:notice] = t("admin.verification.residents.imports.create.notice")
       render :show
     else
       render :new
