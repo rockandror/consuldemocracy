@@ -66,20 +66,20 @@ FactoryBot.define do
 
   factory :verification_field, class: Verification::Field do
     sequence(:name)     { |n| "field#{n}" }
-    sequence(:label)     { |n| "Label for field #{n}" }
-    sequence(:position) { |n| n  + 1 }
-    required false
-    kind "text"
-    visible true
+    sequence(:label)    { |n| "Label for field #{n}" }
+    sequence(:position) { |n| n + 1 }
+    required            { false }
+    kind                { "text" }
+    visible             { true }
 
     trait :required do
-      required true
+      required          { true }
     end
   end
 
   factory :verification_field_option, class: Verification::Field::Option do
     sequence(:label)     { |n| "Label for field #{n}" }
-    sequence(:value)     { |n| n  + 1 }
+    sequence(:value)     { |n| n + 1 }
   end
 
   factory :verification_confirmation, class: Verification::Confirmation do
@@ -99,7 +99,7 @@ FactoryBot.define do
   end
 
   factory :verification_resident, class: Verification::Resident do
-    sequence(:data){|n| { email: "email#{n}@email.com", document_number: "#{n}"*9 }}
+    sequence(:data) { |n| { email: "email#{n}@email.com", document_number: "#{n}" * 9 } }
   end
 
   factory :verification_field_assignment, class: Verification::Field::Assignment do
@@ -112,9 +112,9 @@ FactoryBot.define do
   end
 
   factory :verification_residents_import, class: "Verification::Residents::Import" do
-    file {
+    file do
       path = %w[spec fixtures files verification residents import valid.csv]
       Rack::Test::UploadedFile.new(Rails.root.join(*path))
-    }
+    end
   end
 end
