@@ -12,11 +12,9 @@ module VerificationFieldsHelper
   end
 
   def handlers_text_representation(field)
-    translations = []
-    field.handlers.each_with_object(translations) do |handler, translations|
+    field.handlers.each_with_object([]) do |handler, translations|
       translations << handler_text_representation(handler)
-    end
-    translations.sort
+    end.sort
   end
 
   def handler_text_representation(handler)
