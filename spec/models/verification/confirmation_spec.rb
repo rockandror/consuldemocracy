@@ -12,7 +12,7 @@ describe Verification::Confirmation do
 
     it "When required confirmation codes are present and coincident it should be valid" do
       confirmation.sms_confirmation_code = "CODE"
-      confirmation.user.update(sms_confirmation_code: "CODE")
+      confirmation.user.update!(sms_confirmation_code: "CODE")
 
       expect(confirmation).to be_valid
     end
@@ -24,7 +24,7 @@ describe Verification::Confirmation do
     it "When confirmation codes are present but do not match it should not be
         valid" do
       confirmation.sms_confirmation_code = "BADCODE"
-      confirmation.user.update(sms_confirmation_code: "CODE")
+      confirmation.user.update!(sms_confirmation_code: "CODE")
 
       expect(confirmation).not_to be_valid
     end
@@ -50,17 +50,17 @@ describe Verification::Confirmation do
     it "When all confirmation codes matches it should mark verification process as verified" do
       confirmation.sms_confirmation_code = user.reload.sms_confirmation_code
 
-      expect {
+      expect do
         confirmation.save
-      }.to change { process.reload.verified_at }.from(nil).to(Time)
+      end.to change { process.reload.verified_at }.from(nil).to(Time)
     end
 
     it "When all confirmation codes matches and phone is really verified through sms 'Handler'
         it should mark verification process as phone_verified also" do
       confirmation.sms_confirmation_code = user.reload.sms_confirmation_code
-      expect {
+      expect do
         confirmation.save
-      }.to change { process.reload.phone_verified_at }.from(nil).to(Time)
+      end.to change { process.reload.phone_verified_at }.from(nil).to(Time)
     end
   end
 end
