@@ -7,10 +7,9 @@ class Verification::Field < ApplicationRecord
   translates :hint, touch: true
   include Globalizable
 
-  has_many :verification_values, class_name: "Verification::Value",
-                                 foreign_key: :verification_field_id,
-                                 inverse_of: :verification_field,
-                                 dependent: :destroy
+  has_many :values, foreign_key: :verification_field_id,
+                    inverse_of: :verification_field,
+                    dependent: :destroy
   has_many :options, foreign_key: :verification_field_id,
                      inverse_of: :verification_field,
                      dependent: :destroy
