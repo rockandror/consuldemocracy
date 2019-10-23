@@ -1,15 +1,15 @@
 require "rails_helper"
 
-feature "Imports", type: :feature do
+describe "Imports", type: :feature do
 
   let(:base_files_path) { %w[spec fixtures files verification residents import] }
 
-  background do
+  before do
     admin = create(:administrator)
     login_as(admin.user)
   end
 
-  describe "New" do
+  context "New" do
     scenario "Should show import form" do
       visit new_admin_verification_residents_import_path
 
@@ -17,7 +17,7 @@ feature "Imports", type: :feature do
     end
   end
 
-  describe "Create" do
+  context "Create" do
     before { visit new_admin_verification_residents_import_path }
 
     scenario "Should show success notice after successful import" do
