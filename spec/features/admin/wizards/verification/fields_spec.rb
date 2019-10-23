@@ -7,8 +7,10 @@ describe "Admin wizards verification fields" do
       register_as :fake_handler
     end
   end
-  let!(:field) { create(:verification_field, label: "Email", name: "email", format: "sample_regex",
-                                             position: 1, kind: "text") }
+  let!(:field) do
+    create(:verification_field, label: "Email", name: "email", format: "sample_regex",
+                                position: 1, kind: "text")
+  end
 
   before do
     create(:verification_field_assignment, verification_field: field, handler: fake_handler.id)
@@ -16,7 +18,7 @@ describe "Admin wizards verification fields" do
     login_as(admin.user)
   end
 
-  describe "Index" do
+  context "Index" do
     scenario "Should show defined verification fields" do
       visit admin_wizards_verification_fields_path
 
@@ -33,7 +35,7 @@ describe "Admin wizards verification fields" do
     end
   end
 
-  describe "New" do
+  context "New" do
 
     context "Should show related fields with kind field" do
 
@@ -80,7 +82,7 @@ describe "Admin wizards verification fields" do
     end
   end
 
-  describe "Create" do
+  context "Create" do
     scenario "Should show successful notice after creating a new field" do
       visit new_admin_wizards_verification_field_path
 
@@ -166,7 +168,7 @@ describe "Admin wizards verification fields" do
 
   end
 
-  describe "Update" do
+  context "Update" do
     scenario "Should show successful notice after creating a new field" do
       visit edit_admin_wizards_verification_field_path(field)
 
@@ -188,7 +190,7 @@ describe "Admin wizards verification fields" do
     end
   end
 
-  describe "Destroy" do
+  context "Destroy" do
     scenario "Should show successful notice after delete a field" do
       visit admin_wizards_verification_fields_path
 
