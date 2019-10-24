@@ -13,14 +13,15 @@ describe Verification::Configuration do
   end
 
   describe ".active_handlers" do
-    it "return handlers enabled by setting and defined at any field assignment" do
+    it "return hash handlers enabled by setting and defined at any field assignment" do
       Setting["custom_verification_process.sms"] = true
       field = create(:verification_field, name: "phone")
       create(:verification_field_assignment, verification_field: field, handler: :sms)
       create(:verification_field_assignment, verification_field: field, handler: :residents)
 
-      expect(Verification::Configuration.active_handlers).to include("sms")
-      expect(Verification::Configuration.active_handlers).not_to include("residents")
+      expect(Verification::Configuration.active_handlers).to include({ "sms" => Verification::Handlers::Sms })
+      expect(Verification::Configuration.active_handlers).
+        not_to include({ "residents" => Verification::Handlers::Resident })
     end
   end
 

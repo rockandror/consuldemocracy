@@ -86,11 +86,8 @@ class Verification::Process < ApplicationRecord
     end
 
     def handlers_verification
-      @handlers.each do |handler|
-        handler_class = Verification::Configuration.available_handlers[handler]
-        handler_instance = handler_class.new
-
-        @responses[handler] = handler_instance.verify(fields_for_handler(handler))
+      @handlers.each do |_, handler|
+        @responses[handler.id] = handler.new.verify(fields_for_handler(handler))
       end
 
       if @responses.values.select { |response| response.error? }.any?
@@ -104,9 +101,8 @@ class Verification::Process < ApplicationRecord
     def handlers_attributes
       return if @handlers.none?
 
-      @handlers.each do |handler|
-        handler_instance = Verification::Configuration.available_handlers[handler].
-          new(fields_for_handler(handler))
+      @handlers.each do |_, handler|
+        handler_instance = handler.new(fields_for_handler(handler))
 
         unless handler_instance.valid?
           handler_instance.errors.each do |field, error|
@@ -163,10 +159,10 @@ class Verification::Process < ApplicationRecord
     def fields_for_handler(handler)
       params = {}
       @fields.each do |field_name, field|
-        next unless field.handlers&.include?(handler)
+        next unless field.handlers&.include?(handler.id)
 
         value = send(field_name)
-        value = convert_date_field(field, handler, value) if field.date?
+        value = convert_date_field(field, handler.id, value) if field.date?
         params[field_name] = value
       end
       params[:user] = user

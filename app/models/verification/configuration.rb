@@ -9,7 +9,9 @@ class Verification::Configuration
     end
 
     def active_handlers
-      Verification::Field::Assignment.where(handler: active_handlers_ids).pluck(:handler).uniq
+      available_handlers.select do |key, _|
+        Verification::Field::Assignment.where(handler: key).any? && active_handlers_ids.include?(key)
+      end
     end
 
     def required_confirmation_handlers
