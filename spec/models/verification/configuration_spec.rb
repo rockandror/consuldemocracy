@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe Verification::Configuration do
   describe ".available_handlers" do
-    it "return all registered handlers" do
+    it "return hash with all registered handlers" do
       defined_handlers = {
         "sms" => Verification::Handlers::Sms,
         "residents" => Verification::Handlers::Resident,
@@ -37,7 +37,7 @@ describe Verification::Configuration do
   end
 
   describe ".confirmation_fields" do
-    it "return confirmation fields names for required confirmation and active handlers" do
+    it "return array of confirmation fields names for required confirmation and active handlers" do
       Setting["custom_verification_process.sms"] = true
       field = create(:verification_field, name: "phone")
       create(:verification_field_assignment, verification_field: field, handler: :sms)
