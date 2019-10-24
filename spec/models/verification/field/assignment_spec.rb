@@ -20,10 +20,18 @@ describe Verification::Field::Assignment do
     expect(field_assignment).not_to be_valid
   end
 
+  it "When already exists a record for same field and same handler it should not be valid" do
+    field_assignment.save!
+    repeated_field_assignment = build(:verification_field_assignment,
+      handler: field_assignment.handler, verification_field: field_assignment.verification_field)
+
+    expect(repeated_field_assignment).not_to be_valid
+  end
+
   context "When related field is a date" do
     let(:field) { create(:verification_field, kind: :date) }
 
-    it "and format is not a valid ISO 8601 expression it should be valid" do
+    it "and format is a valid ISO 8601 expression it should be valid" do
       field_assignment = build(:verification_field_assignment, verification_field: field, format: "%F")
 
       expect(field_assignment).to be_valid
@@ -34,14 +42,6 @@ describe Verification::Field::Assignment do
 
       expect(field_assignment).not_to be_valid
     end
-  end
-
-  it "When already exists a record for same field and same handler it should not be valid" do
-    field_assignment.save!
-    repeated_field_assignment = build(:verification_field_assignment,
-      handler: field_assignment.handler, verification_field: field_assignment.verification_field)
-
-    expect(repeated_field_assignment).not_to be_valid
   end
 
   context "When handler is sms" do
@@ -64,6 +64,15 @@ describe Verification::Field::Assignment do
 
       expect(model.by_handler(:residents)).to include(date_field_assignment)
       expect(model.by_handler(:residents)).not_to include(name_field_assignment)
+    end
+  end
+
+  context ".with_response_path" do
+    it "returns fields_assignments with defined response path" do
+      assignment = create(:verification_field_assignment, response_path: "path.to.find.response")
+      create(:verification_field_assignment)
+
+      expect(model.with_response_path).to eq([assignment])
     end
   end
 end

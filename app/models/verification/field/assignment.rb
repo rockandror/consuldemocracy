@@ -6,7 +6,7 @@ class Verification::Field
     validates :handler, presence: true
     validates :verification_field_id, uniqueness: { scope: :handler }
     validate :sms_handler
-    validate :format_iso_8601, if: -> { format.present? && verification_field.date? }
+    validate :format_iso_8601, if: -> { format.present? && verification_field&.date? }
 
     scope :by_handler, -> (handler) { where(handler: handler) }
     scope :with_response_path, -> { where.not(response_path: [nil, ""]) }
