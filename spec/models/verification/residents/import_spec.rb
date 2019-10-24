@@ -35,7 +35,7 @@ describe Verification::Residents::Import do
 
   context "#save" do
     it "Create valid verification resident with provided values" do
-      import.save!
+      expect { import.save }.not_to raise_error
       verification_resident = Verification::Resident.find_by_data({ document_number: "44556678T" })
 
       expect(verification_resident).not_to be_nil
@@ -45,7 +45,7 @@ describe Verification::Residents::Import do
     end
 
     it "Add successfully created verification residents to created_records array" do
-      import.save!
+      expect { import.save }.not_to raise_error
 
       valid_document_numbers = ["44556678T", "33556678T", "22556678T", "X11556678"]
       expect(import.created_records.collect { |record| record.data["document_number"] }).
@@ -57,7 +57,7 @@ describe Verification::Residents::Import do
       file = Rack::Test::UploadedFile.new(Rails.root.join(*path))
       import.file = file
 
-      import.save!
+      expect { import.save }.not_to raise_error
 
       invalid_records_document_types = ["DNI", "NIE"]
       invalid_records_document_numbers = ["44556678T", "X11556678"]
