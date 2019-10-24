@@ -1,11 +1,9 @@
 require "rails_helper"
 
 describe "Admin Wizards" do
+  let(:admin) { create(:administrator) }
 
-  before do
-    @admin = create(:administrator)
-    login_as(@admin.user)
-  end
+  before { login_as(admin.user) }
 
   context "Admin sidebar" do
     scenario "Display wizard section on admin menu" do

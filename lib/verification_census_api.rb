@@ -1,7 +1,7 @@
 class VerificationCensusApi
 
   def call(attributes)
-    response = Response.new(get_response_body(attributes))
+    Response.new(get_response_body(attributes))
   end
 
   class Response

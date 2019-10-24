@@ -40,7 +40,6 @@ describe Verification::Handlers::RemoteCensus do
     end
 
     context "verification sended fields with response" do
-
       it "returns error response when verification response fields is not valid" do
         valid_response_path = "get_habita_datos_response.get_habita_datos_return.datos_habitante.item"
         Setting["remote_census.response.valid"] = valid_response_path
@@ -70,11 +69,9 @@ describe Verification::Handlers::RemoteCensus do
         expect(response.success?).to be true
         expect(response.error?).not_to be true
       end
-
     end
 
     context "verification valid age" do
-
       it "returns success response when the age on response fields is valid" do
         valid_response_path = "get_habita_datos_response.get_habita_datos_return.datos_habitante.item"
         Setting["remote_census.response.valid"] = valid_response_path
@@ -104,11 +101,9 @@ describe Verification::Handlers::RemoteCensus do
         expect(response.success?).not_to be true
         expect(response.error?).to be true
       end
-
     end
 
     context "geozone" do
-
       it "update user with geozone response successfully when exists geozone field on response" do
         valid_response_path = "get_habita_datos_response.get_habita_datos_return.datos_habitante.item"
         Setting["remote_census.response.valid"] = valid_response_path
@@ -133,7 +128,7 @@ describe Verification::Handlers::RemoteCensus do
         response_path = "get_habita_datos_response.get_habita_datos_return.datos_vivienda.item.codigo_distrito"
         create(:verification_field_assignment, verification_field: field,
           handler: :remote_census, response_path: response_path)
-        geozone = create(:geozone, :in_census)
+        create(:geozone, :in_census)
 
         attributes = { document_number: "12345678Z", document_type: "1", user: user }
         response = remote_census_handler.verify(attributes)
@@ -142,9 +137,6 @@ describe Verification::Handlers::RemoteCensus do
         expect(response.success?).to be true
         expect(user.geozone).to eq nil
       end
-
     end
-
-
   end
 end
