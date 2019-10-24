@@ -20,29 +20,30 @@
   </div>
 </div>
 
-<div class="medium-12 columns margin-top">
-  <table>
-    <thead>
-      <tr>
-        <th scope="col"><%= t("admin.wizards.verification.handler.field_assignments.index.field") %></th>
-        <th scope="col" class="small-4 text-right"><%= t("admin.actions.actions") %></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% if @field_assignments.empty? %>
+<div class="medium-12 columns margin-top columns">
+  <div class="column">
+    <table>
+      <thead>
         <tr>
-          <td colspan="2"><%= verification_field_assignments_no_results_message %></td>
+          <th scope="col"><%= t("admin.wizards.verification.handler.field_assignments.index.field") %></th>
+          <th scope="col" class="small-4 text-right"><%= t("admin.actions.actions") %></th>
         </tr>
-      <% else %>
-        <%= render partial: "field_assignment", collection: @field_assignments %>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
 
-  <% if render_related_setting_table?(@handler) %>
-    <p><%= t("admin.wizards.verification.handler.field_assignments.index.#{@handler}") %></p>
-    <%= render "admin/settings/settings_table", settings: @settings %>
-  <% end %>
+      <tbody>
+        <% if @field_assignments.empty? %>
+          <tr>
+            <td colspan="2"><%= verification_field_assignments_no_results_message %></td>
+          </tr>
+        <% else %>
+          <%= render partial: "field_assignment", collection: @field_assignments %>
+        <% end %>
+      </tbody>
+    </table>
 
+    <% if render_related_setting_table?(@handler) %>
+      <h2><%= t("admin.wizards.verification.handler.field_assignments.index.#{@handler}") %></h2>
+      <%= render "admin/settings/settings_table", settings: @settings %>
+    <% end %>
+  </div>
 </div>
