@@ -21,11 +21,11 @@ class Verification::Process < ApplicationRecord
   after_create :mark_as_verified, unless: :requires_confirmation?
   after_create :mark_as_confirmed, unless: :requires_confirmation?
   after_create :mark_as_residence_verified, if: :is_residence_verification_active?
-  after_find :add_attributes_from_fields_definition
+  after_find :dynamic_initialization
   after_find :load_attributes_from_values
 
   def initialize(attributes = {})
-    add_attributes_from_fields_definition
+    dynamic_initialization
 
     parse_date_fields(attributes)
     remove_date_fields_attibutes(attributes)
@@ -76,7 +76,7 @@ class Verification::Process < ApplicationRecord
 
   private
 
-    def add_attributes_from_fields_definition
+    def dynamic_initialization
       define_fields_accessors
       define_fields_validations
 
