@@ -58,12 +58,12 @@ describe "Verification process" do
     end
 
     scenario "Render checkbox field with link" do
-      page = create(:site_customization_page, slug: "slug")
-      create(:verification_field, name: "tos", checkbox_link: "slug", kind: "checkbox")
+      custom_page = create(:site_customization_page, slug: "verification_tos")
+      create(:verification_field, name: "tos", checkbox_link: "verification_tos", kind: "checkbox")
 
       visit new_verification_process_path
 
-      expect(page).to have_link("link", href: page.url)
+      expect(page).to have_link("Link", href: custom_page.url)
     end
 
     scenario "Render select fields with defined options" do
