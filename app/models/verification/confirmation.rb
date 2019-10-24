@@ -6,7 +6,8 @@ class Verification::Confirmation
   validate :confirmations, if: :confirmation_codes_present?
 
   def initialize(attributes = {})
-    @confirmation_fields = define_confirmation_fields
+    @confirmation_fields = load_confirmation_fields
+    define_confirmation_fields
     define_fields_validations
 
     super
@@ -23,11 +24,11 @@ class Verification::Confirmation
   private
 
     def load_confirmation_fields
-      Verification::Configuration.confirmation_fields
+      @confirmation_fields = Verification::Configuration.confirmation_fields
     end
 
     def define_confirmation_fields
-      load_confirmation_fields.each_with_object([]) do |confirmation_field, confirmation_fields|
+      @confirmation_fields.each do |confirmation_field|
         define_singleton_method confirmation_field do
           instance_variable_get "@#{confirmation_field}"
         end
@@ -35,8 +36,6 @@ class Verification::Confirmation
         define_singleton_method "#{confirmation_field}=" do |arg|
           instance_variable_set "@#{confirmation_field}", arg
         end
-
-        confirmation_fields << confirmation_field
       end
     end
 
