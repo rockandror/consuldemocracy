@@ -71,4 +71,6 @@ class Verification::Handler
       end
     end
 end
-Dir[Rails.root.join("app/models/verification/handlers/*.rb")].each { |file| require_dependency file }
+
+dir = Rails.root.join("app", "models", "verification", "handlers", "*.rb")
+Dir[dir].each { |file| require_dependency file }
