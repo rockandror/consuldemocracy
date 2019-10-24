@@ -6,8 +6,8 @@ class Verification::Handler
   alias :success? :success
 
   def initialize(attributes = {})
-    define_verification_form_fields
-    define_confirmation_form_fields
+    define_verification_fields
+    define_confirmation_fields
 
     super
   end
@@ -42,13 +42,8 @@ class Verification::Handler
 
   private
 
-    def verification_form_fields
-      Verification::Field.all.select { |f| f.handlers.include?(self.class.id.to_s) }
-    end
-
-    def define_verification_form_fields
-      verification_form_fields.pluck(:name).each do |attr|
-
+    def define_verification_fields
+      Verification::Configuration.verification_fields(self.class.id).pluck(:name).each do |attr|
         define_singleton_method attr do
           instance_variable_get "@#{attr}"
         end
@@ -59,7 +54,7 @@ class Verification::Handler
       end
     end
 
-    def define_confirmation_form_fields
+    def define_confirmation_fields
       Verification::Configuration.confirmation_fields.each do |confirmation_field|
         define_singleton_method confirmation_field do
           instance_variable_get "@#{confirmation_field}"
@@ -71,4 +66,6 @@ class Verification::Handler
       end
     end
 end
-Dir[Rails.root.join("app/models/verification/handlers/*.rb")].each { |file| require_dependency file }
+
+dir = Rails.root.join("app", "models", "verification", "handlers", "*.rb")
+Dir[dir].each { |file| require_dependency file }

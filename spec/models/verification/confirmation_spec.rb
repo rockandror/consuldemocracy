@@ -7,33 +7,31 @@ describe Verification::Confirmation do
     create(:verification_field_assignment, verification_field: field, handler: :sms)
   end
 
-  context "Validations" do
-    let(:confirmation) { build(:verification_confirmation) }
+  let(:confirmation) { build(:verification_confirmation) }
 
-    it "When required confirmation codes are present and coincident it should be valid" do
-      confirmation.sms_confirmation_code = "CODE"
-      confirmation.user.update!(sms_confirmation_code: "CODE")
+  it "When no user is defined it should not be valid" do
+    confirmation.user = nil
 
-      expect(confirmation).to be_valid
-    end
+    expect(confirmation).not_to be_valid
+  end
 
-    it "When confirmation codes are not present it should not be valid" do
-      expect(confirmation).not_to be_valid
-    end
+  it "When required confirmation codes are present and coincident it should be valid" do
+    confirmation.sms_confirmation_code = "CODE"
+    confirmation.user.update!(sms_confirmation_code: "CODE")
 
-    it "When confirmation codes are present but do not match it should not be
-        valid" do
-      confirmation.sms_confirmation_code = "BADCODE"
-      confirmation.user.update!(sms_confirmation_code: "CODE")
+    expect(confirmation).to be_valid
+  end
 
-      expect(confirmation).not_to be_valid
-    end
+  it "When confirmation codes are not present it should not be valid" do
+    expect(confirmation).not_to be_valid
+  end
 
-    it "When no user is defined it should not be valid" do
-      confirmation.user = nil
+  it "When confirmation codes are present but do not match it should not be
+      valid" do
+    confirmation.sms_confirmation_code = "BADCODE"
+    confirmation.user.update!(sms_confirmation_code: "CODE")
 
-      expect(confirmation).not_to be_valid
-    end
+    expect(confirmation).not_to be_valid
   end
 
   describe "#save" do
