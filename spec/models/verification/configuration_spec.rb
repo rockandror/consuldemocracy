@@ -46,4 +46,27 @@ describe Verification::Configuration do
       expect(confirmation_fields).to include("sms_confirmation_code")
     end
   end
+
+  describe ".verification_fields" do
+    it "return all verification fields when no given handler id" do
+      phone_field = create(:verification_field, name: "phone")
+      postal_code_field = create(:verification_field, name: "postal_code")
+
+      verification_fields = Verification::Configuration.verification_fields
+
+      expect(verification_fields).to include(phone_field)
+      expect(verification_fields).to include(postal_code_field)
+    end
+
+    it "return verification fields related with given handler id" do
+      phone_field = create(:verification_field, name: "phone")
+      postal_code_field = create(:verification_field, name: "postal_code")
+      create(:verification_field_assignment, verification_field: phone_field, handler: :sms)
+
+      verification_fields = Verification::Configuration.verification_fields("sms")
+
+      expect(verification_fields).to include(phone_field)
+      expect(verification_fields).not_to include(postal_code_field)
+    end
+  end
 end

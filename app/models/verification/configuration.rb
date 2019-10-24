@@ -1,5 +1,6 @@
-class Verification::Configuration
+require_dependency Rails.root.join("app", "models", "verification", "handler.rb").to_s
 
+class Verification::Configuration
   class << self
     def available_handlers
       Verification::Handler.descendants.each_with_object({}) do |handler, hash|
@@ -25,6 +26,13 @@ class Verification::Configuration
       end
     end
 
+    def verification_fields(handler = nil)
+      fields = Verification::Field.all
+      return fields if handler.blank?
+
+      fields.select { |field| field.handlers.include?(handler) }
+    end
+
     private
 
       def active_handlers_ids
@@ -37,6 +45,3 @@ class Verification::Configuration
       end
   end
 end
-
-dir = Rails.root.join("app", "models", "verification", "handlers", "*.rb")
-Dir[dir].each { |file| require_dependency file }
