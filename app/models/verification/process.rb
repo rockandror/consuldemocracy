@@ -96,11 +96,7 @@ class Verification::Process < ApplicationRecord
       end
     end
 
-    # Validates each verification process attributes through defined handlers and copy errors
-    # to process attributes
     def handlers_attributes
-      return if @handlers.none?
-
       @handlers.each do |_, handler|
         handler_instance = handler.new(fields_for_handler(handler))
 
