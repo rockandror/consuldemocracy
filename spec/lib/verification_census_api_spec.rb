@@ -10,9 +10,9 @@ describe VerificationCensusApi do
     let!(:another_field_required) { create(:verification_field, name: "another_field_required") }
 
     before do
-      create(:verification_field_assignment, :remote_census, verification_field: document_type, request_path: "request.document_type" )
-      create(:verification_field_assignment, :remote_census, verification_field: document_number, request_path: "request.document_number" )
-      create(:verification_field_assignment, :remote_census, verification_field: another_field_required, request_path: "request.another_field_required" )
+      create(:verification_field_assignment, :remote_census, verification_field: document_type, request_path: "request.document_type")
+      create(:verification_field_assignment, :remote_census, verification_field: document_number, request_path: "request.document_number")
+      create(:verification_field_assignment, :remote_census, verification_field: another_field_required, request_path: "request.another_field_required")
       Setting["remote_census.request.structure"] = '{ "request":
                                                       { "static_field": "1",
                                                         "document_type": "nil",
@@ -23,16 +23,16 @@ describe VerificationCensusApi do
     end
 
     it "correctly filled with verification fields values" do
-      attributes = {:document_type=>"1", :document_number=>"12345678Z", :another_field_required=>"sample_value"}
+      attributes = { :document_type => "1", :document_number => "12345678Z", :another_field_required => "sample_value" }
 
       request = VerificationCensusApi.new.send(:request, attributes)
 
-      expect(request).to eq ({ "request" =>
-                              {"static_field" => "1",
-                               "document_type" => "1",
-                               "document_number" => "12345678Z",
-                               "another_field_required" => "sample_value" }
-                              })
+      expect(request).to eq({ "request" =>
+                              { "static_field" => "1",
+                                "document_type" => "1",
+                                "document_number" => "12345678Z",
+                                "another_field_required" => "sample_value" }
+                            })
     end
 
   end
@@ -40,11 +40,11 @@ describe VerificationCensusApi do
   describe "get_response_body" do
 
     it "return expected stubbed_response" do
-      attributes = {:document_type=>"1", :document_number=>"12345678Z", :another_field_required=>"sample_value"}
+      attributes = { :document_type => "1", :document_number => "12345678Z", :another_field_required => "sample_value" }
 
       response = VerificationCensusApi.new.send(:get_response_body, attributes)
 
-      expect(response).to eq ({ get_habita_datos_response: {
+      expect(response).to eq({ get_habita_datos_response: {
                                   get_habita_datos_return: {
                                     datos_habitante: {
                                       item: {
@@ -76,7 +76,7 @@ describe VerificationCensusApi do
     end
 
     it "return expected response methods with default values" do
-      attributes = {:document_type=>"1", :document_number=>"12345678Z", :another_field_required=>"sample_value"}
+      attributes = { :document_type => "1", :document_number => "12345678Z", :another_field_required => "sample_value" }
 
       get_response_body = VerificationCensusApi.new.send(:get_response_body, attributes)
       response = VerificationCensusApi::Response.new(get_response_body)

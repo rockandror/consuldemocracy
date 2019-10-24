@@ -7,7 +7,10 @@
 
         <%= f.label field.name do %>
           <%= f.check_box field.name, label: false %>
-          <span><%= checkbox_label(field) %></span>
+          <span>
+            <%= field.label %>
+            <%= link_to("Link", checkbox_link_url(field), target: "_blank") if field.checkbox_link.present? %>
+          </span>
         <% end %>
       <% elsif field.text? %>
         <%= f.text_field field.name, label: field.label, hint: field_hint(field) %>
