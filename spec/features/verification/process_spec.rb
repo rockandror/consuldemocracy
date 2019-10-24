@@ -1,98 +1,95 @@
 require "rails_helper"
 
 describe "Verification process" do
-  let!(:name_field)        { create(:verification_field, name: "name", label: "Name", position: 1) }
-  let!(:email_field)       { create(:verification_field, name: "email", label: "Email", position: 2) }
-  let!(:phone_field)       { create(:verification_field, name: "phone", label: "Phone", position: 3) }
-  let!(:postal_code_field) do
-    create(:verification_field, name: "postal_code", label: "Postal code", position: 4)
-  end
-  let!(:document_type_field) do
-    create(:verification_field, name: "document_type", label: "Document type", position: 5)
-  end
-  let!(:document_number_field) do
-    create(:verification_field, name: "document_number", label: "Document number", position: 6)
-  end
   let(:user)               { create(:user) }
 
   before do
     Setting["feature.custom_verification_process"] = true
-    Setting["custom_verification_process.remote_census"] = true
-    Setting["custom_verification_process.residents"] = true
-    Setting["custom_verification_process.sms"] = true
     login_as(user)
   end
 
   describe "New" do
-    scenario "Redirect already verified users to accoung page showing a notice" do
+    before { Setting["feature.custom_verification_process"] = true }
+
+    scenario "Redirect already verified users to account page showing a notice" do
       create(:verification_process, user: user)
-      user.reload
+      user.reload # Why we need this line?
+
       visit new_verification_process_path
 
       expect(page).to have_content "My account"
       expect(page).to have_content "Your account is already verified"
     end
 
-    scenario "Shows all defined verification fields" do
-      create(:verification_field, name: "date_of_birth", label: "Date of birth", position: 7, kind: :date)
-      create(:verification_field, name: "field_with_visible_false", label: "Sample field", position: 8,
-                                  visible: false)
+    scenario "Render visible verification fields" do
+      create(:verification_field, name: "name")
+      create(:verification_field, name: "hidden", visible: false)
 
       visit new_verification_process_path
 
       expect(page).to have_field "verification_process_name"
-      expect(page).to have_field "verification_process_email"
-      expect(page).to have_field "verification_process_phone"
-      expect(page).to have_field "verification_process_postal_code"
-      expect(page).to have_field "verification_process_document_number"
-      expect(page).to have_field "verification_process_document_type"
+      expect(page).not_to have_field "verification_process_hidden"
+    end
+
+    scenario "Render confirmation fields next to parent fields" do
+      create(:verification_field, name: "phone", label: "Phone", confirmation_validation: true, position: 1)
+      create(:verification_field, name: "email", label: "Email", position: 2)
+
+      visit new_verification_process_path
+
+      expect("Phone").to appear_before("Phone confirmation")
+      expect("Phone confirmation").to appear_before("Email")
+    end
+
+    scenario "Render fields hints when defined" do
+      create(:verification_field, name: "phone", hint: "Enter a valid spanish mobile phone number.")
+
+      visit new_verification_process_path
+
+      expect(page).to have_content("Enter a valid spanish mobile phone number.")
+    end
+
+    scenario "Render checkbox fields" do
+      create(:verification_field, name: "tos", label: "TOS", kind: "checkbox")
+
+      visit new_verification_process_path
+
+      expect(page).to have_field "TOS", type: "checkbox"
+    end
+
+    scenario "Render checkbox field with link" do
+      page = create(:site_customization_page, slug: "slug")
+      create(:verification_field, name: "tos", checkbox_link: "slug", kind: "checkbox")
+
+      visit new_verification_process_path
+
+      expect(page).to have_link("link", href: page.url)
+    end
+
+    scenario "Render select fields with defined options" do
+      field = create(:verification_field, name: "document", kind: "selector")
+      create(:verification_field_option, label: "Option 1", verification_field: field)
+
+      visit new_verification_process_path
+
+      expect(page).to have_select "verification_process_document"
+      expect(page).to have_content "Option 1"
+    end
+
+    scenario "Render date fields as native date select" do
+      create(:verification_field, name: "date_of_birth", kind: "date")
+
+      visit new_verification_process_path
+
       expect(page).to have_select "verification_process_date_of_birth_1i"
       expect(page).to have_select "verification_process_date_of_birth_2i"
       expect(page).to have_select "verification_process_date_of_birth_3i"
-      expect(page).not_to have_field "verification_process_field_with_visible_false"
-    end
-
-    scenario "Shows confirmation fields next to parent fields" do
-      name_field.update!(confirmation_validation: true)
-      visit new_verification_process_path
-
-      expect("Name").to appear_before("Name confirmation")
-      expect("Name confirmation").to appear_before("Email")
-    end
-
-    scenario "when fields hints are defined it should be shown" do
-      name_field.update!(hint: "Name hint")
-      visit new_verification_process_path
-
-      expect(page).to have_content("Name hint")
-    end
-
-    context "with other kinds field" do
-
-      scenario "Show defined checkbox fields" do
-        create(:verification_field, name: "checkbox_field", label: "TOS", position: 7, kind: "checkbox")
-
-        visit new_verification_process_path
-
-        expect(page).to have_field "TOS"
-      end
-
-      scenario "Show defined selector fields" do
-        selector_field = create(:verification_field, name: "selector_field", label: "Sample selector field",
-                                                     position: 7, kind: "selector")
-        create(:verification_field_option, label: "Option 1", value: "1", verification_field: selector_field)
-
-        visit new_verification_process_path
-
-        expect(page).to have_select "verification_process_selector_field"
-        expect(page).to have_content "Sample selector field"
-      end
     end
   end
 
   describe "Create" do
     scenario "Shows fields presence validation errors" do
-      name_field.update!(required: true)
+      create(:verification_field, required: true)
       visit new_verification_process_path
 
       click_button "Verify my account"
@@ -102,7 +99,7 @@ describe "Verification process" do
     end
 
     scenario "Shows fields confirmation validation errors" do
-      phone_field.update!(confirmation_validation: true)
+      create(:verification_field, label: "Phone", confirmation_validation: true)
       visit new_verification_process_path
 
       fill_in "Phone", with: "666555444"
@@ -114,7 +111,7 @@ describe "Verification process" do
     end
 
     scenario "Shows fields format validation errors" do
-      phone_field.update!(format: '\A[\d \+]+\z')
+      create(:verification_field, label: "Phone", format: '\A[\d \+]+\z')
       visit new_verification_process_path
 
       fill_in "Phone", with: "234 234 234A"
@@ -124,14 +121,13 @@ describe "Verification process" do
       expect(page).to have_content "invalid"
     end
 
-    scenario "Shows special validations from handlers" do
+    scenario "Shows validations defined at handlers" do
+      Setting["custom_verification_process.sms"] = true
       create(:user, confirmed_phone: "234234234")
-      phone_field.update!(format: '\A[\d \+]+\z')
-      create(:verification_field_assignment, verification_field: phone_field, handler: "sms")
+      field = create(:verification_field, label: "Phone", name: :phone)
+      create(:verification_field_assignment, verification_field: field, handler: :sms)
       visit new_verification_process_path
 
-      fill_in "Name", with: "My Fabolous Name"
-      fill_in "Email", with: "email@example.com"
       fill_in "Phone", with: "234234234"
       click_button "Verify my account"
 
@@ -139,39 +135,29 @@ describe "Verification process" do
       expect(page).to have_content "has already been taken"
     end
 
-    scenario "When one step verification process without active handlers has not errors
-              user should be marked as verified user and redirect to profile page with a notice" do
+    scenario "When one step verification process has not errors user should be verified successfully" do
+      create(:verification_field, label: "Name")
       visit new_verification_process_path
 
       fill_in "Name", with: "My Fabolous Name"
-      fill_in "Email", with: "email@example.com"
-      fill_in "Phone", with: "234234234"
       click_button "Verify my account"
 
       expect(page).to have_content "Your account was successfully verified!"
     end
 
-    scenario "When one step verification process with required checkbox without active handlers
-              has not errors user should be display related link and marked as verified user and
-              redirect to profile page with a notice" do
+    scenario "When one step verification process with a required checkbox field has not errors " \
+             "user should be verified successfully" do
+      create(:verification_field, name: "tos", required: true, kind: "checkbox")
 
-      custom_page = create(:site_customization_page, slug: "new_page_tos_slug")
-      create(:verification_field, name: "tos", label: "Terms of service", position: 7, required: true,
-                                  checkbox_link: "new_page_tos_slug", kind: "checkbox")
       visit new_verification_process_path
-
       check "verification_process_tos"
-
-      expect(page).to have_link("link", href: custom_page.url)
-
       click_button "Verify my account"
 
       expect(page).to have_content "Your account was successfully verified!"
     end
 
-    scenario "When one step verification process with required selector without active handlers
-              has not errors user should be display related link and marked as verified user and
-              redirect to profile page with a notice" do
+    scenario "When one step verification process with required selector has not errors user should be "\
+             "verified successfully" do
 
       selector_field = create(:verification_field, name: "selector_field", label: "Sample selector field",
                                                    position: 7, kind: "selector", required: true)
@@ -184,20 +170,19 @@ describe "Verification process" do
       expect(page).to have_content "Your account was successfully verified!"
     end
 
-    scenario "When one step verification process with residents active handler has not errors
-              user should be marked as verified user and redirect to profile page with a notice" do
-      create(:verification_resident, data: { name: "Fabulous Name",
-                                             email: "email@example.com",
-                                             phone: "111222333",
-                                             postal_code: "00700" })
-      create(:verification_field_assignment, verification_field: name_field, handler: "residents")
-      create(:verification_field_assignment, verification_field: email_field, handler: "residents")
-      create(:verification_field_assignment, verification_field: phone_field, handler: "residents")
-      create(:verification_field_assignment, verification_field: postal_code_field,
-        handler: "residents")
+    scenario "When one step verification process with residents handler enabled has not errors " \
+             "user should be verified successfully" do
+      Setting["custom_verification_process.residents"] = true
+      resident_data = { email: "email@example.com", phone: "111222333", postal_code: "00700" }
+      create(:verification_resident, data: resident_data)
+      email_field = create(:verification_field, name: :email, label: "Email")
+      phone_field = create(:verification_field, name: :phone, label: "Phone")
+      postal_code_field = create(:verification_field, name: :postal_code, label: "Postal code")
+      create(:verification_field_assignment, verification_field: email_field, handler: :residents)
+      create(:verification_field_assignment, verification_field: phone_field, handler: :residents)
+      create(:verification_field_assignment, verification_field: postal_code_field, handler: :residents)
       visit new_verification_process_path
 
-      fill_in "Name", with: "Fabulous Name"
       fill_in "Email", with: "email@example.com"
       fill_in "Phone", with: "111222333"
       fill_in "Postal code", with: "00700"
@@ -206,12 +191,16 @@ describe "Verification process" do
       expect(page).to have_content "Your account was successfully verified!"
     end
 
-    scenario "When one step verification process with remote_census active handler has not errors
-              user should be marked as verified user and redirect to profile page with a notice" do
+    scenario "When one step verification process with remote_census enabled has not errors " \
+             "user should be verified successfully" do
+      Setting["custom_verification_process.remote_census"] = true
       valid_response_path = "get_habita_datos_response.get_habita_datos_return.datos_habitante.item"
       Setting["remote_census.response.valid"] = valid_response_path
       postal_code_response_path = "get_habita_datos_response.get_habita_datos_return.datos_vivienda." \
                                   "item.codigo_postal"
+      document_number_field = create(:verification_field, name: :document_number, label: "Document number")
+      document_type_field = create(:verification_field, name: :document_type, label: "Document type")
+      postal_code_field = create(:verification_field, name: :postal_code, label: "Postal code")
       create(:verification_field_assignment, verification_field: document_type_field,
         handler: "remote_census", request_path: "request.document_type")
       create(:verification_field_assignment, verification_field: document_number_field,
@@ -229,38 +218,13 @@ describe "Verification process" do
       expect(page).to have_content "Your account was successfully verified!"
     end
 
-    scenario "When one step verification process with residents and sms as active handlers has not errors
-              user should be marked as verified user and redirect to profile page with a notice" do
-      create(:verification_resident, data: { name: "Fabulous Name",
-                                             email: "email@example.com",
-                                             phone: "111222333",
-                                             postal_code: "00700" })
-      create(:verification_field_assignment, verification_field: name_field, handler: "residents")
-      create(:verification_field_assignment, verification_field: email_field, handler: "residents")
-      create(:verification_field_assignment, verification_field: phone_field, handler: "residents")
-      create(:verification_field_assignment, verification_field: postal_code_field,
-        handler: "residents")
+    scenario "When two step verification process has not errors user should be redirected to " \
+             "confirmation codes page" do
+      Setting["custom_verification_process.sms"] = true
+      phone_field = create(:verification_field, name: :phone, label: "Phone")
       create(:verification_field_assignment, verification_field: phone_field, handler: "sms")
       visit new_verification_process_path
 
-      fill_in "Name", with: "Fabulous Name"
-      fill_in "Email", with: "email@example.com"
-      fill_in "Phone", with: "111222333"
-      fill_in "Postal code", with: "00700"
-      click_button "Verify my account"
-
-      expect(page).not_to have_content "Your account was successfully verified!"
-      expect(page).to have_content "Enter confirmation codes to verify your account"
-      expect(page).to have_field "SMS confirmation code"
-    end
-
-    scenario "When two step verification process has not errors user
-              should be redirected to confirmation codes page" do
-      create(:verification_field_assignment, verification_field: phone_field, handler: "sms")
-      visit new_verification_process_path
-
-      fill_in "Name", with: "My Fabolous Name"
-      fill_in "Email", with: "email@example.com"
       fill_in "Phone", with: "234234234"
       click_button "Verify my account"
 
