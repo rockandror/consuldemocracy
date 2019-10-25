@@ -49,22 +49,10 @@ class Verification::Handlers::RemoteCensus < Verification::Handler
       Age.in_years(Date.parse(birth_date)) >= User.minimum_required_age
     end
 
-    def is_age_verifcation_required?
-      field_represent_min_age_to_participate.any?
-    end
-
-    def field_represent_min_age_to_participate
-      field_assignments_to_match.joins(:verification_field).where("verification_fields.represent_min_age_to_participate": true)
-    end
-
     def update_user_with_geozone(response, attributes)
-      return if geozone_assignments.blank?
+      return if field_respresent_geozone.blank?
 
-      update_user(response, geozone_assignments.first, attributes)
-    end
-
-    def geozone_assignments
-      field_assignments_to_match.joins(:verification_field).where("verification_fields.represent_geozone": true)
+      update_user(response, field_respresent_geozone.first, attributes)
     end
 
     def update_user(response, assignment, attributes)
@@ -72,24 +60,6 @@ class Verification::Handlers::RemoteCensus < Verification::Handler
       geozone = get_geozone(response_value)
       user = attributes[:user]
 
-      user.update(geozone: geozone)
-    end
-
-    def get_geozone(response_value)
-      Geozone.where(census_code: response_value).first
-    end
-
-    def successful_response(attributes)
-      Verification::Handlers::Response.new true,
-                                           I18n.t("verification.handlers.remote_census.verify.success"),
-                                           attributes,
-                                           nil
-    end
-
-    def error_response(attributes)
-      Verification::Handlers::Response.new false,
-                                           I18n.t("verification.handlers.remote_census.verify.error"),
-                                           attributes,
-                                           nil
+      user.update!(geozone: geozone)
     end
 end

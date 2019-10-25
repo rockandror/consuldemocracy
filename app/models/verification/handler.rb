@@ -65,6 +65,36 @@ class Verification::Handler
         end
       end
     end
+
+    def successful_response(attributes)
+      message = I18n.t("verification.handlers.#{self.class.id}.verify.success")
+
+      Verification::Handlers::Response.new true, message, attributes, nil
+    end
+
+    def error_response(attributes)
+      message = I18n.t("verification.handlers.#{self.class.id}.verify.error")
+
+      Verification::Handlers::Response.new false, message, attributes, nil
+    end
+
+    def get_geozone(census_code)
+      Geozone.find_by(census_code: census_code)
+    end
+
+    def field_respresent_geozone
+      field_assignments_to_match.joins(:verification_field).
+        where("verification_fields.represent_geozone": true)
+    end
+
+    def is_age_verifcation_required?
+      field_represent_min_age_to_participate.any?
+    end
+
+    def field_represent_min_age_to_participate
+      field_assignments_to_match.joins(:verification_field).
+        where("verification_fields.represent_min_age_to_participate": true)
+    end
 end
 
 dir = Rails.root.join("app", "models", "verification", "handlers", "*.rb")

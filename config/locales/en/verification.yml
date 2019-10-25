@@ -41,7 +41,7 @@ en:
         verify:
           error: The Census was unable to verify your information. Please confirm that your census details are correct by calling to City Council or visit one Citizen Support Office.
           success: Remote census user verification process was successfully done!
-      resident:
+      residents:
         verify:
           error: The Census was unable to verify your information. Please confirm that your census details are correct by calling to City Council or visit one Citizen Support Office.
           success: Local residents user verification process was successfully done!
