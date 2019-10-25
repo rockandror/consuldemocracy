@@ -33,9 +33,9 @@
     </div>
     <% if field.confirmation_validation? %>
       <div class="small-12">
-        <%= f.text_field process_field_name(field),
-                         label: process_field_label(field),
-                         hint: process_field_hint(field) %>
+        <%= f.text_field process_confirmation_field_name(field),
+                         label: process_confirmation_field_label(field),
+                         hint: process_confirmation_field_hint(field) %>
       </div>
     <% end %>
   <% end %>
