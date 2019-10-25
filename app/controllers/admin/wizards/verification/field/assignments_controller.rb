@@ -15,7 +15,7 @@ class Admin::Wizards::Verification::Field::AssignmentsController < Admin::Wizard
   def create
     @field_assignment = Verification::Field::Assignment.new field_assignment_params
     if @field_assignment.save
-      notice = t("admin.wizards.verification.handler.field_assignments.create.notice")
+      notice = t("admin.wizards.verification.field.assignments.create.notice")
       redirect_to admin_wizards_verification_field_assignments_path(@handler),
         notice: notice
     else
@@ -28,7 +28,7 @@ class Admin::Wizards::Verification::Field::AssignmentsController < Admin::Wizard
 
   def update
     if @field_assignment.update(field_assignment_params)
-      notice = t("admin.wizards.verification.handler.field_assignments.update.notice")
+      notice = t("admin.wizards.verification.field.assignments.update.notice")
       redirect_to admin_wizards_verification_field_assignments_path(@handler),
         notice: notice
     else
@@ -38,11 +38,11 @@ class Admin::Wizards::Verification::Field::AssignmentsController < Admin::Wizard
 
   def destroy
     if @field_assignment.destroy
-      notice = t("admin.wizards.verification.handler.field_assignments.destroy.notice")
+      notice = t("admin.wizards.verification.field.assignments.destroy.notice")
       redirect_to admin_wizards_verification_field_assignments_path(@handler),
         notice: notice
     else
-      alert = t("admin.wizards.verification.handler.field_assignments.destroy.alert")
+      alert = t("admin.wizards.verification.field.assignments.destroy.alert")
       redirect_to admin_wizards_verification_field_assignments_path(@handler),
         alert: alert
     end

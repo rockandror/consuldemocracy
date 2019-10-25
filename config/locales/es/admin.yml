@@ -1833,8 +1833,8 @@ es:
           index:
             title: Métodos de verificación de usuarios
             description_html: Habilite o deshabilite los métodos de verificación de usuario disponibles que desee.
-        handler:
-          field_assignments:
+        field:
+          assignments:
             no_results_html: "No hay campos asignados. %{link}."
             associate_field: Asociar campo
             create:

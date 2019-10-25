@@ -10,12 +10,12 @@
   <div class="medium-4 columns text-right">
     <% if sms_handler?(@handler) %>
       <div class="margin-bottom">
-        <%= link_to t("admin.wizards.verification.handler.field_assignments.index.create_sms_fields.link"),
+        <%= link_to t("admin.wizards.verification.field.assignments.index.create_sms_fields.link"),
                     admin_verification_handlers_sms_fields_path, class: "button hollow",
-                    method: :post, data: { confirm: t("admin.wizards.verification.handler.field_assignments.index.create_sms_fields.confirm") } %>
+                    method: :post, data: { confirm: t("admin.wizards.verification.field.assignments.index.create_sms_fields.confirm") } %>
       </div>
     <% end %>
-    <%= link_to t("admin.wizards.verification.handler.field_assignments.index.create"),
+    <%= link_to t("admin.wizards.verification.field.assignments.index.create"),
                   new_admin_wizards_verification_field_assignment_path(@handler), class: "button" %>
   </div>
 </div>
@@ -25,7 +25,7 @@
     <table>
       <thead>
         <tr>
-          <th scope="col"><%= t("admin.wizards.verification.handler.field_assignments.index.field") %></th>
+          <th scope="col"><%= t("admin.wizards.verification.field.assignments.index.field") %></th>
           <th scope="col" class="small-4 text-right"><%= t("admin.actions.actions") %></th>
         </tr>
       </thead>
@@ -42,7 +42,7 @@
     </table>
 
     <% if render_related_setting_table?(@handler) %>
-      <h2><%= t("admin.wizards.verification.handler.field_assignments.index.#{@handler}") %></h2>
+      <h2><%= t("admin.wizards.verification.field.assignments.index.#{@handler}") %></h2>
       <%= render "admin/settings/settings_table", settings: @settings %>
     <% end %>
   </div>

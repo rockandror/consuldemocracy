@@ -29,14 +29,14 @@
   <div id="js-verification-handler-field-assigment-format" class="row"
        style="<% verification_field_assignment_style(@field_assignment) %>">
     <div class="row small-12 column">
-      <%= f.text_field :format, hint: t("admin.wizards.verification.handler.field_assignments.form.format.help") %>
+      <%= f.text_field :format, hint: t("admin.wizards.verification.field.assignments.form.format.help") %>
     </div>
   </div>
 
   <div class="row margin-bottom">
     <div class="row small-12 column">
       <%= f.submit class: "button success expanded",
-                   value: t("admin.wizards.verification.handler.field_assignments.form.submit_button") %>
+                   value: t("admin.wizards.verification.field.assignments.form.submit_button") %>
     </div>
   </div>
 <% end %>

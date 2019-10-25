@@ -1834,8 +1834,8 @@ en:
           index:
             title: User verification methods
             description_html: Enable or disable the available user verification methods you want. You can combine them to suite your needs.
-        handler:
-          field_assignments:
+        field:
+          assignments:
             no_results_html: "No fields are assigned. %{link}."
             associate_field: Associate field
             create:
