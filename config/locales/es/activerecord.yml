@@ -505,7 +505,7 @@ es:
         hint: Ayuda
       verification/field/option/translation:
         label: Etiqueta
-      verification/handler/field_assignment:
+      verification/field/assignment:
         format: Formato
         request_path: Ruta del campo en la solicitud
         response_path: Ruta del campo en la respuesta
