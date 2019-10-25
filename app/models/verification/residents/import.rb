@@ -39,7 +39,7 @@ class Verification::Residents::Import
       if resident.invalid?
         invalid_records << resident
       else
-        resident.save
+        resident.save!
         created_records << resident
       end
     end

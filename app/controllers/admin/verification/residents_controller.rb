@@ -37,7 +37,7 @@ class Admin::Verification::ResidentsController < Admin::Verification::BaseContro
   end
 
   def destroy
-    @resident.destroy
+    @resident.destroy!
     redirect_to admin_verification_residents_path,
       notice: t("admin.verification.residents.destroy.notice")
   end
