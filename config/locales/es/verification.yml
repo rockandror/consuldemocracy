@@ -29,11 +29,6 @@ es:
           failure: Código de verificación incorrecto
         flash:
           success: Eres un usuario verificado
-    handler:
-      confirmation:
-        success: El proceso de verificación de usuario se realizó con éxito!
-      verification:
-        success: El proceso de confirmación del usuario se ha realizado con éxito!
     handlers:
       sms:
         verify:

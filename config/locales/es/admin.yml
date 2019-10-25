@@ -1780,8 +1780,6 @@ es:
           form:
             add_field_option: Añadir nueva opción para el selector
             handlers:
-              help: Este campo se verificará con los verificadores activos de la lista a continuación.
-              label: Verificadores
               input_label_help: "Añade un nombre al campo de verificacion, ej: Número de documento ó Tipo de documento"
               input_hint_help: Escribe una ayuda para mostrarla al lado del campo en el formulario.
               input_name_help: "Ej: document_type"
