@@ -1748,7 +1748,7 @@ es:
         title: Verificaciones incompletas
     wizards:
       title: Asistentes
-      header:
+      header_steps:
         step: Paso
         step_of: de
         back_step: Atrás

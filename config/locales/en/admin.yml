@@ -1749,7 +1749,7 @@ en:
         title: Incomplete verifications
     wizards:
       title: Wizards
-      header:
+      header_steps:
         step: Step
         step_of: of
         back_step: Back
