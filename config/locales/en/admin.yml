@@ -1769,6 +1769,10 @@ en:
           take_effect_text: "For the changes made in this wizard to take effect, you must disabled both 'skip verification' and 'Configure connection to remote census (SOAP) - Legacy version' and enable 'Customizable user verification process'."
           btn_start: Start
         fields:
+          assignments:
+            form:
+              request_path: "If the field you are defining needs to be sent to the Remote Census, fill in the value with the path of this field in the request. For example if the request structure is {'request': {'sample_field': ''}}, if we are defining the sample_field, we should fill this field with: 'request.sample_field'."
+              response_path: "If the field you are defining needs to be validated with the remote census response, fill in the value with the path of this field in the response and it will be validated that the value of the field entered by the user is equal to the one sent in the response. For example if the response structure is {response: {sample_field: 'sample value'}}, we should fill this field with: 'response.sample_field'"
           create:
             notice: Verification field created successfully
             error: Verification field couldn't be created
@@ -1787,8 +1791,6 @@ en:
               input_hint_help: Write a help to show it next to the field in the form.
               input_name_help: "Ex: document_type"
               input_position_help: "Position of the field in the form. Ex: 1,2,3,4"
-              request_path: "If the field you are defining needs to be sent to the Remote Census, fill in the value with the path of this field in the request. For example if the request structure is {'request': {'sample_field': ''}}, if we are defining the sample_field, we should fill this field with: 'request.sample_field'."
-              response_path: "If the field you are defining needs to be validated with the remote census response, fill in the value with the path of this field in the response and it will be validated that the value of the field entered by the user is equal to the one sent in the response. For example if the response structure is {response: {sample_field: 'sample value'}}, we should fill this field with: 'response.sample_field'"
             label_required: Is it a required field in the form?
             label_kind: Field type
             label_confirmation_validation: Do you want to add a confirmation field?
