@@ -1836,7 +1836,7 @@ es:
         field:
           assignments:
             no_results_html: "No hay campos asignados. %{link}."
-            associate_field: Asociar campo
+            new: Asociar campo
             create:
               notice: Asignación de campos creada con éxito!
             destroy:

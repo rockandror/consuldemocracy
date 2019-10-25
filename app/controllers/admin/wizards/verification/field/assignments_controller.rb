@@ -4,17 +4,17 @@ class Admin::Wizards::Verification::Field::AssignmentsController < Admin::Wizard
   before_action :set_field_assignment, only: [:edit, :update, :destroy]
 
   def index
-    @field_assignments = Verification::Field::Assignment.where(handler: @handler)
+    @assignments = Verification::Field::Assignment.where(handler: @handler)
     @settings = settings_by_handler(@handler)
   end
 
   def new
-    @field_assignment = Verification::Field::Assignment.new handler: @handler
+    @assignment = Verification::Field::Assignment.new handler: @handler
   end
 
   def create
-    @field_assignment = Verification::Field::Assignment.new field_assignment_params
-    if @field_assignment.save
+    @assignment = Verification::Field::Assignment.new field_assignment_params
+    if @assignment.save
       notice = t("admin.wizards.verification.field.assignments.create.notice")
       redirect_to admin_wizards_verification_field_assignments_path(@handler),
         notice: notice
@@ -27,7 +27,7 @@ class Admin::Wizards::Verification::Field::AssignmentsController < Admin::Wizard
   end
 
   def update
-    if @field_assignment.update(field_assignment_params)
+    if @assignment.update(field_assignment_params)
       notice = t("admin.wizards.verification.field.assignments.update.notice")
       redirect_to admin_wizards_verification_field_assignments_path(@handler),
         notice: notice
@@ -37,7 +37,7 @@ class Admin::Wizards::Verification::Field::AssignmentsController < Admin::Wizard
   end
 
   def destroy
-    if @field_assignment.destroy
+    if @assignment.destroy
       notice = t("admin.wizards.verification.field.assignments.destroy.notice")
       redirect_to admin_wizards_verification_field_assignments_path(@handler),
         notice: notice
@@ -55,7 +55,7 @@ class Admin::Wizards::Verification::Field::AssignmentsController < Admin::Wizard
     end
 
     def set_field_assignment
-      @field_assignment = ::Verification::Field::Assignment.find(params[:id])
+      @assignment = Verification::Field::Assignment.find(params[:id])
     end
 
     def field_assignment_params

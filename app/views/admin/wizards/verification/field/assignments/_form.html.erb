@@ -1,7 +1,6 @@
-<%= form_for [:admin, :wizards, @field_assignment],
-             url: @field_assignment.persisted? ? admin_wizards_verification_field_assignment_path(@field_assignment.handler, @field_assignment.id) : admin_wizards_verification_field_assignments_path(@field_assignment.handler)  do |f| %>
+<%= form_for [:admin, :wizards, @assignment] do |f| %>
 
-  <%= render "shared/errors", resource: @field_assignment %>
+  <%= render "shared/errors", resource: @assignment %>
 
   <div class="row">
     <div class="row small-12 column">
@@ -27,7 +26,7 @@
   <% end %>
 
   <div id="js-verification-handler-field-assigment-format" class="row"
-       style="<% verification_field_assignment_style(@field_assignment) %>">
+       style="<% verification_field_assignment_style(@assignment) %>">
     <div class="row small-12 column">
       <%= f.text_field :format, hint: t("admin.wizards.verification.field.assignments.form.format.help") %>
     </div>

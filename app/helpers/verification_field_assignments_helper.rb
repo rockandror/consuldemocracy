@@ -19,7 +19,7 @@ module VerificationFieldAssignmentsHelper
 
   def verification_field_assignments_no_results_message
     t("admin.wizards.verification.field.assignments.no_results_html",
-      link: link_to(t("admin.wizards.verification.field.assignments.associate_field"),
+      link: link_to(t("admin.wizards.verification.field.assignments.new"),
                     new_admin_wizards_verification_field_assignment_path))
   end
 end

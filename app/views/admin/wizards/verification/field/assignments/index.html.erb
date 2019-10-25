@@ -31,12 +31,12 @@
       </thead>
 
       <tbody>
-        <% if @field_assignments.empty? %>
+        <% if @assignments.empty? %>
           <tr>
             <td colspan="2"><%= verification_field_assignments_no_results_message %></td>
           </tr>
         <% else %>
-          <%= render partial: "field_assignment", collection: @field_assignments %>
+          <%= render partial: "field_assignment", collection: @assignments %>
         <% end %>
       </tbody>
     </table>
