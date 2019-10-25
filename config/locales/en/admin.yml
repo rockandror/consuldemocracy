@@ -1779,56 +1779,62 @@ en:
           destroy:
             notice: Verification field deleted successfully
           edit:
-            form:
-              submit_button: Update field
             title: Edit verification field
-          form:
-            add_field_option: Add new option for select
-            format_placeholder: Add the regular expression without the start (/) and end (/) escapes
-            checkbox_link: "This field must be filled with the slug of a page created in the admin section 'Site content' > 'Custom pages'."
+          field:
+            delete: Delete
+            edit: Edit
             handlers:
-              input_label_help: "Adds a name to the verification field, e.g.: Document Number or Document Type"
-              input_hint_help: Write a help to show it next to the field in the form.
-              input_name_help: "Ex: document_type"
-              input_position_help: "Position of the field in the form. Ex: 1,2,3,4"
-            label_required: Is it a required field in the form?
-            label_kind: Field type
-            label_confirmation_validation: Do you want to add a confirmation field?
-            label_visible: Do you want the field to be displayed?
-            label_represent_geozone: Does this field represent the geozone?
-            label_represent_min_age_to_participate: Does this field represent the minimum age to particpate?
-            format_placeholder: Add the regular expression without the start (/) and end (/) escapes
-            checkbox_link: "This field must be filled with the slug of a page created in the administrators' section 'Site content' > 'Custom pages'."
-            geozone_info: "This section allows you to mark a field of the geographical area type. This field will have to be associated with the Remote Census and/or the Local Census in the following steps. The purpose of this field is to be able to retrieve from the Remote Census or from the local Census the data referring to the geolocation and to be able to save it directly to the verified user."
-            min_age_to_participate: "This section allows you to mark a field of the date of birth type. This field will have to be associated with the Remote Census and/or the Local Census in the following steps. The purpose of this field is to be able to retrieve the date of birth from the Remote Census or the local Census and validate that the verified user meets the age restriction defined in the application."
-          option_fields:
-            remove_option: Remove option
-          handlers:
-            name:
               residents: Residents verifications (local database)
               sms: Phone verification by SMS message
               remote_census: "Residents verification (remote census)"
+            kinds:
+              text: Text field
+              checkbox: Checkbox field
+              selector: Selector field
+              date: Date field
+          form:
+            add_field_option: Add new option for select
+            edit:
+              submit_button: Update field
+            hints:
+              checkbox_link: "This field must be filled with the slug of a page created in the administrators' section 'Site content' > 'Custom pages'."
+              format: Add the regular expression without the start (/) and end (/) escapes
+              hint: Write a help to show it next to the field in the form.
+              label: "Adds a name to the verification field, e.g.: Document Number or Document Type"
+              name: "Ex: document_type"
+              position: "Position of the field in the form. Ex: 1,2,3,4"
+            info:
+              geozone: "This section allows you to mark a field of the geographical area type. This field will have to be associated with the Remote Census and/or the Local Census in the following steps. The purpose of this field is to be able to retrieve from the Remote Census or from the local Census the data referring to the geolocation and to be able to save it directly to the verified user."
+              min_age_to_participate: "This section allows you to mark a field of the date of birth type. This field will have to be associated with the Remote Census and/or the Local Census in the following steps. The purpose of this field is to be able to retrieve the date of birth from the Remote Census or the local Census and validate that the verified user meets the age restriction defined in the application."
+            labels:
+              required: Is it a required field in the form?
+              kind: Field type
+              confirmation_validation: Do you want to add a confirmation field?
+              visible: Do you want the field to be displayed?
+              represent_geozone: Does this field represent the geozone?
+              represent_min_age_to_participate: Does this field represent the minimum age to particpate?
+            new:
+              submit_button: Create field
+          option_fields:
+            remove_option: Remove option
           index:
-            controller: Controller
             create: Create field
             create_first: Create the first one
-            delete: Delete
-            edit: Edit
-            name: Name
-            label: Label
-            position: Position
-            required: Required
-            confirmation_validation: Require confirmation
-            kind: Kind
-            format: Format
-            visible: Visible
             title: User verification form
             description_html: "Define the fields of the user verification form."
             no_results_html: "There is no verification form fields defined. %{link}."
           new:
-            form:
-              submit_button: Create field
             title: New verification field
+          thead:
+            confirmation_validation: Require confirmation
+            controller: Controller
+            format: Format
+            kind: Kind
+            label: Label
+            name: Name
+            position: Position
+            required: Required
+            visible: Visible
           update:
             notice: Verification field updated successfully
             error: Verification field couldn't be updated

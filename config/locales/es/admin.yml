@@ -1778,54 +1778,62 @@ es:
           destroy:
             notice: Campo de verificación eliminado correctamente
           edit:
-            form:
-              submit_button: Actualizar campo
             title: Editar campo de verificación
-          form:
-            add_field_option: Añadir nueva opción para el selector
+          field:
+            delete: Eliminar
+            edit: Editar
             handlers:
-              input_label_help: "Añade un nombre al campo de verificacion, ej: Número de documento ó Tipo de documento"
-              input_hint_help: Escribe una ayuda para mostrarla al lado del campo en el formulario.
-              input_name_help: "Ej: document_type"
-              input_position_help: "Posicion del campo en el formulario. Ej: 1,2,3,4"
-            label_required: Es un campo obligatorio en el formulario?
-            label_kind: Tipo del campo
-            label_confirmation_validation: Quieres añadir un campo de confirmacion?
-            label_visible: ¿Desea que se visualice el campo?
-            label_represent_geozone: ¿Este campo representa la zona geográfica?
-            label_represent_min_age_to_participate: ¿Este campo representa la edad mínima para participar?
-            format_placeholder: Añadir la expresión regular sin los escapados de inicio (/) y final(/)
-            checkbox_link: "Este campo se debe rellenar con el slug de una página creada en la sección de administradores 'Contenido del sitio' > 'Personalizar páginas'"
-            geozone_info: "Esta sección permite marcar un campo del tipo zona geográfica. Este campo se tendrá que asociar con el Censo Remoto y/o el Censo Local en los siguientes pasos. La finalidad de este campo es poder recuperar del Censo Remoto o del Censo local el dato referente a la geolocalización y poder guardarlo directamente al usuario verificado."
-            min_age_to_participate: "Esta sección permite marcar un campo del tipo fecha de nacimiento. Este campo se tendrá que asociar con el Censo Remoto y/o el Censo Local en los siguientes pasos. La finalidad de este campo es poder recuperar del Censo Remoto o del Censo local la fecha de nacimiento y validar que el usuario verificado cumple la restricción de edad definida en la aplicación."
-          option_fields:
-            remove_option: Eliminar opción
-          handlers:
-            name:
               residents: Verificación de residencia (base de datos local)
               sms: Verificación de teléfono móvil por SMS
               remote_census: Verificación de residencia (censo remoto)
+            kinds:
+              text: Campo de texto
+              checkbox: Campo checkbox
+              selector: Campo selector
+              date: Campo fecha
+          form:
+            add_field_option: Añadir nueva opción para el selector
+            edit:
+              submit_button: Actualizar campo
+            hints:
+              checkbox_link: "Este campo se debe rellenar con el slug de una página creada en la sección de administradores 'Contenido del sitio' > 'Personalizar páginas'"
+              format: Añadir la expresión regular sin los escapados de inicio (/) y final(/)
+              hint: Escribe una ayuda para mostrarla al lado del campo en el formulario.
+              label: "Añade un nombre al campo de verificacion, ej: Número de documento ó Tipo de documento"
+              name: "Ej: document_type"
+              position: "Posicion del campo en el formulario. Ej: 1,2,3,4"
+            info:
+              geozone: "Esta sección permite marcar un campo del tipo zona geográfica. Este campo se tendrá que asociar con el Censo Remoto y/o el Censo Local en los siguientes pasos. La finalidad de este campo es poder recuperar del Censo Remoto o del Censo local el dato referente a la geolocalización y poder guardarlo directamente al usuario verificado."
+              min_age_to_participate: "Esta sección permite marcar un campo del tipo fecha de nacimiento. Este campo se tendrá que asociar con el Censo Remoto y/o el Censo Local en los siguientes pasos. La finalidad de este campo es poder recuperar del Censo Remoto o del Censo local la fecha de nacimiento y validar que el usuario verificado cumple la restricción de edad definida en la aplicación."
+            labels:
+              required: Es un campo obligatorio en el formulario?
+              kind: Tipo del campo
+              confirmation_validation: Quieres añadir un campo de confirmacion?
+              visible: ¿Desea que se visualice el campo?
+              represent_geozone: ¿Este campo representa la zona geográfica?
+              represent_min_age_to_participate: ¿Este campo representa la edad mínima para participar?
+            new:
+              submit_button: Crear campo
+          option_fields:
+            remove_option: Eliminar opción
           index:
-            controller: Controlador
             create_first: Crea el primero
             create: Crear campo
-            delete: Eliminar
-            edit: Editar
-            name: Nombre
-            label: Etiqueta
-            position: Posición
-            required: Requerido
-            confirmation_validation: Confirmación
-            kind: Tipo
-            format: Formato
-            visible: Visible
             title: Formulario de verificación de usuarios
             description_html: "Define los campos del formulario de verificación de usuarios."
             no_results_html: "No hay campos de formulario de verificación definidos. %{link}."
           new:
-            form:
-              submit_button: Crear campo
             title: Nuevo campo de verificación
+          thead:
+            confirmation_validation: Confirmación
+            controller: Controlador
+            format: Formato
+            kind: Tipo
+            label: Etiqueta
+            name: Nombre
+            position: Posición
+            required: Requerido
+            visible: Visible
           update:
             notice: Campo de verificación actualizado correctamente
             error: No se ha podido actualizar el campo de verificación

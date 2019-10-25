@@ -8,22 +8,22 @@
     <%= f.translatable_fields do |translations_form| %>
       <div class="small-12 column">
         <%= translations_form.text_field :label,
-                                         hint: t("admin.wizards.verification.fields.form.handlers.input_label_help") %>
+                                         hint: t("admin.wizards.verification.fields.form.hints.label") %>
       </div>
       <div class="small-12 column">
         <%= translations_form.text_field :hint,
-                                         hint: t("admin.wizards.verification.fields.form.handlers.input_hint_help") %>
+                                         hint: t("admin.wizards.verification.fields.form.hints.hint") %>
       </div>
     <% end %>
   </div>
 
   <div class="row margin-top">
     <div class="small-12 medium-6 column">
-      <%= f.text_field :name, hint: t("admin.wizards.verification.fields.form.handlers.input_name_help") %>
+      <%= f.text_field :name, hint: t("admin.wizards.verification.fields.form.hints.name") %>
     </div>
     <div class="small-12 medium-1 column"></div>
     <div class="small-12 medium-5 column">
-      <%= f.number_field :position, hint: t("admin.wizards.verification.fields.form.handlers.input_position_help") %>
+      <%= f.number_field :position, hint: t("admin.wizards.verification.fields.form.hints.position") %>
     </div>
   </div>
   <div class="row margin-top">
@@ -33,24 +33,23 @@
   </div>
   <div class="row">
     <div class="small-12 medium-4 column">
-      <label><%= t("admin.wizards.verification.fields.form.label_required") %></label>
+      <label><%= t("admin.wizards.verification.fields.form.labels.required") %></label>
       <%= f.label :required do %>
         <%= f.check_box :required %>
       <% end %>
     </div>
     <div class="small-12 medium-4 column">
-      <label><%= t("admin.wizards.verification.fields.form.label_confirmation_validation") %></label>
+      <label><%= t("admin.wizards.verification.fields.form.labels.confirmation_validation") %></label>
       <%= f.check_box :confirmation_validation %>
     </div>
     <div class="small-12 medium-4 column">
-      <label><%= t("admin.wizards.verification.fields.form.label_visible") %></label>
+      <label><%= t("admin.wizards.verification.fields.form.labels.visible") %></label>
       <%= f.check_box :visible, checked: visible_value(@field) %>
     </div>
     <div class="small-12 column margin-bottom">
       <%= f.label :format do %>
         <%= f.text_field :format,
-                         placeholder: t("admin.wizards.verification.fields.form.format_placeholder"),
-                         hint: t("admin.wizards.verification.fields.form.format_placeholder") %>
+                         hint: t("admin.wizards.verification.fields.form.hints.format") %>
       <% end %>
     </div>
   </div>
@@ -63,13 +62,13 @@
 
   <div class="row margin-top">
     <div class="small-12 medium-4 column">
-      <label><%= t("admin.wizards.verification.fields.form.label_kind") %></label>
+      <label><%= t("admin.wizards.verification.fields.form.labels.kind") %></label>
         <%= f.enum_select :kind %>
       <br>
     </div>
     <div class="small-12 medium-8 column">
       <div id="input-checkbox-link" style="<%= display_checkbox_link(@field) %>">
-        <%= f.text_field :checkbox_link, hint: t("admin.wizards.verification.fields.form.checkbox_link") %>
+        <%= f.text_field :checkbox_link, hint: t("admin.wizards.verification.fields.form.hints.checkbox_link") %>
       </div>
 
       <div id="field_verification_options_section" style="<%= display_field_verification_options_section(@field) %>">
@@ -101,11 +100,11 @@
 
   <div class="row">
     <div class="small-12 medium-12 column">
-      <label><%= t("admin.wizards.verification.fields.form.label_represent_geozone") %></label>
+      <label><%= t("admin.wizards.verification.fields.form.labels.represent_geozone") %></label>
       <%= f.label :represent_geozone do %>
         <%= f.check_box :represent_geozone %>
       <% end %>
-      <p class="help-text"><%= t("admin.wizards.verification.fields.form.geozone_info") %></p>
+      <p class="help-text"><%= t("admin.wizards.verification.fields.form.info.geozone") %></p>
     </div>
   </div>
 
@@ -117,9 +116,9 @@
 
   <div class="row">
     <div class="small-12 medium-12 column">
-      <label><%= t("admin.wizards.verification.fields.form.label_represent_min_age_to_participate") %></label>
+      <label><%= t("admin.wizards.verification.fields.form.labels.represent_min_age_to_participate") %></label>
       <%= f.check_box :represent_min_age_to_participate %>
-      <p class="help-text"><%= t("admin.wizards.verification.fields.form.min_age_to_participate") %></p>
+      <p class="help-text"><%= t("admin.wizards.verification.fields.form.info.min_age_to_participate") %></p>
     </div>
   </div>
 
@@ -132,7 +131,7 @@
   <div class="row margin-bottom">
     <div class="small-12 column">
       <%= f.submit class: "button success expanded margin-top",
-                   value: t("admin.wizards.verification.fields.#{admin_submit_action(@field)}.form.submit_button") %>
+                   value: t("admin.wizards.verification.fields.form.#{admin_submit_action(@field)}.submit_button") %>
     </div>
   </div>
 <% end %>
