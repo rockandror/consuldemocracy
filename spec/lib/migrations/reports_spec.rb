@@ -31,13 +31,14 @@ describe Migrations::Reports do
     end
 
     it "ignores budgets with existing reports" do
-      create(:budget, results_enabled: false, stats_enabled: false, advanced_stats_enabled: false)
+      create(:budget, results_enabled: false, stats_enabled: false, advanced_stats_enabled: false, executions_enabled: false)
 
       Migrations::Reports.new.migrate
 
       expect(Budget.last.results_enabled).to be false
       expect(Budget.last.stats_enabled).to be false
       expect(Budget.last.advanced_stats_enabled).to be false
+      expect(Budget.last.executions_enabled).to be false
     end
 
     it "enables results and stats for every budget" do
@@ -48,6 +49,7 @@ describe Migrations::Reports do
       expect(Budget.last.results_enabled).to be true
       expect(Budget.last.stats_enabled).to be true
       expect(Budget.last.advanced_stats_enabled).to be true
+      expect(Budget.last.executions_enabled).to be true
     end
   end
 end

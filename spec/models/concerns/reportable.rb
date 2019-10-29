@@ -72,4 +72,40 @@ shared_examples "reportable" do
       expect(reportable.read_attribute(:stats_enabled)).to be false
     end
   end
+
+  describe "#executions_enabled" do
+    it "can write and read the attribute" do
+      reportable.executions_enabled = true
+
+      expect(reportable.executions_enabled?).to be true
+      expect(reportable.executions_enabled).to be true
+
+      reportable.executions_enabled = false
+
+      expect(reportable.executions_enabled?).to be false
+      expect(reportable.executions_enabled).to be false
+    end
+
+    it "can save the value to the database" do
+      reportable.update(executions_enabled: true)
+      saved_reportable = described_class.last
+
+      expect(saved_reportable.executions_enabled?).to be true
+      expect(saved_reportable.executions_enabled).to be true
+
+      reportable.update(executions_enabled: false)
+      saved_reportable = described_class.last
+
+      expect(saved_reportable.executions_enabled?).to be false
+      expect(saved_reportable.executions_enabled).to be false
+    end
+
+    it "uses the `has_one` relation instead of the original column" do
+      skip "there's no original column" unless reportable.has_attribute?(:executions_enabled)
+
+      reportable.update(executions_enabled: true)
+
+      expect(reportable.read_attribute(:executions_enabled)).to be false
+    end
+  end
 end

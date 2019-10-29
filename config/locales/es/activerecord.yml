@@ -3,6 +3,7 @@ es:
     results_enabled: "Mostrar resultados"
     stats_enabled: "Mostrar estadísticas"
     advanced_stats_enabled: "Mostrar estadísticas avanzadas"
+    executions_enabled: "Mostrar seguimiento"
   activerecord:
     models:
       activity:

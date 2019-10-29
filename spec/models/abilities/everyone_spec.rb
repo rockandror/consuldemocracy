@@ -107,4 +107,24 @@ describe Abilities::Everyone do
       it { should_not be_able_to(:read_stats, budget) }
     end
   end
+
+  context "when accessing budget executions" do
+    context "budget is not finished" do
+      let(:budget) { create(:budget, phase: "reviewing_ballots", executions_enabled: true) }
+
+      it { should_not be_able_to(:read_executions, budget) }
+    end
+
+    context "budget is finished" do
+      let(:budget) { create(:budget, :finished) }
+
+      it { should be_able_to(:read_executions, budget) }
+    end
+
+    context "executions disabled" do
+      let(:budget) { create(:budget, :finished, executions_enabled: false) }
+
+      it { should_not be_able_to(:read_executions, budget) }
+    end
+  end
 end
