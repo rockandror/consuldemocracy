@@ -1,6 +1,8 @@
 class DoubleConfirmationsController < ApplicationController
     skip_authorization_check
     before_action :user_can_access?, except: [:user_blocked]
+    before_action :authenticate_user!
+    
     def no_phone
 
     end
