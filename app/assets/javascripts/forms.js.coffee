@@ -7,13 +7,13 @@ App.Forms =
     )
 
   submitOnChange: ->
-    $('.js-submit-on-change').unbind('change').on('change', ->
+    $(".js-submit-on-change").off("change").on("change", ->
       $(this).closest('form').submit()
       false
     )
 
   toggleLink: ->
-    $('.js-toggle-link').unbind('click').on('click', ->
+    $(".js-toggle-link").off("click").on("click", ->
       $($(this).data('toggle-selector')).toggle("down")
       if $(this).data('toggle-text') isnt undefined
         toggle_txt = $(this).text()
@@ -42,7 +42,7 @@ App.Forms =
           title_field.show()
           $("#globalize_locales").show()
 
-    $("[name='progress_bar[kind]']").change()
+    $("[name='progress_bar[kind]']").trigger("change")
 
   initialize: ->
     App.Forms.disableEnter()
