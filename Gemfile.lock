@@ -341,7 +341,7 @@ GEM
       arel (>= 6)
     powerpack (0.1.2)
     public_suffix (3.0.3)
-    puma (4.2.1)
+    puma (4.3.10)
       nio4r (~> 2.0)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
@@ -604,7 +604,7 @@ DEPENDENCIES
   paranoia (~> 2.4.1)
   pg (~> 0.20.0)
   pg_search (~> 2.0.1)
-  puma (~> 4.2.1)
+  puma (~> 4.3.0)
   quiet_assets (~> 1.1.0)
   rails (= 4.2.11)
   rails-assets-leaflet!

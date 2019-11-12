@@ -38,7 +38,7 @@ gem 'paperclip', '~> 5.2.1'
 gem 'paranoia', '~> 2.4.1'
 gem 'pg', '~> 0.20.0'
 gem 'pg_search', '~> 2.0.1'
-gem "puma", "~> 4.2.1"
+gem "puma", "~> 4.3.0"
 gem 'redcarpet', '~> 3.4.0'
 gem 'responders', '~> 2.4.0'
 gem 'rinku', '~> 2.0.2', require: 'rails_rinku'
