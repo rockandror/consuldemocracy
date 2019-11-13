@@ -29,10 +29,7 @@ set :keep_releases, 5
 
 set :local_user, ENV['USER']
 
-set :puma_restart_command, "bundle exec --keep-file-descriptors puma"
-set :puma_workers, 2
-set :puma_preload_app, true
-set :puma_init_active_record, true
+set :puma_conf, "#{release_path}/config/puma/#{fetch(:rails_env)}.rb"
 
 set :delayed_job_workers, 2
 set :delayed_job_roles, :background
@@ -46,6 +43,8 @@ set(:config_files, %w(
 set :whenever_roles, -> { :app }
 
 namespace :deploy do
+  Rake::Task["puma:check"].clear_actions
+
   #before :starting, 'rvm1:install:rvm'  # install/update RVM
   #before :starting, 'rvm1:install:ruby' # install Ruby and create gemset
   #before :starting, 'install_bundler_gem' # install bundler gem
