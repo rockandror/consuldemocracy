@@ -57,7 +57,6 @@ namespace :deploy do
   before "deploy:restart", "delayed_job:restart"
   before "deploy:restart", "puma:start"
 
-  after :finishing, 'deploy:cleanup'
   after :finished, "refresh_sitemap"
 end
 
