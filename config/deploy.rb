@@ -43,19 +43,18 @@ set(:config_files, %w(
 set :whenever_roles, -> { :app }
 
 namespace :deploy do
-  Rake::Task["puma:check"].clear_actions
-
   #before :starting, 'rvm1:install:rvm'  # install/update RVM
   #before :starting, 'rvm1:install:ruby' # install Ruby and create gemset
   #before :starting, 'install_bundler_gem' # install bundler gem
 
-  after :publishing, 'deploy:restart'
-  after :published, 'delayed_job:restart'
-  after :published, 'refresh_sitemap'
+  after :publishing, "setup_puma"
 
-  before "deploy:restart", "setup_puma"
+  after :published, "deploy:restart"
+  before "deploy:restart", "puma:smart_restart"
+  before "deploy:restart", "delayed_job:restart"
 
   after :finishing, 'deploy:cleanup'
+  after :finished, "refresh_sitemap"
 end
 
 task :install_bundler_gem do
