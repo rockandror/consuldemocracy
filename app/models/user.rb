@@ -237,6 +237,61 @@ class User < ApplicationRecord
     identities.destroy_all
   end
 
+  def ip_out_of_internal_red?
+    current_ip = IPAddr.new(self.current_sign_in_ip)
+    low = IPAddr.new("10.90.0.0")
+    high = IPAddr.new("10.90.255.255")
+    ip_eq= false
+    (low..high).each do |ip|
+      if ip.to_s==current_ip.to_s
+        ip_eq = true
+        break
+      end
+    end
+    ip_eq = true if "127.0.0.1"==current_ip.to_s
+    
+    !ip_eq
+  end
+
+  def phone_number_present?
+    !self.try(:phone_number).blank? && !self.try(:confirmed_phone).blank?  && (self.phone_number == self.confirmed_phone)
+  end
+
+  def double_verification?
+    return true if !ip_out_of_internal_red? && self.try(:administrator?)
+    ip_out_of_internal_red? && self.try(:administrator?) && access_key_inserted_correct? && !required_new_password? && (self.try(:access_key_tried) < 3)
+  end
+
+  def encrypt_access_key(access_key)
+    if !self.blank? && !access_key.blank?
+        Criptografia.new.encrypt(access_key)
+    end
+  end
+
+  def decrypt_access_key(encrypted_access_key)
+      begin
+          if !self.blank? && !encrypted_access_key.blank?
+              Criptografia.new.decrypt(encrypted_access_key.to_s)
+          end
+      rescue
+         self.update(access_key_generated_at: nil)
+      end
+  end
+
+  def access_key_inserted_correct?
+      decrypt_access_key(self.access_key_generated.to_s) == decrypt_access_key(self.access_key_inserted.to_s)
+  end
+
+  def required_new_password?
+    if self.access_key_generated_at.present?
+      date1= Time.zone.now
+      date2= self.access_key_generated_at
+      (date1.year * 12 + date1.month) - (date2.year * 12 + date2.month) > Setting.find_by(key: "months_to_double_verification").try(:value).to_i
+    else
+      true
+    end
+  end
+
   def erased?
     erased_at.present?
   end

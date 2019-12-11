@@ -1,0 +1,16 @@
+<div class= "row text-center">
+    <h3 class="small-12 medium-12 column"><%=t("admin.double_verification.needed_double_verification")%></h3>
+    <br>
+</div>
+<div class="row text-center">
+    <div class="small-12 medium-12 medium-centered" style="margin: 50px 0px 50px 0px;">
+        <%= form_tag(request_post_access_key_double_confirmations_path, method: "post") do %>
+            <%= label_tag('', t("admin.double_verification.insert_double_verification")) %>
+            <%= password_field_tag(:access_key,nil, style: "width: 50%;margin: 10px auto 20px auto;") %>
+            <%= submit_tag(t("admin.double_verification.verify"), class: 'button') %>
+        <% end %>
+    </div>
+</div>
+<div class="row">
+    <%= link_to t("admin.double_verification.generate_new_key"), new_password_sent_double_confirmations_path, class: "small-7 medium-7 column" %>
+</div>

@@ -20,6 +20,7 @@ class Admin::HiddenUsersController < Admin::BaseController
 
   def restore
     @user.restore
+    @user.update_attributes(:access_key_tried => 0, :access_key_generated_at => nil, :access_key_generated => nil, :access_key_inserted => nil)
     Activity.log(current_user, :restore, @user)
     redirect_to request.query_parameters.merge(action: :index)
   end

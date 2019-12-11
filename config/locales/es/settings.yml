@@ -1,5 +1,7 @@
 es:
   settings:
+    months_to_double_verification: Meses para la doble verificación
+    months_to_double_verification_description: Meses tras los que se requerirá que el administrador introduzca una nueva clave
     comments_body_max_length: "Longitud máxima de los comentarios"
     comments_body_max_length_description: "En número de caracteres"
     official_level_1_name: "Cargos públicos de nivel 1"

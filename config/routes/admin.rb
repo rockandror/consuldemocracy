@@ -1,5 +1,6 @@
 namespace :admin do
   root to: "dashboard#index"
+  
   resources :organizations, only: :index do
     get :search, on: :collection
     member do

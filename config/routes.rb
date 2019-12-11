@@ -57,4 +57,12 @@ Rails.application.routes.draw do
 
   # Static pages
   resources :pages, path: "/", only: [:show]
+
+  resources :double_confirmations do
+    get :no_phone, on: :collection
+    get :user_blocked, on: :collection
+    get :request_access_key, on: :collection
+    get :new_password_sent, on: :collection
+    post :request_post_access_key, on: :collection
+  end
 end

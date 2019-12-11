@@ -1,4 +1,5 @@
 class Users::SessionsController < Devise::SessionsController
+  require "ipaddr"
   prepend_before_action :check_recaptcha, only: [:create]
 
   after_action :after_login, only: :create
@@ -32,7 +33,36 @@ class Users::SessionsController < Devise::SessionsController
       elsif !verifying_via_email? && resource.show_welcome_screen?
         welcome_path
       else
-        super
+        if current_user.ip_out_of_internal_red? && current_user.try(:administrator?)
+          if current_user.try(:access_key_tried) > 2 
+            sign_out 
+            user_blocked_double_confirmations_path
+          elsif current_user.phone_number_present?
+            double_confimation_needed
+          else
+            no_phone_double_confirmations_path
+          end
+        else
+          super
+        end
+      end
+    end
+
+    def double_confimation_needed
+      unless required_new_password?
+        request_access_key_double_confirmations_path
+      else
+        new_password_sent_double_confirmations_path
+      end
+    end
+
+    def required_new_password?
+      if current_user.access_key_generated_at.present?
+        date1= Time.zone.now
+        date2= current_user.access_key_generated_at
+        (date1.year * 12 + date1.month) - (date2.year * 12 + date2.month) > Setting.find_by(key: "months_to_double_verification").try(:value).to_i
+      else
+        true
       end
     end
 
@@ -49,5 +79,4 @@ class Users::SessionsController < Devise::SessionsController
       stored_path = session[stored_location_key_for(resource)] || ""
       stored_path[0..5] == "/email"
     end
-
 end

@@ -526,6 +526,11 @@ ActiveRecord::Schema.define(version: 20190722133302) do
     t.index ["user_id"], name: "index_documents_on_user_id", using: :btree
   end
 
+  create_table "double_verifications", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "failed_census_calls", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "document_number"
@@ -1252,8 +1257,8 @@ ActiveRecord::Schema.define(version: 20190722133302) do
     t.datetime "confirmed_hide_at"
     t.bigint   "hot_score",                      default: 0
     t.integer  "confidence_score",               default: 0
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
     t.string   "responsible_name",    limit: 60
     t.text     "summary"
     t.string   "video_url"
@@ -1521,6 +1526,10 @@ ActiveRecord::Schema.define(version: 20190722133302) do
     t.datetime "newsletter_token_used_at"
     t.integer  "failed_attempts",                           default: 0,                     null: false
     t.datetime "locked_at"
+    t.text     "access_key_generated"
+    t.text     "access_key_inserted"
+    t.date     "access_key_generated_at"
+    t.integer  "access_key_tried",                          default: 0
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["geozone_id"], name: "index_users_on_geozone_id", using: :btree
