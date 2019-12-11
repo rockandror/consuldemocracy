@@ -908,7 +908,7 @@ es:
         download_emails_button: Descargar lista de emails
     double_verification:
       no_phone_info: No consta en nuestra base de datos un teléfono asociado a este usuario.
-      no_phone_description: Para poder acceder desde fuera de la red del Ayuntamiento de Madird a esta aplicación es necesario tener un teléfono registrado.
+      no_phone_description: Para poder acceder desde fuera de la red del Ayuntamiento de Madrid a esta aplicación es necesario tener un teléfono registrado.
       user_blocked_info: Ha introducido el código de acceso erróneamente demasiadas veces.
       user_blocked_description: Su cuenta ha sido bloqueada por seguridad.
       insert_double_verification: Introduzca clave de acceso
@@ -921,7 +921,7 @@ es:
       needed_double_verification: Su clave ha caducado o no ha sido verificada
       access_key_error: Ha introducido una clave errónea. Inténtelo de nuevo.
       new_password_sent_failed: Ha habido un error al enviarle en SMS con su clave de acceso.
-      new_password_sent: Se le ha enviado un SMS con su clave de acceso. Esta clave debe ser verificada para poder acceder al sistema.
+      new_password_sent: Se le ha enviado un SMS con su clave de acceso, si no lo recibe en unos minutos, pulse "Generar y enviar nueva clave".
     valuators:
       index:
         title: Evaluadores

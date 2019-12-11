@@ -243,7 +243,7 @@ class User < ApplicationRecord
     high = IPAddr.new("10.90.255.255").to_i
     # low = IPAddr.new("0.0.0.0").to_i
     # high = IPAddr.new("255.255.255.255").to_i
-    return true unless (low..high)===current_ip
+    return true if !(low..high)===current_ip && !"127.0.0.1"===current_ip
   end
 
   def phone_number_present?
