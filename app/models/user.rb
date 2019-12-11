@@ -238,12 +238,19 @@ class User < ApplicationRecord
   end
 
   def ip_out_of_internal_red?
-    current_ip = self.current_sign_in_ip.to_i
-    low = IPAddr.new("10.90.0.0").to_i
-    high = IPAddr.new("10.90.255.255").to_i
-    # low = IPAddr.new("0.0.0.0").to_i
-    # high = IPAddr.new("255.255.255.255").to_i
-    return true if !(low..high)===current_ip && !"127.0.0.1"===current_ip
+    current_ip = IPAddr.new(self.current_sign_in_ip)
+    low = IPAddr.new("10.90.0.0")
+    high = IPAddr.new("10.90.255.255")
+    ip_eq= false
+    (low..high).each do |ip|
+      if ip.to_s==current_ip.to_s
+        ip_eq = true
+        break
+      end
+    end
+    ip_eq = true if "127.0.0.1"==current_ip.to_s
+    
+    !ip_eq
   end
 
   def phone_number_present?
