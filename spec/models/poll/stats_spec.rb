@@ -57,7 +57,14 @@ describe Poll::Stats do
   end
 
   describe "#total_web_white" do
-    pending "Too complex to test"
+    it "total_web_white_return_0" do
+      expect(stats.total_web_white).to eq(0)
+    end
+
+    it "total_web_white_proof" do
+      4.times { create(:poll_question, poll: poll) }
+      expect(stats.total_web_white).to eq(0)
+    end
   end
 
   describe "#total_web_null" do
