@@ -12,7 +12,6 @@
 <% content_for :canonical do %>
   <%= render "shared/canonical", href: proposal_url(@proposal) %>
 <% end %>
-
 <% cache [locale_and_user_status(@proposal),
           @proposal,
           @proposal.author,
