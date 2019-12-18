@@ -113,7 +113,7 @@ class Budget
 
     def self.filter_params(params)
       params.permit(:heading_id,:administrator_id,:tag_name,:valuator_or_group_id, :title_or_id, :min_total_supports,
-                    :advanced_filters => [:feasible,:selected, :undecided,:unfeasible])
+                    :advanced_filters => [])
     end
 
     def self.scoped_filter(params, current_filter)
