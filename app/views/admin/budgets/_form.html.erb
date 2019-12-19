@@ -1,7 +1,6 @@
 <%= render "admin/shared/globalize_locales", resource: @budget %>
 
 <%= translatable_form_for [:admin, @budget] do |f| %>
-
   <%= render "shared/errors", resource: @budget %>
 
   <div class="small-12 medium-9 column">
@@ -64,6 +63,12 @@
       </table>
     </div>
   <% end %>
+
+  <div class="small-12 column">
+    <%#= f.text_field :budget_link,
+        label: t("activerecord.attributes.budget.name"),
+        placeholder: t("activerecord.attributes.budget.name") %>
+  </div>
 
   <div class="small-12 column">
     <%= render "admin/shared/show_results_fields", form: f %>

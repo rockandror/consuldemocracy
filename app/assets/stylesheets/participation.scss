@@ -1254,9 +1254,8 @@
     &[class^="social-share-button-google"] {
       color: #ce3e26;
     }
-
-    &.social-share-button-telegram:hover {
-      color: #ce3e26;
+    &[class^="social-share-button-whatsapp"] {
+      color: #43d854;
     }
   }
 }

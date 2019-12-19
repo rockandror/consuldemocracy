@@ -578,6 +578,10 @@ table {
     &[class^="ssb-icon ssb-google"]:hover {
       color: #ce3e26;
     }
+
+    &.social-share-button-whatsapp:hover {
+      color: #2b9b20;
+    }
   }
 }
 
