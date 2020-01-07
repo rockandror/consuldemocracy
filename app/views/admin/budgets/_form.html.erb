@@ -20,6 +20,13 @@
       <%= f.select :currency_symbol, budget_currency_symbol_select_options %>
     </div>
   </div>
+  <div class="margin-top">
+    <div class="small-12 medium-6 column">
+      <%= f.text_field :budget_link,
+          label: t("activerecord.attributes.budget.url"),
+          placeholder: t("activerecord.attributes.budget.url") %>
+    </div>
+  </div>
 
   <% if @budget.phases.present? %>
     <div class="small-12 column">
@@ -63,12 +70,6 @@
       </table>
     </div>
   <% end %>
-
-  <div class="small-12 column">
-    <%#= f.text_field :budget_link,
-        label: t("activerecord.attributes.budget.name"),
-        placeholder: t("activerecord.attributes.budget.name") %>
-  </div>
 
   <div class="small-12 column">
     <%= render "admin/shared/show_results_fields", form: f %>

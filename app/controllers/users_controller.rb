@@ -55,6 +55,13 @@ class UsersController < ApplicationController
 
     def load_proposals
       @proposals = Proposal.created_by(@user).order(created_at: :desc).page(params[:page])
+      @p_hash = Hash.new
+      count = 0
+      @proposals.each do |p|
+        puts "--------> #{p.id}"
+        @p_hash[count] = p.id
+        count = count + 1
+      end
     end
 
     def load_debates
