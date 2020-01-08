@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190722133302) do
+ActiveRecord::Schema.define(version: 20200108211610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -878,6 +878,15 @@ ActiveRecord::Schema.define(version: 20190722133302) do
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.index ["status_id"], name: "index_milestones_on_status_id", using: :btree
+  end
+
+  create_table "moderated_texts", force: :cascade do |t|
+    t.string   "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "hidden_at"
+    t.index ["hidden_at"], name: "index_moderated_texts_on_hidden_at", using: :btree
+    t.index ["text"], name: "index_moderated_texts_on_text", unique: true, using: :btree
   end
 
   create_table "moderators", force: :cascade do |t|
