@@ -687,7 +687,7 @@ es:
         create: Crear nuevo texto
         import_csv: Importar CSV
         text: Texto
-        detected_incidents: Ocurrencias detectadas
+        no_texts: No hay palabras moderadas
     menu:
       activity: Actividad de moderadores
       admin: Menú de administración
