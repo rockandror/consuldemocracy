@@ -26,7 +26,7 @@ module AdminHelper
 
   def moderated_sections
     ["hidden_proposals", "debates", "comments", "hidden_users", "activity",
-     "hidden_budget_investments"]
+     "hidden_budget_investments", "moderated_texts"]
   end
 
   def menu_budgets?
