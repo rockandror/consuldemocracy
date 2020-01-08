@@ -43,7 +43,7 @@ class User < ApplicationRecord
 
   validates :official_level, inclusion: {in: 0..5}
   validates :terms_of_service, acceptance: { allow_nil: false }, on: :create
-  validates_format_of :phone_number, :with => /\A(\+34|0034|34)?[6|7|8|9][0-9]{8}\z/
+  validates_format_of :phone_number, :with => /\A(\+34|0034|34)?[6|7|8|9][0-9]{8}\z/, allow_blank: true
 
   validates_associated :organization, message: false
 
