@@ -657,6 +657,13 @@ es:
         delete: Borrar
       search:
         title: 'Gestores: Búsqueda de usuarios'
+    moderated_texts:
+      index:
+        title: Textos de moderación
+        create: Crear nuevo texto
+        import_csv: Importar CSV
+        text: Texto
+        detected_incidents: Ocurrencias detectadas
     menu:
       activity: Actividad de moderadores
       admin: Menú de administración
@@ -720,6 +727,7 @@ es:
       dashboard: Panel de progreso de propuestas
       administrator_tasks: Recursos solicitados
       dashboard_actions: Recursos y acciones
+      moderated_texts: Textos de moderación
     administrators:
       index:
         title: Administradores

@@ -658,6 +658,13 @@ en:
         delete: Delete
       search:
         title: 'Managers: User search'
+    moderated_texts:
+      index:
+        title: Moderated texts
+        create: Create new text
+        import_csv: Import CSV
+        text: Text
+        detected_incidents: Detected incidents
     menu:
       activity: Moderator activity
       admin: Admin menu
@@ -721,6 +728,7 @@ en:
       dashboard: Proposals dashboard
       administrator_tasks: Resources requested
       dashboard_actions: Resources and actions
+      moderated_texts: Moderated texts
     administrators:
       index:
         title: Administrators
