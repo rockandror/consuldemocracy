@@ -1,5 +1,7 @@
 class Admin::ModeratedTextsController < Admin::BaseController
 
-  def index; end
+  def index
+    @words = ModeratedText.all
+  end
 
 end

@@ -5,13 +5,25 @@
             class: "button hollow float-right" %>
 
 <%= link_to t("admin.moderated_texts.index.create"),
-            "#",
+            new_admin_moderated_text_path,
             class: "button float-right" %>
 
-<table>
-  <thead>
-    <th class="small-5"><%= t("admin.moderated_texts.index.text") %></th>
-    <th class="text-center"><%= t("admin.moderated_texts.index.detected_incidents") %></th>
-    <th><%= t("admin.actions.actions") %></th>
-  </thead>
-</table>
+<% if @words.any? %>
+  <table>
+    <thead>
+      <th class="small-5"><%= t("admin.moderated_texts.index.text") %></th>
+      <th class="text-right"><%= t("admin.actions.actions") %></th>
+    </thead>
+    <tbody>
+      <% @words.each do |word| %>
+        <tr>
+          <td><%= word.text %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="callout primary">
+    <%= t("admin.moderated_texts.index.no_texts") %>
+  </div>
+<% end %>
