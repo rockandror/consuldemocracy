@@ -664,7 +664,7 @@ en:
         create: Create new text
         import_csv: Import CSV
         text: Text
-        detected_incidents: Detected incidents
+        no_texts: There are no moderated words
     menu:
       activity: Moderator activity
       admin: Admin menu
