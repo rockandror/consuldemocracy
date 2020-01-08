@@ -1,6 +1,6 @@
 namespace :admin do
   root to: "dashboard#index"
-  
+
   resources :organizations, only: :index do
     get :search, on: :collection
     member do
@@ -42,6 +42,8 @@ namespace :admin do
       put :confirm_hide
     end
   end
+
+  resources :moderated_texts
 
   resources :proposal_notifications, only: :index do
     member do

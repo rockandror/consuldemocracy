@@ -134,6 +134,10 @@
         <strong><%= t("admin.menu.title_moderated_content") %></strong>
       </a>
       <ul <%= "class=is-active" if menu_moderated_content? %>>
+        <li <%= "class=is-active" if controller_name == "moderated_texts" %>>
+          <%= link_to t("admin.menu.moderated_texts"), admin_moderated_texts_path %>
+        </li>
+
         <% if feature?(:proposals) %>
           <li <%= "class=is-active" if controller_name == "hidden_proposals" %>>
             <%= link_to t("admin.menu.hidden_proposals"), admin_hidden_proposals_path %>
