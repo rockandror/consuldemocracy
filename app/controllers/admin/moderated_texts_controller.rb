@@ -4,4 +4,8 @@ class Admin::ModeratedTextsController < Admin::BaseController
     @words = ModeratedText.all
   end
 
+  def new
+    @word = ModeratedText.new
+  end
+
 end
