@@ -673,6 +673,7 @@ es:
         error: No se ha podido crear el texto
       destroy:
         alert: Esta acción eliminará esta palabra.
+        notice: Palabra eliminada exitosamente.
     menu:
       activity: Actividad de moderadores
       admin: Menú de administración
