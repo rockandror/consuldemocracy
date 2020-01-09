@@ -18,6 +18,17 @@
       <% @words.each do |word| %>
         <tr>
           <td><%= word.text %></td>
+          <td class="text-right">
+            <%= link_to t("admin.actions.edit"),
+                        "#",
+                        class: "button hollow" %>
+
+            <%= link_to t("admin.actions.delete"),
+                        admin_moderated_text_path(word),
+                        method: :delete,
+                        "data-confirm": t("admin.moderated_texts.destroy.alert"),
+                        class: "button hollow alert" %>
+          </td>
         </tr>
       <% end %>
     </tbody>

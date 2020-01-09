@@ -694,6 +694,8 @@ es:
       create:
         notice: Texto creado correctamente
         error: No se ha podido crear el texto
+      destroy:
+        alert: Esta acción eliminará esta palabra.
     menu:
       activity: Actividad de moderadores
       admin: Menú de administración
