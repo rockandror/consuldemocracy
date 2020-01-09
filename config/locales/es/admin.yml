@@ -668,6 +668,9 @@ es:
       new:
         title: Nuevo texto
         submit_button: Crear texto
+      create:
+        notice: Texto creado correctamente
+        error: No se ha podido crear el texto
     menu:
       activity: Actividad de moderadores
       admin: Menú de administración
