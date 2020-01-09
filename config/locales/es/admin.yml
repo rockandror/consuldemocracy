@@ -664,6 +664,9 @@ es:
         import_csv: Importar CSV
         text: Texto
         no_texts: No hay palabras moderadas
+      new:
+        title: Nuevo texto
+        submit_button: Crear texto
     menu:
       activity: Actividad de moderadores
       admin: Menú de administración
