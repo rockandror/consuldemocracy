@@ -1,4 +1,5 @@
 class Admin::ModeratedTextsController < Admin::BaseController
+  before_action :load_word, only: :destroy
 
   def index
     @words = ModeratedText.all
@@ -20,10 +21,19 @@ class Admin::ModeratedTextsController < Admin::BaseController
     end
   end
 
+  def destroy
+    @word.destroy
+    redirect_to admin_moderated_texts_path, notice: t("admin.moderated_texts.destroy.notice")
+  end
+
   private
 
     def moderated_text_params
       params.require(:moderated_text).permit(:text)
+    end
+
+    def load_word
+      @word = ModeratedText.find(params[:id])
     end
 
 end
