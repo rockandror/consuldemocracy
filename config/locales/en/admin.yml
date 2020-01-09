@@ -666,6 +666,14 @@ en:
         import_csv: Import CSV
         text: Text
         no_texts: There are no moderated words
+      new:
+        title: New text
+        submit_button: Create text
+      create:
+        notice: Text created successfully
+        error: An error prevented this text from being created
+      destroy:
+        alert: This action will delete this word.
     menu:
       activity: Moderator activity
       admin: Admin menu
