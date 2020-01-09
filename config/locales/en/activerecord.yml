@@ -126,6 +126,9 @@ en:
       link:
         one: Link
         other: Links
+      moderated_text:
+        one: Moderated text
+        other: Moderated texts
     attributes:
       budget:
         name: "Name"
@@ -356,6 +359,8 @@ en:
       link:
         label: Title
         url: Link
+      moderated_text:
+        text: Text
     errors:
       models:
         user:
