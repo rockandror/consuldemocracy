@@ -1,6 +1,6 @@
 section "Creating Users" do
   def create_user(email, username = Faker::Name.name)
-    pwd = "12345678"
+    pwd = Rails.application.secrets.password_config
     User.create!(
       username:               username,
       email:                  email,
