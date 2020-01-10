@@ -1,4 +1,35 @@
 namespace :users do
+  
+
+  desc "Generate admin user"
+  task admin: :environment do
+
+    document_number ||= 12345678
+    document_number += 1
+      
+    pwd = "12345678"
+    admin = User.create!(
+      username:               "admin",
+      email:                  "admin@madrid.es",
+      password:               pwd,
+      password_confirmation:  pwd,
+      confirmed_at:           Time.current,
+      terms_of_service:       "1",
+      gender:                 ["Male", "Female"].sample,
+      date_of_birth:          rand((Time.current - 80.years)..(Time.current - 16.years)),
+      public_activity:        (rand(1..100) > 30)
+    )
+    
+    
+    admin.create_administrator
+    admin.update(residence_verified_at: Time.current,
+                 confirmed_phone: Faker::PhoneNumber.phone_number, document_type: "1",
+                 verified_at: Time.current, document_number: "#{document_number}#{[*"A".."Z"].sample}")
+    admin.create_poll_officer
+  end
+
+
+
 
   desc "Recalculates all the failed census calls counters for users"
   task count_failed_census_calls: :environment do

@@ -3,6 +3,7 @@
 <%= render "shared/filter_subnav", i18n_namespace: "moderation.proposals.index" %>
 
 <h3 class="inline-block"><%= page_entries_info @proposals %></h3>
+
 <div class="float-right">
   <%= t("moderation.proposals.index.order") %>
   <%= render "shared/order_selector", i18n_namespace: "moderation.proposals.index" %>
@@ -15,6 +16,7 @@
     |
     <%= link_to t("shared.check_none"), "#", data: { check_none: "proposal_ids[]" } %>
   </p>
+
 
   <table class="clear">
     <thead>
@@ -30,7 +32,7 @@
           <td>
             <%= link_to proposal.title, proposal, target: "_blank" %>
             <br>
-            <span class="date"><%= l proposal.updated_at.to_date %></span>
+            <span class="date"><%= l proposal.created_at.to_date %></span>
             <span class="bullet">&nbsp;&bull;&nbsp;</span>
             <%= proposal.flags_count %><span class="icon-flag flag-disable"></span>
             <span class="bullet">&nbsp;&bull;&nbsp;</span>
