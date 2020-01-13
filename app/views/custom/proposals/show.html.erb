@@ -20,9 +20,21 @@
   <div class="proposal-show">
     <div id="<%= dom_id(@proposal) %>" class="row">
       <div class="small-12 medium-9 column">
-        <%= back_link_to proposals_path unless preview %>
-        <button type="button" class="alert button">Anterior Propuesta</button>
-        <button type="button" class="success  button">Siguiente Propuesta</button>
+        
+        
+        <%unless params[:author_id].blank? %>
+          <%= back_link_to user_path(current_user) %>
+          <%if @proposal.previous(params[:author_id]) %>
+            <%= link_to 'previous', proposal_path(@proposal.previous(params[:author_id]), author_id: params[:author_id]), :class => "btn icon-ok icon-black" %>
+               
+          <%end%>
+          <%if @proposal.next(params[:author_id]) %>
+            <%= link_to 'next', proposal_path(@proposal.next(params[:author_id]), author_id: params[:author_id]), :class => "btn icon-ok icon-black" %>
+              
+          <% end%>
+          <%else%>
+             <%= back_link_to proposals_path unless preview %>
+        <%end%>
         <h1><%= @proposal.title %></h1>
         <% if @proposal.retired? %>
           <div data-alert class="callout alert margin-top proposal-retired">

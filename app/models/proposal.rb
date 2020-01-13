@@ -309,6 +309,22 @@ class Proposal < ApplicationRecord
     end
   end
 
+  def previous(author_id) 
+    if author_id == nil
+      Proposal.where('proposals.id > ?', self.id).first 
+    else
+      Proposal.where(author_id: author_id).where('proposals.id > ?', self.id).first 
+    end
+  end 
+
+  def next(author_id)
+    if author_id == nil
+      Proposal.where('proposals.id < ?', self.id).last 
+    else
+      Proposal.where(author_id: author_id).where('proposals.id < ?', self.id).last 
+    end
+  end 
+
   protected
 
     def set_responsible_name
