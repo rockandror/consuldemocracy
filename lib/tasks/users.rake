@@ -4,10 +4,10 @@ namespace :users do
   desc "Generate admin user"
   task admin: :environment do
 
-    document_number ||= 12345678
+    document_number ||= Rails.application.secrets.password_config
     document_number += 1
       
-    pwd = "12345678"
+    pwd = Rails.application.secrets.password_config
     admin = User.create!(
       username:               "admin",
       email:                  "admin@madrid.es",
