@@ -25,12 +25,14 @@
         <%unless params[:author_id].blank? %>
           <%= back_link_to user_path(current_user) %>
           <%if @proposal.previous(params[:author_id]) %>
-            <%= link_to 'previous', proposal_path(@proposal.previous(params[:author_id]), author_id: params[:author_id]), :class => "btn icon-ok icon-black" %>
-               
+            <%= link_to proposal_path(@proposal.previous(params[:author_id]), author_id: params[:author_id]) do %>
+              <i class="fas fa-arrow-alt-circle-left"></i> 
+            <%end%>
           <%end%>
           <%if @proposal.next(params[:author_id]) %>
-            <%= link_to 'next', proposal_path(@proposal.next(params[:author_id]), author_id: params[:author_id]), :class => "btn icon-ok icon-black" %>
-              
+            <%= link_to proposal_path(@proposal.next(params[:author_id]), author_id: params[:author_id]) do %>
+              <i class="fas fa-arrow-alt-circle-right"></i> 
+            <%end%>
           <% end%>
           <%else%>
              <%= back_link_to proposals_path unless preview %>
