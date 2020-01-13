@@ -23,7 +23,7 @@ namespace :users do
     
     admin.create_administrator
     admin.update(residence_verified_at: Time.current,
-                 confirmed_phone: Faker::PhoneNumber.phone_number, document_type: "1",
+                 confirmed_phone: "666666666", document_type: "1",
                  verified_at: Time.current, document_number: "#{document_number}#{[*"A".."Z"].sample}")
     admin.create_poll_officer
   end
