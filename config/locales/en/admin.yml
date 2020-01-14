@@ -674,6 +674,11 @@ en:
       destroy:
         alert: This action will delete this word.
         notice: Word successfully deleted.
+      imports:
+        index:
+          title: Import from a CSV file
+        create:
+          notice: The uploaded file was successfully processed
     menu:
       activity: Moderator activity
       admin: Admin menu

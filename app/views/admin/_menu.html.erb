@@ -134,7 +134,7 @@
         <strong><%= t("admin.menu.title_moderated_content") %></strong>
       </a>
       <ul <%= "class=is-active" if menu_moderated_content? %>>
-        <li <%= "class=is-active" if controller_name == "moderated_texts" %>>
+        <li <%= "class=is-active" if submenu_moderated_texts_imports? %>>
           <%= link_to t("admin.menu.moderated_texts"), admin_moderated_texts_path %>
         </li>
 

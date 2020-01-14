@@ -26,7 +26,7 @@ module AdminHelper
 
   def moderated_sections
     ["hidden_proposals", "debates", "comments", "hidden_users", "activity",
-     "hidden_budget_investments", "moderated_texts"]
+     "hidden_budget_investments", "moderated_texts", "imports"]
   end
 
   def menu_budgets?
@@ -66,6 +66,11 @@ module AdminHelper
 
   def menu_dashboard?
     ["actions", "administrator_tasks"].include?(controller_name)
+  end
+
+  def submenu_moderated_texts_imports?
+    controller_name == "moderated_texts" ||
+    (controller_name == "imports" && controller.class.parent == Admin::ModeratedTexts)
   end
 
   def official_level_options

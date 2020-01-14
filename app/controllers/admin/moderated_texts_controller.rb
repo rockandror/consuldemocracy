@@ -1,6 +1,8 @@
 class Admin::ModeratedTextsController < Admin::BaseController
   before_action :load_word, only: :destroy
 
+  load_and_authorize_resource class: "ModeratedText"
+
   def index
     @words = ModeratedText.all
   end
