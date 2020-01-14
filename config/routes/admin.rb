@@ -44,6 +44,9 @@ namespace :admin do
   end
 
   resources :moderated_texts
+  namespace :moderated_texts do
+    resources :imports, only: [:new, :create]
+  end
 
   resources :proposal_notifications, only: :index do
     member do
