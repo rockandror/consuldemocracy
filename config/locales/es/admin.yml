@@ -697,6 +697,11 @@ es:
       destroy:
         alert: Esta acción eliminará esta palabra.
         notice: Palabra eliminada exitosamente.
+      imports:
+        index:
+          title: Importar desde un archivo CSV
+        create:
+          notice: Su archivo ha sido procesado exitosamente.
     menu:
       activity: Actividad de moderadores
       admin: Menú de administración
