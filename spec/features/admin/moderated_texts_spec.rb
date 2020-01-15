@@ -28,6 +28,26 @@ feature "Moderated texts", type: :feature do
     end
   end
 
+  context "Edit" do
+    scenario "Updates an existing word" do
+      word = create(:moderated_text)
+
+      visit admin_moderated_texts_path
+      expect(page).to have_content("bad word")
+
+      within "#moderated_text_#{word.id}" do
+        click_link "Edit"
+      end
+
+      fill_in "moderated_text_text", with: "disgusting word"
+      click_button "Modify word"
+
+      expect(page).to have_content("disgusting word")
+      expect(page).not_to have_content("bad word")
+      expect(page).to have_content("Word modified successfully")
+    end
+  end
+
   context "Delete" do
     background do
       bad_word = create(:moderated_text)
