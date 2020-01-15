@@ -672,6 +672,12 @@ en:
       create:
         notice: Text created successfully
         error: An error prevented this text from being created
+      edit:
+        title: Edit moderated word
+        submit_button: Modify word
+      update:
+        notice: Word modified successfully
+        error: An error has ocurred while modifying this word. Please, try again
       destroy:
         alert: This action will delete this word.
         notice: Word successfully deleted.

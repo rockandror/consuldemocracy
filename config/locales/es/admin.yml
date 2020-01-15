@@ -694,6 +694,12 @@ es:
       create:
         notice: Texto creado correctamente
         error: No se ha podido crear el texto
+      edit:
+        title: Editar palabra moderada
+        submit_button: Modificar palabra
+      update:
+        notice: Palabra modificada exitosamente
+        error: Ha ocurrido un error al modificar esta palabra. Por favor, intente nuevamente
       destroy:
         alert: Esta acción eliminará esta palabra.
         notice: Palabra eliminada exitosamente.
