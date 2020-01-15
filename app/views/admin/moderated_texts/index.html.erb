@@ -16,11 +16,11 @@
     </thead>
     <tbody>
       <% @words.each do |word| %>
-        <tr>
+        <tr id="<%= dom_id(word) %>">
           <td><%= word.text %></td>
           <td class="text-right">
             <%= link_to t("admin.actions.edit"),
-                        "#",
+                        edit_admin_moderated_text_path(word),
                         class: "button hollow" %>
 
             <%= link_to t("admin.actions.delete"),
