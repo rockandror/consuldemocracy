@@ -1,0 +1,48 @@
+require "rails_helper"
+
+feature "Moderated texts import", type: :feature do
+  background do
+    admin = create(:administrator)
+    login_as(admin.user)
+  end
+
+  context "New" do
+    scenario "renders upload form" do
+      visit admin_moderated_texts_path
+      click_link "Import CSV"
+
+      expect(page).to have_content("Import from a CSV file")
+      expect(page).to have_field("moderated_texts_import_file", type: "file")
+    end
+
+    scenario "shows an error if no file is selected" do
+      visit new_admin_moderated_texts_import_path
+      click_button "Save"
+      expect(page).to have_content("can't be blank")
+    end
+
+    scenario "shows an error if an invalid file type is uploaded" do
+      visit new_admin_moderated_texts_import_path
+
+      path = "spec/fixtures/files/clippy.gif"
+      attach_file("moderated_texts_import_file", Rails.root.join(path))
+      click_button "Save"
+
+      expect(page).to have_content("The file you're trying to upload is invalid. It must be in .csv format.")
+    end
+
+    scenario "file uploads successfully" do
+      visit new_admin_moderated_texts_import_path
+
+      path = "spec/fixtures/files/moderated_texts/import/valid.csv"
+      attach_file("moderated_texts_import_file", Rails.root.join(path))
+      click_button "Save"
+
+      expect(page).to have_content("The uploaded file was successfully processed")
+      expect(page).to have_content("culo")
+      expect(page).to have_content("cabron")
+      expect(page).to have_content("mierda")
+      expect(page).to have_content("imbecil")
+    end
+  end
+end
