@@ -934,6 +934,18 @@ ActiveRecord::Schema.define(version: 20200608072147) do
     t.index ["status_id"], name: "index_milestones_on_status_id", using: :btree
   end
 
+  create_table "moderated_contents", force: :cascade do |t|
+    t.string   "moderable_type"
+    t.integer  "moderated_text_id"
+    t.integer  "moderable_id"
+    t.datetime "confirmed_at"
+    t.datetime "declined_at"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["moderable_type", "moderable_id"], name: "index_moderated_contents_on_moderable_type_and_moderable_id", using: :btree
+    t.index ["moderated_text_id"], name: "index_moderated_contents_on_moderated_text_id", using: :btree
+  end
+
   create_table "moderated_texts", force: :cascade do |t|
     t.string   "text"
     t.datetime "created_at", null: false
