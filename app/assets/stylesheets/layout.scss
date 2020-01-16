@@ -1595,12 +1595,55 @@ table {
   }
 }
 
+// .button.button-whatsapp {
+//   background: #ebeef4;
+//   border-left: 3px solid #43d854;
+
+//   &::before {
+//     color: #43d854;
+//     content: "A";
+//     font-family: "icons" !important;
+//     font-size: rem-calc(24);
+//     left: 0;
+//     line-height: $line-height * 2;
+//     padding: 0 rem-calc(20);
+//     position: absolute;
+//     top: 0;
+//   }
+// }
+
+// .icon-whatsapp {
+//   background: #43d854;
+//   background-image: none !important;
+//   color: #fff;
+//   height: rem-calc(48) !important;
+//   position: relative;
+//   width: rem-calc(48) !important;
+
+//   &::before {
+//     content: "P";
+//     font-family: "icons" !important;
+//     font-size: rem-calc(24);
+//     left: 50%;
+//     line-height: $line-height * 2;
+//     margin-left: rem-calc(-11);
+//     position: absolute;
+//     top: 0;
+//   }
+
+//   &:hover,
+//   &:focus {
+//     background: #fff;
+//     color: #43d854;
+//   }
+// }
+
 .button.button-linkedin {
   background: #ebeef4;
-  border-left: 3px solid #3b5998;
+  border-left: 3px solid #0e76a8;
 
   &::before {
-    color: #3b5998;
+    color: #0e76a8;
     content: "#";
     font-family: "icons" !important;
     font-size: rem-calc(24);
@@ -1613,7 +1656,7 @@ table {
 }
 
 .ssb-linkedin {
-  background: #15aabf;
+  background: #0e76a8;
   background-image: none !important;
   color: #fff;
   height: $line-height * 2 !important;
@@ -1634,7 +1677,7 @@ table {
   &:hover,
   &:focus {
     background: #fff;
-    color: #40a2d1;
+    color: #0e76a8;
   }
 } 
 
@@ -1859,7 +1902,7 @@ table {
     width: $line-height * 2;
 
     &::before {
-      content: "f105";
+      content: "#";
       font-family: "icons" !important;
       font-size: rem-calc(24);
       left: 50%;

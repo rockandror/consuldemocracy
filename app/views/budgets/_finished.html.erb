@@ -25,8 +25,8 @@
                                 budget_executions_path(budget),
                                 class: "button" %>
                   <% end %>
-                  <% if can?(:read_executions, budget) %>
-                    <%= link_to t("budgets.index.milestones"),
+                  <% if budget.budget_link_enabled && !budget.budget_link.blank?%>
+                    <%= link_to t("budgets.index.budget_2016"),
                                 budget.budget_link,
                                 class: "button" %>
                   <% end %>
