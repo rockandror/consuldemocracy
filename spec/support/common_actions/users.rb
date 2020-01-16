@@ -1,5 +1,5 @@
 module Users
-  def sign_up(email = "manuela@consul.dev", password = "judgementday")
+  def sign_up(email = "manuela@consul.dev", password = Rails.application.secrets.password_hidden)
     visit "/"
 
     click_link "Register"
@@ -13,7 +13,7 @@ module Users
     click_button "Register"
   end
 
-  def login_through_form_with_email_and_password(email="manuela@consul.dev", password="judgementday")
+  def login_through_form_with_email_and_password(email="manuela@consul.dev", password=Rails.application.secrets.password_hidden)
     visit root_path
     click_link "Sign in"
 
