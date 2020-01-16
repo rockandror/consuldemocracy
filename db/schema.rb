@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190722133302) do
+ActiveRecord::Schema.define(version: 20191220110217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -353,6 +353,8 @@ ActiveRecord::Schema.define(version: 20190722133302) do
     t.text     "description_drafting"
     t.text     "description_publishing_prices"
     t.text     "description_informing"
+    t.text     "budget_link"
+    t.boolean  "budget_link_enabled",                      default: false
   end
 
   create_table "campaigns", force: :cascade do |t|
@@ -524,11 +526,6 @@ ActiveRecord::Schema.define(version: 20190722133302) do
     t.index ["documentable_type", "documentable_id"], name: "index_documents_on_documentable_type_and_documentable_id", using: :btree
     t.index ["user_id", "documentable_type", "documentable_id"], name: "access_documents", using: :btree
     t.index ["user_id"], name: "index_documents_on_user_id", using: :btree
-  end
-
-  create_table "double_verifications", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "failed_census_calls", force: :cascade do |t|
@@ -1326,8 +1323,8 @@ ActiveRecord::Schema.define(version: 20190722133302) do
     t.boolean  "results"
     t.string   "process_type"
     t.integer  "process_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.boolean  "advanced_stats"
     t.boolean  "executions",     default: true
     t.index ["process_type", "process_id"], name: "index_reports_on_process_type_and_process_id", using: :btree
