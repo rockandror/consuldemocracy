@@ -286,7 +286,7 @@ class User < ApplicationRecord
     if self.access_key_generated_at.present?
       date1= Time.zone.now
       date2= self.access_key_generated_at
-      (date1.year * 12 + date1.month) - (date2.year * 12 + date2.month) > Setting.find_by(key: "months_to_double_verification").try(:value).to_i
+      ((date2.to_time - date1.to_time)/1.month.second).to_i.abs > Setting.find_by(key: "months_to_double_verification").try(:value).to_i
     else
       true
     end
