@@ -4,6 +4,8 @@ class ModeratedText < ApplicationRecord
   acts_as_paranoid column: :hidden_at
   include ActsAsParanoidAliases
 
-  validates :text, presence: true, uniqueness: true
+  has_many :comments, through: :moderated_contents, as: :moderable
+  has_many :moderated_contents, dependent: :destroy, as: :moderable
 
+  validates :text, presence: true, uniqueness: true
 end
