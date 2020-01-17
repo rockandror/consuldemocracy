@@ -54,4 +54,10 @@ namespace :settings do
   task add_new_settings: :environment do
     Setting.add_new_settings
   end
+
+
+  desc "Add new settings"
+  task add_stting_mount: :environment do
+    Setting.create(:key => "months_to_double_verification", :value => 3)
+  end
 end
