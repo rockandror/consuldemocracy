@@ -258,8 +258,8 @@ class User < ApplicationRecord
   end
 
   def double_verification?
-    return true if !ip_out_of_internal_red? && self.try(:administrator?)
-    ip_out_of_internal_red? && self.try(:administrator?) && access_key_inserted_correct? && !required_new_password? && (self.try(:access_key_tried) < 3)
+    return true if !self.ip_out_of_internal_red? && self.administrator?
+    self.ip_out_of_internal_red? && self.try(:administrator?) && self.access_key_inserted_correct? && !required_new_password? && (self.try(:access_key_tried) < 3)
   end
 
   def encrypt_access_key(access_key)
@@ -279,14 +279,16 @@ class User < ApplicationRecord
   end
 
   def access_key_inserted_correct?
-      self.access_key_generated.to_s == self.access_key_inserted.to_s
+    decrypt_access_key(self.access_key_generated.to_s) == decrypt_access_key(self.access_key_inserted.to_s)
   end
 
   def required_new_password?
     if self.access_key_generated_at.present?
       date1= Time.zone.now
       date2= self.access_key_generated_at
-      ((date2.to_time - date1.to_time)/1.month.second).to_i.abs > Setting.find_by(key: "months_to_double_verification").try(:value).to_i
+      monts_verifiqued = Setting.find_by(key: "months_to_double_verification").try(:value).blank? ? 3 : Setting.find_by(key: "months_to_double_verification").try(:value).to_i
+
+      ((date2.to_time - date1.to_time)/1.month.second).to_i.abs > monts_verifiqued
     else
       true
     end
