@@ -279,7 +279,7 @@ class User < ApplicationRecord
   end
 
   def access_key_inserted_correct?
-      decrypt_access_key(self.access_key_generated.to_s) == decrypt_access_key(self.access_key_inserted.to_s)
+      self.access_key_generated.to_s == self.access_key_inserted.to_s
   end
 
   def required_new_password?
