@@ -685,6 +685,22 @@ en:
           title: Import from a CSV file
         create:
           notice: The uploaded file was successfully processed
+    auto_moderated_content:
+      index:
+        title: Automatically moderated content
+        no_moderations: No comments have been automatically moderated
+        comment: Comment
+        kind: Kind
+        moderated_text: Moderated text
+        author: Author
+        buttons:
+          filter: Filter
+          show_again: Show again
+          confirm_moderation: Confirm moderation
+        filters:
+          all: All
+          confirmed_moderation: Confirmed moderation
+          declined_moderation: Declined moderation
     menu:
       activity: Moderator activity
       admin: Admin menu
@@ -749,6 +765,7 @@ en:
       administrator_tasks: Resources requested
       dashboard_actions: Resources and actions
       moderated_texts: Moderated texts
+      auto_moderated_content: Automatically moderated content
     administrators:
       index:
         title: Administrators

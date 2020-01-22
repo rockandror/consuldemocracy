@@ -684,6 +684,22 @@ es:
           title: Importar desde un archivo CSV
         create:
           notice: Su archivo ha sido procesado exitosamente.
+    auto_moderated_content:
+      index:
+        title: Contenido moderado automáticamente
+        no_moderations: Ningún comentario ha sido moderado automáticamente
+        comment: Comentario
+        kind: Clase
+        moderated_text: Texto moderado
+        author: Autor
+        buttons:
+          filter: Filtrar
+          show_again: Volver a mostrar
+          confirm_moderation: Confirmar moderación
+        filters:
+          all: Todos los comentarios
+          confirmed_moderation: Confirmada la moderación
+          declined_moderation: Declinada la moderación
     menu:
       activity: Actividad de moderadores
       admin: Menú de administración
@@ -748,6 +764,7 @@ es:
       administrator_tasks: Recursos solicitados
       dashboard_actions: Recursos y acciones
       moderated_texts: Textos de moderación
+      auto_moderated_content: Contenido moderado automáticamente
     administrators:
       index:
         title: Administradores
