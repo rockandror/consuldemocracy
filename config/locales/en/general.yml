@@ -198,6 +198,7 @@ en:
     document: Document
     topic: Topic
     image: Image
+    comment: Comment
   geozones:
     none: All city
   layouts:
