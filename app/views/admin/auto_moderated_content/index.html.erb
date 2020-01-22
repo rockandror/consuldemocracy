@@ -1,0 +1,56 @@
+<h2 class="inline-block">
+  <%= t("admin.auto_moderated_content.index.title") %>
+</h2>
+
+<%= form_tag(admin_auto_moderated_content_index_path, method: :get, enforce_utf8: false) do %>
+  <div class="small-12 medium-3 column">
+    <%= select_tag :moderation_status, options_for_select(
+      [
+        [t("admin.auto_moderated_content.index.filters.confirmed_moderation"), "confirmed"],
+        [t("admin.auto_moderated_content.index.filters.declined_moderation"), "declined"]
+      ], params[:moderation_status]), { prompt: t("admin.auto_moderated_content.index.filters.all"), label: false } %>
+  </div>
+
+  <div class="small-12 medium-3 column end">
+    <%= submit_tag t("admin.auto_moderated_content.index.buttons.filter"), class: "button expanded" %>
+  </div>
+<% end %>
+
+<% if @moderated_comments.any? %>
+  <table>
+    <thead>
+      <th><%= t("admin.auto_moderated_content.index.comment") %></th>
+      <th><%= t("admin.auto_moderated_content.index.kind") %></th>
+      <th><%= t("admin.auto_moderated_content.index.moderated_text") %></th>
+      <th><%= t("admin.auto_moderated_content.index.author") %></th>
+      <th class="text-right"><%= t("admin.actions.actions") %></th>
+    </thead>
+    <tbody>
+      <% @moderated_comments.each do |comment| %>
+        <tr id="<%= dom_id(comment) %>">
+          <td><%= comment.body %></td>
+          <td><%= t("form.#{comment.class.to_s.underscore}") %></td>
+          <% comment.moderated_texts.each do |mt| %>
+            <td><%= mt.text %></td>
+          <% end %>
+          <td><%= comment.author.name %></td>
+          <td class="text-right">
+            <%= link_to t("admin.auto_moderated_content.index.buttons.show_again"),
+                        "#",
+                        method: :put,
+                        class: "button hollow success" %>
+
+            <%= link_to t("admin.auto_moderated_content.index.buttons.confirm_moderation"),
+                        "#",
+                        method: :put,
+                        class: "button" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="callout primary">
+    <%= t("admin.auto_moderated_content.index.no_moderations") %>
+  </div>
+<% end %>

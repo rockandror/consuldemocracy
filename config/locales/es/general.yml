@@ -208,6 +208,7 @@ es:
     document: el documento
     topic: Tema
     image: Imagen
+    comment: Comentario
   geozones:
     none: Toda la ciudad
   layouts:
