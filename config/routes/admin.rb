@@ -48,6 +48,8 @@ namespace :admin do
     resources :imports, only: [:new, :create]
   end
 
+  resources :auto_moderated_content, controller: :auto_moderated_content, only: :index
+
   resources :proposal_notifications, only: :index do
     member do
       put :restore
