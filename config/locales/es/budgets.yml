@@ -60,6 +60,7 @@ es:
         title: Ayuda sobre presupuestos participativos
         description: Con los presupuestos participativos la ciudadanía decide a qué proyectos va destinada una parte del presupuesto.
       milestones: Seguimiento de proyectos
+      budget_2016: Presupuestos municipales 2016
     investments:
       form:
         tag_category_label: "Categorías"

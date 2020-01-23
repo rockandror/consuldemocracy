@@ -1497,7 +1497,9 @@ table {
 .button.button-twitter,
 .button.button-facebook,
 .button.button-google,
-.button.button-telegram {
+.button.button-telegram,
+.button.button-linkedin,
+.button.button-whatsapp {
   background: #fff;
   color: $text;
   font-weight: bold;
@@ -1593,6 +1595,92 @@ table {
   }
 }
 
+.button.button-whatsapp {
+  background: #ebeef4;
+  border-left: 3px solid #43d854;
+
+  &::before {
+    color: #43d854;
+    content: "A";
+    font-family: "icons" !important;
+    font-size: rem-calc(24);
+    left: 0;
+    line-height: $line-height * 2;
+    padding: 0 rem-calc(20);
+    position: absolute;
+    top: 0;
+  }
+}
+
+.ssb-whatsapp {
+  background: #43d854;
+  background-image: none !important;
+  color: #fff;
+  height: rem-calc(48) !important;
+  position: relative;
+  width: rem-calc(48) !important;
+
+  &::before {
+    content: "P";
+    font-family: "icons" !important;
+    font-size: rem-calc(24);
+    left: 50%;
+    line-height: $line-height * 2;
+    margin-left: rem-calc(-11);
+    position: absolute;
+    top: 0;
+  }
+
+  &:hover,
+  &:focus {
+    background: #fff;
+    color: #43d854;
+  }
+}
+
+.button.button-linkedin {
+  background: #ebeef4;
+  border-left: 3px solid #0e76a8;
+
+  &::before {
+    color: #0e76a8;
+    content: "#";
+    font-family: "icons" !important;
+    font-size: rem-calc(24);
+    left: 0;
+    line-height: $line-height * 2;
+    padding: 0 rem-calc(20);
+    position: absolute;
+    top: 0;
+  }
+}
+
+.ssb-linkedin {
+  background: #0e76a8;
+  background-image: none !important;
+  color: #fff;
+  height: $line-height * 2 !important;
+  position: relative;
+  width: $line-height * 2 !important;
+
+  &::before {
+    content: '#';
+    font-family: "icons" !important;
+    font-size: rem-calc(24);
+    left: 50%;
+    line-height: $line-height * 2;
+    margin-left: rem-calc(-11);
+    position: absolute;
+    top: 0;
+  }
+
+  &:hover,
+  &:focus {
+    background: #fff;
+    color: #0e76a8;
+  }
+} 
+
 .button.button-google {
   background: #fcedea;
   border-left: 3px solid #de4c34;
@@ -1681,10 +1769,10 @@ table {
 
 @include breakpoint(medium) {
 
-  .button.button-telegram,
-  .ssb-telegram {
-    display: none !important;
-  }
+  // .button.button-telegram,
+  // .ssb-telegram {
+  //   display: none !important;
+  // }
 }
 
 .social {
@@ -1791,6 +1879,30 @@ table {
 
     &::before {
       content: "1";
+      font-family: "icons" !important;
+      font-size: rem-calc(24);
+      left: 50%;
+      line-height: $line-height * 2;
+      margin-left: rem-calc(-11);
+      position: absolute;
+      top: 0;
+    }
+
+    &:hover,
+    &:focus {
+      background: #fff;
+      color: #40a2d1;
+    }
+  }
+  .ssb-linkedin {
+    background: #08c;
+    color: #fff;
+    height: $line-height;
+    position: relative;
+    width: $line-height * 2;
+
+    &::before {
+      content: "#";
       font-family: "icons" !important;
       font-size: rem-calc(24);
       left: 50%;

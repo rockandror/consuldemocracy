@@ -6,7 +6,6 @@
   <div class="panel <%= ("with-image" if feature?(:allow_images) && proposal.image.present?) %>">
     <div class="icon-successful"></div>
     <div class="icon-human-rights"></div>
-
     <% if feature?(:allow_images) && proposal.image.present? %>
       <div class="row" data-equalizer>
 

@@ -1,7 +1,7 @@
 <tr id="proposal_<%= proposal.id %>">
   <td class="small-7">
     <strong>
-      <%= link_to proposal.title, proposal, proposal.retired? ? { class: "retired" } : {} %>
+      <%= link_to proposal.title, proposal_path(proposal, author_id: @user.id), proposal.retired? ? { class: "retired" } : {}%>
     </strong>
     <br>
     <%= proposal.summary %>

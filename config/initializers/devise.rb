@@ -102,9 +102,6 @@ Devise.setup do |config|
   # a value of 20 is already extremely slow: approx. 60 seconds for 1 calculation).
   config.stretches = Rails.env.test? ? 1 : 10
 
-  # Setup a pepper to generate the encrypted password.
-  # config.pepper = '43d5d80fc0a95d9aa618ca138b747b1d7623020544249e2672bf3a19846fa47baa29117cba30c9edcd3fcd10d379cd65c485a3f931a7a19efb3a794796828432'
-
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
   # confirming their account. For instance, if set to 2.days, the user will be
