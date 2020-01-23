@@ -19,4 +19,4 @@ module Flaggable
     update(ignored_flag_at: Time.current)
   end
 
-end                                                                                                                                                                                                                                                                                                                                                                        
+end
