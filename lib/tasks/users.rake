@@ -31,6 +31,23 @@ namespace :users do
 
 
 
+  desc "Borrado de usuarios particulares"
+  task delete: :environment do
+    emails = ["cristina.ruiz@ericsson.com", "juanjocid.agviajes@hotmail.es"]
+
+    User.where("email in (?)",emails).each do |user|
+      puts "==========================="
+      puts user.id
+      puts user.email
+      puts "==========================="
+      if user.destroy
+        puts "Se ha eliminado correctamente"
+      else
+        puts user.errors.full_messages
+      end
+    end
+  end
+
   desc "Recalculates all the failed census calls counters for users"
   task count_failed_census_calls: :environment do
     User.find_each { |user| User.reset_counters(user.id, :failed_census_calls) }
