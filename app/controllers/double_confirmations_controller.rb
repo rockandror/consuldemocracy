@@ -33,7 +33,10 @@ class DoubleConfirmationsController < ApplicationController
             access_count= (current_user.access_key_tried.to_i) + 1
             access_key_inserted_encrypted = encrypt_access_key(params[:access_key]) 
             current_user.update(access_key_inserted: access_key_inserted_encrypted)
-            if current_user.access_key_tried < 3 
+
+            if current_user.access_key_inserted.to_s == current_user.access_key_generated.to_s
+                redirect_to welcome_path, notice: I18n.t("admin.double_verification.double_conmfirmed")
+            elsif current_user.access_key_tried < 3 
                 current_user.update(access_key_tried: access_count)
                 redirect_to request_access_key_double_confirmations_path, alert: I18n.t("admin.double_verification.access_key_error")
             else

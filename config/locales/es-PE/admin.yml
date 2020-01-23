@@ -132,6 +132,7 @@ es-PE:
           winners: Ganadoras
         buttons:
           filter: Filtrar
+          clear: Limpiar
         download_current_selection: "Descargar selección actual"
         no_budget_investments: "No hay proyectos de inversión."
         title: Propuestas de inversión

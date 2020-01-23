@@ -238,12 +238,19 @@ class User < ApplicationRecord
   end
 
   def ip_out_of_internal_red?
-    current_ip = self.current_sign_in_ip.to_i
-    low = IPAddr.new("10.90.0.0").to_i
-    high = IPAddr.new("10.90.255.255").to_i
-    # low = IPAddr.new("0.0.0.0").to_i
-    # high = IPAddr.new("255.255.255.255").to_i
-    return true unless (low..high)===current_ip
+    current_ip = IPAddr.new(self.current_sign_in_ip)
+    low = IPAddr.new("10.90.0.0")
+    high = IPAddr.new("10.90.255.255")
+    ip_eq= false
+    (low..high).each do |ip|
+      if ip.to_s==current_ip.to_s
+        ip_eq = true
+        break
+      end
+    end
+    ip_eq = true if "127.0.0.1"==current_ip.to_s
+    
+    !ip_eq
   end
 
   def phone_number_present?
@@ -251,8 +258,8 @@ class User < ApplicationRecord
   end
 
   def double_verification?
-    return true if !ip_out_of_internal_red? && self.try(:administrator?)
-    ip_out_of_internal_red? && self.try(:administrator?) && access_key_inserted_correct? && !required_new_password? && (self.try(:access_key_tried) < 3)
+    return true if !self.ip_out_of_internal_red? && self.administrator?
+    self.ip_out_of_internal_red? && self.try(:administrator?) && self.access_key_inserted_correct? && !required_new_password? && (self.try(:access_key_tried) < 3)
   end
 
   def encrypt_access_key(access_key)
@@ -272,14 +279,16 @@ class User < ApplicationRecord
   end
 
   def access_key_inserted_correct?
-      decrypt_access_key(self.access_key_generated.to_s) == decrypt_access_key(self.access_key_inserted.to_s)
+    decrypt_access_key(self.access_key_generated.to_s) == decrypt_access_key(self.access_key_inserted.to_s)
   end
 
   def required_new_password?
     if self.access_key_generated_at.present?
       date1= Time.zone.now
       date2= self.access_key_generated_at
-      (date1.year * 12 + date1.month) - (date2.year * 12 + date2.month) > Setting.find_by(key: "months_to_double_verification").try(:value).to_i
+      monts_verifiqued = Setting.find_by(key: "months_to_double_verification").try(:value).blank? ? 3 : Setting.find_by(key: "months_to_double_verification").try(:value).to_i
+
+      ((date2.to_time - date1.to_time)/1.month.second).to_i.abs > monts_verifiqued
     else
       true
     end
