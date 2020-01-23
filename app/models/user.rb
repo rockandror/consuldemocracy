@@ -21,18 +21,18 @@ class User < ApplicationRecord
   has_one :organization
   has_one :lock
   has_one :ballot
-  has_many :flags
+  has_many :flags, dependent: :destroy
   has_many :identities, dependent: :destroy
-  has_many :debates, -> { with_hidden }, foreign_key: :author_id
-  has_many :proposals, -> { with_hidden }, foreign_key: :author_id
-  has_many :budget_investments, -> { with_hidden }, foreign_key: :author_id, class_name: "Budget::Investment"
-  has_many :comments, -> { with_hidden }
-  has_many :failed_census_calls
-  has_many :notifications
-  has_many :direct_messages_sent,     class_name: "DirectMessage", foreign_key: :sender_id
-  has_many :direct_messages_received, class_name: "DirectMessage", foreign_key: :receiver_id
+  has_many :debates, -> { with_hidden }, foreign_key: :author_id, dependent: :destroy
+  has_many :proposals, -> { with_hidden }, foreign_key: :author_id, dependent: :destroy
+  has_many :budget_investments, -> { with_hidden }, foreign_key: :author_id, class_name: "Budget::Investment", dependent: :destroy
+  has_many :comments, -> { with_hidden }, dependent: :destroy
+  has_many :failed_census_calls, dependent: :destroy
+  has_many :notifications, dependent: :destroy
+  has_many :direct_messages_sent,     class_name: "DirectMessage", foreign_key: :sender_id, dependent: :destroy
+  has_many :direct_messages_received, class_name: "DirectMessage", foreign_key: :receiver_id, dependent: :destroy
   has_many :legislation_answers, class_name: "Legislation::Answer", dependent: :destroy, inverse_of: :user
-  has_many :follows
+  has_many :follows, dependent: :destroy
   belongs_to :geozone
 
   validates :username, presence: true, if: :username_required?
