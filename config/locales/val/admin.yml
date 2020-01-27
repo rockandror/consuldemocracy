@@ -192,8 +192,8 @@ val:
           unfeasible: Inviable
           min_total_supports: Avals mínims
           winners: Guanyadores
-          one_filter_html: "Filtres aplicats: <b><em>%{filter}</em></b>"
-          two_filters_html: "Filtres aplicats: <b><em>%{filter}, %{advanced_filters}}</em></b>"
+          one_filter_html: "Filtres aplicats: <strong><em>%{filter}</em></strong>"
+          two_filters_html: "Filtres aplicats: <strong><em>%{filter}, %{advanced_filters}}</em></strong>"
         buttons:
           filter: Filtre
         download_current_selection: "Baixar la selecció actual"

@@ -195,8 +195,8 @@ fr:
           min_total_supports: Prise en charge minimale
           max_total_supports: Soutiens maximum
           winners: Gagnants
-          one_filter_html: "Filtres activés : <b><em>%{filter}</em></b>"
-          two_filters_html: "Filtres activés : <b><em>%{filter}, %{advanced_filters}</em></b>"
+          one_filter_html: "Filtres activés : <strong><em>%{filter}</em></strong>"
+          two_filters_html: "Filtres activés : <strong><em>%{filter}, %{advanced_filters}</em></strong>"
         buttons:
           filter: Filtre
         download_current_selection: "Télécharger la sélection"

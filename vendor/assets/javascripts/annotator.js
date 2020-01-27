@@ -14911,7 +14911,7 @@ var render = exports.render = function render(annotation) {
     if (annotation.text) {
         return convert(annotation.text);
     } else {
-        return "<i>" + _t('No comment') + "</i>";
+        return "<em>" + _t('No comment') + "</em>";
     }
 };
 
@@ -15293,7 +15293,7 @@ var Viewer = exports.Viewer = Widget.extend({
             if (annotation.text) {
                 return util.escapeHtml(annotation.text);
             } else {
-                return "<i>" + _t('No comment') + "</i>";
+                return "<em>" + _t('No comment') + "</em>";
             }
         };
 

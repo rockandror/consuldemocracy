@@ -123,7 +123,7 @@ cs:
           username_note: Název, který se zobrazí vedle vašich příspěvků
         success:
           back_to_index: Rozumím; jít zpět na hlavní stránku
-          instructions_1_html: Prosím, <b>zkontrolujte e-mail</b> - poslali jsme vám <b>odkaz pro potvrzení vašeho účtu</b>.
+          instructions_1_html: Prosím, <strong>zkontrolujte e-mail</strong> - poslali jsme vám <strong>odkaz pro potvrzení vašeho účtu</strong>.
           instructions_2_html: Po potvrzení můžete začít účastnit se.
-          thank_you_html: Děkujeme za registraci na webových stránkách. Musíte nyní <b>potvrdit svou e-mailovou adresu</b>.
+          thank_you_html: Děkujeme za registraci na webových stránkách. Musíte nyní <strong>potvrdit svou e-mailovou adresu</strong>.
           title: Potvrďte svou emailovou adresu

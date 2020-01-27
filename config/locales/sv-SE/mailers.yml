@@ -3,21 +3,21 @@ sv:
     no_reply: "Det går inte att svara till den här e-postadressen."
     comment:
       hi: Hej
-      new_comment_by_html: Det finns en ny kommentar från <b>%{commenter}</b>
+      new_comment_by_html: Det finns en ny kommentar från <strong>%{commenter}</strong>
       subject: Någon har kommenterat på ditt %{commentable}
       title: Ny kommentar
     config:
       manage_email_subscriptions: För att sluta få e-postmeddelanden kan du ändra dina inställningar med
     email_verification:
       click_here_to_verify: den här länken
-      instructions_2_html: Det här e-postmeddelandet är för att verifiera ditt konto med <b>%{document_type} %{document_number}</b>. Klicka inte på länken ovan om de inte tillhör dig.
+      instructions_2_html: Det här e-postmeddelandet är för att verifiera ditt konto med <strong>%{document_type} %{document_number}</strong>. Klicka inte på länken ovan om de inte tillhör dig.
       instructions_html: Du måste klicka på %{verification_link} för att slutföra verifieringen av ditt användarkonto.
       subject: Bekräfta din e-postadress
       thanks: Tack så mycket.
       title: Bekräfta kontot via länken nedan
     reply:
       hi: Hej
-      new_reply_by_html: Det finns ett nytt svar från <b>%{commenter}</b> till din kommentar på
+      new_reply_by_html: Det finns ett nytt svar från <strong>%{commenter}</strong> till din kommentar på
       subject: Någon har svarat på din kommentar
       title: Nytt svar på din kommentar
     unfeasible_spending_proposal:
