@@ -12,7 +12,7 @@
               <span class="bullet">&nbsp;&bull;&nbsp;</span>
               <%= l debate.created_at.to_date %>
 
-              <% if debate.author.blank? || debate.author.hidden? || debate.author.erased? %>
+              <% if debate.try(:author).blank? || debate.try(:author).try(:hidden?) || debate.try(:author).try(:erased?) %>
                 <span class="bullet">&nbsp;&bull;&nbsp;</span>
                 <span class="author">
                   <%= t("debates.show.author_deleted") %>
@@ -20,17 +20,17 @@
               <% else %>
                 <span class="bullet">&nbsp;&bull;&nbsp;</span>
                 <span class="author">
-                  <%= debate.author.name %>
+                  <%= debate.try(:author).try(:name) %>
                 </span>
-                <% if debate.author.display_official_position_badge? %>
+                <% if debate.try(:author).try(:display_official_position_badge?) %>
                   <span class="bullet">&nbsp;&bull;&nbsp;</span>
-                  <span class="label round level-<%= debate.author.official_level %>">
-                    <%= debate.author.official_position %>
+                  <span class="label round level-<%= debate.try(:author).try(:official_level) %>">
+                    <%= debate.try(:author).try(:official_position) %>
                   </span>
                 <% end %>
               <% end %>
 
-              <% if debate.author.verified_organization? %>
+              <% if debate.try(:author).try(:verified_organization?) %>
                 <span class="bullet">&nbsp;&bull;&nbsp;</span>
                 <span class="label round is-association">
                   <%= t("shared.collective") %>
