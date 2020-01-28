@@ -1,4 +1,4 @@
-<% if resource.author.hidden? || resource.author.erased? %>
+<% if resource.author.blank? || resource.author.hidden? || resource.author.erased? %>
   <span class="icon-deleted author-deleted"></span>
   <span class="author deleted">
       <%= t("shared.author_info.author_deleted") %>
