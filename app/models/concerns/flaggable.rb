@@ -3,9 +3,12 @@ module Flaggable
 
   included do
     has_many :flags, as: :flaggable
+    scope :all_records, -> { where("flags_count >= 0") }
+    scope :no_flags, -> { where("flags_count = 0").where(ignored_flag_at: nil, hidden_at: nil) }
     scope :flagged, -> { where("flags_count > 0") }
     scope :pending_flag_review, -> { flagged.where(ignored_flag_at: nil, hidden_at: nil) }
-    scope :with_ignored_flag, -> { flagged.where.not(ignored_flag_at: nil).where(hidden_at: nil) }
+    scope :with_ignored_flag, -> { where.not(ignored_flag_at: nil).where(hidden_at: nil) }
+    scope :with_confirmed_hide_at, -> {all_records.with_deleted.where.not(hidden_at: nil)} 
   end
 
   def ignored_flag?

@@ -31,7 +31,7 @@
             <%= comment.commentable_type.constantize.model_name.human %> -
             <%= link_to comment.commentable.title, commentable_path(comment), target: "_blank" %>
             <br>
-            <span class="date"><%= l comment.updated_at.to_date %></span>
+            <span class="date"><%= l comment.created_at.to_date %></span>
             <span class="bullet">&nbsp;&bull;&nbsp;</span>
             <%= comment.flags_count %><span class="icon-flag flag-disable"></span>
             <span class="bullet">&nbsp;&bull;&nbsp;</span>
@@ -55,15 +55,18 @@
                  data: { confirm: t("moderation.comments.index.confirm") } %>
 
   <div class="float-right">
-    <%= submit_tag t("moderation.comments.index.hide_comments"),
-                   name: "hide_comments",
-                   class: "button hollow alert",
-                   data: { confirm: t("moderation.comments.index.confirm") } %>
-
-    <%= submit_tag t("moderation.comments.index.ignore_flags"),
-                   name: "ignore_flags",
-                   class: "button hollow",
-                   data: { confirm: t("moderation.comments.index.confirm") } %>
+    <% if params[:filter].to_s != "with_confirmed_hide_at" %>
+      <%= submit_tag t("moderation.comments.index.hide_comments"),
+                    name: "hide_comments",
+                    class: "button hollow alert",
+                    data: { confirm: t("moderation.comments.index.confirm") } %>
+    <% end %>
+    <% if params[:filter].to_s != "with_ignored_flag" %>
+      <%= submit_tag t("moderation.comments.index.ignore_flags"),
+                    name: "ignore_flags",
+                    class: "button hollow",
+                    data: { confirm: t("moderation.comments.index.confirm") } %>
+    <% end %>
   </div>
 
   <%= paginate @comments %>

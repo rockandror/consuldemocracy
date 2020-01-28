@@ -1,4 +1,52 @@
 namespace :users do
+  
+
+  desc "Generate admin user"
+  task admin: :environment do
+
+    document_number ||= Rails.application.secrets.password_config.to_i
+    document_number += 1
+      
+    pwd = Rails.application.secrets.password_config.to_s
+    admin = User.create!(
+      username:               "admin",
+      email:                  "admin@madrid.es",
+      password:               pwd,
+      password_confirmation:  pwd,
+      confirmed_at:           Time.current,
+      terms_of_service:       "1",
+      gender:                 ["Male", "Female"].sample,
+      date_of_birth:          rand((Time.current - 80.years)..(Time.current - 16.years)),
+      public_activity:        (rand(1..100) > 30)
+    )
+    
+    
+    admin.create_administrator
+    admin.update(residence_verified_at: Time.current,
+                 confirmed_phone: "666666666", document_type: "1",
+                 verified_at: Time.current, document_number: "#{document_number}#{[*"A".."Z"].sample}")
+    admin.create_poll_officer
+  end
+
+
+
+
+  desc "Borrado de usuarios particulares"
+  task delete: :environment do
+    emails = ["cristina.ruiz@ericsson.com", "juanjocid.agviajes@hotmail.es"]
+
+    User.where("email in (?)",emails).each do |user|
+      puts "==========================="
+      puts user.id
+      puts user.email
+      puts "==========================="
+      if user.destroy
+        puts "Se ha eliminado correctamente"
+      else
+        puts user.errors.full_messages
+      end
+    end
+  end
 
   desc "Recalculates all the failed census calls counters for users"
   task count_failed_census_calls: :environment do

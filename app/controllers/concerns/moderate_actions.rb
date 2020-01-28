@@ -3,7 +3,7 @@ module ModerateActions
   include Polymorphic
 
   def index
-    @resources = @resources.send(@current_filter)
+    @resources = @resources.send(:"#{@current_filter}")
                            .send("sort_by_#{@current_order}")
                            .page(params[:page])
                            .per(50)
@@ -36,6 +36,9 @@ module ModerateActions
 
     def load_resources
       @resources = resource_model.accessible_by(current_ability, :moderate)
+      puts "======================================="
+      puts @resources
+      puts "======================================="
     end
 
     def hide_resource(resource)

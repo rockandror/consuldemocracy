@@ -200,6 +200,7 @@ es:
           two_filters_html: "Filtros en uso: <strong><em>%{filter}, %{advanced_filters}</em></strong>"
         buttons:
           filter: Filtrar
+          clear: Limpiar
         download_current_selection: "Descargar selección actual"
         no_budget_investments: "No hay proyectos de gasto."
         title: Proyectos de gasto

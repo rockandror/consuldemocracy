@@ -292,6 +292,13 @@
 .icon-bars::before {
   content: "\22";
 }
+.fi-arrow-left::before{
+  content: "\7B";
+}
+.fi-arrow-right::before{
+  content: "\7C";
+}
+
 
 .icon-quote-before::before {
   content: "";

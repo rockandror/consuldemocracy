@@ -58,4 +58,7 @@
   <div class="small-12 medium-3 column end">
     <%= submit_tag t("admin.budget_investments.index.buttons.filter"), class: "button expanded" %>
   </div>
+  <div class="small-12 medium-3 column end">
+    <%= link_to t("admin.budget_investments.index.buttons.clear"), admin_budget_budget_investments_path(budget_id: @budget.id), class: "button expanded" %>
+  </div>
 <% end %>

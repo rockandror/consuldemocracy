@@ -33,6 +33,7 @@ FactoryBot.define do
     end
   end
 
+
   factory :poll_question, class: "Poll::Question" do
     poll
     association :author, factory: :user
@@ -44,6 +45,7 @@ FactoryBot.define do
         create(:poll_question_answer, question: question, title: "No")
       end
     end
+   
   end
 
   factory :poll_question_answer, class: "Poll::Question::Answer" do
