@@ -1,12 +1,12 @@
-<% if resource.author.hidden? || resource.author.erased? %>
+<% if resource.try(:author).blank? || resource.try(:author).try(:hidden?) || resource.try(:author).try(:erased?) %>
   <span class="icon-deleted author-deleted"></span>
   <span class="author deleted">
       <%= t("shared.author_info.author_deleted") %>
   </span>
 <% else %>
-  <%= avatar_image(resource.author, seed: resource.author_id, size: 32, class: "author-photo") %>
+  <%= avatar_image(resource.try(:author), seed: resource.author_id, size: 32, class: "author-photo") %>
   <span class="author">
-      <%= link_to resource.author.name, user_path(resource.author) %>
+      <%= link_to resource.try(:author).try(:name), user_path(resource.try(:author)) %>
   </span>
 
   <% if resource.respond_to?(:association_name) && resource.association_name.present? %>
@@ -15,15 +15,15 @@
     </span>
   <% end %>
 
-  <% if resource.author.display_official_position_badge? %>
+  <% if resource.try(:author).try(:display_official_position_badge?) %>
     &nbsp;&bull;&nbsp;
-    <span class="label round level-<%= resource.author.official_level %>">
-      <%= resource.author.official_position %>
+    <span class="label round level-<%= resource.try(:author).try(:official_level) %>">
+      <%= resource.try(:author).try(:official_position) %>
     </span>
   <% end %>
 <% end %>
 
-<% if resource.author.verified_organization? %>
+<% if resource.try(:author).try(:verified_organization?) %>
   &nbsp;&bull;&nbsp;
   <span class="label round is-association">
     <%= t("shared.collective") %>
