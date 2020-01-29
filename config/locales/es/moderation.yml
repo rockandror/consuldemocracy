@@ -7,6 +7,7 @@ es:
         filter: Filtro
         filters:
           all: Todos
+          no_flags: No denunciados
           pending_flag_review: Denunciados
           with_ignored_flag: Marcados como revisados
           with_confirmed_hide_at: Comentarios ocultos
@@ -30,6 +31,7 @@ es:
         filter: Filtrar
         filters:
           all: Todos
+          no_flags: No denunciados
           pending_flag_review: Denunciados
           with_ignored_flag: Marcados como revisados
           with_confirmed_hide_at: Debates ocultos
@@ -58,7 +60,7 @@ es:
         confirm: '¿Estás seguro?'
         filter: Filtro
         filters:
-          all: Todas
+          no_flags: No denunciadas
           pending_flag_review: Denunciadas
           with_ignored_flag: Marcadas como revisadas
           with_confirmed_hide_at: Propuestas ocultas

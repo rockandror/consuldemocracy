@@ -1,7 +1,7 @@
 class Moderation::CommentsController < Moderation::BaseController
   include ModerateActions
 
-  has_filters %w{all pending_flag_review with_ignored_flag with_confirmed_hide_at}, only: :index
+  has_filters %w{no_flags pending_flag_review with_ignored_flag with_confirmed_hide_at}, only: :index
   has_orders %w{flags newest}, only: :index
 
   before_action :load_resources, only: [:index, :moderate]
