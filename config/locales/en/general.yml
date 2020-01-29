@@ -843,6 +843,8 @@ en:
       debates: Debates
       budget_investments: Budget investments
       comments: Comments
+      labels:
+        moderated: Moderated
       actions: Actions
       filters:
         comments:
