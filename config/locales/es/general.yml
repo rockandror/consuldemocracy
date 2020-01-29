@@ -841,6 +841,8 @@ es:
       debates: Debates
       budget_investments: Proyectos de presupuestos participativos
       comments: Comentarios
+      labels:
+        moderated: Moderado
       actions: Acciones
       filters:
         comments:
