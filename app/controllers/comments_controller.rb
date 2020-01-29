@@ -14,6 +14,7 @@ class CommentsController < ApplicationController
     if @comment.save
       CommentNotifier.new(comment: @comment).process
       add_notification @comment
+      auto_moderate_comment @comment
       log_comment_event
     else
       render :new
@@ -115,5 +116,36 @@ class CommentsController < ApplicationController
       else
         log_event("proposal", "comment_reply")
       end
+    end
+
+    def auto_moderate_comment(comment)
+      moderated_words = ::ModeratedText.all.pluck(:text)
+      return if moderated_words.empty?
+      regex = /\b(?:#{::Regexp.union(moderated_words).source})\b/i
+
+      offensive_matches = comment.body.scan(regex).map(&:downcase)
+
+      if offensive_matches.empty?
+        return
+      else
+        build_records(offensive_matches, comment)
+        ::ModeratedContent.import(@moderated_records)
+        comment.is_offensive = true
+      end
+    end
+
+    def build_records(offensive_matches, comment)
+      matched_ids = ::ModeratedText.where(text: offensive_matches).pluck(:id)
+      @moderated_records = []
+
+      matched_ids.each do |id|
+        @moderated_records.push({
+          moderable_type: comment.class.to_s,
+          moderated_text_id: id,
+          moderable_id: comment.id
+        })
+      end
+
+      return @moderated_records
     end
 end
