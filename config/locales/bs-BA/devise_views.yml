@@ -123,7 +123,7 @@ bs:
           username_note: Ime koje je navedeno pored vaših objava
         success:
           back_to_index: Shvatam; idi nazad na početnu stranicu
-          instructions_1_html: Provjerite <b> vaš email</b> - poslali smo vam <b> link da potvrdimo vaš nalog </b>.
+          instructions_1_html: Provjerite <strong> vaš email</strong> - poslali smo vam <strong> link da potvrdimo vaš nalog </strong>.
           instructions_2_html: Nakon potvrde, možete početi s učestvovanjem.
-          thank_you_html: Hvala što ste se registrovali za web-stranicu. Sad morate <b> potvrditi svoju email adresu </b>.
+          thank_you_html: Hvala što ste se registrovali za web-stranicu. Sad morate <strong> potvrditi svoju email adresu </strong>.
           title: Potvrdite svoju email adresu

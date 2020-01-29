@@ -3,21 +3,21 @@ pt-BR:
     no_reply: "Esta mensagem foi enviada de um endereço de e-mail que não aceita respostas."
     comment:
       hi: Oi
-      new_comment_by_html: Há um novo comentário de <b>%{commenter}</b>
+      new_comment_by_html: Há um novo comentário de <strong>%{commenter}</strong>
       subject: Alguém comentou sobre seu %{commentable}
       title: Novo comentário
     config:
       manage_email_subscriptions: Para parar de receber esses e-mails altere suas configurações no
     email_verification:
       click_here_to_verify: este link
-      instructions_2_html: Este e-mail irá verificar sua conta com <b>%{document_type} %{document_number}</b>. Se isto não lhe pertence, por favor, não clique no link anterior e ignore este e-mail.
+      instructions_2_html: Este e-mail irá verificar sua conta com <strong>%{document_type} %{document_number}</strong>. Se isto não lhe pertence, por favor, não clique no link anterior e ignore este e-mail.
       instructions_html: Para completar a verificação da sua conta de usuário, você deve clicar em %{verification_link}.
       subject: Confirme seu email
       thanks: Muito Obrigado.
       title: Confirme sua conta usando o seguinte link
     reply:
       hi: Oi
-      new_reply_by_html: Há uma nova resposta de <b>%{commenter}</b> ao seu comentário sobre
+      new_reply_by_html: Há uma nova resposta de <strong>%{commenter}</strong> ao seu comentário sobre
       subject: Alguém respondeu ao seu comentário
       title: Nova resposta ao seu comentário
     unfeasible_spending_proposal:

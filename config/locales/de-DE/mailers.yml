@@ -3,20 +3,20 @@ de:
     no_reply: "Diese Nachricht wurde von einer E-Mail-Adresse gesendet, die keine Antworten akzeptiert."
     comment:
       hi: Hallo
-      new_comment_by_html: Es gibt einen neuen Kommentar von <b>%{commenter}</b>
+      new_comment_by_html: Es gibt einen neuen Kommentar von <strong>%{commenter}</strong>
       subject: Jemand hat Ihre %{commentable} kommentiert.
       title: Neuer Kommentar
     config:
       manage_email_subscriptions: Wenn Sie keine E-Mails mehr empfangen möchten, ändern Sie bitte Ihre Einstellungen in
     email_verification:
       click_here_to_verify: diesen Link
-      instructions_2_html: Diese E-Mail dient dazu Ihr Konto mit <b>%{document_type} %{document_number}</b>zu verifizieren. Wenn es sich hierbei nicht um Ihre Daten handelt, klicken Sie bitte nicht auf den vorherigen Link und ignorieren Sie diese E-Mail.
+      instructions_2_html: Diese E-Mail dient dazu Ihr Konto mit <strong>%{document_type} %{document_number}</strong>zu verifizieren. Wenn es sich hierbei nicht um Ihre Daten handelt, klicken Sie bitte nicht auf den vorherigen Link und ignorieren Sie diese E-Mail.
       subject: Bestätigen Sie Ihre E-Mail-Adresse
       thanks: Vielen Dank.
       title: Bestätigen Sie Ihr Konto über den folgenden Link
     reply:
       hi: Hallo
-      new_reply_by_html: Es gibt eine neue Antwort von <b>%{commenter}</b> auf Ihren Kommentar
+      new_reply_by_html: Es gibt eine neue Antwort von <strong>%{commenter}</strong> auf Ihren Kommentar
       subject: Jemand hat auf Ihren Kommentar geantwortet
       title: Neue Antwort auf Ihren Kommentar
     unfeasible_spending_proposal:

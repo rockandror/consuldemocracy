@@ -123,7 +123,7 @@ zh-CN:
           username_note: 显示在您帖子边的名称
         success:
           back_to_index: 我明白；回到主页
-          instructions_1_html: 请<b>检查您的电子邮件</b>- 我们已经发送一个<b>链接来确认您的账号</b>。
+          instructions_1_html: 请<strong>检查您的电子邮件</strong>- 我们已经发送一个<strong>链接来确认您的账号</strong>。
           instructions_2_html: 一旦确认，您可以开始参与。
-          thank_you_html: 感谢您在此网站注册。现在您必须<b>确认您的电子邮件地址</b>。
+          thank_you_html: 感谢您在此网站注册。现在您必须<strong>确认您的电子邮件地址</strong>。
           title: 确认您的电子邮件地址

@@ -50,10 +50,10 @@ sl:
           title: Registriraj se kot organisazacija ali kolektiv
         success:
           back_to_index: Razumem; nazaj na glavno stran
-          instructions_1_html: "<b>Kmalu te bomo kontaktirali,</b> da preverimo, da v resnici predstavljaš to organizacijo oz. kolektiv."
-          instructions_2_html: Dokler <b>preverjamo tvoj e-naslov</b>, smo ti poslali <b>povezavo, s katero lahko potrdiš svoj račun</b>.
+          instructions_1_html: "<strong>Kmalu te bomo kontaktirali,</strong> da preverimo, da v resnici predstavljaš to organizacijo oz. kolektiv."
+          instructions_2_html: Dokler <strong>preverjamo tvoj e-naslov</strong>, smo ti poslali <strong>povezavo, s katero lahko potrdiš svoj račun</strong>.
           instructions_3_html: Ko potrdiš svoj e-naslov, lahko začneš sodelovati kot nepreverjen kolektiv.
-          thank_you_html: Hvala za registracijo tvoje organizacije ali kolektiva. Zdaj <b>čaka še na verifikacijo</b>.
+          thank_you_html: Hvala za registracijo tvoje organizacije ali kolektiva. Zdaj <strong>čaka še na verifikacijo</strong>.
           title: Registracija organizacije / kolektiva
     passwords:
       edit:
@@ -123,7 +123,7 @@ sl:
           username_note: Ime, ki ga prikazujemo ob tvojih objavah
         success:
           back_to_index: Razumem; vrni se na glavno stran
-          instructions_1_html: Prosimo, <b>preveri svojo e-pošto</b> - poslali smo ti <b>povezavo za potrditev tvojega računa</b>.
+          instructions_1_html: Prosimo, <strong>preveri svojo e-pošto</strong> - poslali smo ti <strong>povezavo za potrditev tvojega računa</strong>.
           instructions_2_html: Ko potrdiš račun, lahko začneš sodelovati.
-          thank_you_html: Hvala za registracijo na spletnem portalu. Zdaj moraš <b>potrditi svoj e-naslov</b>.
+          thank_you_html: Hvala za registracijo na spletnem portalu. Zdaj moraš <strong>potrditi svoj e-naslov</strong>.
           title: Registracija

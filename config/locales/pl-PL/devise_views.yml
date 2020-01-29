@@ -50,10 +50,10 @@ pl:
           title: Zarejestruj się jako organizacja lub kolektyw
         success:
           back_to_index: Rozumiem, zabierz mnie do strony głównej
-          instructions_1_html: "<b>Wkrótce skontaktujemy się z Tobą</b>, aby zweryfikować, czy rzeczywiście reprezentujesz ten kolektyw."
-          instructions_2_html: Podczas gdy Twój <b>e-mail jest przeglądany</b>, wysłaliśmy Ci <b>link do potwierdzenia Twojego konta</b>.
+          instructions_1_html: "<strong>Wkrótce skontaktujemy się z Tobą</strong>, aby zweryfikować, czy rzeczywiście reprezentujesz ten kolektyw."
+          instructions_2_html: Podczas gdy Twój <strong>e-mail jest przeglądany</strong>, wysłaliśmy Ci <strong>link do potwierdzenia Twojego konta</strong>.
           instructions_3_html: Po potwierdzeniu możesz zacząć uczestniczyć jako niezweryfikowany kolektyw.
-          thank_you_html: Dziękujemy za zarejestrowanie Twojego kolektywu na stronie. W tym momencie <b>oczekuje weryfikacji</b>.
+          thank_you_html: Dziękujemy za zarejestrowanie Twojego kolektywu na stronie. W tym momencie <strong>oczekuje weryfikacji</strong>.
           title: Rejestracja organizacji / kolektywu
     passwords:
       edit:
@@ -123,7 +123,7 @@ pl:
           username_note: Nazwa, która pojawia się obok Twoich postów
         success:
           back_to_index: Rozumiem, zabierz mnie do strony głównej.
-          instructions_1_html: <b>Sprawdź swoją skrzynkę e-mail</b> - wysłaliśmy Ci <b>link do potwierdzenia Twojego konta</b>.
+          instructions_1_html: <strong>Sprawdź swoją skrzynkę e-mail</strong> - wysłaliśmy Ci <strong>link do potwierdzenia Twojego konta</strong>.
           instructions_2_html: Po potwierdzeniu możesz w pełni korzystać z możliwości portalu.
-          thank_you_html: Dziękujemy za rejestrację na stronie. Teraz musisz <b>potwierdzić swój adres e-mail</b>.
+          thank_you_html: Dziękujemy za rejestrację na stronie. Teraz musisz <strong>potwierdzić swój adres e-mail</strong>.
           title: Potwierdź swój adres e-mail

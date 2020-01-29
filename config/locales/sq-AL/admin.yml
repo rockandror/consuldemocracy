@@ -155,8 +155,8 @@ sq:
           unfeasible: Parealizueshme
           min_total_supports: Mbështetje minimale
           winners: Fituesit
-          one_filter_html: "Filtrat aktuale të aplikuara:<b><em>%{filter}</em></b>"
-          two_filters_html: "Filtrat e aplikuara aktuale:<b><em>%{filter},%{advanced_filters}</em></b>"
+          one_filter_html: "Filtrat aktuale të aplikuara:<strong><em>%{filter}</em></strong>"
+          two_filters_html: "Filtrat e aplikuara aktuale:<strong><em>%{filter},%{advanced_filters}</em></strong>"
         buttons:
           filter: Filtër
         download_current_selection: "Filtër"

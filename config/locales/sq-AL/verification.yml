@@ -19,7 +19,7 @@ sq:
         unconfirmed_code: Ju nuk keni futur ende kodin e konfirmimit
       create:
         flash:
-          success_html: Faleminderit që kërkuat<b>kodin maksimal të sigurisë (kërkohet vetëm për votat përfundimtare</b>.Pas disa ditësh ne do ta dërgojmë atë në adresën që shfaqet në të dhënat që kemi në dosje. Ju lutem mbani mend se, nëse preferoni, ju mund ta merni kodin tuaj nga ndonjë prej %{offices} 
+          success_html: Faleminderit që kërkuat<strong>kodin maksimal të sigurisë (kërkohet vetëm për votat përfundimtare</strong>.Pas disa ditësh ne do ta dërgojmë atë në adresën që shfaqet në të dhënat që kemi në dosje. Ju lutem mbani mend se, nëse preferoni, ju mund ta merni kodin tuaj nga ndonjë prej %{offices} 
       edit:
         see_all: Shiko propozimet
         title: Letra e kerkuar
