@@ -61,6 +61,11 @@ class Comment < ApplicationRecord
 
   scope :not_valuations, -> { where(valuation: false) }
 
+  scope :filtered, -> {
+    includes(:moderated_contents)
+      .where(moderated_contents: { moderable_id: nil })
+  }
+
   after_create :call_after_commented
 
   def self.build(commentable, user, body, p_id = nil, valuation = false)
