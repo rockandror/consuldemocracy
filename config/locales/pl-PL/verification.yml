@@ -19,7 +19,7 @@ pl:
         unconfirmed_code: Nie podałeś jeszcze kodu potwierdzenia
       create:
         flash:
-          success_html: Dziękujemy za przesłanie prośby o podanie <b>kodu maksymalnego bezpieczeństwa (wymaganego tylko dla ostatecznych głosów) </b>. Za kilka dni wyślemy go na adres podany w danych, które mamy w aktach. Pamiętaj, że jeśli wolisz, możesz odebrać swój kod z dowolnego %{offices}.
+          success_html: Dziękujemy za przesłanie prośby o podanie <strong>kodu maksymalnego bezpieczeństwa (wymaganego tylko dla ostatecznych głosów) </strong>. Za kilka dni wyślemy go na adres podany w danych, które mamy w aktach. Pamiętaj, że jeśli wolisz, możesz odebrać swój kod z dowolnego %{offices}.
       edit:
         see_all: Zobacz wnioski
         title: List wymagany

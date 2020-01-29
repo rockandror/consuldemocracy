@@ -26,11 +26,7 @@ class Users::SessionsController < Devise::SessionsController
     end
 
     def after_sign_in_path_for(resource)
-      if false #current_user.poll_officer? && current_user.has_poll_active?
-        if current_user.poll_officer.letter_officer?
-          new_officing_letter_path
-        end
-      elsif !verifying_via_email? && resource.show_welcome_screen?
+      if !verifying_via_email? && resource.show_welcome_screen?
         welcome_path
       else
         if current_user.ip_out_of_internal_red? && current_user.try(:administrator?)

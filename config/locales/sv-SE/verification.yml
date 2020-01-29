@@ -19,7 +19,7 @@ sv:
         unconfirmed_code: Du har inte angett bekräftelsekoden ännu
       create:
         flash:
-          success_html: Tack för att du begärt din <b>säkerhetskod (krävs endast för slutomröstningar) </b>. Vi skickar koden inom några dagar till den adress som du registrerat. Kom ihåg att du även kan få din kod från något av %{offices}.
+          success_html: Tack för att du begärt din <strong>säkerhetskod (krävs endast för slutomröstningar) </strong>. Vi skickar koden inom några dagar till den adress som du registrerat. Kom ihåg att du även kan få din kod från något av %{offices}.
       edit:
         see_all: Visa förslag
         title: Brev begärt
