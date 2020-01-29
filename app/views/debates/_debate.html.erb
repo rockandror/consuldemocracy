@@ -12,7 +12,7 @@
               <span class="bullet">&nbsp;&bull;&nbsp;</span>
               <%= l debate.created_at.to_date %>
 
-              <% if debate.try(:author).try(:hidden?) || debate.try(:author).try(:erased?) || debate.try(:author).blank? %>
+              <% if debate.try(:author).blank? || debate.try(:author).try(:hidden?) || debate.try(:author).try(:erased?) %>
                 <span class="bullet">&nbsp;&bull;&nbsp;</span>
                 <span class="author">
                   <%= t("debates.show.author_deleted") %>

@@ -1,10 +1,10 @@
-<% if resource.try(:author).try(:hidden?) || resource.try(:author).try(:erased?) || resource.try(:author).blank? %>
+<% if resource.try(:author).blank? || resource.try(:author).try(:hidden?) || resource.try(:author).try(:erased?) %>
   <span class="icon-deleted author-deleted"></span>
   <span class="author deleted">
       <%= t("shared.author_info.author_deleted") %>
   </span>
 <% else %>
-  <%= avatar_image(resource.try(:author), seed: resource.author_id, size: 32, class: "author-photo") unless resource.try(:author).blank?%>
+  <%= avatar_image(resource.try(:author), seed: resource.author_id, size: 32, class: "author-photo") %>
   <span class="author">
       <%= link_to resource.try(:author).try(:name), user_path(resource.try(:author)) %>
   </span>
