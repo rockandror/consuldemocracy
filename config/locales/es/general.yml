@@ -47,6 +47,7 @@ es:
       author: Autor
       deleted: Este comentario ha sido eliminado
       moderator: Moderador
+      moderated: Este comentario no será visible la próxima vez que se recargue esta página, ya que ha sido determinado ofensivo
       responses:
         zero: Sin respuestas
         one: 1 respuesta
