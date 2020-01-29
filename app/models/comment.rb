@@ -13,7 +13,7 @@ class Comment < ApplicationRecord
   acts_as_votable
   has_ancestry touch: true
 
-  attr_accessor :as_moderator, :as_administrator
+  attr_accessor :as_moderator, :as_administrator, :is_offensive
 
   validates :body, presence: true
   validates :user, presence: true

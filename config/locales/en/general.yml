@@ -47,6 +47,7 @@ en:
       author: Author
       deleted: This comment has been deleted
       moderator: Moderator
+      moderated: This comment won't be shown next time this page is reloaded as it has been deemed offensive
       responses:
         one: 1 response
         other: "%{count} responses"
