@@ -13,19 +13,20 @@ class SandboxController < ApplicationController
   end
 
   def show
+    xxxx
     if params[:template].index(".") # CVE-2014-0130
       render action: "index"
     elsif lookup_context.exists?("sandbox/#{params[:template]}")
       if params[:template] == "index"
         render action: "index"
       else
-        render "sandbox/#{params[:template]}"
+        render :index
       end
 
     elsif lookup_context.exists?("sandbox/#{params[:template]}/index")
-      render "sandbox/#{params[:template]}/index"
+      render :index
     else
-      render action: "index"
+      render :index
     end
   end
 

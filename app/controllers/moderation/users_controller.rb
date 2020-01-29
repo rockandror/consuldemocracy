@@ -9,9 +9,8 @@ class Moderation::UsersController < Moderation::BaseController
 
   def hide_in_moderation_screen
     block_user
-
-    redirect_to request.query_parameters.merge(action: :index), notice: I18n.t("moderation.users.notice_hide")
-  end
+    redirect_to moderation_users_path(params_strong), notice: I18n.t("moderation.users.notice_hide")
+   end
 
   def hide
     block_user
@@ -20,6 +19,9 @@ class Moderation::UsersController < Moderation::BaseController
   end
 
   private
+    def params_strong
+      params.permit(:name_or_email)
+    end
 
     def load_users
       @users = User.with_hidden.search(params[:name_or_email]).page(params[:page]).for_render
