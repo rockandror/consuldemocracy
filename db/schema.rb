@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190722133302) do
+ActiveRecord::Schema.define(version: 20190918115345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -524,11 +524,6 @@ ActiveRecord::Schema.define(version: 20190722133302) do
     t.index ["documentable_type", "documentable_id"], name: "index_documents_on_documentable_type_and_documentable_id", using: :btree
     t.index ["user_id", "documentable_type", "documentable_id"], name: "access_documents", using: :btree
     t.index ["user_id"], name: "index_documents_on_user_id", using: :btree
-  end
-
-  create_table "double_verifications", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "failed_census_calls", force: :cascade do |t|
