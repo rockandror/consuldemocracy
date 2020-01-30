@@ -1,13 +1,7 @@
 ENV["RAILS_ENV"] ||= "test"
 if ENV["TRAVIS"]
-#   require "coveralls"
-   require 'simplecov'
-   Coveralls.wear!("rails")
-#   SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
-#   SimpleCov::Formatter::HTMLFormatter,
-#   Coveralls::SimpleCov::Formatter
-# ]
-# SimpleCov.start 
+  require "coveralls"
+  Coveralls.wear!("rails")
 end
 
 
