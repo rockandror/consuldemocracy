@@ -12,12 +12,16 @@
   <table>
     <thead>
       <th class="small-5"><%= t("admin.moderated_texts.index.text") %></th>
+      <th><%= t("admin.moderated_texts.index.detected_occurrences") %></th>
       <th class="text-right"><%= t("admin.actions.actions") %></th>
     </thead>
     <tbody>
       <% @words.each do |word| %>
         <tr id="<%= dom_id(word) %>">
           <td><%= word.text %></td>
+          <td>
+            <%= @occurrence_count.has_key?(word.id) ? @occurrence_count[word.id] : "0" %>
+          </td>
           <td class="text-right">
             <%= link_to t("admin.actions.edit"),
                         edit_admin_moderated_text_path(word),

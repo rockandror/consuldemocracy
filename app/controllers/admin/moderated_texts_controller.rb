@@ -5,6 +5,7 @@ class Admin::ModeratedTextsController < Admin::BaseController
 
   def index
     @words = ModeratedText.all
+    @occurrence_count = ::ModeratedContent.occurrence_count
   end
 
   def new
