@@ -665,6 +665,7 @@ en:
         create: Create new text
         import_csv: Import CSV
         text: Text
+        detected_occurrences: Detected occurrences
         no_texts: There are no moderated words
       new:
         title: New text
