@@ -687,6 +687,7 @@ es:
         create: Crear nuevo texto
         import_csv: Importar CSV
         text: Texto
+        detected_occurrences: Ocurrencias detectadas
         no_texts: No hay palabras moderadas
       new:
         title: Nuevo texto
