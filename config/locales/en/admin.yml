@@ -695,14 +695,14 @@ en:
         kind: Kind
         moderated_text: Moderated text
         author: Author
+        filter: Filter
         buttons:
-          filter: Filter
           show_again: Show again
           confirm_moderation: Confirm moderation
         filters:
           all: All
-          confirmed_moderation: Confirmed moderation
-          declined_moderation: Declined moderation
+          confirmed: Confirmed moderation
+          declined: Declined moderation
     menu:
       activity: Moderator activity
       admin: Admin menu
