@@ -5,7 +5,7 @@ class ModeratedText < ApplicationRecord
   include ActsAsParanoidAliases
 
   has_many :comments, through: :moderated_contents, as: :moderable
-  has_many :moderated_contents, dependent: :destroy, as: :moderable
+  has_many :moderated_contents, as: :moderable
 
   validates :text, presence: true, uniqueness: true
 end
