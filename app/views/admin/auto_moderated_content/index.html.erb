@@ -2,19 +2,7 @@
   <%= t("admin.auto_moderated_content.index.title") %>
 </h2>
 
-<%= form_tag(admin_auto_moderated_content_index_path, method: :get, enforce_utf8: false) do %>
-  <div class="small-12 medium-3 column">
-    <%= select_tag :moderation_status, options_for_select(
-      [
-        [t("admin.auto_moderated_content.index.filters.confirmed_moderation"), "confirmed"],
-        [t("admin.auto_moderated_content.index.filters.declined_moderation"), "declined"]
-      ], params[:moderation_status]), { prompt: t("admin.auto_moderated_content.index.filters.all"), label: false } %>
-  </div>
-
-  <div class="small-12 medium-3 column end">
-    <%= submit_tag t("admin.auto_moderated_content.index.buttons.filter"), class: "button expanded" %>
-  </div>
-<% end %>
+<%= render "shared/filter_subnav", i18n_namespace: "admin.auto_moderated_content.index" %>
 
 <% if @moderated_comments.any? %>
   <table>
