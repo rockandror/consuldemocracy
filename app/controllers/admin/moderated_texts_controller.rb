@@ -37,6 +37,8 @@ class Admin::ModeratedTextsController < Admin::BaseController
   end
 
   def destroy
+    ::ModeratedContent.where(moderated_text_id: @word.id).destroy_all
+
     @word.destroy
     redirect_to admin_moderated_texts_path, notice: t("admin.moderated_texts.destroy.notice")
   end
