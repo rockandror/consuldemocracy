@@ -55,8 +55,8 @@ class Admin::UsersController < Admin::BaseController
         Organization.where(user_id: @user.id).each do |org|
           org.destroy
         end
-        Follow.where(user_id: @user.id).each do |org|
-          org.destroy
+        Follow.where(user_id: @user.id).each do |follow|
+          follow.destroy
         end
         Lock.where(user_id: @user.id).each do |lock|
           lock.destroy
