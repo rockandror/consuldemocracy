@@ -693,14 +693,14 @@ es:
         kind: Clase
         moderated_text: Texto moderado
         author: Autor
+        filter: Filtrar
         buttons:
-          filter: Filtrar
           show_again: Volver a mostrar
           confirm_moderation: Confirmar moderación
         filters:
           all: Todos los comentarios
-          confirmed_moderation: Confirmada la moderación
-          declined_moderation: Declinada la moderación
+          confirmed: Confirmada la moderación
+          declined: Declinada la moderación
     menu:
       activity: Actividad de moderadores
       admin: Menú de administración
