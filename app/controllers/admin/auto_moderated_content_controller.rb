@@ -4,16 +4,17 @@ class Admin::AutoModeratedContentController < Admin::BaseController
   has_filters %w{all confirmed declined}, only: :index
 
   def index
-    load_moderated_contents
-    @moderated_comments = ::Comment.where(id: @moderated_contents).includes(:moderated_texts, :user)
+    @moderated_comments = ::Comment.where(
+      id: load_moderated_contents
+    ).includes(:moderated_texts, :user)
   end
 
   private
     def load_moderated_contents
       if params[:filter].present? && is_valid_filter?
-        @moderated_contents = ::ModeratedContent.send("#{params[:filter]}").pluck(:moderable_id)
+        ::ModeratedContent.send("#{params[:filter]}").pluck(:moderable_id)
       else
-        @moderated_contents = ::ModeratedContent.all.pluck(:moderable_id)
+        ::ModeratedContent.all.pluck(:moderable_id)
       end
     end
 
