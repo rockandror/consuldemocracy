@@ -33,7 +33,7 @@
                         class: "button hollow success" %>
 
             <%= link_to t("admin.auto_moderated_content.index.buttons.confirm_moderation"),
-                        "#",
+                        admin_auto_moderated_content_confirm_moderation_path(comment),
                         method: :put,
                         class: "button" %>
           </td>
