@@ -62,8 +62,8 @@ class Comment < ApplicationRecord
   scope :not_valuations, -> { where(valuation: false) }
 
   scope :filtered, -> {
-    includes(:moderated_contents)
-      .where(moderated_contents: { moderable_id: nil })
+    where(moderated_contents: { moderable_id: nil })
+      .or(where.not(moderated_contents: { declined_at: nil }))
   }
 
   after_create :call_after_commented
