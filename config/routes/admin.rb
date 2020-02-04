@@ -52,7 +52,9 @@ namespace :admin do
     resources :imports, only: [:new, :create]
   end
 
-  resources :auto_moderated_content, controller: :auto_moderated_content, only: :index
+  resources :auto_moderated_content, controller: :auto_moderated_content, only: :index do
+    put :show_again
+  end
 
   resources :proposal_notifications, only: :index do
     member do
