@@ -54,6 +54,7 @@ namespace :admin do
 
   resources :auto_moderated_content, controller: :auto_moderated_content, only: :index do
     put :show_again
+    put :confirm_moderation
   end
 
   resources :proposal_notifications, only: :index do
