@@ -573,6 +573,57 @@ describe "Commenting topics from proposals" do
     end
   end
 
+  describe "Automated moderation" do
+    before do
+      create(:moderated_text, text: "vulgar")
+      @community = proposal.community
+      @topic = create(:topic, community: @community)
+    end
+
+    scenario "Shows notice when a comment includes a moderated word", :js do
+      login_as(user)
+      visit community_topic_path(@community, @topic)
+
+      fill_in "comment-body-topic_#{@topic.id}", with: "vulgar comment"
+      click_button 'Publish comment'
+
+      within "#tab-comments-label" do
+        expect(page).to have_content "Comments (1)"
+      end
+
+      within "#comments" do
+        expect(page).to have_content "This comment won't be shown next time this page is reloaded as it has been deemed offensive"
+        expect(page).to have_content "vulgar comment"
+      end
+    end
+
+    scenario "Comment hides after reloading page", :js do
+      login_as(user)
+      visit community_topic_path(@community, @topic)
+
+      fill_in "comment-body-topic_#{@topic.id}", with: "vulgar comment"
+      click_button 'Publish comment'
+
+      within "#tab-comments-label" do
+        expect(page).to have_content "Comments (1)"
+      end
+
+      within "#comments" do
+        expect(page).to have_content "vulgar comment"
+      end
+
+      visit community_topic_path(@community, @topic)
+
+      within "#tab-comments-label" do
+        expect(page).to have_content "Comments (1)"
+      end
+
+      within "#comments" do
+        expect(page).not_to have_content "vulgar comment"
+      end
+    end
+  end
+
 end
 
 describe "Commenting topics from budget investments" do
@@ -1121,6 +1172,57 @@ describe "Commenting topics from budget investments" do
         end
 
         expect(page).to have_content "1 vote"
+      end
+    end
+  end
+
+  describe "Automated moderation" do
+    before do
+      create(:moderated_text, text: "vulgar")
+      @community = investment.community
+      @topic = create(:topic, community: @community)
+    end
+
+    scenario "Shows notice when a comment includes a moderated word", :js do
+      login_as(user)
+      visit community_topic_path(@community, @topic)
+
+      fill_in "comment-body-topic_#{@topic.id}", with: "vulgar comment"
+      click_button 'Publish comment'
+
+      within "#tab-comments-label" do
+        expect(page).to have_content "Comments (1)"
+      end
+
+      within "#comments" do
+        expect(page).to have_content "This comment won't be shown next time this page is reloaded as it has been deemed offensive"
+        expect(page).to have_content "vulgar comment"
+      end
+    end
+
+    scenario "Comment hides after reloading page", :js do
+      login_as(user)
+      visit community_topic_path(@community, @topic)
+
+      fill_in "comment-body-topic_#{@topic.id}", with: "vulgar comment"
+      click_button 'Publish comment'
+
+      within "#tab-comments-label" do
+        expect(page).to have_content "Comments (1)"
+      end
+
+      within "#comments" do
+        expect(page).to have_content "vulgar comment"
+      end
+
+      visit community_topic_path(@community, @topic)
+
+      within "#tab-comments-label" do
+        expect(page).to have_content "Comments (1)"
+      end
+
+      within "#comments" do
+        expect(page).not_to have_content "vulgar comment"
       end
     end
   end
