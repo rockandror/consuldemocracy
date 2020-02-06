@@ -108,4 +108,16 @@ FactoryBot.define do
       Rack::Test::UploadedFile.new(Rails.root.join(path))
     }
   end
+
+  factory :moderated_content, class: "ModeratedContent" do
+    association :moderable, factory: :comment
+
+    trait :declined do
+      declined_at { Time.current }
+    end
+
+    trait :confirmed do
+      confirmed_at { Time.current }
+    end
+  end
 end
