@@ -1,5 +1,5 @@
 class Admin::AutoModeratedContentController < Admin::BaseController
-  before_action :load_content, only: [:show_again, :confirm_moderation]
+  before_action :load_contents, only: [:show_again, :confirm_moderation]
 
   VALID_FILTERS = %w[confirmed declined].freeze
   has_filters %w{all confirmed declined}, only: :index
@@ -11,12 +11,12 @@ class Admin::AutoModeratedContentController < Admin::BaseController
   end
 
   def show_again
-    @content.update_attribute(:declined_at, Time.current)
+    @contents.update_all(declined_at: Time.current)
     redirect_to admin_auto_moderated_content_index_path
   end
 
   def confirm_moderation
-    @content.update_attribute(:confirmed_at, Time.current)
+    @contents.update_all(confirmed_at: Time.current)
     redirect_to admin_auto_moderated_content_index_path
   end
 
@@ -29,8 +29,8 @@ class Admin::AutoModeratedContentController < Admin::BaseController
       end
     end
 
-    def load_content
-      @content = ::ModeratedContent.find_by(
+    def load_contents
+      @contents = ::ModeratedContent.where(
         moderable_id: params[:auto_moderated_content_id],
         moderable_type: 'Comment'
       )
