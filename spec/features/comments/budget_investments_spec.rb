@@ -532,4 +532,53 @@ describe "Commenting Budget::Investments" do
     end
   end
 
+  describe "Automated moderation" do
+    before do
+      create(:moderated_text, text: "vulgar")
+    end
+
+    scenario "Shows notice when a comment includes a moderated word", :js do
+      login_as(user)
+      visit budget_investment_path(investment.budget, investment)
+
+      fill_in "comment-body-budget_investment_#{investment.id}", with: "vulgar comment"
+      click_button 'Publish comment'
+
+      within "#tab-comments-label" do
+        expect(page).to have_content "Comments (1)"
+      end
+
+      within "#comments" do
+        expect(page).to have_content "This comment won't be shown next time this page is reloaded as it has been deemed offensive"
+        expect(page).to have_content "vulgar comment"
+      end
+    end
+
+    scenario "Comment hides after reloading page", :js do
+      login_as(user)
+      visit budget_investment_path(investment.budget, investment)
+
+      fill_in "comment-body-budget_investment_#{investment.id}", with: "vulgar comment"
+      click_button 'Publish comment'
+
+      within "#tab-comments-label" do
+        expect(page).to have_content "Comments (1)"
+      end
+
+      within "#comments" do
+        expect(page).to have_content "vulgar comment"
+      end
+
+      visit budget_investment_path(investment.budget, investment)
+
+      within "#tab-comments-label" do
+        expect(page).to have_content "Comments (1)"
+      end
+
+      within "#comments" do
+        expect(page).not_to have_content "vulgar comment"
+      end
+    end
+  end
+
 end
