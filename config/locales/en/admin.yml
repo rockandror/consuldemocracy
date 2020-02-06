@@ -698,6 +698,7 @@ en:
         buttons:
           show_again: Show again
           confirm_moderation: Confirm moderation
+          no_buttons: This comment has been moderated already
         filters:
           all: All
           confirmed: Confirmed moderation

@@ -73,6 +73,11 @@ module AdminHelper
     (controller_name == "imports" && controller.class.parent == Admin::ModeratedTexts)
   end
 
+  def show_moderation_buttons?(comment)
+    comment.moderated_contents.map(&:declined_at).all? ||
+    comment.moderated_contents.map(&:confirmed_at).all?
+  end
+
   def official_level_options
     options = [["", 0]]
     (1..5).each do |i|

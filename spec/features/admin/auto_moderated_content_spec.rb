@@ -115,6 +115,7 @@ feature "Auto moderated content" do
         click_link "Confirmed moderation"
 
         expect(page).to have_content(a_new_comment.body)
+        expect(page).to have_content("This comment has been moderated already")
         expect(page).not_to have_content(comment.body)
       end
     end
@@ -138,6 +139,7 @@ feature "Auto moderated content" do
         click_link "Declined moderation"
 
         expect(page).to have_content(a_new_comment.body)
+        expect(page).to have_content("This comment has been moderated already")
         expect(page).not_to have_content(comment.body)
       end
     end
