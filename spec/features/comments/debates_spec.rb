@@ -541,4 +541,46 @@ describe "Commenting debates" do
     end
   end
 
+  describe "Automated moderation" do
+    before do
+      create(:moderated_text, text: "vulgar")
+    end
+
+    scenario "Shows notice when a comment includes a moderated word", :js do
+      login_as(user)
+      visit debate_path(debate)
+
+      fill_in "comment-body-debate_#{debate.id}", with: "vulgar comment"
+      click_button 'Publish comment'
+
+      expect(page).to have_content "Comments (1)"
+
+      within "#comments" do
+        expect(page).to have_content "This comment won't be shown next time this page is reloaded as it has been deemed offensive"
+        expect(page).to have_content "vulgar comment"
+      end
+    end
+
+    scenario "Comment hides after reloading page", :js do
+      login_as(user)
+      visit debate_path(debate)
+
+      fill_in "comment-body-debate_#{debate.id}", with: "vulgar comment"
+      click_button 'Publish comment'
+
+      expect(page).to have_content "Comments (1)"
+
+      within "#comments" do
+        expect(page).to have_content "vulgar comment"
+      end
+
+      visit debate_path(debate)
+      expect(page).to have_content "Comments (1)"
+
+      within "#comments" do
+        expect(page).not_to have_content "vulgar comment"
+      end
+    end
+  end
+
 end
