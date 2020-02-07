@@ -10,7 +10,7 @@
         <td>
           <%= comment_commentable_title(comment) %>
           <br>
-          <% if comment.moderated_contents.any? %>
+          <% if is_moderated?(comment) %>
             <span class="label alert"><%= t("users.show.labels.moderated") %></span>
           <% end %>
           <%= comment.body %>
