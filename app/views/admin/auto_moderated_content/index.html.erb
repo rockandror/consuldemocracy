@@ -18,13 +18,7 @@
         <tr id="<%= dom_id(comment) %>">
           <td><%= comment.body %></td>
           <td><%= t("form.#{comment.class.to_s.underscore}") %></td>
-          <% if comment.moderated_texts.size > 1 %>
-            <td><%= comment.moderated_texts.map { |mt| mt.text }.join(", ") %></td>
-          <% else %>
-            <% comment.moderated_texts.each do |mt| %>
-              <td><%= mt.text %></td>
-            <% end %>
-          <% end %>
+          <td><%= comment.moderated_texts.map(&:text).join(", ") %></td>
           <td><%= comment.author.name %></td>
           <td class="text-right">
             <% if show_moderation_buttons?(comment) %>
