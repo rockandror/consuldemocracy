@@ -71,4 +71,9 @@ module UsersHelper
     end
   end
 
+  def is_moderated?(comment)
+    comment.moderated_contents.any? &&
+    !comment.moderated_contents.map(&:declined_at).all?
+  end
+
 end
