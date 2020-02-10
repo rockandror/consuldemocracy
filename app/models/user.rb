@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable, :confirmable, :recoverable, :rememberable,
          :trackable, :validatable, :omniauthable, :password_expirable, :secure_validatable,
-         :lockable, authentication_keys: [:login]
+         :lockable, :timeoutable, authentication_keys: [:login]
 
   acts_as_voter
   acts_as_paranoid column: :hidden_at

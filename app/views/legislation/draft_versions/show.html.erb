@@ -49,7 +49,7 @@
 
         <div data-sticky-container>
           <div data-sticky data-anchor="sticky-panel" class="draft-index sticky" data-tree-navigator>
-            <%= @draft_version.toc_html.html_safe %>
+            <%= sanitize @draft_version.toc_html.html_safe %>
           </div>
         </div>
       </div>
@@ -67,7 +67,7 @@
                    data-legislation-open-phase="<%= @process.allegations_phase.open? %>"
                    >
           <% end %>
-            <%= @draft_version.body_html.html_safe %>
+            <%= sanitize @draft_version.body_html.html_safe %>
           </section>
         </div>
       </div>

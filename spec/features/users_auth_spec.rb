@@ -12,8 +12,8 @@ describe "Users" do
 
         fill_in "user_username",              with: "Manuela Carmena"
         fill_in "user_email",                 with: "manuela@consul.dev"
-        fill_in "user_password",              with: "judgementday"
-        fill_in "user_password_confirmation", with: "judgementday"
+        fill_in "user_password",              with: Rails.application.secrets.password_hidden
+        fill_in "user_password_confirmation", with: Rails.application.secrets.password_hidden
         check "user_terms_of_service"
 
         click_button "Register"
@@ -44,12 +44,12 @@ describe "Users" do
     context "Sign in" do
 
       scenario "sign in with email" do
-        create(:user, email: "manuela@consul.dev", password: "judgementday")
+        create(:user, email: "manuela@consul.dev", password: Rails.application.secrets.password_hidden)
 
         visit "/"
         click_link "Sign in"
         fill_in "user_login",    with: "manuela@consul.dev"
-        fill_in "user_password", with: "judgementday"
+        fill_in "user_password", with: Rails.application.secrets.password_hidden
         click_button "Enter"
 
         expect(page).to have_content "You have been signed in successfully."
@@ -108,7 +108,7 @@ describe "Users" do
       end
 
       scenario "counts failed attempts" do
-        user = create(:user, email: "manuela@consul.dev", password: "judgementday")
+        user = create(:user, email: "manuela@consul.dev", password: Rails.application.secrets.password_hidden)
         expect(user.failed_attempts).to be 0
 
         visit user_session_path
@@ -121,11 +121,11 @@ describe "Users" do
       end
 
       scenario "resets failed attempts after successful login" do
-        user = create(:user, email: "manuela@consul.dev", password: "judgementday", failed_attempts: 3)
+        user = create(:user, email: "manuela@consul.dev", password: Rails.application.secrets.password_hidden, failed_attempts: 3)
 
         visit user_session_path
         fill_in "user_login",    with: "manuela@consul.dev"
-        fill_in "user_password", with: "judgementday"
+        fill_in "user_password", with: Rails.application.secrets.password_hidden
         click_button "Enter"
 
         expect(page).to have_content "You have been signed in successfully."
@@ -133,11 +133,11 @@ describe "Users" do
       end
 
       scenario "never shows recaptcha by default" do
-        create(:user, email: "manuela@consul.dev", password: "judgementday", failed_attempts: 1000)
+        create(:user, email: "manuela@consul.dev", password: Rails.application.secrets.password_hidden, failed_attempts: 1000)
 
         visit user_session_path
         fill_in "user_login",    with: "manuela@consul.dev"
-        fill_in "user_password", with: "judgementday"
+        fill_in "user_password", with: Rails.application.secrets.password_hidden
 
         expect(page).not_to have_css ".recaptcha"
       end
@@ -149,7 +149,7 @@ describe "Users" do
         end
 
         scenario "shows recaptcha only after consecutive failed attempts", :js do
-          create(:user, email: "manuela@consul.dev", password: "judgementday", failed_attempts: 4)
+          create(:user, email: "manuela@consul.dev", password: Rails.application.secrets.password_hidden, failed_attempts: 4)
 
           visit new_user_session_path
 
@@ -169,19 +169,19 @@ describe "Users" do
 
         scenario "unchecked recaptcha with correct login details", :js do
           allow_any_instance_of(Users::SessionsController).to receive(:verify_recaptcha).and_return false
-          create(:user, email: "manuela@consul.dev", password: "judgementday", failed_attempts: 5)
+          create(:user, email: "manuela@consul.dev", password: Rails.application.secrets.password_hidden, failed_attempts: 5)
 
           visit new_user_session_path
 
           fill_in "user_login",    with: "manuela@consul.dev"
-          fill_in "user_password", with: "judgementday"
+          fill_in "user_password", with: Rails.application.secrets.password_hidden
 
           click_button "Enter"
           expect(page).to have_content "reCAPTCHA human verification is missing. please try again."
         end
 
         scenario "checked recaptcha with incorrect login details", :js do
-          create(:user, email: "manuela@consul.dev", password: "judgementday", failed_attempts: 5)
+          create(:user, email: "manuela@consul.dev", password: Rails.application.secrets.password_hidden, failed_attempts: 5)
 
           visit new_user_session_path
 
@@ -193,12 +193,12 @@ describe "Users" do
         end
 
         scenario "checked recaptcha with correct login details", :js do
-          create(:user, email: "manuela@consul.dev", password: "judgementday", failed_attempts: 5)
+          create(:user, email: "manuela@consul.dev", password: Rails.application.secrets.password_hidden, failed_attempts: 5)
 
           visit new_user_session_path
 
           fill_in "user_login",    with: "manuela@consul.dev"
-          fill_in "user_password", with: "judgementday"
+          fill_in "user_password", with: Rails.application.secrets.password_hidden
 
           click_button "Enter"
           expect(page).to have_content "You have been signed in successfully."
@@ -310,7 +310,7 @@ describe "Users" do
       end
 
       scenario "Sign in, user was already signed up with OAuth" do
-        user = create(:user, email: "manuela@consul.dev", password: "judgementday")
+        user = create(:user, email: "manuela@consul.dev", password: Rails.application.secrets.password_hidden)
         create(:identity, uid: "12345", provider: "twitter", user: user)
         OmniAuth.config.add_mock(:twitter, twitter_hash)
 
@@ -329,7 +329,7 @@ describe "Users" do
       end
 
       scenario "Try to register with the username of an already existing user" do
-        create(:user, username: "manuela", email: "manuela@consul.dev", password: "judgementday")
+        create(:user, username: "manuela", email: "manuela@consul.dev", password: Rails.application.secrets.password_hidden)
         OmniAuth.config.add_mock(:twitter, twitter_hash_with_verified_email)
 
         visit "/"
