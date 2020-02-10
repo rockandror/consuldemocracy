@@ -36,9 +36,6 @@ module ModerateActions
 
     def load_resources
       @resources = resource_model.accessible_by(current_ability, :moderate)
-      puts "======================================="
-      puts @resources
-      puts "======================================="
     end
 
     def hide_resource(resource)

@@ -13,7 +13,7 @@
                 </div>
               </div>
 
-              <div class="small-12 medium-9 column table" data-equalizer-watch>
+              <div class="small-12 medium-12 column table" data-equalizer-watch>
                 <div id="budget_<%= budget.id %>_results" class="table-cell align-middle">
                   <% if can?(:read_results, budget) %>
                     <%= link_to t("budgets.index.see_results"),
@@ -26,7 +26,7 @@
                                 class: "button" %>
                   <% end %>
                   <% if budget.budget_link_enabled && !budget.budget_link.blank?%>
-                    <%= link_to t("budgets.index.budget_2016"),
+                    <%= link_to t("budgets.index.budget_ayto"),
                                 budget.budget_link,
                                 class: "button" %>
                   <% end %>
