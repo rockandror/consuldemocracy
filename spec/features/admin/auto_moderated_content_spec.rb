@@ -29,8 +29,8 @@ feature "Auto moderated content" do
     )
   }
 
-  let!(:offense) { create(:moderated_content, moderable: comment) }
-  let!(:another_offense) { create(:moderated_content, moderable: a_new_comment) }
+  let!(:offense) { create(:moderated_content, moderable: comment, moderated_text: vulgar_word) }
+  let!(:another_offense) { create(:moderated_content, moderable: a_new_comment, moderated_text: vulgar_word) }
 
   background do
     login_as(admin.user)
