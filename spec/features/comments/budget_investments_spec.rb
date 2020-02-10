@@ -537,6 +537,23 @@ describe "Commenting Budget::Investments" do
       create(:moderated_text, text: "vulgar")
     end
 
+    scenario "Non-offensive comments are created successfully", :js do
+      login_as(user)
+      visit budget_investment_path(investment.budget, investment)
+
+      fill_in "comment-body-budget_investment_#{investment.id}", with: "not a comment"
+      click_button 'Publish comment'
+
+      within "#tab-comments-label" do
+        expect(page).to have_content "Comments (1)"
+      end
+
+      within "#comments" do
+        expect(page).to have_content "not a comment"
+        expect(page).not_to have_content "This comment won't be shown next time this page is reloaded as it has been deemed offensive"
+      end
+    end
+
     scenario "Shows notice when a comment includes a moderated word", :js do
       login_as(user)
       visit budget_investment_path(investment.budget, investment)

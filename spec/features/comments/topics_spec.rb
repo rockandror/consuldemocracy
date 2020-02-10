@@ -580,6 +580,23 @@ describe "Commenting topics from proposals" do
       @topic = create(:topic, community: @community)
     end
 
+    scenario "Non-offensive comments are created successfully", :js do
+      login_as(user)
+      visit community_topic_path(@community, @topic)
+
+      fill_in "comment-body-topic_#{@topic.id}", with: "not a comment"
+      click_button 'Publish comment'
+
+      within "#tab-comments-label" do
+        expect(page).to have_content "Comments (1)"
+      end
+
+      within "#comments" do
+        expect(page).to have_content "not a comment"
+        expect(page).not_to have_content "This comment won't be shown next time this page is reloaded as it has been deemed offensive"
+      end
+    end
+
     scenario "Shows notice when a comment includes a moderated word", :js do
       login_as(user)
       visit community_topic_path(@community, @topic)
@@ -1181,6 +1198,23 @@ describe "Commenting topics from budget investments" do
       create(:moderated_text, text: "vulgar")
       @community = investment.community
       @topic = create(:topic, community: @community)
+    end
+
+    scenario "Non-offensive comments are created successfully", :js do
+      login_as(user)
+      visit community_topic_path(@community, @topic)
+
+      fill_in "comment-body-topic_#{@topic.id}", with: "not a comment"
+      click_button 'Publish comment'
+
+      within "#tab-comments-label" do
+        expect(page).to have_content "Comments (1)"
+      end
+
+      within "#comments" do
+        expect(page).to have_content "not a comment"
+        expect(page).not_to have_content "This comment won't be shown next time this page is reloaded as it has been deemed offensive"
+      end
     end
 
     scenario "Shows notice when a comment includes a moderated word", :js do
