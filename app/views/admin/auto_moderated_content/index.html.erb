@@ -25,12 +25,18 @@
               <%= t("admin.auto_moderated_content.index.buttons.no_buttons") %>
             <% else %>
               <%= link_to t("admin.auto_moderated_content.index.buttons.show_again"),
-                          admin_auto_moderated_content_show_again_path(comment),
+                          admin_auto_moderated_content_show_again_path(
+                            comment,
+                            type: comment.class
+                          ),
                           method: :put,
                           class: "button hollow success" %>
 
                 <%= link_to t("admin.auto_moderated_content.index.buttons.confirm_moderation"),
-                            admin_auto_moderated_content_confirm_moderation_path(comment),
+                            admin_auto_moderated_content_confirm_moderation_path(
+                              comment,
+                              type: comment.class
+                            ),
                             method: :put,
                             class: "button" %>
             <% end %>
