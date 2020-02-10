@@ -547,6 +547,23 @@ describe "Commenting polls" do
       create(:moderated_text, text: "vulgar")
     end
 
+    scenario "Non-offensive comments are created successfully", :js do
+      login_as(user)
+      visit poll_path(poll)
+
+      fill_in "comment-body-poll_#{poll.id}", with: "not a comment"
+      click_button 'Publish comment'
+
+      within "#tab-comments-label" do
+        expect(page).to have_content "Comments (1)"
+      end
+
+      within "#comments" do
+        expect(page).to have_content "not a comment"
+        expect(page).not_to have_content "This comment won't be shown next time this page is reloaded as it has been deemed offensive"
+      end
+    end
+
     scenario "Shows notice when a comment includes a moderated word", :js do
       login_as(user)
       visit poll_path(poll)
