@@ -1,8 +1,9 @@
 require "rails_helper"
 
 feature "Moderated texts", type: :feature do
+  let(:admin) { create(:administrator) }
+
   background do
-    admin = create(:administrator)
     login_as(admin.user)
   end
 
@@ -29,13 +30,25 @@ feature "Moderated texts", type: :feature do
   end
 
   context "Edit" do
+    let!(:word) { create(:moderated_text, text: "vulgar") }
+    let(:comment) { create(:comment,
+      body: "vulgar comment",
+      commentable: create(:debate),
+      user: admin.user)
+    }
+
+    let!(:offense) { create(:moderated_content,
+      moderable: comment,
+      moderated_text: word)
+    }
+
     scenario "Updates an existing word" do
-      word = create(:moderated_text)
+      another_word = create(:moderated_text)
 
       visit admin_moderated_texts_path
       expect(page).to have_content("bad word")
 
-      within "#moderated_text_#{word.id}" do
+      within "#moderated_text_#{another_word.id}" do
         click_link "Edit"
       end
 
@@ -45,6 +58,16 @@ feature "Moderated texts", type: :feature do
       expect(page).to have_content("disgusting word")
       expect(page).not_to have_content("bad word")
       expect(page).to have_content("Word modified successfully")
+    end
+
+    scenario "Does not allow modifying an existing word if it has associated offenses" do
+      visit admin_moderated_texts_path
+
+      within "#moderated_text_#{word.id}" do
+        expect(page).to have_content("vulgar")
+        expect(page).to have_content("1")
+        expect(page).not_to have_link('Edit')
+      end
     end
   end
 

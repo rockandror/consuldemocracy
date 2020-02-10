@@ -23,9 +23,11 @@
             <%= @occurrence_count.has_key?(word.id) ? @occurrence_count[word.id] : "0" %>
           </td>
           <td class="text-right">
-            <%= link_to t("admin.actions.edit"),
-                        edit_admin_moderated_text_path(word),
-                        class: "button hollow" %>
+            <% unless @occurrence_count.has_key?(word.id) %>
+              <%= link_to t("admin.actions.edit"),
+                          edit_admin_moderated_text_path(word),
+                          class: "button hollow" %>
+            <% end %>
 
             <%= link_to t("admin.actions.delete"),
                         admin_moderated_text_path(word),

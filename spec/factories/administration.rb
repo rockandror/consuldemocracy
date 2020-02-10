@@ -111,6 +111,7 @@ FactoryBot.define do
 
   factory :moderated_content, class: "ModeratedContent" do
     association :moderable, factory: :comment
+    association :moderated_text, factory: :moderated_text
 
     trait :declined do
       declined_at { Time.current }
