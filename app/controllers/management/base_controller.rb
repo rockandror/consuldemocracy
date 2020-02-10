@@ -1,4 +1,6 @@
 class Management::BaseController < ActionController::Base
+  protect_from_forgery
+  
   layout "management"
 
   before_action :verify_manager

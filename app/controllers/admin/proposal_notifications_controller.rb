@@ -13,17 +13,20 @@ class Admin::ProposalNotificationsController < Admin::BaseController
 
   def confirm_hide
     @proposal_notification.confirm_hide
-    redirect_to request.query_parameters.merge(action: :index)
+    redirect_to admin_proposal_notifications_path(params_strong)
   end
 
   def restore
     @proposal_notification.restore
     @proposal_notification.ignore_flag
     Activity.log(current_user, :restore, @proposal_notification)
-    redirect_to request.query_parameters.merge(action: :index)
+    redirect_to admin_proposal_notifications_path(params_strong)
   end
 
   private
+    def params_strong
+      params.permit(:filter)
+    end
 
     def load_proposal
       @proposal_notification = ProposalNotification.with_hidden.find(params[:id])
