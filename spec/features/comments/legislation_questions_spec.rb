@@ -569,6 +569,24 @@ describe "Commenting legislation questions" do
       create(:moderated_text, text: "vulgar")
     end
 
+    scenario "Non-offensive comments are created successfully", :js do
+      login_as(user)
+      visit legislation_process_question_path(
+        legislation_question.process,
+        legislation_question
+      )
+
+      fill_in "comment-body-legislation_question_#{legislation_question.id}", with: "not a comment"
+      click_button 'Publish answer'
+
+      expect(page).to have_content "(1)"
+
+      within "#comments" do
+        expect(page).to have_content "not a comment"
+        expect(page).not_to have_content "This comment won't be shown next time this page is reloaded as it has been deemed offensive"
+      end
+    end
+
     scenario "Shows notice when a comment includes a moderated word", :js do
       login_as(user)
       visit legislation_process_question_path(
