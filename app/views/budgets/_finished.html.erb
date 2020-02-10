@@ -19,7 +19,7 @@
                     <%= link_to t("budgets.index.see_results"),
                                 budget_results_path(budget),
                                 class: "button" %>
-                  <% end %>
+                  <% end %> 
                   <% if can?(:read_executions, budget) %>
                     <%= link_to t("budgets.index.milestones"),
                                 budget_executions_path(budget),
