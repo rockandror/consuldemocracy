@@ -122,8 +122,8 @@ sl:
           undecided: Neodločeno
           unfeasible: Neizvedljivo
           winners: Zmagovalci
-          one_filter_html: "Trenutno vklopljeni filtri: <b><em>%{filter}</em></b>"
-          two_filters_html: "Trenutno vklopljeni filtri: <b><em>%{filter}, %{advanced_filters}</em></b>"
+          one_filter_html: "Trenutno vklopljeni filtri: <strong><em>%{filter}</em></strong>"
+          two_filters_html: "Trenutno vklopljeni filtri: <strong><em>%{filter}, %{advanced_filters}</em></strong>"
         buttons:
           filter: Filtriraj
         download_current_selection: "Prenesi trenuten izbor"

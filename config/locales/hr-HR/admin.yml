@@ -201,8 +201,8 @@ hr:
           min_total_supports: Minimalna potpora
           max_total_supports: Maksimalna potpora
           winners: Pobjednici
-          one_filter_html: "Trenutni primjenjeni filtri: <b><em>%{filter}</em></b>"
-          two_filters_html: "Trenutni primjenjeni filtri: <b><em>%{filter},%{advanced_filters}</em></b>"
+          one_filter_html: "Trenutni primjenjeni filtri: <strong><em>%{filter}</em></strong>"
+          two_filters_html: "Trenutni primjenjeni filtri: <strong><em>%{filter},%{advanced_filters}</em></strong>"
         buttons:
           filter: Filter
         download_current_selection: "Preuzmi trenutnu selekciju"

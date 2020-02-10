@@ -19,7 +19,7 @@ cs:
         unconfirmed_code: Doposud jste nezadali žádný potvrzovací kód
       create:
         flash:
-          success_html: Děkujeme, že jste požádali o maximální bezpečnostní kód (vyžaduje se pouze pro konečné hlasování) </b>. Za pár dní ji zašleme na adresu uvedenou ve vašem profilu, který máme k dispozici. Nezapomeňte, že pokud chcete, můžete svůj kód získat z kteréhokoliv subjektu %{offices}.
+          success_html: Děkujeme, že jste požádali o maximální bezpečnostní kód (vyžaduje se pouze pro konečné hlasování) </strong>. Za pár dní ji zašleme na adresu uvedenou ve vašem profilu, který máme k dispozici. Nezapomeňte, že pokud chcete, můžete svůj kód získat z kteréhokoliv subjektu %{offices}.
       edit:
         see_all: Zobrazit návrhy
         title: Dopis požadován

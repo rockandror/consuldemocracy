@@ -3,21 +3,21 @@ cs:
     no_reply: "Tato zpráva byla odeslána z e-mailové adresy, která nepřijímá odpovědi."
     comment:
       hi: Dobrý den
-      new_comment_by_html: K dispozici je nový komentář od <b>%{commenter}</b>
+      new_comment_by_html: K dispozici je nový komentář od <strong>%{commenter}</strong>
       subject: Někdo komentoval váš příspěvek %{commentable}
       title: Nový komentář
     config:
       manage_email_subscriptions: Chcete-li tyto e-maily přestat přijímat, změňte nastavení v
     email_verification:
       click_here_to_verify: tento odkaz
-      instructions_2_html: Tento e-mail ověří váš účet pomocí <b>%{document_type} %{document_number} </b>. Pokud Vám email nepatří, prosím, neklikněte na předchozí odkaz a ignorujte tento e-mail.
+      instructions_2_html: Tento e-mail ověří váš účet pomocí <strong>%{document_type} %{document_number} </strong>. Pokud Vám email nepatří, prosím, neklikněte na předchozí odkaz a ignorujte tento e-mail.
       instructions_html: K dokončení ověření uživatelského účtu musíte klikněte na %{verification_link}.
       subject: Potvrďte svoji emailovou adresu
       thanks: Mockrát děkujeme.
       title: Potvrďte svůj účet pomocí následujícího odkazu
     reply:
       hi: Dobrý den
-      new_reply_by_html: Nová odpověď od <b>%{commenter} </b> na Váš komentář
+      new_reply_by_html: Nová odpověď od <strong>%{commenter} </strong> na Váš komentář
       subject: Někdo odpověděl na váš komentář
       title: Nová odpověď na váš komentář
     unfeasible_spending_proposal:

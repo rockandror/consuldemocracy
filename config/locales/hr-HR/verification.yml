@@ -19,7 +19,7 @@ hr:
         unconfirmed_code: Niste još unijeli potvrdni kod
       create:
         flash:
-          success_html: Hvala što ste zatražili <b> maksimalni sigurnosni kôd (potreban samo za konačna glasovanja)</b>. Za nekoliko dana poslat ćemo je na adresu koja se nalazi u podacima koje imamo u datoteci. Imajte na umu da, ako želite, možete prikupiti svoj kod iz bilo kojeg ureda za podršku građanima.
+          success_html: Hvala što ste zatražili <strong> maksimalni sigurnosni kôd (potreban samo za konačna glasovanja)</strong>. Za nekoliko dana poslat ćemo je na adresu koja se nalazi u podacima koje imamo u datoteci. Imajte na umu da, ako želite, možete prikupiti svoj kod iz bilo kojeg ureda za podršku građanima.
       edit:
         see_all: Pogledajte prijedlog
         title: Zatraženo pismo

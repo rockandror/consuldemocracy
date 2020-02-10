@@ -181,8 +181,8 @@ cs:
           unfeasible: Nerealizovatelné
           min_total_supports: Minimální podpora
           winners: Vítězové
-          one_filter_html: "Aktuální použité filtry: <b><em>%{filter}</em></b>"
-          two_filters_html: "Aktuální použité filtry: <b><em>%{filter}, %{advanced_filters}</em></b>"
+          one_filter_html: "Aktuální použité filtry: <strong><em>%{filter}</em></strong>"
+          two_filters_html: "Aktuální použité filtry: <strong><em>%{filter}, %{advanced_filters}</em></strong>"
         buttons:
           filter: Filtr
         download_current_selection: "Stáhnout aktuální výběr"

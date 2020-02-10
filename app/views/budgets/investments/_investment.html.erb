@@ -18,13 +18,13 @@
     <% end %>
         <div class="budget-investment-content">
 
-          <% cache [locale_and_user_status(investment), "index", investment, investment.author] do %>
+          <% cache [locale_and_user_status(investment), "index", investment, investment.try(:author)] do %>
             <h3><%= link_to investment.title, namespaced_budget_investment_path(investment) %></h3>
 
             <p class="investment-project-info">
               <%= l investment.created_at.to_date %>
 
-              <% if investment.author.hidden? || investment.author.erased? %>
+              <% if investment.try(:author).blank? || investment.try(:author).try(:hidden?) || investment.try(:author).try(:erased?) %>
                 <span class="bullet">&nbsp;&bull;&nbsp;</span>
                 <span class="author">
                   <%= t("budgets.investments.show.author_deleted") %>
@@ -32,12 +32,12 @@
               <% else %>
                 <span class="bullet">&nbsp;&bull;&nbsp;</span>
                 <span class="author">
-                  <%= investment.author.name %>
+                  <%= investment.try(:author).try(:name) %>
                 </span>
-                <% if investment.author.official? %>
+                <% if investment.try(:author).try(:official?) %>
                   <span class="bullet">&nbsp;&bull;&nbsp;</span>
-                  <span class="label round level-<%= investment.author.official_level %>">
-                    <%= investment.author.official_position %>
+                  <span class="label round level-<%= investment.try(:author).try(:official_level) %>">
+                    <%= investment.try(:author).try(:official_position) %>
                   </span>
                 <% end %>
                 <% if investment.label.present? %>

@@ -123,7 +123,7 @@ en:
           username_note: Name that appears next to your posts
         success:
           back_to_index: I understand; go back to main page
-          instructions_1_html: Please <b>check your email</b> - we have sent you a <b>link to confirm your account</b>.
+          instructions_1_html: Please <strong>check your email</strong> - we have sent you a <strong>link to confirm your account</strong>.
           instructions_2_html: Once confirmed, you may begin participation.
-          thank_you_html: Thank you for registering for the website. You must now <b>confirm your email address</b>.
+          thank_you_html: Thank you for registering for the website. You must now <strong>confirm your email address</strong>.
           title: Confirm your email address
