@@ -32,7 +32,7 @@ class Admin::AutoModeratedContentController < Admin::BaseController
     def load_contents
       @contents = ::ModeratedContent.where(
         moderable_id: params[:auto_moderated_content_id],
-        moderable_type: 'Comment'
+        moderable_type: params[:type]
       )
     end
 
