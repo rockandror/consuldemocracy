@@ -36,11 +36,13 @@ feature "Auto moderated content" do
     login_as(admin.user)
   end
 
-  scenario "lists comments deemed offensive" do
-    visit admin_auto_moderated_content_index_path
+  context "Index" do
+    it "lists comments deemed offensive" do
+      visit admin_auto_moderated_content_index_path
 
-    expect(page).to have_content(comment.body)
-    expect(page).not_to have_content(another_comment.body)
+      expect(page).to have_content(comment.body)
+      expect(page).not_to have_content(another_comment.body)
+    end
   end
 
   describe "#show_again" do

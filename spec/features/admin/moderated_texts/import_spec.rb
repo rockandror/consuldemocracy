@@ -7,7 +7,7 @@ feature "Moderated texts import", type: :feature do
   end
 
   context "New" do
-    scenario "renders upload form" do
+    it "renders the upload file form" do
       visit admin_moderated_texts_path
       click_link "Import CSV"
 
@@ -15,13 +15,13 @@ feature "Moderated texts import", type: :feature do
       expect(page).to have_field("moderated_texts_import_file", type: "file")
     end
 
-    scenario "shows an error if no file is selected" do
+    it "renders an error if no file was selected" do
       visit new_admin_moderated_texts_import_path
       click_button "Save"
       expect(page).to have_content("can't be blank")
     end
 
-    scenario "shows an error if an invalid file type is uploaded" do
+    it "renders an error if an invalid file type was selected" do
       visit new_admin_moderated_texts_import_path
 
       path = "spec/fixtures/files/clippy.gif"
@@ -31,7 +31,7 @@ feature "Moderated texts import", type: :feature do
       expect(page).to have_content("The file you're trying to upload is invalid. It must be in .csv format.")
     end
 
-    scenario "file uploads successfully" do
+    it "uploads a file successfully" do
       visit new_admin_moderated_texts_import_path
 
       path = "spec/fixtures/files/moderated_texts/import/valid.csv"
