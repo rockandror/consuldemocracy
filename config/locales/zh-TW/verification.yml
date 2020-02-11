@@ -19,7 +19,7 @@ zh-TW:
         unconfirmed_code: 您尚未輸入確認代碼
       create:
         flash:
-          success_html: 感謝您申請<b>最高安全代碼(僅用於最終投票)</b>。 過幾天，我們會將它發送到我們數據存檔中的地址。 請記住，如果您願意，可以到任何%{offices} 領取您的代碼。
+          success_html: 感謝您申請<strong>最高安全代碼(僅用於最終投票)</strong>。 過幾天，我們會將它發送到我們數據存檔中的地址。 請記住，如果您願意，可以到任何%{offices} 領取您的代碼。
       edit:
         see_all: 查看建議
         title: 要求的信函

@@ -3,21 +3,21 @@ tr:
     no_reply: "Bu mesaj yanıtları kabul etmeyen bir e-posta adresinden gönderildi."
     comment:
       hi: Merhaba
-      new_comment_by_html: Orada <b>%{commenter}</b>'den bir yorum var
+      new_comment_by_html: Orada <strong>%{commenter}</strong>'den bir yorum var
       subject: Birisi sizin %{commentable} hakkında yorum yaptı
       title: Yeni yorum
     config:
       manage_email_subscriptions: Bu e-postaları almayı durdurmak için ayarlarınızı değiştirin
     email_verification:
       click_here_to_verify: bu bağlantı
-      instructions_2_html: Bu e-posta hesabınızı <b>%{document_type} %{document_number}</b> ile doğrulayacaktır. Bunlar size ait değilse, lütfen önceki bağlantıya tıklamayın ve bu e-postayı dikkate almayın.
+      instructions_2_html: Bu e-posta hesabınızı <strong>%{document_type} %{document_number}</strong> ile doğrulayacaktır. Bunlar size ait değilse, lütfen önceki bağlantıya tıklamayın ve bu e-postayı dikkate almayın.
       instructions_html: Kullanıcı hesabınızın doğrulamasını tamamlamak için %{verification_link}'e tıklamanız gerekir.
       subject: E-postanızı onaylayın
       thanks: Çok teşekkür ederiz.
       title: Aşağıdaki bağlantıyı kullanarak hesabınızı onaylayın
     reply:
       hi: Merhaba
-      new_reply_by_html: Sizin yorumunuza <b>%{commenter}</b>'dan yeni bir yanıt var
+      new_reply_by_html: Sizin yorumunuza <strong>%{commenter}</strong>'dan yeni bir yanıt var
       subject: Birisi sizin yorumunuza cevap verdi
       title: Sizin yorumunuza yeni cevap
     unfeasible_spending_proposal:

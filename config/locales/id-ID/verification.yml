@@ -19,7 +19,7 @@ id:
         unconfirmed_code: Anda belum memasukkan kode verifikasi
       create:
         flash:
-          success_html: Terima kasih untuk meminta <b>kode pengamanan maksimum (hanya diperlukan untuk suara akhir)</b> anda. Dalam beberapa hari kami akan mengirimkannya ke alamat yang ditampilkan dalam data yang kami miliki di berkas. Harap diingat itu, jika anda lebih suka, anda dapat mengumpulkan kode anda dari setiap %{offices}.
+          success_html: Terima kasih untuk meminta <strong>kode pengamanan maksimum (hanya diperlukan untuk suara akhir)</strong> anda. Dalam beberapa hari kami akan mengirimkannya ke alamat yang ditampilkan dalam data yang kami miliki di berkas. Harap diingat itu, jika anda lebih suka, anda dapat mengumpulkan kode anda dari setiap %{offices}.
       edit:
         see_all: Melihat proposal
         title: Surat yang diminta

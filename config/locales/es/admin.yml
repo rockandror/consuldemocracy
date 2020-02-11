@@ -196,10 +196,11 @@ es:
           unfeasible: Inviables
           min_total_supports: Apoyos mínimos
           winners: Ganadores
-          one_filter_html: "Filtros en uso: <b><em>%{filter}</em></b>"
-          two_filters_html: "Filtros en uso: <b><em>%{filter}, %{advanced_filters}</em></b>"
+          one_filter_html: "Filtros en uso: <strong><em>%{filter}</em></strong>"
+          two_filters_html: "Filtros en uso: <strong><em>%{filter}, %{advanced_filters}</em></strong>"
         buttons:
           filter: Filtrar
+          clear: Limpiar
         download_current_selection: "Descargar selección actual"
         no_budget_investments: "No hay proyectos de gasto."
         title: Proyectos de gasto

@@ -123,7 +123,7 @@ hr:
           username_note: Ime koje se pojavljuje pored Vaše objave
         success:
           back_to_index: Razumijem; idi nazad na glavnu stranicu
-          instructions_1_html: Molimo <b>provjerite vaš emial</b> - mi smo vam poslali <b> link potvrde za vaš račun</b>.
+          instructions_1_html: Molimo <strong>provjerite vaš emial</strong> - mi smo vam poslali <strong> link potvrde za vaš račun</strong>.
           instructions_2_html: Nakon potvrde, možete započeti sa sudjelovanjem.
-          thank_you_html: Hvala na registraciji na stranicu. Vi morate sada <b>potvrditi vašu email adresu</b>.
+          thank_you_html: Hvala na registraciji na stranicu. Vi morate sada <strong>potvrditi vašu email adresu</strong>.
           title: Potvrdite vašu email adresu

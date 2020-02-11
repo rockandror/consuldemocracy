@@ -13,16 +13,21 @@
                 </div>
               </div>
 
-              <div class="small-12 medium-6 column table" data-equalizer-watch>
+              <div class="small-12 column table" data-equalizer-watch>
                 <div id="budget_<%= budget.id %>_results" class="table-cell align-middle">
                   <% if can?(:read_results, budget) %>
                     <%= link_to t("budgets.index.see_results"),
                                 budget_results_path(budget),
                                 class: "button" %>
-                  <% end %>
+                  <% end %> 
                   <% if can?(:read_executions, budget) %>
                     <%= link_to t("budgets.index.milestones"),
                                 budget_executions_path(budget),
+                                class: "button" %>
+                  <% end %>
+                  <% if budget.budget_link_enabled && !budget.budget_link.blank?%>
+                    <%= link_to t("budgets.index.budget_ayto"),
+                                budget.budget_link,
                                 class: "button" %>
                   <% end %>
                 </div>

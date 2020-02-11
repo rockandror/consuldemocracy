@@ -7,7 +7,6 @@
 <% content_for :canonical do %>
   <%= render "shared/canonical", href: proposals_url %>
 <% end %>
-
 <main>
   <% if [
           @search_terms,
@@ -44,7 +43,6 @@
   <% else %>
     <%= render "shared/section_header", i18n_namespace: "proposals.index.section_header", image: "proposals" %>
   <% end %>
-
   <% if show_recommended_proposals? %>
     <%= render "shared/recommended_index", recommended: @recommended_proposals,
                                            disable_recommendations_path: recommendations_disable_proposals_path,

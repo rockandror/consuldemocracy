@@ -15,17 +15,21 @@ class Admin::HiddenUsersController < Admin::BaseController
 
   def confirm_hide
     @user.confirm_hide
-    redirect_to request.query_parameters.merge(action: :index)
+    redirect_to admin_hidden_users_path(params_strong)
   end
 
   def restore
     @user.restore
     @user.update_attributes(:access_key_tried => 0, :access_key_generated_at => nil, :access_key_generated => nil, :access_key_inserted => nil)
     Activity.log(current_user, :restore, @user)
-    redirect_to request.query_parameters.merge(action: :index)
+    redirect_to admin_hidden_users_path(params_strong)
   end
 
   private
+
+    def params_strong
+      params.permit(:filter)
+    end
 
     def load_user
       @user = User.with_hidden.find(params[:id])

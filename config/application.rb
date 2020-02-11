@@ -55,7 +55,7 @@ module Consul
       "val"   => "es",
       "nl"    => "en"
     }
-
+    
     config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**[^custom]*", "*.{rb,yml}")]
     config.i18n.load_path += Dir[Rails.root.join("config", "locales", "custom", "**", "*.{rb,yml}")]
 
@@ -80,6 +80,7 @@ module Consul
     config.autoload_paths << "#{Rails.root}/app/controllers/custom"
     config.autoload_paths << "#{Rails.root}/app/models/custom"
     config.paths["app/views"].unshift(Rails.root.join("app", "views", "custom"))
+    config.exceptions_app = self.routes
   end
 end
 

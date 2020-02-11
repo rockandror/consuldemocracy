@@ -186,8 +186,8 @@ id:
           undecided: Bimbang
           unfeasible: Tidak layak
           winners: Pemenang
-          one_filter_html: "Filter yang diterapkan saat ini: <b><em>%{filter}</em></b>"
-          two_filters_html: "Filter yang diterapkan saat ini: <b><em>%{filter}, %{advanced_filters}</em></b>"
+          one_filter_html: "Filter yang diterapkan saat ini: <strong><em>%{filter}</em></strong>"
+          two_filters_html: "Filter yang diterapkan saat ini: <strong><em>%{filter}, %{advanced_filters}</em></strong>"
         buttons:
           filter: Penyaring
         download_current_selection: "Unduh pilihan saat ini"

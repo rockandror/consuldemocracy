@@ -4,6 +4,7 @@ es:
     stats_enabled: "Mostrar estadísticas"
     advanced_stats_enabled: "Mostrar estadísticas avanzadas"
     executions_enabled: "Mostrar seguimiento"
+    budget_link_enabled: "Mostrar enlace de presupuestos del Ayuntamiento"
   activerecord:
     models:
       activity:
@@ -129,6 +130,7 @@ es:
     attributes:
       budget:
         name: "Nombre"
+        url: "Enlace a presupuestos del Ayuntamiento"
         description_accepting: "Descripción durante la fase de presentación de proyectos"
         description_reviewing: "Descripción durante la fase de revisión interna"
         description_selecting: "Descripción durante la fase de apoyos"

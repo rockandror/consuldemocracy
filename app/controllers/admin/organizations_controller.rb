@@ -19,12 +19,16 @@ class Admin::OrganizationsController < Admin::BaseController
 
   def verify
     @organization.verify
-    redirect_to request.query_parameters.merge(action: :index)
+    redirect_to admin_organizations_path(params_strong)
   end
 
   def reject
     @organization.reject
-    redirect_to request.query_parameters.merge(action: :index)
+    redirect_to admin_organizations_path(params_strong)
   end
+  private
+    def params_strong
+      params.permit(:filter)
+    end
 
 end

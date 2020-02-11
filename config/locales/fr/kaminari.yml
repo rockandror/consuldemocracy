@@ -6,12 +6,12 @@ fr:
         one: Entrée
         other: Entrées
       more_pages:
-        display_entries: Affichage des entrées <b>%{first}&nbsp;-&nbsp;%{last}</b> sur <b>%{total}</b> %{entry_name}
+        display_entries: Affichage des entrées <strong>%{first}&nbsp;-&nbsp;%{last}</strong> sur <strong>%{total}</strong> %{entry_name}
       one_page:
         display_entries:
           zero: "aucun(e) %{entry_name} ne peut être trouvé(e)"
-          one: Il y a <b>1</b> %{entry_name}
-          other: Il y a <b> %{count}</b> %{entry_name}
+          one: Il y a <strong>1</strong> %{entry_name}
+          other: Il y a <strong> %{count}</strong> %{entry_name}
   views:
     pagination:
       current: Vous êtes sur la page

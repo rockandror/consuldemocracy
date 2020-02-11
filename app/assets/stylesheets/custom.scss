@@ -578,6 +578,18 @@ table {
     &[class^="ssb-icon ssb-google"]:hover {
       color: #ce3e26;
     }
+
+    &.social-share-button-telegram:hover {
+      color: #08c;
+    }
+
+    &.social-share-button-linkedin:hover {
+      color: #0e76a8;
+    }
+    
+    &.social-share-button-whatsapp:hover {
+      color: #2b9b20;
+    }
   }
 }
 
@@ -763,7 +775,6 @@ table {
     text-align: center;
     top: 50%;
     transition: background-color 0.3s, color 0.3s;
-    transform: translateY(-50%);
     width: rem-calc(36);
   }
 

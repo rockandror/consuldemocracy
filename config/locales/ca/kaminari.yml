@@ -6,11 +6,11 @@ ca:
         one: entrada
         other: entrades
       more_pages:
-        display_entries: Mostrant <b>%{first}&nbsp;-&nbsp;%{last}</b> de un total de <b>%{total}</b> %{entry_name}
+        display_entries: Mostrant <strong>%{first}&nbsp;-&nbsp;%{last}</strong> de un total de <strong>%{total}</strong> %{entry_name}
       one_page:
         display_entries:
-          one: Hi ha <b>1</b> %{entry_name}
-          other: Hi ha <b> %{count}</b> %{entry_name}
+          one: Hi ha <strong>1</strong> %{entry_name}
+          other: Hi ha <strong> %{count}</strong> %{entry_name}
   views:
     pagination:
       current: Estàs en la pàgina

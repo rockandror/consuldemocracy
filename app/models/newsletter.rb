@@ -7,7 +7,7 @@ class Newsletter < ApplicationRecord
   validates :body, presence: true
   validate :validate_segment_recipient
 
-  validates_format_of :from, :with => /@/
+  validates_format_of :from, :with =>  /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
   acts_as_paranoid column: :hidden_at
   include ActsAsParanoidAliases
