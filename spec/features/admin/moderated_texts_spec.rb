@@ -13,14 +13,14 @@ feature "Moderated texts", type: :feature do
   end
 
   context "Index" do
-    scenario "Shows a message when no words are moderated" do
+    it "shows a message when no words are moderated" do
       visit admin_moderated_texts_path
       expect(page).to have_content('There are no moderated words')
     end
   end
 
   context "New" do
-    scenario "Adds a new moderated word" do
+    it "adds a new moderated word" do
       visit admin_moderated_texts_path
       click_link 'Create new text'
 
@@ -41,7 +41,7 @@ feature "Moderated texts", type: :feature do
       moderated_text: word)
     }
 
-    scenario "Updates an existing word" do
+    it "updates an existing word" do
       another_word = create(:moderated_text, text: "nasty")
 
       visit admin_moderated_texts_path
@@ -59,7 +59,7 @@ feature "Moderated texts", type: :feature do
       expect(page).to have_content("Word modified successfully")
     end
 
-    scenario "Does not allow modifying an existing word if it has associated offenses" do
+    it "does not allow modifying an existing word if it has associated offenses" do
       visit admin_moderated_texts_path
 
       within "#moderated_text_#{word.id}" do
@@ -73,7 +73,7 @@ feature "Moderated texts", type: :feature do
   context "Delete" do
     let!(:word) { create(:moderated_text, text: "vulgar") }
 
-    scenario "Removes a moderated word", :js do
+    it "removes a moderated word", :js do
       visit admin_moderated_texts_path
       expect(page).to have_content('vulgar')
 
@@ -83,7 +83,7 @@ feature "Moderated texts", type: :feature do
       expect(page).not_to have_content('vulgar')
     end
 
-    scenario "Removing a moderated word deletes all its associated offenses", :js do
+    it "removes a moderated word with its associated offenses", :js do
       create(:moderated_content, moderable: comment, moderated_text: word)
 
       visit admin_moderated_texts_path
