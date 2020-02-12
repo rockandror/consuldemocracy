@@ -14,6 +14,7 @@ class Admin::BudgetsController < Admin::BaseController
   end
 
   def show
+    render :edit
   end
 
   def new
@@ -22,6 +23,11 @@ class Admin::BudgetsController < Admin::BaseController
 
   def edit
     load_staff
+  end
+
+  def publish
+    @budget.publish!
+    redirect_to admin_budget_path(@budget), notice: t("admin.budgets.publish.notice")
   end
 
   def calculate_winners
@@ -71,6 +77,7 @@ class Admin::BudgetsController < Admin::BaseController
       valid_attributes = [:phase,
                           :currency_symbol,
                           :voting_style,
+                          :published,
                           administrator_ids: [],
                           valuator_ids: []
       ] + descriptions

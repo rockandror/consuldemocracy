@@ -58,7 +58,7 @@ class Budget
     private
 
       def generate_slug?
-        slug.nil? || budget.drafting?
+        slug.nil? || budget&.drafting?
       end
   end
 end
