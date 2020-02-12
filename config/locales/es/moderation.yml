@@ -60,7 +60,7 @@ es:
         confirm: '¿Estás seguro?'
         filter: Filtro
         filters:
-          no_flags: No denunciadas
+          no_flags_proposals: No denunciadas
           pending_flag_review: Denunciadas
           with_ignored_flag: Marcadas como revisadas
           with_confirmed_hide_at: Propuestas ocultas
