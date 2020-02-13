@@ -875,6 +875,11 @@ en:
       see: "See proposal"
       actions: Actions
       retired_help_text: Dashboard not available for retired proposals
+    comments:
+      edit:
+        info_message_html: "This comment contains the following words, which are labeled as offensive, and thus, making your comment non-visible to the public: <strong>%{words}</strong>"
+        header: Comment
+        button: Amend comment
   votes:
     agree: I agree
     anonymous: Too many anonymous votes to admit vote %{verify_account}.
