@@ -45,6 +45,7 @@ module Abilities
       can [:retire_form, :retire], Legislation::Proposal, author_id: user.id
 
       can :create, Comment
+      can :edit_comment, User, id: user.id
       can :create, Debate
       can [:create, :created], Proposal
       can :create, Legislation::Proposal
