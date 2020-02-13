@@ -873,6 +873,11 @@ es:
       see: "Ver propuesta"
       actions: Acciones
       retired_help_text: Dashboard no disponible para propuestas retiradas
+    comments:
+      edit:
+        info_message_html: "Este comentario contiene las siguientes palabras consideradas ofensivas, y que están impidiendo que tu comentario sea público: <strong>%{words}</strong>"
+        header: Comentario
+        button: Corregir comentario
   votes:
     agree: Estoy de acuerdo
     anonymous: Demasiados votos anónimos, para poder votar %{verify_account}.
