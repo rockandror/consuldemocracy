@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th scope="col"><%= t("users.show.comments") %></th>
+      <th class="text-right"><%= t("users.show.actions") %></th>
     </tr>
   </thead>
   <tbody>
@@ -14,6 +15,13 @@
             <span class="label alert"><%= t("users.show.labels.moderated") %></span>
           <% end %>
           <%= comment.body %>
+        </td>
+        <td class="text-right">
+          <%= link_to t("shared.edit"),
+                      edit_comment_user_path(
+                        id: comment.user_id,
+                        comment_id: comment.id,
+                      ) if user_signed_in? && allows_editing?(comment) %>
         </td>
       </tr>
     <% end %>
