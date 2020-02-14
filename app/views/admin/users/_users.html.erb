@@ -9,6 +9,7 @@
         <th scope="col"><%= t("admin.users.columns.document_number") %></th>
         <th scope="col"><%= t("admin.users.columns.roles") %></th>
         <th scope="col"><%= t("admin.users.columns.verification_level") %></th>
+        <th scope="col"><%= t("admin.shared.actions") %></th>
       </tr>
     </thead>
     <tbody>
@@ -19,6 +20,11 @@
           <td><%= user.document_number %></td>
           <td><%= display_user_roles(user) %></td>
           <td><%= user.user_type %></td>
+          <td><%= link_to t("admin.users.user.delete"),
+                  admin_user_path(user),
+                  method: :delete,
+                  class: "button hollow alert expanded",
+                  :data => {:confirm => t("admin.users.user.confirm_data")}%></td>
         </tr>
       <% end %>
     </tbody>
