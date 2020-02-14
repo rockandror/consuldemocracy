@@ -147,8 +147,8 @@ fa:
           undecided: بلاتکلیف
           unfeasible: غیر قابل پیش بینی
           winners: برندگان
-          one_filter_html: "فیلترهای فعلی موجود:<b><em>%{filter}</em></b>"
-          two_filters_html: "فیلترهای فعلی موجود:<b><em>%{filter}%{advanced_filters}</em></b>"
+          one_filter_html: "فیلترهای فعلی موجود:<strong><em>%{filter}</em></strong>"
+          two_filters_html: "فیلترهای فعلی موجود:<strong><em>%{filter}%{advanced_filters}</em></strong>"
         buttons:
           filter: فیلتر
         download_current_selection: "انتخاب کنونی را دانلود کنید"

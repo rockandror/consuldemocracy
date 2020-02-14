@@ -1,6 +1,7 @@
 require "manager_authenticator"
 
 class Management::SessionsController < ActionController::Base
+  protect_from_forgery
   include AccessDeniedHandler
 
   def create

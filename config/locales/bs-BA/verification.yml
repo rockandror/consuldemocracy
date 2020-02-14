@@ -19,7 +19,7 @@ bs:
         unconfirmed_code: Niste unijeli verifikacioni kod
       create:
         flash:
-          success_html: Hvala što se tražili svoj <b> (maksimalno zaštićeni kod) (koji je samo potreban za finalno glasanje </b>. Za nekoliko dana poslaćemo vam kod na adresu koju imamo u našim podacima. Ako želite, alternativa je da uzmete kod u bilo kojoj kancelariji za pružanje podrške građanima.
+          success_html: Hvala što se tražili svoj <strong> (maksimalno zaštićeni kod) (koji je samo potreban za finalno glasanje </strong>. Za nekoliko dana poslaćemo vam kod na adresu koju imamo u našim podacima. Ako želite, alternativa je da uzmete kod u bilo kojoj kancelariji za pružanje podrške građanima.
       edit:
         see_all: Vidi prijedloge
         title: Zatražena poruka

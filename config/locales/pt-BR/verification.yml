@@ -19,7 +19,7 @@ pt-BR:
         unconfirmed_code: Você ainda não inseriu o código de confirmação.
       create:
         flash:
-          success_html: Obrigada por solicitar seu <b> código de segurança máxima (necessário apenas para as votações finais) </b>. Em alguns dias, nós o enviaremos para o endereço que temos nos registros. Por favor, lembre que, se preferir, você pode retirar seu código em qualquer um dos %{offices}.
+          success_html: Obrigada por solicitar seu <strong> código de segurança máxima (necessário apenas para as votações finais) </strong>. Em alguns dias, nós o enviaremos para o endereço que temos nos registros. Por favor, lembre que, se preferir, você pode retirar seu código em qualquer um dos %{offices}.
       edit:
         see_all: Ver propostas
         title: Carta solicitada

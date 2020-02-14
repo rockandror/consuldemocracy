@@ -144,7 +144,7 @@ describe "Notifications" do
                                   segment_recipient: "all_users")
     end
 
-    let!(:notification) do
+    let(:notification) do
       create(:notification, user: user, notifiable: admin_notification)
     end
 
@@ -183,13 +183,13 @@ describe "Notifications" do
   end
 
   describe "#send_pending" do
-    let!(:user1) { create(:user) }
-    let!(:user2) { create(:user) }
-    let!(:user3) { create(:user) }
-    let!(:proposal_notification) { create(:proposal_notification) }
-    let!(:notification1) { create(:notification, notifiable: proposal_notification, user: user1) }
-    let!(:notification2) { create(:notification, notifiable: proposal_notification, user: user2) }
-    let!(:notification3) { create(:notification, notifiable: proposal_notification, user: user3) }
+    let(:user1) { create(:user) }
+    let(:user2) { create(:user) }
+    let(:user3) { create(:user) }
+    let(:proposal_notification) { create(:proposal_notification) }
+    let(:notification1) { create(:notification, notifiable: proposal_notification, user: user1) }
+    let(:notification2) { create(:notification, notifiable: proposal_notification, user: user2) }
+    let(:notification3) { create(:notification, notifiable: proposal_notification, user: user3) }
 
     before do
       reset_mailer

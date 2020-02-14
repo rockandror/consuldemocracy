@@ -7,8 +7,10 @@ es:
         filter: Filtro
         filters:
           all: Todos
-          pending_flag_review: Pendientes
+          no_flags: No denunciados
+          pending_flag_review: Denunciados
           with_ignored_flag: Marcados como revisados
+          with_confirmed_hide_at: Comentarios ocultos
         headers:
           comment: Comentario
           moderate: Moderar
@@ -29,8 +31,10 @@ es:
         filter: Filtrar
         filters:
           all: Todos
-          pending_flag_review: Pendientes
+          no_flags: No denunciados
+          pending_flag_review: Denunciados
           with_ignored_flag: Marcados como revisados
+          with_confirmed_hide_at: Debates ocultos
         headers:
           debate: Debate
           moderate: Moderar
@@ -56,9 +60,10 @@ es:
         confirm: '¿Estás seguro?'
         filter: Filtro
         filters:
-          all: Todas
-          pending_flag_review: Pendientes de revisión
+          no_flags_proposals: No denunciadas
+          pending_flag_review: Denunciadas
           with_ignored_flag: Marcadas como revisadas
+          with_confirmed_hide_at: Propuestas ocultas
         headers:
           moderate: Moderar
           proposal: Propuesta

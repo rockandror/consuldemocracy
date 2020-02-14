@@ -3,20 +3,20 @@ fa:
     no_reply: "این پیام از آدرس ایمیلي فرستاده شده است که پاسخ ها را قبول نمي كند."
     comment:
       hi: سلام
-      new_comment_by_html: نظر جدید از %{commenter}<b></b> وجود دارد
+      new_comment_by_html: نظر جدید از %{commenter}<strong></strong> وجود دارد
       subject: کسی توضیح داده است درباره%{commentable}
       title: نظر جدید
     config:
       manage_email_subscriptions: برای جلوگیری از دریافت ایمیل ها، تنظیمات را تغيير دهيد.
     email_verification:
       click_here_to_verify: این لینک
-      instructions_2_html: این ایمیل حساب شما را با <b>%{document_type}%{document_number}</b>تأیید میکند. اگر این به شما تعلق ندارد، لطفا روی لینک قبلی کلیک نکنید و این ایمیل را نادیده بگیرید.
+      instructions_2_html: این ایمیل حساب شما را با <strong>%{document_type}%{document_number}</strong>تأیید میکند. اگر این به شما تعلق ندارد، لطفا روی لینک قبلی کلیک نکنید و این ایمیل را نادیده بگیرید.
       subject: تایید ایمیل
       thanks: با تشكر فراوان.
       title: با استفاده از لینک زیر، حساب خود را تاييد كنيد.
     reply:
       hi: سلام
-      new_reply_by_html: پاسخ جدید از%{commenter}<b></b> برای نظر شما وجود دارد.
+      new_reply_by_html: پاسخ جدید از%{commenter}<strong></strong> برای نظر شما وجود دارد.
       subject: کسی به نظر شما پاسخ داده است.
       title: ' پاسخ جديد به نظر شما'
     unfeasible_spending_proposal:

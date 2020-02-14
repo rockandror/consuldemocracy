@@ -3,21 +3,21 @@ ru:
     no_reply: "Это сообщение было отправлено с email адреса, который не принимает ответы."
     comment:
       hi: Здравствуйте
-      new_comment_by_html: Появился новый комментарий от <b>%{commenter}</b>
+      new_comment_by_html: Появился новый комментарий от <strong>%{commenter}</strong>
       subject: Кто-то прокомментировал ваш %{commentable}
       title: Новый комментарий
     config:
       manage_email_subscriptions: Чтобы перестать получать эти email'ы, измените ваши настройки в
     email_verification:
       click_here_to_verify: эта ссылка
-      instructions_2_html: Этот email верифицирует ваш аккаунт с <b>%{document_type} %{document_number}</b>. Если они вам не принадлежат, пожалуйста не нажимайте на предыдущую ссылку и игнорируйте этот email.
+      instructions_2_html: Этот email верифицирует ваш аккаунт с <strong>%{document_type} %{document_number}</strong>. Если они вам не принадлежат, пожалуйста не нажимайте на предыдущую ссылку и игнорируйте этот email.
       instructions_html: Чтобы завершить верификацию вашего аккаунта пользователя, вы должны нажать %{verification_link}.
       subject: Подтвердить ваш email
       thanks: Спасибо вам большое.
       title: Подтвердить ваш аккаунт при помощи следующей ссылки
     reply:
       hi: Здравствуйте
-      new_reply_by_html: Появился новый ответ от <b>%{commenter}</b> на ваш комментарий на
+      new_reply_by_html: Появился новый ответ от <strong>%{commenter}</strong> на ваш комментарий на
       subject: Кто-то ответил на ваш комментарий
       title: Новый ответ на ваш комментарий
     unfeasible_spending_proposal:

@@ -19,7 +19,7 @@ nl:
         unconfirmed_code: You have not yet entered the confirmation code
       create:
         flash:
-          success_html: Thank you for requesting your <b>maximum security code (only required for the final votes)</b>. In a few days we will send it to the address featuring in the data we have on file. Please remember that, if you prefer, you can collect your code from any of the %{offices}.
+          success_html: Thank you for requesting your <strong>maximum security code (only required for the final votes)</strong>. In a few days we will send it to the address featuring in the data we have on file. Please remember that, if you prefer, you can collect your code from any of the %{offices}.
       edit:
         see_all: Voorstellen bekijken
         title: Letter requested

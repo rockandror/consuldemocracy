@@ -3,7 +3,7 @@ module ModerateActions
   include Polymorphic
 
   def index
-    @resources = @resources.send(@current_filter)
+    @resources = @resources.send(:"#{@current_filter}")
                            .send("sort_by_#{@current_order}")
                            .page(params[:page])
                            .per(50)
@@ -29,10 +29,14 @@ module ModerateActions
       User.where(id: author_ids).accessible_by(current_ability, :block).each {|user| block_user user}
     end
 
-    redirect_to request.query_parameters.merge(action: :index)
+    redirect_to request.query_parameters.merge(action: :index).merge(params_strong)
   end
 
   private
+
+    def params_strong
+      params.permit(:filter)
+    end
 
     def load_resources
       @resources = resource_model.accessible_by(current_ability, :moderate)

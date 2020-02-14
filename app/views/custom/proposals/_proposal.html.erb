@@ -6,7 +6,6 @@
   <div class="panel <%= ("with-image" if feature?(:allow_images) && proposal.image.present?) %>">
     <div class="icon-successful"></div>
     <div class="icon-human-rights"></div>
-
     <% if feature?(:allow_images) && proposal.image.present? %>
       <div class="row" data-equalizer>
 
@@ -72,7 +71,7 @@
       <% if show_proposal_votes? %>
         <div id="<%= dom_id(proposal) %>_votes"
              class="small-12 medium-3 column supports-container"
-             <%= "data-equalizer-watch" if feature?(:allow_images) && proposal.image.present? %>>
+             <%= "data-equalizer-watch" if feature?(:allow_images) && proposal.image&.present? %>>
           <% if proposal.successful? %>
             <div class="padding">
               <div class="supports text-center">

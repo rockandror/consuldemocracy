@@ -50,10 +50,10 @@ it:
           title: Registrarsi come un'organizzazione o associazione
         success:
           back_to_index: 'Ho capito: torno alla pagina principale'
-          instructions_1_html: "<b>Ti contatteremo a breve</b> al fine di verificare che tu sia effettivamente il rappresentante di questo collettivo."
-          instructions_2_html: Mentre <b>verifichiamo la tua e-mail</b>, ti abbiamo inviato un <b>link per la verifica dell’account</b>.
+          instructions_1_html: "<strong>Ti contatteremo a breve</strong> al fine di verificare che tu sia effettivamente il rappresentante di questo collettivo."
+          instructions_2_html: Mentre <strong>verifichiamo la tua e-mail</strong>, ti abbiamo inviato un <strong>link per la verifica dell’account</strong>.
           instructions_3_html: Una volta confermato, si potrà iniziare a partecipare come collettivo non verificato.
-          thank_you_html: Grazie per aver registrato il tuo collettivo su questo sito. Ora è <b>in attesa di verifica</b>.
+          thank_you_html: Grazie per aver registrato il tuo collettivo su questo sito. Ora è <strong>in attesa di verifica</strong>.
           title: Registrazione dell'organizzazione / associazione
     passwords:
       edit:
@@ -123,7 +123,7 @@ it:
           username_note: Nome che appare accanto ai tuoi post
         success:
           back_to_index: Ho capito; torna alla pagina principale
-          instructions_1_html: Si prega di <b>controllare l’e-mail</b> - abbiamo inviato <b>un link di per confermare l’account</b>.
+          instructions_1_html: Si prega di <strong>controllare l’e-mail</strong> - abbiamo inviato <strong>un link di per confermare l’account</strong>.
           instructions_2_html: Una volta confermati, si può iniziare a partecipare.
-          thank_you_html: Grazie per esserti registrato/a.. Ora è necessario <b>confermare il tuo indirizzo email</b>.
+          thank_you_html: Grazie per esserti registrato/a.. Ora è necessario <strong>confermare il tuo indirizzo email</strong>.
           title: Modifica il tuo indirizzo email

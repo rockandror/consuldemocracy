@@ -112,7 +112,8 @@ class Budget
     end
 
     def self.filter_params(params)
-      params.permit(%i[heading_id group_id administrator_id tag_name valuator_id])
+      params.permit(:heading_id,:administrator_id,:tag_name,:valuator_or_group_id, :title_or_id, :min_total_supports,
+                    :advanced_filters => [])
     end
 
     def self.scoped_filter(params, current_filter)
@@ -120,7 +121,7 @@ class Budget
       results = Investment.by_budget(budget)
 
       results = results.where("cached_votes_up + physical_votes >= ?",
-                              params[:min_total_supports])                    if params[:min_total_supports].present?
+                              params[:min_total_supports])                 if params[:min_total_supports].present?
       results = results.where(group_id: params[:group_id])                 if params[:group_id].present?
       results = results.by_tag(params[:tag_name])                          if params[:tag_name].present?
       results = results.by_heading(params[:heading_id])                    if params[:heading_id].present?
@@ -131,15 +132,16 @@ class Budget
       results = search_by_title_or_id(params[:title_or_id].strip, results) if params[:title_or_id]
 
       results = results.send(current_filter)                        if current_filter.present?
+      
       results.includes(:heading, :group, :budget, administrator: :user, valuators: :user)
     end
 
     def self.advanced_filters(params, results)
       ids = []
-      ids += results.valuation_finished_feasible.pluck(:id) if params[:advanced_filters].include?("feasible")
-      ids += results.where(selected: true).pluck(:id)       if params[:advanced_filters].include?("selected")
-      ids += results.undecided.pluck(:id)                   if params[:advanced_filters].include?("undecided")
-      ids += results.unfeasible.pluck(:id)                  if params[:advanced_filters].include?("unfeasible")
+      ids += results.valuation_finished_feasible.pluck(:id)   if params[:advanced_filters].include?("feasible")
+      ids += results.where(selected: true).pluck(:id)         if params[:advanced_filters].include?("selected")
+      ids += results.undecided.pluck(:id)                     if params[:advanced_filters].include?("undecided")
+      ids += results.unfeasible.pluck(:id)                    if params[:advanced_filters].include?("unfeasible")
       results.where("budget_investments.id IN (?)", ids)
     end
 

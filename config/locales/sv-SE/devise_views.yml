@@ -50,10 +50,10 @@ sv:
           title: Registrera er som organisation eller grupp
         success:
           back_to_index: Jag förstår; gå tillbaka till startsidan
-          instructions_1_html: "<b>Vi kommer snart att kontakta dig</b> för att bekräfta att du representerar den här gruppen."
-          instructions_2_html: Medan din <b>e-postadress granskas</b>, har vi skickat en <b>länk för att bekräfta ditt konto</b>.
+          instructions_1_html: "<strong>Vi kommer snart att kontakta dig</strong> för att bekräfta att du representerar den här gruppen."
+          instructions_2_html: Medan din <strong>e-postadress granskas</strong>, har vi skickat en <strong>länk för att bekräfta ditt konto</strong>.
           instructions_3_html: När bekräftelsen är klar kan du börja delta som en overifierad grupp.
-          thank_you_html: Tack för att du har registrerat en grupp på webbplatsen. Den <b>inväntar nu granskning</b>.
+          thank_you_html: Tack för att du har registrerat en grupp på webbplatsen. Den <strong>inväntar nu granskning</strong>.
           title: Registrering av organisation/grupp
     passwords:
       edit:
@@ -123,7 +123,7 @@ sv:
           username_note: Namn som visas vid dina inlägg
         success:
           back_to_index: Jag förstår; gå tillbaka till startsidan
-          instructions_1_html: <b>Kontrollera din e-postadress</b> - vi har skickat en <b>länk för att bekräfta ditt konto</b>.
+          instructions_1_html: <strong>Kontrollera din e-postadress</strong> - vi har skickat en <strong>länk för att bekräfta ditt konto</strong>.
           instructions_2_html: När ditt konto är bekräftat kan du börja delta.
-          thank_you_html: Tack för att du har registrerat dig. Nu behöver du <b>bekräfta din e-postadress</b>.
+          thank_you_html: Tack för att du har registrerat dig. Nu behöver du <strong>bekräfta din e-postadress</strong>.
           title: Bekräfta din e-postadress

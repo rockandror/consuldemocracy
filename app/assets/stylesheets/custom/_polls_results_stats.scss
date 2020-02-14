@@ -1,5 +1,5 @@
-// Polls results & stats
-// - - - - - - - - - - - - - - - - - - - - - - - - -
+/* Polls results & stats
+ - - - - - - - - - - - - - - - - - - - - - - - - -*/
 
 .polls-results,
 .polls-stats,
@@ -169,7 +169,7 @@
   margin: $line-height * 2 0;
 }
 
-// Fixes tables on mobile version for polls february 2017
+/* Fixes tables on mobile version for polls february 2017 */
 
 @include breakpoint(medium down) {
 
@@ -350,7 +350,7 @@
   }
 }
 
-// Fixes tables on mobile version for polls october 2017
+/* Fixes tables on mobile version for polls october 2017 */
 
 @include breakpoint(medium down) {
 

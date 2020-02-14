@@ -15,17 +15,21 @@ class Admin::HiddenBudgetInvestmentsController < Admin::BaseController
 
   def confirm_hide
     @investment.confirm_hide
-    redirect_to request.query_parameters.merge(action: :index)
+    redirect_to admin_hidden_budget_investments_path(params_strong)
   end
 
   def restore
     @investment.restore
     @investment.ignore_flag
     Activity.log(current_user, :restore, @investment)
-    redirect_to request.query_parameters.merge(action: :index)
+    redirect_to admin_hidden_budget_investments_path(params_strong)
   end
 
   private
+
+    def params_strong
+      params.permit(:filter)
+    end
 
     def load_investment
       @investment = Budget::Investment.with_hidden.find(params[:id])
