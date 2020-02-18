@@ -8,4 +8,13 @@ class ModeratedContent < ApplicationRecord
   scope :occurrence_count, -> {
     select(:moderated_text_id).group(:moderated_text_id).count
   }
+
+  scope :remove_all_offenses, ->(id, type) {
+    delete_all(moderable_id: id, moderable_type: type)
+  }
+
+  scope :remove_specific_offenses, ->(type, word_ids, id) { where(
+    "moderable_type = ? AND moderated_text_id IN (?) AND moderable_id = ?",
+    type, word_ids, id
+  ).delete_all }
 end

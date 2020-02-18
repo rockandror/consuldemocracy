@@ -7,5 +7,7 @@ class ModeratedText < ApplicationRecord
   has_many :comments, through: :moderated_contents, as: :moderable
   has_many :moderated_contents, as: :moderable
 
+  scope :get_word_ids, ->(words) { where(text: words).pluck(:id) }
+
   validates :text, presence: true, uniqueness: true
 end
