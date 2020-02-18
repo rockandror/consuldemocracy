@@ -10,7 +10,7 @@ class ModeratedContent < ApplicationRecord
   }
 
   scope :remove_all_offenses, ->(id, type) {
-    delete_all(moderable_id: id, moderable_type: type)
+    where(moderable_id: id, moderable_type: type).delete_all
   }
 
   scope :remove_specific_offenses, ->(type, word_ids, id) { where(
