@@ -46,6 +46,7 @@ module Abilities
 
       can :create, Comment
       can :edit_comment, User, id: user.id
+      can :update, Comment, author_id: user.id
       can :create, Debate
       can [:create, :created], Proposal
       can :create, Legislation::Proposal
