@@ -30,6 +30,25 @@ class CommentsController < ApplicationController
     end
   end
 
+  def update
+    @comment = Comment.find(params[:id])
+    original_matches = @comment.moderated_texts.map(&:text)
+
+    if @comment.update(comment_params)
+      new_matches = @comment.check_for_offenses
+
+      removed_offenses = original_matches - new_matches
+      added_offenses = new_matches - original_matches
+
+      if new_matches.empty?
+        remove_offenses(@comment)
+      else
+        remove_offenses(@comment, removed_offenses)
+        auto_moderate_comment(@comment, added_offenses)
+      end
+    end
+  end
+
   def vote
     @comment.vote_by(voter: current_user, vote: params[:value])
     respond_with @comment
@@ -118,34 +137,44 @@ class CommentsController < ApplicationController
       end
     end
 
-    def auto_moderate_comment(comment)
-      moderated_words = ::ModeratedText.all.pluck(:text)
-      return if moderated_words.empty?
-      regex = /\b(?:#{::Regexp.union(moderated_words).source})\b/i
-
-      offensive_matches = comment.body.scan(regex).map(&:downcase)
-
-      if offensive_matches.empty?
-        return
+    def auto_moderate_comment(comment, matches = nil)
+      if matches.nil?
+        offensive_matches = comment.check_for_offenses
+        return if offensive_matches.nil? || offensive_matches.empty?
+        build_records(comment, offensive_matches)
       else
-        build_records(offensive_matches, comment)
-        ::ModeratedContent.import(@moderated_records)
-        comment.is_offensive = true
+        build_records(comment, matches)
       end
+
+      ::ModeratedContent.import(@moderated_records)
+      comment.is_offensive = true
     end
 
-    def build_records(offensive_matches, comment)
-      matched_ids = ::ModeratedText.where(text: offensive_matches).pluck(:id)
+    def build_records(comment, matches)
+      matched_ids = ::ModeratedText.get_word_ids(matches)
       @moderated_records = []
 
       matched_ids.each do |id|
-        @moderated_records.push({
-          moderable_type: comment.class.to_s,
-          moderated_text_id: id,
-          moderable_id: comment.id
-        })
+        @moderated_records.push(
+          ::ModeratedContent.new(
+            moderable_type: comment.class.to_s,
+            moderated_text_id: id,
+            moderable_id: comment.id
+          )
+        )
       end
 
       return @moderated_records
+    end
+
+    def remove_offenses(comment, words = nil)
+      klass = comment.class.to_s
+
+      if words.nil?
+        ::ModeratedContent.remove_all_offenses(comment.id, klass)
+      else
+        word_ids = ::ModeratedText.get_word_ids(words)
+        ::ModeratedContent.remove_specific_offenses(klass, word_ids, comment.id)
+      end
     end
 end
