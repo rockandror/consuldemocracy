@@ -1,0 +1,9 @@
+<% if @comment.root? %>
+  var commentable_id = "<%= dom_id(@comment.commentable) %>";
+  App.Comments.reset_form(commentable_id);
+<% else %>
+  var parent_id = "<%= "comment_#{@comment.parent_id}" %>";
+  App.Comments.reset_and_hide_form(parent_id);
+<% end %>
+
+window.location = "<%= user_path(current_user, filter: "comments") %>"
