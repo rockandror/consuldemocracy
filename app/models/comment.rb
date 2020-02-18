@@ -157,6 +157,14 @@ class Comment < ApplicationRecord
     return true
   end
 
+  def check_for_offenses
+    moderated_words = ::ModeratedText.all.pluck(:text)
+    return if moderated_words.empty?
+    regex = /\b(?:#{::Regexp.union(moderated_words).source})\b/i
+
+    self.body.scan(regex).map(&:downcase)
+  end
+
   private
 
     def validate_body_length
