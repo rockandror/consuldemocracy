@@ -23,8 +23,8 @@ class Comment < ApplicationRecord
   validate :validate_body_length, unless: -> { valuation }
   validate :comment_valuation, if: -> { valuation }
 
-  has_many :moderated_contents, dependent: :destroy, as: :moderable
-  has_many :moderated_texts, through: :moderated_contents, as: :moderable
+  has_many :moderated_texts, through: :moderated_contents
+  has_many :moderated_contents, dependent: :destroy, foreign_key: "moderable_id", as: :moderable
 
   belongs_to :commentable, -> { with_hidden }, polymorphic: true, counter_cache: true, touch: true
   belongs_to :user, -> { with_hidden }
