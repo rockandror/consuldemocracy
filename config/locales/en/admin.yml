@@ -942,6 +942,12 @@ en:
       user_invite:
         title: "User Invitation"
         description: "Sent to the person that has been invited to register an account."
+      confirmed_moderation:
+        title: "Confirmed moderation"
+        description: "Sent to an user whose moderable resource has been deemed as offensive."
+      declined_moderation:
+        title: "Declined moderation"
+        description: "Sent to an user whose moderable resource has been deemed non-offensive."
       edit_info: "You can edit this email in"
       message_title: "Message's Title"
       message_body: "This is a sample of message's content."
@@ -949,6 +955,7 @@ en:
         no_investments: "There aren't any budget investment created. Some example data is needed in order to preview the email."
         no_comments: "There aren't any comments created. Some example data is needed in order to preview the email."
         no_replies: "There aren't any replies created. Some example data is needed in order to preview the email."
+        no_moderations: "No resources have been moderated. Some examples data is needed in order to preview the email."
     emails_download:
       index:
         title: Emails download
