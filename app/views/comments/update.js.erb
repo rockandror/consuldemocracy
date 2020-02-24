@@ -1,9 +1,5 @@
-<% if @comment.root? %>
-  var commentable_id = "<%= dom_id(@comment.commentable) %>";
-  App.Comments.reset_form(commentable_id);
+<% if @comment.is_offensive == false %>
+  window.location = "<%= user_path(current_user, filter: "comments") %>"
 <% else %>
-  var parent_id = "<%= "comment_#{@comment.parent_id}" %>";
-  App.Comments.reset_and_hide_form(parent_id);
+  window.location = "<%= edit_comment_user_path(id: @comment.user_id, comment_id: @comment.id) %>"
 <% end %>
-
-window.location = "<%= user_path(current_user, filter: "comments") %>"

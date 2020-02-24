@@ -42,6 +42,7 @@ class CommentsController < ApplicationController
 
       if new_matches.empty?
         remove_offenses(@comment)
+        @comment.is_offensive = false
       else
         remove_offenses(@comment, removed_offenses)
         auto_moderate_comment(@comment, added_offenses)
