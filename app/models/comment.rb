@@ -60,8 +60,12 @@ class Comment < ApplicationRecord
   scope :not_valuations, -> { where(valuation: false) }
 
   scope :filtered, -> {
-    where(moderated_contents: { moderable_id: nil })
-      .or(where.not(moderated_contents: { declined_at: nil }))
+    includes(:moderated_contents)
+      .joins("LEFT JOIN moderated_contents
+        ON moderated_contents.moderable_id = comments.id
+        AND moderated_contents.moderable_type = 'Comment'")
+      .where("moderated_contents.moderable_id IS NULL
+        OR moderated_contents.declined_at IS NOT NULL")
   }
 
   after_create :call_after_commented
