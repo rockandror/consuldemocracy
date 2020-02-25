@@ -12,13 +12,13 @@ class Admin::AutoModeratedContentController < Admin::BaseController
 
   def show_again
     @contents.update_all(declined_at: Time.current)
-    Mailer.declined_moderation(@contents.first.moderable)
+    Mailer.declined_moderation(@contents.first.moderable).deliver_later
     redirect_to admin_auto_moderated_content_index_path
   end
 
   def confirm_moderation
     @contents.update_all(confirmed_at: Time.current)
-    Mailer.confirmed_moderation(@contents.first.moderable)
+    Mailer.confirmed_moderation(@contents.first.moderable).deliver_later
     redirect_to admin_auto_moderated_content_index_path
   end
 
