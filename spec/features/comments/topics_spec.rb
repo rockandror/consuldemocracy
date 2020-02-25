@@ -578,12 +578,12 @@ describe "Commenting topics from proposals" do
       create(:moderated_text, text: "vulgar")
       @community = proposal.community
       @topic = create(:topic, community: @community)
+      @parent = create(:comment, body: "parent comment", commentable: @topic, user: user)
+      login_as(user)
+      visit community_topic_path(@community, @topic)
     end
 
     scenario "Non-offensive comments are created successfully", :js do
-      login_as(user)
-      visit community_topic_path(@community, @topic)
-
       fill_in "comment-body-topic_#{@topic.id}", with: "not a comment"
       click_button 'Publish comment'
 
@@ -597,10 +597,7 @@ describe "Commenting topics from proposals" do
       end
     end
 
-    scenario "Shows notice when a comment includes a moderated word", :js do
-      login_as(user)
-      visit community_topic_path(@community, @topic)
-
+    scenario "Offensive comment hides after reloading", :js do
       fill_in "comment-body-topic_#{@topic.id}", with: "vulgar comment"
       click_button 'Publish comment'
 
@@ -609,38 +606,57 @@ describe "Commenting topics from proposals" do
       end
 
       within "#comments" do
+        expect(page).to have_content "vulgar comment"
         expect(page).to have_content "This comment won't be shown next time this page is reloaded as it has been deemed offensive"
-        expect(page).to have_content "vulgar comment"
-      end
-    end
-
-    scenario "Comment hides after reloading page", :js do
-      login_as(user)
-      visit community_topic_path(@community, @topic)
-
-      fill_in "comment-body-topic_#{@topic.id}", with: "vulgar comment"
-      click_button 'Publish comment'
-
-      within "#tab-comments-label" do
-        expect(page).to have_content "Comments (1)"
-      end
-
-      within "#comments" do
-        expect(page).to have_content "vulgar comment"
       end
 
       visit community_topic_path(@community, @topic)
 
       within "#tab-comments-label" do
-        expect(page).to have_content "Comments (1)"
+        expect(page).to have_content "Comments (2)"
       end
 
       within "#comments" do
         expect(page).not_to have_content "vulgar comment"
+        expect(page).not_to have_content "This comment won't be shown next time this page is reloaded as it has been deemed offensive"
       end
     end
-  end
 
+    scenario "Non-offensive replies are created succesfully", :js do
+      within "#comment_#{@parent.id}" do
+        expect(page).to have_content(@parent.body)
+        click_link "Reply"
+      end
+
+      within "#js-comment-form-comment_#{@parent.id}" do
+        fill_in "comment-body-comment_#{@parent.id}", with: "not a reply"
+        click_button "Publish reply"
+      end
+
+      expect(page).to have_content "not a reply"
+      expect(page).not_to have_content "This comment won't be shown next time this page is reloaded as it has been deemed offensive"
+    end
+
+    scenario "Offensive reply hides after reloading", :js do
+      within "#comment_#{@parent.id}" do
+        expect(page).to have_content(@parent.body)
+        click_link "Reply"
+      end
+
+      within "#js-comment-form-comment_#{@parent.id}" do
+        fill_in "comment-body-comment_#{@parent.id}", with: "A vulgar reply"
+        click_button "Publish reply"
+      end
+
+      expect(page).to have_content("A vulgar reply")
+      expect(page).to have_content("This comment won't be shown next time this page is reloaded as it has been deemed offensive")
+
+      visit community_topic_path(@community, @topic)
+
+      expect(page).to have_content(@parent.body)
+      expect(page).not_to have_content("A vulgar reply")
+    end
+  end
 end
 
 describe "Commenting topics from budget investments" do
@@ -1198,12 +1214,12 @@ describe "Commenting topics from budget investments" do
       create(:moderated_text, text: "vulgar")
       @community = investment.community
       @topic = create(:topic, community: @community)
+      @parent = create(:comment, body: "parent comment", commentable: @topic, user: user)
+      login_as(user)
+      visit community_topic_path(@community, @topic)
     end
 
     scenario "Non-offensive comments are created successfully", :js do
-      login_as(user)
-      visit community_topic_path(@community, @topic)
-
       fill_in "comment-body-topic_#{@topic.id}", with: "not a comment"
       click_button 'Publish comment'
 
@@ -1217,10 +1233,7 @@ describe "Commenting topics from budget investments" do
       end
     end
 
-    scenario "Shows notice when a comment includes a moderated word", :js do
-      login_as(user)
-      visit community_topic_path(@community, @topic)
-
+    scenario "Offensive comment hides after reloading", :js do
       fill_in "comment-body-topic_#{@topic.id}", with: "vulgar comment"
       click_button 'Publish comment'
 
@@ -1229,36 +1242,55 @@ describe "Commenting topics from budget investments" do
       end
 
       within "#comments" do
+        expect(page).to have_content "vulgar comment"
         expect(page).to have_content "This comment won't be shown next time this page is reloaded as it has been deemed offensive"
-        expect(page).to have_content "vulgar comment"
-      end
-    end
-
-    scenario "Comment hides after reloading page", :js do
-      login_as(user)
-      visit community_topic_path(@community, @topic)
-
-      fill_in "comment-body-topic_#{@topic.id}", with: "vulgar comment"
-      click_button 'Publish comment'
-
-      within "#tab-comments-label" do
-        expect(page).to have_content "Comments (1)"
-      end
-
-      within "#comments" do
-        expect(page).to have_content "vulgar comment"
       end
 
       visit community_topic_path(@community, @topic)
 
       within "#tab-comments-label" do
-        expect(page).to have_content "Comments (1)"
+        expect(page).to have_content "Comments (2)"
       end
 
       within "#comments" do
         expect(page).not_to have_content "vulgar comment"
+        expect(page).not_to have_content "This comment won't be shown next time this page is reloaded as it has been deemed offensive"
       end
     end
-  end
 
+    scenario "Non-offensive replies are created succesfully", :js do
+      within "#comment_#{@parent.id}" do
+        expect(page).to have_content(@parent.body)
+        click_link "Reply"
+      end
+
+      within "#js-comment-form-comment_#{@parent.id}" do
+        fill_in "comment-body-comment_#{@parent.id}", with: "not a reply"
+        click_button "Publish reply"
+      end
+
+      expect(page).to have_content "not a reply"
+      expect(page).not_to have_content "This comment won't be shown next time this page is reloaded as it has been deemed offensive"
+    end
+
+    scenario "Offensive reply hides after reloading", :js do
+      within "#comment_#{@parent.id}" do
+        expect(page).to have_content(@parent.body)
+        click_link "Reply"
+      end
+
+      within "#js-comment-form-comment_#{@parent.id}" do
+        fill_in "comment-body-comment_#{@parent.id}", with: "A vulgar reply"
+        click_button "Publish reply"
+      end
+
+      expect(page).to have_content("A vulgar reply")
+      expect(page).to have_content("This comment won't be shown next time this page is reloaded as it has been deemed offensive")
+
+      visit community_topic_path(@community, @topic)
+
+      expect(page).to have_content(@parent.body)
+      expect(page).not_to have_content("A vulgar reply")
+    end
+  end
 end
