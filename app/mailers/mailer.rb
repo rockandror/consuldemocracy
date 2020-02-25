@@ -132,7 +132,7 @@ class Mailer < ApplicationMailer
     with_user(@author) do
       mail(to: @email_to,
         subject: t("mailers.moderable.confirmed_moderation_subject",
-          moderable: t("mailers.moderable.resource.#{@moderable.moderable_type.downcase}")
+          moderable: t("mailers.moderable.resource.#{@moderable.class.to_s.downcase}")
         )
       )
     end
@@ -146,7 +146,7 @@ class Mailer < ApplicationMailer
     with_user(@author) do
       mail(to: @email_to,
         subject: t("mailers.moderable.declined_moderation_subject",
-          moderable: t("mailers.moderable.resource.#{@moderable.moderable_type.downcase}")
+          moderable: t("mailers.moderable.resource.#{@moderable.class.to_s.downcase}")
         )
       )
     end
