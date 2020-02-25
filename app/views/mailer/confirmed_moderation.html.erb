@@ -4,7 +4,7 @@
   </p>
 
   <p style="font-family: 'Open Sans','Helvetica Neue',arial,sans-serif;font-size: 14px;font-weight: normal;line-height: 24px;">
-    <%= t("mailers.moderable.confirmed_moderation_html", moderable: t("mailers.moderable.resource.#{@moderable.moderable_type.downcase}")) %>
+    <%= t("mailers.moderable.confirmed_moderation_html", moderable: t("mailers.moderable.resource.#{@moderable.class.to_s.downcase}")) %>
   </p>
 
   <p style="font-family: 'Open Sans','Helvetica Neue',arial,sans-serif;font-size: 14px;font-weight: normal;line-height: 24px;">
