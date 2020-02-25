@@ -550,4 +550,121 @@ describe "Users" do
     end
 
   end
+
+  describe "Automated moderation" do
+    before do
+      @user = create(:user)
+      @admin = create(:administrator)
+      @comment = create(:comment, body: "vulgar comment", author: @user)
+      @another_comment = create(:comment, body: "not offensive", author: @user)
+      @word = create(:moderated_text, text: "vulgar")
+      @another_word = create(:moderated_text, text: "damn")
+      create(:moderated_content, moderable: @comment, moderated_text: @word)
+    end
+
+    it "shows a label and an 'Edit' link when a comment is offensive" do
+      login_as(@user)
+      visit user_path(@user, filter: 'comments')
+
+      within "#comment_#{@comment.id}" do
+        expect(page).to have_content(@comment.body)
+        expect(page).to have_content("Moderated")
+        expect(page).to have_link("Edit")
+      end
+
+      within "#comment_#{@another_comment.id}" do
+        expect(page).not_to have_link("Edit")
+        expect(page).to have_content(@another_comment.body)
+        expect(page).not_to have_content("Moderated")
+      end
+    end
+
+    context "Editing" do
+      before do
+        login_as(@user)
+        visit user_path(@user, filter: 'comments')
+      end
+
+      it "renders a message indicating the offensive words detected" do
+        within "#comment_#{@comment.id}" do
+          click_link 'Edit'
+        end
+
+        expect(page).to have_content("This comment contains the following words, which are labeled as offensive, and thus, making your comment non-visible to the public: vulgar")
+        expect(page).to have_content(@comment.body)
+      end
+
+      it "renders updated message if the original offense is replaced with another offense", :js do
+        within "#comment_#{@comment.id}" do
+          click_link 'Edit'
+        end
+
+        expect(page).to have_content(@comment.body)
+
+        fill_in "comment-body-debate_#{@comment.commentable.id}", with: "damn"
+        click_button "Amend comment"
+
+        expect(page).to have_content("This comment contains the following words, which are labeled as offensive, and thus, making your comment non-visible to the public: damn")
+        expect(page).to have_content("damn")
+        expect(page).not_to have_content("vulgar comment")
+      end
+
+      it "updates the comment successfully if no offenses are detected", :js do
+        within "#comment_#{@comment.id}" do
+          click_link 'Edit'
+        end
+
+        expect(page).to have_content(@comment.body)
+
+        fill_in "comment-body-debate_#{@comment.commentable.id}", with: "I'm not offensive :D"
+        click_button "Amend comment"
+
+        within "#comment_#{@comment.id}" do
+          expect(page).not_to have_link("Edit")
+          expect(page).not_to have_content("Moderated")
+          expect(page).not_to have_content(@comment.body)
+          expect(page).to have_content("I'm not offensive :D")
+        end
+      end
+    end
+
+    context "Administration" do
+      before do
+        login_as(@admin.user)
+        visit admin_auto_moderated_content_index_path
+      end
+
+      it "does not render a label nor an 'Edit' link if the comment was approved" do
+        within "#comment_#{@comment.id}" do
+          expect(page).to have_content(@comment.body)
+          click_link 'Show again'
+        end
+
+        login_as(@user)
+        visit user_path(@user, filter: 'comments')
+
+        within "#comment_#{@comment.id}" do
+          expect(page).not_to have_link("Edit")
+          expect(page).to have_content(@comment.body)
+          expect(page).not_to have_content("Moderated")
+        end
+      end
+
+      it "renders a label, but doesn't render an 'Edit' link if the comment was deemed offensive" do
+        within "#comment_#{@comment.id}" do
+          expect(page).to have_content(@comment.body)
+          click_link 'Confirm moderation'
+        end
+
+        login_as(@user)
+        visit user_path(@user, filter: 'comments')
+
+        within "#comment_#{@comment.id}" do
+          expect(page).not_to have_link("Edit")
+          expect(page).to have_content("Moderated")
+          expect(page).to have_content(@comment.body)
+        end
+      end
+    end
+  end
 end
