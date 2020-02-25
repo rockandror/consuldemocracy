@@ -7,9 +7,7 @@ class MergedCommentTree < CommentTree
   end
 
   def base_comments
-    Comment.where(commentable: commentables.flatten)
-      .includes(:moderated_contents)
-      .filtered
+    Comment.where(commentable: commentables.flatten).filtered
   end
 
 end
