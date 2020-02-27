@@ -674,16 +674,16 @@ es:
         title: Editar palabra moderada
         submit_button: Modificar palabra
       update:
-        notice: Palabra modificada exitosamente
+        notice: Palabra modificada correctamente
         error: Ha ocurrido un error al modificar esta palabra. Por favor, intente nuevamente
       destroy:
         alert: Esta acción eliminará esta palabra.
-        notice: Palabra eliminada exitosamente.
+        notice: Palabra eliminada correctamente.
       imports:
         index:
           title: Importar desde un archivo CSV
         create:
-          notice: Su archivo ha sido procesado exitosamente.
+          notice: Su archivo ha sido procesado correctamente.
       errors:
         form:
           error:
