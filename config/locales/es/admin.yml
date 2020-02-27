@@ -694,7 +694,6 @@ es:
         submit_button: Crear texto
       create:
         notice: Texto creado correctamente
-        error: No se ha podido crear el texto
       edit:
         title: Editar palabra moderada
         submit_button: Modificar palabra
@@ -709,6 +708,11 @@ es:
           title: Importar desde un archivo CSV
         create:
           notice: Su archivo ha sido procesado exitosamente.
+      errors:
+        form:
+          error:
+            one: "error impidió guardar el texto."
+            other: "errores impidieron guardar el texto."
     auto_moderated_content:
       index:
         title: Contenido moderado automáticamente

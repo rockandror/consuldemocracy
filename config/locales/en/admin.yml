@@ -672,7 +672,6 @@ en:
         submit_button: Create text
       create:
         notice: Text created successfully
-        error: An error prevented this text from being created
       edit:
         title: Edit moderated word
         submit_button: Modify word
@@ -687,6 +686,11 @@ en:
           title: Import from a CSV file
         create:
           notice: The uploaded file was successfully processed
+      errors:
+        form:
+          error:
+            one: "error prevented this text from being saved"
+            other: "errors prevented this text from being saved"
     auto_moderated_content:
       index:
         title: Automatically moderated content
