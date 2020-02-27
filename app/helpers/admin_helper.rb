@@ -68,11 +68,13 @@ module AdminHelper
     ["actions", "administrator_tasks"].include?(controller_name)
   end
 
-  def submenu_moderated_texts_imports?
-    controller_name == "moderated_texts" ||
-    (controller_name == "imports" && controller.class.parent == Admin::ModeratedTexts)
+  def moderated_texts_section?
+    controller_name == "moderated_texts" || moderated_texts_import_section?
   end
 
+  def moderated_texts_import_section?
+    controller_name == "imports" && controller.class.parent == Admin::ModeratedTexts
+  end
   def show_moderation_buttons?(comment)
     comment.moderated_contents.map(&:declined_at).all? ||
     comment.moderated_contents.map(&:confirmed_at).all?
