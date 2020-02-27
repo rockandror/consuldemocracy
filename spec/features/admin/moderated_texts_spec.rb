@@ -32,6 +32,17 @@ feature "Moderated texts", type: :feature do
       expect(page).to have_content('Bad word')
       expect(page).to have_content('Text created successfully')
     end
+
+    it "adds a new moderated word with error" do
+      visit admin_moderated_texts_path
+      click_link 'Create new text'
+
+      expect(page).to have_content('New text')
+
+      click_button 'Create text'
+
+      expect(page).to have_content('1 error prevented this text from being saved')
+    end
   end
 
   context "Edit" do
