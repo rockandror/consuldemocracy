@@ -1,5 +1,5 @@
 <%= form_for [:admin, @word] do |f| %>
-  <%= render "shared/errors", resource: @word %>
+  <%= render "errors" %>
 
   <div class="small-12 medium-6 column">
     <%= f.text_field :text %>
