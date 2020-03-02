@@ -10,13 +10,6 @@ class UsersController < ApplicationController
     load_filtered_activity if valid_access?
   end
 
-  def edit_comment
-    @comment = ::Comment.find_by(
-      id: params[:comment_id],
-      user_id: params[:id]
-    )
-  end
-
   private
 
     def set_activity_counts
