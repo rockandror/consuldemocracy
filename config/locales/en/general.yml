@@ -845,7 +845,8 @@ en:
       budget_investments: Budget investments
       comments: Comments
       labels:
-        moderated: Moderated
+        pending_moderated: Pending moderated
+        confirmed_moderation: Moderated
       actions: Actions
       filters:
         comments:
