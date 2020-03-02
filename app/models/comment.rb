@@ -169,6 +169,11 @@ class Comment < ApplicationRecord
     self.body.scan(regex).map(&:downcase)
   end
 
+  def offensive?
+    moderated_contents.confirmed.any? ||
+      moderated_contents.where("confirmed_at IS NULL and declined_at IS NULL").any?
+  end
+
   private
 
     def validate_body_length

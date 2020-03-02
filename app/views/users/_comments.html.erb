@@ -18,10 +18,7 @@
         </td>
         <td class="text-right">
           <%= link_to t("shared.edit"),
-                      edit_comment_user_path(
-                        id: comment.user_id,
-                        comment_id: comment.id,
-                      ) if user_signed_in? && allows_editing?(comment) %>
+                      edit_comment_path(comment) if current_user && current_user.can?(:edit, comment) %>
         </td>
       </tr>
     <% end %>

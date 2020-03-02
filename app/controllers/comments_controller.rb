@@ -21,6 +21,10 @@ class CommentsController < ApplicationController
     end
   end
 
+  def edit
+    @comment = Comment.find(params[:id])
+  end
+
   def show
     @comment = Comment.find(params[:id])
     if @comment.valuation && @comment.author != current_user
@@ -43,9 +47,11 @@ class CommentsController < ApplicationController
       if new_matches.empty?
         remove_offenses(@comment)
         @comment.is_offensive = false
+        redirect_to user_path(current_user, filter: "comments")
       else
         remove_offenses(@comment, removed_offenses)
         auto_moderate_comment(@comment, added_offenses)
+        redirect_to edit_comment_path(@comment)
       end
     end
   end
