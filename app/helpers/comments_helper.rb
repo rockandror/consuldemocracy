@@ -30,7 +30,7 @@ module CommentsHelper
   def comment_button_text(parent_id, commentable)
     if commentable.class == Legislation::Question
       parent_id.present? ? t("comments_helper.reply_button") : t("legislation.questions.comments.comment_button")
-    elsif controller_name == "users" && action_name == "edit_comment"
+    elsif controller_name == "comments" && action_name == "edit"
       t("users.comments.edit.button")
     else
       comment_kind = find_comment_kind(commentable)

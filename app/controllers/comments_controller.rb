@@ -21,6 +21,10 @@ class CommentsController < ApplicationController
     end
   end
 
+  def edit
+    @comment = Comment.find(params[:id])
+  end
+
   def show
     @comment = Comment.find(params[:id])
     if @comment.valuation && @comment.author != current_user
