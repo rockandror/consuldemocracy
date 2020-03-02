@@ -76,12 +76,6 @@ module UsersHelper
     !comment.moderated_contents.map(&:declined_at).all?
   end
 
-  def allows_editing?(comment)
-    current_user.id == comment.author_id &&
-    comment.moderated_contents.any? && !(
-      comment.moderated_contents.map(&:declined_at).all? ||
-      comment.moderated_contents.map(&:confirmed_at).all?
-    )
   end
 
 end
