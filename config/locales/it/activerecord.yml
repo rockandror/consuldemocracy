@@ -224,6 +224,7 @@ it:
         body: Corpo
       legislation/process:
         title: Titolo del processo
+        geozone_restricted: "Ristretto alla zona geografica"
         summary: Sommario
         description: Descrizione
         additional_info: Ulteriori info

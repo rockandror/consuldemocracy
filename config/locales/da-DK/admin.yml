@@ -497,6 +497,7 @@ da:
           banner_title: Farve på overskrift
         index:
           create: Ny proces
+          geozone_restricted: "Kun distrikter"
           delete: Slet
           title: Medborgerdialog
           filters:

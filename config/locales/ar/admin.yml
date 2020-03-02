@@ -518,6 +518,7 @@ ar:
           banner_title: لون العنوان
         index:
           create: عملية جديدة
+          geozone_restricted: "خاص بالمقاطعات"
           delete: حذف
           title: العمليات التشريعية
           filters:

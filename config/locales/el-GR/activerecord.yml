@@ -263,6 +263,7 @@ el:
         additional_info: Πρόσθετες πληροφορίες
         start_date: Έναρξη
         end_date: Τέλος
+        geozone_restricted: "Περιορίζεται από το geozone"
         debate_start_date: Έναρξη
         debate_end_date: Τέλος
         draft_start_date: Έναρξη

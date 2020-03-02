@@ -209,6 +209,7 @@ so:
       legislation/process:
         title: Hirgelinta Mowduuca
         summary: Sookobiid
+        geozone_restricted: "Waxaa xakameynaya qulqulka"
         description: Sharaxaad
         additional_info: Xogdheeriya
         start_date: Tariikhda biloowga

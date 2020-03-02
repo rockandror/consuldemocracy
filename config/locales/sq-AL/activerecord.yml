@@ -229,6 +229,7 @@ sq:
         additional_info: Informacion shtesë
         start_date: Data e fillimit
         end_date: Data e përfundimit
+        geozone_restricted: "E kufizuar nga gjeozoni"
         debate_start_date: Data e fillimit të debatit
         debate_end_date: Data e mbarimit të debatit
         draft_start_date: Data e fillimit të draftit

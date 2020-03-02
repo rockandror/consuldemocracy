@@ -344,6 +344,7 @@ fa:
           homepage: توضیحات
         index:
           create: فرآیند جدید
+          geozone_restricted: "محدود به مناطق"
           delete: حذف
           title: فرآیندهای قانونی
           filters:

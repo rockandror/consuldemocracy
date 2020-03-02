@@ -514,6 +514,7 @@ fr:
           create: Nouveau processus
           delete: Supprimer
           title: Processus législatifs
+          geozone_restricted: "Limité aux quartiers"
           filters:
             active: Actif
             all: Toutes

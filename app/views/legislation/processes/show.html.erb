@@ -8,6 +8,12 @@
 
 <div class="row margin-top">
   <div class="small-12 medium-9 column">
-    <%= AdminWYSIWYGSanitizer.new.sanitize(@process.homepage) %>
+    <% if !@process.in_zone(current_user) %>
+      <div class="callout warning">
+        <%= t("polls.show.cant_legislation_wrong_geozone") %>
+      </div>
+    <%else%>
+      <%= AdminWYSIWYGSanitizer.new.sanitize(@process.homepage) %>
+    <%end%>
   </div>
 </div>

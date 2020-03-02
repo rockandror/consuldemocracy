@@ -433,6 +433,7 @@ tr:
         index:
           create: Yeni işlem
           delete: Sil
+          geozone_restricted: "Bölgelerle sınırlıdır"
           title: Mevzuat işlemleri
           filters:
             active: Aktif
