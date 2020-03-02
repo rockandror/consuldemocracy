@@ -607,6 +607,7 @@ describe "Users" do
         expect(page).to have_content("This comment contains the following words, which are labeled as offensive, and thus, making your comment non-visible to the public: damn")
         expect(page).to have_content("damn")
         expect(page).not_to have_content("vulgar comment")
+        expect(page).to have_content("Comment updated successfully")
       end
 
       it "updates the comment successfully if no offenses are detected", :js do
@@ -625,6 +626,7 @@ describe "Users" do
           expect(page).not_to have_content(@comment.body)
           expect(page).to have_content("I'm not offensive :D")
         end
+        expect(page).to have_content("Comment updated successfully")
       end
     end
 

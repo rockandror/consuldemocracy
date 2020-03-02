@@ -47,9 +47,11 @@ class CommentsController < ApplicationController
       if new_matches.empty?
         remove_offenses(@comment)
         @comment.is_offensive = false
+        redirect_to user_path(current_user, filter: "comments"), notice: t("flash.actions.update.comment")
       else
         remove_offenses(@comment, removed_offenses)
         auto_moderate_comment(@comment, added_offenses)
+        redirect_to edit_comment_path(@comment), notice: t("flash.actions.update.comment")
       end
     end
   end
