@@ -176,6 +176,10 @@ class Comment < ApplicationRecord
       moderated_contents.where("confirmed_at IS NULL and declined_at IS NULL").any?
   end
 
+  def confirmed_moderation?
+    moderated_contents.where("confirmed_at IS NOT NULL").any?
+  end
+
   private
 
     def validate_body_length

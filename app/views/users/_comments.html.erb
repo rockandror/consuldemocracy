@@ -12,7 +12,7 @@
           <%= comment_commentable_title(comment) %>
           <br>
           <% if is_moderated?(comment) %>
-            <span class="label alert"><%= t("users.show.labels.moderated") %></span>
+            <span class="label <%= moderated_label_class(comment) %>"><%= moderated_label_text(comment) %></span>
           <% end %>
           <%= comment.body %>
         </td>
