@@ -1,5 +1,0 @@
-<% if @comment.is_offensive == false %>
-  window.location = "<%= user_path(current_user, filter: "comments") %>"
-<% else %>
-  window.location = "<%= edit_comment_user_path(id: @comment.user_id, comment_id: @comment.id) %>"
-<% end %>
