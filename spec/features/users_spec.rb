@@ -556,10 +556,12 @@ describe "Users" do
       @user = create(:user)
       @admin = create(:administrator)
       @comment = create(:comment, body: "vulgar comment", author: @user)
+      @confirmed_moderation_comment = create(:comment, body: "vulgar comment", author: @user)
       @another_comment = create(:comment, body: "not offensive", author: @user)
       @word = create(:moderated_text, text: "vulgar")
       @another_word = create(:moderated_text, text: "damn")
       create(:moderated_content, moderable: @comment, moderated_text: @word)
+      create(:moderated_content, moderable: @confirmed_moderation_comment, moderated_text: @word, confirmed_at: Date.current)
     end
 
     it "shows a label and an 'Edit' link when a comment is offensive" do
@@ -568,8 +570,14 @@ describe "Users" do
 
       within "#comment_#{@comment.id}" do
         expect(page).to have_content(@comment.body)
-        expect(page).to have_content("Moderated")
+        expect(page).to have_content("Pending moderated")
         expect(page).to have_link("Edit")
+      end
+
+      within "#comment_#{@confirmed_moderation_comment.id}" do
+        expect(page).to have_content(@confirmed_moderation_comment.body)
+        expect(page).to have_content("Moderated")
+        expect(page).not_to have_link("Edit")
       end
 
       within "#comment_#{@another_comment.id}" do
