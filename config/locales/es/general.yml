@@ -877,7 +877,8 @@ es:
       budget_investments: Proyectos de presupuestos participativos
       comments: Comentarios
       labels:
-        moderated: Moderado
+        pending_moderated: Pendiente de moderación
+        confirmed_moderation: Moderado
       actions: Acciones
       filters:
         comments:
