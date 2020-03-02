@@ -218,4 +218,26 @@ describe Comment do
     end
   end
 
+  describe "confirmed_moderation?" do
+    it "returns true if it has confirmed moderated contents" do
+      moderated_content = create(:moderated_content, :confirmed)
+      comment = moderated_content.moderable
+
+      expect(comment).to be_confirmed_moderation
+    end
+
+    it "returns false if it has not revised moderated contents" do
+      moderated_content = create(:moderated_content)
+      comment = moderated_content.moderable
+
+      expect(comment).not_to be_confirmed_moderation
+    end
+
+    it "returns false if it has not revised moderated contents" do
+      moderated_content = create(:moderated_content, :declined)
+      comment = moderated_content.moderable
+
+      expect(comment).not_to be_confirmed_moderation
+    end
+  end
 end
