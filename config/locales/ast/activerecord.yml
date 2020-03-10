@@ -196,6 +196,7 @@ ast:
       legislation/process:
         title: Títulu del procesu
         summary: Resume
+        geozone_restricted: "Acutáu per xeozones"
         description: Descripción detallada
         additional_info: Información adicional
         start_date: Fecha d'entamu del procesu

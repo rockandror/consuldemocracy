@@ -376,6 +376,7 @@ sq:
           create: Proces i ri
           delete: Fshi
           title: Legjislacion
+          geozone_restricted: "E kufizuar në rrethe"
           filters:
             all: Të gjithë
         new:

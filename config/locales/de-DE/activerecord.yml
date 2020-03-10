@@ -232,6 +232,7 @@ de:
       legislation/process:
         title: Titel des Beteiligungsverfahrens
         summary: Zusammenfassung
+        geozone_restricted: "Beschränkt auf Gebiete"
         description: Beschreibung
         additional_info: Zusätzliche Information
         start_date: Anfangsdatum

@@ -262,6 +262,7 @@ tr:
       legislation/process:
         title: İşlem Adı
         summary: Özet
+        geozone_restricted: "Geozone tarafından kısıtlandırılmış"
         description: Tanımlama
         additional_info: Ek bilgi
         start_date: Başlangıç tarihi

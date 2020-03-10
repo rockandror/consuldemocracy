@@ -216,6 +216,7 @@ fa:
       legislation/process:
         title: عنوان فرآیند
         summary: خلاصه
+        geozone_restricted: "محدود شده توسط geozone"
         description: توضیحات
         additional_info: اطلاعات اضافی
         start_date: "تاریخ شروع\n"

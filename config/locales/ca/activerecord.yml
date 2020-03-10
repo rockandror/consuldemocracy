@@ -201,6 +201,7 @@ ca:
       legislation/process:
         title: Títol del procés
         summary: Resumen
+        geozone_restricted: "Restringida por zonas"
         description: Descripció detallada
         additional_info: informació addicional
         start_date: Data d'inici del procés

@@ -433,6 +433,7 @@ de:
           create: Neues Beteiligungsverfahren
           delete: Löschen
           title: Gesetzgebungsverfahren
+          geozone_restricted: "Beschränkt auf Bezirke"
           filters:
             active: Aktiv
             all: Alle

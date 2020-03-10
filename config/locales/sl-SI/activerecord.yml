@@ -85,6 +85,7 @@ sl:
         name: Ime
       legislation/process:
         title: Naslov procesa
+        geozone_restricted: "Omejeno z geografskim področjem"
         description: Opis
         additional_info: Dodatne informacije
         start_date: Začetni datum

@@ -11,9 +11,15 @@
 <div class="debate-chooser">
   <div class="row">
     <div class="small-12 column">
-      <div class="callout primary">
-        <p><%= t(".not_open") %></p>
-      </div>
+      <% if !@process.in_zone(current_user) %>
+        <div class="callout warning">
+          <%= t("polls.show.cant_legislation_wrong_geozone") %>
+        </div>
+      <%else%>
+        <div class="callout primary">
+          <p><%= t(".not_open") %></p>
+        </div>
+      <%end%>
     </div>
   </div>
 </div>

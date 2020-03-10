@@ -516,6 +516,7 @@ en:
           create: New process
           delete: Delete
           title: Collaborative legislation
+          geozone_restricted: "Restricted to districts"
           filters:
             active: Active
             all: All

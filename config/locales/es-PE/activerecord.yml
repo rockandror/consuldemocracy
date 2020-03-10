@@ -203,6 +203,7 @@ es-PE:
       legislation/process:
         title: Título del proceso
         summary: Resumen
+        geozone_restricted: "Restringida por zonas"
         description: Descripción detallada
         additional_info: Información adicional
         start_date: Fecha de inicio del proceso
