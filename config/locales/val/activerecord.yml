@@ -232,6 +232,7 @@ val:
       legislation/process:
         title: Títol del Procés
         summary: Resumen
+        geozone_restricted: "Restringida per zones"
         description: Descripció
         additional_info: Informació addicional
         start_date: Data d'inici del procés

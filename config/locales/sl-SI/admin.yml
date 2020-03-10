@@ -280,6 +280,7 @@ sl:
           create: Nov proces
           delete: Izbriši
           title: Procesi legislacije
+          geozone_restricted: "Omejeno na področja"
           filters:
             all: Vsi
         new:

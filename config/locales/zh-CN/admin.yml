@@ -376,6 +376,7 @@ zh-CN:
           create: 新进程
           delete: 删除
           title: 立法进程
+          geozone_restricted: "限于区内"
           filters:
             all: 所有
         new:

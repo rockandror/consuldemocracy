@@ -374,6 +374,7 @@ so:
           create: New process
           delete: Titiriid
           title: Nidaamka Sharciga
+          geozone_restricted: "Xayiraadda degmooyinka"
           filters:
             all: Dhamaan
         new:

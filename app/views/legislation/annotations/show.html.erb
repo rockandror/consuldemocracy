@@ -4,6 +4,15 @@
 
 <%= render "legislation/processes/key_dates", process: @process, phase: :allegations_phase %>
 
+<% if !@process.in_zone(current_user) %>
+    <div class="row margin-top">
+        <div class="small-12 medium-9 column">
+            <div class="callout warning">
+                <%= t("polls.show.cant_legislation_wrong_geozone") %>
+            </div>
+        </div>
+    </div>
+<%else%>
 <div class="column row">
   <div class="draft-panels small-12 column row">
     <%= render "version_chooser", process: @process, draft_version: @draft_version %>
@@ -49,3 +58,4 @@
     </div>
   </div>
 </div>
+<%end%>

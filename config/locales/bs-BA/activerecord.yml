@@ -305,6 +305,7 @@ bs:
         title: Naziv procesa
         summary: Sažetak
         description: Opis
+        geozone_restricted: "Ograničeno na određeno područje"
         additional_info: Dodatne informacije
         start_date: Početak
         end_date: Kraj

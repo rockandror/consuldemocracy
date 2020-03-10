@@ -203,6 +203,7 @@ cs:
         additional_info: Additional info
         start_date: Počáteční datum
         end_date: Konečné datum
+        geozone_restricted: "Restricted by geozone"
         debate_start_date: Debate start date
         debate_end_date: Debate end date
         draft_start_date: Návrh počátečního data

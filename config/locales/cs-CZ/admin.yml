@@ -421,6 +421,7 @@ cs:
           banner_title: Barvy záhlaví
         index:
           create: Nový proces
+          geozone_restricted: "Omezeno na oblasti"
           delete: Smazat
           title: Legislativní procesy
           filters:

@@ -92,6 +92,23 @@ describe Legislation::Process do
     end
   end
 
+  describe "geozones_restricted" do
+    let(:geozone) {create(:geozone) }
+
+    let(:process) { create(:legislation_process, geozone_restricted: true, geozones: [geozone]) }
+
+    let(:non_user) { nil }
+    let(:user)   { create(:user) }
+    
+    let(:user_from_geozone) { create(:user, geozone: geozone) }
+
+    it "in zone" do
+      expect(process.in_zone(non_user)).to equal(false)
+      expect(process.in_zone(user)).to equal(false)
+      expect(process.in_zone(user_from_geozone)).to equal(true)
+    end
+  end
+
   describe "filter scopes" do
     let!(:process_1) { create(:legislation_process, start_date: Date.current - 2.days,
                                                    end_date: Date.current + 1.day) }

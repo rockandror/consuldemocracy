@@ -255,6 +255,7 @@ en:
       legislation/process:
         title: Process Title
         summary: Summary
+        geozone_restricted: "Restricted by geozone"
         description: Description
         additional_info: Additional info
         start_date: Start

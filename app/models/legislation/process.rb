@@ -21,6 +21,7 @@ class Legislation::Process < ApplicationRecord
 
   CSS_HEX_COLOR = /\A#?(?:[A-F0-9]{3}){1,2}\z/i
 
+  has_and_belongs_to_many :geozones, -> {order(name: :asc)}, foreign_key: "legislation_process_id", dependent: :destroy
   has_many :draft_versions, -> { order(:id) }, class_name: "Legislation::DraftVersion",
                                                foreign_key: "legislation_process_id",
                                                dependent: :destroy
@@ -49,7 +50,7 @@ class Legislation::Process < ApplicationRecord
   scope :open, -> { where("start_date <= ? and end_date >= ?", Date.current, Date.current) }
   scope :active, -> { where("end_date >= ?", Date.current) }
   scope :past, -> { where("end_date < ?", Date.current) }
-
+  scope :by_geozone_id, ->(geozone_id) { where(geozones: {id: geozone_id}.joins(:geozones)) }
   scope :published, -> { where(published: true) }
   scope :not_in_draft, -> { where("draft_phase_enabled = false or (draft_start_date IS NOT NULL and
                                    draft_end_date IS NOT NULL and (draft_start_date > ? or
@@ -107,6 +108,14 @@ class Legislation::Process < ApplicationRecord
     else
       :open
     end
+  end
+
+  def in_zone(user)   
+    return false if user.blank? 
+    return true if !self.geozones.any? || !self.geozone_restricted?
+    self.geozones.each {|geo| return true if geo.id.to_i == user.geozone_id.to_i}
+
+    false
   end
 
   private

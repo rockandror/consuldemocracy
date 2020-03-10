@@ -304,6 +304,7 @@ pl:
         summary: Podsumowanie
         description: Opis
         additional_info: Informacje dodatkowe
+        geozone_restricted: "Ograniczone przez geozone"
         start_date: Data rozpoczęcia
         end_date: Data zakończenia
         debate_start_date: Data rozpoczęcia debaty

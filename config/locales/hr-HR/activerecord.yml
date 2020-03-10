@@ -299,6 +299,7 @@ hr:
         font_color: Boja fonta
       legislation/process:
         title: Naslov procesa
+        geozone_restricted: "Ograničeno geozonom"
         summary: Sažetak
         description: Opis
         additional_info: Dodatne informacije

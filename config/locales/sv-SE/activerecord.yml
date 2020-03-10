@@ -246,6 +246,7 @@ sv:
         title: Processens titel
         summary: Sammanfattning
         description: Beskrivning
+        geozone_restricted: "Begränsat till område"
         additional_info: Ytterligare information
         start_date: Startdatum
         end_date: Slutdatum

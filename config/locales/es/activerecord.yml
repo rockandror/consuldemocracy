@@ -256,6 +256,7 @@ es:
         font_color: Color del texto
       legislation/process:
         title: Título del proceso
+        geozone_restricted: "Restringida por zonas"
         summary: Resumen
         description: En qué consiste
         additional_info: Información adicional

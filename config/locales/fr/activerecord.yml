@@ -246,6 +246,7 @@ fr:
         font_color: Couleur de la police
       legislation/process:
         title: Titre du processus
+        geozone_restricted: "Restreint selon la zone géographique"
         summary: Résumé
         description: Description
         additional_info: Plus d'infos

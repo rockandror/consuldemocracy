@@ -190,6 +190,7 @@ zh-CN:
       legislation/process:
         title: 进程标题
         summary: 总结
+        geozone_restricted: "受geozone（地理区域）限制"
         description: 说明
         additional_info: 其他信息
         start_date: 开始日期

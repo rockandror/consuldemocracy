@@ -376,6 +376,7 @@ id:
           homepage: Deskripsi
         index:
           create: Proses baru
+          geozone_restricted: "Terbatas untuk daerah"
           delete: Hapus
           title: Undang-undang proses
           filters:

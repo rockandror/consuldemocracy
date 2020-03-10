@@ -222,6 +222,7 @@ id:
       legislation/process:
         title: Proses Judul
         summary: Ringkasan
+        geozone_restricted: "Dibatasi oleh geozone"
         description: Deskripsi
         additional_info: Info tambahan
         start_date: Tanggal mulai

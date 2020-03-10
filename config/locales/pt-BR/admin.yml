@@ -374,6 +374,7 @@ pt-BR:
           create: Novo processo
           delete: Apagar
           title: Processos legislativos
+          geozone_restricted: "Restrito aos distritos"
           filters:
             all: Tudo
         new:

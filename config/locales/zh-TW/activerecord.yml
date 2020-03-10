@@ -191,6 +191,7 @@ zh-TW:
         title: 進程標題
         summary: 總結
         description: 描述
+        geozone_restricted: "受地理區域（geozone）限制"
         additional_info: 附加其他資訊
         start_date: 開始日期
         end_date: 結束日期

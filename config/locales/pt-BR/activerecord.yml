@@ -227,6 +227,7 @@ pt-BR:
         summary: Resumo
         description: Descrição
         additional_info: Informação adicional
+        geozone_restricted: "Restrito por geozona"
         start_date: Data de início
         end_date: Data de término
         debate_start_date: Data de início do debate

@@ -310,6 +310,7 @@ ru:
         background_color: Цвет фона
         font_color: Цвет шрифта
       legislation/process:
+        geozone_restricted: "Ограничено географической зоной"
         title: Название процесса
         summary: Резюме
         description: Описание

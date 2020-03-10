@@ -517,6 +517,8 @@ es:
           create: Nuevo proceso
           delete: Borrar
           title: Procesos de legislación colaborativa
+          geozone_restricted: "Restringida a los distritos"
+          cant_answer_wrong_geozone: "Este proceso no está disponible en tu zona."
           filters:
             active: Activos
             all: Todos

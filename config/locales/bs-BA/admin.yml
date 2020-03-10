@@ -518,6 +518,7 @@ bs:
           banner_title: Boje za zaglavlje
         index:
           create: Novi proces
+          geozone_restricted: "Ograničena na sljedeća područja"
           delete: Obriši
           title: Legislativna saradnja
           filters:

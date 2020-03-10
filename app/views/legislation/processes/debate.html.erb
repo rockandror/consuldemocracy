@@ -8,28 +8,38 @@
 
 <%= render "key_dates", process: @process, phase: :debate_phase %>
 
-<div class="row">
-  <div class="debate-chooser">
-    <div class="row">
-      <div class="small-12 medium-9 column">
-        <div class="debate-list">
-          <% if @process.questions.empty? %>
-            <div class="callout primary">
-              <p><%= t("legislation.processes.debate.empty_questions") %></p>
-            </div>
-          <% else %>
-            <%= render @process.questions %>
-          <% end %>
-        </div>
+<% if !@process.in_zone(current_user) %>
+  <div class="row margin-top">
+    <div class="small-12 medium-9 column">
+      <div class="callout warning">
+        <%= t("polls.show.cant_legislation_wrong_geozone") %>
       </div>
-
-      <% if @process.questions.any? %>
-        <div class="small-12 medium-3 column">
-          <div class="callout success">
-            <p><%= t("legislation.processes.debate.participate") %></p>
-          </div>
-        </div>
-      <% end %>
     </div>
   </div>
-</div>
+<%else%>
+  <div class="row">
+    <div class="debate-chooser">
+      <div class="row">
+        <div class="small-12 medium-9 column">
+          <div class="debate-list">
+            <% if @process.questions.empty? %>
+              <div class="callout primary">
+                <p><%= t("legislation.processes.debate.empty_questions") %></p>
+              </div>
+            <% else %>
+              <%= render @process.questions %>
+            <% end %>
+          </div>
+        </div>
+
+        <% if @process.questions.any? %>
+          <div class="small-12 medium-3 column">
+            <div class="callout success">
+              <p><%= t("legislation.processes.debate.participate") %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+ <%end%>
