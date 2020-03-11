@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   root "welcome#index"
   get "/welcome", to: "welcome#welcome"
   get "/consul.json", to: "installation#details"
-
+  
   resources :stats, only: [:index]
   resources :images, only: [:destroy]
   resources :documents, only: [:destroy]
@@ -59,7 +59,8 @@ Rails.application.routes.draw do
   # get 'help/faq',         to: 'pages#show', id: 'help/faq/index',         as: 'faq'
 
   # Static pages
-  resources :pages, path: "/", only: [:show]
+  #resources :pages, path: "/", only: [:show]
+  resources :sure
 
   resources :double_confirmations do
     get :no_phone, on: :collection

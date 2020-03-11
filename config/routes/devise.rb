@@ -16,6 +16,7 @@ devise_scope :user do
   get "users/sessions/show_recaptcha", to: "users/sessions#show_recaptcha"
 end
 
+
 devise_for :organizations, class_name: "User",
            controllers: {
              registrations: "organizations/registrations",
@@ -25,4 +26,16 @@ devise_for :organizations, class_name: "User",
 
 devise_scope :organization do
   get "organizations/sign_up/success", to: "organizations/registrations#success"
+end
+
+
+devise_for :sure, class_name: "User",
+           controllers: {
+             registrations: "sure/registrations",
+             sessions: "devise/sessions",
+           },
+           skip: [:omniauth_callbacks]
+
+devise_scope :sure do
+  get "sure/sign_up/success", to: "sure/registrations#success"
 end
