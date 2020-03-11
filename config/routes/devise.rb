@@ -29,13 +29,14 @@ devise_scope :organization do
 end
 
 
-devise_for :sure, class_name: "User",
+devise_for :sures, class_name: "User",
            controllers: {
-             registrations: "sure/registrations",
+             registrations: "sures/registrations",
              sessions: "devise/sessions",
            },
            skip: [:omniauth_callbacks]
 
-devise_scope :sure do
-  get "sure/sign_up/success", to: "sure/registrations#success"
+devise_scope :sures do
+  get "sures/sign_up/success", to: "sures/registrations#success"
 end
+

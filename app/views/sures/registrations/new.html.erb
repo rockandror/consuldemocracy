@@ -1,11 +1,8 @@
 <% provide :title do %><%= t("devise_views.users.registrations.new.title") %><% end %>
-<% provide :tracking_page_number, "24" %>
 
 <h2><%= t("devise_views.users.registrations.new.title") %></h2>
 
-<%= render "devise/omniauth_form" %>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: :user, url: sure_registration_path) do |f| %>
   <%= render "shared/errors", resource: resource %>
 
   <p>

@@ -59,8 +59,7 @@ Rails.application.routes.draw do
   # get 'help/faq',         to: 'pages#show', id: 'help/faq/index',         as: 'faq'
 
   # Static pages
-  #resources :pages, path: "/", only: [:show]
-  resources :sure
+  resources :pages, path: "/", only: [:show]
 
   resources :double_confirmations do
     get :no_phone, on: :collection
