@@ -1,4 +1,8 @@
 @mixin direct-uploads {
+  @extend %direct-uploads;
+}
+
+%direct-uploads {
 
   .cached-image {
     max-width: rem-calc(150);
