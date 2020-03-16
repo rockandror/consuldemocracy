@@ -42,5 +42,18 @@ describe "Admin budget phases" do
         expect(page).not_to have_content "Accepting projects"
       end
     end
+
+    scenario "Show CTA link in public site if added" do
+      visit edit_admin_budget_budget_phase_path(budget, budget.current_phase)
+      expect(page).to have_content "Main call to action (optional)"
+
+      fill_in "Text on the link", with: "Link on the phase"
+      fill_in "The link takes you to (add a link)", with: "https://consulproject.org"
+      click_button "Save changes"
+
+      visit budgets_path
+
+      expect(page).to have_link("Link on the phase", href: "https://consulproject.org")
+    end
   end
 end
