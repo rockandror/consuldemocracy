@@ -64,6 +64,10 @@ FactoryBot.define do
     trait :approval do
       voting_style { "approval" }
     end
+
+    trait :with_image do
+      after(:create) { |budget| create(:image, imageable: budget) }
+    end
   end
 
   factory :budget_group, class: "Budget::Group" do

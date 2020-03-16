@@ -37,6 +37,22 @@ describe Budgets::BudgetComponent, type: :component do
         expect(page).to have_css("a.main-link", text: "Participate now!", href: "https://consulproject.org")
       end
     end
+
+    it "renders the background image when image is defined" do
+      budget = create(:budget, :with_image)
+
+      render_inline Budgets::BudgetComponent.new(budget)
+
+      expect(page).to have_css ".with-background-image[style*=background-image]"
+    end
+
+    it "does not render the background image when image is not defined" do
+      budget = create(:budget)
+
+      render_inline Budgets::BudgetComponent.new(budget)
+
+      expect(page).not_to have_css ".with-background-image[style*=background-image]"
+    end
   end
 
   describe "map" do

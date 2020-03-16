@@ -8,6 +8,15 @@ class Budgets::BudgetComponent < ApplicationComponent
 
   private
 
+    def header_options
+      options = { class: "budget-header" }
+      if budget.image.present?
+        options[:style] = "background-image: url(#{asset_url(budget.image.attachment.url(:large))});"
+        options[:class] << " with-background-image"
+      end
+      options
+    end
+
     def coordinates
       return unless budget.present?
 
