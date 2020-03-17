@@ -441,6 +441,7 @@ ru:
         index:
           create: Новый процесс
           delete: Удалить
+          geozone_restricted: "Ограничено для районов"
           title: Процессы законотворчества
           filters:
             active: Активные

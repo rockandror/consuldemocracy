@@ -416,6 +416,7 @@ val:
           banner_title: Colors de capçelera
         index:
           create: Nou procés
+          geozone_restricted: "Restringida als districtes"
           delete: Eliminar
           title: Processos legislatius
           filters:

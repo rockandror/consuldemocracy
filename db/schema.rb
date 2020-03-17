@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191220110217) do
+ActiveRecord::Schema.define(version: 20200302070938) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -573,6 +573,13 @@ ActiveRecord::Schema.define(version: 20191220110217) do
     t.string   "census_code"
   end
 
+  create_table "geozones_legislation_processes", force: :cascade do |t|
+    t.integer "geozone_id"
+    t.integer "legislation_process_id"
+    t.index ["geozone_id"], name: "index_geozones_legislation_processes_on_geozone_id", using: :btree
+    t.index ["legislation_process_id"], name: "index_geozones_legislation_processes_on_legislation_process_id", using: :btree
+  end
+
   create_table "geozones_polls", force: :cascade do |t|
     t.integer "geozone_id"
     t.integer "poll_id"
@@ -721,6 +728,7 @@ ActiveRecord::Schema.define(version: 20191220110217) do
     t.boolean  "homepage_enabled",           default: false
     t.text     "background_color"
     t.text     "font_color"
+    t.boolean  "geozone_restricted",         default: false
     t.index ["allegations_end_date"], name: "index_legislation_processes_on_allegations_end_date", using: :btree
     t.index ["allegations_start_date"], name: "index_legislation_processes_on_allegations_start_date", using: :btree
     t.index ["debate_end_date"], name: "index_legislation_processes_on_debate_end_date", using: :btree
@@ -1699,6 +1707,8 @@ ActiveRecord::Schema.define(version: 20191220110217) do
   add_foreign_key "failed_census_calls", "users"
   add_foreign_key "flags", "users"
   add_foreign_key "follows", "users"
+  add_foreign_key "geozones_legislation_processes", "geozones"
+  add_foreign_key "geozones_legislation_processes", "legislation_processes"
   add_foreign_key "geozones_polls", "geozones"
   add_foreign_key "geozones_polls", "polls"
   add_foreign_key "identities", "users"

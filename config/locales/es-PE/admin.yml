@@ -307,6 +307,7 @@ es-PE:
           create: Nuevo proceso
           delete: Borrar
           title: Procesos legislativos
+          geozone_restricted: "Restringida a los distritos"
           filters:
             all: Todas
         new:

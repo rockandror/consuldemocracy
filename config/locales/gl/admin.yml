@@ -434,6 +434,7 @@ gl:
           create: Novo proceso
           delete: Borrar
           title: Procesos lexislativos
+          geozone_restricted: "Restrinxida aos distritos"
           filters:
             active: Activo
             all: Todo

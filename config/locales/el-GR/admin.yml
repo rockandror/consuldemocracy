@@ -517,6 +517,7 @@ el:
           create: Νέα διαδικασία
           delete: Διαγραφή
           title: Συνεργατική νομοθεσία
+          geozone_restricted: "Περιορίζεται σε περιοχές"
           filters:
             active: Ενεργό
             all: Όλα

@@ -75,3 +75,14 @@
     </aside>
   </div>
 </div>
+<% if @process.try(:geozone_restricted) && @process.geozones.any? %>
+  <div class="row">
+    <div class="small-12 medium-9 column">
+      <ul class="no-bullet margin-top tags">
+        <% @process.geozones.each do |g| %>
+          <li class="inline-block"><span><%= g.name %></span></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+ <% end %>

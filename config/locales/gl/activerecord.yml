@@ -231,6 +231,7 @@ gl:
         body: Contido
       legislation/process:
         title: Título do proceso
+        geozone_restricted: "Restrinxida por zonas"
         summary: Resumo
         description: Descrición
         additional_info: Información adicional

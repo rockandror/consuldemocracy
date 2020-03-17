@@ -440,6 +440,7 @@ pl:
           create: Nowy proces
           delete: Usuń
           title: Procesy legislacyjne
+          geozone_restricted: "Ograniczone do dzielnic"
           filters:
             active: Aktywne
             all: Wszystkie

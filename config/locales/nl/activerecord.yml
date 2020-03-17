@@ -256,6 +256,7 @@ nl:
       legislation/process:
         title: Titel
         summary: Samenvatting
+        geozone_restricted: "Beperkt tot gebied"
         description: Omschrijving
         additional_info: Aanvullende informatie
         start_date: Begindatum

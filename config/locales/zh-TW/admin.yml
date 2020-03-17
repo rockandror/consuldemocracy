@@ -371,6 +371,7 @@ zh-TW:
           homepage: 描述
         index:
           create: 新進程
+          geozone_restricted: "限於區內"
           delete: 刪除
           title: 立法進程
           filters:

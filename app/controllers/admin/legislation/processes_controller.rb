@@ -6,6 +6,8 @@ class Admin::Legislation::ProcessesController < Admin::Legislation::BaseControll
 
   load_and_authorize_resource :process, class: "Legislation::Process"
 
+  before_action :load_geozones, only: [:new, :create, :edit, :update]
+
   def index
     @processes = ::Legislation::Process.send(@current_filter).order(start_date: :desc)
                  .page(params[:page])
@@ -68,13 +70,19 @@ class Admin::Legislation::ProcessesController < Admin::Legislation::BaseControll
         :draft_publication_enabled,
         :result_publication_enabled,
         :published,
+        :geozone_restricted,
         :custom_list,
         :background_color,
         :font_color,
         translation_params(::Legislation::Process),
+        geozone_ids: [],
         documents_attributes: [:id, :title, :attachment, :cached_attachment, :user_id, :_destroy],
         image_attributes: image_attributes
       ]
+    end
+
+    def load_geozones
+      @geozones = Geozone.all.order(:name)
     end
 
     def set_tag_list

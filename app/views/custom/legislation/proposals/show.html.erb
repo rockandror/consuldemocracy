@@ -20,7 +20,15 @@
     </div>
   </div>
 </div>
-
+<% if !@process.in_zone(current_user) %>
+    <div class="row margin-top">
+        <div class="small-12 medium-9 column">
+            <div class="callout warning">
+                <%= t("polls.show.cant_legislation_wrong_geozone") %>
+            </div>
+        </div>
+    </div>
+<%else%>
 <% cache [locale_and_user_status(@proposal), @proposal, @proposal.author, Flag.flagged?(current_user, @proposal), @legislation_proposal_votes] do %>
   <div class="proposal-show legislation-proposal-show">
     <div id="<%= dom_id(@proposal) %>" class="row">
@@ -147,3 +155,4 @@
     <%= render "legislation/proposals/comments" %>
   </div>
 </div>
+<%end%>

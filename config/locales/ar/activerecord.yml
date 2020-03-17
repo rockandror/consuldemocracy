@@ -419,6 +419,7 @@ ar:
         title: عنوان العملية
         summary: ملخص
         description: الوصف
+        geozone_restricted: "مقيد حسب المناطق"
         additional_info: معلومات إضافية
         start_date: تاريخ البدء
         end_date: تاريخ الإنتهاء

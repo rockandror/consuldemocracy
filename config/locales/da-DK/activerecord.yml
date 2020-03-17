@@ -256,6 +256,7 @@ da:
       legislation/process:
         title: Titel på proces
         summary: Resumé
+        geozone_restricted: "Begrænset af geozone"
         description: Beskrivelse
         additional_info: Yderligere information
         start_date: Startdato

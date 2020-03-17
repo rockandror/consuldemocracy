@@ -345,6 +345,7 @@ he:
       legislation/process:
         title: כותרת התהליך
         summary: תקציר
+        geozone_restricted: "מוגבל על ידי האזור הגיאוגרפי"
         description: תיאור
         additional_info: מידע נוסף
         start_date: התחלה

@@ -413,6 +413,7 @@ sv:
         index:
           create: Ny process
           delete: Ta bort
+          geozone_restricted: "Begränsade till stadsdelar"
           title: Dialoger
           filters:
             all: Alla

@@ -375,6 +375,7 @@ it:
           homepage: Descrizione
         index:
           create: Nuovo procedimento
+          geozone_restricted: "Limitato ai distretti"
           delete: Eliminare
           title: Processi di legislazione
           filters:

@@ -440,6 +440,7 @@ nl:
           create: Nieuw plan
           delete: Delete
           title: Plannen
+          geozone_restricted: "Beperkt tot buurten"
           filters:
             active: Actief
             all: All
