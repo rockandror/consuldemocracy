@@ -28,7 +28,7 @@
 
             <% else %>
               <%= f.text_field :username, maxlength: User.username_max_length, placeholder: t("account.show.username_label") %>
-              <% if @account.try(:administrator?) && !@account.try(:ip_out_of_internal_red?)%>
+              <% if @account.try {|x| x.verification_in_net?} %>
                  <%= f.text_field :phone_number, placeholder: t("account.show.phone_number_label") %>
               <%end%>
             <% end %>

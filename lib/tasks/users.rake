@@ -8,9 +8,12 @@ namespace :users do
     document_number += 1
       
     pwd = Rails.application.secrets.password_config.to_s
+    phone = Rails.application.secrets.phone_config.to_s
     admin = User.create!(
       username:               "admin",
       email:                  "admin@madrid.es",
+      phone_number:           phone,
+      geozone_id:             Geozone.find_by(name: "Moratalaz").try(:id),
       password:               pwd,
       password_confirmation:  pwd,
       confirmed_at:           Time.current,

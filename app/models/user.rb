@@ -263,6 +263,10 @@ class User < ApplicationRecord
     self.ip_out_of_internal_red? && self.try(:administrator?) && self.access_key_inserted_correct? && !required_new_password? && (self.try(:access_key_tried) < 3)
   end
 
+  def verification_in_net?
+    !self.ip_out_of_internal_red? && self.administrator?
+  end
+
   def encrypt_access_key(access_key)
     if !self.blank? && !access_key.blank?
         Criptografia.new.encrypt(access_key)
