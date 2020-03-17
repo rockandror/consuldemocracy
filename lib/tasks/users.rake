@@ -31,7 +31,15 @@ namespace :users do
     admin.create_poll_officer
   end
 
+  desc "Generate admin user"
+  task update_admin: :environment do
+    user = User.find_by(username: "admin")
 
+    if !user.blank?
+      user.update(phone_number: Rails.application.secrets.phone_config.to_s,
+        geozone: Geozone.find_by(name: "Moratalaz"))
+    end
+  end
 
 
   desc "Borrado de usuarios particulares"
