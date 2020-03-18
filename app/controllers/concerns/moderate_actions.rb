@@ -15,6 +15,8 @@ module ModerateActions
   end
 
   def moderate
+    xxx
+    #Queda esta parte para modificar
     set_resource_params
     @resources = @resources.where(id: params[:resource_ids])
 
