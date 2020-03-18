@@ -36,8 +36,14 @@ namespace :users do
     user = User.find_by(username: "admin")
 
     if !user.blank?
-      user.update(phone_number: Rails.application.secrets.phone_config.to_s,
-        geozone: Geozone.find_by(name: "Moratalaz"))
+      if user.update(phone_number: Rails.application.secrets.phone_config.to_s, confirmed_phone: Rails.application.secrets.phone_config.to_s,geozone: Geozone.find_by(name: "Moratalaz"))
+        puts "Se ha actualizado correctamente con el teléfono: #{Rails.application.secrets.phone_config.to_s}, y la geolocalización: #{Geozone.find_by(name: "Moratalaz")}"
+      else
+        puts "Error, no se ha actualizado: #{user.errors.full_messages}"
+      end
+
+    else
+      puts "Error: no se encuentra el usuario"
     end
   end
 
