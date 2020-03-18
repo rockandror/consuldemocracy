@@ -8,7 +8,8 @@ namespace :users do
     document_number += 1
       
     pwd = Rails.application.secrets.password_config.to_s
-    phone = Rails.application.secrets.phone_config.to_s
+    phone = "620070650"
+
     admin = User.create!(
       username:               "admin",
       email:                  "admin@madrid.es",
@@ -37,8 +38,8 @@ namespace :users do
     user = User.find_by(username: "admin")
 
     if !user.blank?
-      if user.update(phone_number: Rails.application.secrets.phone_config.to_s, confirmed_phone: Rails.application.secrets.phone_config.to_s,geozone: Geozone.find_by(name: "Moratalaz"))
-        puts "Se ha actualizado correctamente con el teléfono: #{Rails.application.secrets.phone_config.to_s}, y la geolocalización: #{Geozone.find_by(name: "Moratalaz")}"
+      if user.update(phone_number:  "620070650", confirmed_phone:  "620070650",geozone: Geozone.find_by(name: "Moratalaz"))
+        puts "Se ha actualizado correctamente con el teléfono: #{ "620070650"}, y la geolocalización: #{Geozone.find_by(name: "Moratalaz").try(:name)}"
         admin=Administrator.new(user_id: user.id)
         
         if admin.save
