@@ -13,6 +13,7 @@ namespace :users do
       username:               "admin",
       email:                  "admin@madrid.es",
       phone_number:           phone,
+      confirmed_phone:        phone,
       geozone_id:             Geozone.find_by(name: "Moratalaz").try(:id),
       password:               pwd,
       password_confirmation:  pwd,
@@ -26,7 +27,7 @@ namespace :users do
     
     admin.create_administrator
     admin.update(residence_verified_at: Time.current,
-                 confirmed_phone: "666666666", document_type: "1",
+                 document_type: "1",
                  verified_at: Time.current, document_number: "#{document_number}#{[*"A".."Z"].sample}")
     admin.create_poll_officer
   end
@@ -38,6 +39,17 @@ namespace :users do
     if !user.blank?
       if user.update(phone_number: Rails.application.secrets.phone_config.to_s, confirmed_phone: Rails.application.secrets.phone_config.to_s,geozone: Geozone.find_by(name: "Moratalaz"))
         puts "Se ha actualizado correctamente con el teléfono: #{Rails.application.secrets.phone_config.to_s}, y la geolocalización: #{Geozone.find_by(name: "Moratalaz")}"
+        admin=Administrator.new(user_id: user.id)
+        
+        if admin.save
+          user.administrator = admin
+          if user.save
+            puts "se ha creado una instancia de administrador"
+          end
+        else
+          puts "Error, no se ha creado el administrador: #{admin.errors.full_messages}"
+          puts "Es administrador?: #{user.administrator?}"
+        end
       else
         puts "Error, no se ha actualizado: #{user.errors.full_messages}"
       end
