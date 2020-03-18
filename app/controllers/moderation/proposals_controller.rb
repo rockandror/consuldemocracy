@@ -11,6 +11,13 @@ class Moderation::ProposalsController < Moderation::BaseController
 
   load_and_authorize_resource
 
+  def index
+    super
+    @proposal_legislation = Legislation::Proposal. accessible_by(current_ability, :moderate).send(:"#{@current_filter}")
+            .send("sort_by_#{@current_order}")
+            .page(params[:page])
+            .per(50)
+  end
   private
 
     def resource_model
