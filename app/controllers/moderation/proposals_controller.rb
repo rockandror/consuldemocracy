@@ -22,11 +22,11 @@ class Moderation::ProposalsController < Moderation::BaseController
 
     @datos_comunes =  @proposals_legislation + @proposals
 
-    # if @current_order.to_s == "created_at"
-    #   @datos_comunes = @datos_comunes.sort_by { |a| a.created_at }.reverse
-    # elsif @current_order.to_s == "flags" || @current_order.blank?
-    #   @datos_comunes = @datos_comunes.sort_by { |a| [a.flags_count, a.updated_at] }.reverse
-    # end
+    if @current_order.to_s == "created_at"
+      @datos_comunes = @datos_comunes.sort_by { |a| a.try(:created_at) }.reverse
+    elsif @current_order.to_s == "flags" || @current_order.blank?
+      @datos_comunes = @datos_comunes.sort_by { |a| [a.try(:flags_count), a.try(:updated_at)] }.reverse
+    end
     @datos_comunes = Kaminari.paginate_array(@datos_comunes).page(params[:page]).per(50)
 
     set_resources_instance
