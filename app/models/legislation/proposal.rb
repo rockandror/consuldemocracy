@@ -57,7 +57,6 @@ class Legislation::Proposal < ApplicationRecord
   scope :selected,                 -> { where(selected: true) }
   scope :winners,                  -> { selected.sort_by_confidence_score }
   scope :no_flags_proposals,       -> { where("flags_count = 0").where(ignored_flag_at: nil, hidden_at:nil) }
-  scope :with_confirmed_hide_at,   -> { where.not(hidden_at: nil)} 
 
   def to_param
     "#{id}-#{title}".parameterize
