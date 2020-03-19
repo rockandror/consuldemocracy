@@ -28,7 +28,7 @@
 
     <tbody>
       <% @datos_comunes.each do |proposal| %>
-        <% if (!proposal.try(:published_at).blank? || proposal.try(:class).try(:name).to_s == "Legislation::Proposal") && !proposal.blank?  %>
+        <% if !proposal.try(:published_at).blank? || proposal.try(:class).try(:name).to_s == "Legislation::Proposal"  %>
           <tr id="proposal_<%= proposal.try(:id) %>_<%=proposal.try(:model_name).try(:param_key)%>">
             <td>
               <% if proposal.try(:class).try(:name).to_s == "Legislation::Proposal" %>
