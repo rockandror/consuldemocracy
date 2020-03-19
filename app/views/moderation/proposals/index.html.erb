@@ -33,7 +33,7 @@
             <td>
               <% if proposal.try(:class).try(:name).to_s == "Legislation::Proposal" && !proposal.try(:process).blank?%>
                 <%= link_to proposal.try(:title), legislation_process_proposal_path(id: proposal.try(:id), process_id: proposal.try(:process).try(:id)), target: "_blank" %>
-              <% elsif proposal.try(:class).try(:name).to_s == "Legislation::Proposal" && !proposal.try(:process).blank?%>
+              <% elsif proposal.try(:class).try(:name).to_s == "Legislation::Proposal" && proposal.try(:process).blank?%>
                 <%=proposal.try(:title)%>
               <% else%>
                 <%= link_to proposal.try(:title), proposal, target: "_blank" %>
