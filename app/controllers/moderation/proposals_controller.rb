@@ -57,7 +57,7 @@ class Moderation::ProposalsController < Moderation::BaseController
   end
 
   def load_resources
-    @proposals = Proposal.accessible_by(current_ability, :moderate)
+    @proposals = Proposal.accessible_by(current_ability, :moderate).where.not(published_at: nil)
     @proposals_legislation = Legislation::Proposal.accessible_by(current_ability, :moderate)
   end
 
