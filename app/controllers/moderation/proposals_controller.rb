@@ -12,11 +12,8 @@ class Moderation::ProposalsController < Moderation::BaseController
   load_and_authorize_resource
 
   def index
-    @proposals = @proposals 
-      .send(:"#{@current_filter}")
-
-    @proposals_legislation = @proposals_legislation
-      .send(:"#{@current_filter}")
+    @proposals = @proposals.send(:"#{@current_filter}")
+    @proposals_legislation = @proposals_legislation.send(:"#{@current_filter}")
 
     @datos_comunes =  @proposals_legislation + @proposals
     @datos_comunes.compact
