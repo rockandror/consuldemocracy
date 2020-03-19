@@ -12,12 +12,26 @@ class Moderation::ProposalsController < Moderation::BaseController
   load_and_authorize_resource
 
   def index
-    super
-    @proposal_legislation = Legislation::Proposal. accessible_by(current_ability, :moderate).send(:"#{@current_filter}")
-            .send("sort_by_#{@current_order}")
-            .page(params[:page])
-            .per(50)
+    @proposals = Proposal.accessible_by(current_ability, :moderate)
+      .send(:"#{@current_filter}")
+      .send("sort_by_#{@current_order}")
+
+    @proposals_legislation = Legislation::Proposal.accessible_by(current_ability, :moderate)
+      .send(:"#{@current_filter}")
+      .send("sort_by_#{@current_order}")
+
+    @datos_comunes =  @proposals_legislation + @proposals
+    if @current_order.to_s == "created_at"
+      @datos_comunes = @datos_comunes.sort_by { |a| a.created_at }
+    elsif @current_order.to_s == "flags"
+      @datos_comunes = @datos_comunes.sort_by { |a| a.flags }
+    end
+    @datos_comunes = Kaminari.paginate_array(@datos_comunes).page(params[:page]).per(50)
+
+    set_resources_instance
   end
+
+
   private
 
     def resource_model
