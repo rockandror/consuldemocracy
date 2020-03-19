@@ -14,14 +14,12 @@ class Moderation::ProposalsController < Moderation::BaseController
   def index
     @proposals = @proposals 
       .send(:"#{@current_filter}")
-      # .send("sort_by_#{@current_order}")
 
     @proposals_legislation = @proposals_legislation
       .send(:"#{@current_filter}")
-      # .send("sort_by_#{@current_order}")
 
     @datos_comunes =  @proposals_legislation + @proposals
-
+    @datos_comunes.compact
     if @current_order.to_s == "created_at"
       @datos_comunes = @datos_comunes.sort_by { |a| a.try(:created_at) }.reverse
     elsif @current_order.to_s == "flags" || @current_order.blank?
