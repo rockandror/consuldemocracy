@@ -94,6 +94,10 @@ class Legislation::Proposal < ApplicationRecord
     cached_votes_down
   end
 
+  def ignore_flag
+    update(ignored_flag_at: Time.current)
+  end
+
   def total_votes
     cached_votes_total
   end

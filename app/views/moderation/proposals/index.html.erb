@@ -29,7 +29,7 @@
     <tbody>
       <% @datos_comunes.each do |proposal| %>
         <% if !proposal.try(:published_at).blank? || proposal.try(:class).try(:name).to_s == "Legislation::Proposal"  %>
-          <tr id="proposal_<%= proposal.id %>_<%=proposal.try(:class).try(:name).classify.constantize%>">
+          <tr id="proposal_<%= proposal.id %>_<%=proposal.try(:model_name).param_key%>">
             <td>
               <% if proposal.try(:class).try(:name).to_s == "Legislation::Proposal" %>
                 <%= link_to proposal.title, legislation_process_proposal_path(id: proposal.id, process_id: proposal.process.id), target: "_blank" %>
@@ -48,7 +48,7 @@
               </div>
             </td>
             <td class="text-center">
-              <%= check_box_tag "proposal_ids[]", "#{proposal.id}_#{proposal.try(:class).try(:name).classify.constantize}", nil, id: "#{dom_id(proposal)}_check" %>
+              <%= check_box_tag "proposal_ids[]", "#{proposal.id}_#{proposal.try(:model_name).param_key}", nil, id: "#{dom_id(proposal)}_check" %>
             </td>
           </tr>
         <% end %>
