@@ -29,26 +29,28 @@
     <tbody>
       <% @datos_comunes.each do |proposal| %>
         <% if !proposal.try(:published_at).blank? || proposal.try(:class).try(:name).to_s == "Legislation::Proposal"  %>
-          <tr id="proposal_<%= proposal.id %>_<%=proposal.try(:model_name).param_key%>">
+          <tr id="proposal_<%= proposal.try(:id) %>_<%=proposal.try(:model_name).try(:param_key)%>">
             <td>
-              <% if proposal.try(:class).try(:name).to_s == "Legislation::Proposal" %>
-                <%= link_to proposal.title, legislation_process_proposal_path(id: proposal.id, process_id: proposal.process.id), target: "_blank" %>
+              <% if proposal.try(:class).try(:name).to_s == "Legislation::Proposal" && !proposal.try(:process).blank?%>
+                <%= link_to proposal.try(:title), legislation_process_proposal_path(id: proposal.try(:id), process_id: proposal.try(:process).try(:id)), target: "_blank" %>
+              <% elsif proposal.try(:class).try(:name).to_s == "Legislation::Proposal" && proposal.try(:process).blank?%>
+                <%=proposal.try(:title)%>
               <% else%>
-                <%= link_to proposal.title, proposal, target: "_blank" %>
+                <%= link_to proposal.try(:title), proposal, target: "_blank" %>
               <%end%>
               <br>
-              <span class="date"><%= l proposal.try(:created_at).to_date %></span>
+              <span class="date"><%= l proposal.try(:created_at).try {|d| d.to_date} %></span>
               <span class="bullet">&nbsp;&bull;&nbsp;</span>
-              <%= proposal.flags_count %><span class="icon-flag flag-disable"></span>
+              <%= proposal.try(:flags_count) %><span class="icon-flag flag-disable"></span>
               <span class="bullet">&nbsp;&bull;&nbsp;</span>
               <%= proposal.try(:author).try(:username) %>
               <br>
               <div class="moderation-description">
-                <%= proposal.description %>
+                <%= proposal.try(:description) %>
               </div>
             </td>
             <td class="text-center">
-              <%= check_box_tag "proposal_ids[]", "#{proposal.id}_#{proposal.try(:model_name).param_key}", nil, id: "#{dom_id(proposal)}_check" %>
+              <%= check_box_tag "proposal_ids[]", "#{proposal.try(:id)}_#{proposal.try(:model_name).try(:param_key)}", nil, id: "#{dom_id(proposal)}_check" %>
             </td>
           </tr>
         <% end %>
