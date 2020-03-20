@@ -176,8 +176,9 @@ $budget-2018-yellow:   #fef384;
     padding-bottom: rem-calc(300);
 
     @include breakpoint(medium) {
-      background: #e2846b image-url("welcome/background_header_web.jpg");
-      background-size: auto;
+      background: image-url("welcome/background_header_web.jpg");
+      background-size: 100% auto;
+      background-repeat: no-repeat;
     }
 
     h1 {
