@@ -177,7 +177,7 @@ $budget-2018-yellow:   #fef384;
 
     @include breakpoint(medium) {
       background: #e2846b image-url("welcome/background_header_web.jpg");
-      background-size: cover;
+      background-size: auto;
     }
 
     h1 {
