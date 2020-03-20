@@ -34,7 +34,12 @@
 <%= render "header", header: @header %>
 
 <main class="welcome">
-
+  <div style="background: black;">
+    <iframe src="https://www.youtube.com/embed/EEIk7gwjgIM" width="996" height="560" style="
+    margin: 0 auto; background: black;
+    display: block"
+    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
   <h1 class="show-for-sr"><%= setting["org_name"] %></h1>
 
   <h2 class="show-for-sr"><%= t("welcome.title") %></h2>

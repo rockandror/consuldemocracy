@@ -8,7 +8,15 @@
 
 <%= render "key_dates", process: @process, phase: :proposals %>
 
-<% if !@process.in_zone(current_user) %>
+<% if current_user.blank? %>
+      <div class="row margin-top">
+          <div class="small-12 medium-9 column">
+              <div class="callout warning">
+                  <%= t("polls.show.cant_legislation_wrong_user") %>
+              </div>
+          </div>
+      </div>
+    <% elsif !@process.in_zone(current_user) %>
     <div class="row margin-top">
         <div class="small-12 medium-9 column">
             <div class="callout warning">
