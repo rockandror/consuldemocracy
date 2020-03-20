@@ -658,6 +658,7 @@ es:
       cant_answer_expired: "Esta votación ha terminado."
       cant_answer_wrong_geozone: "Esta votación no está disponible en tu zona."
       cant_legislation_wrong_geozone: "Este proceso no está disponible en tu zona."
+      cant_legislation_wrong_user: "Necesitas hacer login para poder ver y participar"
       more_info_title: "Más información"
       documents: Documentos
       zoom_plus: Ampliar imagen
