@@ -4,7 +4,7 @@ class Admin::ModeratedTextsController < Admin::BaseController
   load_and_authorize_resource class: "ModeratedText"
 
   def index
-    @words = ModeratedText.all
+    @words = ModeratedText.all.page(params[:page])
     @occurrence_count = ::ModeratedContent.occurrence_count
   end
 
