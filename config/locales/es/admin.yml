@@ -84,7 +84,6 @@ es:
         table_budget_completed: Completado
         table_duration: Duración
         table_preview: Previsualizar presupuesto
-        edit_groups: Editar grupos de partidas
         edit_budget: Editar presupuesto
         admin_ballots: Gestionar urnas
         no_budgets: "No hay presupuestos participativos."
