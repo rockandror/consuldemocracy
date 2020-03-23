@@ -950,8 +950,6 @@ ActiveRecord::Schema.define(version: 20200608072147) do
     t.string   "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "hidden_at"
-    t.index ["hidden_at"], name: "index_moderated_texts_on_hidden_at", using: :btree
     t.index ["text"], name: "index_moderated_texts_on_text", unique: true, using: :btree
   end
 
