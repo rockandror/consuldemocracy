@@ -20,7 +20,7 @@
           <td><%= comment.body %></td>
           <td><%= t("form.#{comment.class.to_s.underscore}") %></td>
           <td><%= comment.moderated_texts.map(&:text).join(", ") %></td>
-          <td><%= comment.author.name %></td>
+          <td><%= link_to comment.author.name, user_path(comment.author, filter: "comments"), target: "_blank" %></td>
           <td class="text-right">
             <% if show_moderation_buttons?(comment) %>
               <%= t("admin.auto_moderated_content.index.buttons.no_buttons") %>
