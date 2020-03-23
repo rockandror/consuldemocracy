@@ -14,7 +14,9 @@ namespace :users do
     districts = Rails.application.secrets.districts_config
  
     (0..phones.count-1).each do |i|
-      begin
+     begin
+        puts "============================================="
+        
         exist = User.find_by(username: usernames[i])
 
         if exist.blank?
@@ -57,8 +59,13 @@ namespace :users do
           end
         end
         puts "Se ha generado el administrador: #{emails[i]}"
-      rescue
+        puts "============================================="
+      rescue => error
+        puts "-----------------------------------------------------------"
         puts "ERROR: No se ha podido crear el administrador: #{emails[i]}"
+        puts error
+        puts "-----------------------------------------------------------"
+        
       end
     end
   end
