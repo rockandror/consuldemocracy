@@ -9,6 +9,7 @@
             class: "button float-right" %>
 
 <% if @words.any? %>
+  <h3 class="inline-block"><%= page_entries_info @words %></h3><br>
   <table>
     <thead>
       <th class="small-5"><%= t("admin.moderated_texts.index.text") %></th>
@@ -39,6 +40,7 @@
       <% end %>
     </tbody>
   </table>
+  <%= paginate @words %>
 <% else %>
   <div class="callout primary">
     <%= t("admin.moderated_texts.index.no_texts") %>

@@ -7,7 +7,7 @@ class Admin::AutoModeratedContentController < Admin::BaseController
   def index
     @moderated_comments = ::Comment.where(
       id: load_moderated_contents
-    ).includes(:moderated_texts, :user)
+    ).includes(:moderated_texts, :user).page(params[:page])
   end
 
   def show_again
