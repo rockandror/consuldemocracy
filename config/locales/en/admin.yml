@@ -705,7 +705,7 @@ en:
           confirm_moderation: Confirm moderation
           no_buttons: This comment has been moderated already
         filters:
-          all: All
+          pending: Pending moderation
           confirmed: Confirmed moderation
           declined: Declined moderation
     menu:

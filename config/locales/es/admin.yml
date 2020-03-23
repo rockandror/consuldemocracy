@@ -727,7 +727,7 @@ es:
           confirm_moderation: Confirmar moderación
           no_buttons: Este comentario ya ha sido moderado
         filters:
-          all: Todos los comentarios
+          pending: Pendientes de moderación
           confirmed: Confirmada la moderación
           declined: Declinada la moderación
     menu:
