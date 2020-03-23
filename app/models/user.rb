@@ -150,7 +150,7 @@ class User < ApplicationRecord
   end
 
   def administrator?
-    administrator.present?
+    !Administrator.find_by(user_id: self.id).blank?
   end
 
   def moderator?
