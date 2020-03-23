@@ -111,7 +111,9 @@ class Legislation::Process < ApplicationRecord
   end
 
   def in_zone(user)   
-    return false if user.blank? 
+
+    return true if user.blank? && !self.geozone_restricted?
+    return false if user.blank? && self.geozone_restricted?
     return true if !self.geozones.any? || !self.geozone_restricted?
     self.geozones.each {|geo| return true if geo.id.to_i == user.geozone_id.to_i}
 
