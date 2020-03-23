@@ -1,48 +1,47 @@
 <% if @budget.phases.present? %>
-  <div class="small-12 column">
-    <table id="budget-phases-table" class="table-for-mobile">
-      <thead>
-        <tr>
-          <th><%= t("admin.budgets.edit.phase") %></th>
-          <th><%= t("admin.budgets.edit.duration") %></th>
-          <th class="text-center"><%= t("admin.budgets.edit.enabled") %></th>
-          <th class="text-center"><%= t("admin.shared.actions") %></th>
-        </tr>
-      </thead>
-      <% @budget.phases.order(:id).each do |phase| %>
-        <tr id="<%= dom_id(phase) %>" class="phase">
-          <td>
-            <% if phase.name.present? %>
-              <%= phase.name %>
-            <% else %>
-              <%= t("budgets.phase.#{phase.kind}") %>
-            <% end %>
-            <% if @budget.current_phase == phase %>
-              <span class="label success"><strong><%= t("admin.budgets.edit.active") %></strong></span>
-            <% end %>
-          </td>
-          <td>
-            <% if phase.starts_at.present? || phase.ends_at.present? %>
-              <%= phase_begin_date(phase) if phase.starts_at.present? %>
-              -
-              <%= phase_end_date(phase) if phase.ends_at.present? %>
-            <% else %>
-              <em><%= t("admin.budgets.edit.blank_dates") %></em>
-            <% end %>
-          </td>
-          <td class="text-center">
-            <%= check_box :phase, :enabled, checked: phase.enabled?, label: false,
-                          class: "js-toggle-budget-phase-enable",
-                          data: { "js-url" => toggle_enable_admin_budget_budget_phase_path(phase.budget, phase) } %>
-          </td>
-          <td class="text-center">
-            <%= render Admin::TableActionsComponent.new(phase,
-              actions: [:edit],
-              edit_text: t("admin.budgets.edit.edit_phase")
-            ) %>
-          </td>
-        </tr>
-      <% end %>
-    </table>
-  </div>
+  <table id="budget-phases-table" class="table-for-mobile">
+    <thead>
+      <tr>
+        <th><%= t("admin.budgets.edit.phase") %></th>
+        <th><%= t("admin.budgets.edit.duration") %></th>
+        <th class="text-center"><%= t("admin.budgets.edit.enabled") %></th>
+        <th class="text-center"><%= t("admin.shared.actions") %></th>
+      </tr>
+    </thead>
+    <% @budget.phases.order(:id).each do |phase| %>
+      <tr id="<%= dom_id(phase) %>" class="phase">
+        <td>
+          <% if phase.name.present? %>
+            <%= phase.name %>
+          <% else %>
+            <%= t("budgets.phase.#{phase.kind}") %>
+          <% end %>
+          <% if @budget.current_phase == phase %>
+            <span class="label success"><strong><%= t("admin.budgets.edit.active") %></strong></span>
+          <% end %>
+        </td>
+        <td>
+          <% if phase.starts_at.present? || phase.ends_at.present? %>
+            <%= phase_begin_date(phase) if phase.starts_at.present? %>
+            -
+            <%= phase_end_date(phase) if phase.ends_at.present? %>
+          <% else %>
+            <em><%= t("admin.budgets.edit.blank_dates") %></em>
+          <% end %>
+        </td>
+        <td class="text-center">
+          <%= check_box :phase, :enabled, checked: phase.enabled?, label: false,
+                        class: "js-toggle-budget-phase-enable",
+                        data: { "js-url" => toggle_enable_admin_budget_budget_phase_path(phase.budget, phase) } %>
+        </td>
+        <td class="text-center">
+          <%= render Admin::TableActionsComponent.new(phase,
+            actions: [:edit],
+            edit_text: t("admin.budgets.edit.phase_content"),
+            edit_path: edit_admin_budget_budget_phase_path(@budget, phase, @url_params)
+          ) %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
 <% end %>
