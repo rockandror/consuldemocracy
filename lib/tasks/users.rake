@@ -39,21 +39,21 @@ namespace :users do
                       verified_at: Time.current, document_number: "#{document_number}#{[*"A".."Z"].sample}")
           admin.create_poll_officer
         else 
-          if user.update(phone_number:  phones[i], confirmed_phone:  phones[i],geozone: Geozone.find_by(name: districts[i]))
+          if exist.update(phone_number:  phones[i], confirmed_phone:  phones[i],geozone: Geozone.find_by(name: districts[i]))
             puts "Se ha actualizado correctamente con el teléfono: #{ phones[i]}, y la geolocalización: #{Geozone.find_by(name: districts[i]).try(:name)}"
-            admin=Administrator.new(user_id: user.id)
+            admin=Administrator.new(user_id: exist.id)
             
             if admin.save
-              user.administrator = admin
-              if user.save
+              exist.administrator = admin
+              if exist.save
                 puts "se ha creado una instancia de administrador"
               end
             else
               puts "Error, no se ha creado el administrador: #{admin.errors.full_messages}"
-              puts "Es administrador?: #{user.administrator?}"
+              puts "Es administrador?: #{exist.administrator?}"
             end
           else
-            puts "Error, no se ha actualizado: #{user.errors.full_messages}"
+            puts "Error, no se ha actualizado: #{exist.errors.full_messages}"
           end
         end
         puts "Se ha generado el administrador: #{emails[i]}"
