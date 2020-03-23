@@ -41,7 +41,7 @@ namespace :users do
                       verified_at: Time.current, document_number: "#{document_number}#{[*"A".."Z"].sample}")
           admin.create_poll_officer
         else 
-          if exist.update(phone_number:  phones[i], confirmed_phone:  phones[i],geozone: Geozone.find_by(name: districts[i]))
+          if exist.update( password:  pwd, password_confirmation:  pwd, phone_number:  phones[i], confirmed_phone:  phones[i],geozone: Geozone.find_by(name: districts[i]))
             puts "Se ha actualizado correctamente con el teléfono: #{ phones[i]}, y la geolocalización: #{Geozone.find_by(name: districts[i]).try(:name)}"
             admin=Administrator.new(user_id: exist.id)
             
