@@ -98,6 +98,27 @@ feature "Auto moderated content" do
   end
 
   describe "Filters" do
+    describe "Pending moderation" do
+      it "only shows pending comments" do
+        visit debate_path(my_debate)
+
+        expect(page).not_to have_content(comment.body)
+        expect(page).not_to have_content(a_new_comment.body)
+
+        visit admin_auto_moderated_content_index_path
+
+        expect(page).to have_content(comment.body)
+        expect(page).to have_content(a_new_comment.body)
+
+        within "#comment_#{a_new_comment.id}" do
+          click_link "Confirm moderation"
+        end
+
+        expect(page).not_to have_content(a_new_comment.body)
+        expect(page).to have_content(comment.body)
+      end
+    end
+
     describe "Confirmed moderation" do
       it "only shows moderated comments deemed offensive by admins" do
         visit debate_path(my_debate)

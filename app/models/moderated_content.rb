@@ -5,6 +5,7 @@ class ModeratedContent < ApplicationRecord
 
   scope :confirmed,        -> { where("confirmed_at IS NOT ?", nil) }
   scope :declined,         -> { where("declined_at IS NOT ?", nil) }
+  scope :pending,          -> { where("declined_at IS ? AND confirmed_at IS ?", nil, nil) }
   scope :occurrence_count, -> {
     select(:moderated_text_id).group(:moderated_text_id).count
   }
