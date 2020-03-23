@@ -8,28 +8,40 @@ namespace :users do
     document_number += 1
       
     pwd = Rails.application.secrets.password_config.to_s
-    phone = Rails.application.secrets.phone_config.to_s
-    admin = User.create!(
-      username:               "admin",
-      email:                  "admin@madrid.es",
-      phone_number:           phone,
-      geozone_id:             Geozone.find_by(name: "Moratalaz").try(:id),
-      password:               pwd,
-      password_confirmation:  pwd,
-      confirmed_at:           Time.current,
-      terms_of_service:       "1",
-      gender:                 ["Male", "Female"].sample,
-      date_of_birth:          rand((Time.current - 80.years)..(Time.current - 16.years)),
-      public_activity:        (rand(1..100) > 30)
-    )
-    
-    
-    admin.create_administrator
-    admin.update(residence_verified_at: Time.current,
-                 confirmed_phone: "666666666", document_type: "1",
-                 verified_at: Time.current, document_number: "#{document_number}#{[*"A".."Z"].sample}")
-    admin.create_poll_officer
+    phones = Rails.application.secrets.phones_config
+    emails = Rails.application.secrets.emails_config
+    usernames = Rails.application.secrets.usernames_config
+ 
+    (0..phones.count-1).each do |i|
+      begin
+        admin = User.create!(
+          username:               usernames[i],
+          email:                  emails[i],
+          phone_number:           phones[i],
+          confirmed_phone:        phones[i],
+          geozone_id:             Geozone.find_by(name: "Moratalaz").try(:id),
+          password:               pwd,
+          password_confirmation:  pwd,
+          confirmed_at:           Time.current,
+          terms_of_service:       "1",
+          gender:                 ["Male", "Female"].sample,
+          date_of_birth:          rand((Time.current - 80.years)..(Time.current - 16.years)),
+          public_activity:        (rand(1..100) > 30)
+        )
+        
+        
+        admin.create_administrator
+        admin.update(residence_verified_at: Time.current, document_type: "1",
+                    verified_at: Time.current, document_number: "#{document_number}#{[*"A".."Z"].sample}")
+        admin.create_poll_officer
+        puts "Se ha generado el administrador: #{emails[i]}"
+      rescue
+        puts "ERROR: No se ha podido crear el administrador: #{emails[i]}"
+      end
+    end
   end
+
+  
 
 
 
