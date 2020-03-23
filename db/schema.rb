@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200116220826) do
+ActiveRecord::Schema.define(version: 20200323121942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -896,8 +896,6 @@ ActiveRecord::Schema.define(version: 20200116220826) do
     t.string   "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "hidden_at"
-    t.index ["hidden_at"], name: "index_moderated_texts_on_hidden_at", using: :btree
     t.index ["text"], name: "index_moderated_texts_on_text", unique: true, using: :btree
   end
 
