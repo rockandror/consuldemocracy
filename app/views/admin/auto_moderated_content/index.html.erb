@@ -5,6 +5,7 @@
 <%= render "shared/filter_subnav", i18n_namespace: "admin.auto_moderated_content.index" %>
 
 <% if @moderated_comments.any? %>
+  <h3 class="inline-block"><%= page_entries_info @moderated_comments %></h3><br>
   <table>
     <thead>
       <th><%= t("admin.auto_moderated_content.index.comment") %></th>
@@ -45,6 +46,7 @@
       <% end %>
     </tbody>
   </table>
+  <%= paginate @moderated_comments %>
 <% else %>
   <div class="callout primary">
     <%= t("admin.auto_moderated_content.index.no_moderations") %>
