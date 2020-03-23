@@ -44,5 +44,31 @@ feature "Moderated texts import", type: :feature do
       expect(page).to have_content("mierda")
       expect(page).to have_content("imbecil")
     end
+
+    it "uploads a file with similar texts successfully" do
+      visit new_admin_moderated_texts_import_path
+
+      path = "spec/fixtures/files/moderated_texts/import/valid.csv"
+      attach_file("moderated_texts_import_file", Rails.root.join(path))
+      click_button "Save"
+
+      expect(page).to have_content("The uploaded file was successfully processed")
+      expect(page).to have_content("culo")
+      expect(page).to have_content("cabron")
+      expect(page).to have_content("mierda")
+      expect(page).to have_content("imbecil")
+
+      visit new_admin_moderated_texts_import_path
+      path = "spec/fixtures/files/moderated_texts/import/valid_updated.csv"
+      attach_file("moderated_texts_import_file", Rails.root.join(path))
+      click_button "Save"
+
+      expect(page).to have_content("The uploaded file was successfully processed")
+      expect(page).to have_content("culo")
+      expect(page).to have_content("cabron")
+      expect(page).to have_content("mierda")
+      expect(page).to have_content("imbecil")
+      expect(page).to have_content("cabrón")
+    end
   end
 end
