@@ -11,29 +11,51 @@ namespace :users do
     phones = Rails.application.secrets.phones_config
     emails = Rails.application.secrets.emails_config
     usernames = Rails.application.secrets.usernames_config
+    districts = Rails.application.secrets.districts_config
  
     (0..phones.count-1).each do |i|
       begin
-        admin = User.create!(
-          username:               usernames[i],
-          email:                  emails[i],
-          phone_number:           phones[i],
-          confirmed_phone:        phones[i],
-          geozone_id:             Geozone.find_by(name: "Moratalaz").try(:id),
-          password:               pwd,
-          password_confirmation:  pwd,
-          confirmed_at:           Time.current,
-          terms_of_service:       "1",
-          gender:                 ["Male", "Female"].sample,
-          date_of_birth:          rand((Time.current - 80.years)..(Time.current - 16.years)),
-          public_activity:        (rand(1..100) > 30)
-        )
-        
-        
-        admin.create_administrator
-        admin.update(residence_verified_at: Time.current, document_type: "1",
-                    verified_at: Time.current, document_number: "#{document_number}#{[*"A".."Z"].sample}")
-        admin.create_poll_officer
+        exist = User.find_by(username: usernames[i])
+
+        if exist.blank?
+          admin = User.create!(
+            username:               usernames[i],
+            email:                  emails[i],
+            phone_number:           phones[i],
+            confirmed_phone:        phones[i],
+            geozone_id:             Geozone.find_by(name: districts[i]).try(:id),
+            password:               pwd,
+            password_confirmation:  pwd,
+            confirmed_at:           Time.current,
+            terms_of_service:       "1",
+            gender:                 ["Male", "Female"].sample,
+            date_of_birth:          rand((Time.current - 80.years)..(Time.current - 16.years)),
+            public_activity:        (rand(1..100) > 30)
+          )
+          
+          
+          admin.create_administrator
+          admin.update(residence_verified_at: Time.current, document_type: "1",
+                      verified_at: Time.current, document_number: "#{document_number}#{[*"A".."Z"].sample}")
+          admin.create_poll_officer
+        else 
+          if user.update(phone_number:  phones[i], confirmed_phone:  phones[i],geozone: Geozone.find_by(name: districts[i]))
+            puts "Se ha actualizado correctamente con el teléfono: #{ phones[i]}, y la geolocalización: #{Geozone.find_by(name: districts[i]).try(:name)}"
+            admin=Administrator.new(user_id: user.id)
+            
+            if admin.save
+              user.administrator = admin
+              if user.save
+                puts "se ha creado una instancia de administrador"
+              end
+            else
+              puts "Error, no se ha creado el administrador: #{admin.errors.full_messages}"
+              puts "Es administrador?: #{user.administrator?}"
+            end
+          else
+            puts "Error, no se ha actualizado: #{user.errors.full_messages}"
+          end
+        end
         puts "Se ha generado el administrador: #{emails[i]}"
       rescue
         puts "ERROR: No se ha podido crear el administrador: #{emails[i]}"
@@ -41,9 +63,32 @@ namespace :users do
     end
   end
 
-  
+  desc "Generate admin user"
+  task update_admin: :environment do
+    pwd = Rails.application.secrets.password_config.to_s
+    user = User.find_by(email: "molinaaem@madrid.es")
 
+    if !user.blank?
+      if user.update(password: pwd, password_confirmation: pwd)
+        puts "Se ha actualizado correctamente el usuario: #{user.email} "
+      else
+        puts "Error, no se ha actualizado: #{user.errors.full_messages}"
+      end
+    else
+      puts "Error: no se encuentra el usuario"
+    end
 
+    user = User.find_by(email: "martinezmb@madrid.es")
+    if !user.blank?
+      if user.update(phone_number:  "+34600242135", confirmed_phone:   "+34600242135")
+        puts "Se ha actualizado correctamente el usuario: #{user.email} "
+      else
+        puts "Error, no se ha actualizado: #{user.errors.full_messages}"
+      end
+    else
+      puts "Error: no se encuentra el usuario"
+    end
+  end
 
 
   desc "Borrado de usuarios particulares"
