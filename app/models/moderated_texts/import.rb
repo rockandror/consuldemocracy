@@ -22,20 +22,29 @@ class ModeratedTexts::Import
 
   def save
     return false if invalid?
-    moderated_words = []
 
     CSV.open(file.path, headers: true).each do |row|
-      empty_row?(row) ? next : moderated_words << build_word(row)
+      next if empty_row?(row)
+      process_row row
     end
-
-    ModeratedText.import(moderated_words)
-
     true
+  end
+
+  def save!
+    validate! && save
   end
 
   private
 
-    def build_word(row)
+    def process_row(row)
+      moderated_word = build_moderated_word(row)
+
+      if moderated_word.valid?
+        moderated_word.save!
+      end
+    end
+
+    def build_moderated_word(row)
       moderated_word = ModeratedText.new
       moderated_word.attributes = row.to_hash.slice(*ATTRIBUTES)
       moderated_word
