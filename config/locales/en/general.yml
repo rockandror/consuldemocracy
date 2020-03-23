@@ -47,7 +47,7 @@ en:
       author: Author
       deleted: This comment has been deleted
       moderator: Moderator
-      moderated: This comment won't be shown next time this page is reloaded as it has been deemed offensive
+      moderated_html: This comment won't be shown next time this page is reloaded as it has been deemed offensive. You can edit it by accessing the <a href="%{link}">My Content</a> section
       responses:
         one: 1 response
         other: "%{count} responses"
