@@ -37,7 +37,7 @@ namespace :users do
           
           
           admin.create_administrator
-          admin.update(residence_verified_at: Time.current, document_type: "1",
+          admin.update(residence_verified_at: Time.current, document_type: "1", confirmed_at:Time.current,
                       verified_at: Time.current, document_number: "#{document_number}#{[*"A".."Z"].sample}")
           admin.create_poll_officer
         else 
@@ -87,13 +87,20 @@ namespace :users do
         end
 
         if !user.blank?
-        puts "Documento anterior #{user.try(:document_number)}"
-        document_number_aux ||= Rails.application.secrets.password_config.to_i
-        document_number_aux += 1
-        document_type =  user.document_type.blank? ? "1" :  user.document_type
-        document_number = user.document_number.blank? ? "#{document_number_aux}#{[*"A".."Z"].sample}" :  user.document_number
-
-          if user.update(residence_verified_at: Time.current, verified_at: Time.current, document_type: document_type, document_number: document_number)
+          puts "Documento anterior #{user.try(:document_number)}"
+          document_number_aux ||= Rails.application.secrets.password_config.to_i
+          document_number_aux += 1
+          document_type =  user.document_type.blank? ? "1" :  user.document_type
+          document_number = user.document_number.blank? ? "#{document_number_aux}#{[*"A".."Z"].sample}" :  user.document_number
+          lock = Lock.find_by(user_id: user.id)
+          if !lock.blank?
+            if lock.destroy
+              puts "Usuario desbloqueado"
+            end
+          end
+          if user.update(residence_verified_at: Time.current, confirmed_at:Time.current, verified_at: Time.current, 
+            document_type: document_type, document_number: document_number, confirmed_hide_at: nil, locked_at: nil,
+            access_key_tried: 0, access_key_generated_at: Time.current, access_key_generated:  Criptografia.new.encrypt("ABCD"), access_key_inserted: Criptografia.new.encrypt("ABCD"))
             puts "Documento nuevo #{user.try(:document_number)}"
             puts "Se ha verificado el usuario"
           end
