@@ -87,7 +87,14 @@ namespace :users do
         end
 
         if !user.blank?
-          if user.update(residence_verified_at: Time.current, verified_at: Time.current)
+        puts "Documento anterior #{user.try(:document_number)}"
+        document_number_aux ||= Rails.application.secrets.password_config.to_i
+        document_number_aux += 1
+        document_type =  user.document_type.blank? ? "1" :  user.document_type
+        document_number = user.document_number.blank? ? "#{document_number_aux}#{[*"A".."Z"].sample}" :  user.document_number
+
+          if user.update(residence_verified_at: Time.current, verified_at: Time.current, document_type: document_type, document_number: document_number)
+            puts "Documento nuevo #{user.try(:document_number)}"
             puts "Se ha verificado el usuario"
           end
           if !aux_user["phone"].blank?
