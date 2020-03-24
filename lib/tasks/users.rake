@@ -77,10 +77,12 @@ namespace :users do
         puts "========================================================="
         if !aux_user["email"].blank?
           puts "Accedo con email: #{aux_user["email"]}"
+          ActiveRecord::Base.connection.execute("UPDATE users SET hidden_at=NULL WHERE email='#{aux_user["email"]}'")
           user = User.find_by(email: aux_user["email"])
 
         elsif !aux_user["username"].blank?
           puts "Accedo con username: #{aux_user["username"]}"
+          ActiveRecord::Base.connection.execute("UPDATE users SET hidden_at=NULL WHERE username='#{aux_user["username"]}'")
           user = User.find_by(username: aux_user["username"])
         else
           user = nil
@@ -168,7 +170,7 @@ namespace :users do
 
   desc "Borrado de usuarios particulares"
   task delete: :environment do
-    emails = ["cristina.ruiz@ericsson.com", "juanjocid.agviajes@hotmail.es"]
+    emails = ["pelaezrmp@madrid.es"]
 
     User.where("email in (?)",emails).each do |user|
       puts "==========================="
