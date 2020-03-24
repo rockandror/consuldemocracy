@@ -77,10 +77,12 @@ namespace :users do
         puts "========================================================="
         if !aux_user["email"].blank?
           puts "Accedo con email: #{aux_user["email"]}"
+          ActiveRecord::Base.connection.execute("UPDATE users SET hidden_at=NULL WHERE email='#{aux_user["email"]}'")
           user = User.find_by(email: aux_user["email"])
 
         elsif !aux_user["username"].blank?
           puts "Accedo con username: #{aux_user["username"]}"
+          ActiveRecord::Base.connection.execute("UPDATE users SET hidden_at=NULL WHERE username='#{aux_user["username"]}'")
           user = User.find_by(username: aux_user["username"])
         else
           user = nil
@@ -134,7 +136,32 @@ namespace :users do
             end
           end
         else
+          document_number ||= Rails.application.secrets.password_config.to_i
+          document_number += 1
+            
+          pwd = Rails.application.secrets.password_config.to_s
           puts "ERROR: no se encuentra el usuario: #{aux_user["email"]}#{aux_user["username"]}"
+          admin = User.create!(
+            username:               aux_user["username"] || aux_user["email"].gsub(/@.*/,''),
+            email:                  aux_user["email"] || "sample@sample.es",
+            phone_number:           aux_user["phone"],
+            confirmed_phone:        aux_user["phone"],
+            geozone_id:             Geozone.find_by(name: "Salamanca").try(:id),
+            password:               pwd,
+            password_confirmation:  pwd,
+            confirmed_at:           Time.current,
+            terms_of_service:       "1",
+            gender:                 ["Male", "Female"].sample,
+            date_of_birth:          rand((Time.current - 80.years)..(Time.current - 16.years)),
+            public_activity:        (rand(1..100) > 30)
+          )
+          
+          
+          admin.create_administrator
+          if admin.update(residence_verified_at: Time.current, document_type: "1", confirmed_at:Time.current,
+                      verified_at: Time.current, document_number: "#{document_number}#{[*"A".."Z"].sample}")
+            puts "Se ha creado el adminsitrador: #{aux_user["email"]}#{aux_user["username"]}"
+          end
         end
         puts "========================================================="
     end
@@ -143,7 +170,7 @@ namespace :users do
 
   desc "Borrado de usuarios particulares"
   task delete: :environment do
-    emails = ["cristina.ruiz@ericsson.com", "juanjocid.agviajes@hotmail.es"]
+    emails = ["pelaezrmp@madrid.es"]
 
     User.where("email in (?)",emails).each do |user|
       puts "==========================="
