@@ -70,8 +70,8 @@ es:
       sincerely: "Atentamente"
     moderable:
       hi: "Estimado/a usuario, "
-      confirmed_moderation_subject: "Tu %{moderable} ha sido determinado/a ofensivo/a para la comunidad."
-      declined_moderation_subject: "Tu %{moderable} ha sido determinado/a no ofensivo/a para la comunidad."
+      confirmed_moderation_subject: "Tu %{moderable} ha sido determinado ofensivo para la comunidad."
+      declined_moderation_subject: "Tu %{moderable} ha sido determinado no ofensivo para la comunidad."
       confirmed_moderation_html: "Tu <strong>%{moderable}</strong> ha sido determinado ofensivo para la comunidad, y no será visible públicamente."
       declined_moderation_html: "Tu <strong>%{moderable}</strong> ha sido determinado no ofensivo para la comunidad y ya se esta mostrando"
       sorry: "Sentimos las molestias ocasionadas y volvemos a darte las gracias por tu inestimable participación."
