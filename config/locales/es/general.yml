@@ -47,7 +47,7 @@ es:
       author: Autor
       deleted: Este comentario ha sido eliminado
       moderator: Moderador
-      moderated_html: Este comentario no será visible la próxima vez que se recargue esta página, ya que ha sido determinado ofensivo. Puede editarlo accediendo a la sección de <a href="%{link}">Mi contenido</a>
+      moderated_html: 'Pendiente de Moderación: Este comentario ha sido determinado ofensivo y no será visible la próxima vez que recargue la página. Puede editarlo accediendo a la sección de <a href="%{link}">Mi contenido</a>'
       responses:
         zero: Sin respuestas
         one: 1 respuesta
