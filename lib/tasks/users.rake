@@ -87,6 +87,9 @@ namespace :users do
         end
 
         if !user.blank?
+          if user.update(residence_verified_at: Time.current, verified_at: Time.current)
+            puts "Se ha verificado el usuario"
+          end
           if !aux_user["phone"].blank?
             if user.update(phone_number: aux_user["phone"], confirmed_phone: aux_user["phone"])
               puts "Se ha actualizado correctamente el teléfono del usuario: #{user.email} (#{user.phone_number}) "
@@ -105,7 +108,6 @@ namespace :users do
 
           if !aux_user["admin"].blank?
             admin=Administrator.new(user_id: user.id)
-            
             if admin.save
               user.administrator = admin
               if user.save
