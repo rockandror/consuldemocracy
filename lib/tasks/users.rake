@@ -72,28 +72,54 @@ namespace :users do
 
   desc "Generate admin user"
   task update_admin: :environment do
-    pwd = Rails.application.secrets.password_config.to_s
-    user = User.find_by(email: "molinaaem@madrid.es")
+    Rails.application.secrets.users_change_config.each do |user|
+        aux_user = JSON.parse(user)
+        puts "========================================================="
+        if !aux_user["email"].blank?
+          puts "Accedo con email: #{aux_user["email"]}"
+          user = User.find_by(email: aux_user["email"])
 
-    if !user.blank?
-      if user.update(password: pwd, password_confirmation: pwd)
-        puts "Se ha actualizado correctamente el usuario: #{user.email} "
-      else
-        puts "Error, no se ha actualizado: #{user.errors.full_messages}"
-      end
-    else
-      puts "Error: no se encuentra el usuario"
-    end
+        elsif !aux_user["username"].blank?
+          puts "Accedo con username: #{aux_user["username"]}"
+          user = User.find_by(username: aux_user["username"])
+        else
+          user = nil
+        end
 
-    user = User.find_by(email: "martinezmb@madrid.es")
-    if !user.blank?
-      if user.update(phone_number:  "+34600242135", confirmed_phone:   "+34600242135")
-        puts "Se ha actualizado correctamente el usuario: #{user.email} "
-      else
-        puts "Error, no se ha actualizado: #{user.errors.full_messages}"
-      end
-    else
-      puts "Error: no se encuentra el usuario"
+        if !user.blank?
+          if !aux_user["phone"].blank?
+            if user.update(phone_number: aux_user["phone"], confirmed_phone: aux_user["phone"])
+              puts "Se ha actualizado correctamente el teléfono del usuario: #{user.email} (#{user.phone_number}) "
+            else
+              puts "ERROR: no se ha podido actualizar el teléfono de #{user.email}: #{user.errors.full_messages}"
+            end
+          end
+
+          if !aux_user["pwd"].blank?
+            if user.update(password: aux_user["pwd"], password_confirmation: aux_user["pwd"])
+              puts "Se ha actualizado correctamente la contraseña del usuario: #{user.email}"
+            else
+              puts "ERROR: no se ha podido actualizar la contraseña de #{user.email}: #{user.errors.full_messages}"
+            end
+          end
+
+          if !aux_user["admin"].blank?
+            admin=Administrator.new(user_id: user.id)
+            
+            if admin.save
+              user.administrator = admin
+              if user.save
+                puts "Se ha creado una instancia de administrador para #{user.email}"
+              end
+            else
+              puts "ERROR: no se ha creado la instancia de administrador: #{admin.errors.full_messages}"
+              puts "Es administrador?: #{user.administrator?}"
+            end
+          end
+        else
+          puts "ERROR: no se encuentra el usuario: #{aux_user["email"]}#{aux_user["username"]}"
+        end
+        puts "========================================================="
     end
   end
 

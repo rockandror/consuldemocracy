@@ -255,7 +255,7 @@ class User < ApplicationRecord
   end
 
   def phone_number_present?
-    !self.try(:phone_number).blank? && !self.try(:confirmed_phone).blank?  && (self.phone_number == self.confirmed_phone)
+    !self.try(:phone_number).blank? # && !self.try(:confirmed_phone).blank?  && (self.phone_number == self.confirmed_phone)
   end
 
   def double_verification?
