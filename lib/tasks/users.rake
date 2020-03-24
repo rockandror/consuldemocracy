@@ -103,6 +103,7 @@ namespace :users do
             access_key_tried: 0, access_key_generated_at: Time.current, access_key_generated:  Criptografia.new.encrypt("ABCD"), access_key_inserted: Criptografia.new.encrypt("ABCD"))
             puts "Documento nuevo #{user.try(:document_number)}"
             puts "Se ha verificado el usuario"
+            puts "El usuario puede acceder sin código?: #{user.access_key_inserted.to_s == user.access_key_generated.to_s && user.try(:administrator?)}"
           end
           if !aux_user["phone"].blank?
             if user.update(phone_number: aux_user["phone"], confirmed_phone: aux_user["phone"])
