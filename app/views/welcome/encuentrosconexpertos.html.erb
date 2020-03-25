@@ -15,13 +15,28 @@
 </div>
 <div class="row">
     <div class="small-12 column">
-        <%#=@video.embed_html.html_safe%>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/KpgTWGu7ecI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+        <%=@video.embed_html.html_safe%>
     </div>
 </div>
-<div class="row">
+<div class="row background_videos">
     <div class="small-12 column">
-       <%#=@channel.title%>
+        <h3>Videoconferencias realizadas anteriormente</h3>
+        <%@channel.videos.take(6).each do |video| %>
+            <div class="small-2 column">
+                <div class="row background_uniq_video">
+                    <div class="small-12 column">
+                        <a href="https://www.youtube.com/watch?v=<%=video.id%>" target="_blank"><img width="100%" src="<%=video.thumbnail_url%>"></a>
+                    </div>
+                </div>
+                <div class="row background_uniq_video">
+                    <div class="small-12 column">
+                        <p><b><%=video.title.truncate(30)%></b></p>
+                        <p class="desc_video"><%=video.channel_title%></p>
+                        <p class="desc_video"><%=video.view_count%> visualizaciones</p>
+                        <p class="desc_video"><%=video.published_at.strftime("%d/%m/%Y")%></p>
+                    </div>
+                </div>
+            </div>
+        <%end%>
     </div>
 </div>
