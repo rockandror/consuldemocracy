@@ -26,6 +26,23 @@ class WelcomeController < ApplicationController
     redirect_to verification_path if signed_in?
   end
 
+  def encuentrosconexpertos
+    current_date = Time.now
+    if current_date.wday.to_i == 1
+      @day = current_date.day
+    else 
+      diff = 7 - current_date.wday.to_i+1
+      @day = (current_date +diff.days).day
+    end
+    # Yt.configure do |config|
+    #   Yt.configuration.client_id = "294989892643-5gfd18kovbdj9b8toa6tb9urij66g2a6.apps.googleusercontent.com"  
+    # end
+
+    
+    @channel = Yt::Channel.new id:  'UCFmaChI9quIY7lwHplnacfg'
+    @video = Yt::Video.new id:  'KpgTWGu7ecI'
+  end
+
   private
 
   def set_user_recommendations
