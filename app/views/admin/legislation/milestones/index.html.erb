@@ -5,7 +5,7 @@
 
 <%= back_link_to admin_legislation_processes_path, t("admin.legislation.processes.edit.back") %>
 
-<h2><%= @process.title %></h2>
+<h2><%= @process.try(:title) %></h2>
 
 <%= render "admin/legislation/processes/subnav", process: @process, active: "milestones" %>
 <%= render "summary_form", process: @process %>

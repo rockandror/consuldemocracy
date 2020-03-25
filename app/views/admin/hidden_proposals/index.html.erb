@@ -16,14 +16,14 @@
     <% @proposals.each do |proposal| %>
       <tr id="<%= dom_id(proposal) %>">
         <td class="align-top">
-          <strong><%= proposal.title %></strong>
+          <strong><%= proposal.try(:title) %></strong>
         </td>
         <td>
           <div class="moderation-description">
-            <p><small><%= proposal.summary %></small></p>
-            <%= proposal.description %>
-            <% if proposal.video_url.present? %>
-              <p><%= text_with_links proposal.video_url %></p>
+            <p><small><%= proposal.try(:summary) %></small></p>
+            <%= proposal.try(:description) %>
+            <% if proposal.try(:video_url).present? %>
+              <p><%= text_with_links proposal.try(:video_url) %></p>
             <% end %>
           </div>
         </td>

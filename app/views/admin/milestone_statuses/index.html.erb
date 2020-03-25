@@ -17,10 +17,10 @@
       <% @statuses.each do |status| %>
         <tr id="<%= dom_id(status) %>" class="milestone_status">
           <td>
-            <%= status.name %>
+            <%= status.try(:name) %>
           </td>
           <td>
-            <%= status.description %>
+            <%= status.try(:description) %>
           </td>
           <td>
             <%= link_to t("admin.statuses.index.edit"),

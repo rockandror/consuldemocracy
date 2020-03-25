@@ -15,7 +15,7 @@
     <% @users.each do |user| %>
       <tr id="<%= dom_id(user) %>">
         <td>
-          <p><%= link_to user.name, admin_hidden_user_path(user) %></p>
+          <p><%= link_to user.try(:name), admin_hidden_user_path(user) %></p>
         </td>
 
         <td>

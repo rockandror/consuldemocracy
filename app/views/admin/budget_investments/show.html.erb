@@ -8,7 +8,7 @@
 <% if @investment.label.present? %>
   <p id="label">
     <strong><%= t("admin.budget_investments.show.label") %>:</strong>
-    <%= @investment.label %>
+    <%= @investment.try(:label) %>
   </p>
 <% end %>
 

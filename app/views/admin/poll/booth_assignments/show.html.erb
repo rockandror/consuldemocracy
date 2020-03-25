@@ -1,14 +1,14 @@
 <%= link_to admin_poll_booth_assignments_path(@poll) do %>
   <span class="icon-angle-left"></span>
-  <%= @poll.name %>
+  <%= @poll.try(:name) %>
 <% end %>
 
-<h2><%= @booth_assignment.booth.name %></h2>
+<h2><%= @booth_assignment.try(:booth).try(:name) %></h2>
 
-<% if @booth_assignment.booth.location.present? %>
+<% if @booth_assignment.try(:booth).try(:location=.present? %>
   <p>
     <strong><%= t("admin.poll_booth_assignments.show.location") %></strong>:
-    <%= @booth_assignment.booth.location %>
+    <%= @booth_assignment.try(:booth).try(:location) %>
   </p>
 <% end %>
 
@@ -42,8 +42,8 @@
         <tbody>
           <% @booth_assignment.officers.uniq.each do |officer| %>
             <tr id="officer_<%= officer.id %>" class="officer">
-              <td><%= link_to officer.name, by_officer_admin_poll_officer_assignments_path(@poll, officer_id: officer.id) %></td>
-              <td><%= officer.email %></td>
+              <td><%= link_to officer.try(:name), by_officer_admin_poll_officer_assignments_path(@poll, officer_id: officer.id) %></td>
+              <td><%= officer.try(:email) %></td>
             </tr>
           <% end %>
         </tbody>
@@ -72,7 +72,7 @@
 
           <% unless @poll.recounts_confirmed? %>
             <td class="text-center" id="total_system">
-              <%= @booth_assignment.voters.count %>
+              <%= @booth_assignment.try(:voters).count %>
             </td>
           <% end %>
         </tr>
@@ -88,7 +88,7 @@
           </tr>
         </thead>
         <tbody>
-          <% (@poll.starts_at.to_date..@poll.ends_at.to_date).each do |voting_date| %>
+          <% (@poll.try(:starts_at).to_date..@poll.try(:ends_at).to_date).each do |voting_date| %>
             <% system_count = @voters_by_date[voting_date].present? ? @voters_by_date[voting_date].size : 0 %>
             <tr id="recounting_<%= voting_date.strftime("%Y%m%d") %>">
               <td><%= l voting_date %></td>

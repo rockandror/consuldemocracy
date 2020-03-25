@@ -6,7 +6,7 @@
 
   <%= back_link_to admin_legislation_processes_path, t("admin.legislation.processes.edit.back") %>
 
-  <h2><%= @process.title %></h2>
+  <h2><%= @process.try(:title) %></h2>
 
   <%= render "admin/legislation/processes/subnav", process: @process, active: "draft_versions" %>
 
@@ -32,11 +32,11 @@
         <% @process.draft_versions.each do |draft_version| %>
           <tr id="<%= dom_id(draft_version) %>">
             <td>
-              <%= link_to draft_version.title, edit_admin_legislation_process_draft_version_path(@process, draft_version) %>
+              <%= link_to draft_version.try(:title), edit_admin_legislation_process_draft_version_path(@process, draft_version) %>
             </td>
-            <td><%= draft_version.created_at.to_date %></td>
+            <td><%= draft_version.try(:created_at).to_date %></td>
             <td>
-              <% if draft_version.status == "draft" %>
+              <% if draft_version.try(:status) == "draft" %>
                 <%= t("admin.legislation.draft_versions.statuses.draft") %>
                 <%= link_to "(#{t(".preview")})", legislation_process_draft_version_path(@process, draft_version)  %>
               <% else %>

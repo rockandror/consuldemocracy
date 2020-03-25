@@ -16,7 +16,7 @@
     <% @newsletters.order(created_at: :desc).each do |newsletter| %>
       <tr id="<%= dom_id(newsletter) %>" class="newsletter">
         <td>
-          <%= newsletter.subject %>
+          <%= newsletter.try(:subject) %>
         </td>
         <td>
           <%= segment_name(newsletter.segment_recipient) %>
@@ -25,7 +25,7 @@
           <% if newsletter.draft? %>
             <%= t("admin.newsletters.index.draft") %>
           <% else %>
-            <%= l newsletter.sent_at.to_date %>
+            <%= l newsletter.try(:sent_at).to_date %>
           <% end %>
         </td>
         <td>

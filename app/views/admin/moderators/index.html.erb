@@ -18,10 +18,10 @@
         <% @moderators.each do |moderator| %>
           <tr>
             <td>
-              <%= moderator.name %>
+              <%= moderator.try(:name) %>
             </td>
             <td>
-              <%= moderator.email %>
+              <%= moderator.try(:email) %>
             </td>
             <td>
               <% if moderator.persisted? %>
