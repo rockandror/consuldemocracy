@@ -41,9 +41,9 @@ class WelcomeController < ApplicationController
       @day = (current_date +diff.days).day
     end
     Yt.configure do |config|
-      Yt.configuration.api_key = 'AIzaSyAKYzMJUOq_sIhkg2JkCAfa2ckejHiy8rM'
-      config.client_id = '674720534170-770sg35kq4qeqqr5n1vad2rg27fr12vo.apps.googleusercontent.com'
-      config.client_secret = 'y8-zoS6zm22tDRUSz6516LAe' 
+      Yt.configuration.api_key = Rails.application.secrets.yt_api_key
+      config.client_id = Rails.application.secrets.yt_client_id
+      config.client_secret = Rails.application.secrets.yt_client_secret
     end
 
     
