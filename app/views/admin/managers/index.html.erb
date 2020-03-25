@@ -16,10 +16,10 @@
         <% @managers.each do |manager| %>
           <tr>
             <td>
-              <%= manager.name %>
+              <%= manager.try(:name) %>
             </td>
             <td>
-              <%= manager.email %>
+              <%= manager.try(:email) %>
             </td>
             <td>
               <% if manager.persisted? %>

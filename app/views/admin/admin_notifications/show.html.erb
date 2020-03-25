@@ -8,23 +8,23 @@
     <% if @admin_notification.draft? %>
       <%= t("admin.admin_notifications.index.draft") %>
     <% else %>
-      <%= l(@admin_notification.sent_at.to_date) %>
+      <%= l(@admin_notification.try(:sent_at).to_date) %>
     <% end %>
   </div>
 
   <div class="small-12 medium-6 column">
     <strong><%= t("admin.admin_notifications.show.title") %></strong><br>
-    <%= @admin_notification.title %>
+    <%= @admin_notification.try(:title) %>
   </div>
 
   <div class="small-12 medium-6 column">
     <strong><%= t("admin.admin_notifications.show.body") %></strong><br>
-    <%= @admin_notification.body %>
+    <%= @admin_notification.try(:body) %>
   </div>
 
   <div class="small-12 medium-6 column">
     <strong><%= t("admin.admin_notifications.show.link") %></strong><br>
-    <%= @admin_notification.link %>
+    <%= @admin_notification.try(:link) %>
   </div>
 
   <div class="small-12 column">
@@ -52,11 +52,11 @@
   <ul class="no-bullet clear notifications-list">
     <li class="notification unread">
       <% locals = { notification: nil,
-                    title: @admin_notification.title,
-                    body: @admin_notification.body,
+                    title: @admin_notification.try(:title),
+                    body: @admin_notification.try(:body),
                     timestamp: Time.current } %>
       <% link_text = render partial: "/notifications/notification_body", locals: locals %>
-      <%= link_to_if @admin_notification.link.present?, link_text, @admin_notification.link %>
+      <%= link_to_if @admin_notification.link.present?, link_text, @admin_notification.try(:link) %>
     </li>
   </ul>
 </div>

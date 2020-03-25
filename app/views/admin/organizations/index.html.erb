@@ -29,12 +29,12 @@
     </thead>
     <tbody>
     <% @organizations.each do |organization| %>
-      <% hidden += 1 and next if organization.user.nil? || organization.user.hidden? %>
+      <% hidden += 1 and next if organization.try(:user).nil? || organization.try(:user).hidden? %>
       <tr id="<%= dom_id(organization) %>">
-      <td><%= organization.name %></td>
-      <td><%= organization.email %></td>
-      <td><%= organization.phone_number %></td>
-      <td><%= organization.responsible_name %></td>
+      <td><%= organization.try(:name) %></td>
+      <td><%= organization.try(:email) %></td>
+      <td><%= organization.try(:phone_number)%></td>
+      <td><%= organization.try(:responsible_name) %></td>
       <td>
         <% if organization.verified? %>
           <span class="icon-check"></span>
