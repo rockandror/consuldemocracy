@@ -1,13 +1,13 @@
 <%= back_link_to %>
 
-<h2><%= t("admin.hidden_users.show.title", user: @user.name) %></h2>
+<h2><%= t("admin.hidden_users.show.title", user: @user.try(:name)) %></h2>
 
 <p>
-  <strong><%= t("admin.hidden_users.show.email") %></strong> <%= @user.email %> |
-  <strong><%= t("admin.hidden_users.show.phone") %></strong> <%= @user.phone %> |
+  <strong><%= t("admin.hidden_users.show.email") %></strong> <%= @user.try(:email) %> |
+  <strong><%= t("admin.hidden_users.show.phone") %></strong> <%= @user.try(:phone) %> |
   <strong><%= t("admin.hidden_users.show.registered_at") %></strong>
-  <%= l @user.confirmed_at, format: :long %> |
-  <strong><%= t("admin.hidden_users.show.hidden_at") %></strong> <%= @user.hidden_at || "No" %>
+  <%= l @user.try(:confirmed_at), format: :long %> |
+  <strong><%= t("admin.hidden_users.show.hidden_at") %></strong> <%= @user.try(:hidden_at) || "No" %>
 </p>
 
 <% if @debates.present? %>
@@ -18,7 +18,7 @@
   <% @debates.each do |debate| %>
     <tr>
       <td>
-        <%= link_to debate.title, debate_path(debate) %>
+        <%= link_to debate.try(:title), debate_path(debate) %>
       </td>
     </tr>
   <% end %>
@@ -32,7 +32,7 @@
   <% @comments.each do |comment| %>
     <tr id="<%= dom_id(comment) %>">
       <td>
-        <%= text_with_links comment.body %>
+        <%= text_with_links comment.try(:body) %>
       </td>
     </tr>
   <% end %>

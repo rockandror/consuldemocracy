@@ -16,11 +16,11 @@
     <% @debates.each do |debate| %>
       <tr id="<%= dom_id(debate) %>">
         <td class="align-top">
-          <strong><%= debate.title %></strong>
+          <strong><%= debate.try(:title) %></strong>
         </td>
         <td>
           <div class="moderation-description">
-            <%= debate.description %>
+            <%= debate.try(:description) %>
           </div>
         </td>
         <td class="align-top">

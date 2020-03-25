@@ -16,16 +16,16 @@
       <% @administrators.each do |administrator| %>
         <tr id="<%= dom_id(administrator)%>">
           <td class="text-center">
-            <%= administrator.id %>
+            <%= administrator.try(:id)%>
           </td>
           <td>
-            <%= administrator.name %>
+            <%= administrator.try(:name) %>
           </td>
           <td>
-            <%= administrator.email %>
+            <%= administrator.try(:email) %>
           </td>
           <td>
-            <% if administrator.persisted? %>
+            <% if administrator.try(:persisted?) %>
               <%= link_to t("admin.administrators.administrator.delete"),
                           admin_administrator_path(administrator),
                           method: :delete,

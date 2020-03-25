@@ -15,11 +15,11 @@
     <% @comments.each do |comment| %>
       <tr id="<%= dom_id(comment) %>">
         <td>
-          <%= text_with_links comment.body %><br>
-          <% if comment.commentable.hidden? %>
-            (<%= t("admin.comments.index.hidden_#{comment.commentable_type.downcase}") %>: <%= comment.commentable.title %>)
+          <%= text_with_links comment.try(:body) %><br>
+          <% if comment.try(:commentable).hidden? %>
+            (<%= t("admin.comments.index.hidden_#{comment.try(:commentable_type).downcase}") %>: <%= comment.commentable.title %>)
           <% else %>
-            <%= link_to comment.commentable.title, commentable_path(comment) %>
+            <%= link_to comment.try(:commentable).try(:title), commentable_path(comment) %>
           <% end %>
         </td>
         <td>

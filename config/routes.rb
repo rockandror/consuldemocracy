@@ -43,7 +43,7 @@ Rails.application.routes.draw do
   get "/madridsalealbalcon" => redirect("/legislation/processes/#{Rails.application.secrets.id}")
   
   get "/consul.json", to: "installation#details"
-
+  
   resources :stats, only: [:index]
   resources :images, only: [:destroy]
   resources :documents, only: [:destroy]

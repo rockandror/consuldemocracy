@@ -2,7 +2,7 @@ class Valuator < ApplicationRecord
   belongs_to :user, touch: true
   belongs_to :valuator_group
 
-  delegate :name, :email, :name_and_email, to: :user
+  delegate :name, :email, :name_and_email, to: :user, allow_nil: true
 
   has_many :valuator_assignments, dependent: :destroy, class_name: "Budget::ValuatorAssignment"
   has_many :investments, through: :valuator_assignments, class_name: "Budget::Investment"
@@ -20,5 +20,4 @@ class Valuator < ApplicationRecord
   def assigned_investment_ids
     investment_ids + [valuator_group.try(:investment_ids)].flatten
   end
-
 end

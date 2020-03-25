@@ -264,7 +264,7 @@ class User < ApplicationRecord
   end
 
   def verification_in_net?
-    !self.ip_out_of_internal_red? && self.administrator?
+    !self.ip_out_of_internal_red? && !self.administrator.blank?
   end
 
   def encrypt_access_key(access_key)

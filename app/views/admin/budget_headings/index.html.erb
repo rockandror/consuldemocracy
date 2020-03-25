@@ -23,7 +23,7 @@
         <tr id="<%= dom_id(heading) %>">
           <td><%= link_to heading.name, edit_admin_budget_group_heading_path(@budget, @group, heading) %></td>
           <td><%= @budget.formatted_heading_price(heading) %></td>
-          <td><%= heading.population %></td>
+          <td><%= heading.try(:population) %></td>
           <td>
             <%= heading.allow_custom_content ? t("admin.shared.true_value") : t("admin.shared.false_value") %>
           </td>

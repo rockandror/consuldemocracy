@@ -28,11 +28,11 @@
       <% @processes.each do |process| %>
         <tr id="<%= dom_id(process) %>">
           <td class="small-12 medium-6 large-4">
-            <%= link_to process.title, edit_admin_legislation_process_path(process) %>
+            <%= link_to process.try(:title), edit_admin_legislation_process_path(process) %>
           </td>
           <td><%= t("admin.legislation.processes.process.status_#{process.status}") %></td>
-          <td class="text-center"><%= I18n.l process.start_date %></td>
-          <td class="text-center"><%= I18n.l process.end_date %></td>
+          <td class="text-center"><%= I18n.l process.try(:start_date) %></td>
+          <td class="text-center"><%= I18n.l process.try(:end_date) %></td>
           <td class="text-center"><%= process.total_comments %></td>
           <td>
             <%= link_to t("admin.legislation.processes.index.delete"), admin_legislation_process_path(process),

@@ -18,14 +18,14 @@
       </thead>
       <tbody>
         <% @officers.each do |officer| %>
-          <tr id="officer_<%= officer.id %>" class="officer">
+          <tr id="officer_<%= officer.try(:id) %>" class="officer">
             <td>
               <strong>
-                <%= link_to officer.name, by_officer_admin_poll_officer_assignments_path(@poll, officer_id: officer.id) %>
+                <%= link_to officer.try(:name), by_officer_admin_poll_officer_assignments_path(@poll, officer_id: officer.id) %>
               </strong>
             </td>
             <td>
-              <%= officer.email %>
+              <%= officer.try(:email) %>
             </td>
           </tr>
         <% end %>
