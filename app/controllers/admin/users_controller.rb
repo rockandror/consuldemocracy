@@ -10,6 +10,11 @@ class Admin::UsersController < Admin::BaseController
     end
   end
 
+  def destroy
+    @user.destroy
+    redirect_to admin_users_path
+  end
+
   # def destroy
   #   begin
   #     ActiveRecord::Base.transaction do
