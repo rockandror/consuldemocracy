@@ -6,34 +6,40 @@
 </div>
 <div class="row">
     <div class="small-12 column">
-        <p>Te ponemos en contacto con técnicos del Ayuntamiento para que puedas resolver tus dudas sobre el <b>COVID-19</b> en todos los ámbitos de actuación: sanitario, social, asistencial, etc.</p>
+        <p>Te ponemos en contacto con técnicos del Ayuntamiento para que puedas resolver tus dudas sobre el <b>COVID-19</b> en todos los ámbitos de actuación.</p>
         <br>
         <p>Cada lunes, un experto contestará en directo a tus preguntas.</p>
-        <p><b>Próximo encuentro:</b> lunes <%=@day%>, 19:30h</h>
+        <p><b>Próximo encuentro:</b> Diariamente</h>
 
     </div>
 </div>
 <div class="row">
-    <div class="small-12 column">
-        <%=@video.embed_html.html_safe%>
+    <div class="small-6 column">
+        <%#=@video.embed_html.html_safe%>
+    </div>
+    <div class="small-6 column">
+        <%#@video.comment_threads.take(10).each do |comment|%>
+            <%#=comment.text_display %>
+        <%#end%>
     </div>
 </div>
 <div class="row background_videos">
     <div class="small-12 column">
         <h3>Videoconferencias realizadas anteriormente</h3>
-        <%@channel.videos.take(6).each do |video| %>
+        <%#="No hay vídeos disponibles" if @playlist.playlist_items.count <= 0 %>
+        <%#@playlist.playlist_items.take(6).each do |item| %>
             <div class="small-2 column">
                 <div class="row background_uniq_video">
                     <div class="small-12 column">
-                        <a href="https://www.youtube.com/watch?v=<%=video.id%>" target="_blank"><img width="100%" src="<%=video.thumbnail_url%>"></a>
+                        <a href="https://www.youtube.com/watch?v=<%#=item.video.id%>" target="_blank"><img width="100%" src="<%#=item.video.thumbnail_url%>"></a>
                     </div>
                 </div>
                 <div class="row background_uniq_video">
                     <div class="small-12 column">
-                        <p><b><%=video.title.truncate(30)%></b></p>
-                        <p class="desc_video"><%=video.channel_title%></p>
-                        <p class="desc_video"><%=video.view_count%> visualizaciones</p>
-                        <p class="desc_video"><%=video.published_at.strftime("%d/%m/%Y")%></p>
+                        <p><b><%#=item.video.title.truncate(30)%></b></p>
+                        <p class="desc_video"><%#=item.video.channel_title%></p>
+                        <p class="desc_video"><%#=item.video.view_count%> visualizaciones</p>
+                        <p class="desc_video"><%#=item.video.published_at.strftime("%d/%m/%Y")%></p>
                     </div>
                 </div>
             </div>
