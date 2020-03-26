@@ -38,7 +38,10 @@ class WelcomeController < ApplicationController
 
     
     # @playlist = Yt::Playlist.new id:  'PLhnvwI6F9eqXTZQc1yUGl4GX9s96u1AmK'
-    @video = Yt::Video.new id:  'KpgTWGu7ecI'
+    begin
+      @video = Yt::Video.new id:  'KpgTWGu7ecI'
+    rescue
+    end
   end
 
   private
