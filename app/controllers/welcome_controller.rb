@@ -40,7 +40,9 @@ class WelcomeController < ApplicationController
     # @playlist = Yt::Playlist.new id:  'PLhnvwI6F9eqXTZQc1yUGl4GX9s96u1AmK'
     begin
       @video = Yt::Video.new id:  'KpgTWGu7ecI'
+      @embed_html = @video.embed_html
     rescue
+      @embed_html= "No se ha cargado el recurso"
     end
   end
 
