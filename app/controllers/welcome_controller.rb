@@ -33,23 +33,16 @@ class WelcomeController < ApplicationController
     elsif !params[:decremento].blank?
       @i = @i == 0 ? 0 : @i - 1 
     end
-    current_date = Time.now
-    if current_date.wday.to_i == 1
-      @day = current_date.day
-    else 
-      diff = 7 - current_date.wday.to_i+1
-      @day = (current_date +diff.days).day
-    end
-    Yt.configure do |config|
-      Yt.configuration.api_key = Rails.application.secrets.yt_api_key
-      config.client_id = Rails.application.secrets.yt_client_id
-      config.client_secret = Rails.application.secrets.yt_client_secret
-    end
+   
+    # Yt.configure do |config|
+    #   config.api_key = Rails.application.secrets.yt_api_key
+    #   config.client_id = Rails.application.secrets.yt_client_id
+    #   config.client_secret = Rails.application.secrets.yt_client_secret
+    # end
 
     
-    @channel = Yt::Channel.new id:  'UCFmaChI9quIY7lwHplnacfg'
-    @video = Yt::Video.new id:  'KpgTWGu7ecI'
-
+    # @playlist = Yt::Playlist.new id:  'PLhnvwI6F9eqXTZQc1yUGl4GX9s96u1AmK'
+    # @video = Yt::Video.new id:  'KpgTWGu7ecI'
   end
 
   private
