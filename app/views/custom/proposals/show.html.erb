@@ -18,9 +18,9 @@
           Flag.flagged?(current_user, @proposal),
           @proposal_votes] do %>
   <div class="proposal-show">
-    <div id="<%= dom_id(@proposal) %>" class="row">
+    <div id="<%= dom_id(@proposal) unless @proposal.blank? %>" class="row">
       <div class="small-12 medium-9 column">
-        <%unless params[:author_id].blank? %>
+        <%unless User.find(params[:author_id]).blank? %>
           <%= back_link_to user_path(current_user) %>
           <div style="float:right">
             <%if @proposal.previous(params[:author_id]) %>

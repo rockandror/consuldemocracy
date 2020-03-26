@@ -13,11 +13,12 @@
     </thead>
     <tbody>
     <% @comments.each do |comment| %>
+     <% unless comment.blank? %>
       <tr id="<%= dom_id(comment) %>">
         <td>
           <%= text_with_links comment.try(:body) %><br>
-          <% if comment.try(:commentable).hidden? %>
-            (<%= t("admin.comments.index.hidden_#{comment.try(:commentable_type).downcase}") %>: <%= comment.commentable.title %>)
+          <% if comment.try(:commentable).try(:hidden?) %>
+            (<%= t("admin.comments.index.hidden_#{comment.try(:commentable_type).try(:downcase)}") %>: <%= comment.try(:commentable).try(:title) %>)
           <% else %>
             <%= link_to comment.try(:commentable).try(:title), commentable_path(comment) %>
           <% end %>
@@ -28,7 +29,7 @@
                 method: :put,
                 data: { confirm: t("admin.actions.confirm") },
                 class: "button hollow warning" %>
-          <% unless comment.confirmed_hide? %>
+          <% unless comment.try(:confirmed_hide?) %>
             <%= link_to t("admin.actions.confirm_hide"),
                   confirm_hide_admin_comment_path(comment, request.query_parameters),
                   method: :put,
@@ -36,6 +37,7 @@
           <% end %>
         </td>
       </tr>
+      <%end%>
     <% end %>
     </tbody>
   </table>
