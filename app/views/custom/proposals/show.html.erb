@@ -20,7 +20,7 @@
   <div class="proposal-show">
     <div id="<%= dom_id(@proposal) unless @proposal.blank? %>" class="row">
       <div class="small-12 medium-9 column">
-        <%unless User.find(params[:author_id]).blank? %>
+        <%unless params[:author_id].blank? %>
           <%= back_link_to user_path(current_user) %>
           <div style="float:right">
             <%if @proposal.previous(params[:author_id]) %>
