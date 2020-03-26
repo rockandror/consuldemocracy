@@ -33,16 +33,15 @@ class WelcomeController < ApplicationController
     elsif !params[:decremento].blank?
       @i = @i == 0 ? 0 : @i - 1 
     end
-   
-    # Yt.configure do |config|
-    #   config.api_key = Rails.application.secrets.yt_api_key
-    #   config.client_id = Rails.application.secrets.yt_client_id
-    #   config.client_secret = Rails.application.secrets.yt_client_secret
-    # end
-
     
-    # @playlist = Yt::Playlist.new id:  'PLhnvwI6F9eqXTZQc1yUGl4GX9s96u1AmK'
-    # @video = Yt::Video.new id:  'KpgTWGu7ecI'
+    begin
+      @playlist = Yt::Playlist.new id:  Setting.find_by(key: "youtube_playlist_connect").value
+      @video = Yt::Video.new id: Setting.find_by(key: "youtube_connect").value
+
+    rescue => error
+      Rails.logger.fatal error
+    end
+   
   end
 
   private
