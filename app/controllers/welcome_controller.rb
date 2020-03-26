@@ -33,17 +33,15 @@ class WelcomeController < ApplicationController
     elsif !params[:decremento].blank?
       @i = @i == 0 ? 0 : @i - 1 
     end
-   
-   
-
     
-    # @playlist = Yt::Playlist.new id:  'PLhnvwI6F9eqXTZQc1yUGl4GX9s96u1AmK'
     begin
-      @video = Yt::Video.new id:  'KpgTWGu7ecI'
-      @embed_html = @video.embed_html
-    rescue
-      @embed_html= "No se ha cargado el recurso"
+      @playlist = Yt::Playlist.new id:  Setting.find_by(key: "youtube_playlist_connect").value
+      @video = Yt::Video.new id: Setting.find_by(key: "youtube_connect").value
+
+    rescue => error
+      Rails.logger.fatal error
     end
+   
   end
 
   private

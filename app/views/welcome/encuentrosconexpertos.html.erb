@@ -10,39 +10,46 @@
         <br>
         <p>Cada lunes, un experto contestará en directo a tus preguntas.</p>
         <p><b>Próximo encuentro:</b> Diariamente</h>
-
     </div>
 </div>
 <div class="row">
     <div class="small-6 column">
-        <%=@embed_html.html_safe%>
+        <%=@video.try(:embed_html).try(:html_safe)%>
     </div>
-    <div class="small-6 column">
-        <%#@video.comment_threads.take(10).each do |comment|%>
-            <%#=comment.text_display %>
-        <%#end%>
+    <div class="small-6 column background_comments">
+        <h3>Comentarios más recientes</h3>
+        <%="No hay comentarios disponibles" if @video.blank? || @video.comment_threads.count <= 0 %>
+        <% unless @video.blank? %>
+            <%@video.comment_threads.take(5).each do |comment|%>
+                <p><b><%= comment.author_display_name.blank? ?  "Anónimo" : comment.author_display_name%></b> - <span class="desc_video"><%=comment.updated_at.strftime("%d/%m/%Y")%></span></p> 
+                <p><%=comment.text_display  %></p>
+            <%end%>
+            
+        <%end%>
     </div>
 </div>
 <div class="row background_videos">
     <div class="small-12 column">
         <h3>Videoconferencias realizadas anteriormente</h3>
-        <%#="No hay vídeos disponibles" if @playlist.playlist_items.count <= 0 %>
-        <%#@playlist.playlist_items.take(6).each do |item| %>
-            <div class="small-2 column">
-                <div class="row background_uniq_video">
-                    <div class="small-12 column">
-                        <a href="https://www.youtube.com/watch?v=<%#=item.video.id%>" target="_blank"><img width="100%" src="<%#=item.video.thumbnail_url%>"></a>
+        <%="No hay vídeos disponibles" if @playlist.blank? || @playlist.playlist_items.count <= 0 %>
+        <%unless @playlist.blank? %>
+            <%@playlist.playlist_items.take(6).each do |item| %>
+                <div class="small-2 column">
+                    <div class="row background_uniq_video">
+                        <div class="small-12 column">
+                            <a href="https://www.youtube.com/watch?v=<%=item.video.id%>" target="_blank"><img width="100%" src="<%=item.video.thumbnail_url :hight%>"></a>
+                        </div>
+                    </div>
+                    <div class="row background_uniq_video">
+                        <div class="small-12 column">
+                            <p><b><%=item.video.title.truncate(30)%></b></p>
+                            <p class="desc_video"><%=item.video.channel_title%></p>
+                            <p class="desc_video"><%=item.video.view_count%> visualizaciones</p>
+                            <p class="desc_video"><%=item.video.published_at.strftime("%d/%m/%Y")%></p>
+                        </div>
                     </div>
                 </div>
-                <div class="row background_uniq_video">
-                    <div class="small-12 column">
-                        <p><b><%#=item.video.title.truncate(30)%></b></p>
-                        <p class="desc_video"><%#=item.video.channel_title%></p>
-                        <p class="desc_video"><%#=item.video.view_count%> visualizaciones</p>
-                        <p class="desc_video"><%#=item.video.published_at.strftime("%d/%m/%Y")%></p>
-                    </div>
-                </div>
-            </div>
-        <%#end%>
+            <%end%>
+        <%end%>
     </div>
 </div>
