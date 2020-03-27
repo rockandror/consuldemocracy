@@ -27,21 +27,12 @@ class WelcomeController < ApplicationController
   end
 
   def encuentrosconexpertos
-    @i ||= 0
-    if !params[:aumento].blank?
-      @i = @i + 1 
-    elsif !params[:decremento].blank?
-      @i = @i == 0 ? 0 : @i - 1 
-    end
-    
     begin
       @playlist = Yt::Playlist.new id:  Setting.find_by(key: "youtube_playlist_connect").value
       @video = Yt::Video.new id: Setting.find_by(key: "youtube_connect").value
-
     rescue => error
-      Rails.logger.fatal error
+      Rails.logger.fatal(error)
     end
-   
   end
 
   private
