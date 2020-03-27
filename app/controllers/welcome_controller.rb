@@ -26,6 +26,12 @@ class WelcomeController < ApplicationController
     redirect_to verification_path if signed_in?
   end
 
+  def encuentrosconexpertos
+    @key = Rails.application.secrets.yt_api_key
+    @videoId = Setting.find_by(key: "youtube_connect").value
+    @playlistId = Setting.find_by(key: "youtube_playlist_connect").value
+  end
+
   private
 
   def set_user_recommendations
