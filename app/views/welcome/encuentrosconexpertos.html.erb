@@ -23,7 +23,9 @@
                         if (data.items.length > 0) {
                             $.each( data.items, function( i, cont ) {
                                 var item = cont.snippet.topLevelComment.snippet
-                                contenido = contenido + "<p><b>" + item.authorDisplayName + "</b> - <span class='desc_video'>" + $.datepicker.formatDate('dd/M/yy', new Date(item.updatedAt)) + "</span></p><p>" + item.textDisplay + "</p>"
+                                var datecre =  new Date(Date.parse(item.updatedAt));
+                                var fecha = datecre.getDay() + "/" + datecre.getMonth() + "/" + datecre.getFullYear();
+                                contenido = contenido + "<p><b>" + item.authorDisplayName + "</b> - <span class='desc_video'>" + fecha + "</span></p><p>" + item.textDisplay + "</p>"
     
                             });
                         }else {
@@ -46,6 +48,8 @@
                 if (data.items.length > 0) {
                     $.each( data.items, function( i, cont ) {
                     var item = cont.snippet
+                    var datecre =  new Date(Date.parse(item.publishedAt));
+                    var fecha = datecre.getDay() + "/" + datecre.getMonth() + "/" + datecre.getFullYear();
                     contenido = contenido + "<div class='small-2 column'>"
                     contenido = contenido + "<div class='row background_uniq_video'>"
                     contenido = contenido + "<div class='small-12 column'>"
@@ -56,7 +60,7 @@
                     contenido = contenido + "<div class='small-12 column'>"
                     contenido = contenido + "<p><b>"+item.title.substring(0, 25)+"...</b></p>"
                     contenido = contenido + "<p class='desc_video'>"+item.channelTitle+"</p>"
-                    contenido = contenido + "<p class='desc_video'>"+$.datepicker.formatDate('dd/M/yy', new Date(item.publishedAt))+"</p>"
+                    contenido = contenido + "<p class='desc_video'>"+fecha+"</p>"
                     contenido = contenido + "</div>"
                     contenido = contenido + "</div>"
                     contenido = contenido + "</div>"
