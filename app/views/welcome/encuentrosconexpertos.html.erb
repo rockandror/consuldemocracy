@@ -1,3 +1,76 @@
+
+
+<script>
+    function uploadData(key, videoId, playlist) {      
+        $.get(
+            "https://www.googleapis.com/youtube/v3/videos",{
+            part : 'player,snippet', 
+            id : videoId, 
+            key: key},
+            function(data) {     
+                $('#player').html(data.items[0].player.embedHtml);
+
+
+                 $.get(
+                    "https://www.googleapis.com/youtube/v3/commentThreads",{
+                    part : 'snippet', 
+                    order: 'relevance',
+                    videoId : videoId,
+                    maxResults: 6,
+                    key: key},
+                    function(data) {   
+                        var contenido = '';
+                        if (data.items.length > 0) {
+                            $.each( data.items, function( i, cont ) {
+                                var item = cont.snippet.topLevelComment.snippet
+                                contenido = contenido + "<p><b>" + item.authorDisplayName + "</b> - <span class='desc_video'>" + $.datepicker.formatDate('dd/M/yy', new Date(item.updatedAt)) + "</span></p><p>" + item.textDisplay + "</p>"
+    
+                            });
+                        }else {
+                            contenido = "No hay comentarios disponibles";
+                            }
+                        $('#comments').html(contenido);
+                    }
+                );
+            }
+        );
+
+        $.get(
+            "https://www.googleapis.com/youtube/v3/playlistItems",{
+            part : 'snippet', 
+            playlistId : playlist, 
+            maxResults: 6,
+            key: key},
+            function(data) {   
+                var contenido = '';
+                if (data.items.length > 0) {
+                    $.each( data.items, function( i, cont ) {
+                    var item = cont.snippet
+                    contenido = contenido + "<div class='small-2 column'>"
+                    contenido = contenido + "<div class='row background_uniq_video'>"
+                    contenido = contenido + "<div class='small-12 column'>"
+                    contenido = contenido + "<a href='https://www.youtube.com/watch?v="+ item.resourceId.videoId + "' target='_blank'><img width='100%' src='" +item.thumbnails.high.url +"'></a>"
+                    contenido = contenido + "</div>"
+                    contenido = contenido + "</div>"
+                    contenido = contenido + "<div class='row background_uniq_video'>"
+                    contenido = contenido + "<div class='small-12 column'>"
+                    contenido = contenido + "<p><b>"+item.title.substring(0, 25)+"...</b></p>"
+                    contenido = contenido + "<p class='desc_video'>"+item.channelTitle+"</p>"
+                    contenido = contenido + "<p class='desc_video'>"+$.datepicker.formatDate('dd/M/yy', new Date(item.publishedAt))+"</p>"
+                    contenido = contenido + "</div>"
+                    contenido = contenido + "</div>"
+                    contenido = contenido + "</div>"
+                    });
+                }else {
+                    contenido = "No hay vídeos disponibles";
+                }
+                $('#playlist').html(contenido);
+            }
+        );
+        
+    }
+</script>
+
 <div class="row">
     <div class="small-12 column">
         <h1>Conectados</h1>
@@ -9,47 +82,21 @@
         <p>Te ponemos en contacto con técnicos del Ayuntamiento para que puedas resolver tus dudas sobre el <b>COVID-19</b> en todos los ámbitos de actuación.</p>
         <br>
         <p>Cada lunes, un experto contestará en directo a tus preguntas.</p>
-        <p><b>Próximo encuentro:</b> Diariamente</h>
+        <p><b>Próximo encuentro:</b> Diariamente</p>
     </div>
 </div>
 <div class="row">
-    <div class="small-6 column">
-        <%=@video.try(:embed_html).try(:html_safe)%>
+    <div id="player" class="small-6 column">
     </div>
     <div class="small-6 column background_comments">
         <h3>Comentarios más recientes</h3>
-        <%="No hay comentarios disponibles" if @video.blank? || @video.comment_threads.count <= 0 %>
-        <% unless @video.blank? %>
-            <%@video.comment_threads.take(5).each do |comment|%>
-                <p><b><%= comment.author_display_name.blank? ?  "Anónimo" : comment.author_display_name%></b> - <span class="desc_video"><%=comment.updated_at.strftime("%d/%m/%Y")%></span></p> 
-                <p><%=comment.text_display  %></p>
-            <%end%>
-            
-        <%end%>
+        <div id="comments">No hay comentarios disponibles</div>
     </div>
 </div>
 <div class="row background_videos">
     <div class="small-12 column">
         <h3>Videoconferencias realizadas anteriormente</h3>
-        <%="No hay vídeos disponibles" if @playlist.blank? || @playlist.playlist_items.count <= 0 %>
-        <%unless @playlist.blank? %>
-            <%@playlist.playlist_items.take(6).each do |item| %>
-                <div class="small-2 column">
-                    <div class="row background_uniq_video">
-                        <div class="small-12 column">
-                            <a href="https://www.youtube.com/watch?v=<%=item.video.id%>" target="_blank"><img width="100%" src="<%=item.video.thumbnail_url :hight%>"></a>
-                        </div>
-                    </div>
-                    <div class="row background_uniq_video">
-                        <div class="small-12 column">
-                            <p><b><%=item.video.title.truncate(30)%></b></p>
-                            <p class="desc_video"><%=item.video.channel_title%></p>
-                            <p class="desc_video"><%=item.video.view_count%> visualizaciones</p>
-                            <p class="desc_video"><%=item.video.published_at.strftime("%d/%m/%Y")%></p>
-                        </div>
-                    </div>
-                </div>
-            <%end%>
-        <%end%>
+        <div id="playlist">No hay vídeos disponibles</div> 
     </div>
 </div>
+<%= javascript_tag "uploadData('#{ @key}', '#{ @videoId }', '#{@playlistId}')" %>
