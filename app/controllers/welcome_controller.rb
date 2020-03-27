@@ -27,12 +27,9 @@ class WelcomeController < ApplicationController
   end
 
   def encuentrosconexpertos
-    begin
-      @playlist = Yt::Playlist.new id:  Setting.find_by(key: "youtube_playlist_connect").value
-      @video = Yt::Video.new id: Setting.find_by(key: "youtube_connect").value
-    rescue => error
-      Rails.logger.fatal(error)
-    end
+    @key = Rails.application.secrets.yt_api_key
+    @videoId = Setting.find_by(key: "youtube_connect").value
+    @playlistId = Setting.find_by(key: "youtube_playlist_connect").value
   end
 
   private
