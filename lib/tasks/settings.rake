@@ -1,5 +1,4 @@
 namespace :settings do
-
   desc "Remove deprecated settings"
   task remove_deprecated_settings: :environment do
     ApplicationLogger.new.info "Removing deprecated settings"
@@ -59,5 +58,10 @@ namespace :settings do
   desc "Add new settings"
   task add_stting_mount: :environment do
     Setting.create(:key => "months_to_double_verification", :value => 3)
+  end
+
+  task add_youtube_settings: :environment do
+    Setting.create(:key => "youtube_connect", :value => "KpgTWGu7ecI")
+    Setting.create(:key => "youtube_playlist_connect", :value => "PLhnvwI6F9eqXTZQc1yUGl4GX9s96u1AmK")
   end
 end
