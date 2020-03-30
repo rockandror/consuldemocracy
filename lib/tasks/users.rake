@@ -100,9 +100,23 @@ namespace :users do
               puts "Usuario desbloqueado"
             end
           end
+          
+          if !aux_user["admin"].blank?
+            admin=Administrator.new(user_id: user.id)
+            if admin.save
+              user.administrator = admin
+              if user.save
+                puts "Se ha creado una instancia de administrador para #{user.email}"
+              end
+            else
+              puts "ERROR: no se ha creado la instancia de administrador: #{admin.errors.full_messages}"
+              puts "Es administrador?: #{user.administrator?}"
+            end
+          end
+
           if user.update(residence_verified_at: Time.current, confirmed_at:Time.current, verified_at: Time.current, 
             document_type: document_type, document_number: document_number, confirmed_hide_at: nil, locked_at: nil,
-            access_key_tried: 0, access_key_generated_at: Time.current, access_key_generated:  Criptografia.new.encrypt("ABCD"), access_key_inserted: Criptografia.new.encrypt("ABCD"))
+            access_key_tried: 0, access_key_generated_at: Time.current, access_key_generated:  "ABCD", access_key_inserted: "ABCD")
             puts "Documento nuevo #{user.try(:document_number)}"
             puts "Se ha verificado el usuario"
             puts "El usuario puede acceder sin código?: #{user.access_key_inserted.to_s == user.access_key_generated.to_s && user.try(:administrator?)}"
@@ -123,18 +137,7 @@ namespace :users do
             end
           end
 
-          if !aux_user["admin"].blank?
-            admin=Administrator.new(user_id: user.id)
-            if admin.save
-              user.administrator = admin
-              if user.save
-                puts "Se ha creado una instancia de administrador para #{user.email}"
-              end
-            else
-              puts "ERROR: no se ha creado la instancia de administrador: #{admin.errors.full_messages}"
-              puts "Es administrador?: #{user.administrator?}"
-            end
-          end
+         
         else
           document_number ||= Rails.application.secrets.password_config.to_i
           document_number += 1
