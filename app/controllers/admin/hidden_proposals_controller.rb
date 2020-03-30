@@ -10,9 +10,6 @@ class Admin::HiddenProposalsController < Admin::BaseController
   before_action :load_resources, only: [:index]
 
   def index
-    # @proposals = Proposal.only_hidden.send(@current_filter).order(hidden_at: :desc)
-    #                      .page(params[:page])
-
     @proposals = Proposal.only_hidden.send(:"#{@current_filter}").order(hidden_at: :desc)
     @proposals_legislation = @proposals_legislation.only_hidden.send(:"#{@current_filter}").order(hidden_at: :desc)
 
@@ -27,7 +24,6 @@ class Admin::HiddenProposalsController < Admin::BaseController
   end
 
   def confirm_hide
-    #@proposal.confirm_hide
     if params[:tipo] == 'legislation_proposal'
       @proposals_legislation.confirm_hide
     else
@@ -37,9 +33,6 @@ class Admin::HiddenProposalsController < Admin::BaseController
   end
 
   def restore
-    # @proposal.restore
-    # @proposal.ignore_flag
-    # Activity.log(current_user, :restore, @proposal)
     if params[:tipo] == 'legislation_proposal'
       @proposals_legislation.restore
       @proposals_legislation.ignore_flag
@@ -57,13 +50,8 @@ class Admin::HiddenProposalsController < Admin::BaseController
     params.permit(:filter)
   end
 
-  # def load_proposal
-  #   @proposal = Proposal.with_hidden.find(params[:id])
-  # end
-
   def load_proposal
     @proposals_legislation = Legislation::Proposal.with_hidden.find(params[:id])
-
     @proposals = Proposal.with_hidden.find(params[:id])
   end
 

@@ -141,6 +141,7 @@ class Setting < ApplicationRecord
         "process.legislation": true,
         "process.polls": true,
         "process.proposals": true,
+        "process.legislation_proposals": true,
         "proposal_code_prefix": "MAD",
         "proposal_notification_minimum_interval_in_days": 3,
         "proposals.email_description": nil,
