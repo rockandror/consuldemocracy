@@ -1,3 +1,4 @@
+<% unless proposal.blank? %>
 <div id="<%= dom_id(proposal) %>"
      class="proposal clear
            <%= css_for_human_rights_user(proposal) %>
@@ -96,3 +97,4 @@
     </div>
   </div>
 </div>
+<%end%>

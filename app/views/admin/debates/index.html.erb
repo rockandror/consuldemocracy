@@ -14,6 +14,7 @@
     </thead>
     <tbody>
     <% @debates.each do |debate| %>
+      <% unless debate.blank? %>
       <tr id="<%= dom_id(debate) %>">
         <td class="align-top">
           <strong><%= debate.try(:title) %></strong>
@@ -37,6 +38,7 @@
           <% end %>
         </td>
       </tr>
+      <%end%>
     <% end %>
     </tbody>
   </table>

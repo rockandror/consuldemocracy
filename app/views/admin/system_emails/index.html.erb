@@ -9,6 +9,7 @@
     </tr>
   </thead>
   <tbody>
+  <% unless @system_emails.blank? %>
   <% @system_emails.each do |system_email_title, system_email_actions| %>
     <tr id="<%= system_email_title %>" class="system_email">
       <td>
@@ -48,5 +49,6 @@
       </td>
     </tr>
   <% end %>
+  <%end%>
   </tbody>
 </table>

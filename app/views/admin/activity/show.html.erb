@@ -4,7 +4,7 @@
 
 <%= render "shared/filter_subnav", i18n_namespace: "admin.activity.show" %>
 
-<% if @activity.any? %>
+<% if !@activity.blank? %>
   <h3 class="margin"><%= page_entries_info @activity %></h3>
 
   <table>
@@ -19,13 +19,13 @@
     <tbody>
       <% @activity.each do |activity| %>
         <% unless activity.blank? %>
-          <tr id="<%= dom_id(activity) %>">
+          <tr id="<%= dom_id(activity) unless activity.blank? %>">
             <td class="align-top">
               <strong><%= activity.try(:actionable_type).try(:constantize).try(:model_name).try(:human) %></strong><br>
               <span class="date"><%= l activity.try(:actionable).try(:created_at).try{|x| x.to_date} %></span>
             </td>
             <td class="align-top">
-              <%= t("admin.activity.show.actions.#{activity.action}") %><br>
+              <%= t("admin.activity.show.actions.#{activity.try(:action)}") %><br>
               <span class="date"><%= l activity.try(:created_at).try{|x| x.to_date} %></span>
             </td>
             <td class="align-top">
