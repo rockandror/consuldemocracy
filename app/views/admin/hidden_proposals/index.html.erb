@@ -3,8 +3,8 @@
 
 <%= render "shared/filter_subnav", i18n_namespace: "admin.hidden_proposals.index" %>
 
-<% if @proposals.any? %>
-  <h3 class="margin"><%= page_entries_info @proposals %></h3>
+<% if @datos_comunes.any? %>
+  <h3 class="margin"><%= page_entries_info @datos_comunes %></h3>
 
   <table>
     <thead>
@@ -13,7 +13,7 @@
       <th scope="col" class="small-4"><%= t("admin.shared.actions") %></th>
     </thead>
     <tbody>
-    <% @proposals.each do |proposal| %>
+    <% @datos_comunes.each do |proposal| %>
       <tr id="<%= dom_id(proposal) %>">
         <td class="align-top">
           <strong><%= proposal.try(:title) %></strong>
@@ -29,13 +29,13 @@
         </td>
         <td class="align-top">
           <%= link_to t("admin.actions.restore"),
-                restore_admin_hidden_proposal_path(proposal, request.query_parameters),
+                restore_admin_hidden_proposal_path(proposal, request.query_parameters.merge({tipo: proposal.try(:model_name).try(:param_key)})),
                 method: :put,
                 data: { confirm: t("admin.actions.confirm") },
                 class: "button hollow warning" %>
           <% unless proposal.confirmed_hide? %>
             <%= link_to t("admin.actions.confirm_hide"),
-                  confirm_hide_admin_hidden_proposal_path(proposal, request.query_parameters),
+                  confirm_hide_admin_hidden_proposal_path(proposal, request.query_parameters.merge({tipo: proposal.try(:model_name).try(:param_key)})),
                   method: :put,
                   class: "button" %>
           <% end %>
@@ -45,7 +45,7 @@
     </tbody>
   </table>
 
-  <%= paginate @proposals %>
+  <%= paginate @datos_comunes %>
 <% else %>
   <div class="callout primary margin">
     <%= t("admin.hidden_proposals.index.no_hidden_proposals") %>
