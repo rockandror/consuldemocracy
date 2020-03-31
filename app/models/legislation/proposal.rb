@@ -19,8 +19,8 @@ class Legislation::Proposal < ApplicationRecord
   include Imageable
   include Randomizable
 
-  has_one :other_proposals
-  accepts_nested_attributes_for :other_proposals
+  belongs_to :other_proposal, class_name: "Legislation::OtherProposal", foreign_key: "legislation_other_proposal_id"
+  accepts_nested_attributes_for :other_proposal, allow_destroy: true
   accepts_nested_attributes_for :documents, allow_destroy: true
   
 

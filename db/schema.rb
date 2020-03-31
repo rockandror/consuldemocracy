@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200330141308) do
+ActiveRecord::Schema.define(version: 20200331124646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -686,8 +686,7 @@ ActiveRecord::Schema.define(version: 20200330141308) do
   end
 
   create_table "legislation_other_proposals", force: :cascade do |t|
-    t.integer  "proposals_id"
-    t.text     "type"
+    t.text     "type_other_proposal"
     t.text     "name"
     t.text     "address"
     t.integer  "phone"
@@ -696,9 +695,8 @@ ActiveRecord::Schema.define(version: 20200330141308) do
     t.boolean  "citizen_entities"
     t.text     "cif"
     t.text     "entity_type"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.index ["proposals_id"], name: "index_legislation_other_proposals_on_proposals_id", using: :btree
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   create_table "legislation_process_translations", force: :cascade do |t|
@@ -765,14 +763,14 @@ ActiveRecord::Schema.define(version: 20200330141308) do
     t.text     "description"
     t.integer  "author_id"
     t.datetime "hidden_at"
-    t.integer  "flags_count",                               default: 0
+    t.integer  "flags_count",                              default: 0
     t.datetime "ignored_flag_at"
-    t.integer  "cached_votes_up",                           default: 0
-    t.integer  "comments_count",                            default: 0
+    t.integer  "cached_votes_up",                          default: 0
+    t.integer  "comments_count",                           default: 0
     t.datetime "confirmed_hide_at"
-    t.bigint   "hot_score",                                 default: 0
-    t.integer  "confidence_score",                          default: 0
-    t.string   "responsible_name",               limit: 60
+    t.bigint   "hot_score",                                default: 0
+    t.integer  "confidence_score",                         default: 0
+    t.string   "responsible_name",              limit: 60
     t.text     "summary"
     t.string   "video_url"
     t.tsvector "tsv"
@@ -781,17 +779,17 @@ ActiveRecord::Schema.define(version: 20200330141308) do
     t.string   "retired_reason"
     t.text     "retired_explanation"
     t.integer  "community_id"
-    t.datetime "created_at",                                            null: false
-    t.datetime "updated_at",                                            null: false
-    t.integer  "cached_votes_total",                        default: 0
-    t.integer  "cached_votes_down",                         default: 0
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
+    t.integer  "cached_votes_total",                       default: 0
+    t.integer  "cached_votes_down",                        default: 0
     t.string   "proposal_type"
     t.boolean  "selected"
-    t.integer  "cached_votes_score",                        default: 0
-    t.text     "other_proposal_type"
-    t.integer  "legislation_other_proposals_id"
+    t.integer  "cached_votes_score",                       default: 0
+    t.text     "type_other_proposal"
+    t.integer  "legislation_other_proposal_id"
     t.index ["cached_votes_score"], name: "index_legislation_proposals_on_cached_votes_score", using: :btree
-    t.index ["legislation_other_proposals_id"], name: "index_legislation_proposals_on_legislation_other_proposals_id", using: :btree
+    t.index ["legislation_other_proposal_id"], name: "index_legislation_proposals_on_legislation_other_proposal_id", using: :btree
     t.index ["legislation_process_id"], name: "index_legislation_proposals_on_legislation_process_id", using: :btree
   end
 
@@ -1734,8 +1732,7 @@ ActiveRecord::Schema.define(version: 20200330141308) do
   add_foreign_key "identities", "users"
   add_foreign_key "images", "users"
   add_foreign_key "legislation_draft_versions", "legislation_processes"
-  add_foreign_key "legislation_other_proposals", "proposals", column: "proposals_id"
-  add_foreign_key "legislation_proposals", "legislation_other_proposals", column: "legislation_other_proposals_id"
+  add_foreign_key "legislation_proposals", "legislation_other_proposals"
   add_foreign_key "legislation_proposals", "legislation_processes"
   add_foreign_key "locks", "users"
   add_foreign_key "managers", "users"

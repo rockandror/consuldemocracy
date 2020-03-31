@@ -1,6 +1,6 @@
 <div class="ckeditor small-12 column">
-    <%= f.fields_for :other_proposal do |s| %>
-        <%= s.hidden_field :type, value: params[:type].to_s %>
+    <%= f.fields_for :other_proposal,(Legislation::OtherProposal.new if f.object.other_proposal.blank?) do |s| %>
+        <%= s.hidden_field :type_other_proposal, value: params[:type].to_s %>
         <%= s.text_field :name %>
         <%= s.text_field :address %>
         <%= s.number_field :phone %>

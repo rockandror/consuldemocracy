@@ -1,0 +1,11 @@
+<div class="small-12 "><%= proposal.try(:other_proposal).name %></div>
+<div class="small-12 "><%= proposal.try(:other_proposal).address %></div>
+<div class="small-12 "><%= proposal.try(:other_proposal).phone %></div>
+<div class="small-12 "><%= proposal.try(:other_proposal).agent %></div>
+<div class="small-12 "><%= proposal.try(:other_proposal).agent_title %> </div>   
+<%if proposal.type_other_proposal != "asociations"%>
+   <div class="small-12 "> <%= proposal.try(:other_proposal).citizen_entities %></div>
+<%else%>
+    <div class="small-12 "><%= proposal.try(:other_proposal).cif %></div>
+    <div class="small-12 "><%= proposal.try(:other_proposal).entity_type %></div>
+<%end%>

@@ -3,7 +3,7 @@ class OtherProposalsController < ApplicationController
 
     load_and_authorize_resource
     def other_proposal_params
-        params.require(:legislation_other_proposal).permit(:type, :name, :address, :phone, :agent, :agent_title, :citizen_entities, :cif, :entity_type)
+        params.require(:other_proposal).permit(:type, :name, :address, :phone, :agent, :agent_title, :citizen_entities, :cif, :entity_type)
     end
       
 end
