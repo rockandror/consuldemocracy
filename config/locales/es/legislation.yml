@@ -55,6 +55,7 @@ es:
         filters:
           random: Aleatorias
           winners: Seleccionadas
+          updated: Más actualizadas
       debate:
         empty_questions: No hay preguntas
         participate: Realiza tus aportaciones al debate previo participando en los siguientes temas.
