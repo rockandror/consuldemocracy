@@ -6,7 +6,9 @@ class Moderation::ProposalsController < Moderation::BaseController
     pending_flag_review 
     with_ignored_flag 
     with_confirmed_hide_at 
-    no_flags_other_proposals}, only: :index
+    no_flags_other_proposals
+    other_with_ignored_flag
+    no_hidden_other_proposals}, only: :index
   has_orders %w{flags created_at}, only: :index
 
   feature_flag :proposals
@@ -16,10 +18,17 @@ class Moderation::ProposalsController < Moderation::BaseController
   load_and_authorize_resource
 
   def index
-    @proposals = @proposals.send(:"#{@current_filter}")
+    if @current_filter.to_s != "no_flags_other_proposals" &&  @current_filter.to_s != "other_with_ignored_flag"
+      @proposals = @proposals.send(:"#{@current_filter}")
+    end
     @proposals_legislation = @proposals_legislation.send(:"#{@current_filter}")
 
-    @datos_comunes =  @proposals_legislation + @proposals
+    if @current_filter.to_s != "no_flags_other_proposals" &&  @current_filter.to_s != "other_with_ignored_flag"
+      @datos_comunes =  @proposals_legislation.no_other_proposal + @proposals
+    else
+      @datos_comunes =  @proposals_legislation
+    end
+
     @datos_comunes.compact
     if @current_order.to_s == "created_at"
       @datos_comunes = @datos_comunes.sort_by { |a| a.try(:created_at) }.reverse

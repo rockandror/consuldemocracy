@@ -4,7 +4,6 @@ class Admin::HiddenProposalsController < Admin::BaseController
   has_filters %w[without_confirmed_hide all with_confirmed_hide], only: :index
 
   feature_flag :proposals
-  feature_flag :legislation_proposals
 
   before_action :load_proposal, only: [:confirm_hide, :restore]
   before_action :load_resources, only: [:index]
