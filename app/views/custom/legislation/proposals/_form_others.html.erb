@@ -6,7 +6,7 @@
         <%= s.number_field :phone %>
         <%= s.text_field :agent %>
         <%= s.text_field :agent_title %>    
-        <%if params[:type].to_s != "asociations"%>
+        <%if params[:type].to_s == "asociations"%>
             <%= s.check_box :citizen_entities %>
         <%else%>
             <%= s.text_field :cif %>
