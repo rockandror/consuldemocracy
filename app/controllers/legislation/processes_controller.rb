@@ -104,7 +104,7 @@ class Legislation::ProcessesController < Legislation::BaseController
     @proposals = ::Legislation::Proposal.where(process: @process)
     @proposals = @proposals.search(params[:search]) if params[:search].present?
 
-    @current_filter = "winners" if params[:filter].blank? && @proposals.winners.any?
+    @current_filter = "random" if params[:filter].blank? #&& @proposals.winners.any?
 
     if @current_filter == "random"
       @proposals = @proposals.sort_by_random(session[:random_seed]).page(params[:page])
