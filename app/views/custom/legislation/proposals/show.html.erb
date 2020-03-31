@@ -84,7 +84,7 @@
         <%= safe_html_with_links @proposal.description %>
 
         <% unless @proposal.type_other_proposal.blank? %>
-          <%= render "others", proposal: @proposal %>
+          <p><%= render "others", proposal: @proposal %></p>
         <%end%>
 
         <% if @proposal.is_proposal? && @proposal.video_url.present? %>

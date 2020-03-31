@@ -101,7 +101,12 @@ class Legislation::ProcessesController < Legislation::BaseController
     set_process
     @phase = :proposals_phase
 
-    @proposals = ::Legislation::Proposal.where(process: @process)
+    if params[:type].blank?
+      @proposals = Legislation::Proposal.where(process: @process).where(type_other_proposal: nil)
+    else
+      @proposals = Legislation::Proposal.where(process: @process).where(type_other_proposal: params[:type]).with_ignored_flag
+    end
+    
     @proposals = @proposals.search(params[:search]) if params[:search].present?
 
     @current_filter = "winners" if params[:filter].blank? && @proposals.winners.any?
