@@ -33,6 +33,7 @@ class Legislation::ProposalsController < Legislation::BaseController
     @proposal = Legislation::Proposal.new(proposal_params.merge(author: current_user))
 
     if @proposal.save
+      @porposal.legislation_other_proposals.new(params[:legislation_other_proposals])
       redirect_to legislation_process_proposal_path(params[:process_id], @proposal), notice: I18n.t("flash.actions.create.proposal")
     else
       render :new
@@ -57,7 +58,7 @@ class Legislation::ProposalsController < Legislation::BaseController
                     :terms_of_service, :geozone_id, :proposal_type,
                     image_attributes: image_attributes,
                     documents_attributes: [:id, :title, :attachment, :cached_attachment, :user_id],
-                    other_proposals: [:type, :name, :address, :phone, :agent, :agent_title, 
+                    legislation_other_proposals_attributes: [:type, :name, :address, :phone, :agent, :agent_title, 
                       :citizen_entities, :cif, :entity_type])
     end
 

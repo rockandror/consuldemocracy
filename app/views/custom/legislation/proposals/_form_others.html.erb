@@ -1,21 +1,23 @@
 <div class="ckeditor small-12 column">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <%= f.label :address %>
-    <%= f.text_field :address %>
-    <%= f.label :phone %>
-    <%= f.number_field :phone %>
-    <%= f.label :agent %>
-    <%= f.text_field :agent %>
-    <%= f.label :agent_title %>
-    <%= f.text_field :agent_title %>
-    <%if !params[:type].to_s == "associations"%>
-        <%= f.label :citizen_entities %>
-        <%= f.text_field :citizen_entities %>
-    <%else%>
-        <%= f.label :cif %>
-        <%= f.text_field :cif %>
-        <%= f.label :entity_type %>
-        <%= f.text_field :entity_type %>
+    <%= f.fields_for :legislation_other_proposals do |s| %>
+        <%= s.label :name %>
+        <%= s.text_field :name %>
+        <%= s.label :address %>
+        <%= s.text_field :address %>
+        <%= s.label :phone %>
+        <%= s.number_field :phone %>
+        <%= s.label :agent %>
+        <%= s.text_field :agent %>
+        <%= s.label :agent_title %>
+        <%= s.text_field :agent_title %>
+        <%if !params[:type].to_s == "associations"%>
+            <%= s.label :citizen_entities %>
+            <%= s.text_field :citizen_entities %>
+        <%else%>
+            <%= s.label :cif %>
+            <%= s.text_field :cif %>
+            <%= s.label :entity_type %>
+            <%= s.text_field :entity_type %>
+        <%end%>
     <%end%>
 </div>

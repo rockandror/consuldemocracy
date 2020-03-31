@@ -20,6 +20,7 @@ class Legislation::Proposal < ApplicationRecord
   include Randomizable
 
   accepts_nested_attributes_for :documents, allow_destroy: true
+  
 
   acts_as_votable
   acts_as_paranoid column: :hidden_at
@@ -27,9 +28,12 @@ class Legislation::Proposal < ApplicationRecord
   belongs_to :process, class_name: "Legislation::Process", foreign_key: "legislation_process_id"
   belongs_to :author, -> { with_hidden }, class_name: "User", foreign_key: "author_id"
   belongs_to :geozone
-  belongs_to :legislation_other_proposals
+
   has_many :comments, as: :commentable
 
+  has_one :legislation_other_proposals
+  accepts_nested_attributes_for :legislation_other_proposals
+  
   validates :proposal_type, presence: true, inclusion: { in: VALID_TYPES }
   validates :title, presence: true
   validates :summary, presence: true, unless: ->(p) { p.proposal_type == "question" }
