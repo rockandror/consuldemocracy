@@ -66,6 +66,8 @@ es:
     meta_keywords_description: 'Palabras clave <meta name="keywords">, utilizadas para mejorar el SEO'
     min_age_to_participate: Edad mínima para participar
     min_age_to_participate_description: "Los usuarios mayores de esta edad podrán participar en todos los procesos donde se necesite una cueta verificada"
+    winner_text: Texto de propuestas seleccionadas de un proceso
+    winner_text_description: Este texto aparecerá en el apartado de propuestas seleccionadas dentro de un proceso
     verification_offices_url: URL oficinas verificación
     proposal_notification_minimum_interval_in_days: "Intervalo mínimo (en días) para que los autores de propuestas puedan enviar nuevas notificaciones de propuesta"
     proposal_notification_minimum_interval_in_days_description: "El número de días en los que un usuario puede enviar una notificación a todos los que apoyan su propuesta"

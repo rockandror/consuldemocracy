@@ -126,6 +126,7 @@ class Setting < ApplicationRecord
         "meta_keywords": nil,
         "meta_title": nil,
         "min_age_to_participate": 16,
+        "winner_text": "",
         "months_to_archive_proposals": 12,
         # Names for the moderation console, as a hint for moderators
         # to know better how to assign users with official positions

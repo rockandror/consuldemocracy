@@ -64,4 +64,5 @@ namespace :settings do
     Setting.create(:key => "youtube_connect", :value => "KpgTWGu7ecI")
     Setting.create(:key => "youtube_playlist_connect", :value => "PLhnvwI6F9eqXTZQc1yUGl4GX9s96u1AmK")
   end
+
 end
