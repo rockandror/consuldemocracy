@@ -8,11 +8,6 @@
             <br>
             <%= render "shared/filter_subnav", i18n_namespace: "legislation.processes.proposals" %>
             
-            <% if params[:filter]=='winners' %>
-              <div class="small">
-                <p><%=setting["winner_text"] %></p>
-              </div>
-            <% end %>
             <% if proposals.empty? %>
               <div class="callout primary">
                 <p><%= t("legislation.processes.proposals.empty_proposals") %></p>
