@@ -5,7 +5,7 @@ class CreateLegislationOtherProposals < ActiveRecord::Migration[5.0]
       t.text :type
       t.text :name
       t.text :address
-      t.integer :phone
+      t.text :phone
       t.text :agent
       t.text :agent_title
       t.boolean :citizen_entities

@@ -31,10 +31,14 @@ class Legislation::ProposalsController < Legislation::BaseController
 
   def create
     @proposal = Legislation::Proposal.new(proposal_params.merge(author: current_user))
-
-    if @proposal.save
-      @porposal.legislation_other_proposals.new(params[:legislation_other_proposals])
-      redirect_to legislation_process_proposal_path(params[:process_id], @proposal), notice: I18n.t("flash.actions.create.proposal")
+    @other_proposals = Legislation::OtherProposal.new(proposal_params[:other_proposal])
+    @other_proposals.proposals_id = @proposal.id
+    puts "============================================="
+    puts proposal_params
+    puts "============================================="
+    xxxx
+    if @proposal.save && @other_proposals.save
+        redirect_to legislation_process_proposal_path(params[:process_id], @proposal), notice: I18n.t("flash.actions.create.proposal")
     else
       render :new
     end
@@ -55,11 +59,10 @@ class Legislation::ProposalsController < Legislation::BaseController
     def proposal_params
       params.require(:legislation_proposal).permit(:legislation_process_id, :title,
                     :summary, :description,  :video_url, :tag_list,
-                    :terms_of_service, :geozone_id, :proposal_type,
+                    :terms_of_service, :geozone_id, :proposal_type, :other_proposal_type,
                     image_attributes: image_attributes,
                     documents_attributes: [:id, :title, :attachment, :cached_attachment, :user_id],
-                    legislation_other_proposals_attributes: [:type, :name, :address, :phone, :agent, :agent_title, 
-                      :citizen_entities, :cif, :entity_type])
+                    other_proposal_attributes: [:type, :name, :address, :phone, :agent, :agent_title, :citizen_entities, :cif, :entity_type])
     end
 
     def resource_model

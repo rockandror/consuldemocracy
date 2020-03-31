@@ -19,6 +19,8 @@ class Legislation::Proposal < ApplicationRecord
   include Imageable
   include Randomizable
 
+  has_one :other_proposals
+  accepts_nested_attributes_for :other_proposals
   accepts_nested_attributes_for :documents, allow_destroy: true
   
 
@@ -30,9 +32,6 @@ class Legislation::Proposal < ApplicationRecord
   belongs_to :geozone
 
   has_many :comments, as: :commentable
-
-  has_one :legislation_other_proposals
-  accepts_nested_attributes_for :legislation_other_proposals
   
   validates :proposal_type, presence: true, inclusion: { in: VALID_TYPES }
   validates :title, presence: true

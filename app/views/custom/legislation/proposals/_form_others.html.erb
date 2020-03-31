@@ -1,22 +1,15 @@
 <div class="ckeditor small-12 column">
-    <%= f.fields_for :legislation_other_proposals do |s| %>
-        <%= s.label :name %>
+    <%= f.fields_for :other_proposal do |s| %>
+        <%= s.hidden_field :type, value: params[:type].to_s %>
         <%= s.text_field :name %>
-        <%= s.label :address %>
         <%= s.text_field :address %>
-        <%= s.label :phone %>
         <%= s.number_field :phone %>
-        <%= s.label :agent %>
         <%= s.text_field :agent %>
-        <%= s.label :agent_title %>
-        <%= s.text_field :agent_title %>
-        <%if !params[:type].to_s == "associations"%>
-            <%= s.label :citizen_entities %>
-            <%= s.text_field :citizen_entities %>
+        <%= s.text_field :agent_title %>    
+        <%if params[:type].to_s != "asociations"%>
+            <%= s.check_box :citizen_entities %>
         <%else%>
-            <%= s.label :cif %>
             <%= s.text_field :cif %>
-            <%= s.label :entity_type %>
             <%= s.text_field :entity_type %>
         <%end%>
     <%end%>
