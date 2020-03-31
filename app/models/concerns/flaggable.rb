@@ -10,9 +10,6 @@ module Flaggable
     scope :pending_flag_review, -> { flagged.where(ignored_flag_at: nil, hidden_at: nil) }
     scope :with_ignored_flag, -> { where.not(ignored_flag_at: nil).where(hidden_at: nil) }
     scope :with_confirmed_hide_at, -> {all_records.with_deleted.where.not(hidden_at: nil)}
-    
-    scope :other_pending_flag_review,-> { flagged.where("type_other_proposal IS NOT NULL").where(ignored_flag_at: nil, hidden_at: nil) }
-
   end
 
   def ignored_flag?

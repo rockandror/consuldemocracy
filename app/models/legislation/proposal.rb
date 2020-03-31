@@ -62,7 +62,8 @@ class Legislation::Proposal < ApplicationRecord
   scope :winners,                  -> { selected.sort_by_confidence_score }
   scope :no_flags_proposals,       -> { where("flags_count = 0  AND type_other_proposal IS NULL").where(ignored_flag_at: nil, hidden_at:nil) }
   scope :no_flags_other_proposals, -> { where("flags_count = 0  AND type_other_proposal IS NOT NULL").where(ignored_flag_at: nil, hidden_at:nil) }
-  scope :other_pending_flag_review, -> { flagged.where("type_other_proposal IS NOT NULL").where(ignored_flag_at: nil, hidden_at: nil) }
+  scope :other_with_ignored_flag, -> { where("type_other_proposal IS NOT NULL").where.not(ignored_flag_at: nil).where(hidden_at: nil) }
+
 
   def to_param
     "#{id}-#{title}".parameterize

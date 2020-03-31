@@ -6,8 +6,7 @@ class Moderation::ProposalsController < Moderation::BaseController
     pending_flag_review 
     with_ignored_flag 
     with_confirmed_hide_at 
-    no_flags_other_proposals 
-    other_pending_flag_review}, only: :index
+    no_flags_other_proposals}, only: :index
   has_orders %w{flags created_at}, only: :index
 
   feature_flag :proposals
