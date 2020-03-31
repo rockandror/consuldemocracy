@@ -208,7 +208,7 @@ namespace :admin do
       resources :draft_versions
       resources :milestones
       resources :progress_bars, except: :show
-      resource :homepage, only: [:edit, :update]
+      resource :homepage, only: [:edit, :update] 
     end
   end
 

@@ -7,6 +7,9 @@ namespace :legislation do
       get :result_publication
       get :proposals
       get :milestones
+      get :carriers
+      get :shops
+      get :associations
     end
 
     resources :questions, only: [:show] do

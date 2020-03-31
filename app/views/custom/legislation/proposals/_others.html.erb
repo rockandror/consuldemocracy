@@ -1,0 +1,15 @@
+<div class="row">
+    <h3><%=Legislation::OtherProposal.human_attribute_name(:title)%>:</h3>
+    <div class="small-12 "><b><%=Legislation::OtherProposal.human_attribute_name(:name)%>:</b> <%= proposal.try(:other_proposal).try(:name) %></div>
+    <div class="small-12 "><b><%=Legislation::OtherProposal.human_attribute_name(:address)%>:</b> <%= proposal.try(:other_proposal).try(:address) %></div>
+    <div class="small-12 "><b><%=Legislation::OtherProposal.human_attribute_name(:phone)%>:</b> <%= proposal.try(:other_proposal).try(:phone) %></div>
+    <div class="small-12 "><b><%=Legislation::OtherProposal.human_attribute_name(:agent)%>:</b> <%= proposal.try(:other_proposal).try(:agent) %></div>
+    <div class="small-12 "><b><%=Legislation::OtherProposal.human_attribute_name(:agent_title)%>:</b> <%= proposal.try(:other_proposal).try(:agent_title) %> </div>   
+    <%if proposal.try(:type_other_proposal).to_s != "asociations"%>
+    <div class="small-12 "><b><%=Legislation::OtherProposal.human_attribute_name(:citizen_entities)%>:</b> <%= t("#{proposal.try(:other_proposal).try(:citizen_entities)}") %></div>
+    <%else%>
+        <div class="small-12 "><b><%=Legislation::OtherProposal.human_attribute_name(:cif)%>:</b> <%= proposal.try(:other_proposal).try(:cif) %></div>
+        <div class="small-12 "><b><%=Legislation::OtherProposal.human_attribute_name(:entity_type)%>:</b> <%= proposal.try(:other_proposal).try(:entity_type) %></div>
+    <%end%>
+    <br>
+</div>

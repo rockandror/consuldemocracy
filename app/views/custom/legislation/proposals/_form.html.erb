@@ -2,6 +2,7 @@
   <%= render "shared/errors", resource: @proposal %>
 
   <%= f.hidden_field(:legislation_process_id, :value => params[:process_id]) %>
+  <%= f.hidden_field(:type_other_proposal, :value => params[:type].to_s) %> 
 
   <div class="row">
     <div class="small-12 column <%= "hide" unless @process.title == "PLENO ABIERTO" %>">
@@ -49,12 +50,16 @@
              <%= t("proposals.form.proposal_text") %>
           </span>
           <span id="js-legislation-proposal-label-question-description">
-            <%= t("legislation_proposals.form.question_description") %>
+            <%= t("legislation_proposals.form.question_description") %> 
           </span>
         <% end %>
       <% end %>
       <%= f.cktext_area :description, maxlength: Legislation::Proposal.description_max_length, ckeditor: { language: I18n.locale }, label: false %>
     </div>
+    
+    <% unless params[:type].blank? %>
+      <%= render "form_others", f: f %>
+    <%end%>
 
     <div class="small-12 column" id="js-legislation-proposal-video-url">
       <%= f.label :video_url, t("proposals.form.proposal_video_url") %>

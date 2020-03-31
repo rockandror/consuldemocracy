@@ -63,7 +63,7 @@
         <%= render_image(@proposal.image, :large, true) if @proposal.image.present? %>
 
         <br>
-
+        
         <% if @proposal.is_proposal? %>
           <p>
             <%= t("proposals.show.code") %>
@@ -72,7 +72,7 @@
 
           <blockquote><%= @proposal.summary %></blockquote>
         <% end %>
-
+        
         <% if @proposal.is_proposal? && @proposal.video_url.present? %>
           <div class="small-12 medium-7 small-centered">
             <div class="flex-video">
@@ -82,6 +82,10 @@
         <% end %>
 
         <%= safe_html_with_links @proposal.description %>
+
+        <% unless @proposal.type_other_proposal.blank? %>
+          <p><%= render "others", proposal: @proposal %></p>
+        <%end%>
 
         <% if @proposal.is_proposal? && @proposal.video_url.present? %>
           <div class="video-link">

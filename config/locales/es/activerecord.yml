@@ -254,6 +254,17 @@ es:
       banner:
         background_color: Color del fondo
         font_color: Color del texto
+      legislation/other_proposal:
+        title: Datos de contacto
+        type_other_proposal: Tipo de propuesta
+        name: Razón social (nombre)
+        address: Dirección
+        phone: Teléfono 
+        agent: Representante legal
+        agent_title: Título que le otroga la representación
+        citizen_entities: ¿Registrado como Entidad ciudadana?
+        cif: CIF
+        entity_type: Tipo de entidad
       legislation/process:
         title: Título del proceso
         geozone_restricted: "Restringida por zonas"

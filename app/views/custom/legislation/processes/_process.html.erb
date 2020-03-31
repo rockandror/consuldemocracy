@@ -61,6 +61,14 @@
             <p><%= format_date(process.result_publication_date) %></p>
           </div>
         <% end %>
+
+        <% if process.other_proposals_enabled %>
+          <div class="small-6 medium-<%= column_width %> column">
+            <h4><%= t("legislation.processes.shared.carriers") %></h4>
+            <h4><%= t("legislation.processes.shared.shops") %></h4>
+            <h4><%= t("legislation.processes.shared.associations") %></h4>
+          </div>
+        <% end %>
       </div>
     <% end %>
     <% if process.try(:geozone_restricted) && process.geozones.any? %>

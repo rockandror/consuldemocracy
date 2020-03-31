@@ -26,10 +26,28 @@
           <% end %>
 
           <% if process.proposals_phase.enabled? %>
-            <li <%= "class=is-active" if phase.to_sym == :proposals %>>
+            <li <%= "class=is-active" if phase.to_sym == :proposals && params[:type].blank? %>>
               <%= link_to proposals_legislation_process_path(process) do %>
                 <h4><%= t("legislation.processes.shared.proposals_dates") %></h4>
                 <span><%= format_date(process.proposals_phase_start_date) %> - <%= format_date(process.proposals_phase_end_date) %></span>
+              <% end %>
+            </li>
+          <% end %>
+
+          <% if process.other_proposals_enabled %>
+            <li <%= "class=is-active" if params[:type].to_s == "carriers" %>>
+              <%= link_to proposals_legislation_process_path(process,type: :carriers) do %>
+                <h4><%= t("legislation.processes.shared.carriers") %></h4>
+              <% end %>
+            </li>
+            <li <%= "class=is-active" if params[:type].to_s == "shops" %>>
+              <%= link_to proposals_legislation_process_path(process,type: :shops) do %>
+                <h4><%= t("legislation.processes.shared.shops") %></h4>
+              <% end %>
+            </li>
+            <li <%= "class=is-active" if params[:type].to_s == "associations" %>>
+              <%= link_to proposals_legislation_process_path(process,type: :associations) do %>
+                <h4><%= t("legislation.processes.shared.associations") %></h4>
               <% end %>
             </li>
           <% end %>

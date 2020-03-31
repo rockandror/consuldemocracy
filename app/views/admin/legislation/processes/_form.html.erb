@@ -171,6 +171,14 @@
     <hr>
   </div>
 
+  <div class="small-12 column margin-top">
+    <%= f.check_box :other_proposals_enabled, checked: @process.other_proposals_enabled, label: t("admin.legislation.processes.form.other_proposals") %>
+  </div>
+
+  <div class="small-12 column">
+    <hr>
+  </div>
+
   <div class="documents small-12 column">
     <%= render "documents/nested_documents", documentable: @process, f: f %>
   </div>

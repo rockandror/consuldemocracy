@@ -1,0 +1,2 @@
+module OtherProposalsHelper
+end

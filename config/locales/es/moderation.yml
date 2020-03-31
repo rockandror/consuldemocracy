@@ -60,6 +60,9 @@ es:
         confirm: '¿Estás seguro?'
         filter: Filtro
         filters:
+          no_flags_other_proposals: Propuestas sin revisar razón social 
+          other_with_ignored_flag: Propuestas revisadas razón social 
+          no_hidden_other_proposals: Propuestas ocultas razón social 
           no_flags_proposals: No denunciadas
           pending_flag_review: Denunciadas
           with_ignored_flag: Marcadas como revisadas
