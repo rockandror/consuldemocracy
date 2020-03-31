@@ -56,7 +56,9 @@ class Legislation::ProposalsController < Legislation::BaseController
                     :summary, :description,  :video_url, :tag_list,
                     :terms_of_service, :geozone_id, :proposal_type,
                     image_attributes: image_attributes,
-                    documents_attributes: [:id, :title, :attachment, :cached_attachment, :user_id])
+                    documents_attributes: [:id, :title, :attachment, :cached_attachment, :user_id],
+                    other_proposals: [:type, :name, :address, :phone, :agent, :agent_title, 
+                      :citizen_entities, :cif, :entity_type])
     end
 
     def resource_model

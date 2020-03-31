@@ -27,6 +27,7 @@ class Legislation::Proposal < ApplicationRecord
   belongs_to :process, class_name: "Legislation::Process", foreign_key: "legislation_process_id"
   belongs_to :author, -> { with_hidden }, class_name: "User", foreign_key: "author_id"
   belongs_to :geozone
+  belongs_to :legislation_other_proposals
   has_many :comments, as: :commentable
 
   validates :proposal_type, presence: true, inclusion: { in: VALID_TYPES }

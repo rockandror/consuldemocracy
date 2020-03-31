@@ -55,9 +55,11 @@
       <% end %>
       <%= f.cktext_area :description, maxlength: Legislation::Proposal.description_max_length, ckeditor: { language: I18n.locale }, label: false %>
     </div>
+    
     <% unless params[:type].blank? %>
       <%= render "form_others", f: f %>
     <%end%>
+
     <div class="small-12 column" id="js-legislation-proposal-video-url">
       <%= f.label :video_url, t("proposals.form.proposal_video_url") %>
       <p class="help-text" id="video-url-help-text"><%= t("proposals.form.proposal_video_url_note") %></p>

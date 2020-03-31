@@ -1,3 +1,21 @@
 <div class="ckeditor small-12 column">
-      <%= f.text_field :name %>
-</end>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+    <%= f.label :phone %>
+    <%= f.number_field :phone %>
+    <%= f.label :agent %>
+    <%= f.text_field :agent %>
+    <%= f.label :agent_title %>
+    <%= f.text_field :agent_title %>
+    <%if !params[:type].to_s == "associations"%>
+        <%= f.label :citizen_entities %>
+        <%= f.text_field :citizen_entities %>
+    <%else%>
+        <%= f.label :cif %>
+        <%= f.text_field :cif %>
+        <%= f.label :entity_type %>
+        <%= f.text_field :entity_type %>
+    <%end%>
+</div>
