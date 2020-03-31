@@ -67,6 +67,7 @@ class Admin::Legislation::ProcessesController < Admin::Legislation::BaseControll
         :draft_phase_enabled,
         :allegations_phase_enabled,
         :proposals_phase_enabled,
+        :other_proposals_enabled,
         :draft_publication_enabled,
         :result_publication_enabled,
         :published,

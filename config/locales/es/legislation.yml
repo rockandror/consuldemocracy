@@ -88,6 +88,9 @@ es:
         result_publication_date: Publicación resultados
         milestones_date: Seguimiento
         proposals_dates: Propuestas
+        carriers: Transportistas
+        shops: Comercios
+        associations: Asociaciones
     questions:
       comments:
         comment_button: Publicar respuesta
