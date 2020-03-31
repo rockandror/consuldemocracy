@@ -71,7 +71,7 @@ class DoubleConfirmationsController < ApplicationController
 
     def encrypt_access_key(access_key)
         unless current_user.blank? 
-            Criptografia.new.encrypt(access_key)
+            access_key
         end
     end
 end
