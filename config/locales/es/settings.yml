@@ -2,6 +2,10 @@ es:
   settings:
     months_to_double_verification: Meses para la doble verificación
     months_to_double_verification_description: Meses tras los que se requerirá que el administrador introduzca una nueva clave
+    other_proposal_declaration_1: Texto checkbox propuestas procesos declarante
+    other_proposal_declaration_1_description: Texto del checkbox de las propuestas de transportes, asociaciones o comercios de los procesos para indicar el declarante
+    other_proposal_declaration_2: Texto checkbox propuestas procesos aceptar declaración responsable
+    other_proposal_declaration_2_description: Texto del checkbox de las propuestas de transportes, asociaciones o comercios de los procesos para aceptar la declaración responsable
     youtube_connect: Video YouTube de encuentros
     youtube_connect_description: Video YouTube de encuentros con expertos, video principal
     youtube_playlist_connect: Playlist YouTube de encuentros
