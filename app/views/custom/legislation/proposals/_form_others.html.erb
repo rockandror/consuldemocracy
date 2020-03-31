@@ -6,11 +6,13 @@
         <%= s.number_field :phone %>
         <%= s.text_field :agent %>
         <%= s.text_field :agent_title %>    
-        <%if params[:type].to_s != "asociations"%>
+        <%if params[:type].to_s == "asociations"%>
             <%= s.check_box :citizen_entities %>
         <%else%>
             <%= s.text_field :cif %>
             <%= s.text_field :entity_type %>
         <%end%>
+        <%= s.check_box :justify_text_declaration_1, label: Setting.find_by(key: "other_proposal_declaration_1").try(:value).try(:html_safe) %>
+        <%= s.check_box :justify_text_declaration_2, label: Setting.find_by(key: "other_proposal_declaration_2").try(:value).try(:html_safe) %>
     <%end%>
 </div>

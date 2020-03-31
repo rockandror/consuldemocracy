@@ -65,4 +65,8 @@ namespace :settings do
     Setting.create(:key => "youtube_playlist_connect", :value => "PLhnvwI6F9eqXTZQc1yUGl4GX9s96u1AmK")
   end
 
+  task add_other_proposal_settings: :environment do
+    Setting.create(:key => "other_proposal_declaration_1", :value => "Soy el representante legal")
+    Setting.create(:key => "other_proposal_declaration_2", :value => "Declaración responsable")
+  end
 end
