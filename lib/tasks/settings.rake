@@ -69,4 +69,8 @@ namespace :settings do
     Setting.create(:key => "other_proposal_declaration_1", :value => "Soy el representante legal")
     Setting.create(:key => "other_proposal_declaration_2", :value => "Declaración responsable")
   end
+
+  task add_permit_text_settings: :environment do
+    Setting.create(:key => "proposal_permit_text", :value => "Texto especial para propuestas")
+  end
 end

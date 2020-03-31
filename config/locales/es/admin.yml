@@ -513,6 +513,7 @@ es:
           homepage_description: Aquí puedes explicar el contenido del proceso
           homepage_enabled: Homepage activada
           banner_title: Colores del encabezado
+          permit_text_proposals: Habilitar texto libre entre las pestañas de propuestas y los filtros
           other_proposals: Habilitar propuestas para transportistas, comercios y asociaciones
         index:
           create: Nuevo proceso

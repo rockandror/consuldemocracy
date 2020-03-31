@@ -8,6 +8,8 @@ es:
     other_proposal_declaration_2_description: Texto del checkbox de las propuestas de transportes, asociaciones o comercios de los procesos para aceptar la declaración responsable
     youtube_connect: Video YouTube de encuentros
     youtube_connect_description: Video YouTube de encuentros con expertos, video principal
+    proposal_permit_text: Texto explicativo de propuestas de procesos
+    proposal_permit_text_description: Texto explicativo que se muestra en las propuestas de procesos, después de las pestañas principales
     youtube_playlist_connect: Playlist YouTube de encuentros
     youtube_playlist_connect_description: Playlist YouTube de encuentros con expertos, video realizados anteriormente
     comments_body_max_length: "Longitud máxima de los comentarios"
