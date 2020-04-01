@@ -24,7 +24,9 @@
                           id: "create-new-proposal" %></p>
           <% end %>
           <%= render "legislation/proposals/categories", taggable: process %>
-          <%= render "geozones", process_id: process.id %>
+          <% unless params[:type].blank? %>
+            <%= render "geozones", process_id: process.id %>
+          <% end %>
         </div>
       </div>
     </div>
