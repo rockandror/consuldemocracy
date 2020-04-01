@@ -254,9 +254,12 @@ es:
       banner:
         background_color: Color del fondo
         font_color: Color del texto
+      legislation/proposal:
+        type_other_proposal: Tipo de propuesta
       legislation/other_proposal:
         justify_text_declaration_1: Soy el representante legal
         justify_text_declaration_2: Acepto la declaración responsable
+        type_other_proposal: Tipo de organización
         title: Datos de contacto
         type_other_proposal: Tipo de propuesta
         name: Razón social (nombre)

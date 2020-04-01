@@ -298,6 +298,7 @@ es:
     proposal_for_district: "Crea una propuesta para tu distrito"
     select_district: Ámbito de actuación
     start_proposal: Crea una propuesta
+    start_organization: Crea una organización
   omniauth:
     facebook:
       sign_in: Entra con Facebook
@@ -411,6 +412,8 @@ es:
       select_order: Ordenar por
       select_order_long: 'Estas viendo las propuestas'
       start_proposal: Crea una propuesta
+      edit_organization: Edición de organización
+      start_organization: Alta organización
       title: Propuestas ciudadanas
       top: Top semanal
       top_link_proposals: Propuestas más apoyadas por categoría

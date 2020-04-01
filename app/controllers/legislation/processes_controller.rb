@@ -2,7 +2,7 @@ class Legislation::ProcessesController < Legislation::BaseController
   include RandomSeed
 
   has_filters %w[open past], only: :index
-  has_filters %w[random winners updated], only: :proposals
+  has_filters %w[random winners updated proposals_top_relevance], only: :proposals
 
   load_and_authorize_resource :process
 
@@ -131,6 +131,8 @@ class Legislation::ProcessesController < Legislation::BaseController
         @proposals = @proposals.sort_by_random(session[:random_seed]).page(params[:page])
       elsif @current_filter == "winners"
         @proposals = @proposals.send(@current_filter).page(params[:page])
+      elsif  @current_filter == "proposals_top_relevance"
+        @proposals = Kaminari.paginate_array(@proposals.sort_by {|x| x.total_votes}.reverse.take(10)).page(params[:page])
       elsif @current_filter == "updated"
         @proposals = @proposals.order(updated_at: :desc).page(params[:page])
       else
