@@ -6,7 +6,7 @@
           <div class="legislation-proposals">
             <p><%= Setting.find_by(key: "proposal_permit_text").try(:value).try(:html_safe) if process.permit_text_proposals%></p>
             <br>
-            <%= render "shared/filter_subnav", i18n_namespace: "legislation.processes.proposals" %>
+            <%= render "shared/filter_subnav", i18n_namespace: "legislation.processes.proposals", process: process %>
             
             <% if proposals.empty? %>
               <div class="callout primary">
@@ -21,7 +21,7 @@
 
         <div class="small-12 medium-3 column">
           <% if process.proposals_phase.open? && !current_user.blank? %>
-            <p><%= link_to new_legislation_proposal_link_text(process),
+            <p><%= link_to new_legislation_proposal_link_text(process, params[:type]),
                           new_legislation_process_proposal_path(process,type: params[:filter]),
                           class: "button expanded",
                           id: "create-new-proposal" %></p>

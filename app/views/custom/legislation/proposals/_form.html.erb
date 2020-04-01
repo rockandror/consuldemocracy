@@ -2,10 +2,11 @@
   <%= render "shared/errors", resource: @proposal %>
 
   <%= f.hidden_field(:legislation_process_id, :value => params[:process_id]) %>
-  <%= f.hidden_field(:type_other_proposal, :value => params[:type].to_s) %> 
+ 
 
   <div class="row">
-    <% unless params[:type].blank? %>
+    
+    <% if !params[:type].blank? || !@proposal.type_other_proposal.blank? %>
       <%= render "form_others", f: f %>
     <%end%>
     <div class="small-12 column <%= "hide" unless @process.title == "PLENO ABIERTO" %>">

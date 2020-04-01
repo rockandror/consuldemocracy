@@ -18,7 +18,7 @@ class Moderation::ProposalsController < Moderation::BaseController
   load_and_authorize_resource
 
   def index
-    if @current_filter.to_s != "no_flags_other_proposals" &&  @current_filter.to_s != "other_with_ignored_flag"
+    if @current_filter.to_s != "no_flags_other_proposals" &&  @current_filter.to_s != "other_with_ignored_flag" && @current_filter.to_s != "no_hidden_other_proposals"
       @proposals = @proposals.send(:"#{@current_filter}")
     end
     @proposals_legislation = @proposals_legislation.send(:"#{@current_filter}")
