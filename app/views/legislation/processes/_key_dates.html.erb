@@ -25,7 +25,7 @@
             </li>
           <% end %>
 
-          <% if process.proposals_phase.enabled? %>
+          <% if process.proposals_phase.enabled?  && (process.permit_hiden_proposals.blank? || !process.permit_hiden_proposals)%>
             <li <%= "class=is-active" if phase.to_sym == :proposals && params[:type].blank? %>>
               <%= link_to proposals_legislation_process_path(process) do %>
                 <h4><%= t("legislation.processes.shared.proposals_dates") %></h4>

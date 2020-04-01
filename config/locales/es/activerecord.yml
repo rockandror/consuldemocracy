@@ -257,6 +257,9 @@ es:
       legislation/proposal:
         type_other_proposal: Tipo de propuesta
       legislation/other_proposal:
+        title_proposal: Título del servicio
+        text_description: Texto desarrollado del servicio
+        text_sort: Resumen del servicio
         justify_text_declaration_1: Soy el representante legal
         justify_text_declaration_2: Acepto la declaración responsable
         type_other_proposal: Tipo de organización
@@ -266,7 +269,7 @@ es:
         address: Dirección
         phone: Teléfono 
         agent: Representante legal
-        agent_title: Título que le otroga la representación
+        agent_title: Título que le otorga la representación
         citizen_entities: ¿Registrado como Entidad ciudadana?
         cif: CIF
         entity_type: Tipo de entidad
