@@ -114,10 +114,15 @@ class Legislation::ProcessesController < Legislation::BaseController
     params[:filter] = "carriers" if params[:filter].blank? && !params[:type].blank?
     
     if params[:type].blank?
+
       if @current_filter == "random"
         @proposals = @proposals.sort_by_random(session[:random_seed]).page(params[:page])
-      else
+      elsif @current_filter == "winners"
         @proposals = @proposals.send(@current_filter).page(params[:page])
+      elsif @current_filter == "updated"
+        @proposals = @proposals.order(update_at: :desc).page(params[:page])
+      else
+        @proposals = @proposals.order('id DESC').page(params[:page])
       end
     else
       if params[:filter] == "carriers"
