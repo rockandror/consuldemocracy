@@ -1,6 +1,5 @@
 <div class="row">
     <h3><%=Legislation::OtherProposal.human_attribute_name(:title)%>:</h3>
-    <div class="small-12 "><b><%=Legislation::OtherProposal.human_attribute_name(:name)%>:</b> <%= proposal.try(:other_proposal).try(:name) %></div>
     <div class="small-12 "><b><%=Legislation::OtherProposal.human_attribute_name(:address)%>:</b> <%= proposal.try(:other_proposal).try(:address) %></div>
     <div class="small-12 "><b><%=Legislation::OtherProposal.human_attribute_name(:phone)%>:</b> <%= proposal.try(:other_proposal).try(:phone) %></div>
     <div class="small-12 "><b><%=Legislation::OtherProposal.human_attribute_name(:agent)%>:</b> <%= proposal.try(:other_proposal).try(:agent) %></div>

@@ -39,6 +39,15 @@ class Legislation::ProposalsController < Legislation::BaseController
     end
   end
 
+  def update
+    if @proposal.update(proposal_params.merge(author: current_user))
+      redirect_to legislation_process_proposal_path(params[:process_id], @proposal), notice: I18n.t("flash.actions.update.proposal")
+    else
+      render :edit
+    end
+  end
+
+
   def index_customization
     load_successful_proposals
     load_featured unless @proposal_successful_exists
@@ -80,6 +89,7 @@ class Legislation::ProposalsController < Legislation::BaseController
     end
 
     def destroy_map_location_association
+      return if params[:proposal].blank?
       map_location = params[:proposal][:map_location_attributes]
       if map_location && (map_location[:longitude] && map_location[:latitude]).blank? && !map_location[:id].blank?
         MapLocation.destroy(map_location[:id])
