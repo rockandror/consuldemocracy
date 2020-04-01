@@ -2,12 +2,15 @@
   <div class="small-12 medium-9 column margin-top">
 
     <h1><%= t("map.title") %></h1>
-
     <div class="row">
       <div class="small-12 medium-3 column">
         <ul id="geozones" class="no-bullet">
           <% @geozones.each do |geozone| %>
-            <li><%= link_to geozone.name, proposals_path(search: geozone.name) %></li>
+              <%if params[:type].blank? %>
+                <li><%= link_to geozone.name, proposals_path(search: geozone.name) %></li>
+              <% else %>
+                <li><%= link_to geozone.name, legislation_process_proposals_path(process_id: params[:process_id],search: geozone.name, type: params[:type], map: true) %></li>
+              <%end%>
           <% end %>
         </ul>
       </div>
@@ -20,32 +23,40 @@
         <% @geozones.each do |geozone| %>
           <area shape="poly"
                 coords="<%= geozone.html_map_coordinates %>"
-                href="<%= polymorphic_url(@resource, search: geozone.name) %>"
+                href="<%= params[:type].blank? ? polymorphic_url(@resource, search: geozone.name) : legislation_process_proposals_path(process_id: params[:process_id],search: geozone.name, type: params[:type], map: true) %>"
                 title="<%= geozone.name %>"
                 alt="<%= geozone.name %>">
         <% end %>
       </map>
     </div>
 
-    <h2><%= t("map.proposal_for_district") %></h2>
+    <% if params[:type].blank? %>
 
-    <%= form_for(@resource, url: new_url_path, method: :get ) do |f| %>
-      <div class="small-12 medium-4">
-        <%= f.label :geozone_id,  t("map.select_district") %>
-        <%= f.select :geozone_id, geozone_select_options,
-                     {include_blank: t("geozones.none"), label: false} %>
-      </div>
+      <h2><%= t("map.proposal_for_district") %></h2>
+    
+      <%= form_for(@resource, url: new_url_path, method: :get ) do |f| %>
+        <div class="small-12 medium-4">
+          <%= f.label :geozone_id,  t("map.select_district") %>
+          <%= f.select :geozone_id, geozone_select_options,
+                      {include_blank: t("geozones.none"), label: false} %>
+        </div>
 
-      <div class="actions small-12">
-        <%= f.submit(class: "button", value: t("map.start_proposal")) %>
-      </div>
-    <% end %>
+        <div class="actions small-12">
+          <%= f.submit(class: "button", value: t("map.start_proposal")) %>
+        </div>
+      <% end %>
+    <%end%>
   </div>
 
   <div class="small-12 medium-3 column">
     <aside class="sidebar">
-      <%= link_to t("map.start_proposal"),
-                  new_proposal_path, class: "button expanded" %>
+      <% if params[:type].blank? %>
+        <%= link_to t("map.start_proposal"), new_proposal_path, class: "button expanded" %>
+      <% else %>
+        <%= link_to t("map.start_proposal"), 
+                    new_legislation_process_proposal_path(process_id: params[:process_id],type: params[:type]),
+                          class: "button expanded"%>
+      <% end %>
       <%= render "shared/tag_cloud", taggable: "proposal" %>
     </aside>
   </div>

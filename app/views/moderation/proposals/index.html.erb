@@ -31,6 +31,9 @@
         <% if !proposal.try(:published_at).blank? || proposal.try(:class).try(:name).to_s == "Legislation::Proposal"  %>
           <tr id="proposal_<%= proposal.try(:id) %>_<%=proposal.try(:model_name).try(:param_key)%>">
             <td>
+              <% if proposal.try(:class).try(:name).to_s == "Legislation::Proposal"%>
+                <b>PROCESOS - </b>
+              <%end%>
               <% if proposal.try(:class).try(:name).to_s == "Legislation::Proposal" && !proposal.try(:process).blank?%>
                 <%= link_to proposal.try(:title), legislation_process_proposal_path(id: proposal.try(:id), process_id: proposal.try(:process).try(:id)), target: "_blank" %>
               <% elsif proposal.try(:class).try(:name).to_s == "Legislation::Proposal" && proposal.try(:process).blank?%>
@@ -38,6 +41,7 @@
               <% else%>
                 <%= link_to proposal.try(:title), proposal, target: "_blank" %>
               <%end%>
+              
               <br>
               <span class="date"><%= l proposal.try(:created_at).try {|d| d.to_date} %></span>
               <span class="bullet">&nbsp;&bull;&nbsp;</span>

@@ -16,7 +16,11 @@
     <% @datos_comunes.each do |proposal| %>
       <tr id="<%= dom_id(proposal) %>">
         <td class="align-top">
+          <% if proposal.try(:class).try(:name).to_s == "Legislation::Proposal"%>
+            <b>PROCESOS - </b><%= proposal.try(:title) %>
+          <%else%>
           <strong><%= proposal.try(:title) %></strong>
+           <% end %>
         </td>
         <td>
           <div class="moderation-description">

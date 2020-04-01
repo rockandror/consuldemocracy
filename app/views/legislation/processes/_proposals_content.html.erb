@@ -4,7 +4,10 @@
       <div class="row">
         <div class="small-12 medium-9 column">
           <div class="legislation-proposals">
+            <p><%= Setting.find_by(key: "proposal_permit_text").try(:value).try(:html_safe) if process.permit_text_proposals%></p>
+            <br>
             <%= render "shared/filter_subnav", i18n_namespace: "legislation.processes.proposals" %>
+            
             <% if proposals.empty? %>
               <div class="callout primary">
                 <p><%= t("legislation.processes.proposals.empty_proposals") %></p>
@@ -19,11 +22,14 @@
         <div class="small-12 medium-3 column">
           <% if process.proposals_phase.open? && !current_user.blank? %>
             <p><%= link_to new_legislation_proposal_link_text(process),
-                          new_legislation_process_proposal_path(process),
+                          new_legislation_process_proposal_path(process,type: params[:filter]),
                           class: "button expanded",
                           id: "create-new-proposal" %></p>
           <% end %>
           <%= render "legislation/proposals/categories", taggable: process %>
+          <% unless params[:type].blank? %>
+            <%= render "geozones", process_id: process.id %>
+          <% end %>
         </div>
       </div>
     </div>

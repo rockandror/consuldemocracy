@@ -19,7 +19,10 @@ class Legislation::Proposal < ApplicationRecord
   include Imageable
   include Randomizable
 
+  belongs_to :other_proposal, class_name: "Legislation::OtherProposal", foreign_key: "legislation_other_proposal_id"
+  accepts_nested_attributes_for :other_proposal, allow_destroy: true
   accepts_nested_attributes_for :documents, allow_destroy: true
+  
 
   acts_as_votable
   acts_as_paranoid column: :hidden_at
@@ -27,8 +30,9 @@ class Legislation::Proposal < ApplicationRecord
   belongs_to :process, class_name: "Legislation::Process", foreign_key: "legislation_process_id"
   belongs_to :author, -> { with_hidden }, class_name: "User", foreign_key: "author_id"
   belongs_to :geozone
-  has_many :comments, as: :commentable
 
+  has_many :comments, as: :commentable
+  
   validates :proposal_type, presence: true, inclusion: { in: VALID_TYPES }
   validates :title, presence: true
   validates :summary, presence: true, unless: ->(p) { p.proposal_type == "question" }
@@ -56,7 +60,12 @@ class Legislation::Proposal < ApplicationRecord
   scope :last_week,                -> { where("proposals.created_at >= ?", 7.days.ago)}
   scope :selected,                 -> { where(selected: true) }
   scope :winners,                  -> { selected.sort_by_confidence_score }
-  scope :no_flags_proposals,       -> { where("flags_count = 0").where(ignored_flag_at: nil, hidden_at:nil) }
+  scope :no_flags_proposals,       -> { where("flags_count = 0  AND type_other_proposal IS NULL").where(ignored_flag_at: nil, hidden_at:nil) }
+  scope :no_other_proposal,        -> { where(type_other_proposal: nil)}
+  scope :no_flags_other_proposals, -> { where("type_other_proposal IS NOT NULL").where(ignored_flag_at: nil, hidden_at:nil) }
+  scope :no_hidden_other_proposals, -> { all_records.with_deleted.where("type_other_proposal IS NOT NULL ").where.not(hidden_at: nil) }
+  scope :other_with_ignored_flag,  -> { where("type_other_proposal IS NOT NULL").where.not(ignored_flag_at: nil).where(hidden_at: nil) }
+
 
   def to_param
     "#{id}-#{title}".parameterize
