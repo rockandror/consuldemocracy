@@ -110,6 +110,18 @@ class Legislation::ProcessesController < Legislation::BaseController
     @proposals = @proposals.search(params[:search]) if params[:search].present?
 
     @current_filter = "random" if params[:filter].blank? #&& @proposals.winners.any?
+    if params[:map].to_s != "false"
+      if !params[:search].blank? && @proposals.count > 0
+        if !params[:filter].blank? && @proposals.find_by(type_other_proposal: params[:filter]).blank?
+          params[:filter] = @proposals.first.type_other_proposal
+        elsif params[:filter].blank?
+          params[:filter] = @proposals.first.type_other_proposal
+        elsif !params[:filter].blank? && !@proposals.find_by(type_other_proposal: params[:filter]).blank?
+          params[:filter]
+        end
+      end
+    end
+
 
     params[:filter] = "carriers" if params[:filter].blank? && !params[:type].blank?
     
@@ -133,7 +145,7 @@ class Legislation::ProcessesController < Legislation::BaseController
         @proposals = @proposals.where(type_other_proposal: "associations").page(params[:page])
       end
     end
-
+    
     if @process.proposals_phase.started? || (current_user && current_user.administrator?)
       legislation_proposal_votes(@proposals)
       render :proposals
