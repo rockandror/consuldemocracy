@@ -2,8 +2,8 @@ class Legislation::ProcessesController < Legislation::BaseController
   include RandomSeed
 
   has_filters %w[open past], only: :index
-  has_filters %w[random winners], only: :proposals
-  
+  has_filters %w[random winners updated proposals_top_relevance], only: :proposals
+
   load_and_authorize_resource :process
 
   before_action :set_random_seed, only: :proposals
@@ -109,6 +109,7 @@ class Legislation::ProcessesController < Legislation::BaseController
     
     @proposals = @proposals.search(params[:search]) if params[:search].present?
 
+    @current_filter = "random" if params[:filter].blank? #&& @proposals.winners.any?
     if params[:map].to_s != "false"
       if !params[:search].blank? && @proposals.count > 0
         if !params[:filter].blank? && @proposals.find_by(type_other_proposal: params[:filter]).blank?
@@ -121,15 +122,21 @@ class Legislation::ProcessesController < Legislation::BaseController
       end
     end
 
-    @current_filter = "winners" if params[:filter].blank? && @proposals.winners.any? && params[:type].blank?
 
     params[:filter] = "carriers" if params[:filter].blank? && !params[:type].blank?
     
     if params[:type].blank?
+
       if @current_filter == "random"
         @proposals = @proposals.sort_by_random(session[:random_seed]).page(params[:page])
-      else
+      elsif @current_filter == "winners"
         @proposals = @proposals.send(@current_filter).page(params[:page])
+      elsif  @current_filter == "proposals_top_relevance"
+        @proposals = Kaminari.paginate_array(@proposals.sort_by {|x| x.total_votes}.reverse.take(10)).page(params[:page])
+      elsif @current_filter == "updated"
+        @proposals = @proposals.order(updated_at: :desc).page(params[:page])
+      else
+        @proposals = @proposals.order('id DESC').page(params[:page])
       end
     else
       if params[:filter] == "carriers"

@@ -56,8 +56,10 @@ es:
           random: Aleatorias
           winners: Seleccionadas
           carriers: Transportistas
+          proposals_top_relevance: Las 10 más votadas
           shops: Comercios
           associations: Asociaciones
+          updated: Más actualizadas
       debate:
         empty_questions: No hay preguntas
         participate: Realiza tus aportaciones al debate previo participando en los siguientes temas.

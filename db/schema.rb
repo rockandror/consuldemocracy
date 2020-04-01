@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200331160131) do
+ActiveRecord::Schema.define(version: 20200401112916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -689,7 +689,7 @@ ActiveRecord::Schema.define(version: 20200331160131) do
     t.text     "type_other_proposal"
     t.text     "name"
     t.text     "address"
-    t.integer  "phone"
+    t.text     "phone"
     t.text     "agent"
     t.text     "agent_title"
     t.boolean  "citizen_entities"
@@ -726,26 +726,28 @@ ActiveRecord::Schema.define(version: 20200331160131) do
     t.date     "allegations_end_date"
     t.date     "result_publication_date"
     t.datetime "hidden_at"
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
-    t.boolean  "debate_phase_enabled",       default: false
-    t.boolean  "allegations_phase_enabled",  default: false
-    t.boolean  "draft_publication_enabled",  default: false
-    t.boolean  "result_publication_enabled", default: false
-    t.boolean  "published",                  default: true
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+    t.boolean  "debate_phase_enabled",           default: false
+    t.boolean  "allegations_phase_enabled",      default: false
+    t.boolean  "draft_publication_enabled",      default: false
+    t.boolean  "result_publication_enabled",     default: false
+    t.boolean  "published",                      default: true
     t.date     "proposals_phase_start_date"
     t.date     "proposals_phase_end_date"
     t.boolean  "proposals_phase_enabled"
     t.text     "proposals_description"
-    t.boolean  "film_library",               default: false
+    t.boolean  "film_library",                   default: false
     t.date     "draft_start_date"
     t.date     "draft_end_date"
-    t.boolean  "draft_phase_enabled",        default: false
-    t.boolean  "homepage_enabled",           default: false
+    t.boolean  "draft_phase_enabled",            default: false
+    t.boolean  "homepage_enabled",               default: false
     t.text     "background_color"
     t.text     "font_color"
-    t.boolean  "geozone_restricted",         default: false
+    t.boolean  "geozone_restricted",             default: false
     t.boolean  "other_proposals_enabled"
+    t.boolean  "permit_text_proposals"
+    t.boolean  "permit_proposals_top_relevance"
     t.index ["allegations_end_date"], name: "index_legislation_processes_on_allegations_end_date", using: :btree
     t.index ["allegations_start_date"], name: "index_legislation_processes_on_allegations_start_date", using: :btree
     t.index ["debate_end_date"], name: "index_legislation_processes_on_debate_end_date", using: :btree
