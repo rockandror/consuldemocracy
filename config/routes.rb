@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   get "/conectados", to: "welcome#encuentrosconexpertos"
 
   get "/madridsalealbalcon" => redirect("/legislation/processes/#{Rails.application.secrets.id}")
+  get "/compartimosbarrio" => redirect("/legislation/processes/#{Rails.application.secrets.id_barrio}")
   
   get "/consul.json", to: "installation#details"
   
