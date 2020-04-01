@@ -55,6 +55,9 @@ es:
         filters:
           random: Aleatorias
           winners: Seleccionadas
+          carriers: Transportistas
+          shops: Comercios
+          associations: Asociaciones
       debate:
         empty_questions: No hay preguntas
         participate: Realiza tus aportaciones al debate previo participando en los siguientes temas.
@@ -91,6 +94,7 @@ es:
         carriers: Transportistas
         shops: Comercios
         associations: Asociaciones
+        others: Organizaciones
     questions:
       comments:
         comment_button: Publicar respuesta

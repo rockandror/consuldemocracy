@@ -59,7 +59,7 @@ class Legislation::ProposalsController < Legislation::BaseController
                     image_attributes: image_attributes,
                     documents_attributes: [:id, :title, :attachment, :cached_attachment, :user_id],
                     other_proposal_attributes: [:type_other_proposal, :name, :address, :phone, :agent, :agent_title, :citizen_entities,
-                      :cif, :entity_type, :justify_text_declaration_1, :justify_text_declaration_2])
+                      :cif, :entity_type, :justify_text_declaration_1, :justify_text_declaration_2],
                     map_location_attributes: [:latitude, :longitude, :zoom])
     end
 

@@ -3,7 +3,7 @@ class Legislation::ProcessesController < Legislation::BaseController
 
   has_filters %w[open past], only: :index
   has_filters %w[random winners], only: :proposals
-
+  
   load_and_authorize_resource :process
 
   before_action :set_random_seed, only: :proposals
@@ -104,17 +104,29 @@ class Legislation::ProcessesController < Legislation::BaseController
     if params[:type].blank?
       @proposals = Legislation::Proposal.where(process: @process).where(type_other_proposal: nil)
     else
-      @proposals = Legislation::Proposal.where(process: @process).where(type_other_proposal: params[:type]).with_ignored_flag
+      @proposals = Legislation::Proposal.where(process: @process).where("type_other_proposal is not null").with_ignored_flag
     end
     
     @proposals = @proposals.search(params[:search]) if params[:search].present?
 
-    @current_filter = "winners" if params[:filter].blank? && @proposals.winners.any?
+    @current_filter = "winners" if params[:filter].blank? && @proposals.winners.any? && params[:type].blank?
 
-    if @current_filter == "random"
-      @proposals = @proposals.sort_by_random(session[:random_seed]).page(params[:page])
+    params[:filter] = "carriers" if params[:filter].blank? && !params[:type].blank?
+    
+    if params[:type].blank?
+      if @current_filter == "random"
+        @proposals = @proposals.sort_by_random(session[:random_seed]).page(params[:page])
+      else
+        @proposals = @proposals.send(@current_filter).page(params[:page])
+      end
     else
-      @proposals = @proposals.send(@current_filter).page(params[:page])
+      if params[:filter] == "carriers"
+        @proposals = @proposals.where(type_other_proposal: "carriers").page(params[:page])
+      elsif params[:filter] == "shops"
+        @proposals = @proposals.where(type_other_proposal: "shops").page(params[:page])
+      else
+        @proposals = @proposals.where(type_other_proposal: "associations").page(params[:page])
+      end
     end
 
     if @process.proposals_phase.started? || (current_user && current_user.administrator?)

@@ -35,8 +35,11 @@
   <div class="proposal-show legislation-proposal-show">
     <div id="<%= dom_id(@proposal) %>" class="row">
       <div class="small-12 medium-9 column">
-        <%= back_link_to legislation_process_proposals_path(process_id: @process) %>
-
+        <% if @proposal.type_other_proposal.blank?  %>
+          <%= back_link_to legislation_process_proposals_path(process_id: @process) %>
+        <%else%>
+          <%= back_link_to legislation_process_proposals_path(process_id: @process, type: 'others', filter: @proposal.type_other_proposal) %>
+        <%end%>
         <h1><%= @proposal.title %></h1>
         <% if @proposal.conflictive? %>
           <div data-alert class="callout alert margin-top">

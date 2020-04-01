@@ -35,19 +35,9 @@
           <% end %>
 
           <% if process.other_proposals_enabled %>
-            <li <%= "class=is-active" if params[:type].to_s == "carriers" %>>
-              <%= link_to proposals_legislation_process_path(process,type: :carriers) do %>
-                <h4><%= t("legislation.processes.shared.carriers") %></h4>
-              <% end %>
-            </li>
-            <li <%= "class=is-active" if params[:type].to_s == "shops" %>>
-              <%= link_to proposals_legislation_process_path(process,type: :shops) do %>
-                <h4><%= t("legislation.processes.shared.shops") %></h4>
-              <% end %>
-            </li>
-            <li <%= "class=is-active" if params[:type].to_s == "associations" %>>
-              <%= link_to proposals_legislation_process_path(process,type: :associations) do %>
-                <h4><%= t("legislation.processes.shared.associations") %></h4>
+            <li <%= "class=is-active" if params[:type].to_s == "others" %>>
+              <%= link_to proposals_legislation_process_path(process,type: :others) do %>
+                <h4><%= t("legislation.processes.shared.others") %></h4>
               <% end %>
             </li>
           <% end %>
