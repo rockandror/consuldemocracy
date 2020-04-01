@@ -1,5 +1,5 @@
 <div class="ckeditor small-12 column">
-    <%= f.select :type_other_proposal, options_for_select([['Transporte', 'carries'],['Comercio','shops'],['Asociación','asociations']], params[:type]), {},{selected: params[:type].to_s || s.object.try(:type_other_proposal).to_s, onchange: "cambioparam($(this), '/legislation/processes/#{params[:process_id]}/proposals/new')"} %> 
+    <%= f.select :type_other_proposal, options_for_select([['Transporte', 'carries'],['Comercio','shops'],['Asociación','associations']], params[:type] || f.object.try(:type_other_proposal) || 'carries'), {},{onchange: "cambioparam($(this), '/legislation/processes/#{params[:process_id]}/proposals/new')"} %> 
     <%= f.fields_for :other_proposal,(Legislation::OtherProposal.new if f.object.other_proposal.blank?) do |s| %>
        
         <%= s.text_field :name %>
@@ -9,7 +9,7 @@
         <%= s.text_field :agent_title %>  
         <div id="changes_other">
             <%= s.hidden_field :type_other_proposal, value: params[:type].to_s || s.object.try(:type_other_proposal).to_s  %>
-            <%if params[:type].to_s == "asociations" || params[:type].blank? && s.object.try(:type_other_proposal).to_s == "asociations" %>
+            <%if params[:type].to_s == "associations" || params[:type].blank? && s.object.try(:type_other_proposal).to_s == "associations" %>
                 <%= s.check_box :citizen_entities %>
             <%else%>
                 <%= s.text_field :cif %>
