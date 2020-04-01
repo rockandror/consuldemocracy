@@ -6,6 +6,7 @@ class Legislation::ProposalsController < Legislation::BaseController
   before_action :parse_tag_filter, only: :index
   before_action :load_categories, only: [:index, :new, :create, :edit, :map, :summary]
   before_action :load_geozones, only: [:edit, :map, :summary]
+  before_action :destroy_map_location_association, only: :update
 
   before_action :authenticate_user!, except: [:index, :show, :map, :summary]
   load_and_authorize_resource :process, class: "Legislation::Process"
@@ -41,6 +42,7 @@ class Legislation::ProposalsController < Legislation::BaseController
   def index_customization
     load_successful_proposals
     load_featured unless @proposal_successful_exists
+    hide_advanced_search if custom_search?
   end
 
   def vote
@@ -53,10 +55,11 @@ class Legislation::ProposalsController < Legislation::BaseController
     def proposal_params
       params.require(:legislation_proposal).permit(:legislation_process_id, :title,
                     :summary, :description,  :video_url, :tag_list,
-                    :terms_of_service, :geozone_id, :proposal_type, :type_other_proposal,
+                    :terms_of_service, :geozone_id, :skip_map, :proposal_type, :type_other_proposal,
                     image_attributes: image_attributes,
                     documents_attributes: [:id, :title, :attachment, :cached_attachment, :user_id],
-                    other_proposal_attributes: [:type_other_proposal, :name, :address, :phone, :agent, :agent_title, :citizen_entities, :cif, :entity_type])
+                    other_proposal_attributes: [:type_other_proposal, :name, :address, :phone, :agent, :agent_title, :citizen_entities, :cif, :entity_type],
+                    map_location_attributes: [:latitude, :longitude, :zoom])
     end
 
     def resource_model
@@ -69,6 +72,17 @@ class Legislation::ProposalsController < Legislation::BaseController
 
     def load_successful_proposals
       @proposal_successful_exists = Legislation::Proposal.successful.exists?
+    end
+
+    def custom_search?
+      params[:custom_search].present?
+    end
+
+    def destroy_map_location_association
+      map_location = params[:proposal][:map_location_attributes]
+      if map_location && (map_location[:longitude] && map_location[:latitude]).blank? && !map_location[:id].blank?
+        MapLocation.destroy(map_location[:id])
+      end
     end
 
 end

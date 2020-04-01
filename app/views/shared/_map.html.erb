@@ -7,7 +7,11 @@
       <div class="small-12 medium-3 column">
         <ul id="geozones" class="no-bullet">
           <% @geozones.each do |geozone| %>
-            <li><%= link_to geozone.name, proposals_path(search: geozone.name) %></li>
+              <%if params[:type].blank? %>
+                <li><%= link_to geozone.name, proposals_path(search: geozone.name) %></li>
+              <% else %>
+                <li><%= link_to geozone.name, proposals_legislation_process_path(Legislation::Process.find(params[:process_id]),search: geozone.name, type: params[:type]) %></li>
+              <%end%>
           <% end %>
         </ul>
       </div>

@@ -1,6 +1,7 @@
 <div class="sidebar-divider"></div>
 <h2 class="sidebar-title"><%= t("shared.tags_cloud.districts") %></h2>
 <br>
-<%= link_to map_legislation_process_proposals_path, id: "map", title: t("shared.tags_cloud.districts_list") do %>
+<%=process_id%>
+<%= link_to map_proposals_path(type: params[:type],process_id: process_id), id: "map", title: t("shared.tags_cloud.districts_list") do %>
   <%= image_tag(image_path_for("map.jpg"), alt: t("shared.tags_cloud.districts_list")) %>
 <% end %>
