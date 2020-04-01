@@ -120,7 +120,7 @@ class Legislation::ProcessesController < Legislation::BaseController
       elsif @current_filter == "winners"
         @proposals = @proposals.send(@current_filter).page(params[:page])
       elsif @current_filter == "updated"
-        @proposals = @proposals.order(update_at: :desc).page(params[:page])
+        @proposals = @proposals.order(updated_at: :desc).page(params[:page])
       else
         @proposals = @proposals.order('id DESC').page(params[:page])
       end
