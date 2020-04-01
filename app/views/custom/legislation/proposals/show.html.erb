@@ -62,7 +62,7 @@
 
         <% if !@proposal.type_other_proposal.blank?%>
           <h2><%= @proposal.title %></h2>
-        <%else%>
+        <%end%>
         <div class="proposal-info">
           <%= render "/shared/author_info", resource: @proposal %>
 
