@@ -22,11 +22,12 @@
         <div class="small-12 medium-3 column">
           <% if process.proposals_phase.open? && !current_user.blank? %>
             <p><%= link_to new_legislation_proposal_link_text(process),
-                          new_legislation_process_proposal_path(process,type: params[:type]),
+                          new_legislation_process_proposal_path(process,type: params[:filter]),
                           class: "button expanded",
                           id: "create-new-proposal" %></p>
           <% end %>
           <%= render "legislation/proposals/categories", taggable: process %>
+          <%= render "geozones", process_id: process.id %>
         </div>
       </div>
     </div>
