@@ -70,6 +70,8 @@ class Admin::Legislation::ProcessesController < Admin::Legislation::BaseControll
         :other_proposals_enabled,
         :draft_publication_enabled,
         :result_publication_enabled,
+        :permit_text_proposals,
+        :permit_proposals_top_relevance,
         :published,
         :geozone_restricted,
         :custom_list,

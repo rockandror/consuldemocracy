@@ -2,9 +2,13 @@
   <%= render "shared/errors", resource: @proposal %>
 
   <%= f.hidden_field(:legislation_process_id, :value => params[:process_id]) %>
-  <%= f.hidden_field(:type_other_proposal, :value => params[:type].to_s) %> 
+ 
 
   <div class="row">
+    
+    <% if !params[:type].blank? || !@proposal.type_other_proposal.blank? %>
+      <%= render "form_others", f: f %>
+    <%end%>
     <div class="small-12 column <%= "hide" unless @process.title == "PLENO ABIERTO" %>">
       <%= f.label :proposal_type, t("proposals.form.proposal_type") %>
       <%= f.select :proposal_type, proposal_type_options, label: false %>
@@ -57,9 +61,7 @@
       <%= f.cktext_area :description, maxlength: Legislation::Proposal.description_max_length, ckeditor: { language: I18n.locale }, label: false %>
     </div>
     
-    <% unless params[:type].blank? %>
-      <%= render "form_others", f: f %>
-    <%end%>
+    
 
     <div class="small-12 column" id="js-legislation-proposal-video-url">
       <%= f.label :video_url, t("proposals.form.proposal_video_url") %>

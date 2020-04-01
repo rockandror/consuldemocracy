@@ -7,8 +7,10 @@ module LegislationHelper
     l(date, format: "%d/%m/%Y") if date
   end
 
-  def new_legislation_proposal_link_text(process)
-    if process.title == "PLENO ABIERTO"
+  def new_legislation_proposal_link_text(process, type)
+    if !type.blank?
+      t("proposals.index.start_organization")
+    elsif process.title == "PLENO ABIERTO"
       t("proposals.index.start_proposal_question")
     else
       t("proposals.index.start_proposal")

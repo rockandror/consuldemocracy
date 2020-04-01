@@ -1,5 +1,10 @@
+<%
+process ||= nil
+%>
 <ul class="menu simple clear" id="filter-subnav">
   <li class="show-for-sr"><%= t("#{i18n_namespace}.filter") %>: </li>
+  
+  <%@valid_filters = ['random', 'winners', 'updated'] if !process.blank? && !process.try(:permit_proposals_top_relevance)%>
   <%@valid_filters = ['carriers', 'shops', 'associations'] if !params[:type].blank?%>
   <% @valid_filters.each do |filter| %>
     <% if @current_filter == filter || params[:filter] == filter %>

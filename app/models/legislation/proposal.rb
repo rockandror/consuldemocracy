@@ -67,6 +67,7 @@ class Legislation::Proposal < ApplicationRecord
   scope :other_with_ignored_flag,  -> { where("type_other_proposal IS NOT NULL").where.not(ignored_flag_at: nil).where(hidden_at: nil) }
 
 
+
   def to_param
     "#{id}-#{title}".parameterize
   end
