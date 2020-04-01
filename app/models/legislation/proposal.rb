@@ -41,8 +41,6 @@ class Legislation::Proposal < ApplicationRecord
 
   validates :title, length: { in: TITLE_MIN_LENGTH..TITLE_MAX_LENGTH }
   validates :description, length: { maximum: DESCRIPTION_MAX_LENGTH }
-  validates :name, presence: true
-  validates :phone, presence: true
   
   validates :terms_of_service, acceptance: { allow_nil: false }, on: :create
 

@@ -35,7 +35,11 @@ class Legislation::ProposalsController < Legislation::BaseController
     if @proposal.save
         redirect_to legislation_process_proposal_path(params[:process_id], @proposal), notice: I18n.t("flash.actions.create.proposal")
     else
-        render :new, type: params[:type]
+      if params[:legislation_proposal][:type_other_proposal].blank?
+        render :new
+      else
+        redirect_to new_legislation_process_proposal_path(@process,type: params[:legislation_proposal][:type_other_proposal])
+      end
     end
   end
 
