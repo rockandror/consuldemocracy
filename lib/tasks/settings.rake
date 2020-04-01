@@ -5,6 +5,7 @@ namespace :settings do
 
     deprecated_keys = [
       "place_name",
+      "winner_text",
       "banner-style.banner-style-one",
       "banner-style.banner-style-two",
       "banner-style.banner-style-three",

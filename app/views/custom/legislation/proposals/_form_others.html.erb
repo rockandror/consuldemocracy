@@ -10,7 +10,7 @@
             <%= s.check_box :citizen_entities %>
         <%else%>
             <%= s.text_field :cif %>
-            <%= s.text_field :entity_type %>
+            <%= s.select :entity_type, ["SA.", "SAU.", "SRL", "CB", "SC", "Autónomo"] %>
         <%end%>
         <%= s.check_box :justify_text_declaration_1, label: Setting.find_by(key: "other_proposal_declaration_1").try(:value).try(:html_safe) %>
         <%= s.check_box :justify_text_declaration_2, label: Setting.find_by(key: "other_proposal_declaration_2").try(:value).try(:html_safe) %>
