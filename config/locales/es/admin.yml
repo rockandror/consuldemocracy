@@ -516,7 +516,7 @@ es:
           permit_text_proposals: Habilitar texto libre entre las pestañas de propuestas y los filtros
           permit_proposals_top_relevance: Habilitar filtro de pestaña de las 10 propuestas más votadas
           permit_hiden_proposals: Ocultar pestaña de propuestas
-          other_proposals: Habilitar propuestas para transportistas, comercios y asociaciones
+          other_proposals: Habilitar propuestas para reparto, comercios y asociaciones
         index:
           create: Nuevo proceso
           delete: Borrar

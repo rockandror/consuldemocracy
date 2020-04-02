@@ -55,7 +55,7 @@ es:
         filters:
           random: Aleatorias
           winners: Seleccionadas
-          carriers: Transportistas
+          carriers: Reparto
           proposals_top_relevance: Las 10 más votadas
           shops: Comercios
           associations: Asociaciones
