@@ -101,7 +101,7 @@ class User < ApplicationRecord
   end
 
   def name
-    organization? ? organization.name : username
+    organization? ? organization.name : username == "admin" ? "Admin27" : username
   end
 
   def phone
