@@ -34,12 +34,12 @@ class Legislation::Proposal < ApplicationRecord
   has_many :comments, as: :commentable
   
   validates :proposal_type, presence: true, inclusion: { in: VALID_TYPES }
-  validates :title, presence: true
-  validates :summary, presence: true, unless: ->(p) { p.proposal_type == "question" }
+  validates :title, presence: true,:if => :is_other_proposal?
+  validates :summary, presence: true, unless: ->(p) { p.proposal_type == "question" },:if => :is_other_proposal?
   validates :author, presence: true
   validates :process, presence: true
 
-  validates :title, length: { in: TITLE_MIN_LENGTH..TITLE_MAX_LENGTH }
+  validates :title, length: { in: TITLE_MIN_LENGTH..TITLE_MAX_LENGTH },:if => :is_other_proposal?
   validates :description, length: { maximum: DESCRIPTION_MAX_LENGTH }
   
   validates :terms_of_service, acceptance: { allow_nil: false }, on: :create
@@ -65,8 +65,6 @@ class Legislation::Proposal < ApplicationRecord
   scope :no_flags_other_proposals, -> { where("type_other_proposal IS NOT NULL").where(ignored_flag_at: nil, hidden_at:nil) }
   scope :no_hidden_other_proposals, -> { all_records.with_deleted.where("type_other_proposal IS NOT NULL ").where.not(hidden_at: nil) }
   scope :other_with_ignored_flag,  -> { where("type_other_proposal IS NOT NULL").where.not(ignored_flag_at: nil).where(hidden_at: nil) }
-
-
 
   def to_param
     "#{id}-#{title}".parameterize
@@ -162,6 +160,10 @@ class Legislation::Proposal < ApplicationRecord
 
   def is_question?
     proposal_type == "question"
+  end
+
+  def is_other_proposal?
+    self.type_other_proposal.blank?
   end
 
   protected
