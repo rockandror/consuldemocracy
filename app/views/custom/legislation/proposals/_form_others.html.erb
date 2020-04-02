@@ -1,0 +1,35 @@
+<div class="ckeditor small-12 column">
+    <%= f.select :type_other_proposal, options_for_select([['Reparto', 'carriers'],['Comercio','shops'],['Asociación','associations']], params[:type] || f.object.try(:type_other_proposal) || 'carriers'), {},{onchange: "cambioparam($(this), '/legislation/processes/#{params[:process_id]}/proposals/new')"} %> 
+    <%= f.fields_for :other_proposal,(Legislation::OtherProposal.new if f.object.other_proposal.blank?) do |s| %>
+       
+        <%= s.text_field :name %>
+        <%= s.text_field :address %>
+        <%= s.number_field :phone %>
+        <%= s.text_field :agent %>
+        <%= s.text_field :agent_title %>  
+        <div id="changes_other">
+            <%= s.hidden_field :type_other_proposal, value: params[:type].to_s || s.object.try(:type_other_proposal).to_s  %>
+            <%if params[:type].to_s == "associations" || params[:type].blank? && s.object.try(:type_other_proposal).to_s == "associations" %>
+                <%= s.check_box :citizen_entities %>
+            <%else%>
+                <%= s.text_field :cif %>
+                <%= s.select :entity_type, ["SA.", "SAU.", "SRL", "CB", "SC", "Autónomo"] %>
+            <%end%>
+        </div>
+        <%= s.check_box :justify_text_declaration_1, label: Setting.find_by(key: "other_proposal_declaration_1").try(:value).try(:html_safe) %>
+        <%= s.check_box :justify_text_declaration_2, label: Setting.find_by(key: "other_proposal_declaration_2").try(:value).try(:html_safe) %>
+    <%end%>
+</div>
+<script>
+    function cambioparam(elemento, url_p) {
+        var type_id = elemento.val();
+         $.get({
+            url: url_p,
+            data: {"type": type_id},
+            success: function (data, status) {
+                window.history.pushState(data, "Title",url_p+"?type="+type_id);
+                $("#changes_other").load(window.location.href + " #changes_other");
+            }});
+    }
+ 
+</script>

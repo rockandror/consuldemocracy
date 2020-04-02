@@ -5,6 +5,7 @@ namespace :settings do
 
     deprecated_keys = [
       "place_name",
+      "winner_text",
       "banner-style.banner-style-one",
       "banner-style.banner-style-two",
       "banner-style.banner-style-three",
@@ -63,5 +64,14 @@ namespace :settings do
   task add_youtube_settings: :environment do
     Setting.create(:key => "youtube_connect", :value => "KpgTWGu7ecI")
     Setting.create(:key => "youtube_playlist_connect", :value => "PLhnvwI6F9eqXTZQc1yUGl4GX9s96u1AmK")
+  end
+
+  task add_other_proposal_settings: :environment do
+    Setting.create(:key => "other_proposal_declaration_1", :value => "Soy el representante legal")
+    Setting.create(:key => "other_proposal_declaration_2", :value => "Declaración responsable")
+  end
+
+  task add_permit_text_settings: :environment do
+    Setting.create(:key => "proposal_permit_text", :value => "Texto especial para propuestas")
   end
 end

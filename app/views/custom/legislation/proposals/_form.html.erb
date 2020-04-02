@@ -2,8 +2,13 @@
   <%= render "shared/errors", resource: @proposal %>
 
   <%= f.hidden_field(:legislation_process_id, :value => params[:process_id]) %>
+ 
 
   <div class="row">
+    
+    <% if !params[:type].blank? || !@proposal.type_other_proposal.blank? %>
+      <%= render "form_others", f: f %>
+    <%end%>
     <div class="small-12 column <%= "hide" unless @process.title == "PLENO ABIERTO" %>">
       <%= f.label :proposal_type, t("proposals.form.proposal_type") %>
       <%= f.select :proposal_type, proposal_type_options, label: false %>
@@ -15,6 +20,8 @@
           Título de la película
         <% elsif @proposal.is_question? %>
           <%= t("legislation_proposals.form.question_title") %>
+        <% elsif !params[:type].blank? || !@proposal.type_other_proposal.blank? %>
+          <%=Legislation::OtherProposal.human_attribute_name(:title_proposal)%>
         <% else %>
           <%= t("proposals.form.proposal_title") %>
         <% end %>
@@ -32,7 +39,11 @@
                         placeholder: "Resumen",
                         aria: {describedby: "summary-help-text"} %>
       <% else %>
-        <%= f.label :summary, t("proposals.form.proposal_summary") %>
+        <% if !params[:type].blank? || !@proposal.type_other_proposal.blank? %>
+          <%= f.label :summary, Legislation::OtherProposal.human_attribute_name(:text_sort) %>
+        <%else%>
+          <%= f.label :summary, t("proposals.form.proposal_summary") %>
+        <%end%>
         <p class="help-text" id="summary-help-text"><%= t("proposals.form.proposal_summary_note") %></p>
         <%= f.text_area :summary, rows: 4, maxlength: 200, label: false,
                         placeholder: t("proposals.form.proposal_summary"),
@@ -46,15 +57,21 @@
       <% else %>
         <%= f.label :description do %>
           <span id="js-legislation-proposal-label-description">
-             <%= t("proposals.form.proposal_text") %>
+            <% if !params[:type].blank? || !@proposal.type_other_proposal.blank? %>
+              <%=Legislation::OtherProposal.human_attribute_name(:text_description)%>
+            <%else%>
+              <%= t("proposals.form.proposal_text") %>
+            <%end%>
           </span>
           <span id="js-legislation-proposal-label-question-description">
-            <%= t("legislation_proposals.form.question_description") %>
+            <%= t("legislation_proposals.form.question_description") %> 
           </span>
         <% end %>
       <% end %>
       <%= f.cktext_area :description, maxlength: Legislation::Proposal.description_max_length, ckeditor: { language: I18n.locale }, label: false %>
     </div>
+    
+    
 
     <div class="small-12 column" id="js-legislation-proposal-video-url">
       <%= f.label :video_url, t("proposals.form.proposal_video_url") %>
