@@ -1,6 +1,4 @@
-<%
-process ||= nil
-%>
+<% process ||= nil %>
 <ul class="menu simple clear" id="filter-subnav">
   <li class="show-for-sr"><%= t("#{i18n_namespace}.filter") %>: </li>
   
@@ -11,7 +9,7 @@ process ||= nil
       <li class="is-active"><h2><%= t("#{i18n_namespace}.filters.#{filter}") %></h2></li>
     <% else %>
       <li><%= link_to t("#{i18n_namespace}.filters.#{filter}"),
-        current_path_with_query_params(filter: filter, map: false, page: 1) %></li>
+        "#{current_path_with_query_params(filter: filter, map: false, page: 1).gsub("?","#filter-subnav?")}" %></li>
     <% end %>
   <% end %>
 </ul>

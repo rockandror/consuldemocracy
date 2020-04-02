@@ -101,6 +101,8 @@ class Legislation::ProcessesController < Legislation::BaseController
     set_process
     @phase = :proposals_phase
 
+    params[:type] ||= "other" if @process.permit_hiden_proposals
+
     if params[:type].blank?
       @proposals = Legislation::Proposal.where(process: @process).where(type_other_proposal: nil)
     else
