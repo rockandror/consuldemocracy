@@ -125,7 +125,7 @@ class Legislation::ProcessesController < Legislation::BaseController
     end
 
 
-    params[:filter] = "carriers" if params[:filter].blank? && !params[:type].blank?
+    params[:filter] = "shops" if params[:filter].blank? && !params[:type].blank?
     
     if params[:type].blank?
 
