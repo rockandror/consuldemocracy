@@ -112,6 +112,7 @@ es:
         debate: Debate
       show:
         answer_question: Enviar respuesta
+        last_question: Anterior pregunta 
         next_question: Siguiente pregunta
         first_question: Primera pregunta
         share: Compartir

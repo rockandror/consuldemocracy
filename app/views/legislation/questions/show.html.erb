@@ -2,6 +2,18 @@
 
 <section class="debate-questions">
   <div class="quiz-header row small-collapse">
+    <div class="small-12 medium-3 column">
+      <% if !@question.last_question_id.blank? %>
+        <%= link_to legislation_process_question_path(@process, @question.last_question_id), class: "quiz-next-link" do %>
+          <%= content_tag :div, class: "quiz-next" do %>
+            <span class="icon-angle-left" aria-hidden="true">
+            <%= t(".last_question") %>
+          <% end %>
+        <% end %>
+        </div>
+        <div class="small-12 medium-6 column">
+      <% end %>
+    <%else%>
     <div class="small-12 medium-9 column">
       <div class="quiz-title">
         <p class="quiz-header-title"><%= t(".title") %></p>
