@@ -154,10 +154,10 @@ namespace :import do
                 proposal = Legislation::Proposal.new(
                     proposal_type: "proposal", terms_of_service: true,
                     legislation_process_id: process_id, 
-                    type_other_proposal:  organization[1].encode("UTF-8", invalid: :replace, undef: :replace) , title: organization[10].blank? ? organization[10].encode("UTF-8", invalid: :replace, undef: :replace) : organization[2].encode("UTF-8", invalid: :replace, undef: :replace),
+                    type_other_proposal:  organization[1].encode("UTF-8", invalid: :replace, undef: :replace) , title: organization[10],
                     description: "#{organization[12].encode("UTF-8", invalid: :replace, undef: :replace)} #{ "<br><p><b>Reparto a domicilio:</b> #{organization[14].encode("UTF-8", invalid: :replace, undef: :replace)} <p>" unless organization[14].blank?}#{ "<br><p><b>Horario:</b> #{organization[15].encode("UTF-8", invalid: :replace, undef: :replace)} <p>" unless organization[15].blank?} #{ "<br><p><b>Correo electrónico:</b> #{organization[16].encode("UTF-8", invalid: :replace, undef: :replace)}</p>" unless organization[16].blank?}",
                     author_id: author_id, 
-                    summary: organization[11].blank? ? organization[11].encode("UTF-8", invalid: :replace, undef: :replace) : organization[2].encode("UTF-8", invalid: :replace, undef: :replace), geozone_id: geozone_id,
+                    summary: organization[11], geozone_id: geozone_id,
                     hidden_at: Time.zone.now)
                 proposal.other_proposal = other_legislation
             
