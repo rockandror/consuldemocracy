@@ -142,30 +142,35 @@ namespace :import do
 
         ].each do |organization|
             process_id = Rails.application.secrets.id_barrio
-            author_id = User.find_by(email: organization[0].encode("UTF-8", invalid: :replace, undef: :replace) ).try(:id)
-            geozone_id = Geozone.where("TRANSLATE(UPPER(name),'ÁÉÍÓÚ','AEIOU') Like TRANSLATE(UPPER(?),'ÁÉÍÓÚ','AEIOU')", "'%#{organization[13].encode("UTF-8", invalid: :replace, undef: :replace)}%'").first.try(:id)
+            author_id = User.find_by(email: organization[0]).try(:id)
+            geozone_id = Geozone.where("TRANSLATE(UPPER(name),'ÁÉÍÓÚ','AEIOU') Like TRANSLATE(UPPER('%#{organization[13]}%'),'ÁÉÍÓÚ','AEIOU')").first.try(:id)
 
             begin
-                other_legislation = Legislation::OtherProposal.new(type_other_proposal: organization[1].encode("UTF-8", invalid: :replace, undef: :replace),
-                    name:  organization[2].encode("UTF-8", invalid: :replace, undef: :replace), address:  organization[3].encode("UTF-8", invalid: :replace, undef: :replace), phone:  organization[4].encode("UTF-8", invalid: :replace, undef: :replace),
-                    agent:  organization[5].encode("UTF-8", invalid: :replace, undef: :replace), agent_title:  organization[6].encode("UTF-8", invalid: :replace, undef: :replace), citizen_entities:  !organization[9].blank?,
-                    cif: organization[7].encode("UTF-8", invalid: :replace, undef: :replace), entity_type:  organization[8].encode("UTF-8", invalid: :replace, undef: :replace), justify_text_declaration_1: true, justify_text_declaration_2: true
-                )
-                proposal = Legislation::Proposal.new(
-                    proposal_type: "proposal", terms_of_service: true,
-                    legislation_process_id: process_id, 
-                    type_other_proposal:  organization[1].encode("UTF-8", invalid: :replace, undef: :replace) , title: organization[10],
-                    description: "#{organization[12].encode("UTF-8", invalid: :replace, undef: :replace)} #{ "<br><p><b>Reparto a domicilio:</b> #{organization[14].encode("UTF-8", invalid: :replace, undef: :replace)} <p>" unless organization[14].blank?}#{ "<br><p><b>Horario:</b> #{organization[15].encode("UTF-8", invalid: :replace, undef: :replace)} <p>" unless organization[15].blank?} #{ "<br><p><b>Correo electrónico:</b> #{organization[16].encode("UTF-8", invalid: :replace, undef: :replace)}</p>" unless organization[16].blank?}",
-                    author_id: author_id, 
-                    summary: organization[11], geozone_id: geozone_id,
-                    hidden_at: Time.zone.now)
-                proposal.other_proposal = other_legislation
-            
-                if proposal.save
-                    puts "- Se ha generado correctamente la propuesta #{other_legislation.name}"
-                    
-                else
-                    puts "ERROR: No se ha podido generar #{other_legislation.name}: #{proposal.errors.full_messages}"
+
+                exist = Legislation::OtherProposal.find_by(name:  organization[2].encode("UTF-8", invalid: :replace, undef: :replace))
+
+                if exist.blank?
+                    other_legislation = Legislation::OtherProposal.new(type_other_proposal: organization[1].encode("UTF-8", invalid: :replace, undef: :replace),
+                        name:  organization[2].encode("UTF-8", invalid: :replace, undef: :replace), address:  organization[3].encode("UTF-8", invalid: :replace, undef: :replace), phone:  organization[4].encode("UTF-8", invalid: :replace, undef: :replace),
+                        agent:  organization[5].encode("UTF-8", invalid: :replace, undef: :replace), agent_title:  organization[6].encode("UTF-8", invalid: :replace, undef: :replace), citizen_entities:  !organization[9].blank?,
+                        cif: organization[7].encode("UTF-8", invalid: :replace, undef: :replace), entity_type:  organization[8].encode("UTF-8", invalid: :replace, undef: :replace), justify_text_declaration_1: true, justify_text_declaration_2: true
+                    )
+                    proposal = Legislation::Proposal.new(
+                        proposal_type: "proposal", terms_of_service: true,
+                        legislation_process_id: process_id, 
+                        type_other_proposal:  organization[1].encode("UTF-8", invalid: :replace, undef: :replace) , title: organization[10],
+                        description: "#{organization[12].encode("UTF-8", invalid: :replace, undef: :replace)} #{ "<br><p><b>Reparto a domicilio:</b> #{organization[14].encode("UTF-8", invalid: :replace, undef: :replace)} <p>" unless organization[14].blank?}#{ "<br><p><b>Horario:</b> #{organization[15].encode("UTF-8", invalid: :replace, undef: :replace)} <p>" unless organization[15].blank?} #{ "<br><p><b>Correo electrónico:</b> #{organization[16].encode("UTF-8", invalid: :replace, undef: :replace)}</p>" unless organization[16].blank?}",
+                        author_id: author_id, 
+                        summary: organization[11], geozone_id: geozone_id,
+                        ignored_flag_at: Time.zone.now, hidden_at: nil)
+                    proposal.other_proposal = other_legislation
+                
+                    if proposal.save
+                        puts "- Se ha generado correctamente la propuesta #{other_legislation.name}"
+                        
+                    else
+                        puts "ERROR: No se ha podido generar #{other_legislation.name}: #{proposal.errors.full_messages}"
+                    end
                 end
             rescue => error
                 puts "ERROR: #{error}"
