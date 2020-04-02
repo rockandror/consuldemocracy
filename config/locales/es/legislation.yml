@@ -93,10 +93,10 @@ es:
         result_publication_date: Publicación resultados
         milestones_date: Seguimiento
         proposals_dates: Propuestas
-        carriers: Transportistas
+        carriers: Reparto
         shops: Comercios
         associations: Asociaciones
-        others: Organizaciones
+        others: Ecosistema
     questions:
       comments:
         comment_button: Publicar respuesta
