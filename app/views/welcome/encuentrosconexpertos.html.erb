@@ -1,12 +1,12 @@
 
 
 <script>
-    function uploadData(key, videoId, playlist) {      
+    function uploadData(key, key_x, videoId, playlist) {      
         $.get(
             "https://www.googleapis.com/youtube/v3/videos",{
             part : 'player,snippet', 
             id : videoId, 
-            key: key},
+            key: key_x},
             function(data) {     
                 $('#player').html(data.items[0].player.embedHtml);
 
@@ -17,7 +17,7 @@
                     order: 'time',
                     videoId : videoId,
                     maxResults: 6,
-                    key: key},
+                    key: key_x},
                     function(data) {   
                         var contenido = '';
                         if (data.items.length > 0) {
@@ -75,20 +75,7 @@
     }
 </script>
 
-<div class="row">
-    <div class="small-12 column">
-        <h1>Conectados</h1>
-        <h3>Encuentros digitales con expertos</h3>
-    </div>
-</div>
-<div class="row">
-    <div class="small-12 column">
-        <p>Te ponemos en contacto con técnicos del Ayuntamiento para que puedas resolver tus dudas sobre el <b>COVID-19</b> en todos los ámbitos de actuación.</p>
-        <br>
-        <p>Cada lunes, un experto contestará en directo a tus preguntas.</p>
-        <p><b>Próximo encuentro:</b> Diariamente</p>
-    </div>
-</div>
+<%= Setting.find_by(key: 'text_madrid_balcon').try(:value).try(:html_safe)%>
 <div class="row">
     <div id="player" class="small-6 column">
     </div>
@@ -103,4 +90,4 @@
         <div id="playlist">No hay vídeos disponibles</div> 
     </div>
 </div>
-<%= javascript_tag "uploadData('#{ @key}', '#{ @videoId }', '#{@playlistId}')" %>
+<%= javascript_tag "uploadData('#{ @key}', '#{@key_x}', '#{ @videoId }', '#{@playlistId}')" %>
