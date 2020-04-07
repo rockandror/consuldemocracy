@@ -134,7 +134,7 @@ class Legislation::ProcessesController < Legislation::BaseController
       elsif @current_filter == "winners"
         @proposals = @proposals.send(@current_filter).page(params[:page])
       elsif  @current_filter == "proposals_top_relevance"
-        @proposals = Kaminari.paginate_array(@proposals.sort_by {|x| x.total_votes}.reverse.take(10)).page(params[:page])
+        @proposals = Kaminari.paginate_array(@proposals.sort_by {|x| x.likes}.reverse.take(10)).page(params[:page])
       elsif @current_filter == "updated"
         @proposals = @proposals.order(updated_at: :desc).page(params[:page])
       else

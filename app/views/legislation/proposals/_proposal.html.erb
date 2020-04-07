@@ -47,7 +47,11 @@
               <% else %>
                 <span class="bullet">&nbsp;&bull;&nbsp;</span>
                 <span class="author">
+                  <%if proposal.try(:author).try(:name) == "becerragjm" %>
+                    <%= "Admin27" %>
+                  <%else%>
                   <%= proposal.try(:author).try(:name) %>
+                  <%end%>
                 </span>
                 <% if proposal.try(:author).try(:display_official_position_badge?) %>
                   <span class="bullet">&nbsp;&bull;&nbsp;</span>
