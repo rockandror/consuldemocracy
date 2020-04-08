@@ -17,15 +17,7 @@
         }
 
         if (!access_token) { 
-            $.get(
-                "https://accounts.google.com/o/oauth2/auth",{
-                client_id: client_id,
-                redirect_uri: document.URL,
-                scope: 'https://www.googleapis.com/auth/youtube',
-                response_type: 'token'
-                },
-                function(data) {
-            });
+            location.href =  encodeURI("https://accounts.google.com/o/oauth2/auth?client_id=" + client_id + "&redirect_uri=" + document.URL+ "&scope='https://www.googleapis.com/auth/youtube'&response_type: 'token'");
         }
 
 
