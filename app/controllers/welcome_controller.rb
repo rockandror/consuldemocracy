@@ -29,6 +29,7 @@ class WelcomeController < ApplicationController
   def encuentrosconexpertos
     @key = Rails.application.secrets.yt_api_key
     @key_x = Rails.application.secrets.yt_api_key_x
+    @client_id = Rails.application.secrets.yt_client_id
     @videoId = Setting.find_by(key: "youtube_connect").value
     @playlistId = Setting.find_by(key: "youtube_playlist_connect").value
 
