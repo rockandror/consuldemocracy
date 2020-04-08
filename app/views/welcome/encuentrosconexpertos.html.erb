@@ -1,21 +1,7 @@
 
 
 <script>
-    function uploadData(key, key_x, videoId, playlist, client_id) {     
-        var url = String(document.URL).replace("#","?");
-        url = String(url.match(/\?+.+/));
-        url = url.replace(/\?/, "");
-        url = url.split("&");
-        var access_token = null
-
-        for (var i=0;i < url.length; i++) {
-            var p = url[i].split("=");
-            if (p[0] == "access_token") {
-                access_token = decodeURIComponent(p[1]);
-                break;
-            }
-        }
-
+    function uploadData(key, key_x, videoId, playlist, embed_domain ) {     
         $.get(
             "https://www.googleapis.com/youtube/v3/videos",{
             part : 'player,snippet', 
@@ -24,54 +10,7 @@
             function(data) {     
                 $('#player').html(data.items[0].player.embedHtml);
                 if (data.items[0].snippet.liveBroadcastContent != 'none' ) {
-                    if (!access_token) { 
-                        location.href =  encodeURI("https://accounts.google.com/o/oauth2/auth?client_id=" + client_id + "&redirect_uri=" + document.URL+ "&scope=https://www.googleapis.com/auth/youtube&response_type=token");
-                    }
-                    if (!access_token) {
-                        $('#comments').html("No hay acceso al canal live streaming");
-                    } else {
-                        $.get(
-                            "https://www.googleapis.com/youtube/v3/liveBroadcasts",{
-                            part: "snippet",
-                            id: videoId,
-                            key: key,
-                            access_token: access_token
-                            },
-                            function(data) {
-                                if (data.error) {
-                                    $('#comments').html("No está habilitado el canal live streaming");
-                                } else {
-                                    $.get(
-                                        "https://www.googleapis.com/youtube/v3/liveChat/messages",{
-                                        part: "snippet, authorDetails",
-                                        liveChatId: data.items[0].snippet.liveChatId,
-                                        key: key,
-                                        access_token: access_token
-                                        },
-                                        function(data) {
-                                            if (data.error) {
-                                                $('#comments').html("No está habilitado el chat del canal live streaming");
-                                            } else {
-                                                if (data.items.length > 0) {
-                                                    $.each( data.items, function( i, cont ) {
-                                                        var item = cont.snippet
-                                                        var author = cont.authorDetails.displayName
-                                                        var datecre =  new Date(Date.parse(item.publishedAt));
-                                                        var fecha = datecre.getDay() + "/" + datecre.getMonth() + "/" + datecre.getFullYear();
-                                                        contenido = contenido + "<p><b>" + author + "</b> - <span class='desc_video'>" + fecha + "</span></p><p>" + item.displayMessage + "</p>"
-                            
-                                                    });
-                                                }else {
-                                                    contenido = "No hay comentarios disponibles";
-                                                }
-                                                $('#comments').html(contenido);
-                                            }
-                                        }
-                                    );
-                                }
-                            }
-                        );
-                    }
+                    $('#comments').html("<iframe src=https://www.youtube.com/live_chat?v="+videoId+"&embed_domain="+embed_domain+" width='100%' height='600'></iframe>");
                 } else {
                     $.get(
                         "https://www.googleapis.com/youtube/v3/commentThreads",{
@@ -153,4 +92,4 @@
         <div id="playlist">No hay vídeos disponibles</div> 
     </div>
 </div>
-<%= javascript_tag "uploadData('#{ @key}', '#{@key_x}', '#{ @videoId }', '#{@playlistId}','#{@client_id}')" %>
+<%= javascript_tag "uploadData('#{ @key}', '#{@key_x}', '#{ @videoId }', '#{@playlistId}','#{@embed_domain}')" %>
