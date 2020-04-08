@@ -2,32 +2,19 @@
 
 <script>
     function uploadData(key, key_x, videoId, playlist, client_id) {     
-        var url = document.URL;
-        url = String(url.match(/\?+.+ | \#+.+/));
-        url = url.replace(/\?|\#/, "");
+        var url = String(document.URL).replace("#","?");
+        url = String(url.match(/\?+.+/));
+        url = url.replace(/\?/, "");
         url = url.split("&");
         var access_token = null
 
-        for (i=0;i < url.length; i++) {
-            p = url[i].split("=");
+        for (var i=0;i < url.length; i++) {
+            var p = url[i].split("=");
             if (p[0] == "access_token") {
                 access_token = decodeURIComponent(p[1]);
                 break;
             }
         }
-
-        if (!access_token) { 
-            $.get(
-                "https://accounts.google.com/o/oauth2/auth",{
-                client_id: client_id,
-                redirect_uri: document.URL,
-                scope: 'https://www.googleapis.com/auth/youtube',
-                response_type: 'token'
-                },
-                function(data) {
-            });
-        }
-
 
         $.get(
             "https://www.googleapis.com/youtube/v3/videos",{
@@ -37,6 +24,9 @@
             function(data) {     
                 $('#player').html(data.items[0].player.embedHtml);
                 if (data.items[0].snippet.liveBroadcastContent != 'none' ) {
+                    if (!access_token) { 
+                        location.href =  encodeURI("https://accounts.google.com/o/oauth2/auth?client_id=" + client_id + "&redirect_uri=" + document.URL+ "&scope=https://www.googleapis.com/auth/youtube&response_type=token");
+                    }
                     if (!access_token) {
                         $('#comments').html("No hay acceso al canal live streaming");
                     } else {
