@@ -78,13 +78,13 @@
                  data: { confirm: t("moderation.proposals.index.confirm") } %>
 
   <div class="float-right">
-    <% if params[:filter].to_s != "with_confirmed_hide_at" %>
+    <% if params[:filter].to_s != "with_confirmed_hide_at" || params[:filter].to_s != "other_with_confirmed_hide_at" %>
       <%= submit_tag t("moderation.proposals.index.hide_proposals"),
                   name: "hide_proposals",
                   class: "button hollow alert",
                   data: { confirm: t("moderation.proposals.index.confirm") } %>
     <% end %>
-    <% if params[:filter].to_s != "with_ignored_flag"%>
+    <% if params[:filter].to_s != "with_ignored_flag" || params[:filter].to_s != "other_with_ignored_flag"%>
       <%= submit_tag t("moderation.proposals.index.ignore_flags"),
                    name: "ignore_flags",
                    class: "button hollow",
