@@ -2,7 +2,7 @@
   <div class="small-12 medium-6 large-8 column">
     <% if f.object.permit_html_safe%>
       <div class="ckeditor">
-        <%= f.cktext_area :value, label: false,ckeditor: { language: I18n.locale }, id: dom_id(setting), lines: 1 %>
+        <%= f.cktext_area :value, label: false,ckeditor: { language: I18n.locale, :toolbar => 'admin' }, id: dom_id(setting), lines: 1 %>
       </div>
     <%else%>
       <%= f.text_area :value, label: false, id: dom_id(setting), lines: 1 %>
