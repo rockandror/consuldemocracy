@@ -27,6 +27,8 @@ class Admin::AdministratorsController < Admin::BaseController
         else
           @administrator.destroy
         end
+      else
+        flash[:error] = I18n.t("admin.administrators.administrator.restricted_removal")
       end
 
       redirect_to admin_administrators_path
