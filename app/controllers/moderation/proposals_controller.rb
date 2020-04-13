@@ -23,7 +23,7 @@ class Moderation::ProposalsController < Moderation::BaseController
     end
     @proposals_legislation = @proposals_legislation.send(:"#{@current_filter}")
 
-    if @current_filter.to_s != "no_flags_other_proposals" &&  @current_filter.to_s != "other_with_ignored_flag"
+    if @current_filter.to_s != "no_flags_other_proposals" &&  @current_filter.to_s != "other_with_ignored_flag" && @current_filter.to_s != "no_hidden_other_proposals"
       @datos_comunes =  @proposals_legislation.no_other_proposal + @proposals
     else
       @datos_comunes =  @proposals_legislation
@@ -46,9 +46,13 @@ class Moderation::ProposalsController < Moderation::BaseController
     @proposals = @proposals.where("id IN (?)", params[:new_proposal_ids])
 
     if params[:hide_proposals].present?
-      @proposals_legislation.accessible_by(current_ability, :hide).each {|proposal_legislation| hide_resource proposal_legislation}
-      @proposals.accessible_by(current_ability, :hide).each {|proposal| hide_resource proposal}
-
+      #begin
+        @proposals_legislation.accessible_by(current_ability, :hide).each {|proposal_legislation| hide_resource proposal_legislation}
+        @proposals.accessible_by(current_ability, :hide).each {|proposal| hide_resource proposal}
+      # rescue
+      #   xxx
+      #   flash[:error] = t("moderation.proposals.index.error")
+      # end
     elsif params[:ignore_flags].present?
       @proposals_legislation.accessible_by(current_ability, :ignore_flag).each(&:ignore_flag)
       @proposals.accessible_by(current_ability, :ignore_flag).each(&:ignore_flag)
