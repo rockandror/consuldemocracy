@@ -23,7 +23,7 @@ App.Comments =
     input = form_container.find("form textarea")
     input.val("")
     form_container.hide()
-
+    
   reset_form: (id) ->
     input = $("#js-comment-form-#{id} form textarea")
     input.val("")
