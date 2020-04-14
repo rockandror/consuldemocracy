@@ -76,8 +76,11 @@
         
     }
 </script>
-
-<%= Setting.find_by(key: 'text_madrid_balcon').try(:value).try(:html_safe)%>
+<div class="row">
+    <div class="small-12 column">
+        <%= markdown(Setting.find_by(key: 'text_madrid_balcon').try(:value).to_s)%>
+    </div>
+</div>
 <div class="row">
     <div id="player" class="small-6 column">
     </div>
