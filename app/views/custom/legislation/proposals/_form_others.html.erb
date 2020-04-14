@@ -16,8 +16,8 @@
                 <%= s.select :entity_type, ["SA.", "SAU.", "SRL", "CB", "SC", "Autónomo"] %>
             <%end%>
         </div>
-        <p><%= s.check_box :justify_text_declaration_1, label: false%> <%=Setting.find_by(key: "other_proposal_declaration_1").try(:value).try(:html_safe)%></p>
-        <p><%= s.check_box :justify_text_declaration_2, label: false%> <%=Setting.find_by(key: "other_proposal_declaration_2").try(:value).try(:html_safe)%></p>
+        <p><%= s.check_box :justify_text_declaration_1, label: false%> <%=markdown(Setting.find_by(key: "other_proposal_declaration_1").try(:value).to_s)%></p>
+        <p><%= s.check_box :justify_text_declaration_2, label: false%> <%=markdown(Setting.find_by(key: "other_proposal_declaration_2").try(:value).to_s)%></p>
     <%end%>
 </div>
 <script>
