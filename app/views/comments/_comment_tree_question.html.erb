@@ -51,50 +51,52 @@
               </div>
             </div>
           <% end %>
+        <% end %>
           <% if display_comments_count %>
-            <a href="#" id="show_whatever"><h2>
+            <a href="#" id="show_comments_list"><h2>
               <%= "Otras respuestas" %>
               <span class="js-comments-count">(<%= commentable.comments_count %>)</span>
             </h2></a>
           <% end %>
-          <div id="whatever">
             <%= render "shared/wide_order_selector", i18n_namespace: "comments" %>
-            
-            <% if comments_closed_for_commentable?(commentable) %>
+          
+            <% if user_signed_in? %>
+              <% if comments_closed_for_commentable?(commentable) %>
+                <br>
+                <div data-alert class="callout primary">
+                  <%= comments_closed_text(commentable) %>
+                </div>
+              <% elsif require_verified_resident_for_commentable?(commentable, current_user) %>
+                <br>
+                
+              <% elsif allow_comments %>
+                <%= render "comments/form_question", { commentable: commentable,
+                                              parent_id: nil,
+                                              toggeable: false,
+                                              valuation: valuation } %>
+              
+          <div id="comments_list">
+                <% comment_tree.root_comments.each do |comment| %>
+                  <%= render "comments/comment", { comment: comment,
+                                                  comment_flags: comment_flags,
+                                                  valuation: valuation,
+                                                  allow_votes: !valuation,
+                                                  allow_actions: !valuation,
+                                                  allow_comments: allow_comments } %>
+                <% end %>
+              
+                <%= paginate comment_tree.root_comments %>
+              <% end %>
+          </div>
+            <% else %>
               <br>
               <div data-alert class="callout primary">
-                <%= comments_closed_text(commentable) %>
+                <%= t("debates.show.login_to_comment",
+                    signin: link_to(t("votes.signin"), new_user_session_path),
+                    signup: link_to(t("votes.signup"), new_user_registration_path)).html_safe %>
               </div>
-            <% elsif require_verified_resident_for_commentable?(commentable, current_user) %>
-              <br>
-              
-            <% elsif allow_comments %>
-              <%= render "comments/form_question", { commentable: commentable,
-                                            parent_id: nil,
-                                            toggeable: false,
-                                            valuation: valuation } %>
             <% end %>
         
-            <% comment_tree.root_comments.each do |comment| %>
-              <%= render "comments/comment", { comment: comment,
-                                              comment_flags: comment_flags,
-                                              valuation: valuation,
-                                              allow_votes: !valuation,
-                                              allow_actions: !valuation,
-                                              allow_comments: allow_comments } %>
-            <% end %>
-            
-            <%= paginate comment_tree.root_comments %>
-          
-        <% else %>
-          <br>
-          <div data-alert class="callout primary">
-            <%= t("debates.show.login_to_comment",
-                signin: link_to(t("votes.signin"), new_user_session_path),
-                signup: link_to(t("votes.signup"), new_user_registration_path)).html_safe %>
-          </div>
-        <% end %>
-        </div>
       </div>
     </div>
   </section>

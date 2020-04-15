@@ -148,8 +148,8 @@ $(function(){
 });
 
 $(function() {
-  $('a#show_whatever').click(function(event){
+  $('a#show_comments_list').click(function(event){
     event.preventDefault();
-    $('div#whatever').toggle();
+    $('div#comments_list').toggle();
   });
 }); 
