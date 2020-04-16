@@ -1087,6 +1087,7 @@ form {
 
   .cke_textarea_inline {
     @include form-element;
+    height: auto;
     overflow-y: auto;
   }
 
