@@ -147,7 +147,6 @@ $(function(){
   $(document).on("ajax:complete", initialize_modules);
 });
 
-
 function hide_comments() {
   var x = document.getElementById("comments_list");
   if (x.style.display === "none") {
