@@ -20,11 +20,21 @@
           <td><%= user.document_number %></td>
           <td><%= display_user_roles(user) %></td>
           <td><%= user.user_type %></td>
-          <td><%= link_to t("admin.users.user.delete"),
+          <td>
+            <%if !current_user.administrator? || !current_user.manager? %>
+              <%= link_to t("admin.users.user.delete"),
+                  admin_user_path(user),
+                  method: :hidden,
+                  class: "button hollow alert expanded",
+                  :data => {:confirm => t("admin.users.user.hidden_data")} %>
+            <% else %>
+              <%= link_to t("admin.users.user.delete"),
                   admin_user_path(user),
                   method: :delete,
                   class: "button hollow alert expanded",
-                  :data => {:confirm => t("admin.users.user.confirm_data")}%></td>
+                  :data => {:text_area, :confirm => t("admin.users.user.confirm_data")} %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>

@@ -15,6 +15,10 @@ class Admin::UsersController < Admin::BaseController
     redirect_to admin_users_path
   end
 
+  def hidden
+    xxxx
+  end
+  
   # def destroy
   #   begin
   #     ActiveRecord::Base.transaction do
