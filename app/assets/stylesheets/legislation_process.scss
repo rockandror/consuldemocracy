@@ -252,10 +252,19 @@
         vertical-align: middle;
       }
 
+      .icon-angle-left {
+        vertical-align: middle;
+        color: $brand !important;
+      }
+      .icon-angle-left:hover {
+        vertical-align: middle;
+        color: #fff !important;
+      }
+
       &:hover,
       &:active {
-        background: $brand;
-        color: #fff;
+        background: $brand !important;
+        color: #fff !important;
         text-decoration: none;
       }
     }

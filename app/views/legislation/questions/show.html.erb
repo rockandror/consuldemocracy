@@ -2,7 +2,17 @@
 
 <section class="debate-questions">
   <div class="quiz-header row small-collapse">
-    <div class="small-12 medium-9 column">
+    <div class="small-12 medium-3 column">
+      <% if !@question.last_question_id.blank? %>
+        <%= link_to legislation_process_question_path(@process, @question.last_question_id), class: "quiz-next-link" do %>
+          <%= content_tag :div, class: "quiz-next" do %>
+            <span class="icon-angle-left" aria-hidden="true">
+            <%= t(".last_question") %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="small-12 <%= !@question.last_question_id.blank? ? "medium-6" : "medium-9"%> column">
       <div class="quiz-title">
         <p class="quiz-header-title"><%= t(".title") %></p>
         <h4><%= link_to @process.title, @process %></h4>
@@ -28,7 +38,7 @@
   </div>
   <div class="row">
     <div class="small-12 medium-9 column">
-      <h3 class="quiz-question"><%= @question.title %></h3>
+      <h2 class="quiz-question"><%= @question.title %></h2>
       <div class="debate-questions" id="legislation-answer-form">
         <%= render "answer_form", process: @process, question: @question, answer: @answer %>
         <%= render "participation_not_allowed" %>
@@ -42,7 +52,7 @@
     </aside>
   </div>
 
-  <%= render partial: "/comments/comment_tree", locals: { comment_tree: @comment_tree,
+  <%= render partial: "/comments/comment_tree_question", locals: { comment_tree: @comment_tree,
                                                           comment_flags: @comment_flags,
                                                           display_comments_count: true } %>
 </section>

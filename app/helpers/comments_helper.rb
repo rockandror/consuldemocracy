@@ -2,7 +2,7 @@ module CommentsHelper
 
   def comment_tree_title_text(commentable)
     if commentable.class == Legislation::Question
-      t("legislation.questions.comments.comments_title")
+      t("legislation.questions.comments.other_comments")
     else
       t("comments_helper.comments_title")
     end
