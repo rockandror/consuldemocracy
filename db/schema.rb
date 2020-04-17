@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200401171050) do
+ActiveRecord::Schema.define(version: 20200407104540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1362,8 +1362,9 @@ ActiveRecord::Schema.define(version: 20200401171050) do
   end
 
   create_table "settings", force: :cascade do |t|
-    t.string "key"
-    t.string "value"
+    t.string  "key"
+    t.string  "value"
+    t.boolean "permit_html_safe", default: false
     t.index ["key"], name: "index_settings_on_key", using: :btree
   end
 
