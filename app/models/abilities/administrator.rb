@@ -89,6 +89,7 @@ module Abilities
 
       can :access, :ckeditor
       can :manage, Ckeditor::Picture
+      can :manage, Ckeditor::AttachmentFile
 
       can [:manage], ::Legislation::Process
       can [:manage], ::Legislation::DraftVersion

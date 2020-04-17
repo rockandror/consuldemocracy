@@ -98,4 +98,7 @@ describe Abilities::Administrator do
   it { should be_able_to(:manage, LocalCensusRecord) }
   it { should be_able_to(:create, LocalCensusRecords::Import) }
   it { should be_able_to(:show, LocalCensusRecords::Import) }
+
+  it { should be_able_to(:manage, Ckeditor::Picture) }
+  it { should be_able_to(:manage, Ckeditor::AttachmentFile) }
 end
