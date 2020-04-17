@@ -10,6 +10,7 @@ Rails.application.config.assets.version = "1.0"
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
 Rails.application.config.assets.precompile += %w[ckeditor/config.js]
+Rails.application.config.assets.precompile += %w[ckeditor/filebrowser/thumbs/*.*]
 Rails.application.config.assets.precompile += %w[stat_graphs.js]
 Rails.application.config.assets.precompile += %w[dashboard_graphs.js]
 Rails.application.config.assets.precompile += %w[print.css]
