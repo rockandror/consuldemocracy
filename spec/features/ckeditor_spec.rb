@@ -35,4 +35,18 @@ describe "CKEditor" do
 
     expect(page).to have_css "img[src$='clippy.jpg']"
   end
+
+  scenario "browsing ckeditor attachment files and upload button through link feature ", :js do
+    login_as(create(:administrator).user)
+
+    visit new_admin_site_customization_page_path
+    fill_in_ckeditor "Content", with: "Focus to make toolbar appear"
+    save_screenshot
+    find(".cke_button__link").click
+
+    new_window = window_opened_by { click_link "Browse Server" }
+    within_window new_window do
+      expect(page).to have_link "Upload"
+    end
+  end
 end
