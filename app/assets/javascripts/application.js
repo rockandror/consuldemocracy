@@ -147,9 +147,16 @@ $(function(){
   $(document).on("ajax:complete", initialize_modules);
 });
 
-$(function() {
-  $('a#show_comments_list').click(function(event){
-    event.preventDefault();
-    $('div#comments_list').toggle();
-  });
-}); 
+
+function hide_comments() {
+  var x = document.getElementById("comments_list");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function cleanCommentsForm() {
+  document.getElementById("new_comment").reset();
+}
