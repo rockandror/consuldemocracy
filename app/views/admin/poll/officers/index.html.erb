@@ -23,10 +23,10 @@
     <% @officers.each do |officer| %>
       <tr>
         <td>
-          <%= officer.name %>
+          <%= officer.try(:name) %>
         </td>
         <td>
-          <%= officer.email %>
+          <%= officer.try(:email) %>
         </td>
         <td>
           <% if officer.persisted? %>

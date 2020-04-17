@@ -126,6 +126,12 @@ class Setting < ApplicationRecord
         "meta_keywords": nil,
         "meta_title": nil,
         "min_age_to_participate": 16,
+        "months_to_double_verification": 3,
+        "youtube_connect": "KpgTWGu7ecI",
+        "youtube_playlist_connect": "PLhnvwI6F9eqXTZQc1yUGl4GX9s96u1AmK",
+        "other_proposal_declaration_1": "Soy el representante legal",
+        "other_proposal_declaration_2": "Declaración responsable",
+        "proposal_permit_text": "Texto especial para propuestas",
         "months_to_archive_proposals": 12,
         # Names for the moderation console, as a hint for moderators
         # to know better how to assign users with official positions
@@ -141,6 +147,7 @@ class Setting < ApplicationRecord
         "process.legislation": true,
         "process.polls": true,
         "process.proposals": true,
+        "process.legislation_proposals": true,
         "proposal_code_prefix": "MAD",
         "proposal_notification_minimum_interval_in_days": 3,
         "proposals.email_description": nil,

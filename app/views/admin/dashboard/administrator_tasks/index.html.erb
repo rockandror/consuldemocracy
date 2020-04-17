@@ -18,10 +18,10 @@
       <% @administrator_tasks.each do |task| %>
         <tr id="<%= dom_id(task) %>">
           <td>
-            <%= task.source.proposal.title %>
+            <%= task.try(:source).try(:proposal).try(:title) %>
           </td>
           <td>
-            <%= task.source.action.title %>
+            <%= task.try(:source).try(:action).try(:title) %>
           </td>
           <td class="text-right">
             <% unless task.executed_at? %>

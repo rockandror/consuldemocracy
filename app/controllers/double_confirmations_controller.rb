@@ -51,7 +51,7 @@ class DoubleConfirmationsController < ApplicationController
 
     private
     def send_sms(access_key)
-        SMSApi.new.sms_deliver(current_user.confirmed_phone, access_key)
+        SMSApi.new.sms_deliver(current_user.phone_number, access_key)
     end
 
     def block_user
@@ -71,7 +71,7 @@ class DoubleConfirmationsController < ApplicationController
 
     def encrypt_access_key(access_key)
         unless current_user.blank? 
-            Criptografia.new.encrypt(access_key)
+            access_key
         end
     end
 end

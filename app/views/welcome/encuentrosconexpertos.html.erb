@@ -1,0 +1,106 @@
+
+
+<script>
+    function uploadData(key, videoId, playlist) {      
+        $.get(
+            "https://www.googleapis.com/youtube/v3/videos",{
+            part : 'player,snippet', 
+            id : videoId, 
+            key: key},
+            function(data) {     
+                $('#player').html(data.items[0].player.embedHtml);
+
+
+                 $.get(
+                    "https://www.googleapis.com/youtube/v3/commentThreads",{
+                    part : 'snippet', 
+                    order: 'time',
+                    videoId : videoId,
+                    maxResults: 6,
+                    key: key},
+                    function(data) {   
+                        var contenido = '';
+                        if (data.items.length > 0) {
+                            $.each( data.items, function( i, cont ) {
+                                var item = cont.snippet.topLevelComment.snippet
+                                var datecre =  new Date(Date.parse(item.updatedAt));
+                                var fecha = datecre.getDay() + "/" + datecre.getMonth() + "/" + datecre.getFullYear();
+                                contenido = contenido + "<p><b>" + item.authorDisplayName + "</b> - <span class='desc_video'>" + fecha + "</span></p><p>" + item.textDisplay + "</p>"
+    
+                            });
+                        }else {
+                            contenido = "No hay comentarios disponibles";
+                            }
+                        $('#comments').html(contenido);
+                    }
+                );
+            }
+        );
+
+        $.get(
+            "https://www.googleapis.com/youtube/v3/playlistItems",{
+            part : 'snippet', 
+            playlistId : playlist, 
+            maxResults: 6,
+            key: key},
+            function(data) {   
+                var contenido = '';
+                if (data.items.length > 0) {
+                    $.each( data.items, function( i, cont ) {
+                    var item = cont.snippet
+                    var datecre =  new Date(Date.parse(item.publishedAt));
+                    var fecha = datecre.getDay() + "/" + datecre.getMonth() + "/" + datecre.getFullYear();
+                    contenido = contenido + "<div class='small-2 column'>"
+                    contenido = contenido + "<div class='row background_uniq_video'>"
+                    contenido = contenido + "<div class='small-12 column'>"
+                    contenido = contenido + "<a href='https://www.youtube.com/watch?v="+ item.resourceId.videoId + "' target='_blank'><img width='100%' src='" +item.thumbnails.high.url +"'></a>"
+                    contenido = contenido + "</div>"
+                    contenido = contenido + "</div>"
+                    contenido = contenido + "<div class='row background_uniq_video'>"
+                    contenido = contenido + "<div class='small-12 column'>"
+                    contenido = contenido + "<p><b>"+item.title.substring(0, 25)+"...</b></p>"
+                    contenido = contenido + "<p class='desc_video'>"+item.channelTitle+"</p>"
+                    contenido = contenido + "<p class='desc_video'>"+fecha+"</p>"
+                    contenido = contenido + "</div>"
+                    contenido = contenido + "</div>"
+                    contenido = contenido + "</div>"
+                    });
+                }else {
+                    contenido = "No hay vídeos disponibles";
+                }
+                $('#playlist').html(contenido);
+            }
+        );
+        
+    }
+</script>
+
+<div class="row">
+    <div class="small-12 column">
+        <h1>Conectados</h1>
+        <h3>Encuentros digitales con expertos</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="small-12 column">
+        <p>Te ponemos en contacto con técnicos del Ayuntamiento para que puedas resolver tus dudas sobre el <b>COVID-19</b> en todos los ámbitos de actuación.</p>
+        <br>
+        <p>Cada lunes, un experto contestará en directo a tus preguntas.</p>
+        <p><b>Próximo encuentro:</b> Diariamente</p>
+    </div>
+</div>
+<div class="row">
+    <div id="player" class="small-6 column">
+    </div>
+    <div class="small-6 column background_comments">
+        <h3>Comentarios más recientes</h3>
+        <div id="comments">No hay comentarios disponibles</div>
+    </div>
+</div>
+<div class="row background_videos">
+    <div class="small-12 column">
+        <h3>Videoconferencias realizadas anteriormente</h3>
+        <div id="playlist">No hay vídeos disponibles</div> 
+    </div>
+</div>
+<%= javascript_tag "uploadData('#{ @key}', '#{ @videoId }', '#{@playlistId}')" %>

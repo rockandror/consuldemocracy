@@ -4,7 +4,7 @@
 
 <%= render "shared/filter_subnav", i18n_namespace: "admin.activity.show" %>
 
-<% if @activity.any? %>
+<% if !@activity.blank? %>
   <h3 class="margin"><%= page_entries_info @activity %></h3>
 
   <table>
@@ -18,36 +18,38 @@
     </thead>
     <tbody>
       <% @activity.each do |activity| %>
-        <tr id="<%= dom_id(activity) %>">
-          <td class="align-top">
-            <strong><%= activity.actionable_type.constantize.model_name.human %></strong><br>
-            <span class="date"><%= l activity.actionable.created_at.to_date %></span>
-          </td>
-          <td class="align-top">
-            <%= t("admin.activity.show.actions.#{activity.action}") %><br>
-            <span class="date"><%= l activity.created_at.to_date %></span>
-          </td>
-          <td class="align-top">
-            <% case activity.actionable_type %>
-            <% when "User" %>
-              <%= activity.actionable.username %> (<%= activity.actionable.email %>)
-            <% when "Comment" %>
-              <%= activity.actionable.body %>
-            <% when "Newsletter" %>
-              <strong><%= activity.actionable.subject %></strong>
-            <% when "ProposalNotification" %>
-              <strong><%= activity.actionable.title %></strong>
-              <br>
-              <%= activity.actionable.body %>
-            <% else %>
-              <strong><%= activity.actionable.title %></strong>
-              <br>
-              <%= activity.actionable.description %>
-            <% end %>
-          <td class="align-top">
-            <%= activity.user.name %> (<%= activity.user.email %>)
-          </td>
-        </tr>
+        <% unless activity.blank? %>
+          <tr id="<%= dom_id(activity) unless activity.blank? %>">
+            <td class="align-top">
+              <strong><%= activity.try(:actionable_type).try(:constantize).try(:model_name).try(:human) %></strong><br>
+              <span class="date"><%= l activity.try(:actionable).try(:created_at).try{|x| x.to_date} %></span>
+            </td>
+            <td class="align-top">
+              <%= t("admin.activity.show.actions.#{activity.try(:action)}") %><br>
+              <span class="date"><%= l activity.try(:created_at).try{|x| x.to_date} %></span>
+            </td>
+            <td class="align-top">
+              <% case activity.try(:actionable_type) %>
+              <% when "User" %>
+                <%= activity.try(:actionable).try(:username) %> (<%= activity.try(:actionable).try(:email) %>)
+              <% when "Comment" %>
+                <%= activity.try(:actionable).try(:body) %>
+              <% when "Newsletter" %>
+                <strong><%= activity.try(:actionable).try(:subject) %></strong>
+              <% when "ProposalNotification" %>
+                <strong><%= activity.try(:actionable).try(:title) %></strong>
+                <br>
+                <%= activity.try(:actionable).try(:body) %>
+              <% else %>
+                <strong><%= activity.try(:actionable).try(:title) %></strong>
+                <br>
+                <%= activity.try(:actionable).try(:description) %>
+              <% end %>
+            <td class="align-top">
+              <%= activity.try(:user).try(:name) %> (<%= activity.try(:user).try(:email) %>)
+            </td>
+          </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>

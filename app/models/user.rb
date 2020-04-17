@@ -150,7 +150,7 @@ class User < ApplicationRecord
   end
 
   def administrator?
-    administrator.present?
+    !Administrator.find_by(user_id: self.id).blank?
   end
 
   def moderator?
@@ -255,7 +255,7 @@ class User < ApplicationRecord
   end
 
   def phone_number_present?
-    !self.try(:phone_number).blank? && !self.try(:confirmed_phone).blank?  && (self.phone_number == self.confirmed_phone)
+    !self.try(:phone_number).blank? # && !self.try(:confirmed_phone).blank?  && (self.phone_number == self.confirmed_phone)
   end
 
   def double_verification?
@@ -264,19 +264,19 @@ class User < ApplicationRecord
   end
 
   def verification_in_net?
-    !self.ip_out_of_internal_red? && self.administrator?
+    !self.ip_out_of_internal_red? && !self.administrator.blank?
   end
 
   def encrypt_access_key(access_key)
     if !self.blank? && !access_key.blank?
-        Criptografia.new.encrypt(access_key)
+       access_key
     end
   end
 
   def decrypt_access_key(encrypted_access_key)
       begin
           if !self.blank? && !encrypted_access_key.blank?
-              Criptografia.new.decrypt(encrypted_access_key.to_s)
+             encrypted_access_key.to_s
           end
       rescue
          self.update(access_key_generated_at: nil)

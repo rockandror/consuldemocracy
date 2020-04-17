@@ -20954,6 +20954,9 @@ table .button {
 .debate-questions .quiz-header .quiz-next .icon-angle-right {
   vertical-align: middle;
 }
+.debate-questions .quiz-header .quiz-next .icon-angle-left {
+  vertical-align: middle;
+}
 /* line 255, /opt/CONSUL/consul/app/assets/stylesheets/legislation_process.scss */
 .debate-questions .quiz-header .quiz-next:hover, .debate-questions .quiz-header .quiz-next:active {
   background: #004a83;
@@ -28083,6 +28086,12 @@ h3.kit-decide .number {
 }
 /* line 153, /opt/CONSUL/consul/app/assets/stylesheets/custom/_welcome.scss */
 .see-all .icon-angle-right {
+  display: inline-block;
+  height: 1.0625rem;
+  vertical-align: middle;
+}
+
+.see-all .icon-angle-left {
   display: inline-block;
   height: 1.0625rem;
   vertical-align: middle;

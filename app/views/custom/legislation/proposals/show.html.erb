@@ -10,6 +10,7 @@
   <%= render "shared/canonical", href: legislation_process_proposal_url(process_id: @process) %>
 <% end %>
 
+
 <div class="row process-proposal">
   <div class="small-12 column">
     <div class="header">
@@ -20,11 +21,13 @@
     </div>
   </div>
 </div>
+
+
 <% if !@process.in_zone(current_user) %>
     <div class="row margin-top">
         <div class="small-12 medium-9 column">
             <div class="callout warning">
-                <%= t("polls.show.cant_legislation_wrong_geozone") %>
+                <%= current_user.blank? ? t("polls.show.cant_legislation_wrong_user") : t("polls.show.cant_legislation_wrong_geozone") %>
             </div>
         </div>
     </div>
@@ -33,15 +36,33 @@
   <div class="proposal-show legislation-proposal-show">
     <div id="<%= dom_id(@proposal) %>" class="row">
       <div class="small-12 medium-9 column">
-        <%= back_link_to legislation_process_proposals_path(process_id: @process) %>
-
-        <h1><%= @proposal.title %></h1>
+        <% if @proposal.type_other_proposal.blank?  %>
+          <%= back_link_to legislation_process_proposals_path(process_id: @process) %>
+        <%else%>
+          <%= back_link_to legislation_process_proposals_path(process_id: @process, type: 'others', filter: @proposal.type_other_proposal) %>
+        <%end%>
+        <% if @proposal.type_other_proposal.blank?%>
+          <h1><%= @proposal.title %></h1>
+        <%else%>
+          <h1><%= @proposal.other_proposal.name %></h1>
+          <%if !current_user.blank?  && current_user.id == @proposal.author.id%>
+            <div class="small-12 medium-4 column">
+              <p><%= link_to t("proposals.index.edit_organization"),
+                          edit_legislation_process_proposal_path(@process, @proposal),
+                          class: "button expanded",
+                          id: "update-edit-proposal" %></p>
+            </div>
+          <%end%>
+        <%end%>
         <% if @proposal.conflictive? %>
           <div data-alert class="callout alert margin-top">
             <strong><%= t("proposals.show.flag") %></strong>
           </div>
         <% end %>
 
+        <% if !@proposal.type_other_proposal.blank?%>
+          <h2><%= @proposal.title %></h2>
+        <%end%>
         <div class="proposal-info">
           <%= render "/shared/author_info", resource: @proposal %>
 
@@ -61,7 +82,7 @@
         <%= render_image(@proposal.image, :large, true) if @proposal.image.present? %>
 
         <br>
-
+        
         <% if @proposal.is_proposal? %>
           <p>
             <%= t("proposals.show.code") %>
@@ -70,7 +91,7 @@
 
           <blockquote><%= @proposal.summary %></blockquote>
         <% end %>
-
+        
         <% if @proposal.is_proposal? && @proposal.video_url.present? %>
           <div class="small-12 medium-7 small-centered">
             <div class="flex-video">
@@ -80,6 +101,10 @@
         <% end %>
 
         <%= safe_html_with_links @proposal.description %>
+
+        <% unless @proposal.type_other_proposal.blank? %>
+          <p><%= render "others", proposal: @proposal %></p>
+        <%end%>
 
         <% if @proposal.is_proposal? && @proposal.video_url.present? %>
           <div class="video-link">
@@ -107,7 +132,7 @@
             <%= render "shared/geozone", geozonable: @proposal %>
           <% end %>
         <% end %>
-
+        
         <div class="js-moderator-proposal-actions margin">
           <%= render "proposals/actions", proposal: @proposal %>
         </div>

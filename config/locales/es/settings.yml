@@ -2,6 +2,16 @@ es:
   settings:
     months_to_double_verification: Meses para la doble verificación
     months_to_double_verification_description: Meses tras los que se requerirá que el administrador introduzca una nueva clave
+    other_proposal_declaration_1: Texto checkbox propuestas procesos declarante
+    other_proposal_declaration_1_description: Texto del checkbox de las propuestas de transportes, asociaciones o comercios de los procesos para indicar el declarante
+    other_proposal_declaration_2: Texto checkbox propuestas procesos aceptar declaración responsable
+    other_proposal_declaration_2_description: Texto del checkbox de las propuestas de transportes, asociaciones o comercios de los procesos para aceptar la declaración responsable
+    youtube_connect: Video YouTube de encuentros
+    youtube_connect_description: Video YouTube de encuentros con expertos, video principal
+    proposal_permit_text: Texto explicativo de propuestas de procesos
+    proposal_permit_text_description: Texto explicativo que se muestra en las propuestas de procesos, después de las pestañas principales
+    youtube_playlist_connect: Playlist YouTube de encuentros
+    youtube_playlist_connect_description: Playlist YouTube de encuentros con expertos, video realizados anteriormente
     comments_body_max_length: "Longitud máxima de los comentarios"
     comments_body_max_length_description: "En número de caracteres"
     official_level_1_name: "Cargos públicos de nivel 1"
@@ -62,6 +72,8 @@ es:
     meta_keywords_description: 'Palabras clave <meta name="keywords">, utilizadas para mejorar el SEO'
     min_age_to_participate: Edad mínima para participar
     min_age_to_participate_description: "Los usuarios mayores de esta edad podrán participar en todos los procesos donde se necesite una cueta verificada"
+    winner_text: Texto de propuestas seleccionadas de un proceso
+    winner_text_description: Este texto aparecerá en el apartado de propuestas seleccionadas dentro de un proceso
     verification_offices_url: URL oficinas verificación
     proposal_notification_minimum_interval_in_days: "Intervalo mínimo (en días) para que los autores de propuestas puedan enviar nuevas notificaciones de propuesta"
     proposal_notification_minimum_interval_in_days_description: "El número de días en los que un usuario puede enviar una notificación a todos los que apoyan su propuesta"

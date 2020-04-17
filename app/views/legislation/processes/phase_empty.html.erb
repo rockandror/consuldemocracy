@@ -11,9 +11,9 @@
 <div class="debate-chooser">
   <div class="row">
     <div class="small-12 column">
-       <% if !@process.in_zone(current_user) %>
+    <% if !@process.in_zone(current_user) %>
         <div class="callout warning">
-          <%= t("polls.show.cant_legislation_wrong_geozone") %>
+          <%= current_user.blank? ? t("polls.show.cant_legislation_wrong_user") : t("polls.show.cant_legislation_wrong_geozone") %>
         </div>
       <%else%>
         <div class="callout primary">

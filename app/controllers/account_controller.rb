@@ -20,7 +20,7 @@ class AccountController < ApplicationController
   private
 
     def set_account
-      @account = current_user
+      @account = User.find(current_user.try(:id))
     end
 
     def account_params

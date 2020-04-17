@@ -10,20 +10,20 @@
     <p>
       <strong><%= t("admin.questions.show.question") %></strong>
       <br>
-      <%= @question.title %>
+      <%= @question.try(:title) %>
     </p>
 
     <p>
       <strong><%= t("admin.questions.show.author") %></strong>
       <br>
-      <%= link_to @question.author.name, user_path(@question.author) %>
+      <%= link_to @question.author.name, user_path(@question.try(:author)) %>
     </p>
 
-    <% if @question.proposal.present? %>
+    <% if @question.try(:proposal).present? %>
       <p>
         <strong><%= t("admin.questions.show.proposal") %></strong>
         <br>
-        <%= link_to @question.proposal.title, proposal_path(@question.proposal) %>
+        <%= link_to @question.proposal.title, proposal_path(@question.try(:proposal)) %>
       </p>
     <% end %>
   </div>
@@ -55,19 +55,19 @@
         <td class="align-top"><%= link_to answer.title, admin_answer_path(answer) %></td>
         <td class="align-top break"><%= answer.description %></td>
         <td class="align-top text-center">
-          (<%= answer.images.count %>)
+          (<%= answer.try(:images).count %>)
           <br>
           <%= link_to t("admin.questions.show.answers.images_list"),
                       admin_answer_images_path(answer) %>
         </td>
         <td class="align-top text-center">
-          (<%= answer.documents.count rescue 0 %>)
+          (<%= answer.try(:documents).count rescue 0 %>)
           <br>
           <%= link_to t("admin.questions.show.answers.documents_list"),
                       admin_answer_documents_path(answer) %>
         </td>
         <td class="align-top text-center">
-          (<%= answer.videos.count %>)
+          (<%= answer.try(:videos).count %>)
           <br>
           <%= link_to t("admin.questions.show.answers.video_list"),
                       admin_answer_videos_path(answer) %>
@@ -77,10 +77,10 @@
   </tbody>
 </table>
 
-<% if @question.video_url.present? %>
+<% if @question.try(:video_url).present? %>
   <p>
     <strong><%= t("admin.questions.show.video_url") %></strong>
     <br>
-    <a href="<%= @question.video_url %>"><%= @question.video_url %></a>
+    <a href="<%= @question.try(:video_url) %>"><%= @question.try(:video_url) %></a>
   </p>
 <% end %>

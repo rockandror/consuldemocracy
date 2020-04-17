@@ -17,10 +17,10 @@
   <tbody>
     <% @geozones.each do |geozone| %>
       <tr id="<%= dom_id(geozone) %>">
-        <td><%= geozone.name %></td>
-        <td><%= geozone.external_code %></td>
-        <td><%= geozone.census_code %></td>
-        <td class="break"><%= geozone.html_map_coordinates %></td>
+        <td><%= geozone.try(:name) %></td>
+        <td><%= geozone.try(:external_code) %></td>
+        <td><%= geozone.try(:census_code) %></td>
+        <td class="break"><%= geozone.try(:html_map_coordinates) %></td>
         <td>
           <div class="small-6 column">
             <%= link_to t("admin.geozones.index.edit"),

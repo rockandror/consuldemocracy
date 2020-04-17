@@ -146,3 +146,10 @@ $(function(){
   $(document).on("page:load", initialize_modules);
   $(document).on("ajax:complete", initialize_modules);
 });
+
+$(function() {
+  $('a#show_comments_list').click(function(event){
+    event.preventDefault();
+    $('div#comments_list').toggle();
+  });
+}); 

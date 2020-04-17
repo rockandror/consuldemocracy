@@ -55,6 +55,11 @@ es:
         filters:
           random: Aleatorias
           winners: Seleccionadas
+          carriers: Reparto
+          proposals_top_relevance: Las 10 más votadas
+          shops: Comercios
+          associations: Asociaciones
+          updated: Más actualizadas
       debate:
         empty_questions: No hay preguntas
         participate: Realiza tus aportaciones al debate previo participando en los siguientes temas.
@@ -88,10 +93,15 @@ es:
         result_publication_date: Publicación resultados
         milestones_date: Seguimiento
         proposals_dates: Propuestas
+        carriers: Reparto
+        shops: Comercios
+        associations: Asociaciones
+        others: Ecosistema
     questions:
       comments:
         comment_button: Publicar respuesta
         comments_title: Respuestas abiertas
+        other_comments: Otras respuestas
         comments_closed: Fase cerrada
         form:
           leave_comment: Deja tu respuesta
@@ -103,6 +113,7 @@ es:
         debate: Debate
       show:
         answer_question: Enviar respuesta
+        last_question: Anterior pregunta 
         next_question: Siguiente pregunta
         first_question: Primera pregunta
         share: Compartir
