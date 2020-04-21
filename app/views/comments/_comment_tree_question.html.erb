@@ -52,7 +52,7 @@
             </div>
           <% end %>
         <% end %>
-        <a id="show_comments_list" onclick="hide_comments()">
+        <a id="show_comments_list" onclick="hide_element('comments_list')">
             <h2>
               <%= comment_tree_title_text(commentable) %>
               <span class="js-comments-count">(<%= commentable.comments_count %>)</span>

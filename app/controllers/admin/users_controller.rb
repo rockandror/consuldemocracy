@@ -15,8 +15,12 @@ class Admin::UsersController < Admin::BaseController
     redirect_to admin_users_path
   end
 
-  def hidden
+  def hidden(data)
+    puts "========================================================"
+    puts data
+    puts "========================================================"
     xxxx
+    redirect_to admin_users_path
   end
   
   # def destroy

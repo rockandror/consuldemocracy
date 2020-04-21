@@ -120,6 +120,10 @@ namespace :admin do
 
   resources :users, only: [:index, :show, :destroy]
 
+  resources :users do
+    get :hidden, on: :collection
+  end
+
   scope module: :poll do
     resources :polls do
       get :booth_assignments, on: :collection
