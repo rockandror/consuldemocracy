@@ -3,6 +3,7 @@ App.Comments =
   add_comment: (parent_id, response_html) ->
     $(response_html).insertAfter($("#js-comment-form-#{parent_id}"))
     this.update_comments_count()
+    cleanCommentsForm()
 
   add_reply: (parent_id, response_html) ->
     if $("##{parent_id} .comment-children").length == 0

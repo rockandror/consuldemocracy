@@ -52,14 +52,13 @@
             </div>
           <% end %>
         <% end %>
-
-        <% if display_comments_count %>
-          <a href="#" id="show_comments_list"><h2>
-            <%= comment_tree_title_text(commentable) %>
-            <span class="js-comments-count">(<%= commentable.comments_count %>)</span>
-          </h2></a>
-          <p class="help-text" id="responsible-name-help-text"><%= "Pulsa para mostrar los comentarios" %></p>
-        <% end %>
+        <a id="show_comments_list" onclick="hide_comments()">
+            <h2>
+              <%= comment_tree_title_text(commentable) %>
+              <span class="js-comments-count">(<%= commentable.comments_count %>)</span>
+            </h2>
+            <p class="help-text" id="responsible-name-help-text"><%= "Pulsa para mostrar los comentarios" %></p>
+        </a>
         
         <div id="comments_list" style="display:none">
           <%= render "shared/wide_order_selector", i18n_namespace: "comments" %>
