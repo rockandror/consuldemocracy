@@ -1,0 +1,79 @@
+.investments-list {
+  @include flex-grid-row;
+  margin-top: $line-height;
+
+  > header {
+    @include grid-column-gutter;
+    width: 100%;
+  }
+
+  .investments-list-item {
+    @extend %panel;
+    @include xy-gutters;
+    border-radius: rem-calc(6);
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin-bottom: $line-height / 2;
+    position: relative;
+
+    @include breakpoint(medium) {
+      $gap: rem-calc(map-get($grid-margin-gutters, medium));
+      width: calc(33.33% - #{$gap});
+    }
+
+    img {
+      border-top-left-radius: rem-calc(6);
+      border-top-right-radius: rem-calc(6);
+      flex: 1;
+      width: fit-content;
+    }
+
+    .budget-investment-content {
+      padding: 0 rem-calc(12);
+    }
+
+    .supports-and-price {
+      background: $light;
+      display: table;
+      table-layout: fixed;
+
+      .price-title,
+      .supports-title {
+        color: #7b7b7b;
+        display: block;
+        font-size: $small-font-size;
+        text-transform: uppercase;
+      }
+    }
+
+    .table-cell {
+      padding: $line-height / 4 $line-height / 2;
+
+      &:first-child {
+        position: relative;
+      }
+    }
+
+    .read-more {
+      float: right;
+      margin-top: $line-height * 2;
+    }
+  }
+
+  .supports-and-price {
+
+    .table-cell:first-child {
+
+      &::after {
+        content: "\f559";
+        font-family: "Font Awesome 5 Free";
+        font-size: rem-calc(30);
+        font-weight: bold;
+        position: absolute;
+        right: 12px;
+        top: 6px;
+      }
+    }
+  }
+}
