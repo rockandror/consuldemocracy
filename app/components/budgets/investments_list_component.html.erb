@@ -1,0 +1,15 @@
+<% if investments.any? %>
+  <section class="investments-list">
+    <header>
+      <h2><%= t("budgets.show.investments_list") %></h2>
+    </header>
+
+    <% investments.each do |investment| %>
+      <%= render Budgets::InvestmentComponent.new(investment) %>
+    <% end %>
+  </section>
+<% end %>
+
+<% unless budget.informing? %>
+  <%= render "all_investments_link", budget: budget %>
+<% end %>
