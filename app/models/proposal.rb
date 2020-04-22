@@ -120,7 +120,7 @@ class Proposal < ApplicationRecord
 
   def searchable_values
     { title              => "A",
-      author.username    => "B",
+      author.try(:username)    => "B",
       tag_list.join(" ") => "B",
       geozone.try(:name) => "B",
       summary            => "C",
