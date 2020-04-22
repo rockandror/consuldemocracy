@@ -10,7 +10,7 @@
             function(data) {     
                 $('#player').html(data.items[0].player.embedHtml.replace("width=\"480\"", "").replace("height=\"270\"", ""));
                 if (data.items[0].snippet.liveBroadcastContent != 'none' ) {
-                    $('#comments').html("<iframe src=https://www.youtube.com/live_chat?v="+videoId+"&embed_domain="+embed_domain+" width='100%' height='600'></iframe>");
+                    $('#comments').html("<iframe src=https://www.youtube.com/live_chat?v="+videoId+"&embed_domain="+embed_domain+" width='100%' height='600'><br></iframe>");
                 } else {
                     $.get(
                         "https://www.googleapis.com/youtube/v3/commentThreads",{
@@ -80,7 +80,7 @@
     </div>
 </div>
 <div class="row">
-    <div id="player" class="small-12 medium-6 column" style="padding: 0px">
+    <div id="player" class="small-12 medium-6 column video-responsive" style="padding: 0px">
     </div>
     <div class="small-12 medium-6 column background_comments">
         <h3>Comentarios más recientes</h3>
