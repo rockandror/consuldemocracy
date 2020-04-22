@@ -24,7 +24,7 @@ class Admin::HiddenProposalsController < Admin::BaseController
     if params[:tipo] == 'legislation_proposal'
       @proposals_legislation.confirm_hide
     else
-      @proposal.confirm_hide
+      @proposals.confirm_hide
     end
     redirect_to admin_hidden_proposals_path(params_strong)
   end
@@ -34,8 +34,8 @@ class Admin::HiddenProposalsController < Admin::BaseController
       @proposals_legislation.restore
       @proposals_legislation.ignore_flag
     else
-      @proposal.restore
-      @proposal.ignore_flag
+      @proposals.restore
+      @proposals.ignore_flag
     end
     Activity.log(current_user, :restore, @datos_comunes)
     redirect_to admin_hidden_proposals_path(params_strong)
