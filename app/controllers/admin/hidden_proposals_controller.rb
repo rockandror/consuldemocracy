@@ -48,8 +48,11 @@ class Admin::HiddenProposalsController < Admin::BaseController
   end
 
   def load_proposal
-    @proposals_legislation = Legislation::Proposal.with_hidden.find(params[:id])
-    @proposals = Proposal.with_hidden.find(params[:id])
+    if params[:tipo] == 'legislation_proposal'
+      @proposals_legislation = Legislation::Proposal.with_hidden.find(params[:id])
+    else
+      @proposals = Proposal.with_hidden.find(params[:id])
+    end
   end
 
   def load_resources
