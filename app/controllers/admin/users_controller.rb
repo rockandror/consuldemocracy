@@ -3,6 +3,14 @@ class Admin::UsersController < Admin::BaseController
 
   def index
     @users = User.by_username_email_or_document_number(params[:search]) if params[:search]
+    
+
+    if !params[:hidden_users].blank?  
+      @users = @users.where("username LIKE 'Usuario dado de baja-%'")
+    else
+      @users = @users.where("username NOT LIKE 'Usuario dado de baja-%'")
+    end
+
     @users = @users.page(params[:page])
     respond_to do |format|
       format.html
@@ -16,7 +24,6 @@ class Admin::UsersController < Admin::BaseController
   # end
   
   def destroy
-    xxx
     begin
       ActiveRecord::Base.transaction do
         Administrator.where(user_id: @user.id).each do |admin|
@@ -108,10 +115,22 @@ class Admin::UsersController < Admin::BaseController
     rescue
       flash[:alert] = t("admin.users.user.no_deleted")
     end
-    redirect_to admin_users_path
+    redirect_to admin_users_path(hidden_users: true)
   end
 
   def hide
-    redirect_to admin_users_path
+    
+    if !params[:hidden_data].blank?
+      user = User.find(params[:id])
+      user.username = "Usuario dado de baja-" + user.id.to_s + "-" + params[:hidden_data].to_s
+      user.save
+      redirect_to admin_users_path, notice: "Usuario #{user.id.to_s} dado de baja." 
+    else
+      redirect_to admin_users_path, alert: "Debe introducir la causa de la baja para poder eliminar un usuario."
+    end
+  end
+  
+  def hide_params
+    params.require(:hide).permit(:hidden_data)
   end
 end

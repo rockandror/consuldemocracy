@@ -44,9 +44,7 @@ namespace :admin do
   end
 
   resources :users, only: [:index, :show, :destroy] do
-    member do
-      put :hide
-    end
+    get :hide, on: :member
   end
 
   resources :proposal_notifications, only: :index do
