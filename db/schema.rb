@@ -689,7 +689,7 @@ ActiveRecord::Schema.define(version: 20200407104540) do
     t.text     "type_other_proposal"
     t.text     "name"
     t.text     "address"
-    t.text     "phone"
+    t.integer  "phone"
     t.text     "agent"
     t.text     "agent_title"
     t.boolean  "citizen_entities"

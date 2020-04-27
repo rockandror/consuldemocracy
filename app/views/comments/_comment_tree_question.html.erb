@@ -1,0 +1,105 @@
+<% commentable = comment_tree.commentable %>
+<% valuation = local_assigns.fetch(:valuation, false) %>
+<% allow_comments = local_assigns.fetch(:allow_comments, true) %>
+<% cache [locale_and_user_status, comment_tree.order, commentable_cache_key(commentable), comment_tree.comments, comment_tree.comment_authors, commentable.comments_count, comment_flags] do %>
+  <section class="expanded comments">
+    <div class="row">
+      <div id="comments" class="small-12 column">
+        <% if user_signed_in? %>
+          <% css_id = parent_or_commentable_dom_id(nil, commentable) %>
+          <%= form_for Comment.new, remote: true do |f| %>
+            <div class="row">
+              <div class="small-9 column">
+                <%= label_tag "comment-body-#{css_id}", leave_comment_text(commentable, nil) %>
+                <%= f.text_area :body,rows: 3, maxlength: Comment.body_max_length, label: false %>
+              </div>
+              <%= f.hidden_field :commentable_type, value: commentable.class.name %>
+              <%= f.hidden_field :commentable_id, value: commentable.id %>
+              <%= f.hidden_field :parent_id, value: nil %>
+              <%= f.hidden_field :valuation, value: valuation %>
+              <div class="small-3 column">
+                <div class="row" style="padding-top:1.5em">
+                  <div class="col-md-12">
+                    <% if can? :comment_as_moderator, commentable %>
+                      <div>
+                        <%= f.check_box :as_moderator,
+                                        title: t("comments.form.comment_as_moderator"),
+                                        id: "comment-as-moderator-#{css_id}",
+                                        label: false %>
+                        <%= label_tag "comment-as-moderator-#{css_id}",
+                                      t("comments.form.comment_as_moderator"),
+                                      class: "checkbox" %>
+                      </div>
+                    <% end %>
+
+                    <% if can? :comment_as_administrator, commentable %>
+                      <div>
+                        <%= f.check_box :as_administrator,
+                                        title: t("comments.form.comment_as_admin"),
+                                        id: "comment-as-administrator-#{css_id}",
+                                        label: false %>
+                        <%= label_tag "comment-as-administrator-#{css_id}", t("comments.form.comment_as_admin"), class: "checkbox" %>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <%= f.submit comment_button_text(nil, commentable), class: "button", id: "publish_comment" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+        <a id="show_comments_list" onclick="hide_comments()">
+            <h2>
+              <%= comment_tree_title_text(commentable) %>
+              <span class="js-comments-count">(<%= commentable.comments_count %>)</span>
+            </h2>
+            <p class="help-text" id="responsible-name-help-text"><%= "Pulsa para mostrar los comentarios" %></p>
+        </a>
+        
+        <div id="comments_list" style="display:none">
+          <%= render "shared/wide_order_selector", i18n_namespace: "comments" %>
+          <% if user_signed_in? %>
+              <% if comments_closed_for_commentable?(commentable) %>
+                <br>
+                <div data-alert class="callout primary">
+                  <%= comments_closed_text(commentable) %>
+                </div>
+              <% elsif require_verified_resident_for_commentable?(commentable, current_user) %>
+                <br>
+                
+              <% elsif allow_comments %>
+                <%= render "comments/form_question", { commentable: commentable,
+                                              parent_id: nil,
+                                              toggeable: false,
+                                              valuation: valuation } %>
+              
+                <% comment_tree.root_comments.each do |comment| %>
+                  <%= render "comments/comment", { comment: comment,
+                                                  comment_flags: comment_flags,
+                                                  valuation: valuation,
+                                                  allow_votes: !valuation,
+                                                  allow_actions: !valuation,
+                                                  allow_comments: allow_comments } %>
+                <% end %>
+              
+                <%= paginate comment_tree.root_comments %>
+              <% end %>  
+          
+              
+          <% else %>
+            <br>
+            <div data-alert class="callout primary">
+              <%= t("debates.show.login_to_comment",
+                  signin: link_to(t("votes.signin"), new_user_session_path),
+                  signup: link_to(t("votes.signup"), new_user_registration_path)).html_safe %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+<% end %>

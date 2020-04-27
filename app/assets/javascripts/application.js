@@ -146,3 +146,16 @@ $(function(){
   $(document).on("page:load", initialize_modules);
   $(document).on("ajax:complete", initialize_modules);
 });
+
+function hide_comments() {
+  var x = document.getElementById("comments_list");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function cleanCommentsForm() {
+  document.getElementById("new_comment").reset();
+}
