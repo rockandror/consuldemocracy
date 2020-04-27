@@ -86,7 +86,7 @@ class Signature < ApplicationRecord
 
   def set_user
     user = User.find_by(document_number: document_number)
-    update(user: user)
+    update!(user: user)
   end
 
   def mark_as_verified

@@ -22,7 +22,7 @@ class Legislation::Proposal < ApplicationRecord
   belongs_to :process, foreign_key: "legislation_process_id", inverse_of: :proposals
   belongs_to :author, -> { with_hidden }, class_name: "User", inverse_of: :legislation_proposals
   belongs_to :geozone
-  has_many :comments, as: :commentable, inverse_of: :commentable
+  has_many :comments, as: :commentable, inverse_of: :commentable, dependent: :destroy
 
   validates :title, presence: true
   validates :summary, presence: true

@@ -30,7 +30,7 @@ class Dashboard::ActionsController < Dashboard::BaseController
   def execute
     authorize! :dashboard, proposal
 
-    Dashboard::ExecutedAction.create(proposal: proposal, action: dashboard_action,
+    Dashboard::ExecutedAction.create!(proposal: proposal, action: dashboard_action,
                                                          executed_at: Time.current)
     redirect_to request.referer
   end

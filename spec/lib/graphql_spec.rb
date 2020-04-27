@@ -1,7 +1,7 @@
 require "rails_helper"
 
-api_types  = GraphQL::ApiTypesCreator.create(GraphqlController::API_TYPE_DEFINITIONS)
-query_type = GraphQL::QueryTypeCreator.create(api_types)
+api_types  = GraphQL::ApiTypesCreator.create!(GraphqlController::API_TYPE_DEFINITIONS)
+query_type = GraphQL::QueryTypeCreator.create!(api_types)
 ConsulSchema = GraphQL::Schema.define do
   query query_type
   max_depth 12

@@ -1,7 +1,7 @@
 class Milestone::Status < ApplicationRecord
   acts_as_paranoid column: :hidden_at
 
-  has_many :milestones
+  has_many :milestones, dependent: :destroy
 
   validates :name, presence: true
 end

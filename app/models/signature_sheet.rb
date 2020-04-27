@@ -4,7 +4,7 @@ class SignatureSheet < ApplicationRecord
 
   VALID_SIGNABLES = %w[Proposal Budget::Investment].freeze
 
-  has_many :signatures
+  has_many :signatures, dependent: :destroy
 
   validates :author, presence: true
   validates :signable_type, inclusion: { in: VALID_SIGNABLES }

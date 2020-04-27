@@ -1,9 +1,9 @@
 class Geozone < ApplicationRecord
   include Graphqlable
 
-  has_many :proposals
-  has_many :debates
-  has_many :users
+  has_many :proposals, dependent: :destroy
+  has_many :debates, dependent: :destroy
+  has_many :users, dependent: :destroy
   validates :name, presence: true
 
   scope :public_for_api, -> { all }

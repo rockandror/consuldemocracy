@@ -126,6 +126,6 @@ class Image < ApplicationRecord
                         cached_attachment: cached_attachment,
                         user: user)
       image.set_attachment_from_cached_attachment
-      image.attachment.destroy
+      image.attachment.destroy!
     end
 end

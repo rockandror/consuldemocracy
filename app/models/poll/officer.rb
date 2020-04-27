@@ -1,9 +1,9 @@
 class Poll
   class Officer < ApplicationRecord
     belongs_to :user
-    has_many :officer_assignments
-    has_many :shifts
-    has_many :failed_census_calls, foreign_key: :poll_officer_id, inverse_of: :poll_officer
+    has_many :officer_assignments, dependent: :destroy
+    has_many :shifts, dependent: :destroy
+    has_many :failed_census_calls, foreign_key: :poll_officer_id, inverse_of: :poll_officer, dependent: :destroy
 
     validates :user_id, presence: true, uniqueness: true
 

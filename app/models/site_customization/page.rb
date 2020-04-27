@@ -3,7 +3,8 @@ class SiteCustomization::Page < ApplicationRecord
   has_many :cards,
     class_name:  "Widget::Card",
     foreign_key: "site_customization_page_id",
-    inverse_of:  :page
+    inverse_of:  :page,
+    dependent: :destroy
 
   translates :title,       touch: true
   translates :subtitle,    touch: true

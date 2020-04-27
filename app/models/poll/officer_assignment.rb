@@ -2,10 +2,10 @@ class Poll
   class OfficerAssignment < ApplicationRecord
     belongs_to :officer
     belongs_to :booth_assignment
-    has_many :ballot_sheets
-    has_many :partial_results
-    has_many :recounts
-    has_many :voters
+    has_many :ballot_sheets, dependent: :destroy
+    has_many :partial_results, dependent: :destroy
+    has_many :recounts, dependent: :destroy
+    has_many :voters, dependent: :destroy
 
     validates :officer_id, presence: true
     validates :booth_assignment_id, presence: true

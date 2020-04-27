@@ -16,18 +16,18 @@ class Poll < ApplicationRecord
 
   RECOUNT_DURATION = 1.week
 
-  has_many :booth_assignments, class_name: "Poll::BoothAssignment"
-  has_many :booths, through: :booth_assignments
+  has_many :booth_assignments, class_name: "Poll::BoothAssignment", dependent: :destroy
+  has_many :booths, through: :booth_assignments, dependent: :destroy
   has_many :partial_results, through: :booth_assignments
   has_many :recounts, through: :booth_assignments
-  has_many :voters
+  has_many :voters, dependent: :destroy
   has_many :officer_assignments, through: :booth_assignments
   has_many :officers, through: :officer_assignments
   has_many :questions, inverse_of: :poll, dependent: :destroy
-  has_many :comments, as: :commentable, inverse_of: :commentable
-  has_many :ballot_sheets
+  has_many :comments, as: :commentable, inverse_of: :commentable, dependent: :destroy
+  has_many :ballot_sheets, dependent: :destroy
 
-  has_many :geozones_polls
+  has_many :geozones_polls, dependent: :destroy
   has_many :geozones, through: :geozones_polls
   belongs_to :author, -> { with_hidden }, class_name: "User", inverse_of: :polls
   belongs_to :related, polymorphic: true

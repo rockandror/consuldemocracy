@@ -6,7 +6,7 @@ module Milestoneable
 
     scope :with_milestones, -> { joins(:milestones).distinct }
 
-    has_many :progress_bars, as: :progressable, inverse_of: :progressable
+    has_many :progress_bars, as: :progressable, inverse_of: :progressable, dependent: :destroy
 
     acts_as_taggable_on :milestone_tags
 

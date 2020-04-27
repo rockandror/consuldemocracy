@@ -1,8 +1,8 @@
 class Poll
   class Booth < ApplicationRecord
-    has_many :booth_assignments
+    has_many :booth_assignments, dependent: :destroy
     has_many :polls, through: :booth_assignments
-    has_many :shifts
+    has_many :shifts, dependent: :destroy
 
     validates :name, presence: true, uniqueness: true
 

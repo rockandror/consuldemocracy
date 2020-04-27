@@ -7,9 +7,9 @@ class Poll
 
     has_many :officer_assignments, dependent: :destroy
     has_many :officers, through: :officer_assignments
-    has_many :voters
-    has_many :partial_results
-    has_many :recounts
+    has_many :voters, dependent: :destroy
+    has_many :partial_results, dependent: :destroy
+    has_many :recounts, dependent: :destroy
 
     def shifts?
       shifts.empty? ? false : true

@@ -203,7 +203,7 @@ shared_examples "mappable" do |mappable_factory_name, mappable_association_name,
     end
 
     scenario "Should not display map on #{mappable_factory_name} show when marker is not defined", :js do
-      mappable_without_map = create(mappable_factory_name.to_s.to_sym)
+      mappable_without_map = create!(mappable_factory_name.to_s.to_sym)
       set_arguments(arguments, mappable_without_map, mappable_path_arguments)
       arguments[:id] = mappable_without_map.id
 

@@ -1,7 +1,7 @@
 class Community < ApplicationRecord
-  has_one :proposal
-  has_one :investment, class_name: "Budget::Investment"
-  has_many :topics
+  has_one :proposal, dependent: :destroy
+  has_one :investment, class_name: "Budget::Investment", dependent: :destroy
+  has_many :topics, dependent: :destroy
 
   def participants
     users_participants = users_who_commented +

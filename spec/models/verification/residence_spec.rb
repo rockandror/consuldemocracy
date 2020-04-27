@@ -94,7 +94,7 @@ describe Verification::Residence do
   describe "Failed census call" do
     it "stores failed census API calls" do
       residence = build(:verification_residence, :invalid, document_number: "12345678Z")
-      residence.save
+      residence.save!
 
       expect(FailedCensusCall.count).to eq(1)
       expect(FailedCensusCall.first).to have_attributes(

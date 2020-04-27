@@ -110,7 +110,7 @@ describe Officing::Residence do
                           :invalid,
                           document_number: "12345678Z",
                           postal_code: "00001")
-        residence.save
+        residence.save!
 
         expect(FailedCensusCall.count).to eq(1)
         expect(FailedCensusCall.first).to have_attributes(
@@ -202,7 +202,7 @@ describe Officing::Residence do
 
     it "stores failed census calls" do
       residence = build(:officing_residence, :invalid, document_number: "12345678Z")
-      residence.save
+      residence.save!
 
       expect(FailedCensusCall.count).to eq(1)
       expect(FailedCensusCall.first).to have_attributes(

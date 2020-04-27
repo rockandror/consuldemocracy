@@ -18,12 +18,12 @@ class RemoteTranslations::Caller
           resource.send(:"#{field}=", translations[index])
         end
       end
-      resource.save
+      resource.save!
     end
 
     def destroy_remote_translation
       if resource.valid?
-        remote_translation.destroy
+        remote_translation.destroy!
         resource.save!
       else
         remote_translation.update(error_message: resource.errors.messages)

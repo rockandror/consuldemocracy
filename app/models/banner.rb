@@ -13,7 +13,7 @@ class Banner < ApplicationRecord
   validates :post_started_at, presence: true
   validates :post_ended_at, presence: true
 
-  has_many :sections
+  has_many :sections, dependent: :destroy
   has_many :web_sections, through: :sections
 
   scope :with_active,   -> { where("post_started_at <= ?", Time.current).where("post_ended_at >= ?", Time.current) }
