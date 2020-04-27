@@ -31,6 +31,10 @@ class WelcomeController < ApplicationController
     redirect_to verification_path if signed_in?
   end
 
+  def ajax
+    puts "AJAX complete called for #{params[:url]}"
+  end
+
   private
 
     def set_user_recommendations

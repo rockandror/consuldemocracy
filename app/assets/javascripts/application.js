@@ -171,5 +171,7 @@ $(function() {
   "use strict";
 
   $(document).on("turbolinks:load", initialize_modules);
-  $(document).on("ajax:complete", initialize_modules);
+  $(document).on("ajax:complete", function(event) {
+    $.ajax({ url: "/ajax/" + event.target.id, method: "GET" });
+  });
 });
