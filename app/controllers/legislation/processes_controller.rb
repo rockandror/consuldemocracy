@@ -104,9 +104,9 @@ class Legislation::ProcessesController < Legislation::BaseController
     params[:type] ||= "other" if @process.permit_hiden_proposals
 
     if params[:type].blank?
-      @proposals = Legislation::Proposal.where(process: @process).where(type_other_proposal: nil).no_flags
+      @proposals = Legislation::Proposal.where(process: @process).where(type_other_proposal: nil)
     else
-      @proposals = Legislation::Proposal.where(process: @process).where("type_other_proposal is not null").no_flags
+      @proposals = Legislation::Proposal.where(process: @process).where("type_other_proposal is not null").with_ignored_flag
     end
     
     @proposals = @proposals.search(params[:search]) if params[:search].present?
