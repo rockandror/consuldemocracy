@@ -517,6 +517,7 @@ es:
           permit_proposals_top_relevance: Habilitar filtro de pestaña de las 10 propuestas más votadas
           permit_hiden_proposals: Ocultar pestaña de propuestas
           other_proposals: Habilitar propuestas para reparto, comercios y asociaciones
+          permit_like_proposals: Mostrar apoyos de propuestas
         index:
           create: Nuevo proceso
           delete: Borrar
