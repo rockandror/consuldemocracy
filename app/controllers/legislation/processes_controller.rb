@@ -104,13 +104,12 @@ class Legislation::ProcessesController < Legislation::BaseController
     params[:type] ||= "other" if @process.permit_hiden_proposals
 
     if params[:type].blank?
-      @proposals = Legislation::Proposal.where(process: @process).where(type_other_proposal: nil)
+      @proposals = Legislation::Proposal.where(process: @process).where(type_other_proposal: nil).no_flags
     else
-      @proposals = Legislation::Proposal.where(process: @process).where("type_other_proposal is not null").with_ignored_flag
+      @proposals = Legislation::Proposal.where(process: @process).where("type_other_proposal is not null").no_flags
     end
     
     @proposals = @proposals.search(params[:search]) if params[:search].present?
-
     @current_filter = "random" if params[:filter].blank? #&& @proposals.winners.any?
     if params[:map].to_s != "false"
       if !params[:search].blank? && @proposals.count > 0

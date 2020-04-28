@@ -41,7 +41,6 @@
               <% end %>
             </li>
           <% end %>
-
           <% if process.allegations_phase.enabled? %>
             <li <%= "class=is-active" if phase.to_sym == :allegations_phase %>>
               <%= link_to allegations_legislation_process_path(process) do %>
