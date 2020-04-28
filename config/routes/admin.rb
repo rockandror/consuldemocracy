@@ -43,6 +43,10 @@ namespace :admin do
     end
   end
 
+  resources :users, only: [:index, :show, :destroy] do
+    get :hide, on: :member
+  end
+
   resources :proposal_notifications, only: :index do
     member do
       put :restore
@@ -118,7 +122,7 @@ namespace :admin do
     get :search, on: :collection
   end
 
-  resources :users, only: [:index, :show, :destroy]
+  #resources :users, only: [:index, :show, :destroy, :hide]
 
   scope module: :poll do
     resources :polls do

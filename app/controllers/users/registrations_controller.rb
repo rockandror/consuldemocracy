@@ -66,7 +66,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       params[:user].delete(:redeemable_code) if params[:user].present? && params[:user][:redeemable_code].blank?
       params.require(:user).permit(:username, :email, :password,
                                    :password_confirmation, :terms_of_service, :locale,
-                                   :use_redeemable_code, :redeemable_code)
+                                   :use_redeemable_code, :redeemable_code, :hidden_data)
     end
 
     def configure_permitted_parameters
