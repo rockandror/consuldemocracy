@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   resources :follows, only: [:create, :destroy]
   resources :remote_translations, only: [:create]
 
-  get "/ajax/:url", to: "welcome#ajax"
+  get "/ajax/", to: "welcome#ajax"
 
   # More info pages
   get "help",             to: "pages#show", id: "help/index",             as: "help"

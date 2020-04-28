@@ -172,6 +172,10 @@ $(function() {
 
   $(document).on("turbolinks:load", initialize_modules);
   $(document).on("ajax:complete", function(event) {
-    $.ajax({ url: "/ajax/" + event.target.id, method: "GET" });
+    if (event.target.action === undefined) {
+      $.ajax({ url: "/ajax/?url=" + event.target.dataset.method + event.target.href, method: "GET" });
+    } else {
+      $.ajax({ url: "/ajax/?url=" + event.target.method + event.target.action, method: "GET" });
+    }
   });
 });
