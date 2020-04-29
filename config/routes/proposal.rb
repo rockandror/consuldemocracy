@@ -36,6 +36,8 @@ resources :proposals do
     post :vote
     get :vote, action: :newsletter_vote
     post :vote_featured
+    post :borought
+    get :borought
     put :flag
     put :unflag
     get :retire_form
@@ -43,12 +45,16 @@ resources :proposals do
     get :created
     patch :retire
     patch :publish
+    get :districts_boroughts
   end
 
   collection do
     get :map
+    get :districts_boroughts
+    get :borought
     get :suggest
     get :summary
     put "recommendations/disable", only: :index, controller: "proposals", action: :disable_recommendations
   end
+
 end

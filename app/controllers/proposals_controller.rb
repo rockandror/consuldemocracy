@@ -39,7 +39,7 @@ class ProposalsController < ApplicationController
 
   def create
     @proposal = Proposal.new(proposal_params.merge(author: current_user))
-
+    
     if @proposal.save
       log_event("proposal", "create")
       redirect_to created_proposal_path(@proposal), notice: I18n.t("flash.actions.create.proposal")
@@ -119,6 +119,15 @@ class ProposalsController < ApplicationController
     redirect_to share_proposal_path(@proposal), notice: t("proposals.notice.published")
   end
 
+  def borought
+    puts "========================="
+    puts params
+    puts "========================="
+    xxx
+    @proposals = Proposal.find_by(geozone_id: id).where(comunity_hide: true)
+    redirect_to districts_boroughts_proposals_path(@proposals)
+  end
+
   private
 
     def proposal_params
@@ -130,6 +139,8 @@ class ProposalsController < ApplicationController
                                        :cached_attachment, :user_id, :_destroy],
                                        map_location_attributes: [:latitude, :longitude, :zoom])
     end
+
+    
 
     def retired_params
       params.require(:proposal).permit(:retired_reason, :retired_explanation)

@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="small-12 medium-9 column margin-top">
+    <h1><%= t("map.title") %></h1>
+    <div class="row">
+      <div class="small-12 medium-3 column">
+        <ul id="geozones" class="no-bullet">
+          <% @proposals.each do |proposal| %>
+                <li><%= link_to proposal.title, community_path(community.id) %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
