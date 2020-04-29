@@ -90,7 +90,7 @@ ast:
           other: "%{count} comentarios"
         debate: Alderique
       show:
-        answer_question: Enviar respuesta
+        answer_question: Enviar respuesta   
         next_question: Siguiente pregunta
         first_question: Primera pregunta
         share: Compartir

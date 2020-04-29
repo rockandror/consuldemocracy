@@ -25,6 +25,10 @@ class Legislation::Question < ApplicationRecord
     @next_question_id ||= process.questions.where("id > ?", id).sorted.limit(1).pluck(:id).first
   end
 
+  def last_question_id
+    @last_question_id ||= process.questions.where("id < ?", id).sorted.pluck(:id).last
+  end
+
   def first_question_id
     @first_question_id ||= process.questions.sorted.limit(1).pluck(:id).first
   end
