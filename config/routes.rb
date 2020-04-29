@@ -43,6 +43,7 @@ Rails.application.routes.draw do
 
   get "/madridsalealbalcon" => redirect("/legislation/processes/#{Rails.application.secrets.id}")
   get "/compartimosbarrio" => redirect("/legislation/processes/#{Rails.application.secrets.id_barrio}")
+  get "/reto-compartimos-barrio" => redirect("legislation/processes/#{Rails.application.secrets.id_reto_compartimos_barrio}/proposals")
   
   get "/consul.json", to: "installation#details"
   
