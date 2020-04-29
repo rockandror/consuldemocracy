@@ -100,13 +100,14 @@ class Legislation::ProcessesController < Legislation::BaseController
   def proposals
     set_process
     @phase = :proposals_phase
-
+    @aditional_filters = []
     params[:type] ||= "other" if @process.permit_hiden_proposals
 
     if params[:type].blank?
       @proposals = Legislation::Proposal.where(process: @process).where(type_other_proposal: nil)
     else
-      @proposals = Legislation::Proposal.where(process: @process).where("type_other_proposal is not null").with_ignored_flag
+      @aditional_filters = Legislation::Category.where(legislation_process_id: @process.id)
+      @proposals = Legislation::Proposal.where(process: @process).where("legislation_proposals.type_other_proposal is not null").with_ignored_flag
     end
     
     @proposals = @proposals.search(params[:search]) if params[:search].present?
@@ -145,8 +146,10 @@ class Legislation::ProcessesController < Legislation::BaseController
         @proposals = @proposals.where(type_other_proposal: "carriers").page(params[:page])
       elsif params[:filter] == "shops"
         @proposals = @proposals.where(type_other_proposal: "shops").page(params[:page])
-      else
+      elsif params[:filter] == "associations"
         @proposals = @proposals.where(type_other_proposal: "associations").page(params[:page])
+      else 
+        @proposals = @proposals.joins(:other_proposal => [:categories]).where("legislation_categories.tag = ?", params[:filter]).page(params[:page])
       end
     end
     

@@ -5,6 +5,7 @@ class Legislation::ProposalsController < Legislation::BaseController
 
   before_action :parse_tag_filter, only: :index
   before_action :load_categories, only: [:index, :new, :create, :edit, :map, :summary]
+  before_action :load_proccess_categories, only: [:new, :create, :edit, :update]
   before_action :load_geozones, only: [:edit, :map, :summary]
   before_action :destroy_map_location_association, only: :update
 
@@ -22,6 +23,14 @@ class Legislation::ProposalsController < Legislation::BaseController
 
   def show
     super
+    @categories_s = ""
+    @proposal.other_proposal.categories.each do |p|
+      if @categories_s.blank?
+        @categories_s = p.name
+      else
+        @categories_s = @categories_s + ", " + p.name
+      end
+    end
     legislation_proposal_votes(@process.proposals)
     @document = Document.new(documentable: @proposal)
     if request.path != legislation_process_proposal_path(params[:process_id], @proposal)
@@ -39,7 +48,7 @@ class Legislation::ProposalsController < Legislation::BaseController
     end
   end
 
-  def update
+  def update    
     if @proposal.update(proposal_params.merge(author: current_user))
       redirect_to legislation_process_proposal_path(params[:process_id], @proposal), notice: I18n.t("flash.actions.update.proposal")
     else
@@ -68,7 +77,9 @@ class Legislation::ProposalsController < Legislation::BaseController
                     image_attributes: image_attributes,
                     documents_attributes: [:id, :title, :attachment, :cached_attachment, :user_id],
                     other_proposal_attributes: [:type_other_proposal, :name, :address, :phone, :agent, :agent_title, :citizen_entities,
-                      :cif, :entity_type, :justify_text_declaration_1, :justify_text_declaration_2],
+                      :cif, :entity_type, :justify_text_declaration_1, :justify_text_declaration_2,
+                      category_ids: []                    
+                    ],
                     map_location_attributes: [:latitude, :longitude, :zoom])
     end
 
@@ -82,6 +93,11 @@ class Legislation::ProposalsController < Legislation::BaseController
 
     def load_successful_proposals
       @proposal_successful_exists = Legislation::Proposal.successful.exists?
+    end
+
+
+    def load_proccess_categories
+      @categories = Legislation::Category.where(legislation_process_id: params[:process_id])
     end
 
     def custom_search?

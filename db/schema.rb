@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200407104540) do
+ActiveRecord::Schema.define(version: 20200429091014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -659,6 +659,22 @@ ActiveRecord::Schema.define(version: 20200407104540) do
     t.index ["user_id"], name: "index_legislation_answers_on_user_id", using: :btree
   end
 
+  create_table "legislation_cat_prop", force: :cascade do |t|
+    t.integer "category_id"
+    t.integer "other_proposal_id"
+    t.index ["category_id"], name: "index_legislation_cat_prop_on_category_id", using: :btree
+    t.index ["other_proposal_id"], name: "index_legislation_cat_prop_on_other_proposal_id", using: :btree
+  end
+
+  create_table "legislation_categories", force: :cascade do |t|
+    t.text     "name"
+    t.text     "tag"
+    t.integer  "legislation_process_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["legislation_process_id"], name: "index_legislation_categories_on_legislation_process_id", using: :btree
+  end
+
   create_table "legislation_draft_version_translations", force: :cascade do |t|
     t.integer  "legislation_draft_version_id", null: false
     t.string   "locale",                       null: false
@@ -689,7 +705,7 @@ ActiveRecord::Schema.define(version: 20200407104540) do
     t.text     "type_other_proposal"
     t.text     "name"
     t.text     "address"
-    t.integer  "phone"
+    t.text     "phone"
     t.text     "agent"
     t.text     "agent_title"
     t.boolean  "citizen_entities"
@@ -1737,6 +1753,9 @@ ActiveRecord::Schema.define(version: 20200407104540) do
   add_foreign_key "geozones_polls", "polls"
   add_foreign_key "identities", "users"
   add_foreign_key "images", "users"
+  add_foreign_key "legislation_cat_prop", "legislation_categories", column: "category_id"
+  add_foreign_key "legislation_cat_prop", "legislation_other_proposals", column: "other_proposal_id"
+  add_foreign_key "legislation_categories", "legislation_processes"
   add_foreign_key "legislation_draft_versions", "legislation_processes"
   add_foreign_key "legislation_proposals", "legislation_other_proposals"
   add_foreign_key "legislation_proposals", "legislation_processes"

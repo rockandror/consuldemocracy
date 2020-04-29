@@ -1,0 +1,12 @@
+<div class="row nested-fields">
+    <%= f.hidden_field :id %>
+    <div class="medium-4 column">
+        <%= f.text_field :name %>
+    </div>
+    <div class="medium-4 column">
+        <%= f.text_field :tag %>
+    </div>
+    <div class="medium-4 column action-remove text-right">
+        <%=link_to_remove_association  t("categories.form.delete_button") , f, class: "delete"%>
+    </div>
+</div>

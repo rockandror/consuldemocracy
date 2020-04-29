@@ -3,7 +3,14 @@
   <li class="show-for-sr"><%= t("#{i18n_namespace}.filter") %>: </li>
   
   <%@valid_filters = ['random', 'winners', 'updated'] if !process.blank? && !process.try(:permit_proposals_top_relevance)%>
-  <%@valid_filters = ['shops','carriers', 'associations'] if !params[:type].blank?%>
+  <%if !params[:type].blank?
+    @valid_filters = ['shops','carriers', 'associations'] 
+    if !@aditional_filters.blank?
+      @aditional_filters.each do |cat|
+        @valid_filters.push(cat.tag)
+      end
+    end
+  end%>
   <% @valid_filters.each do |filter| %>
     <% if @current_filter == filter || params[:filter] == filter %>
       <li class="is-active"><h2><%= t("#{i18n_namespace}.filters.#{filter}") %></h2></li>
