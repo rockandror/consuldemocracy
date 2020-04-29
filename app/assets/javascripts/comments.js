@@ -43,12 +43,12 @@
       $("span#" + id + "_arrow").toggleClass("fa-minus-square").toggleClass("fa-plus-square");
     },
     initialize: function() {
-      $(document).on("click", "body .js-add-comment-link", function() {
+      $("body").on("click", ".js-add-comment-link", function() {
         App.Comments.toggle_form($(this).data().id);
         return false;
       });
 
-      $(document).on("click", "body .js-toggle-children", function() {
+      $("body").on("click", ".js-toggle-children", function() {
         var children_container_id;
         children_container_id = ($(this).data().id) + "_children";
         $("#" + children_container_id).toggle("slow");
