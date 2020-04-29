@@ -5,10 +5,10 @@ class ProposalsController < ApplicationController
   include ImageAttributes
 
   before_action :parse_tag_filter, only: :index
-  before_action :load_categories, only: [:index, :new, :create, :edit, :map, :summary]
-  before_action :load_geozones, only: [:edit, :map, :summary]
+  before_action :load_categories, only: [:index, :new, :create, :edit, :map, :summary, :borought]
+  before_action :load_geozones, only: [:edit, :map, :borought, :summary]
   before_action :login_user_with_newsletter_token!, only: :newsletter_vote
-  before_action :authenticate_user!, except: [:index, :show, :map, :summary]
+  before_action :authenticate_user!, except: [:index, :show, :map, :summary, :borought]
   before_action :destroy_map_location_association, only: :update
   before_action :set_view, only: :index
   before_action :proposals_recommendations, only: :index, if: :current_user
@@ -120,12 +120,8 @@ class ProposalsController < ApplicationController
   end
 
   def borought
-    puts "========================="
-    puts params
-    puts "========================="
-    xxx
-    @proposals = Proposal.find_by(geozone_id: id).where(comunity_hide: true)
-    redirect_to districts_boroughts_proposals_path(@proposals)
+    @district = Geozone.find(params[:geozone])
+    @proposals = Proposal.where(geozone_id: params[:geozone],comunity_hide: true)
   end
 
   private

@@ -1,14 +1,19 @@
 <div class="row">
   <div class="small-12 medium-9 column margin-top">
-    <h1><%= t("map.title") %></h1>
-    <div class="row">
-      <div class="small-12 medium-3 column">
-        <ul id="geozones" class="no-bullet">
-          <% @proposals.each do |proposal| %>
-                <li><%= link_to proposal.title, community_path(community.id) %></li>
-          <% end %>
-        </ul>
+  <%= back_link_to %>
+    <h1><%= @district.name %></h1>
+    <div class="boroughts">
+      <h2><%= t("map.boroughts") %></h2>
+      <div class="row" style="padding-left:1em">
+        <div class="small-12 medium-3 column">
+          <ul id="geozones" class="no-bullet">
+            <% @proposals.each do |proposal| %>
+                  <li><%= link_to proposal.title, community_path(proposal.try(:community).id) %></li>
+            <% end %>
+          </ul>
+        </div>
       </div>
     </div>
+    
   </div>
 </div>

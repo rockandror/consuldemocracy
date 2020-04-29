@@ -295,6 +295,7 @@ es:
       notifiable_hidden: Este elemento ya no está disponible.
   map:
     title: "Distritos"
+    boroughts: "Barrios"
     proposal_for_district: "Crea una propuesta para tu distrito"
     select_district: Ámbito de actuación
     start_proposal: Crea una propuesta
