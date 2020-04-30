@@ -26,7 +26,7 @@
             <div id="categories" >
                 <div class="row">
                 <%= s.collection_check_boxes(:category_ids, @categories, :id, :name) do |b| %>
-                    <div class="small-6 medium-3 column">
+                    <div class="small-6 medium-3 column" style="float: left">
                     <%= b.label do %>
                         <%= b.check_box + b.text %>
                     <% end %>
