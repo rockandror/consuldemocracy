@@ -10,5 +10,6 @@
         <div class="small-12 "><b><%=Legislation::OtherProposal.human_attribute_name(:cif)%>:</b> <%= proposal.try(:other_proposal).try(:cif) %></div>
         <div class="small-12 "><b><%=Legislation::OtherProposal.human_attribute_name(:entity_type)%>:</b> <%= proposal.try(:other_proposal).try(:entity_type) %></div>
     <%end%>
+    <div class="small-12 "><b><%=t("categories.form.title") %></b>: <%=@categories_s%></div>
     <br>
 </div>

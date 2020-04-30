@@ -88,6 +88,9 @@ es:
       legislation/process:
         one: "Proceso"
         other: "Procesos"
+      legislation/category:
+        one: "Categoría de ecosistema"
+        other: "Categorías de ecosistema"
       legislation/proposal:
         one: "Propuesta"
         other: "Propuestas"
@@ -254,6 +257,9 @@ es:
       banner:
         background_color: Color del fondo
         font_color: Color del texto
+      legislation/category:
+        name: Título
+        tag: Etiqueta
       legislation/proposal:
         type_other_proposal: Tipo de propuesta
       legislation/other_proposal:

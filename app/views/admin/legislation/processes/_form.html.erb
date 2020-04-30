@@ -192,7 +192,27 @@
   </div>
 
   
+  <div class="small-12 column">
+    <hr>
+  </div>
 
+  <div class="small-12 column">
+    <%= f.label :categories, t("categories.form.title") %>
+    <p class="help-text"><%= t("categories.form.title_placeholder") %></p>
+    <div id="nested-categories" >
+      <%= f.fields_for :categories do |c|%>
+       <%= render "category_fields", f: c %>
+      <%end%>
+    </div>
+
+    <%= link_to_add_association t("categories.form.add_new_document"), f, :categories,
+                                id: "new_category",
+                                class: "button hollow",
+                                data: {
+                                  association_insertion_node: "#nested-categories",
+                                  association_insertion_method: "append"
+                                } %>
+  </div>
   <div class="small-12 column">
     <hr>
   </div>
