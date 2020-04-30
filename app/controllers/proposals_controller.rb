@@ -5,10 +5,10 @@ class ProposalsController < ApplicationController
   include ImageAttributes
 
   before_action :parse_tag_filter, only: :index
-  before_action :load_categories, only: [:index, :new, :create, :edit, :map, :summary]
-  before_action :load_geozones, only: [:edit, :map, :summary]
+  before_action :load_categories, only: [:index, :new, :create, :edit, :map, :summary, :borought]
+  before_action :load_geozones, only: [:edit, :map, :borought, :summary]
   before_action :login_user_with_newsletter_token!, only: :newsletter_vote
-  before_action :authenticate_user!, except: [:index, :show, :map, :summary]
+  before_action :authenticate_user!, except: [:index, :show, :map, :summary, :borought]
   before_action :destroy_map_location_association, only: :update
   before_action :set_view, only: :index
   before_action :proposals_recommendations, only: :index, if: :current_user
@@ -39,7 +39,7 @@ class ProposalsController < ApplicationController
 
   def create
     @proposal = Proposal.new(proposal_params.merge(author: current_user))
-
+    
     if @proposal.save
       log_event("proposal", "create")
       redirect_to created_proposal_path(@proposal), notice: I18n.t("flash.actions.create.proposal")
@@ -119,6 +119,11 @@ class ProposalsController < ApplicationController
     redirect_to share_proposal_path(@proposal), notice: t("proposals.notice.published")
   end
 
+  def borought
+    @district = Geozone.find(params[:geozone])
+    @proposals = Proposal.where(geozone_id: params[:geozone],comunity_hide: true)
+  end
+
   private
 
     def proposal_params
@@ -130,6 +135,8 @@ class ProposalsController < ApplicationController
                                        :cached_attachment, :user_id, :_destroy],
                                        map_location_attributes: [:latitude, :longitude, :zoom])
     end
+
+    
 
     def retired_params
       params.require(:proposal).permit(:retired_reason, :retired_explanation)

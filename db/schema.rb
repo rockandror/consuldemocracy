@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200428072400) do
+ActiveRecord::Schema.define(version: 20200428081916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1301,6 +1301,7 @@ ActiveRecord::Schema.define(version: 20200428072400) do
     t.integer  "community_id"
     t.datetime "published_at"
     t.boolean  "selected",                       default: false
+    t.boolean  "comunity_hide",                  default: false
     t.index ["author_id", "hidden_at"], name: "index_proposals_on_author_id_and_hidden_at", using: :btree
     t.index ["author_id"], name: "index_proposals_on_author_id", using: :btree
     t.index ["cached_votes_up"], name: "index_proposals_on_cached_votes_up", using: :btree
