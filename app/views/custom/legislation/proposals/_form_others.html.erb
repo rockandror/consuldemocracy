@@ -4,7 +4,7 @@
        
         <%= s.text_field :name %>
         <%= s.text_field :address %>
-        <%= s.number_field :phone %>
+        <%= s.text_field :phone %>
         <%= s.text_field :agent %>
         <%= s.text_field :agent_title %>  
         <div id="changes_other">
@@ -16,8 +16,8 @@
                 <%= s.select :entity_type, ["SA.", "SAU.", "SRL", "CB", "SC", "Autónomo"] %>
             <%end%>
         </div>
-        <%= s.check_box :justify_text_declaration_1, label: Setting.find_by(key: "other_proposal_declaration_1").try(:value).try(:html_safe) %>
-        <%= s.check_box :justify_text_declaration_2, label: Setting.find_by(key: "other_proposal_declaration_2").try(:value).try(:html_safe) %>
+        <p><%= s.check_box :justify_text_declaration_1, label: false%> <%=markdown(Setting.find_by(key: "other_proposal_declaration_1").try(:value).to_s)%></p>
+        <p><%= s.check_box :justify_text_declaration_2, label: false%> <%=markdown(Setting.find_by(key: "other_proposal_declaration_2").try(:value).to_s)%></p>
     <%end%>
 </div>
 <script>

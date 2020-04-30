@@ -110,7 +110,6 @@ class Legislation::ProcessesController < Legislation::BaseController
     end
     
     @proposals = @proposals.search(params[:search]) if params[:search].present?
-
     @current_filter = "random" if params[:filter].blank? #&& @proposals.winners.any?
     if params[:map].to_s != "false"
       if !params[:search].blank? && @proposals.count > 0
@@ -125,7 +124,7 @@ class Legislation::ProcessesController < Legislation::BaseController
     end
 
 
-    params[:filter] = "carriers" if params[:filter].blank? && !params[:type].blank?
+    params[:filter] = "shops" if params[:filter].blank? && !params[:type].blank?
     
     if params[:type].blank?
 
@@ -134,7 +133,7 @@ class Legislation::ProcessesController < Legislation::BaseController
       elsif @current_filter == "winners"
         @proposals = @proposals.send(@current_filter).page(params[:page])
       elsif  @current_filter == "proposals_top_relevance"
-        @proposals = Kaminari.paginate_array(@proposals.sort_by {|x| x.total_votes}.reverse.take(10)).page(params[:page])
+        @proposals = Kaminari.paginate_array(@proposals.where("cached_votes_up > 0").sort_by {|x| x.likes}.reverse.take(10)).page(params[:page])
       elsif @current_filter == "updated"
         @proposals = @proposals.order(updated_at: :desc).page(params[:page])
       else

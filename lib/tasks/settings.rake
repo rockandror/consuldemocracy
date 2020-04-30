@@ -74,4 +74,39 @@ namespace :settings do
   task add_permit_text_settings: :environment do
     Setting.create(:key => "proposal_permit_text", :value => "Texto especial para propuestas")
   end
+
+  task add_madrid_balcon_settings: :environment do
+    Setting.create(:key => "text_madrid_balcon", :value => "<div class='row'>
+      <div class='small-12 column'>
+          <h1>Conectados</h1>
+          <h3>Encuentros digitales con expertos</h3>
+      </div>
+      </div>
+      <div class='row'>
+          <div class='small-12 column'>
+              <p>Te ponemos en contacto con técnicos del Ayuntamiento para que puedas resolver tus dudas sobre el <b>COVID-19</b> en todos los ámbitos de actuación.</p>
+              <br>
+              <p>Cada lunes, un experto contestará en directo a tus preguntas.</p>
+              <p><b>Próximo encuentro:</b> Diariamente</p>
+          </div>
+      </div>")
+  end
+
+  task add_permit_html: :environment do 
+    ["proposal_permit_text", "other_proposal_declaration_1", 
+      "other_proposal_declaration_2", "text_madrid_balcon"].each do |key|
+        setting = Setting.find_by(key: key)
+
+        if setting.blank?
+          puts "No existe el setting con key: #{key}"
+        else 
+          setting.permit_html_safe = true
+          if setting.save
+            puts "Se ha actualizado el setting con key: #{setting.key}"
+          else
+            puts "ERROR: no se ha actualizado el setting con key: #{key} -> #{setting.errors.full_messages}"
+          end
+        end
+    end
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200401171050) do
+ActiveRecord::Schema.define(version: 20200428081916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -689,7 +689,7 @@ ActiveRecord::Schema.define(version: 20200401171050) do
     t.text     "type_other_proposal"
     t.text     "name"
     t.text     "address"
-    t.integer  "phone"
+    t.text     "phone"
     t.text     "agent"
     t.text     "agent_title"
     t.boolean  "citizen_entities"
@@ -749,6 +749,7 @@ ActiveRecord::Schema.define(version: 20200401171050) do
     t.boolean  "permit_text_proposals"
     t.boolean  "permit_proposals_top_relevance"
     t.boolean  "permit_hiden_proposals"
+    t.boolean  "permit_like_proposals",          default: false
     t.index ["allegations_end_date"], name: "index_legislation_processes_on_allegations_end_date", using: :btree
     t.index ["allegations_start_date"], name: "index_legislation_processes_on_allegations_start_date", using: :btree
     t.index ["debate_end_date"], name: "index_legislation_processes_on_debate_end_date", using: :btree
@@ -1300,6 +1301,7 @@ ActiveRecord::Schema.define(version: 20200401171050) do
     t.integer  "community_id"
     t.datetime "published_at"
     t.boolean  "selected",                       default: false
+    t.boolean  "comunity_hide",                  default: false
     t.index ["author_id", "hidden_at"], name: "index_proposals_on_author_id_and_hidden_at", using: :btree
     t.index ["author_id"], name: "index_proposals_on_author_id", using: :btree
     t.index ["cached_votes_up"], name: "index_proposals_on_cached_votes_up", using: :btree
@@ -1362,8 +1364,9 @@ ActiveRecord::Schema.define(version: 20200401171050) do
   end
 
   create_table "settings", force: :cascade do |t|
-    t.string "key"
-    t.string "value"
+    t.string  "key"
+    t.string  "value"
+    t.boolean "permit_html_safe", default: false
     t.index ["key"], name: "index_settings_on_key", using: :btree
   end
 

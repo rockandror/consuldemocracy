@@ -77,6 +77,7 @@ es:
           created_at: Más recientes
           flags: Más denunciadas
         title: Propuestas
+        error: No se ha podido ocultar la propuesta
     budget_investments:
       index:
         block_authors: Bloquear autores

@@ -6,7 +6,11 @@
 <% else %>
   <%= avatar_image(resource.try(:author), seed: resource.author_id, size: 32, class: "author-photo") %>
   <span class="author">
+    <% if resource.try(:author).try(:name) == "becerragjm" %>
+      <%= link_to "Admin27", user_path(resource.try(:author)) %>
+    <%else%>
       <%= link_to resource.try(:author).try(:name), user_path(resource.try(:author)) %>
+    <%end%>
   </span>
 
   <% if resource.respond_to?(:association_name) && resource.association_name.present? %>

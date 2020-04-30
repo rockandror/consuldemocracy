@@ -40,7 +40,13 @@
     <div class="small-12 medium-9 column">
       <h2 class="quiz-question"><%= @question.title %></h2>
       <div class="debate-questions" id="legislation-answer-form">
-        <%= render "answer_form", process: @process, question: @question, answer: @answer %>
+        <% if !@question.try(:question_options).blank?%>
+          <%= render "answer_form", process: @process, question: @question, answer: @answer %>
+        <%else%>
+          <%= render partial: "/comments/comment_tree", locals: { comment_tree: @comment_tree,
+                                                          comment_flags: @comment_flags,
+                                                          display_comments_count: true } %>
+        <%end%>
         <%= render "participation_not_allowed" %>
       </div>
     </div>
@@ -51,8 +57,4 @@
       <%= render "/shared/social_share", title: @question.title, url: legislation_process_question_url(@question.process, @question) %>
     </aside>
   </div>
-
-  <%= render partial: "/comments/comment_tree_question", locals: { comment_tree: @comment_tree,
-                                                          comment_flags: @comment_flags,
-                                                          display_comments_count: true } %>
 </section>

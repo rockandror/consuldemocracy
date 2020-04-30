@@ -31,10 +31,10 @@
         <% if !proposal.try(:published_at).blank? || proposal.try(:class).try(:name).to_s == "Legislation::Proposal"  %>
           <tr id="proposal_<%= proposal.try(:id) %>_<%=proposal.try(:model_name).try(:param_key)%>">
             <td>
-              <% if proposal.try(:class).try(:name).to_s == "Legislation::Proposal" &&  proposal.type_other_proposal.blank? %>
+              <% if proposal.try(:class).try(:name).to_s == "Legislation::Proposal" &&  proposal.try(:type_other_proposal).blank? %>
                 <b>PROCESOS - </b>
               <%end%>
-              <% if proposal.type_other_proposal.blank?%>
+              <% if proposal.try(:type_other_proposal).blank? %>
                 <% if proposal.try(:class).try(:name).to_s == "Legislation::Proposal" && !proposal.try(:process).blank?%>
                   <%= link_to proposal.try(:title), legislation_process_proposal_path(id: proposal.try(:id), process_id: proposal.try(:process).try(:id)), target: "_blank" %>
                 <% elsif proposal.try(:class).try(:name).to_s == "Legislation::Proposal" && proposal.try(:process).blank?%>
@@ -78,13 +78,13 @@
                  data: { confirm: t("moderation.proposals.index.confirm") } %>
 
   <div class="float-right">
-    <% if params[:filter].to_s != "with_confirmed_hide_at" %>
+    <% if params[:filter].to_s != "with_confirmed_hide_at" || params[:filter].to_s != "other_with_confirmed_hide_at" %>
       <%= submit_tag t("moderation.proposals.index.hide_proposals"),
                   name: "hide_proposals",
                   class: "button hollow alert",
                   data: { confirm: t("moderation.proposals.index.confirm") } %>
     <% end %>
-    <% if params[:filter].to_s != "with_ignored_flag"%>
+    <% if params[:filter].to_s != "with_ignored_flag" || params[:filter].to_s != "other_with_ignored_flag"%>
       <%= submit_tag t("moderation.proposals.index.ignore_flags"),
                    name: "ignore_flags",
                    class: "button hollow",

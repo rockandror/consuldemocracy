@@ -1,15 +1,17 @@
 <div class="proposal-form row">
 
   <div class="small-12 column">
-    <%= back_link_to %>
+    
 
-    <h1>
+    
       <% if !params[:type].blank? || !@proposal.type_other_proposal.blank? %>
-        <%=t("proposals.index.start_organization")%>
+        <span class="icon-angle-left" aria-hidden="true"><%= link_to t("shared.back"), proposals_legislation_process_path(@process,type: params[:type]), class: "back" %></span>
+        <h1><%=t("proposals.index.start_organization")%></h1>
       <%else%>
-        <%= t("proposals.new.start_new") %>
+        <%= back_link_to %>
+        <h1><%= t("proposals.new.start_new") %></h1>
       <%end%>    
-    </h1>
+    
 
     <%= render "legislation/proposals/form", form_url: legislation_process_proposals_url, id: @proposal.id %>
   </div>
