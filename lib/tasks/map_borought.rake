@@ -26,10 +26,10 @@ namespace :map_borought do
 
         boroughts.each do |k,v|
             v.each do |d|
-                proposal = Proposal.new(title: d, description: '', author_id: "1", terms_of_service: "1", flags_count: "0", comments_count: "0", hot_score: "0",
+                proposal = Proposal.new(title: d, description: '', author_id: User.find_by(username: "admin_barrios").id, terms_of_service: "1", flags_count: "0", comments_count: "0", hot_score: "0",
                     confidence_score: 1, summary: d, video_url: '', geozone_id: k, published_at: Time.now, selected: false, skip_map: "1", comunity_hide: true)
                     if proposal.save
-                    puts "Se ha añadodp "
+                    puts "Se ha añadido el barrio => #{d}"
                     else
                     puts "ERROR: #{proposal.errors.full_messages}"
                     end
