@@ -1499,6 +1499,11 @@ es:
         search: Buscar
       user:
         delete: Eliminar
+        confirm: Confirmar
+        cancel: Cancelar
+        active: activos
+        hidden: dados de baja
+        hidden_data: Causa de la baja
         confirm_data: "Si confirma esta eliminación también se eliminarán las propuestas, comentarios, mensajes, actividad, documentos, seguimientos, debates, rol, denuncias, relación con la organización, bloqueos, identidades, resultados, preguntas, respuestas, notificaciones, imágenes y votaciones relacionadas con este usuario, ¿Desea continuar?"
         successfuly_deleted: El usuario se ha eliminado correctamente
         no_deleted: No se ha podido eliminar el usuario correctamente

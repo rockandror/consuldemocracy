@@ -1,6 +1,5 @@
 <% unless @users.blank? %>
-  <h3 class="margin"><%= page_entries_info @users %></h3>
-
+  <h3 class="margin"><%= page_entries_info @users %> <%= params[:hidden_users].blank? ? t("admin.users.user.active") : t("admin.users.user.hidden")%></h3>
   <table>
     <thead>
       <tr>
@@ -20,11 +19,34 @@
           <td><%= user.document_number %></td>
           <td><%= display_user_roles(user) %></td>
           <td><%= user.user_type %></td>
-          <td><%= link_to t("admin.users.user.delete"),
-                  admin_user_path(user),
-                  method: :delete,
-                  class: "button hollow alert expanded",
-                  :data => {:confirm => t("admin.users.user.confirm_data")}%></td>
+          
+          <%if !params[:hidden_users].blank? %>
+            <td><%= link_to t("admin.users.user.delete"),
+                admin_user_path(user),
+                method: :delete,
+                class: "button hollow alert expanded",
+                :data => {:confirm => t("admin.users.user.confirm_data")} %></td>
+          <% else %>
+            <td><button class="button hollow alert expanded" onclick="hide_element('data_confirm_<%=user.id%>')">Eliminar</button></td>
+          <% end %>
+
+        </tr>
+        <tr id="data_confirm_<%= user.id %>" style="display:none">
+          <td>
+            <%= form_tag(hide_admin_user_path(user), method: :get) do %>
+              <div class="row">
+                <%= label_tag(:hidden_data, t("admin.users.user.hidden_data"))%>
+                <%= text_area_tag :hidden_data, nil ,rows: 3, cols: 30 %>
+                <div class="row">
+                  <%= submit_tag(t("admin.users.user.confirm"), class: "button hollow primary") %>
+                  <%= submit_tag(t("admin.users.user.cancel"), 
+                        type: 'reset', 
+                        class: "button hollow alert",
+                        onclick: "hide_element('data_confirm_#{user.id}')", style: "margin-bottom:0px;") %>
+                </div>
+              </div>
+            <%end%>
+          </td>
         </tr>
       <% end %>
     </tbody>

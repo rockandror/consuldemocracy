@@ -52,7 +52,7 @@
             </div>
           <% end %>
         <% end %>
-        <a id="show_comments_list" onclick="hide_comments()">
+        <a id="show_comments_list" onclick="hide_element('comments_list')">
             <h2>
               <%= comment_tree_title_text(commentable) %>
               <span class="js-comments-count">(<%= commentable.comments_count %>)</span>
@@ -60,9 +60,11 @@
             <p class="help-text" id="responsible-name-help-text"><%= "Pulsa para mostrar los comentarios" %></p>
         </a>
         
+        
+        
         <div id="comments_list" style="display:none">
           <%= render "shared/wide_order_selector", i18n_namespace: "comments" %>
-          <% if user_signed_in? %>
+          <% if !current_user.blank? %>
               <% if comments_closed_for_commentable?(commentable) %>
                 <br>
                 <div data-alert class="callout primary">
@@ -76,20 +78,18 @@
                                               parent_id: nil,
                                               toggeable: false,
                                               valuation: valuation } %>
-              
+               
                 <% comment_tree.root_comments.each do |comment| %>
-                  <%= render "comments/comment", { comment: comment,
-                                                  comment_flags: comment_flags,
-                                                  valuation: valuation,
-                                                  allow_votes: !valuation,
-                                                  allow_actions: !valuation,
-                                                  allow_comments: allow_comments } %>
-                <% end %>
+                    <%= render "comments/comment", { comment: comment,
+                                                    comment_flags: comment_flags,
+                                                    valuation: valuation,
+                                                    allow_votes: !valuation,
+                                                    allow_actions: !valuation,
+                                                    allow_comments: allow_comments } %>
+                  <% end %>
               
                 <%= paginate comment_tree.root_comments %>
-              <% end %>  
-          
-              
+              <% end %> 
           <% else %>
             <br>
             <div data-alert class="callout primary">
