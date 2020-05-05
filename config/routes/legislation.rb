@@ -11,7 +11,7 @@ namespace :legislation do
     end
 
     resources :questions, only: [:show] do
-      resources :answers, only: [:create,:update]
+      resources :answers, only: [:create]
     end
 
     resources :proposals do
