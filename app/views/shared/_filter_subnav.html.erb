@@ -6,7 +6,7 @@
   <%@valid_filters = ['shops','carriers', 'associations'] if !params[:type].blank?%>
   <% @valid_filters.each do |filter| %>
     <% if @current_filter == filter || params[:filter] == filter %>
-      <li class="is-active"><h2><%= t("#{i18n_namespace}.filters.#{filter}") %></h2></li>
+      <li class="is-active"><h2><%= t("#{i18n_namespace}.filters.#{filter}") %> (<%= n_prop %>)</h2></li>
     <% else %>
       <li><%= link_to t("#{i18n_namespace}.filters.#{filter}"),
         "#{current_path_with_query_params(filter: filter, map: false, page: 1)}#filter-subnav" %></li>

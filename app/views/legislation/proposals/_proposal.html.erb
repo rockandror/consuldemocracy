@@ -60,6 +60,16 @@
                   </span>
                 <% end %>
               <% end %>
+              
+              <%if proposal.try(:other_proposal).try(:address)%>
+                <span class="bullet">&nbsp;&bull;&nbsp;</span>
+                <span><%= proposal.try(:other_proposal).try(:address) %> 
+              <%end%>
+
+              <%if proposal.try(:other_proposal).try(:phone) %>
+                <span class="bullet">&nbsp;&bull;&nbsp;</span> 
+                <%= proposal.try(:other_proposal).try(:phone) %></span>
+              <%end%>
 
               <% if proposal.try(:author).try(:verified_organization?) %>
                 <span class="bullet">&nbsp;&bull;&nbsp;</span>
