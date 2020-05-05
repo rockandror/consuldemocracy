@@ -295,10 +295,12 @@ es:
       notifiable_hidden: Este elemento ya no está disponible.
   map:
     title: "Distritos"
+    boroughts: "Barrios"
     proposal_for_district: "Crea una propuesta para tu distrito"
     select_district: Ámbito de actuación
     start_proposal: Crea una propuesta
     edit_organization: Edición de organización
+    edit_proposal: Edición de propuesta
     start_organization: Crea una organización
   omniauth:
     facebook:
@@ -414,6 +416,7 @@ es:
       select_order_long: 'Estas viendo las propuestas'
       start_proposal: Crea una propuesta
       edit_organization: Edición de organización
+      edit_proposal: Edición de propuesta
       start_organization: Alta organización
       title: Propuestas ciudadanas
       top: Top semanal
