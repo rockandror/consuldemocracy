@@ -1159,6 +1159,10 @@ form {
     &:not(.locale-switcher) {
       min-height: $line-height * 2;
     }
+
+    &:focus {
+      border: 2px solid #d2d7dc;
+    }
   }
 
   [type="radio"] {
