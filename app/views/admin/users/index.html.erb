@@ -1,5 +1,11 @@
 <h2><%= t("admin.users.index.title") %></h2>
-
+<% if current_user.administrator? || current_user.manager? %>
+  <% if params[:hidden_users].blank? %>
+    <h5 class="margin"><%= link_to "Usuarios dados de baja", admin_users_path(hidden_users: true) %></h5>
+  <% else %>
+    <h5 class="margin"><%= link_to "Usuarios activos", admin_users_path %></h5>
+  <% end %>
+<% end %>
 <div class="small-12 medium-6">
   <%= form_tag admin_users_path, method: :get, remote: true  do %>
     <div class="input-group">

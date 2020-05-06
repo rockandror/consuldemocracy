@@ -110,7 +110,6 @@ class Legislation::ProcessesController < Legislation::BaseController
     end
     
     @proposals = @proposals.search(params[:search]) if params[:search].present?
-
     @current_filter = "random" if params[:filter].blank? #&& @proposals.winners.any?
     if params[:map].to_s != "false"
       if !params[:search].blank? && @proposals.count > 0

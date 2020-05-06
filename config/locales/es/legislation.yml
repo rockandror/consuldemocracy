@@ -113,7 +113,8 @@ es:
           other: "%{count} comentarios"
         debate: Debate
       show:
-        answer_question: Enviar respuesta
+        answer_question: Actualizar respuesta
+        answer_updated: Respuesta actualizada
         last_question: Anterior pregunta 
         next_question: Siguiente pregunta
         first_question: Primera pregunta
