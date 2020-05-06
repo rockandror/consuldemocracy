@@ -110,6 +110,7 @@ class Legislation::ProcessesController < Legislation::BaseController
     end
     
     @proposals = @proposals.search(params[:search]) if params[:search].present?
+
     @current_filter = "random" if params[:filter].blank? #&& @proposals.winners.any?
     if params[:map].to_s != "false"
       if !params[:search].blank? && @proposals.count > 0
@@ -144,7 +145,7 @@ class Legislation::ProcessesController < Legislation::BaseController
         @proposals = @proposals.where(type_other_proposal: "carriers").page(params[:page])
       elsif params[:filter] == "shops"
         @proposals = @proposals.where(type_other_proposal: "shops").page(params[:page])
-      elsif
+      elsif params[:filter] == "associations"
         @proposals = @proposals.where(type_other_proposal: "associations").page(params[:page])
       else
         @proposals = @proposals.where(type_other_proposal: "others").page(params[:page])

@@ -52,6 +52,7 @@ es:
         more_info: Más información y contexto
       proposals:
         empty_proposals: No hay propuestas
+        share: Comparte
         filters:
           random: Aleatorias
           winners: Seleccionadas
@@ -61,6 +62,7 @@ es:
           associations: Asociaciones
           others: Otros
           updated: Más actualizadas
+          
       debate:
         empty_questions: No hay preguntas
         participate: Realiza tus aportaciones al debate previo participando en los siguientes temas.
@@ -113,8 +115,7 @@ es:
           other: "%{count} comentarios"
         debate: Debate
       show:
-        answer_question: Actualizar respuesta
-        answer_updated: Respuesta actualizada
+        answer_question: Enviar respuesta
         last_question: Anterior pregunta 
         next_question: Siguiente pregunta
         first_question: Primera pregunta
