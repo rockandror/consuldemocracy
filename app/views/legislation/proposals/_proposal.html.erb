@@ -49,16 +49,20 @@
                 <span class="author">
                   <%if proposal.try(:author).try(:name) == "becerragjm" %>
                     <%= "Admin27" %>
+                  <%elsif proposal.try(:author).try(:name) == "javierlfrf" %>
+                    <%= "Admin113" %>
+                  <%elsif proposal.try(:author).try(:name) == "jmmaleti" %>
+                    <%= "Admin74" %>
                   <%else%>
                   <%= proposal.try(:author).try(:name) %>
                   <%end%>
                 </span>
-                <% if proposal.try(:author).try(:display_official_position_badge?) %>
+                <%# if proposal.try(:author).try(:display_official_position_badge?) %>
                   <span class="bullet">&nbsp;&bull;&nbsp;</span>
                   <span class="label round level-<%= proposal.try(:author).try(:official_level) %>">
                     <%= proposal.try(:author).try(:official_position) %>
                   </span>
-                <% end %>
+                <%# end %>
               <% end %>
               
               <%if proposal.try(:other_proposal).try(:address)%>

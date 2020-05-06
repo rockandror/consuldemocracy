@@ -3,10 +3,10 @@
   <li class="show-for-sr"><%= t("#{i18n_namespace}.filter") %>: </li>
   
   <%@valid_filters = ['random', 'winners', 'updated'] if !process.blank? && !process.try(:permit_proposals_top_relevance)%>
-  <%@valid_filters = ['shops','carriers', 'associations'] if !params[:type].blank?%>
+  <%@valid_filters = ['shops','carriers', 'associations','others'] if !params[:type].blank?%>
   <% @valid_filters.each do |filter| %>
     <% if @current_filter == filter || params[:filter] == filter %>
-      <li class="is-active"><h2><%= t("#{i18n_namespace}.filters.#{filter}") %> (<%= n_prop %>)</h2></li>
+      <li class="is-active"><h2><%= t("#{i18n_namespace}.filters.#{filter}") %><%= " (#{prop})" if !params[:type].blank? %></h2></li>
     <% else %>
       <li><%= link_to t("#{i18n_namespace}.filters.#{filter}"),
         "#{current_path_with_query_params(filter: filter, map: false, page: 1)}#filter-subnav" %></li>

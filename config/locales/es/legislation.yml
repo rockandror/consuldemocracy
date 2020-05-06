@@ -59,6 +59,7 @@ es:
           proposals_top_relevance: Las 10 más votadas
           shops: Comercios
           associations: Asociaciones
+          others: Otros
           updated: Más actualizadas
       debate:
         empty_questions: No hay preguntas

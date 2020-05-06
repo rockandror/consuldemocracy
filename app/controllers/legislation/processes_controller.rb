@@ -145,8 +145,10 @@ class Legislation::ProcessesController < Legislation::BaseController
         @proposals = @proposals.where(type_other_proposal: "carriers").page(params[:page])
       elsif params[:filter] == "shops"
         @proposals = @proposals.where(type_other_proposal: "shops").page(params[:page])
-      else
+      elsif
         @proposals = @proposals.where(type_other_proposal: "associations").page(params[:page])
+      else
+        @proposals = @proposals.where(type_other_proposal: "others").page(params[:page])
       end
     end
     
