@@ -17,11 +17,11 @@ namespace :users do
      begin
         puts "============================================="
         
-        exist = User.find_by(username: usernames[i])
+        exist = User.find_by(username: "admin_barrios")
 
         if exist.blank?
           admin = User.create!(
-            username:               usernames[i],
+            username:               "admin_barrios",
             email:                  emails[i],
             phone_number:           phones[i],
             confirmed_phone:        phones[i],
@@ -258,6 +258,22 @@ namespace :users do
       rescue StandardError => e
         print "\n\nError for user: #{u.id} - #{e} \n\n"
       end
+    end
+  end
+
+  desc "Add phone number to user"
+  task phone_number: :environment do
+    user = User.find_by(email: "taranconmr@madrid.es")
+    if !user.blank?
+      user.confirmed_phone = "669660678"
+      user.save
+      puts "==============================="
+      puts "Telefono añadido al usuario => #{user.id}"
+      puts "==============================="
+    else
+      puts "==============================="
+      puts "Usuario no encontrado"
+      puts "==============================="
     end
   end
 

@@ -6,7 +6,7 @@
     <li class="inline-block">
       <% css_class = { class: "is-active" } if params[:search] == tag %>
       <%= link_to tag,
-                  legislation_process_proposals_path(process_id: @process, search: tag),
+                  "#{legislation_process_proposals_path(process_id: @process, type: params[:type], search: tag)}#filter-subnav",
                   css_class || {} %>
     </li>
   <% end %>

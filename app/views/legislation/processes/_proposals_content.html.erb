@@ -5,9 +5,13 @@
         <div class="small-12 medium-9 column">
           <div class="legislation-proposals">
             <p><%= markdown(Setting.find_by(key: "proposal_permit_text").try(:value).to_s) if process.permit_text_proposals%></p>
+            <% if !params[:search].blank?%>
+              <span class="district_tag"><%= sanitize(params[:search]) %></span>
+            <% end %>
             <br>
-            <%= render "shared/filter_subnav", i18n_namespace: "legislation.processes.proposals", process: process %>
-            
+            <br>
+            <%= render "shared/filter_subnav", i18n_namespace: "legislation.processes.proposals", process: process, prop: proposals.count %>
+    
             <% if proposals.empty? %>
               <div class="callout primary">
                 <p><%= t("legislation.processes.proposals.empty_proposals") %></p>
