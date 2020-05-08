@@ -43,6 +43,44 @@ feature "Auto moderated content" do
       expect(page).to have_content(comment.body)
       expect(page).not_to have_content(another_comment.body)
     end
+
+    describe "render the comment source" do
+      it "when source is a Debate" do
+        debate = create(:debate)
+        debate_comment = create(:comment, commentable: debate)
+        create(:moderated_content, moderable: debate_comment)
+
+        visit admin_auto_moderated_content_index_path
+
+        within "#comment_#{debate_comment.id}" do
+          expect(page).to have_content("Debate")
+        end
+      end
+
+      it "when source is a Proposal" do
+        proposal = create(:proposal)
+        proposal_comment = create(:comment, commentable: proposal)
+        create(:moderated_content, moderable: proposal_comment)
+
+        visit admin_auto_moderated_content_index_path
+
+        within "#comment_#{proposal_comment.id}" do
+          expect(page).to have_content("Proposal")
+        end
+      end
+
+      it "when source is a Legislation Proposal" do
+        legislation_proposal = create(:legislation_proposal)
+        legislation_proposal_comment = create(:comment, commentable: legislation_proposal)
+        create(:moderated_content, moderable: legislation_proposal_comment)
+
+        visit admin_auto_moderated_content_index_path
+
+        within "#comment_#{legislation_proposal_comment.id}" do
+          expect(page).to have_content("Process")
+        end
+      end
+    end
   end
 
   describe "#show_again" do
