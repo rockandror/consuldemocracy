@@ -5,8 +5,8 @@ es:
         residence: "Residencia"
         sms: "SMS"
       moderated_texts/import:
-        one: Texto de moderación importado
-        other: Textos de moderación importados
+        one: Texto para moderación automática importado
+        other: Textos para moderación automática importados
     attributes:
       verification:
         residence:

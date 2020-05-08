@@ -659,7 +659,7 @@ es:
         title: 'Gestores: Búsqueda de usuarios'
     moderated_texts:
       index:
-        title: Textos de moderación
+        title: Texto para moderación automática
         create: Crear nuevo texto
         import_csv: Importar CSV
         text: Texto
@@ -776,7 +776,7 @@ es:
       dashboard: Panel de progreso de propuestas
       administrator_tasks: Recursos solicitados
       dashboard_actions: Recursos y acciones
-      moderated_texts: Textos de moderación
+      moderated_texts: Texto para moderación automática
       auto_moderated_content: Contenido moderado automáticamente
     administrators:
       index:
