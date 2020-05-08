@@ -131,8 +131,8 @@ es:
         one: Enlace
         other: Enlaces
       moderated_text:
-        one: Texto de moderación
-        other: Textos de moderación
+        one: Texto para moderación automática
+        other: Textos para moderación automática
     attributes:
       budget:
         name: "Nombre"
