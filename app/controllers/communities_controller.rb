@@ -7,6 +7,7 @@ class CommunitiesController < ApplicationController
   skip_authorization_check
 
   def show
+    @map_locations = @community.proposal.map_location if @community.proposal
     raise ActionController::RoutingError, "Not Found" unless communitable_exists?
     redirect_to root_path if Setting["feature.community"].blank?
   end

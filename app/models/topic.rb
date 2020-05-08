@@ -16,4 +16,15 @@ class Topic < ApplicationRecord
   scope :sort_by_oldest, -> { order(created_at: :asc) }
   scope :sort_by_most_commented, -> { reorder(comments_count: :desc) }
 
+  def self.rank(topic)
+    return 0 if topic.blank?
+    connection.select_all(<<-SQL).first["rank"]
+      SELECT ranked.rank FROM (
+        SELECT id, rank() OVER (ORDER BY confidence_score DESC)
+        FROM topics
+      ) AS ranked
+      WHERE id = #{topic.id}
+      SQL
+  end
+
 end

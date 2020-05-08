@@ -3,7 +3,7 @@ module Abilities
     include CanCan::Ability
 
     def initialize(user)
-      can [:read, :map], Debate
+      can [:read, :map, :borought], Debate
       can [:read, :map, :summary, :share, :borought], Proposal
       can :read, Comment
       can :read, Poll

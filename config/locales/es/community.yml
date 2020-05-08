@@ -8,10 +8,10 @@ es:
       button_to_access: Acceder a la comunidad
     show:
       title:
-        proposal: Comunidad de la propuesta
+        proposal: "Comunidad en el distrito de %{district}"
         investment: Comunidad del presupuesto participativo
       description:
-        proposal: Participa en la comunidad de esta propuesta. Una comunidad activa puede ayudar a mejorar el contenido de la propuesta así como a dinamizar su difusión para conseguir más apoyos.
+        proposal: Participa en la comunidad de esta propuesta. Una comunidad activa puede ayudar a mejorar ña participación ciudadana así como a facilitar propuestas de ayuda, cooperación o mejoras vecinales.
         investment: Participa en la comunidad de este proyecto de gasto. Una comunidad activa puede ayudar a mejorar el contenido del proyecto de gasto así como a dinamizar su difusión para conseguir más apoyos.
       create_first_community_topic:
         first_theme_not_logged_in: No hay ningún tema disponible, participa creando el primero.

@@ -44,6 +44,13 @@ class TopicsController < ApplicationController
     redirect_to community_path(@community), notice: I18n.t("flash.actions.destroy.topic")
   end
 
+  def vote
+    @topic.register_vote(current_user, "yes")
+    set_proposal_votes(@topic)
+    load_rank
+    log_event("proposal", "support", @topic.id, @topic_rank, 6, @topic_rank)
+  end
+
   private
 
   def topic_params
@@ -56,5 +63,9 @@ class TopicsController < ApplicationController
 
   def load_topic
     @topic = Topic.find(params[:id])
+  end
+
+  def load_rank
+    @topic_rank ||= Topic.rank(@topic)
   end
 end
