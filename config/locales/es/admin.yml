@@ -694,7 +694,7 @@ es:
         title: Contenido moderado automáticamente
         no_moderations: Ningún comentario ha sido moderado automáticamente
         comment: Comentario
-        kind: Clase
+        source: Origen
         moderated_text: Texto moderado
         author: Autor
         filter: Filtrar
@@ -709,6 +709,10 @@ es:
           pending: Pendientes de moderación
           confirmed: Confirmada la moderación
           declined: Declinada la moderación
+        source_kind:
+          debate: Debate
+          proposal: Propuesta
+          legislation/proposal: Proceso
     menu:
       activity: Actividad de moderadores
       admin: Menú de administración
