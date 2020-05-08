@@ -703,6 +703,9 @@ en:
           show_again: Show again
           confirm_moderation: Confirm moderation
           no_buttons: This comment has been moderated already on %{date}
+        confirm:
+          show_again: Are you sure you want to show this comment again?
+          confirm_moderation: Are you sure you want to hide this comment permanently?
         filters:
           pending: Pending moderation
           confirmed: Confirmed moderation

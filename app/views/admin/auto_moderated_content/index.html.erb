@@ -31,7 +31,8 @@
                             type: comment.class
                           ),
                           method: :put,
-                          class: "button hollow success" %>
+                          class: "button hollow success",
+                          data: { confirm:  t("admin.auto_moderated_content.index.confirm.show_again") } %>
 
                 <%= link_to t("admin.auto_moderated_content.index.buttons.confirm_moderation"),
                             admin_auto_moderated_content_confirm_moderation_path(
@@ -39,7 +40,8 @@
                               type: comment.class
                             ),
                             method: :put,
-                            class: "button" %>
+                            class: "button",
+                            data: { confirm: t("admin.auto_moderated_content.index.confirm.confirm_moderation") } %>
             <% end %>
           </td>
         </tr>
