@@ -46,7 +46,7 @@ feature "Auto moderated content" do
   end
 
   describe "#show_again" do
-    it "allows a comment to be shown again" do
+    it "allows a comment to be shown again", :js do
       visit debate_path(my_debate)
 
       expect(page).to have_content(another_comment.body)
@@ -60,7 +60,9 @@ feature "Auto moderated content" do
       expect(page).not_to have_content(another_comment.body)
 
       within "#comment_#{a_new_comment.id}" do
-        click_link "Show again"
+        accept_confirm "Are you sure you want to show this comment again?" do
+          click_link "Show again"
+        end
       end
 
       visit debate_path(my_debate)
@@ -72,7 +74,7 @@ feature "Auto moderated content" do
   end
 
   describe "#confirm_moderation" do
-    it "does not allow a comment to be shown again" do
+    it "does not allow a comment to be shown again", :js do
       visit debate_path(my_debate)
 
       expect(page).to have_content(another_comment.body)
@@ -86,7 +88,9 @@ feature "Auto moderated content" do
       expect(page).not_to have_content(another_comment.body)
 
       within "#comment_#{a_new_comment.id}" do
-        click_link "Confirm moderation"
+        accept_confirm "Are you sure you want to hide this comment permanently?" do
+          click_link "Confirm moderation"
+        end
       end
 
       visit debate_path(my_debate)
@@ -99,7 +103,7 @@ feature "Auto moderated content" do
 
   describe "Filters" do
     describe "Pending moderation" do
-      it "only shows pending comments" do
+      it "only shows pending comments", :js do
         visit debate_path(my_debate)
 
         expect(page).not_to have_content(comment.body)
@@ -111,7 +115,9 @@ feature "Auto moderated content" do
         expect(page).to have_content(a_new_comment.body)
 
         within "#comment_#{a_new_comment.id}" do
-          click_link "Confirm moderation"
+          accept_confirm "Are you sure you want to hide this comment permanently?" do
+            click_link "Confirm moderation"
+          end
         end
 
         expect(page).not_to have_content(a_new_comment.body)
@@ -120,7 +126,7 @@ feature "Auto moderated content" do
     end
 
     describe "Confirmed moderation" do
-      it "only shows moderated comments deemed offensive by admins" do
+      it "only shows moderated comments deemed offensive by admins", :js do
         visit debate_path(my_debate)
 
         expect(page).not_to have_content(comment.body)
@@ -132,7 +138,9 @@ feature "Auto moderated content" do
         expect(page).to have_content(a_new_comment.body)
 
         within "#comment_#{a_new_comment.id}" do
-          click_link "Confirm moderation"
+          accept_confirm "Are you sure you want to hide this comment permanently?" do
+            click_link "Confirm moderation"
+          end
         end
 
         click_link "Confirmed moderation"
@@ -146,7 +154,7 @@ feature "Auto moderated content" do
     end
 
     describe "Declined moderation" do
-      it "only shows moderated comments deemed non-offensive by admins" do
+      it "only shows moderated comments deemed non-offensive by admins", :js do
         visit debate_path(my_debate)
 
         expect(page).not_to have_content(comment.body)
@@ -158,7 +166,9 @@ feature "Auto moderated content" do
         expect(page).to have_content(a_new_comment.body)
 
         within "#comment_#{a_new_comment.id}" do
-          click_link "Show again"
+          accept_confirm "Are you sure you want to show this comment again?" do
+            click_link "Show again"
+          end
         end
 
         click_link "Declined moderation"
