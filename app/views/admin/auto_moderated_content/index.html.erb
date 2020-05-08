@@ -9,7 +9,7 @@
   <table>
     <thead>
       <th><%= t("admin.auto_moderated_content.index.comment") %></th>
-      <th><%= t("admin.auto_moderated_content.index.kind") %></th>
+      <th><%= t("admin.auto_moderated_content.index.source") %></th>
       <th><%= t("admin.auto_moderated_content.index.moderated_text") %></th>
       <th><%= t("admin.auto_moderated_content.index.author") %></th>
       <th class="text-right"><%= t("admin.actions.actions") %></th>
@@ -18,7 +18,7 @@
       <% @moderated_comments.each do |comment| %>
         <tr id="<%= dom_id(comment) %>">
           <td><%= comment.body %></td>
-          <td><%= t("form.#{comment.class.to_s.underscore}") %></td>
+          <td><%= t("admin.auto_moderated_content.index.source_kind.#{comment.commentable_type.underscore}") %></td>
           <td><%= comment.moderated_texts.map(&:text).join(", ") %></td>
           <td><%= link_to comment.author.name, user_path(comment.author, filter: "comments"), target: "_blank" %></td>
           <td class="text-right">
