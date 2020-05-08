@@ -726,6 +726,9 @@ es:
           show_again: Volver a mostrar
           confirm_moderation: Confirmar moderación
           no_buttons: Este comentario ha sido moderado el %{date}
+        confirm:
+          show_again: ¿Está seguro de que quiere volver a mostrar este comentario?
+          confirm_moderation: ¿Está seguro de que quiere ocultar permanentemente este comentario?
         filters:
           pending: Pendientes de moderación
           confirmed: Confirmada la moderación
