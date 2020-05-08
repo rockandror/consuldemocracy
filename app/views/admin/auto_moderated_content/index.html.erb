@@ -23,7 +23,7 @@
           <td><%= link_to comment.author.name, user_path(comment.author, filter: "comments"), target: "_blank" %></td>
           <td class="text-right">
             <% if show_moderation_buttons?(comment) %>
-              <%= t("admin.auto_moderated_content.index.buttons.no_buttons") %>
+              <%= t("admin.auto_moderated_content.index.buttons.no_buttons", date: moderated_date(comment)) %>
             <% else %>
               <%= link_to t("admin.auto_moderated_content.index.buttons.show_again"),
                           admin_auto_moderated_content_show_again_path(

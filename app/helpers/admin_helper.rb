@@ -75,9 +75,16 @@ module AdminHelper
   def moderated_texts_import_section?
     controller_name == "imports" && controller.class.parent == Admin::ModeratedTexts
   end
+
   def show_moderation_buttons?(comment)
     comment.moderated_contents.map(&:declined_at).all? ||
     comment.moderated_contents.map(&:confirmed_at).all?
+  end
+
+  def moderated_date(comment)
+    moderated_content = comment.moderated_contents.first
+    date = comment.moderated_contents.map(&:declined_at).all? ? moderated_content.declined_at : moderated_content.confirmed_at
+    I18n.l(date, format: :datetime)
   end
 
   def official_level_options
