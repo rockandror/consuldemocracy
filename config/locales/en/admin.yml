@@ -696,7 +696,7 @@ en:
         title: Automatically moderated content
         no_moderations: No comments have been automatically moderated
         comment: Comment
-        kind: Kind
+        source: Source
         moderated_text: Moderated text
         author: Author
         filter: Filter
@@ -711,6 +711,10 @@ en:
           pending: Pending moderation
           confirmed: Confirmed moderation
           declined: Declined moderation
+        source_kind:
+          debate: Debate
+          proposal: Proposal
+          legislation/proposal: Process
     menu:
       activity: Moderator activity
       admin: Admin menu
