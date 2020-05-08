@@ -661,7 +661,7 @@ en:
         title: 'Managers: User search'
     moderated_texts:
       index:
-        title: Moderated texts
+        title: Text for automatic moderation
         create: Create new text
         import_csv: Import CSV
         text: Text
@@ -778,7 +778,7 @@ en:
       dashboard: Proposals dashboard
       administrator_tasks: Resources requested
       dashboard_actions: Resources and actions
-      moderated_texts: Moderated texts
+      moderated_texts: Text for automatic moderation
       auto_moderated_content: Automatically moderated content
     administrators:
       index:
