@@ -40,7 +40,7 @@ namespace :map_borought do
 
     task remove: :environment do
         count = 0
-        Proposal.all.each do |p|
+        Proposal.where(comunity_hide: true).each do |p|
             if p.comunity_hide == true
                 if p.destroy 
                     count = count + 1
