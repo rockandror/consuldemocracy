@@ -703,7 +703,7 @@ en:
         buttons:
           show_again: Show again
           confirm_moderation: Confirm moderation
-          no_buttons: This comment has been moderated already
+          no_buttons: This comment has been moderated already on %{date}
         filters:
           pending: Pending moderation
           confirmed: Confirmed moderation

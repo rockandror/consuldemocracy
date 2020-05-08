@@ -138,7 +138,9 @@ feature "Auto moderated content" do
         click_link "Confirmed moderation"
 
         expect(page).to have_content(a_new_comment.body)
-        expect(page).to have_content("This comment has been moderated already")
+        another_offense.reload
+        confirmed_at = I18n.l(another_offense.confirmed_at, format: :datetime)
+        expect(page).to have_content("This comment has been moderated already on #{confirmed_at}")
         expect(page).not_to have_content(comment.body)
       end
     end
@@ -162,6 +164,9 @@ feature "Auto moderated content" do
         click_link "Declined moderation"
 
         expect(page).to have_content(a_new_comment.body)
+        another_offense.reload
+        declined_at = I18n.l(another_offense.declined_at, format: :datetime)
+        expect(page).to have_content("This comment has been moderated already on #{declined_at}")
         expect(page).to have_content("This comment has been moderated already")
         expect(page).not_to have_content(comment.body)
       end
