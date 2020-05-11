@@ -5,6 +5,6 @@
   </li>
 <% else %>
   <li>
-    <%= link_to page, kaminari_path(ecosystem == true ? url = "#{url}#filter-subnav" : url), {:remote => remote, :rel => page.next? ? "next" : page.prev? ? "prev" : nil} %>
+    <%= link_to page, kaminari_path(!params[:ecosystem].blank? && params[:ecosystem] == true ? url = "#{url}#filter-subnav" : url), {:remote => remote, :rel => page.next? ? "next" : page.prev? ? "prev" : nil} %>
   </li>
 <% end %>
