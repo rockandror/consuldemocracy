@@ -7,4 +7,9 @@ namespace :legislation_proposals do
     end
     puts "\nTask finished 🎉"
   end
+  task add_geozone: :environment do
+    geozone = Geozone.new()
+    geozone.name = "Toda la ciudad"
+    geozone.save
+  end
 end
