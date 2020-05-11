@@ -1,23 +1,27 @@
 <div id="<%= dom_id(proposal) %>"
      class="proposal clear <%= ("human-rights" if proposal.author.id == 505793) %>"
      data-type="proposal"
-     style="<%= "height:110px" if !params[:type].blank?%>">
-  <div class="panel <%= ("with-image" if proposal.image.present?) %>" style="<%= "height:110px" if !params[:type].blank?%>">
+     style="<%= "height:120px" if !params[:type].blank?%>">
+  <div class="panel <%= ("with-image" if proposal.image.present?) %>" style="<%= "height:120px" if !params[:type].blank?%>">
     <div class="icon-human-rights"></div>
     <div class="icon-successful"></div>
-
+    <%if params[:type].blank? %>
     <% if proposal.image.present? %>
-      <div class="row" style="<%= "height:110px" if !params[:type].blank?%>">
+      <div class="row">
         <div class="small-12 medium-3 large-2 column text-center">
           <%= image_tag proposal.image_url(:thumb),
-                        alt: proposal.image.title.unicode_normalize, style: "height:100px" %>
+                        alt: proposal.image.title.unicode_normalize %>
         </div>
         <div class="small-12 medium-6 large-7 column margin-top">
     <% else %>
-      <div class="row" style="<%= "height:110px" if !params[:type].blank?%>">
+      <div class="row">
         <div class="small-12 medium-9 column">
     <% end %>
-        <div class="proposal-content <%= ("human-rights" if proposal.try(:author).try(:id) == 505793) %>" style="<%= "height:110px" if !params[:type].blank?%>">
+    <%else%>
+      <div class="row" style="height:120px">
+        <div class="small-12 medium-9 column">
+    <%end%>
+        <div class="proposal-content <%= ("human-rights" if proposal.try(:author).try(:id) == 505793) %>" style="<%= "height:120px" if !params[:type].blank?%>">
           <% cache [locale_and_user_status(proposal), "index", proposal, proposal.try(:author)] do %>
             <% if proposal.is_proposal? && proposal.type_other_proposal.blank?%>
               <span class="label proposal small uppercase">
