@@ -2,7 +2,7 @@
      class="proposal clear <%= ("human-rights" if proposal.author.id == 505793) %>"
      data-type="proposal"
      style="<%= "height:120px" if !params[:type].blank?%>">
-  <div class="panel <%= ("with-image" if proposal.image.present?) %>" style="<%= "height:120px" if !params[:type].blank?%>">
+  <div class="panel <%= ("with-image" if proposal.image.present? && params[:type].blank?) %>" style="<%= "height:120px" if !params[:type].blank?%>">
     <div class="icon-human-rights"></div>
     <div class="icon-successful"></div>
     <%if params[:type].blank? %>
