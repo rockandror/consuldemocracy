@@ -18,7 +18,7 @@
               </div>
             <% else %>
               <%= render proposals %>
-              <%= paginate proposals %>
+              <%= paginate proposals, ecosystem: true %>
             <% end %>
           </div>
         </div>

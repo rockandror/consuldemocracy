@@ -1,5 +1,5 @@
 <div class="ckeditor small-12 column">
-    <%= f.select :type_other_proposal, options_for_select([['Reparto', 'carriers'],['Comercio','shops'],['Asociación','associations'],['Otros','others']], params[:type] || f.object.try(:type_other_proposal) || 'carriers'), {},{onchange: "cambioparam($(this), '/legislation/processes/#{params[:process_id]}/proposals/new')"} %> 
+    <%= f.select :type_other_proposal, options_for_select([['Reparto', 'carriers'],['Comercio','shops'],['Asociación','associations']], params[:type] || f.object.try(:type_other_proposal) || 'carriers'), {},{onchange: "cambioparam($(this), '/legislation/processes/#{params[:process_id]}/proposals/new')"} %> 
     <%= f.fields_for :other_proposal,(Legislation::OtherProposal.new if f.object.other_proposal.blank?) do |s| %>
        
         <%= s.text_field :name %>
@@ -13,7 +13,7 @@
                 <%= s.check_box :citizen_entities %>
             <%else%>
                 <%= s.text_field :cif %>
-                <%= s.select :entity_type, ["SA.", "SAU.", "SRL", "CB", "SC", "Autónomo"] %>
+                <%= s.select :entity_type, ["SA.", "SAU.", "SRL", "CB", "SC", "Autónomo","Otros"] %>
             <%end%>
         </div>
         <p><%= s.check_box :justify_text_declaration_1, label: false%> <%=markdown(Setting.find_by(key: "other_proposal_declaration_1").try(:value).to_s)%></p>
