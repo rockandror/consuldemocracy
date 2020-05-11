@@ -13,7 +13,7 @@ class PagesController < ApplicationController
       @cards = @custom_page.cards
       render action: :custom_page
     else
-      render action: "help/index"
+      render action: params[:id]
     end
   rescue ActionView::MissingTemplate
     head 404, content_type: "text/html"
