@@ -154,7 +154,7 @@ class Legislation::ProcessesController < Legislation::BaseController
       else 
         @proposals = @proposals.joins(:categories).where("legislation_categories.tag = ?", params[:filter]).page(params[:page])
       end
-    end
+    end 
     
     if @process.proposals_phase.started? || (current_user && current_user.administrator?)
       legislation_proposal_votes(@proposals)
