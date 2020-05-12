@@ -74,6 +74,7 @@ class Admin::Legislation::ProcessesController < Admin::Legislation::BaseControll
         :permit_text_proposals,
         :permit_proposals_top_relevance,
         :permit_hiden_proposals,
+        :permit_like_proposals,
         :published,
         :geozone_restricted,
         :custom_list,

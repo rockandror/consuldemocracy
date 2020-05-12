@@ -187,6 +187,11 @@
     <%= f.check_box :permit_hiden_proposals, checked: @process.permit_hiden_proposals, label: t("admin.legislation.processes.form.permit_hiden_proposals") %>
   </div>
 
+  <div class="small-12 column margin-top">
+    <%= f.check_box :permit_like_proposals, checked: @process.permit_like_proposals, label: t("admin.legislation.processes.form.permit_like_proposals") %>
+  </div>
+
+  
   <div class="small-12 column">
     <hr>
   </div>

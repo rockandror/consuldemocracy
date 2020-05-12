@@ -57,32 +57,32 @@ class Proposal < ApplicationRecord
   before_save :calculate_hot_score, :calculate_confidence_score
 
   after_create :send_new_actions_notification_on_create
-
-  scope :for_render,               -> { includes(:tags) }
-  scope :sort_by_hot_score,        -> { reorder(hot_score: :desc) }
-  scope :sort_by_confidence_score, -> { reorder(confidence_score: :desc) }
-  scope :sort_by_created_at,       -> { reorder(created_at: :desc) }
-  scope :sort_by_most_commented,   -> { reorder(comments_count: :desc) }
-  scope :sort_by_relevance,        -> { all }
-  scope :sort_by_flags,            -> { order(flags_count: :desc, updated_at: :desc) }
-  scope :sort_by_archival_date,    -> { archived.sort_by_confidence_score }
-  scope :sort_by_recommendations,  -> { order(cached_votes_up: :desc) }
-  scope :archived,                 -> { where("proposals.created_at <= ?", Setting["months_to_archive_proposals"].to_i.months.ago) }
-  scope :not_archived,             -> { where("proposals.created_at > ?", Setting["months_to_archive_proposals"].to_i.months.ago) }
-  scope :last_week,                -> { where("proposals.created_at >= ?", 7.days.ago)}
-  scope :retired,                  -> { where.not(retired_at: nil) }
-  scope :not_retired,              -> { where(retired_at: nil) }
-  scope :successful,               -> { where("cached_votes_up >= ?", Proposal.votes_needed_for_success) }
-  scope :unsuccessful,             -> { where("cached_votes_up < ?", Proposal.votes_needed_for_success) }
-  scope :public_for_api,           -> { where("proposals.proceeding IS NULL or proposals.proceeding = ?", "Derechos Humanos") }
-  scope :selected,                 -> { where(selected: true) }
-  scope :not_selected,             -> { where(selected: false) }
-  scope :proceedings,              -> { where.not(proceeding: nil) }
-  scope :not_proceedings,          -> { where(proceeding: nil) }
-  scope :not_supported_by_user,    ->(user) { where.not(id: user.find_voted_items(votable_type: "Proposal").compact.map(&:id)) }
-  scope :published,                -> { where.not(published_at: nil) }
-  scope :draft,                    -> { where(published_at: nil) }
-  scope :created_by,               ->(author) { where(author: author) }
+  scope :without_comunity,         -> { where(comunity_hide: false)}
+  scope :for_render,               -> { includes(:tags).without_comunity }
+  scope :sort_by_hot_score,        -> { reorder(hot_score: :desc).without_comunity }
+  scope :sort_by_confidence_score, -> { reorder(confidence_score: :desc).without_comunity }
+  scope :sort_by_created_at,       -> { reorder(created_at: :desc).without_comunity }
+  scope :sort_by_most_commented,   -> { reorder(comments_count: :desc).without_comunity }
+  scope :sort_by_relevance,        -> { all.without_comunity }
+  scope :sort_by_flags,            -> { order(flags_count: :desc, updated_at: :desc).without_comunity}
+  scope :sort_by_archival_date,    -> { archived.sort_by_confidence_score.without_comunity }
+  scope :sort_by_recommendations,  -> { order(cached_votes_up: :desc).without_comunity }
+  scope :archived,                 -> { where("proposals.created_at <= ?", Setting["months_to_archive_proposals"].to_i.months.ago).without_comunity }
+  scope :not_archived,             -> { where("proposals.created_at > ?", Setting["months_to_archive_proposals"].to_i.months.ago).without_comunity }
+  scope :last_week,                -> { where("proposals.created_at >= ?", 7.days.ago).without_comunity}
+  scope :retired,                  -> { where.not(retired_at: nil).without_comunity }
+  scope :not_retired,              -> { where(retired_at: nil).without_comunity }
+  scope :successful,               -> { where("cached_votes_up >= ?", Proposal.votes_needed_for_success).without_comunity }
+  scope :unsuccessful,             -> { where("cached_votes_up < ?", Proposal.votes_needed_for_success).without_comunity }
+  scope :public_for_api,           -> { where("proposals.proceeding IS NULL or proposals.proceeding = ?", "Derechos Humanos").without_comunity }
+  scope :selected,                 -> { where(selected: true).without_comunity }
+  scope :not_selected,             -> { where(selected: false).without_comunity }
+  scope :proceedings,              -> { where.not(proceeding: nil).without_comunity }
+  scope :not_proceedings,          -> { where(proceeding: nil).without_comunity }
+  scope :not_supported_by_user,    ->(user) { where.not(id: user.find_voted_items(votable_type: "Proposal").compact.map(&:id)).without_comunity }
+  scope :published,                -> { where.not(published_at: nil).without_comunity }
+  scope :draft,                    -> { where(published_at: nil).without_comunity }
+  scope :created_by,               ->(author) { where(author: author).without_comunity }
 
   def url
     proposal_path(self)

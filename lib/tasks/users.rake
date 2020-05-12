@@ -17,11 +17,11 @@ namespace :users do
      begin
         puts "============================================="
         
-        exist = User.find_by(username: usernames[i])
+        exist = User.find_by(username: "admin_barrios")
 
         if exist.blank?
           admin = User.create!(
-            username:               usernames[i],
+            username:               "admin_barrios",
             email:                  emails[i],
             phone_number:           phones[i],
             confirmed_phone:        phones[i],
