@@ -101,12 +101,13 @@ class Legislation::ProcessesController < Legislation::BaseController
     set_process
     @phase = :proposals_phase
     @aditional_filters = []
+    @aditional_filters = Legislation::Category.where(legislation_process_id: @process.id)
     params[:type] ||= "other" if @process.permit_hiden_proposals
 
     if params[:type].blank?
       @proposals = Legislation::Proposal.where(process: @process).where(type_other_proposal: nil)
     else
-      @aditional_filters = Legislation::Category.where(legislation_process_id: @process.id)
+      
       @proposals = Legislation::Proposal.where(process: @process).where("legislation_proposals.type_other_proposal is not null").with_ignored_flag
     end
     
@@ -137,6 +138,8 @@ class Legislation::ProcessesController < Legislation::BaseController
         @proposals = Kaminari.paginate_array(@proposals.where("cached_votes_up > 0").sort_by {|x| x.likes}.reverse.take(10)).page(params[:page])
       elsif @current_filter == "updated"
         @proposals = @proposals.order(updated_at: :desc).page(params[:page])
+      elsif !params[:filter].blank? 
+        @proposals = @proposals.joins(:categories).where("legislation_categories.tag = ?", params[:filter]).page(params[:page])
       else
         @proposals = @proposals.order('id DESC').page(params[:page])
       end
@@ -148,7 +151,7 @@ class Legislation::ProcessesController < Legislation::BaseController
       elsif params[:filter] == "associations"
         @proposals = @proposals.where(type_other_proposal: "associations").page(params[:page])
       else 
-        @proposals = @proposals.joins(:other_proposal => [:categories]).where("legislation_categories.tag = ?", params[:filter]).page(params[:page])
+        @proposals = @proposals.joins(:categories).where("legislation_categories.tag = ?", params[:filter]).page(params[:page])
       end
     end
     
