@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200428081916) do
+ActiveRecord::Schema.define(version: 20200512073818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -659,6 +659,22 @@ ActiveRecord::Schema.define(version: 20200428081916) do
     t.index ["user_id"], name: "index_legislation_answers_on_user_id", using: :btree
   end
 
+  create_table "legislation_cat_prop", force: :cascade do |t|
+    t.integer "category_id"
+    t.integer "other_proposal_id"
+    t.index ["category_id"], name: "index_legislation_cat_prop_on_category_id", using: :btree
+    t.index ["other_proposal_id"], name: "index_legislation_cat_prop_on_other_proposal_id", using: :btree
+  end
+
+  create_table "legislation_categories", force: :cascade do |t|
+    t.text     "name"
+    t.text     "tag"
+    t.integer  "legislation_process_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["legislation_process_id"], name: "index_legislation_categories_on_legislation_process_id", using: :btree
+  end
+
   create_table "legislation_draft_version_translations", force: :cascade do |t|
     t.integer  "legislation_draft_version_id", null: false
     t.string   "locale",                       null: false
@@ -749,6 +765,7 @@ ActiveRecord::Schema.define(version: 20200428081916) do
     t.boolean  "permit_text_proposals"
     t.boolean  "permit_proposals_top_relevance"
     t.boolean  "permit_hiden_proposals"
+    t.boolean  "permit_like_proposals",          default: false
     t.index ["allegations_end_date"], name: "index_legislation_processes_on_allegations_end_date", using: :btree
     t.index ["allegations_start_date"], name: "index_legislation_processes_on_allegations_start_date", using: :btree
     t.index ["debate_end_date"], name: "index_legislation_processes_on_debate_end_date", using: :btree
@@ -1478,14 +1495,20 @@ ActiveRecord::Schema.define(version: 20200428081916) do
   end
 
   create_table "topics", force: :cascade do |t|
-    t.string   "title",                      null: false
+    t.string   "title",                          null: false
     t.text     "description"
     t.integer  "author_id"
-    t.integer  "comments_count", default: 0
+    t.integer  "comments_count",     default: 0
     t.integer  "community_id"
     t.datetime "hidden_at"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "cached_votes_total", default: 0
+    t.integer  "cached_votes_up",    default: 0
+    t.integer  "cached_votes_down",  default: 0
+    t.index ["cached_votes_down"], name: "index_topics_on_cached_votes_down", using: :btree
+    t.index ["cached_votes_total"], name: "index_topics_on_cached_votes_total", using: :btree
+    t.index ["cached_votes_up"], name: "index_topics_on_cached_votes_up", using: :btree
     t.index ["community_id"], name: "index_topics_on_community_id", using: :btree
     t.index ["hidden_at"], name: "index_topics_on_hidden_at", using: :btree
   end
@@ -1738,6 +1761,9 @@ ActiveRecord::Schema.define(version: 20200428081916) do
   add_foreign_key "geozones_polls", "polls"
   add_foreign_key "identities", "users"
   add_foreign_key "images", "users"
+  add_foreign_key "legislation_cat_prop", "legislation_categories", column: "category_id"
+  add_foreign_key "legislation_cat_prop", "legislation_other_proposals", column: "other_proposal_id"
+  add_foreign_key "legislation_categories", "legislation_processes"
   add_foreign_key "legislation_draft_versions", "legislation_processes"
   add_foreign_key "legislation_proposals", "legislation_other_proposals"
   add_foreign_key "legislation_proposals", "legislation_processes"

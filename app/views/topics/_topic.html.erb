@@ -2,19 +2,18 @@
 
   <div class="small-12 medium-9 column">
 
-    <h3><%= link_to topic.title, vote_communities_topics_path(@community, topic) %></h3>
+    <h3><%= link_to topic.title, vote_community_topic_path(@community, topic) %></h3>
 
     <p class="topic-info">
       <span class="icon-comments"></span>&nbsp;
-      <%= link_to t("community.show.topic.comments", count: topic.comments_count), vote_communities_topics_path(@community, topic, anchor: "comments") %>
+      <%= link_to t("community.show.topic.comments", count: topic.comments_count), vote_community_topic_path(@community, topic, anchor: "comments") %>
       <span class="bullet">&nbsp;&bull;&nbsp;</span>
       <%= I18n.l topic.created_at.to_date %>
       <span class="bullet">&nbsp;&bull;&nbsp;</span>
       <%= topic.author.name %>
     </p>
-    <div id="<%= dom_id(topic) %>_votes" class="small-12 medium-3 column">
-        <%= render "votes",
-                  { topic: topic, vote_url: vote_communities_topics_path(topic.id, topic, value: "yes") } %>
-      </div>
+    <div id="<%= dom_id(topic) %>_votes">
+      <%= render "topics/votes", topic: topic %>
+    </div>
   </div>
 </div>

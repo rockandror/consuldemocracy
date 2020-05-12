@@ -826,6 +826,7 @@ es:
       comments: Comentarios
       proposal_votes: Votos en propuestas
       debate_votes: Votos en debates
+      topic_votes: Votos en temas
       comment_votes: Votos en comentarios
       votes: Votos
       verified_users: Usuarios verificados

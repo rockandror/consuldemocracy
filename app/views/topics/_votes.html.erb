@@ -1,23 +1,49 @@
-<div class="supports text-center">
-  <div class="in-favor">
-    <% if voted_for?(@topic_votes, topic) %>
-      <div class="supported callout success">
-        <%= t("proposals.proposal.already_supported") %>
-      </div>
-    <% else %>
-      <% if user_signed_in? && topic.votable_by?(current_user) %>
-        <%= link_to vote_url,
-            class: "button button-support small expanded",
-            title: t("proposals.proposal.support_title"), method: "post", remote: true do %>
-          <%= t("proposals.proposal.support") %>
-        <% end %>
-      <% else %>
-        <div class="button button-support small expanded">
-          <%= t("proposals.proposal.support") %>
-        </div>
+<%puts "---------------------------------> #{@topic_votes}"%>
+<%puts "---------------------------------> #{@topic_votes}"%>
+<% voted_classes = css_classes_for_vote(@topic_votes, topic) %>
+<div class="votes">
+  <div class="in-favor inline-block">
+    <% if user_signed_in? %>
+      <%= link_to vote_community_topic_path(topic, value: "yes"),
+          class: "like #{voted_classes[:in_favor]}", title: t("votes.agree"), method: "post", remote: true do %>
+        <span class="icon-like">
+          <span class="show-for-sr"><%= t("votes.agree") %></span>
+        </span>
+        <span class="percentage"><%= topic_votes_percentage("likes", topic) %></span>
       <% end %>
+    <% else %>
+      <div class="like">
+        <span class="icon-like">
+          <span class="show-for-sr"><%= t("votes.agree") %></span>
+        </span>
+        <span class="percentage"><%= topic_votes_percentage("likes", topic) %></span>
+      </div>
     <% end %>
   </div>
+
+  <span class="divider"></span>
+
+  <div class="against inline-block">
+    <% if user_signed_in? %>
+      <%= link_to vote_community_topic_path(topic, value: "no"), class: "unlike #{voted_classes[:against]}", title: t("votes.disagree"), method: "post", remote: true do %>
+        <span class="icon-unlike">
+          <span class="show-for-sr"><%= t("votes.disagree") %></span>
+        </span>
+        <span class="percentage"><%= topic_votes_percentage("dislikes", topic) %></span>
+      <% end %>
+    <% else %>
+      <div class="unlike">
+        <span class="icon-unlike">
+          <span class="show-for-sr"><%= t("votes.disagree") %></span>
+        </span>
+        <span class="percentage"><%= topic_votes_percentage("dislikes", topic) %></span>
+      </div>
+    <% end %>
+  </div>
+
+  <span class="total-votes">
+    <%= t("topics.topic.votes", count: topic.votes_score) %>
+  </span>
 
   <% if user_signed_in? && current_user.organization? %>
     <div class="participation-not-allowed" style="display:none" aria-hidden="false">
@@ -26,13 +52,11 @@
       </p>
     </div>
   <% elsif user_signed_in? && !topic.votable_by?(current_user)%>
-    <div tabindex="0">
-      <div class="participation-not-allowed" style="display:none" aria-hidden="false">
-        <p>
-          <%= t("votes.verified_only",
-              verify_account: link_to(t("votes.verify_account"), verification_path )).html_safe %>
-        </p>
-      </div>
+    <div class="participation-not-allowed" style="display:none" aria-hidden="false">
+      <p>
+        <%= t("votes.anonymous",
+            verify_account: link_to(t("votes.verify_account"), verification_path )).html_safe %>
+      </p>
     </div>
   <% elsif !user_signed_in? %>
     <div tabindex="0">

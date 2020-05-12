@@ -45,10 +45,14 @@ class TopicsController < ApplicationController
   end
 
   def vote
+    @topic.register_vote(current_user, params[:value])
+    set_topic_votes(@topic)
+    log_event("topic", "vote", I18n.t("tracking.topics.name.#{params[:value]}"))
+  end
+
+  def vote_featured
     @topic.register_vote(current_user, "yes")
-    set_proposal_votes(@topic)
-    load_rank
-    log_event("proposal", "support", @topic.id, @topic_rank, 6, @topic_rank)
+    set_featured_proposal_votes(@topic)
   end
 
   private

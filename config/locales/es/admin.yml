@@ -1436,6 +1436,8 @@ es:
           comments: Comentarios
           debate_votes: Votos en debates
           debates: Debates
+          topics: Temas
+          topic_votes: Votos en temas
           proposal_votes: Votos en propuestas
           proposals: Propuestas
           budgets: Presupuestos abiertos
