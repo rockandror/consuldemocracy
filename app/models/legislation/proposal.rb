@@ -20,6 +20,7 @@ class Legislation::Proposal < ApplicationRecord
   include Randomizable
 
   belongs_to :other_proposal, class_name: "Legislation::OtherProposal", foreign_key: "legislation_other_proposal_id"
+  has_and_belongs_to_many :categories, -> { order(name: :asc) },  :join_table => :legislation_cat_prop, class_name: "Legislation::Category"
   accepts_nested_attributes_for :other_proposal, allow_destroy: true
   accepts_nested_attributes_for :documents, allow_destroy: true
   

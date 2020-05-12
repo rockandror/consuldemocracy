@@ -24,7 +24,7 @@ class Legislation::ProposalsController < Legislation::BaseController
   def show
     super
     @categories_s = ""
-    @proposal.other_proposal.categories.each do |p|
+    @proposal.categories.each do |p|
       if @categories_s.blank?
         @categories_s = p.name
       else
@@ -77,9 +77,10 @@ class Legislation::ProposalsController < Legislation::BaseController
                     image_attributes: image_attributes,
                     documents_attributes: [:id, :title, :attachment, :cached_attachment, :user_id],
                     other_proposal_attributes: [:type_other_proposal, :name, :address, :phone, :agent, :agent_title, :citizen_entities,
-                      :cif, :entity_type, :justify_text_declaration_1, :justify_text_declaration_2,
-                      category_ids: []                    
+                      :cif, :entity_type, :justify_text_declaration_1, :justify_text_declaration_2
+                                         
                     ],
+                    category_ids: [],
                     map_location_attributes: [:latitude, :longitude, :zoom])
     end
 

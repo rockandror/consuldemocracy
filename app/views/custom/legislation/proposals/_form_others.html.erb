@@ -18,26 +18,7 @@
         </div>
         <p><%= s.check_box :justify_text_declaration_1, label: false%> <%=markdown(Setting.find_by(key: "other_proposal_declaration_1").try(:value).to_s)%></p>
         <p><%= s.check_box :justify_text_declaration_2, label: false%> <%=markdown(Setting.find_by(key: "other_proposal_declaration_2").try(:value).to_s)%></p>
-        <p>
-            <div class="small-12 column">
-                <hr>
-            </div>
-            <%= s.label :categories, t("categories.form.title") %>
-            <div id="categories" >
-                <div class="row">
-                <%= s.collection_check_boxes(:category_ids, @categories, :id, :name) do |b| %>
-                    <div class="small-6 medium-3 column" style="float: left">
-                    <%= b.label do %>
-                        <%= b.check_box + b.text %>
-                    <% end %>
-                    </div>
-                <% end %>
-                </div>
-            </div>
-            <div class="small-12 column">
-                <hr>
-            </div>
-        </p>
+        
     <%end%>
 </div>
 <script>

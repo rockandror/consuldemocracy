@@ -3,12 +3,25 @@
   <li class="show-for-sr"><%= t("#{i18n_namespace}.filter") %>: </li>
   
   <%@valid_filters = ['random', 'winners', 'updated'] if !process.blank? && !process.try(:permit_proposals_top_relevance)%>
-  <%@valid_filters = ['shops','carriers', 'associations'] if !params[:type].blank?%>
+  
+  <%if !params[:type].blank?
+    @valid_filters = ['shops','carriers', 'associations'] 
+    if !@aditional_filters.blank?
+      @aditional_filters.each do |cat|
+        @valid_filters.push(cat.tag)
+      end
+    end
+  elsif !@aditional_filters.blank? 
+    @valid_filters = []
+    @aditional_filters.each do |cat|
+      @valid_filters.push(cat.tag)
+    end
+  end%>
   <% @valid_filters.each do |filter| %>
     <% if @current_filter == filter || params[:filter] == filter %>
-      <li class="is-active"><h2><%= t("#{i18n_namespace}.filters.#{filter}") %><%= " (#{prop})" if !params[:type].blank? %></h2></li>
+      <li class="is-active"><h2><%= t("#{i18n_namespace}.filters.#{filter}") ? t("#{i18n_namespace}.filters.#{filter}") : filter %></h2></li>
     <% else %>
-      <li><%= link_to t("#{i18n_namespace}.filters.#{filter}"),
+      <li><%= link_to t("#{i18n_namespace}.filters.#{filter}") ? t("#{i18n_namespace}.filters.#{filter}") : filter,
         "#{current_path_with_query_params(filter: filter, map: false, page: 1)}#filter-subnav" %></li>
     <% end %>
   <% end %>
