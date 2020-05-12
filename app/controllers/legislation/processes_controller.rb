@@ -130,7 +130,10 @@ class Legislation::ProcessesController < Legislation::BaseController
     
     if params[:type].blank?
 
-      if @current_filter == "random"
+      if !params[:filter].blank? && @aditional_filters.count > 0
+        @proposals = @proposals.joins(:categories).where("legislation_categories.tag = ?", params[:filter]).page(params[:page])
+      
+      elsif @current_filter == "random"
         @proposals = @proposals.sort_by_random(session[:random_seed]).page(params[:page])
       elsif @current_filter == "winners"
         @proposals = @proposals.send(@current_filter).page(params[:page])
@@ -138,8 +141,7 @@ class Legislation::ProcessesController < Legislation::BaseController
         @proposals = Kaminari.paginate_array(@proposals.where("cached_votes_up > 0").sort_by {|x| x.likes}.reverse.take(10)).page(params[:page])
       elsif @current_filter == "updated"
         @proposals = @proposals.order(updated_at: :desc).page(params[:page])
-      elsif !params[:filter].blank? 
-        @proposals = @proposals.joins(:categories).where("legislation_categories.tag = ?", params[:filter]).page(params[:page])
+     
       else
         @proposals = @proposals.order('id DESC').page(params[:page])
       end

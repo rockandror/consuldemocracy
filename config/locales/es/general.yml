@@ -413,6 +413,7 @@ es:
       select_order: Ordenar por
       select_order_long: 'Estas viendo las propuestas'
       start_proposal: Crea una propuesta
+      edit_proposal: Edición de propuesta
       edit_organization: Edición de organización
       start_organization: Alta organización
       title: Propuestas ciudadanas
