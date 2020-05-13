@@ -112,7 +112,7 @@ namespace :settings do
   end
 
   task add_homepage_topic: :environment do
-    if Setting.new(key: "homepage.widgets.feeds.topics", value: "t").save!
+    if Setting.new(key: "homepage.widgets.feeds.topics", value: "").save!
       puts "Temas añadidos a la página principal"
     end
   end
