@@ -1,5 +1,9 @@
+<%if @community.proposal.comunity_hide == true %>
+  <div style="margin-top:-1.5rem;margin-bottom:1.5rem">
+    <%= render_map(@map_locations, "budgets", false, nil, nil) %>
+  </div>
+<%end%>
 <div class="communities-show">
-  
   <div class="jumbo light">
     <div class="row">
       <div class="small-12 column">
@@ -27,6 +31,7 @@
 
     <div class="small-12 medium-9 column">
       <div id="topics" class="topics-list">
+        <%= back_link_to %>
         <%= render "topics/topics", topics: @topics %>
       </div>
       <%= paginate @topics %>

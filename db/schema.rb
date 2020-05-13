@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20200512135002) do
+=======
 ActiveRecord::Schema.define(version: 20200512102416) do
+>>>>>>> master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -661,9 +665,15 @@ ActiveRecord::Schema.define(version: 20200512102416) do
 
   create_table "legislation_cat_prop", force: :cascade do |t|
     t.integer "category_id"
+<<<<<<< HEAD
+    t.integer "other_proposal_id"
+    t.index ["category_id"], name: "index_legislation_cat_prop_on_category_id", using: :btree
+    t.index ["other_proposal_id"], name: "index_legislation_cat_prop_on_other_proposal_id", using: :btree
+=======
     t.integer "proposal_id"
     t.index ["category_id"], name: "index_legislation_cat_prop_on_category_id", using: :btree
     t.index ["proposal_id"], name: "index_legislation_cat_prop_on_proposal_id", using: :btree
+>>>>>>> master
   end
 
   create_table "legislation_categories", force: :cascade do |t|
@@ -1236,7 +1246,9 @@ ActiveRecord::Schema.define(version: 20200512102416) do
     t.integer "probe_selections_count", default: 0
     t.integer "debate_id"
     t.integer "comments_count",         default: 0, null: false
+    t.integer "topic_id"
     t.index ["debate_id"], name: "index_probe_options_on_debate_id", using: :btree
+    t.index ["topic_id"], name: "index_probe_options_on_topic_id", using: :btree
   end
 
   create_table "probe_selections", force: :cascade do |t|
@@ -1495,15 +1507,26 @@ ActiveRecord::Schema.define(version: 20200512102416) do
   end
 
   create_table "topics", force: :cascade do |t|
-    t.string   "title",                      null: false
+    t.string   "title",                          null: false
     t.text     "description"
     t.integer  "author_id"
-    t.integer  "comments_count", default: 0
+    t.integer  "comments_count",     default: 0
     t.integer  "community_id"
     t.datetime "hidden_at"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "cached_votes_total", default: 0
+    t.integer  "cached_votes_up",    default: 0
+    t.integer  "cached_votes_down",  default: 0
+    t.integer  "cached_votes_score", default: 0
+    t.bigint   "hot_score",          default: 0
+    t.integer  "confidence_score",   default: 0
+    t.index ["cached_votes_down"], name: "index_topics_on_cached_votes_down", using: :btree
+    t.index ["cached_votes_score"], name: "index_topics_on_cached_votes_score", using: :btree
+    t.index ["cached_votes_total"], name: "index_topics_on_cached_votes_total", using: :btree
+    t.index ["cached_votes_up"], name: "index_topics_on_cached_votes_up", using: :btree
     t.index ["community_id"], name: "index_topics_on_community_id", using: :btree
+    t.index ["confidence_score"], name: "index_topics_on_confidence_score", using: :btree
     t.index ["hidden_at"], name: "index_topics_on_hidden_at", using: :btree
   end
 
@@ -1756,7 +1779,11 @@ ActiveRecord::Schema.define(version: 20200512102416) do
   add_foreign_key "identities", "users"
   add_foreign_key "images", "users"
   add_foreign_key "legislation_cat_prop", "legislation_categories", column: "category_id"
+<<<<<<< HEAD
+  add_foreign_key "legislation_cat_prop", "legislation_other_proposals", column: "other_proposal_id"
+=======
   add_foreign_key "legislation_cat_prop", "legislation_proposals", column: "proposal_id"
+>>>>>>> master
   add_foreign_key "legislation_categories", "legislation_processes"
   add_foreign_key "legislation_draft_versions", "legislation_processes"
   add_foreign_key "legislation_proposals", "legislation_other_proposals"
@@ -1787,6 +1814,7 @@ ActiveRecord::Schema.define(version: 20200512102416) do
   add_foreign_key "poll_voters", "polls"
   add_foreign_key "polls", "budgets"
   add_foreign_key "probe_options", "debates"
+  add_foreign_key "probe_options", "topics"
   add_foreign_key "proposals", "communities"
   add_foreign_key "related_content_scores", "related_contents"
   add_foreign_key "related_content_scores", "users"

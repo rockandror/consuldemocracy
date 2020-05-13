@@ -5,6 +5,7 @@ class DebatesController < ApplicationController
 
   before_action :parse_tag_filter, only: :index
   before_action :authenticate_user!, except: [:index, :show, :map]
+  before_action :load_geozones, only: [:index, :map]
   before_action :set_view, only: :index
   before_action :debates_recommendations, only: :index, if: :current_user
 
@@ -56,6 +57,17 @@ class DebatesController < ApplicationController
     else
       redirect_to debates_path, error: t("debates.index.recommendations.actions.error")
     end
+  end
+
+  def borought
+    @district = Geozone.find(params[:geozone])
+    @proposals = Proposal.where(geozone_id: params[:geozone],comunity_hide: true)
+    
+    @key = Rails.application.secrets.yt_api_key
+    @key_x = Rails.application.secrets.yt_api_key_x
+    @embed_domain = Rails.application.secrets.embed_domain
+    @videoId = Setting.find_by(key: "youtube_connect").value
+    @playlistId = Setting.find_by(key: "youtube_playlist_connect").value
   end
 
   private
