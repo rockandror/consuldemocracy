@@ -61,7 +61,7 @@ class DebatesController < ApplicationController
 
   def borought
     @district = Geozone.find(params[:geozone])
-    @proposals = Proposal.where(geozone_id: params[:geozone],comunity_hide: true)
+    @proposals = Proposal.where(geozone_id: params[:geozone],comunity_hide: true).order(title: :asc)
     
     @key = Rails.application.secrets.yt_api_key
     @key_x = Rails.application.secrets.yt_api_key_x

@@ -6,7 +6,9 @@
       <div class="small-12 medium-3 column">
         <ul id="geozones" class="no-bullet">
           <% @geozones.each do |geozone| %>
-            <li><%= link_to geozone.name, borought_debates_path(geozone: geozone.id) %></li>
+            <% unless geozone.name == "Toda la ciudad" %>
+              <li><%= link_to geozone.name, borought_debates_path(geozone: geozone.id) %></li>
+            <% end %>
           <% end %>
         </ul>
       </div>
