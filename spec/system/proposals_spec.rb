@@ -221,6 +221,22 @@ describe "Proposals" do
         expect(page).not_to have_css(".is-anchored")
       end
     end
+
+    scenario "Show support button sticky at bottom when going back to proposal page", :js do
+      proposal = create(:proposal)
+      visit proposal_path(proposal)
+
+      click_link "Go back"
+
+      expect(page).to have_content("PROPOSALS")
+
+      go_back
+
+      within("#proposal_sticky") do
+        expect(page).to have_css(".is-stuck")
+        expect(page).not_to have_css(".is-anchored")
+      end
+    end
   end
 
   context "Embedded video" do
