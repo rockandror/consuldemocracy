@@ -2,12 +2,12 @@ class TopicsController < ApplicationController
   include CommentableActions
 
   before_action :load_community
-  before_action :load_topic, only: [:show, :edit, :update, :destroy]
+  before_action :load_topic, only: [:show, :edit, :update, :destroy, :vote, :vote_featured]
 
   has_orders %w{most_voted newest oldest}, only: :show
 
-  skip_authorization_check only: :show
-  load_and_authorize_resource except: :show
+  skip_authorization_check only: [:show, :vote, :vote_featured]
+  load_and_authorize_resource except: [:show, :vote]
 
   def new
     @topic = Topic.new
@@ -23,6 +23,7 @@ class TopicsController < ApplicationController
   end
 
   def show
+    set_topic_votes(@topic)
     @commentable = @topic
     @comment_tree = CommentTree.new(@commentable, params[:page], @current_order)
     set_comment_flags(@comment_tree.comments)

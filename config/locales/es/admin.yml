@@ -1620,6 +1620,7 @@ es:
         proposals: Propuestas
         debates: Debates
         processes: Procesos
+        topics: Temas de Barrios
       new:
         header_title: Nuevo encabezado
         submit_header: Crear encabezado

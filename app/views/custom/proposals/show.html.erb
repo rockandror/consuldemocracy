@@ -37,7 +37,7 @@
           <%else%>
              <%= back_link_to proposals_path unless preview %>
         <%end%>
-        <h1><%= @proposal.title %></h1>-----
+        <h1><%= @proposal.title %></h1>
         <% if @proposal.retired? %>
           <div data-alert class="callout alert margin-top proposal-retired">
             <strong>

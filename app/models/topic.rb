@@ -1,9 +1,11 @@
 class Topic < ApplicationRecord
-  acts_as_votable
-  acts_as_paranoid column: :hidden_at
   include ActsAsParanoidAliases
   include Notifiable
+  include Followable
 
+  acts_as_votable
+  acts_as_paranoid column: :hidden_at
+  
   belongs_to :community
   belongs_to :author, -> { with_hidden }, class_name: "User", foreign_key: "author_id"
 
@@ -13,6 +15,9 @@ class Topic < ApplicationRecord
   validates :description, presence: true
   validates :author, presence: true
 
+  before_save :calculate_hot_score, :calculate_confidence_score
+
+  scope :sort_by_hot_score,        -> { reorder(hot_score: :desc) }
   scope :sort_by_newest, -> { order(created_at: :desc) }
   scope :sort_by_oldest, -> { order(created_at: :asc) }
   scope :sort_by_most_commented, -> { reorder(comments_count: :desc) }
@@ -30,12 +35,13 @@ class Topic < ApplicationRecord
       SQL
   end
 
-  def votable_by?(user)
-    user && user.level_two_or_three_verified?
+  def calculate_hot_score
+    self.hot_score = ScoreCalculator.hot_score(self)
   end
 
-  def register_vote(user, vote_value)
-    vote_by(voter: user, vote: vote_value) if votable_by?(user)
+  def calculate_confidence_score
+    self.confidence_score = ScoreCalculator.confidence_score(cached_votes_total,
+                                                             cached_votes_up)
   end
 
   def likes
@@ -62,21 +68,12 @@ class Topic < ApplicationRecord
     total_votes <= Setting["max_votes_for_topic_edit"].to_i
   end
 
-  def register_vote(user, vote_value)
-    if votable_by?(user)
-      Topic.increment_counter(:cached_anonymous_votes_total, id) if user.unverified? && !user.voted_for?(self)
-      vote_by(voter: user, vote: vote_value)
-    end
+  def votable_by?(user)
+    user && user.level_two_or_three_verified?
   end
 
-  def votable_by?(user)
-    return false unless user
-    return false if ProbeOption.where(topic: self).present?
-    total_votes <= 100 ||
-      !user.unverified? ||
-      Setting["max_ratio_anon_votes_on_topics"].to_i == 100 ||
-      anonymous_votes_ratio < Setting["max_ratio_anon_votes_on_topics"].to_i ||
-      user.voted_for?(self)
+  def register_vote(user, vote_value)
+    vote_by(voter: user, vote: vote_value) if votable_by?(user)
   end
 
   def anonymous_votes_ratio
@@ -97,6 +94,8 @@ class Topic < ApplicationRecord
        cached_votes_total
        cached_votes_up
        cached_votes_down
+       hot_score
+       confidence_score
        comments_count]
   end
 

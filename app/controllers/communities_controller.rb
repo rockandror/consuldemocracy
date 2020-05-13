@@ -9,7 +9,15 @@ class CommunitiesController < ApplicationController
   def show
     @map_locations = @community.proposal.map_location if @community.proposal
     raise ActionController::RoutingError, "Not Found" unless communitable_exists?
+    set_topic_votes(@topics)
     redirect_to root_path if Setting["feature.community"].blank?
+  end
+
+  def vote
+    xxx
+    @topic.register_vote(current_user, params[:value])
+    set_topic_votes(@topics)
+    log_event("topic", "vote", I18n.t("tracking.topics.name.#{params[:value]}"))
   end
 
   private
