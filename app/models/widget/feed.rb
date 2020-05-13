@@ -31,8 +31,12 @@ class Widget::Feed < ApplicationRecord
   end
 
   def topics
-    proposals = Proposal.find_by(comunity_hide: true).community_id
-    Topic.where("topics.community_id IN (?)",proposals).sort_by_hot_score.limit(limit)
+    communities = []
+    Proposal.where(comunity_hide: true).each do |p|
+      communities.push(p.community_id)
+    end
+    
+    Topic.where("topics.community_id IN (?)",communities).sort_by_hot_score.limit(limit)
   end 
 
   def processes
