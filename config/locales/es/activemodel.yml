@@ -20,3 +20,21 @@ es:
         document_type: "Tipo de documento"
         document_number: "Número de documento (incluida letra)"
         year_of_birth: "Año de nacimiento"
+  categories:
+    title: Categorías de ecosistema
+    form:
+      title: Categorías de ecosistema
+      title_placeholder: La etiqueta debe estar en minúsculas y sin espacios para poder filtrar por la misma. El título será la parte visible de la categoria
+      delete_button: Eliminar categoría
+      add_new_document: Añadir nueva categoría
+    actions:
+      destroy:
+        notice: El documento se ha eliminado correctamente.
+        alert: El documento no se ha podido eliminar.
+        confirm: '¿Está seguro de que desea eliminar el documento? Esta acción no se puede deshacer!'
+    buttons:
+      destroy_document: Eliminar categoría
+    errors:
+      messages:
+        presence: Es necesario indicar un título en la categoría
+       

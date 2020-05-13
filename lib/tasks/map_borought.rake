@@ -124,4 +124,16 @@ namespace :map_borought do
         end
         puts "Se han añadido #{count}/#{coords.count} localizaciones de barrios."
     end
+
+    task remove: :environment do
+        count = 0
+        Proposal.where(comunity_hide: true).each do |p|
+            if p.comunity_hide == true
+                if p.destroy 
+                    count = count + 1
+                end
+            end
+        end
+        puts "Se han eliminado #{count} propuestas de barrios"
+    end
 end

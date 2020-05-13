@@ -1,10 +1,11 @@
 <div id="<%= dom_id(proposal) %>"
      class="proposal clear <%= ("human-rights" if proposal.author.id == 505793) %>"
-     data-type="proposal">
-  <div class="panel <%= ("with-image" if proposal.image.present?) %>">
+     data-type="proposal"
+     style="<%= "height:120px" if !params[:type].blank?%>">
+  <div class="panel <%= ("with-image" if proposal.image.present? && params[:type].blank?) %>" style="<%= "height:120px" if !params[:type].blank?%>">
     <div class="icon-human-rights"></div>
     <div class="icon-successful"></div>
-
+    <%if params[:type].blank? %>
     <% if proposal.image.present? %>
       <div class="row">
         <div class="small-12 medium-3 large-2 column text-center">
@@ -16,7 +17,11 @@
       <div class="row">
         <div class="small-12 medium-9 column">
     <% end %>
-        <div class="proposal-content <%= ("human-rights" if proposal.try(:author).try(:id) == 505793) %>">
+    <%else%>
+      <div class="row" style="height:120px">
+        <div class="small-12 medium-9 column">
+    <%end%>
+        <div class="proposal-content <%= ("human-rights" if proposal.try(:author).try(:id) == 505793) %>" style="<%= "height:120px" if !params[:type].blank?%>">
           <% cache [locale_and_user_status(proposal), "index", proposal, proposal.try(:author)] do %>
             <% if proposal.is_proposal? && proposal.type_other_proposal.blank?%>
               <span class="label proposal small uppercase">
@@ -49,17 +54,34 @@
                 <span class="author">
                   <%if proposal.try(:author).try(:name) == "becerragjm" %>
                     <%= "Admin27" %>
+                  <%elsif proposal.try(:author).try(:name) == "arandaspe" %>
+                    <%= "Admin107" %>
+                  <%elsif proposal.try(:author).try(:name) == "admin" %>
+                    <%= "Admin113" %>
+                  <%elsif proposal.try(:author).try(:name) == "jmmaleti" %>
+                    <%= "Admin74" %>
                   <%else%>
                   <%= proposal.try(:author).try(:name) %>
                   <%end%>
                 </span>
-                <% if proposal.try(:author).try(:display_official_position_badge?) %>
+                <!--
+                <%# if proposal.try(:author).try(:display_official_position_badge?) %>
                   <span class="bullet">&nbsp;&bull;&nbsp;</span>
-                  <span class="label round level-<%= proposal.try(:author).try(:official_level) %>">
-                    <%= proposal.try(:author).try(:official_position) %>
+                  <span class="label round level-<%#= proposal.try(:author).try(:official_level) %>">
+                    <%#= proposal.try(:author).try(:official_position) %>
                   </span>
-                <% end %>
+                <%# end %>-->
               <% end %>
+              
+              <%if proposal.try(:other_proposal).try(:address)%>
+                <span class="bullet">&nbsp;&bull;&nbsp;</span>
+                <span><%= proposal.try(:other_proposal).try(:address) %> 
+              <%end%>
+
+              <%if proposal.try(:other_proposal).try(:phone) %>
+                <span class="bullet">&nbsp;&bull;&nbsp;</span> 
+                <%= proposal.try(:other_proposal).try(:phone) %></span>
+              <%end%>
 
               <% if proposal.try(:author).try(:verified_organization?) %>
                 <span class="bullet">&nbsp;&bull;&nbsp;</span>
@@ -70,17 +92,20 @@
             </p>
             <div class="proposal-description">
               <p><%= proposal.summary %></p>
-              <div class="truncate"></div>
+              <% if params[:type].blank?%><div class="truncate"></div><%end%>
             </div>
-            <%= render "shared/tags", taggable: proposal, limit: 5 %>
+            <%unless !params[:type].blank? %>
+              <%= render "shared/tags", taggable: proposal, limit: 5 %>
+            <%end%>
           <% end %>
         </div>
       </div>
-
-      <div id="<%= dom_id(proposal) %>_votes" class="small-12 medium-3 column">
-        <%= render "legislation/proposals/votes",
+      <% if params[:type].blank? %>
+        <div id="<%= dom_id(proposal) %>_votes" class="small-12 medium-3 column">
+          <%= render "legislation/proposals/votes",
                   { proposal: proposal, vote_url: vote_legislation_process_proposal_path(proposal.legislation_process_id, proposal, value: "yes") } %>
-      </div>
+        </div>
+      <%end%>
     </div>
   </div>
 </div>

@@ -261,4 +261,20 @@ namespace :users do
     end
   end
 
+  desc "Add phone number to user"
+  task phone_number: :environment do
+    user = User.find_by(email: "taranconmr@madrid.es")
+    if !user.blank?
+      user.confirmed_phone = "669660678"
+      user.save
+      puts "==============================="
+      puts "Telefono añadido al usuario => #{user.id}"
+      puts "==============================="
+    else
+      puts "==============================="
+      puts "Usuario no encontrado"
+      puts "==============================="
+    end
+  end
+
 end

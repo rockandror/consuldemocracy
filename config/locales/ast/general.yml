@@ -595,6 +595,7 @@ ast:
       no_private_messages: "Este usuario no acepta mensajes privados."
       send_private_message: "Enviar un mensaje privado"
   votes:
+    share: Comparte
     agree: Estoy de acuerdo
     anonymous: Demasiados votos anónimos, para poder votar %{verify_account}.
     comment_unauthenticated: Necesitas %{signin} o %{signup} para poder votar.

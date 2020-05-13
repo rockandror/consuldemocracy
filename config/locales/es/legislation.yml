@@ -52,6 +52,7 @@ es:
         more_info: Más información y contexto
       proposals:
         empty_proposals: No hay propuestas
+        share: Comparte
         filters:
           random: Aleatorias
           winners: Seleccionadas
@@ -59,7 +60,9 @@ es:
           proposals_top_relevance: Las 10 más votadas
           shops: Comercios
           associations: Asociaciones
+          others: Otros
           updated: Más actualizadas
+          
       debate:
         empty_questions: No hay preguntas
         participate: Realiza tus aportaciones al debate previo participando en los siguientes temas.

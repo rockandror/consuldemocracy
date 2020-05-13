@@ -301,7 +301,6 @@ es:
       notifiable_hidden: Este elemento ya no está disponible.
   map:
     title: "Distritos"
-    boroughts: "Barrios"
     proposal_for_district: "Crea una propuesta para tu distrito"
     select_district: Ámbito de actuación
     start_proposal: Crea una propuesta
@@ -420,6 +419,7 @@ es:
       select_order: Ordenar por
       select_order_long: 'Estas viendo las propuestas'
       start_proposal: Crea una propuesta
+      edit_proposal: Edición de propuesta
       edit_organization: Edición de organización
       start_organization: Alta organización
       title: Propuestas ciudadanas
@@ -896,6 +896,7 @@ es:
       actions: Acciones
       retired_help_text: Dashboard no disponible para propuestas retiradas
   votes:
+    share: Comparte
     agree: Estoy de acuerdo
     anonymous: Demasiados votos anónimos, para poder votar %{verify_account}.
     comment_unauthenticated: Necesitas %{signin} o %{signup} para poder votar.
