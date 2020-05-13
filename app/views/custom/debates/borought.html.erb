@@ -84,27 +84,27 @@
     }
 </script>
 <div class="row">
-  <div class="small-12 medium-9 column margin-top">
-  <%= back_link_to %>
-    <h1><%= @district.name %></h1>
-    <div class="boroughts">
-      <h2><%= t("map.boroughts") %></h2>
-      <div class="row" style="padding-left:1em">
-        <div class="small-12 medium-3 column">
-          <ul id="geozones" class="no-bullet">
-            <% @proposals.each do |proposal| %>
-                  <li><%= link_to proposal.title, community_path(proposal.try(:community).id) %></li>
-            <% end %>
-          </ul>
+    <div class="small-12 medium-5 column margin-top">
+        <%= back_link_to %>
+        <h1>Distrito de <%= @district.name %></h1>
+        <div class="boroughts">
+        <h2><%= t("map.boroughts") %></h2>
+        <div class="row" style="padding-left:1em">
+            <div class="small-12 medium-3 column" style="width:100%">
+            <ul id="geozones" class="no-bullet">
+                <% @proposals.each do |proposal| %>
+                    <li style="width:100%"><%= link_to proposal.title, community_path(proposal.try(:community).id) %></li>
+                <% end %>
+            </ul>
+            </div>
         </div>
-      </div>
+        </div>
     </div>
-    <div class="row background_videos">
-      <div class="small-12 column">
-          <h3>Encuentros anteriores</h3>
-          <div id="playlist" class="row">No hay vídeos disponibles</div>
-      </div>
+    <div class="small-12 medium-7 column margin-top-borought">
+        <div class="row background_videos_borought">
+            <h3>CONECTADOS. Encuentros en directo con expertos del Ayuntamiento de Madrid</h3>
+            <div id="playlist" class="row">No hay vídeos disponibles</div>
+        </div>
     </div>
-  </div>
 </div>
 <%= javascript_tag "uploadData('#{ @key}', '#{@key_x}', '#{ @videoId }', '#{@playlistId}','#{@embed_domain}')" %>
