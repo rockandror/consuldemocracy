@@ -201,29 +201,27 @@
     </div>
 
     <div class="small-12 medium-5 column">
-      <h2><%= "Empieza un debate en tu barrio" %></h2>
-    
       <%= form_for(:debate, url: new_borought_debates_path, method: :post ) do |f| %>
-        <div class="small-12">
-          <%= f.label :borought_id,  t("map.select_district") %>
-          <%= f.select :borought_id, borought_select_options,
-                      {include_blank: t("map.boroughts"), label: false} %>
-        </div>
-
-        <div class="actions small-12">
-          <%= f.submit(class: "button", value: t("debates.index.start_debate")) %>
-        </div>
+        <div class="row">
+          <div class="small-7 column">
+            <%= f.label :borought_id,  t("map.select_district") %>
+            <%= f.select :borought_id, borought_select_options,
+                        {include_blank: t("map.boroughts"), label: false} %>
+          </div>
+          <div class="actions small-5 column" style="margin-top:15px">
+            <%= f.submit(class: "button", value: t("debates.index.start_debate")) %>
+          </div>
+        </div>     
       <% end %>
 
       <%= render "map" %>
     </div>
-
-  </div>
-  <div class="small-12 medium-9 column margin-top-borought">
+    <div class="small-12 medium-9 column" style="float:left!important">
         <div class="row background_videos_borought">
-            <h3>CONECTADOS. Encuentros en directo con expertos del Ayuntamiento de Madrid</h3>
+            <h3><%=t("debates.conected")%></h3>
             <div id="playlist" class="row">No hay vídeos disponibles</div>
         </div>
     </div>
+  </div>
 </main>
 <%= javascript_tag "uploadData('#{ @key}', '#{@key_x}', '#{ @videoId }', '#{@playlistId}','#{@embed_domain}')" %>

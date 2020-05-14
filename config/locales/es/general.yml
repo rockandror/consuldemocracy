@@ -89,6 +89,7 @@ es:
         one: 1 Me gusta
         other: "%{count} Me gusta"
   debates:
+    conected: "CONECTADOS. Encuentros en directo con expertos del Ayuntamiento de Madrid"
     create:
       form:
         submit_button: Empieza un debate
@@ -141,6 +142,7 @@ es:
         other: " que contienen <strong>'%{search_term}'</strong>"
       select_order: Ordenar por
       start_debate: Empieza un debate
+      start_debate_borought: "Empieza un debate en tu barrio"
       title: Debates
       section_header:
         icon_alt: Icono de Debates
@@ -923,7 +925,7 @@ es:
   welcome:
     feed:
       most_active:
-        debates: "Debates más activos"
+        debates: "Debates de ciudad más activos"
         proposals: "Propuestas más activas"
         processes: "Procesos abiertos"
         topics: "Debates de barrio más activos"
