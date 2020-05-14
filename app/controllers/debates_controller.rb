@@ -24,6 +24,11 @@ class DebatesController < ApplicationController
     @featured_debates = @debates.featured
     discard_probe_debates
     @geozones_coords = district_geozone
+    @key = Rails.application.secrets.yt_api_key
+    @key_x = Rails.application.secrets.yt_api_key_x
+    @embed_domain = Rails.application.secrets.embed_domain
+    @videoId = Setting.find_by(key: "youtube_connect").value
+    @playlistId = Setting.find_by(key: "youtube_playlist_connect").value
   end
 
   def show
@@ -63,12 +68,6 @@ class DebatesController < ApplicationController
   def borought
     @district = Geozone.find(params[:geozone])
     @proposals = Proposal.where(geozone_id: params[:geozone],comunity_hide: true).order(title: :asc)
-    
-    @key = Rails.application.secrets.yt_api_key
-    @key_x = Rails.application.secrets.yt_api_key_x
-    @embed_domain = Rails.application.secrets.embed_domain
-    @videoId = Setting.find_by(key: "youtube_connect").value
-    @playlistId = Setting.find_by(key: "youtube_playlist_connect").value
   end
 
   def district_geozone
@@ -98,11 +97,15 @@ class DebatesController < ApplicationController
   end
 
   def new_borought
-    if !params[:debate][:borought_id].blank?
-    community = Community.find(Proposal.find(params[:debate][:borought_id]).community_id)
-    redirect_to new_community_topic_path(community)
+    if user_signed_in?
+      if !params[:debate][:borought_id].blank?
+      community = Community.find(Proposal.find(params[:debate][:borought_id]).community_id)
+      redirect_to new_community_topic_path(community)
+      else
+        redirect_to debates_path, alert: t("debates.index.recommendations.actions.blank")
+      end
     else
-      redirect_to debates_path, error: t("debates.index.recommendations.actions.blank")
+      redirect_to new_user_session_path, alert: t("devise.failure.unauthenticated")
     end
   end
 
