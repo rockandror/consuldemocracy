@@ -1,5 +1,5 @@
 <%if @community.proposal.comunity_hide == true %>
-  <div style="margin-top:-1.5rem;margin-bottom:1.5rem">
+  <div class="community_map" style="margin-top:-1.5rem;margin-bottom:1.5rem">
     <%= render_map(@map_locations, "budgets", false, nil, nil) %>
   </div>
 <%end%>
@@ -31,7 +31,7 @@
 
     <div class="small-12 medium-9 column">
       <div id="topics" class="topics-list">
-        <%= back_link_to %>
+        <%= link_to content_tag(:span, nil, class: "icon-angle-left") + "Volver", debates_path %>
         <%= render "topics/topics", topics: @topics %>
       </div>
       <%= paginate @topics %>

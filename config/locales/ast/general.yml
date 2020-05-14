@@ -159,7 +159,9 @@ ast:
     signature_sheet: la hoja de firmas
     image: Imaxe
   geozones:
+    borought: Barrios
     none: Toda la ciudad
+    blank: Debe introducir un barrio
     all: Todos los ámbitos de actuación
   layouts:
     application:

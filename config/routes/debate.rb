@@ -1,5 +1,6 @@
 resources :debates do
   member do
+    post :new_borought
     post :vote
     put :flag
     put :unflag
@@ -8,6 +9,7 @@ resources :debates do
   end
 
   collection do
+    post :new_borought
     get :borought
     get :map
     get :suggest
