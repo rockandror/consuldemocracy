@@ -113,6 +113,10 @@
         <% unless @proposal.type_other_proposal.blank? %>
           <p><%= render "others", proposal: @proposal %></p>
         <%end%>
+        <% unless @categories_s.blank?%>
+          <div class="small-12 "><b><%=t("categories.form.title") %></b>: <%=@categories_s%></div>
+          <br>
+        <%end%>
 
         <% if @proposal.is_proposal? && @proposal.video_url.present? %>
           <div class="video-link">

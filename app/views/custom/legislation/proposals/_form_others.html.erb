@@ -18,6 +18,7 @@
         </div>
         <p><%= s.check_box :justify_text_declaration_1, label: false%> <%=markdown(Setting.find_by(key: "other_proposal_declaration_1").try(:value).to_s)%></p>
         <p><%= s.check_box :justify_text_declaration_2, label: false%> <%=markdown(Setting.find_by(key: "other_proposal_declaration_2").try(:value).to_s)%></p>
+        
     <%end%>
 </div>
 <script>
