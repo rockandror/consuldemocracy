@@ -55,7 +55,7 @@ class Debate < ApplicationRecord
   attr_accessor :link_required
 
   def url
-    debate_path(self)
+    debate_path(self).limit(5)
   end
 
   def self.recommendations(user)
@@ -156,7 +156,7 @@ class Debate < ApplicationRecord
   end
 
   def self.debates_orders(user)
-    orders = %w{hot_score confidence_score created_at relevance}
+    orders = %w{created_at hot_score confidence_score relevance}
     orders << "recommendations" if Setting["feature.user.recommendations_on_debates"] && user&.recommended_debates
     return orders
   end

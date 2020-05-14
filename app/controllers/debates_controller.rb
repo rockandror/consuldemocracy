@@ -14,15 +14,19 @@ class DebatesController < ApplicationController
   invisible_captcha only: [:create, :update], honeypot: :subtitle
 
   has_orders ->(c) { Debate.debates_orders(c.current_user) }, only: :index
-  has_orders %w{most_voted newest oldest}, only: :show
+  has_orders %w{newest most_voted oldest}, only: :show
 
   load_and_authorize_resource
   helper_method :resource_model, :resource_name
   respond_to :html, :js
-
+  def index
+    super
+    @debates = @debates.page(params[:page]).per(5)
+  end
   def index_customization
     @featured_debates = @debates.featured
     discard_probe_debates
+    
     @geozones_coords = district_geozone
     @key = Rails.application.secrets.yt_api_key
     @key_x = Rails.application.secrets.yt_api_key_x
