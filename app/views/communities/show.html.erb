@@ -31,7 +31,7 @@
 
     <div class="small-12 medium-9 column">
       <div id="topics" class="topics-list">
-        <%= link_to content_tag(:span, nil, class: "icon-angle-left") + "Volver", debates_path %>
+        <%= link_to content_tag(:span, nil, class: "icon-angle-left") + "Volver", borought_debates_path(geozone: Proposal.find_by(community_id: @community.id).geozone_id) %>
         <%= render "topics/topics", topics: @topics %>
       </div>
       <%= paginate @topics %>
