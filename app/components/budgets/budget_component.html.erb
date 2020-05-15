@@ -23,6 +23,7 @@
   <div class="row margin-top">
     <div class="small-12 column">
       <%= render Budgets::GroupsAndHeadingsComponent.new(budget) %>
+      <%= render Budgets::SupportsInfoComponent.new(budget) %>
 
       <% unless budget.informing? %>
         <div class="map inline">
