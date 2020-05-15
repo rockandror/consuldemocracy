@@ -4,8 +4,8 @@ class DebatesController < ApplicationController
   include FlagActions
 
   before_action :parse_tag_filter, only: :index
-  before_action :authenticate_user!, except: [:index, :show, :map, :new_borought]
-  before_action :load_geozones, only: [:index, :map, :new_borought]
+  before_action :authenticate_user!, except: [:index, :show, :map, :borought, :new_borought]
+  before_action :load_geozones, only: [:index, :map, :borought, :new_borought]
   before_action :set_view, only: :index
   before_action :debates_recommendations, only: :index, if: :current_user
 

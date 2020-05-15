@@ -24,6 +24,7 @@ es:
       sidebar:
         participate: Participa
         new_topic: Crea un tema
+        community_borought: "LAZOTEA Comunidades de barrio"
       topic:
         edit: Editar tema
         destroy: Eliminar tema

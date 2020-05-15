@@ -5,12 +5,15 @@
         <div class="boroughts">
         <h2><%= t("map.boroughts") %></h2>
         <div class="row" style="padding-left:1em">
-            <div class="small-12 medium-3 column" style="width:100%">
-            <ul id="geozones" class="no-bullet">
-                <% @proposals.each do |proposal| %>
-                    <li style="width:100%"><%= link_to proposal.title, community_path(proposal.try(:community).id) %></li>
-                <% end %>
-            </ul>
+            <div class="small-12 medium-5 column">
+                <ul id="geozones" class="no-bullet">
+                    <% @proposals.each do |proposal| %>
+                        <li style="width:100%"><%= link_to proposal.title, community_path(proposal.try(:community).id) %></li>
+                    <% end %>
+                </ul>
+            </div>
+            <div class="small-12 medium-3 column">
+                <%= image_tag("barrios.jpg", size: "200x200", alt: t("map.img_alt")) %>
             </div>
         </div>
         </div>

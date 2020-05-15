@@ -307,6 +307,7 @@ es:
     title: "Distritos"
     district: "Distrito de %{district}"
     boroughts: "Barrios"
+    img_alt: "LAZOTEA Comunidades de barrio"
     proposal_for_district: "Crea una propuesta para tu distrito"
     select_district: Ámbito de actuación
     start_proposal: Crea una propuesta
