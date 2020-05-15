@@ -125,7 +125,7 @@
 
   <div class="row">
       <div class="small-12 medium-7 column"><h1><%="Toda la ciudad"%></h1></div>
-      <div class="hide-for-small-only small-12 medium-5 column"><h1><%= t("map.title") %></h1></div>
+      <div class="hide-for-small-only small-12 medium-5 column"><h1><%= t("map.boroughts") %></h1></div>
   </div>
 
   <% if feature?("user.recommendations") && @recommended_debates.present? %>
@@ -218,6 +218,7 @@
     </div>
     <div class="small-12 medium-9 column" style="float:left!important">
         <div class="row background_videos_borought">
+            <h2 style="background: #003df6;color: white;padding: 10px;"><%=t("debates.conected_title")%></h2>
             <h3><%=t("debates.conected")%></h3>
             <div id="playlist" class="row">No hay vídeos disponibles</div>
         </div>

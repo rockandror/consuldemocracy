@@ -89,6 +89,7 @@ es:
         one: 1 Me gusta
         other: "%{count} Me gusta"
   debates:
+    conected_title: Encuentros en directo
     conected: "CONECTADOS. Encuentros en directo con expertos del Ayuntamiento de Madrid"
     create:
       form:
