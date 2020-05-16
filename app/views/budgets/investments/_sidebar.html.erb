@@ -36,6 +36,10 @@
   <h2 class="sidebar-title">
     <%= t("budgets.investments.index.sidebar.my_ballot") %>
   </h2>
+  <br>
+  <div class="my-ballot">
+    <span class="fas fa-vote-yea"></span>
+  </div>
 
   <% if @ballot.investments.by_heading(@heading.id).count > 0 %>
     <p>
@@ -56,6 +60,12 @@
   <% else %>
     <p><strong><%= t("budgets.investments.index.sidebar.zero") %></strong></p>
   <% end %>
+
+  <p>
+    <%= sanitize(t("budgets.investments.index.sidebar.voted_info",
+        link: link_to(t("budgets.investments.index.sidebar.voted_info_link"), budget_ballot_path(@budget)),
+        phase_end_date: l(@budget.current_phase.ends_at.to_date, format: :long))) %>
+  </p>
 
   <ul class="ballot-list">
     <% if @heading %>
