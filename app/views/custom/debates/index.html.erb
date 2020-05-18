@@ -206,7 +206,7 @@
           <div class="small-7 column">
             <%= f.label :borought_id,  t("map.select_district") %>
             <%= f.select :borought_id, borought_select_options,
-                        {include_blank: t("map.boroughts"), label: false} %>
+                        {include_blank: t("map.boroughts_blank"), label: false} %>
           </div>
           <div class="actions small-5 column" style="margin-top:15px">
             <%= f.submit(class: "button", value: t("debates.index.start_debate")) %>
