@@ -125,7 +125,7 @@
 
   <div class="row">
       <div class="small-12 medium-7 column"><h1><%="Toda la ciudad"%></h1></div>
-      <div class="hide-for-small-only small-12 medium-5 column"><h1><%= t("map.boroughts") %></h1></div>
+      <div class="hide-for-small-only small-12 medium-5 column"><h1><%= t("map.boroughts_title") %></h1></div>
   </div>
 
   <% if feature?("user.recommendations") && @recommended_debates.present? %>
@@ -206,7 +206,7 @@
           <div class="small-7 column">
             <%= f.label :borought_id,  t("map.select_district") %>
             <%= f.select :borought_id, borought_select_options,
-                        {include_blank: t("map.boroughts_blank"), label: false} %>
+                        {include_blank: t("map.boroughts"), label: false} %>
           </div>
           <div class="actions small-5 column" style="margin-top:15px">
             <%= f.submit(class: "button", value: t("debates.index.start_debate")) %>
