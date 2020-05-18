@@ -21,7 +21,7 @@ class DebatesController < ApplicationController
   respond_to :html, :js
   def index
     super
-    @debates = @debates.page(params[:page]).per(5)
+    @debates = @debates.page(params[:page]).per(3)
   end
   def index_customization
     @featured_debates = @debates.featured
