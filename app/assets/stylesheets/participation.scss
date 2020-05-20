@@ -670,7 +670,7 @@
   .investment-project-content,
   .budget-investment-content {
     margin: 0;
-    min-height: rem-calc(180);
+    min-height: 100;
     position: relative;
   }
 
@@ -773,7 +773,9 @@
 .debate,
 .debate-show,
 .proposal-show,
-.legislation-proposals {
+.legislation-proposals,
+.topic, 
+.topic-show {
 
   .votes {
     @include votes;
@@ -796,9 +798,14 @@
 }
 
 .proposal-show .votes,
-.debate-show .votes {
+.debate-show .votes
+.topic-show .votes {
   border: 0;
   padding: $line-height / 2 0;
+}
+
+.topic-show .votes{
+  border-left: 0px;
 }
 
 .proposal {

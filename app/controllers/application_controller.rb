@@ -74,6 +74,10 @@ class ApplicationController < ActionController::Base
       @debate_votes = current_user ? current_user.debate_votes(debates) : {}
     end
 
+    def set_topic_votes(topics)
+      @topic_votes = current_user ? current_user.topic_votes(topics) : {}
+    end
+
     def set_proposal_votes(proposals)
       @proposal_votes = current_user ? current_user.proposal_votes(proposals) : {}
     end

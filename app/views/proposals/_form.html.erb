@@ -73,7 +73,7 @@
 
     <% if feature?(:map) %>
       <div class="small-12 column">
-
+      
         <%= render "map_locations/form_fields",
                    form:     f,
                    map_location: @proposal.map_location || MapLocation.new,

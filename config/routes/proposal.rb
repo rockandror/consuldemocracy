@@ -46,7 +46,6 @@ resources :proposals do
   end
 
   collection do
-    get :borought
     get :map
     get :suggest
     get :summary

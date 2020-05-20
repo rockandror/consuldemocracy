@@ -5,12 +5,17 @@
     <div class="row">
       <div class="small-12 medium-3 column">
         <ul id="geozones" class="no-bullet">
+          <% if !params[:type].blank? %>
+            <li><%= link_to @geozones.find_by(name: "Toda la ciudad").name, "#{legislation_process_proposals_path(process_id: params[:process_id],search: @geozones.find_by(name: "Toda la ciudad").name, type: params[:type], map: true)}#filter-subnav" %></li>
+          <% end %>
           <% @geozones.each do |geozone| %>
+            <%unless geozone.name == "Toda la ciudad"%>
               <%if params[:type].blank? %>
-                <li><%= link_to geozone.name, borought_proposals_path(geozone: geozone.id) %></li>
+                <li><%= link_to geozone.name, proposals_path(geozone: geozone.id) %></li>
               <% else %>
                 <li><%= link_to geozone.name, "#{legislation_process_proposals_path(process_id: params[:process_id],search: geozone.name, type: params[:type], map: true)}#filter-subnav" %></li>
               <%end%>
+            <%end%>
           <% end %>
         </ul>
       </div>
@@ -23,7 +28,7 @@
         <% @geozones.each do |geozone| %>
           <area shape="poly"
                 coords="<%= geozone.html_map_coordinates %>"
-                href="<%= params[:type].blank? ? borought_proposals_path(geozone: geozone.id) : "#{legislation_process_proposals_path(process_id: params[:process_id],search: geozone.name, type: params[:type], map: true)}#filter-subnav" %>"
+                href="<%= params[:type].blank? ? proposals_path(geozone: geozone.id) : "#{legislation_process_proposals_path(process_id: params[:process_id],search: geozone.name, type: params[:type], map: true)}#filter-subnav" %>"
                 title="<%= geozone.name %>"
                 alt="<%= geozone.name %>">
         <% end %>

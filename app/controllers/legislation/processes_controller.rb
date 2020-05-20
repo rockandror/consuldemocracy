@@ -129,8 +129,10 @@ class Legislation::ProcessesController < Legislation::BaseController
     params[:filter] = "shops" if params[:filter].blank? && !params[:type].blank?
     
     if params[:type].blank?
-      if !params[:filter].blank? 
+
+      if !params[:filter].blank? && @aditional_filters.count > 0
         @proposals = @proposals.joins(:categories).where("legislation_categories.tag = ?", params[:filter]).page(params[:page])
+      
       elsif @current_filter == "random"
         @proposals = @proposals.sort_by_random(session[:random_seed]).page(params[:page])
       elsif @current_filter == "winners"
@@ -139,6 +141,7 @@ class Legislation::ProcessesController < Legislation::BaseController
         @proposals = Kaminari.paginate_array(@proposals.where("cached_votes_up > 0").sort_by {|x| x.likes}.reverse.take(10)).page(params[:page])
       elsif @current_filter == "updated"
         @proposals = @proposals.order(updated_at: :desc).page(params[:page])
+     
       else
         @proposals = @proposals.order('id DESC').page(params[:page])
       end

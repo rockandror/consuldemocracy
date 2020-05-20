@@ -48,6 +48,7 @@ namespace :settings do
     Setting.rename_key from: "feature.homepage.widgets.feeds.proposals", to: "homepage.widgets.feeds.proposals"
     Setting.rename_key from: "feature.homepage.widgets.feeds.debates",   to: "homepage.widgets.feeds.debates"
     Setting.rename_key from: "feature.homepage.widgets.feeds.processes", to: "homepage.widgets.feeds.processes"
+    Setting.rename_key from: "feature.homepage.widgets.feeds.topics",   to: "homepage.widgets.feeds.topics"
   end
 
   desc "Add new settings"
@@ -107,6 +108,12 @@ namespace :settings do
             puts "ERROR: no se ha actualizado el setting con key: #{key} -> #{setting.errors.full_messages}"
           end
         end
+    end
+  end
+
+  task add_homepage_topic: :environment do
+    if Setting.new(key: "homepage.widgets.feeds.topics", value: "").save!
+      puts "Temas añadidos a la página principal"
     end
   end
 end

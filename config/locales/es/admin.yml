@@ -1437,6 +1437,8 @@ es:
           comments: Comentarios
           debate_votes: Votos en debates
           debates: Debates
+          topics: Temas
+          topic_votes: Votos en temas
           proposal_votes: Votos en propuestas
           proposals: Propuestas
           budgets: Presupuestos abiertos
@@ -1624,6 +1626,7 @@ es:
         proposals: Propuestas
         debates: Debates
         processes: Procesos
+        topics: Temas de Barrios
       new:
         header_title: Nuevo encabezado
         submit_header: Crear encabezado
