@@ -306,7 +306,7 @@ es:
   map:
     title: "Distritos"
     district: "Distrito de %{district}"
-    boroughts_title: "LaZotea"
+    boroughts_title: "LAZOTEA"
     boroughts: "Barrios"
     img_alt: "LAZOTEA Comunidades de barrio"
     proposal_for_district: "Crea una propuesta para tu distrito"
