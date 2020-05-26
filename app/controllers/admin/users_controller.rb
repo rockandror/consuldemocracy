@@ -123,7 +123,7 @@ class Admin::UsersController < Admin::BaseController
       user = User.find(params[:id])
       user.username = "Usuario dado de baja-" + user.id.to_s + "-" + params[:hidden_data].to_s
       user.date_hide = Date.today
-      user.email = nil
+      user.email = "#{user.id}@nomail.com"
       user.document_number = nil
       user.confirmed_phone = nil
       user.gender = nil
