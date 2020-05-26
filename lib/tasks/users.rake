@@ -277,4 +277,22 @@ namespace :users do
     end
   end
 
+  desc "delete user"
+  task delete_user_prueba: :environment do
+  
+      user = User.find(186929)
+      user.username = "Usuario dado de baja-" + user.id.to_s
+      user.date_hide = Date.today
+      user.email = nil
+      user.document_number = nil
+      user.confirmed_phone = nil
+      user.gender = nil
+    if user.save!
+      puts "Usuario eliminado el #{user.date_hide}"
+    else
+      puts "ERROR: #{user.errors.full_messages}"
+    end
+  
+  end
+
 end
