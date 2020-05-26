@@ -97,6 +97,19 @@ describe "Users" do
         expect(page).to have_link "My content", href: user_path(u2)
       end
     end
+
+    scenario "redirects keeping GET parameters after signing in", :js do
+      create(:user, :level_two, email: "dev@consul.dev", password: "consuldev")
+      heading = create(:budget_heading, name: "outskirts")
+
+      visit budget_investments_path(heading.budget, heading_id: "outskirts")
+      click_link "Sign in"
+      fill_in "user_login",    with: "dev@consul.dev"
+      fill_in "user_password", with: "consuldev"
+      click_button "Enter"
+
+      expect(page).to have_current_path budget_investments_path(heading.budget, heading_id: "outskirts")
+    end
   end
 
   context "OAuth authentication" do
