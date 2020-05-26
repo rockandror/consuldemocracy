@@ -16,7 +16,7 @@
         <tr>
           <td><%= link_to user.name, user_path(user), target: "_blank" %></td>
           <td><%= params[:hidden_users].blank? ? user.email : user.date_hide %></td>
-          <td><%= params[:hidden_users].blank? ? user.document_number : ""%></td>
+          <td><%= params[:hidden_users].blank? ? user.document_number : "" %></td>
           <td><%= params[:hidden_users].blank? ? display_user_roles(user) : "" %></td>
           <td><%= params[:hidden_users].blank? ? user.user_type : "" %></td>
           
