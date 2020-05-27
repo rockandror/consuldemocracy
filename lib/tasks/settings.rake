@@ -93,9 +93,18 @@ namespace :settings do
       </div>")
   end
 
+  task add_eventos_settings: :environment do
+    Setting.create(:key => "eventos_youtube_connect", :value => "KpgTWGu7ecI")
+    Setting.create(:key => "eventos_youtube_playlist_connect", :value => "PLhnvwI6F9eqXTZQc1yUGl4GX9s96u1AmK")
+    Setting.create(:key => "text_eventos", :value => "<div class='row'>
+      <div class='small-12 column'>
+          <h1>Eventos</h1>
+      </div>")
+  end
+
   task add_permit_html: :environment do 
     ["proposal_permit_text", "other_proposal_declaration_1", 
-      "other_proposal_declaration_2", "text_madrid_balcon"].each do |key|
+      "other_proposal_declaration_2", "text_madrid_balcon", "text_eventos"].each do |key|
         setting = Setting.find_by(key: key)
 
         if setting.blank?
