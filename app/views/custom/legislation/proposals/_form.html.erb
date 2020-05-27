@@ -5,7 +5,7 @@
  
 
   <div class="row">
-    <% if !params[:type].blank? || !@proposal.type_other_proposal.blank? %>
+    <% if !params[:other].blank? || !@proposal.type_other_proposal.blank? %>
       <%= render "form_others", f: f %>
     <%end%>
     <div class="small-12 column <%= "hide" if @process.title != "PLENO ABIERTO"%>">
