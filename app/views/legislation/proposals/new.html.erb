@@ -4,7 +4,7 @@
     
 
     
-      <% if !params[:type].blank? || !@proposal.type_other_proposal.blank? %>
+      <% if !params[:other].blank? || !@proposal.type_other_proposal.blank? %>
         <span class="icon-angle-left" aria-hidden="true"><%= link_to t("shared.back"), proposals_legislation_process_path(@process,type: params[:type]), class: "back" %></span>
         <h1><%=t("proposals.index.start_organization")%></h1>
       <%else%>
