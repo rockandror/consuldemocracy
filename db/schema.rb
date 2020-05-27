@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200512135002) do
+ActiveRecord::Schema.define(version: 20200525095508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1590,6 +1590,7 @@ ActiveRecord::Schema.define(version: 20200512135002) do
     t.text     "access_key_inserted"
     t.date     "access_key_generated_at"
     t.integer  "access_key_tried",                          default: 0
+    t.date     "date_hide"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["geozone_id"], name: "index_users_on_geozone_id", using: :btree

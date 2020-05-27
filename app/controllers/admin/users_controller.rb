@@ -119,10 +119,15 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def hide
-    
     if !params[:hidden_data].blank?
       user = User.find(params[:id])
       user.username = "Usuario dado de baja-" + user.id.to_s + "-" + params[:hidden_data].to_s
+      user.date_hide = Date.today
+      delete_email = "update users set email=null where id=#{@user.id}"
+      ActiveRecord::Base.connection.execute(delete_email)
+      user.document_number = nil
+      user.confirmed_phone = nil
+      user.gender = nil
       user.save
       redirect_to admin_users_path, notice: "Usuario #{user.id.to_s} dado de baja." 
     else
@@ -131,6 +136,6 @@ class Admin::UsersController < Admin::BaseController
   end
   
   def hide_params
-    params.require(:hide).permit(:hidden_data)
+    params.require(:hide).permit(:hidden_datak, :date_hide)
   end
 end
