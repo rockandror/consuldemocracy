@@ -12,12 +12,12 @@ es:
     text_eventos_description: Texto con formato html para el apartado de eventos por encima del video principal
     eventos_youtube_connect: Video YouTube de eventos
     eventos_youtube_connect_description: Video YouTube de eventos, video principal
-    youtube_connect: Video YouTube de encuentros
-    youtube_connect_description: Video YouTube de encuentros con expertos, video principal
+    youtube_connect: Video YouTube de conectados
+    youtube_connect_description: Video YouTube de conectados con expertos, video principal
     proposal_permit_text: Texto explicativo de propuestas de procesos
     proposal_permit_text_description: Texto explicativo que se muestra en las propuestas de procesos, después de las pestañas principales
-    youtube_playlist_connect: Playlist YouTube de encuentros
-    youtube_playlist_connect_description: Playlist YouTube de encuentros con expertos, video realizados anteriormente
+    youtube_playlist_connect: Playlist YouTube de conectados
+    youtube_playlist_connect_description: Playlist YouTube de conectados con expertos, video realizados anteriormente
     eventos_youtube_playlist_connect: Playlist YouTube de eventos
     eventos_youtube_playlist_connect_description: Playlist YouTube de eventos, video realizados anteriormente
     comments_body_max_length: "Longitud máxima de los comentarios"
