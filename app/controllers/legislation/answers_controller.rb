@@ -11,23 +11,20 @@ class Legislation::AnswersController < Legislation::BaseController
   def create
     opt = []
     params[:legislation_answer][:legislation_question_option_id].each do |o|
-      opt.push(o) if o != 0
+      opt.push(o) if o.to_i != 0
     end
     if opt.count >= 1
       if @process.debate_phase.open?
-        # Legislation::Answer.where(legislation_question_id: params[:question_id], user_id: current_user.id).delete
         opt.each do |option|
           @answer = Legislation::Answer.new
           @answer.user = current_user
-          @answer.legislation_question_option_id = option
+          @answer.question_option = Legislation::QuestionOption.find(option)
           @answer.legislation_question_id = params[:question_id]
-          puts "========================================================"
-          puts @answer.id
-          puts "========================================================"
-          xxxx
-          @answer.save!
-          
-           track_event
+          if @answer.save
+            track_event
+          else
+            puts @answer.errors.full_messages
+          end
         end
       end
       redirect_to legislation_process_question_path(@process, @question), notice: "Respuestas guardadas"

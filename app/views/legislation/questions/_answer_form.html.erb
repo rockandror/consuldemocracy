@@ -1,6 +1,6 @@
 <% if question.question_options.any? %>
   <% if process.debate_phase.open? %>
-    <%= form_for answers[], url: legislation_process_question_answers_path(process, question, answers[]), method: :create, html: { class: "controls-stacked"} do |f| %>
+    <%= form_for answer, url: legislation_process_question_answers_path(process, question, answer), method: :create, html: { class: "controls-stacked"} do |f| %>
       <% question.question_options.each do |question_option| %>
         <div class="row">
           <% if question_option.other == false %>
