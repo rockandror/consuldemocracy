@@ -1,13 +1,19 @@
 <% if question.question_options.any? %>
   <% if process.debate_phase.open? %>
-    <%= form_for answer, url: legislation_process_question_answers_path(process, question, answer), method: :create, html: { class: "controls-stacked"} do |f| %>
+    <%= form_for answers[], url: legislation_process_question_answers_path(process, question, answers[]), method: :create, html: { class: "controls-stacked"} do |f| %>
       <% question.question_options.each do |question_option| %>
         <div class="row">
-          <label class="control radio <%= "is-active" if @answer.legislation_question_option_id == question_option.id %>">
-            <%= f.radio_button :legislation_question_option_id, question_option.id, label: false %>
-            <span class="control-indicator"></span>
-            <%= question_option.value %>
-          </label>
+          <% if question_option.other == false %>
+            <label class="control radio <%= "is-active" if @answer.legislation_question_option_id == question_option.id %>">
+              <%= f.check_box :legislation_question_option_id, {multiple: true, label: false}, question_option.id %>
+              <span class="control-indicator"></span>
+              <%= question_option.value %>
+              <%= f.hidden_field :value_other%>
+            </label>
+          <% else %>
+            <%= f.hidden_field :legislation_question_option_id, value: question_option.id %>
+            <%= f.text_field :value_other, value: @answer.value_other %>
+          <% end %>
         </div>
       <% end %>
       <%= f.submit t("legislation.questions.show.answer_question"), class: "button" %>

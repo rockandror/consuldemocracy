@@ -44,6 +44,10 @@
   </div>
 
   <div class="small-12 medium-6 large-3 clear column end margin-top">
+    <%= f.number_field :multiple_answers %><% f.label :multiple_answers %>
+  </div>
+
+  <div class="small-12 medium-6 large-3 clear column end margin-top">
     <%= f.submit(class: "button success expanded", value: t("admin.legislation.questions.#{admin_submit_action(@question)}.submit_button")) %>
   </div>
 <% end %>

@@ -9,25 +9,49 @@ class Legislation::AnswersController < Legislation::BaseController
   respond_to :html, :js
 
   def create
-    ans = Legislation::Answer.find_by(legislation_question_id: params[:question_id], user_id: current_user.id)
-    if !ans.blank?
-      ans.legislation_question_option_id = params[:legislation_answer][:legislation_question_option_id]
-      ans.save!
-      redirect_to legislation_process_question_path(@process, @question), notice: t("legislation.questions.show.answer_question")
-    else
+    opt = []
+    params[:legislation_answer][:legislation_question_option_id].each do |o|
+      opt.push(o) if o != 0
+    end
+    if opt.count >= 1
       if @process.debate_phase.open?
-        @answer.user = current_user
-        @answer.save
-        track_event
-        respond_to do |format|
-          format.js
-          format.html { redirect_to legislation_process_question_path(@process, @question) }
+        # Legislation::Answer.where(legislation_question_id: params[:question_id], user_id: current_user.id).delete
+        opt.each do |option|
+          @answer = Legislation::Answer.new
+          @answer.user = current_user
+          @answer.legislation_question_option_id = option
+          @answer.legislation_question_id = params[:question_id]
+          puts "========================================================"
+          puts @answer.id
+          puts "========================================================"
+          xxxx
+          @answer.save!
+          
+           track_event
         end
+      end
+      redirect_to legislation_process_question_path(@process, @question), notice: "Respuestas guardadas"
+    else
+      ans = Legislation::Answer.find_by(legislation_question_id: params[:question_id], user_id: current_user.id)
+      if !ans.blank?
+        ans.legislation_question_option_id = params[:legislation_answer][:legislation_question_option_id]
+        ans.save!
+        redirect_to legislation_process_question_path(@process, @question), notice: t("legislation.questions.show.answer_question")
       else
-        alert = t("legislation.questions.participation.phase_not_open")
-        respond_to do |format|
-          format.js { render json: {}, status: :not_found }
-          format.html { redirect_to legislation_process_question_path(@process, @question), alert: alert }
+        if @process.debate_phase.open?
+          @answer.user = current_user
+          @answer.save
+          track_event
+          respond_to do |format|
+            format.js
+            format.html { redirect_to legislation_process_question_path(@process, @question) }
+          end
+        else
+          alert = t("legislation.questions.participation.phase_not_open")
+          respond_to do |format|
+            format.js { render json: {}, status: :not_found }
+            format.html { redirect_to legislation_process_question_path(@process, @question), alert: alert }
+          end
         end
       end
     end
@@ -37,7 +61,7 @@ class Legislation::AnswersController < Legislation::BaseController
 
     def answer_params
       params.require(:legislation_answer).permit(
-        :legislation_question_option_id
+        :legislation_question_option_id, :value_other
       )
     end
 
