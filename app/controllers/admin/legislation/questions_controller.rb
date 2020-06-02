@@ -13,6 +13,7 @@ class Admin::Legislation::QuestionsController < Admin::Legislation::BaseControll
 
   def create
     @question.author = current_user
+    @question.multiple_answers = 1 if question_params[:multiple_answers].blank?
     if @question.save
       notice = t("admin.legislation.questions.create.notice", link: question_path)
       redirect_to admin_legislation_process_questions_path, notice: notice

@@ -5,18 +5,18 @@
         <div class="row">
           <% if question_option.other == false %>
             <label class="control radio <%= "is-active" if @answer.legislation_question_option_id == question_option.id %>">
-              <%= f.check_box :legislation_question_option_id, {multiple: true, label: false}, question_option.id %>
+              <%= f.check_box :legislation_question_option_id, {multiple: true, label: false, class: "checkbox-answer", onchange: "setHidden(#{question.multiple_answers})"}, question_option.id %>
               <span class="control-indicator"></span>
               <%= question_option.value %>
-              <%= f.hidden_field :value_other%>
             </label>
+            <%= f.hidden_field :value_other%>
           <% else %>
-            <%= f.hidden_field :legislation_question_option_id, value: question_option.id %>
-            <%= f.text_field :value_other, value: @answer.value_other %>
+            <%= f.hidden_field :legislation_question_option_id, multiple: true, value: question_option.id %>
+            <%= f.text_field :value_other, value: @answer.value_other, label: t("legislation.questions.show.value_other") %>
           <% end %>
         </div>
       <% end %>
-      <%= f.submit t("legislation.questions.show.answer_question"), class: "button" %>
+      <%= f.submit t("legislation.questions.show.answer_question"), class: "button btn-answers" %>
     <% end %>
   <% end %>
 <% end %>
