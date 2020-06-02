@@ -13,6 +13,7 @@ class Admin::Legislation::QuestionsController < Admin::Legislation::BaseControll
 
   def create
     @question.author = current_user
+    @question.multiple_answers = 1 if question_params[:multiple_answers].blank?
     if @question.save
       notice = t("admin.legislation.questions.create.notice", link: question_path)
       redirect_to admin_legislation_process_questions_path, notice: notice
@@ -47,7 +48,7 @@ class Admin::Legislation::QuestionsController < Admin::Legislation::BaseControll
     def question_params
       params.require(:legislation_question).permit(
         translation_params(::Legislation::Question),
-        question_options_attributes: [:id, :_destroy,
+        :multiple_answers, question_options_attributes: [:id, :_destroy,
                                       translation_params(::Legislation::QuestionOption)]
       )
     end

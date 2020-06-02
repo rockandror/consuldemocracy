@@ -98,6 +98,7 @@ es-PE:
           other: "%{count} Comentarios"
         debate: el debate
       show:
+        value_other: Otros
         answer_question: Enviar respuesta
         next_question: Siguiente pregunta
         first_question: Primera pregunta

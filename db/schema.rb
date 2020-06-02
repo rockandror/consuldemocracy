@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200525095508) do
+ActiveRecord::Schema.define(version: 20200602092841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -653,6 +653,7 @@ ActiveRecord::Schema.define(version: 20200525095508) do
     t.datetime "hidden_at"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.string   "value_other"
     t.index ["hidden_at"], name: "index_legislation_answers_on_hidden_at", using: :btree
     t.index ["legislation_question_id"], name: "index_legislation_answers_on_legislation_question_id", using: :btree
     t.index ["legislation_question_option_id"], name: "index_legislation_answers_on_legislation_question_option_id", using: :btree
@@ -816,11 +817,12 @@ ActiveRecord::Schema.define(version: 20200525095508) do
   end
 
   create_table "legislation_question_option_translations", force: :cascade do |t|
-    t.integer  "legislation_question_option_id", null: false
-    t.string   "locale",                         null: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.integer  "legislation_question_option_id",                 null: false
+    t.string   "locale",                                         null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
     t.string   "value"
+    t.boolean  "other",                          default: false
     t.index ["legislation_question_option_id"], name: "index_61bcec8729110b7f8e1e9e5ce08780878597a209", using: :btree
     t.index ["locale"], name: "index_legislation_question_option_translations_on_locale", using: :btree
   end
@@ -853,6 +855,7 @@ ActiveRecord::Schema.define(version: 20200525095508) do
     t.datetime "updated_at",                         null: false
     t.integer  "comments_count",         default: 0
     t.integer  "author_id"
+    t.integer  "multiple_answers",       default: 1
     t.index ["hidden_at"], name: "index_legislation_questions_on_hidden_at", using: :btree
     t.index ["legislation_process_id"], name: "index_legislation_questions_on_legislation_process_id", using: :btree
   end

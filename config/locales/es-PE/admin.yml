@@ -402,6 +402,7 @@ es-PE:
           add_option: +Añadir respuesta cerrada
           title: Pregunta
           value_placeholder: Escribe una respuesta cerrada
+          label_other: "Otra respuesta"
         index:
           back: Volver
           title: Preguntas asociadas a este proceso

@@ -630,6 +630,8 @@ es:
           form:
             error: Error
         form:
+          multiple_answers: Nº de respuestas posibles
+          other: Otra respuesta
           add_option: Añadir respuesta cerrada
           title: Pregunta
           title_placeholder: Escribe un título a la pregunta
