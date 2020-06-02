@@ -7,8 +7,8 @@
                                          placeholder: t("admin.legislation.questions.form.value_placeholder"),
                                          label: false %>
         </div>
-        <div class="small-12 medium-9 column">
-          <%= translations_form.check_box :other %>
+        <div class="small-12 medium-3 column">
+          <%= translations_form.check_box :other, label: t("admin.legislation.questions.form.other") %>
         </div>
       <% end %>
     </div>

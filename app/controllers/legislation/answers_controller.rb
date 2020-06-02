@@ -15,16 +15,16 @@ class Legislation::AnswersController < Legislation::BaseController
     params[:legislation_answer][:legislation_question_option_id].each do |o|
       opt.push(o) if o.to_i != 0
     end
+    
     if opt.count >= 1
       if @process.debate_phase.open?
-        Legislation::Answer.where(legislation_question_id: params[:question_id], user_id: current_user.id).destroy_all
         opt.each do |option|
-          ActiveRecord::Base.connection.execute(delete_answers) if !params[:legislation_answer][:value_other].blank?
+          ActiveRecord::Base.connection.execute(delete_answers) if params[:legislation_answer][:value_other] != ""
           @answer = Legislation::Answer.new
           @answer.user = current_user
           @answer.question_option = Legislation::QuestionOption.find(option)
           @answer.legislation_question_id = params[:question_id]
-          @answer.value_other = params[:legislation_answer][:value_other] if !params[:legislation_answer][:value_other].blank?
+          @answer.value_other = params[:legislation_answer][:value_other]
           if @answer.save
             track_event
           else
@@ -63,7 +63,7 @@ class Legislation::AnswersController < Legislation::BaseController
 
     def answer_params
       params.require(:legislation_answer).permit(
-        :legislation_question_option_id, :value_other
+        :value_other, :legislation_question_option_id => []
       )
     end
 
