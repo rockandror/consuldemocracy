@@ -205,7 +205,9 @@ namespace :admin do
 
   namespace :legislation do
     resources :processes do
-      resources :questions
+      resources :questions do
+        get :other_answers, on: :collection
+      end
       resources :proposals do
         member { patch :toggle_selection }
       end

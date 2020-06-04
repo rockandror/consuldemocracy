@@ -115,6 +115,7 @@ es:
           other: "%{count} comentarios"
         debate: Debate
       show:
+        value_other: Otra respuesta
         answer_question: Enviar respuesta
         last_question: Anterior pregunta 
         next_question: Siguiente pregunta

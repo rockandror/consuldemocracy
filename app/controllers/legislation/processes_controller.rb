@@ -110,8 +110,13 @@ class Legislation::ProcessesController < Legislation::BaseController
       
       @proposals = Legislation::Proposal.where(process: @process).where("legislation_proposals.type_other_proposal is not null").with_ignored_flag
     end
-    
-    @proposals = @proposals.search(params[:search]) if params[:search].present?
+    if params[:search].present?
+      if params[:search] == "Toda la ciudad"
+        @proposals = @proposals.where(geozone_id: nil)
+      else
+        @proposals = @proposals.search(params[:search])
+      end
+    end
     @current_filter = "random" if params[:filter].blank? #&& @proposals.winners.any?
     if params[:map].to_s != "false"
       if !params[:search].blank? && @proposals.count > 0
