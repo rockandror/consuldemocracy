@@ -19,16 +19,18 @@ class Legislation::AnswersController < Legislation::BaseController
     if opt.count >= 1
       if @process.debate_phase.open?
         opt.each do |option|
-          ActiveRecord::Base.connection.execute(delete_answers) if params[:legislation_answer][:value_other] != ""
-          @answer = Legislation::Answer.new
-          @answer.user = current_user
-          @answer.question_option = Legislation::QuestionOption.find(option)
-          @answer.legislation_question_id = params[:question_id]
-          @answer.value_other = params[:legislation_answer][:value_other]
-          if @answer.save
-            track_event
-          else
-            puts @answer.errors.full_messages
+          unless Legislation::QuestionOption.find(option).other == true && params[:legislation_answer][:value_other] == ""
+            ActiveRecord::Base.connection.execute(delete_answers) if params[:legislation_answer][:value_other] != ""
+            @answer = Legislation::Answer.new
+            @answer.user = current_user
+            @answer.question_option = Legislation::QuestionOption.find(option)
+            @answer.legislation_question_id = params[:question_id]
+            @answer.value_other = params[:legislation_answer][:value_other]
+            if @answer.save
+              track_event
+            else
+              puts @answer.errors.full_messages
+            end
           end
         end
       end
