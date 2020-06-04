@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   root "welcome#index"
   get "/welcome", to: "welcome#welcome"
   get "/conectados", to: "welcome#encuentrosconexpertos"
+  get "/eventos", to: "welcome#eventos"
 
   get "/madridsalealbalcon" => redirect("/legislation/processes/#{Rails.application.secrets.id}")
   get "/compartimosbarrio" => redirect("/legislation/processes/#{Rails.application.secrets.id_barrio}")

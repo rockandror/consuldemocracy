@@ -22,7 +22,7 @@
       <li class="is-active"><h2><%= t("#{i18n_namespace}.filters.#{filter}") ? t("#{i18n_namespace}.filters.#{filter}") : filter %></h2></li>
     <% else %>
       <li><%= link_to t("#{i18n_namespace}.filters.#{filter}") ? t("#{i18n_namespace}.filters.#{filter}") : filter,
-        "#{current_path_with_query_params(filter: filter, map: false, page: 1)}#filter-subnav" %></li>
+        "#{current_path_with_query_params(type: params[:type],filter: filter, map: false, page: 1)}#filter-subnav" %></li>
     <% end %>
   <% end %>
 </ul>

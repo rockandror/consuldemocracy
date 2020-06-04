@@ -23,7 +23,7 @@ es:
   categories:
     title: Categorías de ecosistema
     form:
-      title: Categorías de ecosistema
+      title: Categorías
       title_placeholder: La etiqueta debe estar en minúsculas y sin espacios para poder filtrar por la misma. El título será la parte visible de la categoria
       delete_button: Eliminar categoría
       add_new_document: Añadir nueva categoría
