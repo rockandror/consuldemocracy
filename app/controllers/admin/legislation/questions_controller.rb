@@ -11,6 +11,12 @@ class Admin::Legislation::QuestionsController < Admin::Legislation::BaseControll
   def new
   end
 
+  def other_answers
+    @question = Legislation::Question.find(params[:question])
+    @answers = Legislation::Answer.where(legislation_question_id: params[:question], legislation_question_option_id: params[:option])
+    #render :other_answers
+  end
+
   def create
     @question.author = current_user
     @question.multiple_answers = 1 if question_params[:multiple_answers].blank?
