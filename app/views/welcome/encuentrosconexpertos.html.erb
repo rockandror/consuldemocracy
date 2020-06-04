@@ -53,8 +53,7 @@
         $.get(
             "https://www.googleapis.com/youtube/v3/playlistItems",{
             part : 'snippet', 
-            playlistId : playlist, 
-            maxResults: 6,
+            playlistId : playlist,
             key: key},
             function(data) {   
                 var contenido = '';
