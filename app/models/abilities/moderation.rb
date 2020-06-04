@@ -11,6 +11,8 @@ module Abilities
 
       can :read, Topic
 
+      can :comments, Topic
+
       can :hide, Topic, hidden_at: nil
       cannot :hide, Topic, author_id: user.id
 

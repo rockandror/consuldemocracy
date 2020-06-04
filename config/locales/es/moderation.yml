@@ -63,6 +63,7 @@ es:
           flags: Más denunciados
           newest: Más nuevos
         title: Comentarios
+        custom_title: "Comentarios del tema %{topic}"
     dashboard:
       index:
         title: Moderar

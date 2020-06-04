@@ -24,11 +24,7 @@ namespace :moderation do
   end
 
   resources :topics, only: :index do
-    put :hide, on: :member
-    put :moderate, on: :collection
-  end
-
-  resources :comments_topics, only: :index do
+    get :comments, on: :collection
     put :hide, on: :member
     put :moderate, on: :collection
   end

@@ -24,7 +24,7 @@
       <% @topics.each do |topic| %>
         <tr id="topic_<%= topic.id %>">
           <td>
-            <%= link_to topic.title, community_topic_path(Community.find(topic.community_id), topic) %> - <%= link_to "Moderar comentarios del tema", moderation_comments_topics_path%>
+            <%= link_to topic.title, community_topic_path(Community.find(topic.community_id), topic) %> - <%= link_to "Moderar comentarios del tema (#{Comment.where(commentable_type: "Topic", commentable_id: topic.id).count})", comments_moderation_topics_path(topic_id: topic.id) %>
             <br>
             <span class="date"><%= l topic.created_at.to_date %></span>
             <span class="bullet">&nbsp;&bull;&nbsp;</span>
