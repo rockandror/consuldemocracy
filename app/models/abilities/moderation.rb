@@ -9,6 +9,17 @@ module Abilities
       can(:verify, Organization){ |o| !o.verified? }
       can(:reject, Organization){ |o| !o.rejected? }
 
+      can :read, Topic
+
+      can :hide, Topic, hidden_at: nil
+      cannot :hide, Topic, author_id: user.id
+
+      can :ignore_flag, Topic, ignored_flag_at: nil, hidden_at: nil
+      cannot :ignore_flag, Topic, author_id: user.id
+
+      can :moderate, Topic
+      cannot :moderate, Topic, author_id: user.id
+
       can :read, Comment
 
       can :hide, Comment, hidden_at: nil

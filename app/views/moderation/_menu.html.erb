@@ -51,5 +51,12 @@
         <%= t("moderation.menu.users") %>
       <% end %>
     </li>
+
+    <li <%= "class=is-active" if controller_name == "comments" %>>
+      <%= link_to moderation_topics_path do %>
+        <span class="icon-comments"></span>
+        <%= t("moderation.menu.flagged_lazotea") %>
+      <% end %>
+    </li>
   </ul>
 </nav>

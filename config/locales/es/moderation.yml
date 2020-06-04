@@ -1,5 +1,47 @@
 es:
   moderation:
+    topics:
+      index:
+        block_authors: Bloquear autores
+        confirm: '¿Estás seguro?'
+        filter: Filtro
+        filters:
+          all: Todos
+          no_flags: Visibles
+          pending_flag_review: Denunciados
+          with_ignored_flag: Marcados como revisados
+          with_confirmed_hide_at: Ocultos
+        headers:
+          topic: Tema
+          moderate: Moderar
+        hide_topics: Ocultar temas
+        ignore_flags: Marcar como revisados
+        order: Orden
+        orders:
+          flags: Más denunciados
+          newest: Más nuevos
+        title: Temas de LAZOTEA
+    comments_topics:
+      index:
+        block_authors: Bloquear autores
+        confirm: '¿Estás seguro?'
+        filter: Filtro
+        filters:
+          all: Todos
+          no_flags: Públicos
+          pending_flag_review: Denunciados
+          with_ignored_flag: Marcados como revisados
+          with_confirmed_hide_at: Ocultos
+        headers:
+          comments_topic: Comentario
+          moderate: Moderar
+        hide_topics: Ocultar comentario
+        ignore_flags: Marcar como revisados
+        order: Orden
+        orders:
+          flags: Más denunciados
+          newest: Más nuevos
+        title: "Comentarios de %{community}"
     comments:
       index:
         block_authors: Bloquear autores
@@ -48,6 +90,7 @@ es:
     header:
       title: Moderación
     menu:
+      flagged_lazotea: Lazotea
       flagged_comments: Comentarios
       flagged_debates: Debates
       flagged_investments: Proyectos de gasto

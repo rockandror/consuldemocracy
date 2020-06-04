@@ -1,0 +1,58 @@
+<h2><%= t("moderation.topics.index.title") %></h2>
+
+<%= render "shared/filter_subnav", i18n_namespace: "moderation.topics.index" %>
+
+<h3 class="inline-block"><%= page_entries_info @topics %></h3>
+
+<%= form_tag moderate_moderation_topics_path(request.query_parameters), method: :put do %>
+  <p class="float-left js-check">
+    <%= t("shared.check") %>:
+    <%= link_to t("shared.check_all"), "#", data: { check_all: "topic_ids[]" } %>
+    |
+    <%= link_to t("shared.check_none"), "#", data: { check_none: "topic_ids[]" } %>
+  </p>
+
+  <table class="clear">
+    <thead>
+      <tr>
+        <th><%= t("moderation.topics.index.headers.topic") %></th>
+        <th><%= t("moderation.topics.index.headers.moderate") %></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @topics.each do |topic| %>
+        <tr id="topic_<%= topic.id %>">
+          <td>
+            <%= link_to topic.title, community_topic_path(Community.find(topic.community_id), topic) %> - <%= link_to "Moderar comentarios del tema", moderation_comments_topics_path%>
+            <br>
+            <span class="date"><%= l topic.created_at.to_date %></span>
+            <span class="bullet">&nbsp;&bull;&nbsp;</span>
+            <%= topic.flags_count %><span class="icon-flag flag-disable"></span>
+            <span class="bullet">&nbsp;&bull;&nbsp;</span>
+            <%= topic.author.username %>
+            <br>
+            <div class="moderation-description">
+              <%= topic.description %>
+            </div>
+          </td>
+          <td class="text-center">
+            <%= check_box_tag "topic_ids[]", topic.id, nil, id: "#{dom_id(topic)}_check" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="float-right">
+    <% if params[:filter].to_s != "with_confirmed_hide_at" %>
+      <%= submit_tag t("moderation.topics.index.hide_topics"),
+                    name: "hide_topics",
+                    class: "button hollow alert",
+                    data: { confirm: t("moderation.topics.index.confirm") } %>
+    <% end %>
+  </div>
+
+  <%= paginate @topics %>
+
+<% end %>
