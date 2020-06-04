@@ -54,6 +54,7 @@
             "https://www.googleapis.com/youtube/v3/playlistItems",{
             part : 'snippet', 
             playlistId : playlist,
+            maxResults : 1000,
             key: key},
             function(data) {   
                 var contenido = '';
