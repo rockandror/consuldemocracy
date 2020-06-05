@@ -2,6 +2,7 @@ class Topic < ApplicationRecord
   include ActsAsParanoidAliases
   include Notifiable
   include Followable
+  include Flaggable
 
   acts_as_votable
   acts_as_paranoid column: :hidden_at
@@ -10,6 +11,8 @@ class Topic < ApplicationRecord
   belongs_to :author, -> { with_hidden }, class_name: "User", foreign_key: "author_id"
 
   has_many :comments, as: :commentable
+
+  attr_accessor :as_moderator, :as_administrator
 
   validates :title, presence: true
   validates :description, presence: true
@@ -22,7 +25,13 @@ class Topic < ApplicationRecord
   scope :sort_by_oldest, -> { order(created_at: :asc) }
   scope :sort_by_most_commented, -> { reorder(comments_count: :desc) }
   scope :sort_by_recommendations,  -> { order(cached_votes_total: :desc) }
+  scope :with_visible_author, -> { joins(:user).where("users.hidden_at IS NULL") }
   scope :public_for_api,           -> { all }
+  scope :not_as_admin_or_moderator, -> do
+    where("administrator_id IS NULL").where("moderator_id IS NULL")
+  end
+  scope :sort_by_flags, -> { order(flags_count: :desc, updated_at: :desc) }
+
 
   def self.rank(topic)
     return 0 if topic.blank?
@@ -33,6 +42,14 @@ class Topic < ApplicationRecord
       ) AS ranked
       WHERE id = #{topic.id}
       SQL
+  end
+
+  def as_administrator?
+    administrator_id.present?
+  end
+
+  def as_moderator?
+    moderator_id.present?
   end
 
   def calculate_hot_score

@@ -23,6 +23,12 @@ namespace :moderation do
     put :moderate, on: :collection
   end
 
+  resources :topics, only: :index do
+    get :comments, on: :collection
+    put :hide, on: :member
+    put :moderate, on: :collection
+  end
+
   resources :proposal_notifications, only: :index do
     put :hide, on: :member
     put :moderate, on: :collection

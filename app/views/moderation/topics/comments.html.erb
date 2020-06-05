@@ -1,0 +1,61 @@
+<%= back_link_to %>
+
+<h2><%=t("moderation.comments.index.custom_title", topic: Topic.find(params[:topic_id]).title)%></h2>
+
+<%= render "shared/filter_subnav", i18n_namespace: "moderation.comments.index" %>
+
+<h3 class="inline-block"><%= page_entries_info @comments %></h3>
+
+<%= form_tag moderate_moderation_comments_path(request.query_parameters), method: :put do %>
+  <%if params[:filter].to_s != "with_confirmed_hide_at"%>
+    <p class="float-left js-check">
+      <%= t("shared.check") %>:
+      <%= link_to t("shared.check_all"), "#", data: { check_all: "comment_ids[]" } %>
+      
+      <%= link_to t("shared.check_none"), "#", data: { check_none: "comment_ids[]" } %>
+    </p>
+  <%end%>
+  <table class="clear">
+    <thead>
+      <tr>
+        <th><%= t("moderation.comments.index.headers.comment") %></th>
+        <%if params[:filter].to_s != "with_confirmed_hide_at"%>
+          <th style="text-align:right"><%= t("moderation.comments.index.headers.moderate")%></th>
+        <%end%>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @comments.each do |comment| %>
+        <tr id="comment_<%= comment.id %>">
+          <td>
+            <%= comment.commentable_type.constantize.model_name.human %> -
+            <%= link_to comment.commentable.title, commentable_path(comment), target: "_blank" %>
+            <br>
+            <span class="date"><%= l comment.created_at.to_date %></span>
+            <span class="bullet">&nbsp;&bull;&nbsp;</span>
+            <%= comment.author.username %>
+            <br>
+            <div class="moderation-description">
+              <%= comment.body %>
+            </div>
+          </td>
+          <td class="<%= !params[:topic_id].blank? ? "text-right" : "text-center" %>">
+            <%= check_box_tag "comment_ids[]", comment.id, nil, id: "#{dom_id(comment)}_check" if params[:filter].to_s != "with_confirmed_hide_at"%>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="float-right">
+    <% if params[:filter].to_s != "with_confirmed_hide_at" %>
+      <%= submit_tag t("moderation.comments.index.hide_comments"),
+                    name: "hide_comments",
+                    class: "button hollow alert",
+                    data: { confirm: t("moderation.comments.index.confirm") } %>
+    <% end %>
+  </div>
+
+  <%= paginate @comments %>
+
+<% end %>

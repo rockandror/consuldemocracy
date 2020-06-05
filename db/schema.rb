@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20200602092841) do
+=======
+ActiveRecord::Schema.define(version: 20200605101911) do
+>>>>>>> DEMAD-67
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1514,6 +1518,9 @@ ActiveRecord::Schema.define(version: 20200602092841) do
     t.integer  "cached_votes_score", default: 0
     t.bigint   "hot_score",          default: 0
     t.integer  "confidence_score",   default: 0
+    t.integer  "flags_count",        default: 0
+    t.datetime "ignored_flag_at"
+    t.datetime "confirmed_hide_at"
     t.index ["cached_votes_down"], name: "index_topics_on_cached_votes_down", using: :btree
     t.index ["cached_votes_score"], name: "index_topics_on_cached_votes_score", using: :btree
     t.index ["cached_votes_total"], name: "index_topics_on_cached_votes_total", using: :btree

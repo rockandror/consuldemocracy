@@ -366,6 +366,17 @@ es:
         hidden_proposal: Propuesta oculta
         title: Comentarios ocultos
         no_hidden_comments: No hay comentarios ocultos.
+    topics:
+      index:
+        filter: Filtro
+        filters:
+          all: Todos
+          with_confirmed_hide: Confirmados
+          without_confirmed_hide: Pendientes
+        hidden_debate: Tema oculto
+        hidden_proposal: Tema oculto
+        title: Temas ocultos
+        no_hidden_topics: No hay temas ocultos.
     dashboard:
       index:
         back: Volver a %{org}
@@ -676,6 +687,7 @@ es:
       proposals_topics: Temas de propuestas
       budgets: Presupuestos participativos
       geozones: Gestionar zonas
+      hidden_topics: Temas ocultos LAZOTEA 
       hidden_comments: Comentarios ocultos
       hidden_debates: Debates ocultos
       hidden_proposals: Propuestas ocultas

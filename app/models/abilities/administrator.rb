@@ -27,6 +27,12 @@ module Abilities
       can :restore, User
       cannot :restore, User, hidden_at: nil
 
+      can :restore, Topic
+      cannot :restore, Topic, hidden_at: nil
+
+      can :confirm_hide, Topic
+      cannot :confirm_hide, Topic, hidden_at: nil
+
       can :confirm_hide, Comment
       cannot :confirm_hide, Comment, hidden_at: nil
 
