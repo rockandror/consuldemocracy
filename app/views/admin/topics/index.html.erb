@@ -1,0 +1,45 @@
+<h2><%= t("admin.topics.index.title") %></h2>
+<p><%= t("admin.shared.moderated_content") %></p>
+
+<%= render "shared/filter_subnav", i18n_namespace: "admin.topics.index" %>
+
+<% if @topics.any? %>
+  <h3 class="margin"><%= page_entries_info @topics %></h3>
+
+  <table>
+    <thead>
+      <th scope="col" class="small-8"><%= t("admin.shared.description") %></th>
+      <th scope="col"><%= t("admin.shared.actions") %></th>
+    </thead>
+    <tbody>
+    <% @topics.each do |topic| %>
+     <% unless topic.blank? %>
+      <tr id="<%= dom_id(topic) %>">
+        <td>
+          <%= link_to topic.try(:title) %>
+        </td>
+        <td>
+          <%= link_to t("admin.actions.restore"),
+                restore_admin_topic_path(topic, request.query_parameters),
+                method: :put,
+                data: { confirm: t("admin.actions.confirm") },
+                class: "button hollow warning" %>
+          <% unless topic.try(:confirmed_hide?) %>
+            <%= link_to t("admin.actions.confirm_hide"),
+                  confirm_hide_admin_topic_path(topic, request.query_parameters),
+                  method: :put,
+                  class: "button" %>
+          <% end %>
+        </td>
+      </tr>
+      <%end%>
+    <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @topics %>
+<% else %>
+  <div class="callout primary margin">
+    <%= t("admin.topics.index.no_hidden_topics") %>
+  </div>
+<% end %>

@@ -1,30 +1,27 @@
-<%= back_link_to if params[:topic_id]%>
+<%= back_link_to %>
 
-<h2><%=params[:topic_id].blank? ? t("moderation.comments.index.title") : t("moderation.comments.index.custom_title", topic: Topic.find(params[:topic_id]).title)%></h2>
+<h2><%=t("moderation.comments.index.custom_title", topic: Topic.find(params[:topic_id]).title)%></h2>
 
 <%= render "shared/filter_subnav", i18n_namespace: "moderation.comments.index" %>
 
 <h3 class="inline-block"><%= page_entries_info @comments %></h3>
-<%if params[:topic_id].blank?%>
-  <div class="float-right">
-    <%= t("moderation.comments.index.order") %>
-    <%= render "shared/order_selector", i18n_namespace: "moderation.comments.index" %>
-  </div>
-<%end%>
 
 <%= form_tag moderate_moderation_comments_path(request.query_parameters), method: :put do %>
-  <p class="float-left js-check">
-    <%= t("shared.check") %>:
-    <%= link_to t("shared.check_all"), "#", data: { check_all: "comment_ids[]" } %>
-    |
-    <%= link_to t("shared.check_none"), "#", data: { check_none: "comment_ids[]" } %>
-  </p>
-
+  <%if params[:filter].to_s != "with_confirmed_hide_at"%>
+    <p class="float-left js-check">
+      <%= t("shared.check") %>:
+      <%= link_to t("shared.check_all"), "#", data: { check_all: "comment_ids[]" } %>
+      
+      <%= link_to t("shared.check_none"), "#", data: { check_none: "comment_ids[]" } %>
+    </p>
+  <%end%>
   <table class="clear">
     <thead>
       <tr>
         <th><%= t("moderation.comments.index.headers.comment") %></th>
-        <th style="<%= !params[:topic_id].blank? ? "text-align:right" : "" %>" ><%= t("moderation.comments.index.headers.moderate") %></th>
+        <%if params[:filter].to_s != "with_confirmed_hide_at"%>
+          <th style="text-align:right"><%= t("moderation.comments.index.headers.moderate")%></th>
+        <%end%>
       </tr>
     </thead>
 
@@ -36,10 +33,6 @@
             <%= link_to comment.commentable.title, commentable_path(comment), target: "_blank" %>
             <br>
             <span class="date"><%= l comment.created_at.to_date %></span>
-            <%if params[:topic_id].blank?%>
-              <span class="bullet">&nbsp;&bull;&nbsp;</span>
-              <%= comment.flags_count %><span class="icon-flag flag-disable"></span>
-            <%end%>
             <span class="bullet">&nbsp;&bull;&nbsp;</span>
             <%= comment.author.username %>
             <br>
@@ -48,32 +41,18 @@
             </div>
           </td>
           <td class="<%= !params[:topic_id].blank? ? "text-right" : "text-center" %>">
-            <%= check_box_tag "comment_ids[]", comment.id, nil, id: "#{dom_id(comment)}_check" %>
+            <%= check_box_tag "comment_ids[]", comment.id, nil, id: "#{dom_id(comment)}_check" if params[:filter].to_s != "with_confirmed_hide_at"%>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <%if params[:topic_id].blank?%>
-    <%= submit_tag t("moderation.comments.index.block_authors"),
-                  name: "block_authors",
-                  class: "button hollow alert",
-                  data: { confirm: t("moderation.comments.index.confirm") } %>
-  <% end %>
   <div class="float-right">
     <% if params[:filter].to_s != "with_confirmed_hide_at" %>
       <%= submit_tag t("moderation.comments.index.hide_comments"),
                     name: "hide_comments",
                     class: "button hollow alert",
                     data: { confirm: t("moderation.comments.index.confirm") } %>
-    <% end %>
-    <%if params[:topic_id].blank?%>
-      <% if params[:filter].to_s != "with_ignored_flag" %>
-        <%= submit_tag t("moderation.comments.index.ignore_flags"),
-                      name: "ignore_flags",
-                      class: "button hollow",
-                      data: { confirm: t("moderation.comments.index.confirm") } %>
-      <% end %>
     <% end %>
   </div>
 

@@ -11,7 +11,7 @@ class Moderation::TopicsController < Moderation::BaseController
   def comments
     if !params[:topic_id].blank?
       if params[:filter] == "with_confirmed_hide_at"
-        @comments = Comment.where(commentable_id: params[:topic_id], commentable_type: "Topic").where("confirmed_hide_at IS NOT NULL")
+        @comments = Comment.where(commentable_id: params[:topic_id], commentable_type: "Topic").with_deleted.where.not(hidden_at: nil)
       else
         @comments = Comment.where(commentable_id: params[:topic_id], commentable_type: "Topic")
       end

@@ -7,7 +7,7 @@ es:
         filter: Filtro
         filters:
           all: Todos
-          no_flags: Visibles
+          no_flags: Públicos
           pending_flag_review: Denunciados
           with_ignored_flag: Marcados como revisados
           with_confirmed_hide_at: Ocultos
@@ -91,7 +91,7 @@ es:
     header:
       title: Moderación
     menu:
-      flagged_lazotea: Lazotea
+      flagged_lazotea: Temas de LAZOTEA
       flagged_comments: Comentarios
       flagged_debates: Debates
       flagged_investments: Proyectos de gasto

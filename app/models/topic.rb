@@ -25,6 +25,7 @@ class Topic < ApplicationRecord
   scope :sort_by_oldest, -> { order(created_at: :asc) }
   scope :sort_by_most_commented, -> { reorder(comments_count: :desc) }
   scope :sort_by_recommendations,  -> { order(cached_votes_total: :desc) }
+  scope :with_visible_author, -> { joins(:user).where("users.hidden_at IS NULL") }
   scope :public_for_api,           -> { all }
   scope :not_as_admin_or_moderator, -> do
     where("administrator_id IS NULL").where("moderator_id IS NULL")

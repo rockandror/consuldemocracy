@@ -52,9 +52,9 @@
       <% end %>
     </li>
 
-    <li <%= "class=is-active" if controller_name == "comments" %>>
+    <li <%= "class=is-active" if controller_name == "topics" %>>
       <%= link_to moderation_topics_path do %>
-        <span class="icon-comments"></span>
+        <span class="icon-organizations"></span>
         <%= t("moderation.menu.flagged_lazotea") %>
       <% end %>
     </li>
