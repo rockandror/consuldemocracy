@@ -15,7 +15,6 @@ class Admin::TopicsController < Admin::BaseController
 
   def restore
     @topic.restore
-    @topic.ignore_flag
     Activity.log(current_user, :restore, @topic)
     redirect_to admin_topics_path(params_strong)
   end
