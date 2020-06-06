@@ -4,9 +4,9 @@
 # a similar use of a global namespace too...
 module ActionDispatch::Routing::UrlFor
   def resource_hierarchy_for(resource)
-    if polymorphic_mapping(resource)
-      resolve = polymorphic_mapping(resource).send(:eval_block, self, resource, {})
+    resolve = resolve_for(resource)
 
+    if resolve
       if resolve.last.is_a?(Hash)
         [*resolve[0..-2], *resolve.last.values].grep_v(Symbol)
       else
@@ -18,6 +18,19 @@ module ActionDispatch::Routing::UrlFor
   end
 
   def admin_polymorphic_path(resource, options = {})
-    polymorphic_path([:admin, *resource_hierarchy_for(resource)], options)
+    if %w[Budget::Group Budget::Heading Poll::Booth Poll::Officer
+          Poll::Question Poll::Question::Answer::Video].include?(resource.class.name)
+      resolve = resolve_for(resource)
+
+      polymorphic_path([:admin, *resolve[0..-2]], options.merge(resolve.last))
+    else
+      polymorphic_path([:admin, *resource_hierarchy_for(resource)], options)
+    end
   end
+
+  private
+
+    def resolve_for(resource)
+      polymorphic_mapping(resource)&.send(:eval_block, self, resource, {})
+    end
 end
