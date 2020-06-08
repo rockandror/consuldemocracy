@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200602092841) do
+ActiveRecord::Schema.define(version: 20200608072147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -767,6 +767,7 @@ ActiveRecord::Schema.define(version: 20200602092841) do
     t.boolean  "permit_proposals_top_relevance"
     t.boolean  "permit_hiden_proposals"
     t.boolean  "permit_like_proposals",          default: false
+    t.string   "proposals_title"
     t.index ["allegations_end_date"], name: "index_legislation_processes_on_allegations_end_date", using: :btree
     t.index ["allegations_start_date"], name: "index_legislation_processes_on_allegations_start_date", using: :btree
     t.index ["debate_end_date"], name: "index_legislation_processes_on_debate_end_date", using: :btree
@@ -1514,6 +1515,9 @@ ActiveRecord::Schema.define(version: 20200602092841) do
     t.integer  "cached_votes_score", default: 0
     t.bigint   "hot_score",          default: 0
     t.integer  "confidence_score",   default: 0
+    t.integer  "flags_count",        default: 0
+    t.datetime "ignored_flag_at"
+    t.datetime "confirmed_hide_at"
     t.index ["cached_votes_down"], name: "index_topics_on_cached_votes_down", using: :btree
     t.index ["cached_votes_score"], name: "index_topics_on_cached_votes_score", using: :btree
     t.index ["cached_votes_total"], name: "index_topics_on_cached_votes_total", using: :btree
