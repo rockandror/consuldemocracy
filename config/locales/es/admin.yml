@@ -508,6 +508,8 @@ es:
           form:
             error: Error
         form:
+          placeholder_proposals_title: "Título para la pestaña."
+          help_proposals_title: "Si no se rellena, por defecto se mostrará como 'Propuestas'."
           enabled: Habilitado
           process: Proceso
           debate_phase: Fase de debate

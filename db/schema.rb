@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20200602092841) do
-=======
-ActiveRecord::Schema.define(version: 20200605101911) do
->>>>>>> DEMAD-67
+ActiveRecord::Schema.define(version: 20200608072147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -771,6 +767,7 @@ ActiveRecord::Schema.define(version: 20200605101911) do
     t.boolean  "permit_proposals_top_relevance"
     t.boolean  "permit_hiden_proposals"
     t.boolean  "permit_like_proposals",          default: false
+    t.string   "proposals_title"
     t.index ["allegations_end_date"], name: "index_legislation_processes_on_allegations_end_date", using: :btree
     t.index ["allegations_start_date"], name: "index_legislation_processes_on_allegations_start_date", using: :btree
     t.index ["debate_end_date"], name: "index_legislation_processes_on_debate_end_date", using: :btree
