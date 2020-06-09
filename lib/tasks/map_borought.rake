@@ -41,6 +41,8 @@ namespace :map_borought do
         puts "Se han añadido #{count}/#{total}"
     end
     task coords: :environment do
+        delete_coords = "delete from map_locations where proposal_id IN (select id from proposals where comunity_hide = true)"
+        ActiveRecord::Base.connection.execute(delete_coords)
         coords = { 
             "Imperial" => ["40.40574342951", "-3.71882915496826"], "Acacias" => ["40.4009623379666", "-3.70708107948303"],
             "Chopera" => ["40.3951938570271", "-3.6994206905365"], "Legazpi" => ["40.3888512257702", "-3.68773698806763"],
