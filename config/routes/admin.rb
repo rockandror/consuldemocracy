@@ -93,6 +93,13 @@ namespace :admin do
     end
   end
 
+  resources :topics, only: :index do
+    member do
+      put :restore
+      put :confirm_hide
+    end
+  end
+
   resources :tags, only: [:index, :create, :update, :destroy]
 
   resources :officials, only: [:index, :edit, :update, :destroy] do

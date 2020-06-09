@@ -80,6 +80,7 @@ class Admin::Legislation::ProcessesController < Admin::Legislation::BaseControll
         :custom_list,
         :background_color,
         :font_color,
+        :proposals_title,
         translation_params(::Legislation::Process),
         geozone_ids: [],
         documents_attributes: [:id, :title, :attachment, :cached_attachment, :user_id, :_destroy],

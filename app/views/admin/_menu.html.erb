@@ -152,6 +152,10 @@
           </li>
         <% end %>
 
+        <li <%= "class=is-active" if controller_name == "topics" %>>
+          <%= link_to t("admin.menu.hidden_topics"), admin_topics_path %>
+        </li>
+
         <li <%= "class=is-active" if controller_name == "comments" %>>
           <%= link_to t("admin.menu.hidden_comments"), admin_comments_path %>
         </li>

@@ -14,7 +14,6 @@ class CommunitiesController < ApplicationController
   end
 
   def vote
-    xxx
     @topic.register_vote(current_user, params[:value])
     set_topic_votes(@topics)
     log_event("topic", "vote", I18n.t("tracking.topics.name.#{params[:value]}"))
