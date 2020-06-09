@@ -26,7 +26,7 @@
         <tr id="topic_<%= topic.id %>">
           <td>
             <% if params[:filter].to_s != "with_confirmed_hide_at" %>
-              <%= link_to topic.title, community_topic_path(Community.find(topic.community_id), topic) %>-<%= link_to "Moderar comentarios del tema (#{Comment.where(commentable_type: "Topic", commentable_id: topic.id).count})", comments_moderation_topics_path(topic_id: topic.id) %>
+              <%= topic.title %>-<%= link_to "Moderar comentarios del tema (#{Comment.where(commentable_type: "Topic", commentable_id: topic.id).count})", comments_moderation_topics_path(topic_id: topic.id) %>
             <%else%>
               <%= topic.title %>
             <%end%>

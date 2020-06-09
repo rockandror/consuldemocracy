@@ -20,6 +20,8 @@ class Topic < ApplicationRecord
 
   before_save :calculate_hot_score, :calculate_confidence_score
 
+  scope :no_flags, -> { all_records.where("flags_count = 0").where(ignored_flag_at: nil, hidden_at: nil).where("topics.community_id IN (select community_id from proposals where comunity_hide = true)") }
+  scope :with_confirmed_hide_at, -> {all_records.with_deleted.where.not(hidden_at: nil).where("topics.community_id IN (select community_id from proposals where comunity_hide = true)") }
   scope :sort_by_hot_score,        -> { reorder(hot_score: :desc) }
   scope :sort_by_newest, -> { order(created_at: :desc) }
   scope :sort_by_oldest, -> { order(created_at: :asc) }

@@ -6,6 +6,7 @@ class Admin::TopicsController < Admin::BaseController
 
   def index
     @topics = Topic.only_hidden.send(@current_filter).order(hidden_at: :desc).page(params[:page])
+    @topics = @topics.where("topics.community_id IN (select community_id from proposals where comunity_hide = true)")
   end
 
   def confirm_hide
