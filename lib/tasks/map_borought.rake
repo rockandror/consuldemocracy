@@ -21,7 +21,7 @@ namespace :map_borought do
             "9" => ["Orcasitas", "Orcasur", "San Fermín", "Almendrales", "Moscardó", "Zofío", "Pradolongo"],
             "21" => ["Valderrivas", "Valdebernardo", "Casco histórico de Vicálvaro", "El Cañaveral"],
             "15" => ["Ensanche de Vallecas", "Casco Histórico de Vallecas", "Santa Eugenia"],
-            "10" => ["Villaverde Alto", "Casco Histórico de Villaverde", "San Cristobal", "Butarque", "Los Rosales", "Los Angeles"]      
+            "10" => ["Villaverde Alto. Casco Histórico de Villaverde", "San Cristobal", "Butarque", "Los Rosales", "Los Angeles"]      
         }
         count = 0
         total = 0
@@ -105,7 +105,7 @@ namespace :map_borought do
             "Valdebernardo" => ["40.3964309352046","-3.61583232879639"], "Casco histórico de Vicálvaro" => ["40.4057777419371","-3.60750675201416"],
             "El Cañaveral" => ["40.4043104447172","-3.54628801345825"], "Ensanche de Vallecas" => ["40.3673364162712","-3.59918117523193"],
             "Casco Histórico de Vallecas" => ["40.3776713141662","-3.6219048500061"], "Santa Eugenia" => ["40.3829672925378","-3.61169099807739"],
-            "Villaverde Alto" => ["40.3465375792576","-3.70784282684326"], "Casco Histórico de Villaverde" => ["40.3414709791879","-3.71116876602173"],
+            "Villaverde Alto. Casco Histórico de Villaverde" => ["40.3414709791879","-3.71116876602173"],
             "San Cristobal" => ["40.3408494849091","-3.6880373954773"], "Butarque" => ["40.3364007271187","-3.67421865463257"],
             "Los Rosales" => ["40.3573956342332","-3.68956089019775"], "Los Angeles" => ["40.3564145585343","-3.69934558868408"]
         }
@@ -135,5 +135,21 @@ namespace :map_borought do
             end
         end
         puts "Se han eliminado #{count} propuestas de barrios"
+    end
+
+    task remove_borought: :environment do
+        delete_proposals = "delete from proposals where title = 'Villaverde Alto'"
+        ActiveRecord::Base.connection.execute(delete_proposals)
+        puts "Se ha eliminado Villaverde Alto de las propuestas de barrios" 
+    end
+
+    task change_borought: :environment do
+        borought = Proposal.find_by(title: "Casco Histórico de Villaverde")
+        borought.title = "Villaverde Alto. Casco Histórico de Villaverde"
+        if borought.save!
+            puts "Se ha cambiado el nombre por #{borought.title}"
+        else
+            puts "ERROR: #{borought.errors.full_messages}"
+        end
     end
 end
