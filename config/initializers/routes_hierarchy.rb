@@ -8,7 +8,7 @@ module ActionDispatch::Routing::UrlFor
 
     if resolve
       if resolve.last.is_a?(Hash)
-        [*resolve[0..-2], *resolve.last.values].grep_v(Symbol)
+        [resolve.first, *resolve.last.values]
       else
         resolve
       end
