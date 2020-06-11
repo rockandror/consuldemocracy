@@ -4,7 +4,7 @@
       <% question.question_options.each do |question_option| %>
         <div class="row">
           <% if question_option.other == false %>
-            <label class="control radio <%= "is-active" if Legislation::Answer.find_by(legislation_question_option_id: question_option.id) %>">
+            <label class="control radio <%= "is-active" if Legislation::Answer.find_by(legislation_question_option_id: question_option.id, user_id: current_user.id) %>">
               <%= f.check_box :legislation_question_option_id, {multiple: true, label: false, class: "checkbox-answer", onchange: "setHidden(#{question.multiple_answers})"}, question_option.id %>
               <span class="control-indicator"></span>
               <%= question_option.value %>

@@ -41,6 +41,8 @@ namespace :map_borought do
         puts "Se han añadido #{count}/#{total}"
     end
     task coords: :environment do
+        delete_coords = "delete from map_locations where proposal_id IN (select id from proposals where comunity_hide = true)"
+        ActiveRecord::Base.connection.execute(delete_coords)
         coords = { 
             "Imperial" => ["40.40574342951", "-3.71882915496826"], "Acacias" => ["40.4009623379666", "-3.70708107948303"],
             "Chopera" => ["40.3951938570271", "-3.6994206905365"], "Legazpi" => ["40.3888512257702", "-3.68773698806763"],
@@ -105,7 +107,7 @@ namespace :map_borought do
             "Valdebernardo" => ["40.3964309352046","-3.61583232879639"], "Casco histórico de Vicálvaro" => ["40.4057777419371","-3.60750675201416"],
             "El Cañaveral" => ["40.4043104447172","-3.54628801345825"], "Ensanche de Vallecas" => ["40.3673364162712","-3.59918117523193"],
             "Casco Histórico de Vallecas" => ["40.3776713141662","-3.6219048500061"], "Santa Eugenia" => ["40.3829672925378","-3.61169099807739"],
-            "Villaverde Alto. Casco Histórico de Villaverde" => ["40.3414709791879","-3.71116876602173"],
+            "Villaverde Alto. Casco Histórico de Villaverde" => ["40.3413188773695","-3.71122241020203"],
             "San Cristobal" => ["40.3408494849091","-3.6880373954773"], "Butarque" => ["40.3364007271187","-3.67421865463257"],
             "Los Rosales" => ["40.3573956342332","-3.68956089019775"], "Los Angeles" => ["40.3564145585343","-3.69934558868408"]
         }
