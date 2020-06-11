@@ -315,6 +315,24 @@ es:
     index:
       start_proposal_question: Crear propuesta o pregunta
   landings:
+    header: SURES. Estrategia de desarrollo del sur y del este de Madrid
+    title: "Conoce el plan que cambiará el sur y el este de Madrid"
+    sures: ¿Qué es SURES?
+    sures_desc: "Es un plan estratégico de reequilibrio territorial para reducir los desequilibrios históricos que afectan al Sur y al Este de Madrid."
+    title_districts: "9 Distritos"
+    districts: "Carabanchel, Latina, Moratalaz, Puente de Vallecas, San Blas, Usera, Vicálvaro, Villa de Vallecas y Villaverde son los 9 distritos del ámbito de actuación del Plan SURES."
+    title_strategy: "8 Estrategias"
+    strategy: "El Plan SURES se articula en 8 estrategias de 
+      actuación: regeneración ambiental, cultura y 
+      deporte, recuperación económica e 
+      industrial, movilidad y transporte, espacio 
+      público y vivienda, lucha contra la violencia 
+      de género, promoción social, desarrollo 
+      comunitario y atención social y enseñanza 
+      publica y universidades."
+    learn_more_sures: "Conoce más sobre el Plan Sures."
+    want_info: "¿Te gustaría recibir información de las actuaciones que se llevarán a cabo?"
+    user_register: "Regístrate en Decide Madrid, recibe nuestro boletín informativo y participa en SURES"
     signup:
       title: Regístrate y apoya propuestas para mejorar Madrid
       description: "En la web de participación ciudadana del ayuntamiento tú construyes Madrid. Regístrate, propón y apoya propuestas para llegar a las 27.000 firmas."
