@@ -294,5 +294,14 @@ namespace :users do
     end
   
   end
-
+  desc "change user's district"
+  task change_district: :environment do
+    user = User.find_by(document_number: "44510002B")
+    user.geozone_id = "15"
+    if user.save!
+      puts "Se ha cambiado el distrito del usuario '#{user.username}' por: #{user.geozone_id}"
+    else
+      puts "ERROR: #{user.errors.full_messages}"
+    end
+  end
 end
