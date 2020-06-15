@@ -4,8 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title><%= t("landings.signup.title") %></title>
-    <% provide :meta_description, t("landings.signup.description") %>
+    <title><%= t("meta_tags.sures.title") %></title>
+    <% provide :title, t("meta_tags.sures.title") %>
+    <% provide :meta_description, t("meta_tags.sures.description") %>
+    <% provide :meta_keywords, t("meta_tags.sures.keywords") %>
     <%= render "shared/social_media_meta_tags",
             social_url: new_user_registration_url,
             social_title: t("landings.signup.title"),
@@ -19,7 +21,6 @@
     <%= favicon_link_tag "favicon.ico" %>
     <%= setting["html.per_page_code_head"].try(:html_safe) %>
   </head>
-
   <body class="auth-page landing-budgets">
     <div class="row" style="border-bottom: 1px solid black">
       <div class="small-12 medium-8 column" style="padding:1em"><%= t("landings.header") %></div>
