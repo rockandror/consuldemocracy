@@ -1,0 +1,29 @@
+<div class="show-for-small-only">
+  <div class="show-for-small-only"><h1><%= t("map.title") %></h1></div>
+</div>
+<div class="row">
+  <div class="small-12 medium-3 column">
+    <ul id="geozones" class="no-bullet">
+      <% @geozones.each do |geozone| %>
+        <% unless geozone.name == "Toda la ciudad" %>
+          <li><%= link_to geozone.name, borought_debates_path(geozone: geozone.id) %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="show-for-medium medium-9 column text-center">
+    <%= image_tag(image_path_for("map.jpg"), usemap: "#html_map", alt: t("map.alt")) %>
+  </div>
+
+  <map name="html_map" id="html_map">
+    <% @geozones_coords.each do |k,v| %>
+      <area shape="poly"
+            coords="<%= v.to_s %>"
+            href="<%= borought_debates_path(geozone: Geozone.find_by(name: k.to_s)) %>"
+            title="<%= k.to_s %>"
+            alt="<%= k.to_s %>">
+    <% end %>
+  </map>
+</div>
+  

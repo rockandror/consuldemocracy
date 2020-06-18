@@ -51,4 +51,5 @@ resources :proposals do
     get :summary
     put "recommendations/disable", only: :index, controller: "proposals", action: :disable_recommendations
   end
+  
 end

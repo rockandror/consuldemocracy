@@ -43,9 +43,17 @@
         <%end%>
         <% if @proposal.type_other_proposal.blank?%>
           <h1><%= @proposal.title %></h1>
+          <%if !current_user.blank? && current_user.try(:id) == @proposal.try(:author).try(:id)%>
+            <div class="small-12 medium-4 column">
+              <p><%= link_to t("proposals.index.edit_proposal"),
+                          edit_legislation_process_proposal_path(@process, @proposal),
+                          class: "button expanded",
+                          id: "update-edit-proposal" %></p>
+            </div>
+          <%end%>
         <%else%>
           <h1><%= @proposal.other_proposal.name %></h1>
-          <%if !current_user.blank?  && current_user.id == @proposal.author.id%>
+          <%if !current_user.blank?  && current_user.try(:id) == @proposal.try(:author).try(:id)%>
             <div class="small-12 medium-4 column">
               <p><%= link_to t("proposals.index.edit_organization"),
                           edit_legislation_process_proposal_path(@process, @proposal),
@@ -104,6 +112,10 @@
 
         <% unless @proposal.type_other_proposal.blank? %>
           <p><%= render "others", proposal: @proposal %></p>
+        <%end%>
+        <% unless @categories_s.blank?%>
+          <div class="small-12 "><b><%=t("categories.form.title") %></b>: <%=@categories_s%></div>
+          <br>
         <%end%>
 
         <% if @proposal.is_proposal? && @proposal.video_url.present? %>

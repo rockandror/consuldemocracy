@@ -17,10 +17,9 @@ module ModerateActions
   def moderate
     set_resource_params
     @resources = @resources.where(id: params[:resource_ids])
-
+    
     if params[:hide_resources].present?
       @resources.accessible_by(current_ability, :hide).each {|resource| hide_resource resource}
-
     elsif params[:ignore_flags].present?
       @resources.accessible_by(current_ability, :ignore_flag).each(&:ignore_flag)
 
@@ -28,8 +27,11 @@ module ModerateActions
       author_ids = @resources.pluck(author_id).uniq
       User.where(id: author_ids).accessible_by(current_ability, :block).each {|user| block_user user}
     end
-
-    redirect_to request.query_parameters.merge(action: :index).merge(params_strong)
+    if !params[:topic_id].blank? && params[:hide_resources] == "Ocultar comentarios"
+      redirect_to comments_moderation_topics_path(topic_id: params[:topic_id])
+    else
+      redirect_to request.query_parameters.merge(action: :index).merge(params_strong)
+    end
   end
 
   private

@@ -13,6 +13,19 @@ module VotesHelper
     end
   end
 
+  def topic_percentage_of_likes(topic)
+    topic.likes.percent_of(topic.total_votes)
+  end
+
+  def topic_votes_percentage(vote, topic)
+    return "0%" if topic.total_votes == 0
+    if vote == "likes"
+      topic_percentage_of_likes(topic).to_s + "%"
+    elsif vote == "dislikes"
+      (100 - topic_percentage_of_likes(topic)).to_s + "%"
+    end
+  end
+
   def css_classes_for_vote(votes, votable)
     case votes[votable.id]
     when true

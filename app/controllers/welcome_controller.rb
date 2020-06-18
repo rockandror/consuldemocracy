@@ -36,6 +36,16 @@ class WelcomeController < ApplicationController
 
   end
 
+  def eventos
+    @key = Rails.application.secrets.yt_api_key
+    @key_x = Rails.application.secrets.yt_api_key_x
+    @embed_domain = Rails.application.secrets.embed_domain
+    @videoId = Setting.find_by(key: "eventos_youtube_connect").value
+    @playlistId = Setting.find_by(key: "eventos_youtube_playlist_connect").value
+
+
+  end
+
   private
 
   def set_user_recommendations

@@ -8,10 +8,10 @@
     </div>
 
     <h1>
-     <% if !params[:type].blank? || !@proposal.type_other_proposal.blank? %>
+     <% if !params[:other].blank? || !@proposal.type_other_proposal.blank? %>
         <%=t("proposals.index.edit_organization")%>
       <%else%>
-        <%= t("proposals.edit.editing") %>
+        <%= t("proposals.index.edit_proposal") %>
       <%end%>    
     </h1>
 

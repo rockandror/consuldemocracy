@@ -1,32 +1,36 @@
-<% if question.question_options.any? %>
-  <% if process.debate_phase.open? && !answer.persisted? %>
-
-    <%= form_for answer, url: legislation_process_question_answers_path(process, question, answer), remote: true , html: { class: "controls-stacked"} do |f| %>
-      <% question.question_options.each do |question_option| %>
-        <div class="row">
-          <label class="control radio <%= "is-active" if @answer.legislation_question_option_id == question_option.id %>">
-            <%= f.radio_button :legislation_question_option_id, question_option.id, label: false %>
-            <span class="control-indicator"></span>
-            <%= question_option.value %>
-          </label>
-        </div>
+<% if current_user.blank? %>
+  <div class="row margin-top">
+      <div class="small-12 medium-9 column">
+          <div class="callout warning">
+              <%= t("polls.show.cant_legislation_wrong_user") %>
+          </div>
+      </div>
+  </div>
+<% elsif !@process.in_zone(current_user) %>
+  <div class="callout warning">
+    <%= t("polls.show.cant_legislation_wrong_geozone") %>
+  </div>
+<%else%>
+  <% if question.question_options.any? %>
+    <% if process.debate_phase.open? %>
+      <%= form_for answer, url: legislation_process_question_answers_path(process, question, answer), method: :create, html: { class: "controls-stacked"} do |f| %>
+        <% question.question_options.each do |question_option| %>
+          <div class="row">
+            <% if question_option.other == false %>
+              <label class="control radio <%= "is-active" if Legislation::Answer.find_by(legislation_question_option_id: question_option.id, user_id: current_user.id) %>">
+                <%= f.check_box :legislation_question_option_id, {multiple: true, label: false, class: "checkbox-answer", onchange: "setHidden(#{question.multiple_answers})"}, question_option.id %>
+                <span class="control-indicator"></span>
+                <%= question_option.value %>
+              </label>
+              <%= f.hidden_field :value_other%>
+            <% else %>
+              <%= f.hidden_field :legislation_question_option_id, multiple: true, value: question_option.id %>
+              <%= f.text_field :value_other, value: @answer.value_other, label: t("legislation.questions.show.value_other") %>
+            <% end %>
+          </div>
+        <% end %>
+        <%= f.submit t("legislation.questions.show.answer_question"), class: "button btn-answers" %>
       <% end %>
-      <%= f.submit t("legislation.questions.show.answer_question"), class: "button" %>
     <% end %>
-
-  <% else %>
-
-    <form class="controls-stacked disabled">
-      <% question.question_options.each do |question_option| %>
-        <div class="row">
-          <label class="control radio <%= "is-active" if answer.persisted? && (answer.legislation_question_option_id == question_option.id) %>">
-            <input id="quiz-1" name="radio" type="radio" disabled="true">
-            <span class="control-indicator"></span>
-            <%= question_option.value %>
-          </label>
-        </div>
-      <% end %>
-    </form>
-
   <% end %>
-<% end %>
+<%end%>

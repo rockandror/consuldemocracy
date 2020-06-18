@@ -51,6 +51,7 @@ class Admin::Legislation::ProcessesController < Admin::Legislation::BaseControll
 
     def allowed_params
       [
+        {categories_attributes: [:id, :name, :tag, :_destroy]},
         :start_date,
         :end_date,
         :debate_start_date,
@@ -73,11 +74,13 @@ class Admin::Legislation::ProcessesController < Admin::Legislation::BaseControll
         :permit_text_proposals,
         :permit_proposals_top_relevance,
         :permit_hiden_proposals,
+        :permit_like_proposals,
         :published,
         :geozone_restricted,
         :custom_list,
         :background_color,
         :font_color,
+        :proposals_title,
         translation_params(::Legislation::Process),
         geozone_ids: [],
         documents_attributes: [:id, :title, :attachment, :cached_attachment, :user_id, :_destroy],

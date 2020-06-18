@@ -39,10 +39,12 @@ class Comment < ApplicationRecord
     not_valuations
       .where(%{(comments.commentable_type = 'Debate' and comments.commentable_id in (?)) or
             (comments.commentable_type = 'Proposal' and comments.commentable_id in (?)) or
-            (comments.commentable_type = 'Poll' and comments.commentable_id in (?))},
+            (comments.commentable_type = 'Poll' and comments.commentable_id in (?)) or 
+            (comments.commentable_type = 'Topic' and comments.commentable_id in (?))},
           Debate.public_for_api.pluck(:id),
           Proposal.public_for_api.pluck(:id),
-          Poll.public_for_api.pluck(:id))
+          Poll.public_for_api.pluck(:id),
+          Topic.public_for_api.pluck(:id))
   end
 
   scope :sort_by_most_voted, -> { order(confidence_score: :desc, created_at: :desc) }

@@ -48,4 +48,5 @@ class Legislation::Question < ApplicationRecord
   def comments_open?
     process.debate_phase.open?
   end
+  
 end

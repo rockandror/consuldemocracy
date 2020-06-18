@@ -366,6 +366,17 @@ es:
         hidden_proposal: Propuesta oculta
         title: Comentarios ocultos
         no_hidden_comments: No hay comentarios ocultos.
+    topics:
+      index:
+        filter: Filtro
+        filters:
+          all: Todos
+          with_confirmed_hide: Confirmados
+          without_confirmed_hide: Pendientes
+        hidden_debate: Tema oculto
+        hidden_proposal: Tema oculto
+        title: Temas ocultos
+        no_hidden_topics: No hay temas ocultos.
     dashboard:
       index:
         back: Volver a %{org}
@@ -497,6 +508,8 @@ es:
           form:
             error: Error
         form:
+          placeholder_proposals_title: "Título para la pestaña."
+          help_proposals_title: "Si no se rellena, por defecto se mostrará como 'Propuestas'."
           enabled: Habilitado
           process: Proceso
           debate_phase: Fase de debate
@@ -517,6 +530,7 @@ es:
           permit_proposals_top_relevance: Habilitar filtro de pestaña de las 10 propuestas más votadas
           permit_hiden_proposals: Ocultar pestaña de propuestas
           other_proposals: Habilitar propuestas para reparto, comercios y asociaciones
+          permit_like_proposals: Mostrar apoyos de propuestas
         index:
           create: Nuevo proceso
           delete: Borrar
@@ -629,6 +643,8 @@ es:
           form:
             error: Error
         form:
+          multiple_answers: Nº de respuestas posibles
+          other: Otra respuesta
           add_option: Añadir respuesta cerrada
           title: Pregunta
           title_placeholder: Escribe un título a la pregunta
@@ -648,6 +664,7 @@ es:
           question_options: Opciones de respuesta
           answers_count: Número de respuestas
           comments_count: Número de comentarios
+          no_options: No existen otras respuestas
         question_option_fields:
           remove_option: Eliminar
       milestones:
@@ -672,6 +689,7 @@ es:
       proposals_topics: Temas de propuestas
       budgets: Presupuestos participativos
       geozones: Gestionar zonas
+      hidden_topics: Temas ocultos LAZOTEA 
       hidden_comments: Comentarios ocultos
       hidden_debates: Debates ocultos
       hidden_proposals: Propuestas ocultas
@@ -1436,6 +1454,8 @@ es:
           comments: Comentarios
           debate_votes: Votos en debates
           debates: Debates
+          topics: Temas
+          topic_votes: Votos en temas
           proposal_votes: Votos en propuestas
           proposals: Propuestas
           budgets: Presupuestos abiertos
@@ -1498,6 +1518,11 @@ es:
         search: Buscar
       user:
         delete: Eliminar
+        confirm: Confirmar
+        cancel: Cancelar
+        active: activos
+        hidden: dados de baja
+        hidden_data: Causa de la baja
         confirm_data: "Si confirma esta eliminación también se eliminarán las propuestas, comentarios, mensajes, actividad, documentos, seguimientos, debates, rol, denuncias, relación con la organización, bloqueos, identidades, resultados, preguntas, respuestas, notificaciones, imágenes y votaciones relacionadas con este usuario, ¿Desea continuar?"
         successfuly_deleted: El usuario se ha eliminado correctamente
         no_deleted: No se ha podido eliminar el usuario correctamente
@@ -1618,6 +1643,7 @@ es:
         proposals: Propuestas
         debates: Debates
         processes: Procesos
+        topics: Temas de Barrios
       new:
         header_title: Nuevo encabezado
         submit_header: Crear encabezado

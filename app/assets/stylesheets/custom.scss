@@ -284,6 +284,12 @@ header,
 
 // Legislation proposals
 
+.district_tag {
+  padding: 5px;
+  border-radius: 5px;
+  background: #eee;
+}
+
 .legislation-proposals {
 
   .proposal-content {
@@ -2828,6 +2834,10 @@ p {
       border-color: #fff;
     }
   }
+}
+
+.boroughts{
+  margin-left: 5%;
 }
 
 .number-list {

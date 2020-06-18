@@ -16,7 +16,7 @@
       <% end %>
     </li>
 
-    <% if @community.proposal.present? %>
+    <% if @community.proposal.present? && @community.proposal.comunity_hide == false %>
       <li class="tabs-title">
         <%= link_to "#tab-polls" do %>
           <h3>
@@ -33,7 +33,7 @@
       <%= render partial: "participant", collection: @participants %>
     </div>
 
-    <% if @community.proposal.present? %>
+    <% if @community.proposal.present? && @community.proposal.comunity_hide == false %>
       <div class="tabs-panel topic-show" id="tab-polls">
         <%= render partial: "poll", collection: @community.proposal.polls %>
       </div>

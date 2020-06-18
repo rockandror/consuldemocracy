@@ -5,7 +5,7 @@ module CommunitiesHelper
   end
 
   def community_text(community)
-    community.from_proposal? ? t("community.show.title.proposal") : t("community.show.title.investment")
+    community.from_proposal? ? t("community.show.title.proposal", district: Geozone.find(community.proposal.geozone_id).name) : t("community.show.title.investment")
   end
 
   def community_description(community)

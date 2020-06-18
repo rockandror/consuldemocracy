@@ -48,6 +48,7 @@ namespace :settings do
     Setting.rename_key from: "feature.homepage.widgets.feeds.proposals", to: "homepage.widgets.feeds.proposals"
     Setting.rename_key from: "feature.homepage.widgets.feeds.debates",   to: "homepage.widgets.feeds.debates"
     Setting.rename_key from: "feature.homepage.widgets.feeds.processes", to: "homepage.widgets.feeds.processes"
+    Setting.rename_key from: "feature.homepage.widgets.feeds.topics",   to: "homepage.widgets.feeds.topics"
   end
 
   desc "Add new settings"
@@ -92,9 +93,18 @@ namespace :settings do
       </div>")
   end
 
+  task add_eventos_settings: :environment do
+    Setting.create(:key => "eventos_youtube_connect", :value => "KpgTWGu7ecI")
+    Setting.create(:key => "eventos_youtube_playlist_connect", :value => "PLhnvwI6F9eqXTZQc1yUGl4GX9s96u1AmK")
+    Setting.create(:key => "text_eventos", :value => "<div class='row'>
+      <div class='small-12 column'>
+          <h1>Eventos</h1>
+      </div>")
+  end
+
   task add_permit_html: :environment do 
     ["proposal_permit_text", "other_proposal_declaration_1", 
-      "other_proposal_declaration_2", "text_madrid_balcon"].each do |key|
+      "other_proposal_declaration_2", "text_madrid_balcon", "text_eventos"].each do |key|
         setting = Setting.find_by(key: key)
 
         if setting.blank?
@@ -107,6 +117,12 @@ namespace :settings do
             puts "ERROR: no se ha actualizado el setting con key: #{key} -> #{setting.errors.full_messages}"
           end
         end
+    end
+  end
+
+  task add_homepage_topic: :environment do
+    if Setting.new(key: "homepage.widgets.feeds.topics", value: "").save!
+      puts "Temas añadidos a la página principal"
     end
   end
 end

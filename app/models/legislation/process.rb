@@ -21,6 +21,7 @@ class Legislation::Process < ApplicationRecord
 
   CSS_HEX_COLOR = /\A#?(?:[A-F0-9]{3}){1,2}\z/i
 
+
   has_and_belongs_to_many :geozones, -> {order(name: :asc)}, foreign_key: "legislation_process_id", dependent: :destroy
   has_many :draft_versions, -> { order(:id) }, class_name: "Legislation::DraftVersion",
                                                foreign_key: "legislation_process_id",
@@ -32,6 +33,10 @@ class Legislation::Process < ApplicationRecord
                                           foreign_key: "legislation_process_id", dependent: :destroy
   has_many :proposals, -> { order(:id) }, class_name: "Legislation::Proposal",
                                           foreign_key: "legislation_process_id", dependent: :destroy
+  has_many :categories, -> { order(name: :asc) }, class_name: "Legislation::Category",
+                                          foreign_key: "legislation_process_id", dependent: :destroy
+
+  accepts_nested_attributes_for :categories, allow_destroy: true
 
   validates_translation :title, presence: true
   validates :start_date, presence: true

@@ -21,9 +21,14 @@
       <br>
       <p><%= @topic.description %></p>
     </div>
+    <aside class="small-12 medium-3 column">
+      <div class="sidebar-divider"></div>
+      <h2><%= t("votes.supports") %></h2>
+      <div id="<%= dom_id(@topic) %>_votes">
+        <%= render "topics/votes", topic: @topic %>
+      </div>
 
-    <% if @topic.author == current_user %>
-      <aside class="small-12 medium-3 column">
+      <% if @topic.author == current_user %>
         <div class="sidebar-divider"></div>
         <h2><%= t("community.show.author") %></h2>
         <%= link_to t("community.show.topic.edit"),
@@ -33,8 +38,8 @@
         <%= link_to t("community.show.topic.destroy"),
                     community_topic_path(@community.id, @topic), method: :delete,
                     class: "button hollow expanded alert" %>
-      </aside>
-    <% end %>
+      <% end %>
+    </aside>
   </div>
 
 

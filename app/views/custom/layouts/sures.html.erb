@@ -4,9 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title><%= t("landings.signup.title") %></title>
-
-    <% provide :meta_description, t("landings.signup.description") %>
+    <title><%= t("meta_tags.sures.title") %></title>
+    <% provide :title, t("meta_tags.sures.title") %>
+    <% provide :meta_description, t("meta_tags.sures.description") %>
+    <% provide :meta_keywords, t("meta_tags.sures.keywords") %>
     <%= render "shared/social_media_meta_tags",
             social_url: new_user_registration_url,
             social_title: t("landings.signup.title"),
@@ -19,38 +20,61 @@
     <%= csrf_meta_tags %>
     <%= favicon_link_tag "favicon.ico" %>
     <%= setting["html.per_page_code_head"].try(:html_safe) %>
-
   </head>
-
   <body class="auth-page landing-budgets">
-    <%= setting["html.per_page_code_body"].try(:html_safe) %>
-    <div class="small-12 column" style="padding: 0px">
-      <h1 class="stitle_1"><%=t("layouts.sures.title_1")%></h1>
+    <div class="row" style="border-bottom: 1px solid black">
+      <div class="small-12 medium-8 column" style="padding:1em"><%= t("landings.header") %></div>
+      <div class="small-12 medium-4 column" style="text-align:right"><%= image_tag(image_path_for("logo_header_web_madrid.png"), alt: t("layouts.header.logo")) %></div>
     </div>
-    <div class="wrapper">
+    
+    <div class="row" style="border-bottom:1px solid black; padding-bottom:2em">
+      <%= image_tag(image_path_for("banner_landing.png"), alt: t("layouts.header.logo")) %>
+    </div>
+    
+    <div class="row" style="padding-top:2em;padding-bottom:2em;text-align:center;color:#04C4D9;border-bottom: 1px solid black">
+      <h1><%= t("landings.title") %></h1>
+    </div>
+    
+    <div class="row" style="border-bottom: 1px solid black">
       <div class="small-12 medium-4 column">
-        <h2 class="margin stitle_2"><%=t("layouts.sures.title_2")%></h2>
-        <h3 class="margin stitle_3"><%=t("layouts.sures.title_3")%></h3>
-        <p class="margin scontent_1"><%=t("layouts.sures.content_1")%></p>
-        <div class="margin scontent_2"><%=sanitize t("layouts.sures.content_2").html_safe%></div>
+        <h2 style="padding-top:1em"><%= t("landings.sures") %></h2>
+        <%= t("landings.sures_desc") %>
       </div>
-
+      <div class="small-12 medium-6 column">
+        <%= image_tag(image_path_for("logo_imagen.png"), alt: t("layouts.header.logo")) %>
+      </div>
+    </div>
+    
+    <div class="row" style="padding-top:2em;padding-bottom:2em;border-bottom: 1px solid black">
       <div class="small-12 medium-8 column">
-        <div class="row">
-          <div class="small-12 medium-9 large-7 small-centered column">
-            <div class="auth-form margin">
-              <%= render "layouts/flash" %>
-              <div class="scontent_1">
-                <%= yield %>
-              </div>
-            </div>
-          </div>
+        <%= image_tag(image_path_for("mapa_distritos_sur.png"), alt: t("layouts.header.logo")) %>
+      </div>
+      <div class="small-12 medium-4 column">
+        <h2 style="padding-top:3em"><%= t("landings.title_districts") %></h2>
+        <%= t("landings.districts") %>
+      </div>
+    </div>
+    
+    <div class="row" style="padding-top:2em;padding-bottom:2em;border-bottom: 1px solid black">
+      <div class="small-12 medium-4 column">
+        <h2><%= t("landings.title_strategy") %></h2>
+        <%= t("landings.strategy") %>
+      </div>
+      <div class="small-12 medium-5 column" style="padding-right:1em">
+        <%= image_tag(image_path_for("9lineas.png"), alt: t("layouts.header.logo")) %>
+      </div>
+    </div>
+    
+    <h3 style="text-align:center;padding-top:2em;padding-bottom:2em;"><%= link_to t("landings.learn_more_sures"), "http://preview.munimadrid.es:8080/portales/munimadrid/es/Inicio/El-Ayuntamiento/Oficina-del-Sur/?vgnextfmt=default&vgnextchannel=1c9c5c3a93f30710VgnVCM2000001f4a900aRCRD", target: "_blank", style: "color:#04C4D9 !important;"%></h3>
+
+    <div class="row" style="text-align:center;background:#ECECEC;">
+      <div class="row">
+        <div class="small-12 medium-8 column medium-centered">
+          <h1  style="padding-top:2em;padding-bottom:2em;"><%= t("landings.want_info") %></h1>
         </div>
       </div>
-
-      <div class="push"></div>
+      <h3 style="padding-bottom:2em;"><%= link_to t("landings.user_register"), new_user_registration_path, target: "_blank", style: "color:#04C4D9 !important;" %></h3>
     </div>
-
     <div class="footer">
       <%= render "layouts/footer" %>
     </div>

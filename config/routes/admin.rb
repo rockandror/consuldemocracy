@@ -43,6 +43,10 @@ namespace :admin do
     end
   end
 
+  resources :users, only: [:index, :show, :destroy] do
+    get :hide, on: :member
+  end
+
   resources :proposal_notifications, only: :index do
     member do
       put :restore
@@ -89,6 +93,13 @@ namespace :admin do
     end
   end
 
+  resources :topics, only: :index do
+    member do
+      put :restore
+      put :confirm_hide
+    end
+  end
+
   resources :tags, only: [:index, :create, :update, :destroy]
 
   resources :officials, only: [:index, :edit, :update, :destroy] do
@@ -118,7 +129,7 @@ namespace :admin do
     get :search, on: :collection
   end
 
-  resources :users, only: [:index, :show, :destroy]
+  #resources :users, only: [:index, :show, :destroy, :hide]
 
   scope module: :poll do
     resources :polls do
@@ -201,7 +212,9 @@ namespace :admin do
 
   namespace :legislation do
     resources :processes do
-      resources :questions
+      resources :questions do
+        get :other_answers, on: :collection
+      end
       resources :proposals do
         member { patch :toggle_selection }
       end

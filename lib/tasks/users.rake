@@ -261,4 +261,47 @@ namespace :users do
     end
   end
 
+  desc "Add phone number to user"
+  task phone_number: :environment do
+    user = User.find_by(email: "taranconmr@madrid.es")
+    if !user.blank?
+      user.confirmed_phone = "669660678"
+      user.save
+      puts "==============================="
+      puts "Telefono añadido al usuario => #{user.id}"
+      puts "==============================="
+    else
+      puts "==============================="
+      puts "Usuario no encontrado"
+      puts "==============================="
+    end
+  end
+
+  desc "delete user"
+  task delete_user_prueba: :environment do
+  
+      user = User.find(186929)
+      user.username = "Usuario dado de baja-" + user.id.to_s
+      user.date_hide = Date.today
+      user.email = "#{user.id}@nomail.com"
+      user.document_number = nil
+      user.confirmed_phone = nil
+      user.gender = nil
+    if user.save!
+      puts "Usuario eliminado el #{user.date_hide}"
+    else
+      puts "ERROR: #{user.errors.full_messages}"
+    end
+  
+  end
+  desc "change user's district"
+  task change_district: :environment do
+    user = User.find_by(document_number: "44510002B")
+    user.geozone_id = "15"
+    if user.save!
+      puts "Se ha cambiado el distrito del usuario '#{user.username}' por: #{user.geozone_id}"
+    else
+      puts "ERROR: #{user.errors.full_messages}"
+    end
+  end
 end

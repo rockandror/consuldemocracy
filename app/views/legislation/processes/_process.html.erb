@@ -43,7 +43,7 @@
 
         <% if process.proposals_phase.enabled? %>
           <div class="small-6 medium-<%= column_width %> column">
-            <h4><%= t("legislation.processes.shared.proposals_dates") %></h4>
+            <h4><%= process.proposals_title.blank? ? t("legislation.processes.shared.proposals_dates") : process.proposals_title %></h4>
             <p><%= format_date(process.proposals_phase_start_date) %> - <%= format_date(process.proposals_phase_end_date) %></p>
           </div>
         <% end %>

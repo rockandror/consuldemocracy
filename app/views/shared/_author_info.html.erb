@@ -8,6 +8,12 @@
   <span class="author">
     <% if resource.try(:author).try(:name) == "becerragjm" %>
       <%= link_to "Admin27", user_path(resource.try(:author)) %>
+    <%elsif resource.try(:author).try(:name) == "arandaspe" %>
+      <%= link_to "Admin107", user_path(resource.try(:author)) %>
+    <%elsif resource.try(:author).try(:name) == "javierlfrf" %>
+      <%= link_to "Admin27", user_path(resource.try(:author)) %>
+    <%elsif resource.try(:author).try(:name) == "jmmaleti" %>
+      <%= link_to "Admin27", user_path(resource.try(:author)) %>
     <%else%>
       <%= link_to resource.try(:author).try(:name), user_path(resource.try(:author)) %>
     <%end%>

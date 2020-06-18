@@ -159,7 +159,9 @@ ast:
     signature_sheet: la hoja de firmas
     image: Imaxe
   geozones:
+    borought: Barrios
     none: Toda la ciudad
+    blank: Debe introducir un barrio
     all: Todos los ámbitos de actuación
   layouts:
     application:
@@ -222,6 +224,8 @@ ast:
           other: Hay %{count} nuevas respuestas a tu comentario en
   map:
     title: "Distritos"
+    district: "Distrito de %{district}"
+    boroughts: "Barrios"
     proposal_for_district: "Crea una propuesta para tu distrito"
     select_district: Ámbitu d'actuación
     start_proposal: Crea una propuesta
@@ -595,6 +599,7 @@ ast:
       no_private_messages: "Este usuario no acepta mensajes privados."
       send_private_message: "Enviar un mensaje privado"
   votes:
+    share: Comparte
     agree: Estoy de acuerdo
     anonymous: Demasiados votos anónimos, para poder votar %{verify_account}.
     comment_unauthenticated: Necesitas %{signin} o %{signup} para poder votar.

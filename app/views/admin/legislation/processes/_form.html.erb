@@ -95,6 +95,12 @@
 
   <div class="small-12 medium-4 column">
     <label><%= t("admin.legislation.processes.form.proposals_phase") %></label>
+    <%= f.text_field :proposals_title,
+                      value: @process.try(:proposals_title),
+                      class: "",
+                      label: false,
+                      placeholder: t("admin.legislation.processes.form.placeholder_proposals_title") %>
+    <p class="help-text"><%= t("admin.legislation.processes.form.help_proposals_title") %></p>
   </div>
 
   <div class="small-12 medium-3 column">
@@ -187,8 +193,32 @@
     <%= f.check_box :permit_hiden_proposals, checked: @process.permit_hiden_proposals, label: t("admin.legislation.processes.form.permit_hiden_proposals") %>
   </div>
 
-  
+  <div class="small-12 column margin-top">
+    <%= f.check_box :permit_like_proposals, checked: @process.permit_like_proposals, label: t("admin.legislation.processes.form.permit_like_proposals") %>
+  </div>
 
+  
+  <div class="small-12 column">
+    <hr>
+  </div>
+
+  <div class="small-12 column">
+    <%= f.label :categories, t("categories.form.title") %>
+    <p class="help-text"><%= t("categories.form.title_placeholder") %></p>
+    <div id="nested-categories" >
+      <%= f.fields_for :categories do |c|%>
+       <%= render "category_fields", f: c %>
+      <%end%>
+    </div>
+
+    <%= link_to_add_association t("categories.form.add_new_document"), f, :categories,
+                                id: "new_category",
+                                class: "button hollow",
+                                data: {
+                                  association_insertion_node: "#nested-categories",
+                                  association_insertion_method: "append"
+                                } %>
+  </div>
   <div class="small-12 column">
     <hr>
   </div>

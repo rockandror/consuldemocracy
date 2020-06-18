@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
     def set_layout
       if devise_controller? && params[:landing]
         "landing"
-      elsif devise_controller? && params[:controller].include?("sures")
+      elsif params[:controller].include?("sures")
         "sures"
       elsif devise_controller?
         "devise"
@@ -72,6 +72,10 @@ class ApplicationController < ActionController::Base
 
     def set_debate_votes(debates)
       @debate_votes = current_user ? current_user.debate_votes(debates) : {}
+    end
+
+    def set_topic_votes(topics)
+      @topic_votes = current_user ? current_user.topic_votes(topics) : {}
     end
 
     def set_proposal_votes(proposals)
