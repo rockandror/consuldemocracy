@@ -26,15 +26,16 @@
     <%= setting["html.per_page_code_body"].try(:html_safe) %>
 
     <div class="wrapper">
-      <div class="auth-image small-12 medium-4 column">
+      <div class="auth-image small-12 medium-5 column <%= !params[:sures].blank? ? "landing_bg" : "" %>">
         <h1 class="margin">
           <%= link_to root_path do %>
             <%= image_tag(image_path_for("landings/logo_header_negative.png"), alt: setting["org_name"]) %>
+            <%= !params[:sures].blank? ? image_tag(image_path_for("landings/sures_bg.jpg"), alt: setting["org_name"]) : ""%>
           <% end %>
         </h1>
       </div>
 
-      <div class="small-12 medium-8 column">
+      <div class="small-12 medium-7 column">
         <div class="row">
           <div class="small-12 medium-9 large-7 small-centered column">
             <div class="auth-form margin">
