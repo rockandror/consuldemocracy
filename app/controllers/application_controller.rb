@@ -61,6 +61,8 @@ class ApplicationController < ActionController::Base
     def set_layout
       if devise_controller? && params[:landing]
         "landing"
+      elsif devise_controller? && params[:controller].include?("sures")
+        "sures_register"
       elsif params[:controller].include?("sures")
         "sures"
       elsif devise_controller?
