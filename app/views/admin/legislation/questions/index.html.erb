@@ -37,15 +37,15 @@
                 <% question.question_options.each do |question_option| %>
                   <%= content_tag :li do %>
                     <%if question_option.other == false %>
-                    <%= question_option.value %> (<%= Legislation::Answer.where(legislation_question_option_id: question_option.id).count %>)
+                    <%= question_option.value %> (<%= Legislation::Answer.where(legislation_question_option_id: question_option.id).uniq.count %>)
                     <%else%>
-                    <%= link_to question_option.value, other_answers_admin_legislation_process_questions_path(@process, question, question: question, option: question_option)%>
+                    <%= link_to question_option.value + "(#{Legislation::Answer.where(legislation_question_option_id: question_option.id).uniq.count})", other_answers_admin_legislation_process_questions_path(@process, question, question: question, option: question_option)%>
                     <%end%>
                   <% end %>
                 <% end %>
               <% end %>
             </td>
-            <td class="text-center"><%= Legislation::Answer.where(legislation_question_id: question.id).count %></td>
+            <td class="text-center"><%= Legislation::Answer.where(legislation_question_id: question.id).uniq.count %></td>
             <td class="text-center"><%= link_to question.comments.count, legislation_process_question_path(@process, question, anchor: "comments") %></td>
           </tr>
         <% end %>
