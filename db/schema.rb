@@ -272,8 +272,12 @@ ActiveRecord::Schema.define(version: 2021_01_23_100638) do
     t.datetime "ignored_flag_at"
     t.integer "flags_count", default: 0
     t.integer "original_heading_id"
+    t.integer "cached_votes_down", default: 0
+    t.integer "cached_votes_total", default: 0
     t.index ["administrator_id"], name: "index_budget_investments_on_administrator_id"
     t.index ["author_id"], name: "index_budget_investments_on_author_id"
+    t.index ["cached_votes_down"], name: "index_budget_investments_on_cached_votes_down"
+    t.index ["cached_votes_total"], name: "index_budget_investments_on_cached_votes_total"
     t.index ["community_id"], name: "index_budget_investments_on_community_id"
     t.index ["heading_id"], name: "index_budget_investments_on_heading_id"
     t.index ["tsv"], name: "index_budget_investments_on_tsv", using: :gin

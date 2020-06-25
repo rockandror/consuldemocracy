@@ -179,6 +179,7 @@ es:
           one: 1 apoyo
           other: "%{count} apoyos"
         give_support: Apoyar
+        remove_support: "Eliminar apoyo"
       header:
         check_ballot: Revisar y confirmar mis votos
         different_heading_assigned: "Ya apoyaste proyectos de otra sección del presupuesto: %{heading_link}"

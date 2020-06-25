@@ -40,7 +40,7 @@ class Management::Budgets::InvestmentsController < Management::BaseController
   end
 
   def vote
-    @investment.register_selection(managed_user)
+    @investment.register_selection(managed_user, vote_value)
     load_investment_votes(@investment)
     respond_to do |format|
       format.html { redirect_to management_budget_investments_path(heading_id: @investment.heading.id) }
@@ -77,5 +77,9 @@ class Management::Budgets::InvestmentsController < Management::BaseController
 
     def load_categories
       @categories = Tag.category.order(:name)
+    end
+
+    def vote_value
+      params[:value] || "yes"
     end
 end
