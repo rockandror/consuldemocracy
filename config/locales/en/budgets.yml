@@ -184,6 +184,7 @@ en:
           other: "%{count} supports"
           zero: No supports
         give_support: Support
+        remove_support: "Remove your support"
       header:
         check_ballot: "Submit my ballot"
         different_heading_assigned: "You have active votes in another heading: %{heading_link}"
