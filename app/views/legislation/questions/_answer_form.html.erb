@@ -1,3 +1,4 @@
+
 <% if current_user.blank? %>
   <div class="row margin-top">
       <div class="small-12 medium-9 column">
@@ -17,15 +18,23 @@
         <% question.question_options.each do |question_option| %>
           <div class="row">
             <% if question_option.other == false %>
-              <label class="control radio <%= "is-active" if Legislation::Answer.find_by(legislation_question_option_id: question_option.id, user_id: current_user.id) %>">
+              <%if Legislation::Answer.find_by(legislation_question_option_id: question_option.id, user_id: current_user.id) %>
+              <label class="control radio is-active" onload="setHidden(1)">
+                <%= f.check_box :legislation_question_option_id, {checked: true, multiple: true, label: false, class: "checkbox-answer", onchange: "setHidden(#{question.multiple_answers})"}, question_option.id %>
+                <span class="control-indicator"></span>
+                <%= question_option.value %>
+              </label>
+              <%else%>
+              <label class="control radio">
                 <%= f.check_box :legislation_question_option_id, {multiple: true, label: false, class: "checkbox-answer", onchange: "setHidden(#{question.multiple_answers})"}, question_option.id %>
                 <span class="control-indicator"></span>
                 <%= question_option.value %>
               </label>
+              <%end%>
               <%= f.hidden_field :value_other%>
             <% else %>
               <%= f.hidden_field :legislation_question_option_id, multiple: true, value: question_option.id %>
-              <%= f.text_field :value_other, value: @answer.value_other, label: t("legislation.questions.show.value_other") %>
+              <%= f.text_field :value_other, value: Legislation::Answer.find_by(legislation_question_option_id: question_option.id, user_id: current_user.id).try(:value_other), label: t("legislation.questions.show.value_other") %>
             <% end %>
           </div>
         <% end %>
@@ -34,3 +43,4 @@
     <% end %>
   <% end %>
 <%end%>
+<script>window.onload = setHidden("<%= question.multiple_answers %>");</script>
