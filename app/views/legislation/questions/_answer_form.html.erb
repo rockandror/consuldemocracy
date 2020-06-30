@@ -1,3 +1,4 @@
+
 <% if current_user.blank? %>
   <div class="row margin-top">
       <div class="small-12 medium-9 column">
@@ -18,7 +19,7 @@
           <div class="row">
             <% if question_option.other == false %>
               <%if Legislation::Answer.find_by(legislation_question_option_id: question_option.id, user_id: current_user.id) %>
-              <label class="control radio is-active">
+              <label class="control radio is-active" onload="setHidden(1)">
                 <%= f.check_box :legislation_question_option_id, {checked: true, multiple: true, label: false, class: "checkbox-answer", onchange: "setHidden(#{question.multiple_answers})"}, question_option.id %>
                 <span class="control-indicator"></span>
                 <%= question_option.value %>
@@ -42,3 +43,4 @@
     <% end %>
   <% end %>
 <%end%>
+<script>window.onload = setHidden("<%= question.multiple_answers %>");</script>
