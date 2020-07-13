@@ -14,7 +14,7 @@
 
 <% if @heading && can?(:show, @ballot) %>
   <p class="callout">
-    <%= sanitize(t("budgets.investments.index.sidebar.change_vote_info",
+    <%= sanitize(@ballot.change_vote_info(
         link: link_to(t("budgets.investments.index.sidebar.change_vote_link"),
             budget_ballot_path(@budget)))) %>
   </p>
