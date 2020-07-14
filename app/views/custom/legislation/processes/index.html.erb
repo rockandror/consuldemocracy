@@ -16,22 +16,7 @@
 
     <div id="legislation-list">
       <% if @processes.any? %>
-       
-        <% polls_by_geozone_restriction = @processes.group_by(&:geozone_restricted) %>
-
-        <% if polls_by_geozone_restriction[false].present? %>
-          <h3 class="section-title-divider">
-            <span><%= t("polls.index.no_geozone_restricted") %></span>
-          </h3>
-           <%= render polls_by_geozone_restriction[false]  %>
-        <% end %>
-
-        <% if polls_by_geozone_restriction[true].present? %>
-          <h3 class="section-title-divider">
-            <span><%= t("polls.index.geozone_restricted") %></span>
-          </h3>
-          <%= render polls_by_geozone_restriction[true]  %>
-        <% end %>
+        <%= render @processes  %>
         <%= paginate @processes %>
       <% else %>
         <div class="callout primary margin-top">
