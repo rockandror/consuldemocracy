@@ -45,6 +45,7 @@ class API::CSVExporter
     def public_attributes(record)
       attrs = record.attributes.dup
       attrs["created_at"] = I18n.l(attrs["created_at"], format: :api) if attrs["created_at"]
+      attrs["author_name"] = record.try(:author_name) if !record.try(:author_name).blank?
       attrs.values_at(*record.class.public_columns_for_api)
     end
 

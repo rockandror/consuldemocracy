@@ -37,7 +37,12 @@ class ProposalNotification < ApplicationRecord
     ["title",
      "body",
      "proposal_id",
-     "created_at"]
+     "created_at",
+    "author_name"]
+  end
+
+  def author_name
+    author.try(:name)
   end
 
   def public_for_api?
