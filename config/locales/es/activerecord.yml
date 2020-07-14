@@ -182,11 +182,13 @@ es:
         user: "Usuario"
       debate:
         author: "Autor"
+        author_name: "Autor"
         description: "Opinión"
         terms_of_service: "Términos de servicio"
         title: "Título"
       proposal:
         author: "Autor"
+        author_name: "Autor"
         title: "Título"
         question: "Pregunta"
         description: "Descripción"

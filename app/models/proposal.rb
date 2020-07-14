@@ -280,7 +280,12 @@ class Proposal < ApplicationRecord
      "retired_reason",
      "retired_explanation",
      "proceeding",
-     "sub_proceeding"]
+     "sub_proceeding",
+    "author_name"]
+  end
+
+  def author_name
+    author.try(:name)
   end
 
   def public_for_api?

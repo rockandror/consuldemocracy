@@ -41,6 +41,19 @@ describe Proposal do
     end
   end
 
+  describe "#attributes method"
+    it "author_name is nil" do
+      proposal.author = nil
+      expect(proposal.author_name).to eq(nil)
+    end
+
+    it "author_name is not nil" do
+      user =  create(:user)
+      proposal.author = user
+      expect(proposal.author_name).to eq(user.name)
+    end
+  end
+
   describe "#description" do
     it "is sanitized" do
       proposal.description = "<script>alert('danger');</script>"
