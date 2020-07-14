@@ -322,7 +322,7 @@ es:
     header: SURES. Estrategia de desarrollo del sur y del este de Madrid
     title: "Conoce el plan que cambiará el sur y el este de Madrid"
     sures: ¿Qué es SURES?
-    sures_desc: "Es un plan estratégico de reequilibrio territorial para reducir los desequilibrios históricos que afectan al Sur y al Este de Madrid."
+    sures_desc: "Es un plan estratégico de reequilibrio territorial para mejorar la calidad de vida de los distritos del sur y del este de Madrid."
     title_districts: "9 Distritos"
     districts: "Carabanchel, Latina, Moratalaz, Puente de Vallecas, San Blas, Usera, Vicálvaro, Villa de Vallecas y Villaverde son los 9 distritos del ámbito de actuación del Plan SURES."
     title_strategy: "8 Estrategias"
@@ -336,7 +336,8 @@ es:
       publica y universidades."
     learn_more_sures: "Conoce más sobre el Plan SURES"
     want_info: "¿Te gustaría recibir información de las actuaciones que se llevarán a cabo?"
-    user_register: "Regístrate en Decide Madrid, recibe nuestro boletín informativo y participa en SURES"
+    user_register: "Regístrate en Decide Madrid y recibe nuestro boletín informativo"
+    user_participation: "Participa en las consultas ciudadanas del Plan SURES"
     signup:
       title: Regístrate y apoya propuestas para mejorar Madrid
       description: "En la web de participación ciudadana del ayuntamiento tú construyes Madrid. Regístrate, propón y apoya propuestas para llegar a las 27.000 firmas."

@@ -50,6 +50,19 @@ describe Debate do
     end
   end
 
+  describe "#attributes method"
+    it "author_name is nil" do
+      debate.author = nil
+      expect(debate.author_name).to eq(nil)
+    end
+
+    it "author_name is not nil" do
+      user =  create(:user)
+      debate.author = user
+      expect(debate.author_name).to eq(user.name)
+    end
+  end
+
   describe "#description" do
     it "is not valid without a description" do
       debate.description = nil
