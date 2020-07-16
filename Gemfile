@@ -57,7 +57,7 @@ gem "uglifier", "~> 4.1.19"
 gem "unicorn", "~> 5.4.1"
 gem "whenever", "~> 0.10.0", require: false
 gem "wicked_pdf", "~> 1.1.0"
-gem "wkhtmltopdf-binary", "~> 0.12.4"
+gem "wkhtmltopdf-binary", "0.12.4"
 
 source "https://rails-assets.org" do
   gem "rails-assets-leaflet"
