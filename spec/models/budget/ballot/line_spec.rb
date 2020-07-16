@@ -40,6 +40,45 @@ describe Budget::Ballot::Line do
       end
     end
 
+    describe "Approval voting" do
+      before do
+        budget.update!(voting_style: "approval")
+        existing_investment = create(:budget_investment, :selected, heading: heading)
+        create(:budget_ballot_line, ballot: ballot, investment: existing_investment)
+      end
+
+      it "is valid if there are votes left" do
+        heading.update!(max_votes: 2)
+
+        expect(ballot_line).to be_valid
+      end
+
+      it "is not valid if there are no votes left" do
+        heading.update!(max_votes: 1)
+
+        expect(ballot_line).not_to be_valid
+      end
+
+      it "is valid if insufficient funds but enough votes" do
+        heading.update!(max_votes: 2)
+        investment.update!(price: heading.price + 1)
+
+        expect(ballot_line).to be_valid
+      end
+
+      it "validates votes when creating lines at the same time", :race_condition do
+        heading.update!(max_votes: 2)
+        other_investment = create(:budget_investment, :selected, heading: heading)
+        other_line = build(:budget_ballot_line, ballot: ballot, investment: other_investment)
+
+        [ballot_line, other_line].map do |line|
+          Thread.new { line.save }
+        end.each(&:join)
+
+        expect(Budget::Ballot::Line.count).to be 2
+      end
+    end
+
     describe "Selectibility" do
       it "is not valid if investment is unselected" do
         investment.update!(selected: false)

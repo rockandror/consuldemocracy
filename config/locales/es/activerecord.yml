@@ -143,6 +143,9 @@ es:
         description_finished: "Descripción cuando el presupuesto ha finalizado / Resultados"
         phase: "Fase"
         currency_symbol: "Divisa"
+        voting_style: "Estilo de votación"
+        voting_style_knapsack: Bolsa de dinero
+        voting_style_approval: Por aprobación
       budget/translation:
         name: "Nombre"
       budget/investment:
@@ -205,6 +208,7 @@ es:
         name: "Nombre de la partida"
         price: "Cantidad"
         population: "Población (opcional)"
+        max_votes: "Número de votos permitidos por cada partida presupuestaria"
       budget/heading/translation:
         name: "Nombre de la partida"
       budget/phase:

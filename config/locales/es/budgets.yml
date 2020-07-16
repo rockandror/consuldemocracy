@@ -5,8 +5,10 @@ es:
         title: Mis votos
         amount_spent:
           knapsack: "Coste total <span>%{amount}</span>"
+          approval: "Votos: <span>%{amount}</span>"
         remaining:
           knapsack: "Te quedan <span>%{amount}</span> para invertir"
+          approval: "Te quedan <span>%{amount}</span> votos disponibles"
         no_balloted_group_yet: "Todavía no has votado proyectos de este grupo, ¡vota!"
         remove: Quitar voto
         voted:
@@ -23,6 +25,7 @@ es:
         not_enough_money: "Ya has asignado el presupuesto disponible.<br><small>Recuerda que puedes %{change_ballot} en cualquier momento</small>"
         no_ballots_allowed: El periodo de votación está cerrado.
         different_heading_assigned: "Ya has votado proyectos de otra partida: %{heading_link}"
+        not_enough_available_votes: "No tienes mas votos disponibles"
         change_ballot: cambiar tus votos
         casted_offline: Ya has participado presencialmente
     groups:
@@ -91,6 +94,7 @@ es:
             other: "<strong>Has votado %{count} proyectos por un valor de %{amount_spent}</strong>"
           change_vote_info:
             knapsack: "Puedes %{link} en cualquier momento hasta el cierre de esta fase. No hace falta que gastes todo el dinero disponible."
+            approval: "Puedes %{link} en cualquier momento hasta el cierre de esta fase."
           change_vote_link: "cambiar tus votos"
           different_heading_assigned: "Ya apoyaste proyectos de otra sección del presupuesto: %{heading_link}"
           change_ballot: "Si cambias de opinión puedes borrar tus votos en %{check_ballot} y volver a empezar."
@@ -151,6 +155,7 @@ es:
     progress_bar:
       assigned: "Has asignado: "
       available: "Presupuesto disponible: "
+      remaining_votes: "Has seleccionado <strong>%{casted_votes}</strong> proyectos de <strong>%{votes_available}</strong>."
     show:
       group: Grupo
       phase: Fase actual

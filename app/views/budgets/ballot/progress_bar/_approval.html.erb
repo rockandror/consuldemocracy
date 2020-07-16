@@ -1,0 +1,7 @@
+<div class="panel clear">
+  <p>
+    <%= sanitize(t("budgets.progress_bar.remaining_votes",
+                   casted_votes: @ballot.investments.count,
+                   votes_available: @heading.max_votes)) %>
+  </p>
+</div>

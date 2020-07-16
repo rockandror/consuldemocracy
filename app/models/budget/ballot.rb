@@ -71,7 +71,7 @@ class Budget
     private
 
       def voting_style_class
-        Budget::VotingStyles::Knapsack
+        "Budget::VotingStyles::#{budget.voting_style.camelize}".constantize
       end
   end
 end
