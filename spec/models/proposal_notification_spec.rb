@@ -22,6 +22,19 @@ describe ProposalNotification do
     expect(notification).not_to be_valid
   end
 
+  describe "#attributes method"
+    it "author_name is nil" do
+      notification.author = nil
+      expect(notification.author_name).to eq(nil)
+    end
+
+    it "author_name is not nil" do
+      user =  create(:user)
+      notification.author = user
+      expect(notification.author_name).to eq(user.name)
+    end
+  end
+
   describe "public_for_api scope" do
     it "returns proposal notifications" do
       proposal = create(:proposal)

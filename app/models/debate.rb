@@ -155,6 +155,10 @@ class Debate < ApplicationRecord
     featured_at.present?
   end
 
+  def author_name
+    author.try(:name)
+  end
+
   def self.debates_orders(user)
     orders = %w{created_at hot_score confidence_score relevance}
     orders << "recommendations" if Setting["feature.user.recommendations_on_debates"] && user&.recommended_debates
@@ -182,7 +186,8 @@ class Debate < ApplicationRecord
        cached_votes_down
        comments_count
        hot_score
-       confidence_score]
+       confidence_score
+      author_name]
   end
 
   def public_for_api?

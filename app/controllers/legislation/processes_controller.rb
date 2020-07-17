@@ -11,7 +11,7 @@ class Legislation::ProcessesController < Legislation::BaseController
   def index
     @current_filter ||= "open"
     @processes = ::Legislation::Process.send(@current_filter).includes(:geozones).published
-                 .not_in_draft.order(geozone_restricted: :asc,start_date: :desc).page(params[:page])
+                 .not_in_draft.order(start_date: :desc).page(params[:page])
   end
 
   def show
