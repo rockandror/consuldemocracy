@@ -97,6 +97,10 @@
           <% end %>
         </div>
 
+        <%= link_to t("budgets.index.boam_link"),
+                                "#",
+                                class: "button" %>
+                                
         <% unless current_budget.informing? %>
           <div class="map inline">
             <h3><%= t("budgets.index.map") %></h3>
