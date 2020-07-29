@@ -280,6 +280,32 @@ describe "Admin budgets" do
       expect(page).to have_link "Select administrators"
       expect(page).to have_link "Select valuators"
     end
+
+    describe "Update voting style" do
+      let!(:budget) { create(:budget) }
+
+      scenario "allow update voting style when there are not votes" do
+        visit edit_admin_budget_path(budget)
+
+        select "Approval", from: "Voting Style"
+        click_button "Update Budget"
+
+        expect(page).to have_content("Participatory budget updated successfully")
+        expect(Budget.last.voting_style).to eq "approval"
+      end
+
+      scenario "not allow update voting style when there are votes" do
+        create(:budget_ballot, budget: budget)
+        visit edit_admin_budget_path(budget)
+
+        select "Approval", from: "Voting Style"
+        click_button "Update Budget"
+
+        error = "The participatory budget has votes and you are no longer allowed to update the voting style"
+        expect(page).to have_content(error)
+        expect(Budget.last.voting_style).to eq "knapsack"
+      end
+    end
   end
 
   context "Calculate Budget's Winner Investments" do

@@ -361,6 +361,20 @@ describe Budget do
       it { expect(build(:budget, :approval)).to be_valid }
       it { expect(build(:budget, :knapsack)).to be_valid }
       it { expect(build(:budget, voting_style: "Oups!")).not_to be_valid }
+
+      describe "#allow_update_voting_style?" do
+        it "allow update voting style when there are not votes" do
+          budget.assign_attributes(voting_style: "approval")
+          expect(budget).to be_valid
+        end
+
+        it "not allow update voting style when there are votes" do
+          create(:budget_ballot, budget: budget)
+
+          budget.assign_attributes(voting_style: "approval")
+          expect(budget).not_to be_valid
+        end
+      end
     end
 
     context "Related supportive methods" do

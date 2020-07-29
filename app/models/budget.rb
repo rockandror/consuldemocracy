@@ -28,6 +28,8 @@ class Budget < ApplicationRecord
   validates :slug, presence: true, format: /\A[a-z0-9\-_]+\z/
   validates :voting_style, inclusion: { in: VOTING_STYLES }
 
+  validate :allow_update_voting_style?
+
   has_many :investments, dependent: :destroy
   has_many :ballots, dependent: :destroy
   has_many :groups, dependent: :destroy
@@ -200,6 +202,12 @@ class Budget < ApplicationRecord
 
   def approval_voting?
     voting_style == "approval"
+  end
+
+  def allow_update_voting_style?
+    if voting_style_changed? && ballots.any?
+      errors.add(:voting_style, I18n.t("budgets.errors.update_voting_style_not_allowed"))
+    end
   end
 
   private
