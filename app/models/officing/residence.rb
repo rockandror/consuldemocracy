@@ -80,6 +80,7 @@ class Officing::Residence
   end
 
   def allowed_age?
+    return false if date_of_birth.nil?
     Age.in_years(date_of_birth) >= User.minimum_required_age
   end
 

@@ -18,8 +18,8 @@ es:
         signin: iniciar sesión
         signup: registrarte
       index:
-        title: Comentarios
-        comments_about: Comentarios sobre
+        title: Información pública
+        comments_about: Información pública sobre
         see_in_context: Ver en contexto
         comments_count:
           one: "%{count} comentario"
@@ -44,20 +44,22 @@ es:
         see_comments: Ver todos los comentarios
         text_toc: Índice
         text_body: Texto
-        text_comments: Comentarios
+        text_comments: Información pública
     processes:
       header:
         additional_info: Información adicional
         description: En qué consiste
         more_info: Más información y contexto
       proposals:
+        member_type_denied: Solo se permite votar a miembros de
+        member_type_denied_creating: Solo se permite crear propuestas a miembros de
         empty_proposals: No hay propuestas
         filters:
           random: Aleatorias
           winners: Seleccionadas
       debate:
         empty_questions: No hay preguntas
-        participate: Realiza tus aportaciones al debate previo participando en los siguientes temas.
+        participate: Realiza tus aportaciones a la consulta pública previa participando en las siguientes cuestiones.
       index:
         filter: Filtro
         filters:
@@ -68,12 +70,12 @@ es:
         no_next_processes: No hay procesos planeados
         no_past_processes: No hay procesos terminados
         section_header:
-          icon_alt: Icono de Procesos legislativos
-          title: Procesos legislativos
-          help: Ayuda sobre procesos legislativos
+          icon_alt: Icono de Elaboración normativa
+          title: Elaboración normativa
+          help: Ayuda sobre elaboración normativa
         section_footer:
-          title: Ayuda sobre procesos legislativos
-          description: Participa en los debates y procesos previos a la aprobación de una norma o de una actuación municipal. Tu opinión será tenida en cuenta por el Ayuntamiento.
+          title: Ayuda sobre elaboración normativa
+          description: Participa en los debates y procesos previos a la aprobación de una norma o de una actuación municipal. Tu opinión será tenida en cuenta por el Gobierno.
       phase_not_open:
         not_open: Esta fase del proceso todavía no está abierta
       phase_empty:
@@ -84,9 +86,9 @@ es:
       shared:
         key_dates: Fases de participación
         homepage: Inicio
-        debate_dates: Debate previo
+        debate_dates: Consulta  pública previa
         draft_publication_date: Publicación borrador
-        allegations_dates: Comentarios
+        allegations_dates: Información pública
         result_publication_date: Publicación resultados
         milestones_date: Seguimiento
         proposals_dates: Propuestas
@@ -117,7 +119,7 @@ es:
         unauthenticated: Necesitas %{signin} o %{signup} para participar en el debate.
         verified_only: Solo los usuarios verificados pueden participar en el debate, %{verify_account}.
         verify_account: verifica tu cuenta
-        debate_phase_not_open: La fase de debate previo ya ha finalizado y en este momento no se aceptan respuestas
+        debate_phase_not_open: La fase de consulta  pública previa ya ha finalizado y en este momento no se aceptan respuestas
     shared:
       share: Compartir
       share_comment: Comentario sobre la %{version_name} del borrador del proceso %{process_name}

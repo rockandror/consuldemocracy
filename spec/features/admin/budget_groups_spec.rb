@@ -122,7 +122,7 @@ feature "Admin budget groups" do
 
       expect(page).not_to have_content "Group created successfully!"
       expect(page).to have_css("label.error", text: "Group name")
-      expect(page).to have_content "can't be blank"
+      expect(page).to have_content "Can't be blank"
     end
 
   end

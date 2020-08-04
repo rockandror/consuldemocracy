@@ -1,4 +1,4 @@
-<% reason = investment.reason_for_not_being_ballotable_by(current_user, ballot) %>
+<% reason = investment.reason_for_not_being_ballotable_by(current_user, ballot, t("budgets.investments.investment.member_type_denied")+" ") %>
 <div class="js-participation supports ballot">
   <% if ballot.has_investment?(investment) %>
 

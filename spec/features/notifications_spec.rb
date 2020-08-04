@@ -104,14 +104,14 @@ feature "Notifications" do
     create(:notification, user: user)
     visit root_path
 
-    within("#notifications") do
+    within first ("#notifications") do
       expect(page).to have_css(".icon-circle")
     end
 
     click_notifications_icon
     first(".notification a").click
 
-    within("#notifications") do
+    within first ("#notifications") do
       expect(page).not_to have_css(".icon-circle")
     end
   end

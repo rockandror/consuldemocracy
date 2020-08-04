@@ -9,11 +9,30 @@
   </span>
 
   <div class="in-favor js-in-favor">
+
     <% if user_voted_for %>
+
+    <% if not @mensajeAlert.nil? %>
+      <div class="callout warning">
+        <%= @mensajeAlert %>
+      </div>
+      <% else %>
+
+
       <div class="supported callout success">
         <%= t("budgets.investments.investment.already_supported") %>
       </div>
+      <% end %>
+
+
     <% elsif investment.should_show_votes? %>
+
+    <% if not @mensajeAlert.nil? %>
+      <div class="callout warning">
+        <%= @mensajeAlert %>
+      </div>
+      <% else %>
+
       <%= link_to vote_url,
           class: "button button-support small expanded",
           title: t('budgets.investments.investment.support_title'),
@@ -22,7 +41,10 @@
           data:   (current_user && current_user.voted_in_group?(investment.group) ? nil : { confirm: t('budgets.investments.investment.confirm_group', count: investment.group.max_votable_headings)} ),
           "aria-hidden" => css_for_aria_hidden(reason) do %>
         <%= t("budgets.investments.investment.give_support") %>
-      <% end %>
+        <% end %>
+        <% end %>
+
+
     <% end %>
   </div>
 

@@ -22,6 +22,9 @@ class Legislation::ProposalsController < Legislation::BaseController
     super
     legislation_proposal_votes(@process.proposals)
     @document = Document.new(documentable: @proposal)
+
+    @mensajeAlert=MemberType.textoParticipanteTipo2WithPrefix(current_user, @process.member_type_ids, t("legislation.processes.proposals.member_type_denied"))
+
     if request.path != legislation_process_proposal_path(params[:process_id], @proposal)
       redirect_to legislation_process_proposal_path(params[:process_id], @proposal),
                   status: :moved_permanently
@@ -29,11 +32,19 @@ class Legislation::ProposalsController < Legislation::BaseController
   end
 
   def create
-    @proposal = Legislation::Proposal.new(proposal_params.merge(author: current_user))
 
-    if @proposal.save
-      redirect_to legislation_process_proposal_path(params[:process_id], @proposal), notice: I18n.t('flash.actions.create.proposal')
+    @mensajeAlert=MemberType.textoParticipanteTipo2WithPrefix(current_user, @process.member_type_ids, t("legislation.processes.proposals.member_type_denied_creating"))
+
+    if @mensajeAlert.nil?
+      @proposal = Legislation::Proposal.new(proposal_params.merge(author: current_user))
+
+      if @proposal.save
+        redirect_to legislation_process_proposal_path(params[:process_id], @proposal), notice: I18n.t('flash.actions.create.proposal')
+      else
+        render :new
+      end
     else
+      flash.now[:alert]=(@mensajeAlert)
       render :new
     end
   end
@@ -44,7 +55,12 @@ class Legislation::ProposalsController < Legislation::BaseController
   end
 
   def vote
-    @proposal.register_vote(current_user, params[:value])
+    if MemberType.can_vote_proposals?(current_user, @process.member_type_ids)
+       @proposal.register_vote(current_user, params[:value])
+       audit_info("Votacion de propuesta: { \"value\": \"#{params[:value]}\", \"Sexo\": \"#{current_user.gender}\", \"Edad\": \"#{current_user.age}\", \"CodigoPostal\": \"#{current_user.postal_code}\", \"Proceso\": \"#{@process.id}\", \"Propuesta\": \"#{@proposal.id}\" }")
+    else
+      audit_error("El usuario con id: #{current_user.id}, document_type: #{current_user.document_type} y document_number: #{current_user.document_number} ha tratado de votar sin permiso.")
+    end
     legislation_proposal_votes(@proposal)
   end
 

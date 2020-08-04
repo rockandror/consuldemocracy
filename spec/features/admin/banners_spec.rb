@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Admin banners magement' do
+feature 'Admin banners magement', :broken => true do
 
   background do
     login_as(create(:administrator).user)

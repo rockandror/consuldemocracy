@@ -1,5 +1,10 @@
+require 'tracer'
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  skip_before_action :verify_authenticity_token, only: :saml
 
+  def handle_unverified_request
+  end
+  
   def twitter
     sign_in_with :twitter_login, :twitter
   end
@@ -10,6 +15,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def google_oauth2
     sign_in_with :google_login, :google_oauth2
+  end
+
+  def saml
+    sign_in_with :saml_login, :saml
   end
 
   def after_sign_in_path_for(resource)
@@ -43,5 +52,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     def save_user
       @user.save || @user.save_requiring_finish_signup
     end
+
+    def sign_in_and_redirect(resource_or_scope, *args)
+      options  = args.extract_options!
+      scope    = Devise::Mapping.find_scope!(resource_or_scope)
+      resource = args.last || resource_or_scope
+      sign_in(scope, resource, options)
+      redirect_to after_sign_in_path_for(resource)
+    end
+    
 
 end

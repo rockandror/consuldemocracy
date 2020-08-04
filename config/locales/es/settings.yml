@@ -87,6 +87,8 @@ es:
       facebook_login_description: "Permitir que los usuarios se registren con su cuenta de Facebook"
       google_login: "Registro con Google"
       google_login_description: "Permitir que los usuarios se registren con su cuenta de Google"
+      saml_login: "Registro por vía SAML"
+      saml_login_description: "Permitir que los usuarios se registren con su cuenta vía SAML"
       proposals: "Propuestas"
       proposals_description: "Las propuestas ciudadanas son una oportunidad para que los vecinos y colectivos decidan directamente cómo quieren que sea su ciudad, después de conseguir los apoyos suficientes y de someterse a votación ciudadana"
       featured_proposals: "Propuestas destacadas"
@@ -127,3 +129,9 @@ es:
       public_stats_description: "Muestra las estadísticas públicas en el panel de Administración"
       help_page: "Página de Ayuda"
       help_page_description: "Muestra un menú Ayuda que contiene una página con una sección de información sobre cada funcionalidad habilitada"
+      homepage:
+        widgets:
+          feeds:
+            proposals_description: "⚠️ Esta funcionalidad es necesaria para disponer del widget de propuestas en la página principal"
+            debates_description: "⚠️ Esta funcionalidad es necesaria para disponer del widget de debates en la página principal"
+            processes_description: "⚠️ Esta funcionalidad es necesaria para disponer del widget de procesos en la página principal"

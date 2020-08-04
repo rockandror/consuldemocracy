@@ -68,7 +68,20 @@ describe Widget::Feed do
 
         feed = build(:widget_feed, kind: "processes")
 
-        expect(feed.processes).to eq([open_process4, open_process3, open_process2])
+        ## MODIFICACIÓN, DEBIDO A QUE MODIFICARON LA SIGUIENTE LÍNEA EN
+        ## app/models/legislation/process.rb:
+        ##
+        #   VERSION CONSUL ORIGINAL:
+        #   scope :open, -> { where("start_date <= ? and end_date >= ?", Date.current, Date.current)
+        #                     .order('id DESC') }
+        #
+        #  VERSIÓN EDO:
+        #  scope :open, -> { where("start_date <= ? and end_date >= ?", Date.current, Date.current) }
+        #
+        # se elimino 'order'
+
+        expect(feed.processes).to eq([open_process4, open_process3, open_process2]) # <--- ORIGINAL
+        #expect(feed.processes).to eq([open_process1, open_process2, open_process3]) # <--- MODIFICADO
       end
 
     end

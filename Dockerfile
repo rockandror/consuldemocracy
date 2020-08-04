@@ -1,59 +1,92 @@
-# Use Ruby 2.3.6 as base image
-FROM ruby:2.3.6
+# MAINTAINER Aitor Carrera <aitor.carrera@edosoft.es>
 
-ENV DEBIAN_FRONTEND noninteractive
+# STAGE para bundle y asset precompile
+FROM ruby:2.4.4-alpine3.7 as builder
 
-# Install essential Linux packages
-RUN apt-get update -qq
-RUN apt-get install -y build-essential libpq-dev postgresql-client nodejs imagemagick sudo libxss1 libappindicator1 libindicator7 unzip memcached
+ENV RAILS_ENV production
+ENV RAILS_LOG_TO_STDOUT true
+ENV RAILS_SERVE_STATIC_FILES true
 
-# Files created inside the container repect the ownership
-RUN adduser --shell /bin/bash --disabled-password --gecos "" consul \
-  && adduser consul sudo \
-  && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+RUN apk add --no-cache \
+  build-base \
+  busybox \
+  ca-certificates \
+  curl \
+  git \
+  gnupg1 \
+  graphicsmagick \
+  libffi-dev \
+  libsodium-dev \
+  nodejs=8.9.3-r1 \
+  openssh-client \
+  postgresql-dev \
+  rsync \
+  linux-headers
 
-RUN echo 'Defaults secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/bundle/bin"' > /etc/sudoers.d/secure_path
-RUN chmod 0440 /etc/sudoers.d/secure_path
+RUN mkdir -p /app
+WORKDIR /app
 
-COPY scripts/entrypoint.sh /usr/local/bin/entrypoint.sh
+# Esto se copia antes que el codigo para que el cache
+# de construccion se pueda usar si cambiiamos rl codiigo pero no las
+# dependencias (trucazo!)
+COPY Gemfile /app/
+COPY Gemfile.lock /app/
 
-# Define where our application will live inside the image
-ENV RAILS_ROOT /var/www/consul
+# Ojo que en development habia alguna dependencia que me haciia falta
+# RUN bundle install --without development test -j4 --retry 3 \
+#  && rm -rf /usr/local/bundle/bundler/gems/*/.git \
+#    /usr/local/bundle/cache/
 
-# Create application home. App server will need the pids dir so just create everything in one shot
-RUN mkdir -p $RAILS_ROOT/tmp/pids
+RUN bundle install -j4 --retry 3 \
+  && rm -rf /usr/local/bundle/bundler/gems/*/.git \
+    /usr/local/bundle/cache/
 
-# Set our working directory inside the image
-WORKDIR $RAILS_ROOT
+COPY . /app/
+# Truco para el asset sin BBDD
+RUN mv db/schema.rb db/schema.rb.true
+RUN touch db/schema.rb
+# RUN bundle exec rake \
+#   DATABASE_ADAPTER=nulldb \
+#   SECRET_TOKEN=adummytoken \
+#   LISTEN_ON=0.0.0.0:8000 \
+#   RAILS_ENV=production \
+#   DATABASE=db \
+#   DATABASE_USER=user \
+#   DATABASE_PASS=pass \
+#   assets:precompile
 
-# Use the Gemfiles as Docker cache markers. Always bundle before copying app src.
-# (the src likely changed and we don't want to invalidate Docker's cache too early)
-# http://ilikestuffblog.com/2014/01/06/how-to-skip-bundle-install-when-deploying-a-rails-app-to-docker/
-COPY Gemfile Gemfile
 
-COPY Gemfile.lock Gemfile.lock
+# Packaging final app w/o node_modules & the development tools
+FROM ruby:2.4.4-alpine3.7
 
-COPY Gemfile_custom Gemfile_custom
+ENV RAILS_ENV production
+ENV RAILS_SERVE_STATIC_FILES true
+ENV RAILS_LOG_TO_STDOUT true
 
-# Prevent bundler warnings; ensure that the bundler version executed is >= that which created Gemfile.lock
-RUN gem install bundler
+# Seguro que alguna dep de estas sobra
+RUN apk add --no-cache \
+  busybox \
+  ca-certificates \
+  curl \
+  gnupg1 \
+  graphicsmagick \
+  libsodium-dev \
+  nodejs=8.9.3-r1 \
+  postgresql-dev \
+  rsync \
+  file \
+  imagemagick
 
-# Finish establishing our Ruby environment
-RUN bundle install --full-index
+RUN mkdir -p /app
 
-# Install Chromium and ChromeDriver for E2E integration tests
-RUN apt-get update -qq && apt-get install -y chromium
-RUN wget -N http://chromedriver.storage.googleapis.com/2.38/chromedriver_linux64.zip
-RUN unzip chromedriver_linux64.zip
-RUN chmod +x chromedriver
-RUN mv -f chromedriver /usr/local/share/chromedriver
-RUN ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
-RUN ln -s /usr/local/share/chromedriver /usr/bin/chromedriver
+WORKDIR /app
 
-# Copy the Rails application into place
-COPY . .
+# Copiamos las dependencias y la app con los assets.
+COPY --from=builder /usr/local/bundle/ /usr/local/bundle/
+COPY --from=builder /app/ /app/
+ADD ./dockerfiles/start.sh /app/dockerfiles/start.sh
+RUN chmod +x /app/dockerfiles/start.sh
 
-# Define the script we want run once the container boots
-# Use the "exec" form of CMD so our script shuts down gracefully on SIGTERM (i.e. `docker stop`)
-# CMD [ "config/containers/app_cmd.sh" ]
-CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
+EXPOSE 3000
+
+ENTRYPOINT ["/app/dockerfiles/start.sh"]

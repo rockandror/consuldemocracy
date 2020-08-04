@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  #root = ENV['RAILS_SCOPE'] || ""
+
+  #scope root do
   mount Ckeditor::Engine => '/ckeditor'
 
   if Rails.env.development? || Rails.env.staging?
@@ -43,11 +46,17 @@ Rails.application.routes.draw do
   resources :follows, only: [:create, :destroy]
 
   # More info pages
-  get 'help',             to: 'pages#show', id: 'help/index',             as: 'help'
-  get 'help/how-to-use',  to: 'pages#show', id: 'help/how_to_use/index',  as: 'how_to_use'
-  get 'help/faq',         to: 'pages#show', id: 'help/faq/index',         as: 'faq'
+  get 'help', to: 'pages#show', id: 'help/index', as: 'help'
+  get 'help/how-to-use', to: 'pages#show', id: 'help/how_to_use/index', as: 'how_to_use'
+  get 'faq', to: 'pages#show', id: 'faq', as: 'faq'
 
   # Static pages
-  get '/blog' => redirect("http://blog.consul/")
+  #get '/blog' => redirect("http://blog.consul/")
   resources :pages, path: '/', only: [:show]
+
+  get '/healthz', to: proc {[200, {}, ['']]}
+
+  get '*unmatched_route', to: 'application#not_found'
+  #end
 end
+

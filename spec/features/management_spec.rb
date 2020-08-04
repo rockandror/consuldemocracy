@@ -10,7 +10,7 @@ feature 'Management' do
 
     expect(page).to have_link("Management")
 
-    click_link "Management"
+    click_link("Management", match: :first)
 
     expect(page).to have_content("My activity")
     expect(page).to have_content("My account")
@@ -24,7 +24,7 @@ feature 'Management' do
 
     expect(page).to have_link("Management")
 
-    click_link "Management"
+    click_link("Management", match: :first)
 
     expect(page).not_to have_content("My activity")
     expect(page).not_to have_content("My account")

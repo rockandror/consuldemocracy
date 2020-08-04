@@ -3,3 +3,432 @@
 // * English: https://github.com/consul/consul/blob/master/CUSTOMIZE_EN.md#css
 // * Spanish: https://github.com/consul/consul/blob/master/CUSTOMIZE_ES.md#css
 //
+
+// Overrides
+#responsive-menu {
+  display: inline-flex;
+}
+
+.dropdown.menu > li.opens-left > .is-dropdown-submenu {
+  top: 20%;
+}
+
+//
+
+.margin-right-30 {
+  margin-right: 30px;
+}
+
+.footer {
+  min-height: auto !important;
+  margin-bottom: 0;
+}
+
+.subfooter-wrapper {
+  background-color: $secondary;
+}
+
+.subfooter {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  border-top: none;
+}
+
+.first-footer-item {
+  flex: 1;
+  text-align: center;
+
+  flex-basis: 150px;
+}
+
+.footer-item {
+  flex: 1;
+  text-align: center;
+
+  flex-basis: 150px;
+}
+
+.footer-item-divider {
+  flex: 0.5;
+  text-align: center;
+}
+
+.row-no-padding {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.welcome-sections {
+  margin: 0 10px;
+  background-color: $brand;
+  border-radius: 20px;
+
+  & > p {
+    padding-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: $white;
+  }
+}
+
+.welcome-sections:hover {
+  text-decoration: none;
+  background-color: $dark;
+
+  & > .welcome-section-header {
+    border: 4px solid $dark;
+
+    & > .welcome-section-header-title {
+      text-decoration: none;
+      color: $dark;
+    }
+  }
+}
+
+.welcome-sections-link:hover {
+  text-decoration: none;
+}
+
+.welcome-section-header {
+  background-color: #fff;
+  border: 4px solid $brand;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.welcome-section-header-title {
+  font-family: "Lato", serif !important;
+  font-weight: bold;
+  color: $brand;
+  margin: 3px 0;
+}
+
+.welcome-section-icon {
+  padding-top: 1em;
+  padding-bottom: 1.3em;
+}
+
+.welcome-debate-icon {
+  padding-bottom: 2em;
+}
+
+.header-section {
+  height: 410px;
+  background: asset_data_url("header-background.png");
+  background-size: cover;
+}
+
+.header-title {
+  font-size: 28px;
+  color: $white;
+}
+
+.header-description {
+  font-size: 16px;
+  color: $white;
+}
+
+.header-section-texts-container {
+  padding-left: 4em;
+  padding-top: 35px;
+  background: asset_data_url("header-mask.png");
+  background-size: cover;
+  height: 410px;
+}
+
+.header-button {
+  float: right;
+  border: 2px solid $brand;
+  max-height: 48px;
+  max-width: 275px;
+  background-color: $white;
+
+  & > span {
+    font-size: 16px;
+    color: $dark-text;
+  }
+}
+
+.subnavigation-large-menu {
+  margin-top: 20px;
+}
+
+.header-image {
+  margin-left: 50%;
+
+  & > img {
+    max-width: none;
+  }
+}
+
+.social {
+  margin-top: 30px;
+}
+
+.submenu a {
+  color: $brand;
+}
+
+.submenu .is-active {
+  border-bottom: 2px solid $dark;
+  color: $dark;
+}
+
+.sidebar-title {
+  color: $brand;
+}
+
+.debate .votes .voted .icon-like,
+.debate-show .votes .voted .icon-like,
+.proposal-show .votes .voted .icon-like,
+.legislation-proposals .votes .voted .icon-like {
+  background: $white;
+  border: 2px solid $white;
+  color: $like;
+}
+
+.debate .votes .voted .icon-unlike,
+.debate-show .votes .voted .icon-unlike,
+.proposal-show .votes .voted .icon-unlike,
+.legislation-proposals .votes .voted .icon-unlike {
+  background: $white;
+  border: 2px solid $white;
+  color: $unlike;
+}
+
+.icon-like::before {
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal !important;
+  font-variant: normal !important;
+  text-rendering: auto;
+  line-height: 1;
+  content: "\6b";
+}
+
+.icon-unlike::before {
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal !important;
+  font-variant: normal !important;
+  text-rendering: auto;
+  line-height: 1;
+  content: "\6a";
+}
+
+#js-advanced-search-title {
+  color: $dark;
+}
+
+.tag {
+  color: $brand;
+}
+
+.debate .panel h3 a,
+.proposal .panel h3 a,
+.investment-project .panel h3 a,
+.budget-investment .panel h3 a,
+.legislation .panel h3 a,
+.communities-show .panel h3 a {
+  color: $dark;
+}
+
+.debate .debate-info .icon-comments,
+.debate .proposal-info .icon-comments,
+.debate .investment-project-info .icon-comments,
+.debate .budget-investment-info .icon-comments,
+.debate .topic-info .icon-comments,
+.proposal .debate-info .icon-comments,
+.proposal .proposal-info .icon-comments,
+.proposal .investment-project-info .icon-comments,
+.proposal .budget-investment-info .icon-comments,
+.proposal .topic-info .icon-comments,
+.investment-project .debate-info .icon-comments,
+.investment-project .proposal-info .icon-comments,
+.investment-project .investment-project-info .icon-comments,
+.investment-project .budget-investment-info .icon-comments,
+.investment-project .topic-info .icon-comments,
+.budget-investment .debate-info .icon-comments,
+.budget-investment .proposal-info .icon-comments,
+.budget-investment .investment-project-info .icon-comments,
+.budget-investment .budget-investment-info .icon-comments,
+.budget-investment .topic-info .icon-comments,
+.legislation .debate-info .icon-comments,
+.legislation .proposal-info .icon-comments,
+.legislation .investment-project-info .icon-comments,
+.legislation .budget-investment-info .icon-comments,
+.legislation .topic-info .icon-comments,
+.communities-show .debate-info .icon-comments,
+.communities-show .proposal-info .icon-comments,
+.communities-show .investment-project-info .icon-comments,
+.communities-show .budget-investment-info .icon-comments,
+.communities-show .topic-info .icon-comments {
+  color: $dark;
+}
+
+.tags a,
+.tag-cloud a,
+.categories a,
+.geozone a,
+.sidebar-links a,
+.tags span {
+  color: $brand;
+}
+
+.proposal .supports .progress .meter {
+  background: $brand-light;
+}
+
+.proposal .supports .button-support {
+  background: $brand;
+  color: $white;
+}
+
+.proposal .supports .progress {
+  background: $brand-lighter;
+}
+
+.row .featured-proposals {
+  background: $brand-lighter;
+
+  & > div:first-child {
+    background: $brad-2;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-bottom: 15px;
+
+    & > h2 {
+      margin-bottom: 0;
+      padding: 3px 0;
+      color: white;
+    }
+  }
+}
+
+.featured-debates,
+.featured-proposals,
+.enquiries-list {
+  padding: 0;
+}
+
+.featured-proposals .supports .button-support {
+  color: $white;
+  background: $brand;
+}
+
+.help-header h1 {
+  color: $dark;
+  margin-left: 10px;
+}
+
+.menu.simple li.is-active {
+  color: $dark;
+}
+
+.menu.simple li a {
+  color: $brand;
+}
+
+.poll h4 a,
+.poll-question h4 a {
+  color: $dark;
+}
+
+.legislation-text h3 a {
+  color: $dark;
+}
+
+.expanded.budget,
+.expanded.budget .info,
+.budget-timeline .phase.is-active h3,
+.jumbo-budget {
+  background: $dark;
+}
+
+.budget-timeline .phase.is-active::before {
+  background-color: $dark;
+}
+
+.budget-timeline .phase::before {
+  border: 4px solid $dark;
+}
+
+.budget-timeline {
+  border-left: 3px solid $dark;
+}
+
+.expanded.budget .button {
+  color: $dark;
+}
+
+footer .logo a {
+  font-weight: bold;
+}
+
+.ballot-list {
+  li {
+    &:hover {
+      background: $dark;
+      color: #fff;
+
+      a,
+      span {
+        color: #fff;
+        outline: 0;
+        text-decoration: none;
+      }
+
+      .remove-investment-project .icon-x {
+        color: #fff;
+      }
+    }
+  }
+}
+
+.dropdown.menu .is-active > a {
+  color: $brand;
+}
+
+.header-button {
+  font-weight: bold;
+
+  &:hover > span {
+    color: $white;
+  }
+}
+
+.european-logo {
+  margin-right: 7%;
+}
+
+.european-logo-small {
+  text-align: right;
+}
+
+.european-logo-img {
+  max-height: 100px;
+  padding: 10px;
+}
+
+.logos-small-header {
+  background-color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.european-development-program {
+  font-size: 12px;
+  margin-right: 30px;
+}
+
+.canarias-with-europe {
+  max-height: 60px;
+}
+
+.gob-logos {
+  margin-bottom: 15px;
+}

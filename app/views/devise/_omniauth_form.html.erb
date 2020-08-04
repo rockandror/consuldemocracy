@@ -1,4 +1,4 @@
-<% if feature?(:twitter_login) || feature?(:facebook_login) || feature?(:google_login) %>
+<% if feature?(:twitter_login) || feature?(:facebook_login) || feature?(:google_login) || feature?(:saml_login) %>
 
   <% if current_page?(new_user_session_path) %>
     <div class="row">
@@ -29,6 +29,23 @@
           <%= link_to t("omniauth.google_oauth2.name"), user_omniauth_authorize_path(:google_oauth2),
                       title: t("omniauth.google_oauth2.sign_in"),
                       class: "button-google button expanded" %>
+        </div>
+      <% end %>
+
+      <% if feature? :saml_login %>
+        <div class="small-12 medium-12 large-12 column end">
+          <%= link_to t("omniauth.saml.name"), user_omniauth_authorize_path(:saml),
+                      title: t("omniauth.saml.sign_in"),
+                      class: "button expanded" %>
+        </div>
+        <div class="small-12 column">
+          <p class="float-right">
+            <%= link_to t("devise_views.shared.links.new_password"), ENV['OPENAM_HOST'], class: "float-right" %>
+          </p>
+          <p class="float-left">
+            <%= t("devise_views.shared.links.signup",
+                  signup_link: link_to(t("devise_views.shared.links.signup_link"), new_user_registration_path)).html_safe %>
+          </p>
         </div>
       <% end %>
 
@@ -69,9 +86,22 @@
         </div>
       <% end %>
 
-      <div class="small-12 column auth-divider">
-        <span><%= t("omniauth.or_fill") %></span>
-      </div>
+      <%# BLOQUE DESACTIVADO %>
+      <% if false %>>
+        <% if feature? :saml_login %>
+          <div class="small-12 medium-12 large-12 column end">
+            <%= link_to t("omniauth.saml.name"), user_omniauth_authorize_path(:saml),
+                        title: t("omniauth.saml.sign_up"),
+                        class: "button expanded" %>
+          </div>
+        <% end %>
+
+
+        <div class="small-12 column auth-divider">
+          <span><%= t("omniauth.or_fill") %></span>
+        </div>
+      <% end %>
+      <%# FIN BLOQUE DESACTIVADO %>
     </div>
   <% end %>
 

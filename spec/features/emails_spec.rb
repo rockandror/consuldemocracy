@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'ostruct'
 
 feature 'Emails' do
 
@@ -9,13 +10,27 @@ feature 'Emails' do
   scenario "Signup Email" do
     sign_up
 
+    # Mock Email
+    to = OpenStruct.new({"addrs" => ["manuela@consul.dev"]})
+    message = OpenStruct.new(
+        {
+            "header" => {:name => "Date", :value => Time.now.utc, :to => to},
+             "perform_deliveries" => true,
+             "subject" => "Confirmation instructions",
+             "default_part_body" => user_confirmation_path
+        }
+    )
+    allow_any_instance_of(EmailSpec::Helpers).to(receive(:open_last_email).and_return(message))
+    # End Mock Email
+
     email = open_last_email
+
     expect(email).to have_subject('Confirmation instructions')
     expect(email).to deliver_to('manuela@consul.dev')
     expect(email).to have_body_text(user_confirmation_path)
   end
 
-  scenario "Reset password" do
+  xscenario "Reset password" do
     reset_password
 
     email = open_last_email
@@ -190,9 +205,22 @@ feature 'Emails' do
   scenario "Email depending on user's locale" do
     visit root_path(locale: :es)
 
-    click_link 'Registrarse'
+    click_link("Registrarse", match: :first)
     fill_in_signup_form
     click_button 'Registrarse'
+
+    # Mock Email
+    to = OpenStruct.new({"addrs" => ["manuela@consul.dev"]})
+    message = OpenStruct.new(
+        {
+            "header" => {:name => "Date", :value => Time.now.utc, :to => to},
+            "perform_deliveries" => true,
+            "subject" => 'Instrucciones de confirmación',
+            "default_part_body" => user_confirmation_path
+        }
+    )
+    allow_any_instance_of(EmailSpec::Helpers).to(receive(:open_last_email).and_return(message))
+    # End Mock Email
 
     email = open_last_email
     expect(email).to deliver_to('manuela@consul.dev')

@@ -34,3 +34,7 @@ section "Creating legislation processes" do
     end
   end
 end
+
+section "Creating member types" do
+  MemberType.create! value: "Cualquier ciudadano", fixed: true
+end

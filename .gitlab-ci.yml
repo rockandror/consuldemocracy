@@ -1,0 +1,69 @@
+cache:
+  paths:
+    - vendor/bundle
+    - node_modules
+
+stages:
+  - test
+
+test:
+  image: ruby:2.4.4-stretch
+  services:
+    - name: postgres:10.15
+      command: [
+        "postgres",
+        "-c",
+        "fsync=off",
+        "-c",
+        "synchronous_commit=off",
+        "-c",
+        "full_page_writes=off",
+      ]
+  variables:
+    POSTGRES_DB: consul_civicas_test
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: "root"
+    DATABASE_HOST: postgres
+  script:
+    - apt-get update
+    - apt-get -y install ca-certificates
+      ca-certificates
+      curl
+      git
+      gnupg1
+      graphicsmagick
+      libffi-dev
+      libsodium-dev
+      nodejs
+      openssh-client
+      libpq-dev
+      rsync
+      linux-headers-amd64
+      chromium
+      chromedriver
+
+    - mkdir tests_output
+    - bundle install -j4 --retry 3
+      && rm -rf /usr/local/bundle/bundler/gems/*/.git
+      /usr/local/bundle/cache/
+    - bundle exec rake db:create
+    - bundle exec rake db:migrate
+    #- bundle exec rake db:seed
+    - bundle exec rake db:dev_seed
+    - RAILS_ENV=test bundle exec rake db:setup
+
+    - RAILS_ENV=test bundle exec bin/rspec --no-fail-fast --format RspecJunitFormatter --out ./tests_output/output.xml --format h --out ./tests_output/output.html --format d --out ./tests_output/documentation.txt
+    #- grep -e "FAILED -" < ./tests_output/documentation.txt > ./tests_output/errores_ecociv_registro.txt
+    - echo "END"
+
+  artifacts:
+    when: always
+    reports:
+      junit:
+        - tests_output/output.xml
+    paths:
+      - tests_output/
+    expire_in: 20 days
+
+  when: manual
+

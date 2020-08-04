@@ -645,10 +645,6 @@ header {
     @include breakpoint(medium) {
       display: inline-block;
 
-      &::after {
-        content: '|';
-      }
-
       &:last-child::after {
         content: none;
       }
@@ -1469,6 +1465,7 @@ table {
 // ----------
 
 .button.button-twitter,
+.button.button-saml,
 .button.button-facebook,
 .button.button-google,
 .button.button-telegram {
@@ -1607,6 +1604,43 @@ table {
   &:focus {
     background: #fff;
     color: #ce3e26;
+  }
+}
+
+.button.button-google {
+  background: #05456E;
+  border-left: 3px solid #fff;
+
+  &::before {
+    color: #05456E;
+    left: 0;
+    line-height: $line-height * 2;
+    padding: 0 rem-calc(20);
+    position: absolute;
+    top: 0;
+  }
+}
+
+[class^="ssb-icon ssb-saml"] {
+  background: #05456E;
+  background-image: none !important;
+  color: #fff;
+  height: $line-height * 2 !important;
+  position: relative;
+  width: $line-height * 2 !important;
+
+  &::before {
+    left: 50%;
+    line-height: $line-height * 2;
+    margin-left: rem-calc(-11);
+    position: absolute;
+    top: 0;
+  }
+
+  &:hover,
+  &:focus {
+    background: #fff;
+    color: #05456E;
   }
 }
 

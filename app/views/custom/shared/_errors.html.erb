@@ -1,0 +1,18 @@
+<% if resource.errors.any? %>
+  <%= render 'shared/error_identifier', errors: resource.errors %>
+  <div id="error_explanation" data-alert class="callout alert" data-closable>
+    <button class="close-button" aria-label="<%= t("application.close") %>" type="button" data-close>
+      <span aria-hidden="true">&times;</span>
+    </button>
+
+    <strong>
+      <%= pluralize resource.errors.count, t("form.error"), t("form.errors") %>
+
+      <% if local_assigns[:message].present? %>
+        <%= message %>
+      <% else %>
+        <%= t("form.not_saved_html", resource: t("form.#{resource.class.to_s.underscore}")) %>
+      <% end %>
+    </strong>
+  </div>
+<% end %>

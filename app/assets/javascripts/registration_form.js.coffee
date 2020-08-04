@@ -2,7 +2,8 @@ App.RegistrationForm =
 
   initialize: ->
 
-    registrationForm = $("form#new_user[action=\"/users\"]")
+    path = window.location.pathname.split("/user")[0]
+    registrationForm = $("form#new_user[action=\"" + path + "/users\"]")
     usernameInput = $("input#user_username")
 
     clearUsernameMessage = ->
@@ -13,7 +14,7 @@ App.RegistrationForm =
       usernameInput.after $("<small class=\"#{klass}\" style=\"margin-top: -16px;\">#{response.message}</small>")
 
     validateUsername = (username) ->
-      request = $.get "/user/registrations/check_username?username=#{username}"
+      request = $.get path + "/user/registrations/check_username?username=#{username}"
       request.done (response) ->
         showUsernameMessage(response)
 

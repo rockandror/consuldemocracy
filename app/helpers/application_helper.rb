@@ -58,6 +58,10 @@ module ApplicationHelper
   end
 
   def kaminari_path(url)
-    "#{root_url.chomp("\/")}#{url}"
+    path = "#{root_url.chomp("\/")}#{url}"
+    if not ENV['CONSUL_RELATIVE_URL'].nil? and ENV['CONSUL_RELATIVE_URL'].to_s != "" and ENV['CONSUL_RELATIVE_URL'].to_s != "/"
+      path = "#{root_url.chomp("\/")}#{url.sub(ENV['CONSUL_RELATIVE_URL'].to_s, '')}"
+    end
+    path
   end
 end

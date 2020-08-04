@@ -6,6 +6,12 @@ module VerificationHelper
      [t('verification.residence.new.document_type.residence_card'), 3]]
   end
 
+  def document_typesById
+    { "1" => t('verification.residence.new.document_type.spanish_id'),
+      "2" => t('verification.residence.new.document_type.passport'),
+      "3" => t('verification.residence.new.document_type.residence_card') }
+  end
+
   def mask_phone(number)
     match = number.match(/\d{3}$/)
     "******#{match}"

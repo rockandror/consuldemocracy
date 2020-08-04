@@ -34,6 +34,9 @@ module Budgets
     respond_to :html, :js
 
     def index
+
+      @mensajeAlert=MemberType.textoParticipanteTipo2WithPrefix(current_user, @budget.member_type_ids, t("budgets.investments.investment.member_type_denied"))
+
       all_investments = if @budget.finished?
                           investments.winners
                         else
@@ -61,16 +64,24 @@ module Budgets
       set_comment_flags(@comment_tree.comments)
       load_investment_votes(@investment)
       @investment_ids = [@investment.id]
+
+      @mensajeAlert=MemberType.textoParticipanteTipo2WithPrefix(current_user, @budget.member_type_ids, t("budgets.investments.investment.member_type_denied"))
     end
 
     def create
-      @investment.author = current_user
+      @mensajeAlert=MemberType.textoParticipanteTipo2WithPrefix(current_user, @budget.member_type_ids, t("budgets.investments.investment.member_type_denied_creating"))
 
-      if @investment.save
-        Mailer.budget_investment_created(@investment).deliver_later
-        redirect_to budget_investment_path(@budget, @investment),
-                    notice: t('flash.actions.create.budget_investment')
+      if @mensajeAlert.nil?
+        @investment.author = current_user
+
+        if @investment.save
+          Mailer.budget_investment_created(@investment).deliver_later
+          redirect_to budget_investment_path(@budget, @investment), notice: t('flash.actions.create.budget_investment')
+        else
+          render :new
+        end
       else
+        flash.now[:alert]=(@mensajeAlert)
         render :new
       end
     end
@@ -81,7 +92,14 @@ module Budgets
     end
 
     def vote
-      @investment.register_selection(current_user)
+
+      if MemberType.can_vote_budgets?(current_user, @budget.member_type_ids)
+        audit_info("Votacion de Investments: { \"Sexo\": \"#{current_user.gender}\", \"Edad\": \"#{current_user.age}\", \"CodigoPostal\": \"#{current_user.postal_code}\", \"Budget\": \"#{@budget.id}\", \"Investment\": \"#{@investment.id}\" }")
+        @investment.register_selection(current_user)
+      else
+       audit_error("El usuario con id: #{current_user.id}, document_type: #{current_user.document_type} y document_number: #{current_user.document_number} ha tratado de votar sin permiso.")
+      end
+
       load_investment_votes(@investment)
       respond_to do |format|
         format.html { redirect_to budget_investments_path(heading_id: @investment.heading.id) }

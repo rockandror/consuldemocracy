@@ -31,10 +31,10 @@ describe PagesController do
       expect(response).to be_ok
     end
 
-    it 'includes a faq page' do
-      get :show, id: 'help/faq/index'
-      expect(response).to be_ok
-    end
+    #it 'includes a faq page' do
+    #  get :show, id: 'help/faq/index'
+    #  expect(response).to be_ok
+    #end
   end
 
   describe 'Not found pages' do

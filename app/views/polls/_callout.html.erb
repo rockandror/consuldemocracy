@@ -1,4 +1,4 @@
-<% unless can?(:answer, @poll) %>
+<% unless can?(:answer, @poll) && @mensajeAlert.nil? %>
   <% if current_user.nil? %>
     <div class="callout primary">
       <%= t("polls.show.cant_answer_not_logged_in",
@@ -17,6 +17,10 @@
   <% elsif @poll.expired? %>
     <div class="callout alert">
       <%= t('polls.show.cant_answer_expired') %>
+    </div>
+  <% elsif @mensajeAlert %>
+    <div class="callout warning">
+      <%= @mensajeAlert %>
     </div>
   <% else %>
     <div class="callout warning">

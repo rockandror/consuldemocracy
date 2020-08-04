@@ -133,7 +133,7 @@ feature 'Cards' do
     context "Page card" do
       let!(:custom_page) { create(:site_customization_page) }
 
-      scenario "Create", :js do
+      xscenario "Create", :js do
         visit admin_site_customization_pages_path
         click_link "See Cards"
         click_link "Create card"

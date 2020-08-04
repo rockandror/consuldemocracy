@@ -45,7 +45,13 @@
     <%= t("proposals.proposal.votes", count: proposal.total_votes) %>
   </span>
 
-  <% if user_signed_in? && current_user.organization? %>
+  <% if user_signed_in? && @mensajeAlert %>
+    <div class="participation-not-allowed" style='display:none' aria-hidden="false">
+      <p>
+        <%= @mensajeAlert %>
+      </p>
+    </div>
+  <% elsif user_signed_in? && current_user.organization? %>
     <div class="participation-not-allowed" style='display:none' aria-hidden="false">
       <p>
         <%= t("votes.organizations") %>

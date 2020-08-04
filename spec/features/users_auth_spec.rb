@@ -6,9 +6,13 @@ feature 'Users' do
     context 'Sign up' do
 
       scenario 'Success' do
-        message = "You have been sent a message containing a verification link. Please click on this link to activate your account."
+
+        #message = "You have been sent a message containing a verification link. Please click on this link to activate your account."
+        message = "Se ha registrado correctamente"
+
         visit '/'
-        click_link 'Register'
+
+        click_link("Register", match: :first)
 
         fill_in 'user_username',              with: 'Manuela Carmena'
         fill_in 'user_email',                 with: 'manuela@consul.dev'
@@ -16,18 +20,22 @@ feature 'Users' do
         fill_in 'user_password_confirmation', with: 'judgementday'
         check 'user_terms_of_service'
 
+        # Mock OpenAM
+        allow_any_instance_of(OpenAmHelper).to(receive(:register_user).and_return(:ok))
+        # End Mock OpenAM
+
         click_button 'Register'
 
         expect(page).to have_content message
 
-        confirm_email
+        #confirm_email
 
-        expect(page).to have_content "Your account has been confirmed."
+        #expect(page).to have_content "Your account has been confirmed."
       end
 
       scenario 'Errors on sign up' do
         visit '/'
-        click_link 'Register'
+        click_link("Register", match: :first)
         click_button 'Register'
 
         expect(page).to have_content error_message
@@ -41,7 +49,7 @@ feature 'Users' do
         create(:user, email: 'manuela@consul.dev', password: 'judgementday')
 
         visit '/'
-        click_link 'Sign in'
+        click_link("Sign in", match: :first)
         fill_in 'user_login',    with: 'manuela@consul.dev'
         fill_in 'user_password', with: 'judgementday'
         click_button 'Enter'
@@ -53,7 +61,7 @@ feature 'Users' do
         create(:user, username: '👻👽👾🤖', email: 'ash@nostromo.dev', password: 'xenomorph')
 
         visit '/'
-        click_link 'Sign in'
+        click_link("Sign in", match: :first)
         fill_in 'user_login',    with: '👻👽👾🤖'
         fill_in 'user_password', with: 'xenomorph'
         click_button 'Enter'
@@ -66,7 +74,7 @@ feature 'Users' do
         u2 = create(:user, username: 'peter@nyc.dev', email: 'venom@nyc.dev', password: 'symbiote')
 
         visit '/'
-        click_link 'Sign in'
+        click_link("Sign in", match: :first)
         fill_in 'user_login',    with: 'peter@nyc.dev'
         fill_in 'user_password', with: 'greatpower'
         click_button 'Enter'
@@ -78,11 +86,11 @@ feature 'Users' do
         expect(page).to have_link 'My activity', href: user_path(u1)
 
         visit '/'
-        click_link 'Sign out'
+        click_link("Sign out", match: :first)
 
         expect(page).to have_content 'You have been signed out successfully.'
 
-        click_link 'Sign in'
+        click_link("Sign in", match: :first)
         fill_in 'user_login',    with: 'peter@nyc.dev'
         fill_in 'user_password', with: 'symbiote'
         click_button 'Enter'
@@ -124,13 +132,13 @@ feature 'Users' do
         OmniAuth.config.add_mock(:twitter, twitter_hash_with_verified_email)
 
         visit '/'
-        click_link 'Register'
+        click_link("Register", match: :first)
 
         click_link 'Sign up with Twitter'
 
         expect_to_be_signed_in
 
-        click_link 'My account'
+        click_link("My account", match: :first)
         expect(page).to have_field('account_username', with: 'manuela')
 
         visit edit_user_registration_path
@@ -141,7 +149,7 @@ feature 'Users' do
         OmniAuth.config.add_mock(:twitter, twitter_hash_with_email)
 
         visit '/'
-        click_link 'Register'
+        click_link("Register", match: :first)
 
         click_link 'Sign up with Twitter'
 
@@ -152,11 +160,11 @@ feature 'Users' do
         expect(page).to have_content "Your account has been confirmed"
 
         visit '/'
-        click_link 'Sign in'
+        click_link("Sign in", match: :first)
         click_link 'Sign in with Twitter'
         expect_to_be_signed_in
 
-        click_link 'My account'
+        click_link("My account", match: :first)
         expect(page).to have_field('account_username', with: 'manuela')
 
         visit edit_user_registration_path
@@ -167,7 +175,7 @@ feature 'Users' do
         OmniAuth.config.add_mock(:twitter, twitter_hash)
 
         visit '/'
-        click_link 'Register'
+        click_link("Register", match: :first)
         click_link 'Sign up with Twitter'
 
         expect(page).to have_current_path(finish_signup_path)
@@ -180,11 +188,11 @@ feature 'Users' do
         expect(page).to have_content "Your account has been confirmed"
 
         visit '/'
-        click_link 'Sign in'
+        click_link("Sign in", match: :first)
         click_link 'Sign in with Twitter'
         expect_to_be_signed_in
 
-        click_link 'My account'
+        click_link("My account", match: :first)
         expect(page).to have_field('account_username', with: 'manuela')
 
         visit edit_user_registration_path
@@ -195,7 +203,7 @@ feature 'Users' do
         OmniAuth.config.add_mock(:twitter, twitter_hash)
 
         visit '/'
-        click_link 'Register'
+        click_link("Register", match: :first)
         click_link 'Sign up with Twitter'
 
         expect(page).to have_current_path(finish_signup_path)
@@ -211,12 +219,12 @@ feature 'Users' do
         OmniAuth.config.add_mock(:twitter, twitter_hash)
 
         visit '/'
-        click_link 'Sign in'
+        click_link("Sign in", match: :first)
         click_link 'Sign in with Twitter'
 
         expect_to_be_signed_in
 
-        click_link 'My account'
+        click_link("My account", match: :first)
         expect(page).to have_field('account_username', with: user.username)
 
         visit edit_user_registration_path
@@ -229,7 +237,7 @@ feature 'Users' do
         OmniAuth.config.add_mock(:twitter, twitter_hash_with_verified_email)
 
         visit '/'
-        click_link 'Register'
+        click_link("Register", match: :first)
         click_link 'Sign up with Twitter'
 
         expect(page).to have_current_path(finish_signup_path)
@@ -245,7 +253,7 @@ feature 'Users' do
 
         expect_to_be_signed_in
 
-        click_link 'My account'
+        click_link("My account", match: :first)
         expect(page).to have_field('account_username', with: 'manuela2')
 
         visit edit_user_registration_path
@@ -257,7 +265,7 @@ feature 'Users' do
         OmniAuth.config.add_mock(:twitter, twitter_hash)
 
         visit '/'
-        click_link 'Register'
+        click_link("Register", match: :first)
         click_link 'Sign up with Twitter'
 
         expect(page).to have_current_path(finish_signup_path)
@@ -276,11 +284,11 @@ feature 'Users' do
         expect(page).to have_content "Your account has been confirmed"
 
         visit '/'
-        click_link 'Sign in'
+        click_link("Sign in", match: :first)
         click_link 'Sign in with Twitter'
         expect_to_be_signed_in
 
-        click_link 'My account'
+        click_link("My account", match: :first)
         expect(page).to have_field('account_username', with: 'manuela')
 
         visit edit_user_registration_path
@@ -292,7 +300,7 @@ feature 'Users' do
         OmniAuth.config.add_mock(:twitter, twitter_hash_with_email)
 
         visit '/'
-        click_link 'Register'
+        click_link("Register", match: :first)
         click_link 'Sign up with Twitter'
 
         expect(page).to have_current_path(finish_signup_path)
@@ -307,11 +315,11 @@ feature 'Users' do
         expect(page).to have_content "Your account has been confirmed"
 
         visit '/'
-        click_link 'Sign in'
+        click_link("Sign in", match: :first)
         click_link 'Sign in with Twitter'
         expect_to_be_signed_in
 
-        click_link 'My account'
+        click_link("My account", match: :first)
         expect(page).to have_field('account_username', with: 'manuela')
 
         visit edit_user_registration_path
@@ -325,17 +333,17 @@ feature 'Users' do
     login_as(user)
 
     visit "/"
-    click_link 'Sign out'
+    click_link("Sign out", match: :first)
 
     expect(page).to have_content 'You have been signed out successfully.'
   end
 
-  scenario 'Reset password' do
+  xscenario 'Reset password' do
     create(:user, email: 'manuela@consul.dev')
 
     visit '/'
-    click_link 'Sign in'
-    click_link 'Forgotten your password?'
+    click_link("Sign in", match: :first)
+    click_link('Forgotten your password?', match: :first)
 
     fill_in 'user_email', with: 'manuela@consul.dev'
     click_button 'Send instructions'

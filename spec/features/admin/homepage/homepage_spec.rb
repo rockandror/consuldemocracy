@@ -24,9 +24,7 @@ feature 'Homepage' do
     scenario "Admin menu links to homepage path" do
 
       visit new_admin_widget_card_path(header_card: true)
-
       click_link Setting['org_name'] + " Administration"
-
       expect(page).to have_current_path(admin_root_path)
     end
   end
@@ -44,9 +42,12 @@ feature 'Homepage' do
       end
 
       visit root_path
-
-      expect(page).to have_content "Most active proposals"
-      expect(page).to have_css(".proposal", count: 1)
+      # Debido al cambio producido en Homepage usando ./app/views/custom/welcome/index.html.erb,
+      # no deben existir las Proposiciones, si no un enlace a los las Proposiciones
+      #expect(page).to have_content "Most active proposals"
+      #expect(page).to have_css(".proposal", count: 1)
+      expect(page).to have_no_content "Most active proposals"
+      expect(page).to have_no_css(".proposal")
     end
 
     scenario "Debates", :js do
@@ -60,8 +61,15 @@ feature 'Homepage' do
 
       visit root_path
 
-      expect(page).to have_content "Most active debates"
-      expect(page).to have_css(".debate", count: 2)
+      # Debido al cambio producido en Homepage usando ./app/views/custom/welcome/index.html.erb,
+      # no deben existir los Debates, si no un enlace a los debates
+
+      # Test de versión original
+      #expect(page).to have_content "Most active debates"
+      #expect(page).to have_css(".debate", count: 2)
+      expect(page).to have_no_content "Most active debates"
+      expect(page).to have_no_css(".debate")
+      expect(page).to have_css(".welcome-debate-icon")
     end
 
     scenario "Processes", :js do
@@ -74,9 +82,10 @@ feature 'Homepage' do
       end
 
       visit root_path
-
-      expect(page).to have_content "Open processes"
-      expect(page).to have_css(".legislation_process", count: 3)
+      # Debido al cambio producido en Homepage usando ./app/views/custom/welcome/index.html.erb,
+      # no deben existir las Proposiciones, si no un enlace a los las Proposiciones
+      expect(page).to have_no_content "Open processes"
+      expect(page).to have_no_css(".legislation_process")
     end
 
     xscenario "Deactivate"
@@ -98,25 +107,31 @@ feature 'Homepage' do
 
     visit root_path
 
-    expect(page).to have_css(".card", count: 2)
+    # Debido al cambio producido en Homepage usando ./app/views/custom/welcome/index.html.erb,
+    # no deben existir las Tarjetas en la página de inicio
+    #
+    # PRUEBA DE LA VERSIÓN ORIGINAL
+    # expect(page).to have_css(".card", count: 2)
+    #
+    # within("#widget_card_#{card1.id}") do
+    #   expect(page).to have_content("Card1 label")
+    #   expect(page).to have_content("Card1 text")
+    #   expect(page).to have_content("Card1 description")
+    #   expect(page).to have_content("Link1 text")
+    #   expect(page).to have_link(href: "consul1.dev")
+    #   expect(page).to have_css("img[alt='#{card1.image.title}']")
+    # end
+    #
+    # within("#widget_card_#{card2.id}") do
+    #   expect(page).to have_content("Card2 label")
+    #   expect(page).to have_content("Card2 text")
+    #   expect(page).to have_content("Card2 description")
+    #   expect(page).to have_content("Link2 text")
+    #   expect(page).to have_link(href: "consul2.dev")
+    #   expect(page).to have_css("img[alt='#{card2.image.title}']")
+    # end
 
-    within("#widget_card_#{card1.id}") do
-      expect(page).to have_content("Card1 label")
-      expect(page).to have_content("Card1 text")
-      expect(page).to have_content("Card1 description")
-      expect(page).to have_content("Link1 text")
-      expect(page).to have_link(href: "consul1.dev")
-      expect(page).to have_css("img[alt='#{card1.image.title}']")
-    end
-
-    within("#widget_card_#{card2.id}") do
-      expect(page).to have_content("Card2 label")
-      expect(page).to have_content("Card2 text")
-      expect(page).to have_content("Card2 description")
-      expect(page).to have_content("Link2 text")
-      expect(page).to have_link(href: "consul2.dev")
-      expect(page).to have_css("img[alt='#{card2.image.title}']")
-    end
+    expect(page).to have_no_css(".card", count: 2)
   end
 
   scenario "Recomendations" do
@@ -125,16 +140,19 @@ feature 'Homepage' do
     create(:follow, followable: proposal1, user: user)
 
     visit admin_homepage_path
+
     within("#setting_#{user_recommendations.id}") do
       click_button "Enable"
     end
-
     expect(page).to have_content "Value updated"
 
     login_as(user)
     visit root_path
 
-    expect(page).to have_content("Recommendations that may interest you")
+    # Debido al cambio producido en Homepage usando ./app/views/custom/welcome/index.html.erb,
+    # no deben existir las recomendaciones en la página de inicio
+    #expect(page).to have_content("Recommendations that may interest you")  # Para versión original
+    expect(page).to have_no_content("Recommendations that may interest you")
   end
 
 end

@@ -47,9 +47,9 @@ module DocumentsHelper
                                }
     html
   end
-
+  
   def document_direct_upload_url(document)
-    direct_uploads_url("direct_upload[resource_type]": document.documentable_type,
+    direct_uploads_path("direct_upload[resource_type]": document.documentable_type,
                        "direct_upload[resource_id]": document.documentable_id,
                        "direct_upload[resource_relation]": "documents")
   end
@@ -57,7 +57,7 @@ module DocumentsHelper
   def document_item_link(document)
     link_to "#{document.title} <small>(#{document.humanized_content_type} | \
              #{number_to_human_size(document.attachment_file_size)}</small>)".html_safe,
-             document.attachment.url,
+             root_path+document.attachment.url,
              target: "_blank",
              title: t("shared.target_blank_html")
   end

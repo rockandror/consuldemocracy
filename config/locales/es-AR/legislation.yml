@@ -50,7 +50,7 @@ es-AR:
         empty_proposals: No hay propuestas
       debate:
         empty_questions: No hay preguntas
-        participate: Realiza tus aportaciones al debate previo participando en los siguientes temas.
+        participate: Realiza tus aportaciones al consulta  pública previa participando en los siguientes temas.
       index:
         filters:
           open: Procesos activos
@@ -60,11 +60,11 @@ es-AR:
         no_next_processes: No hay procesos planeados
         no_past_processes: No hay procesos terminados
         section_header:
-          icon_alt: Icono de Procesos legislativos
-          title: Procesos legislativos
-          help: Ayuda sobre procesos legislativos
+          icon_alt: Icono de Elaboración normativa
+          title: Elaboración normativa
+          help: Ayuda sobre elaboración normativa
         section_footer:
-          title: Ayuda sobre procesos legislativos
+          title: Ayuda sobre elaboración normativa
       phase_not_open:
         not_open: Esta fase del proceso todavía no está abierta
       phase_empty:
@@ -74,7 +74,7 @@ es-AR:
         see_latest_comments_title: Aportar a este proceso
       shared:
         key_dates: Fases de participación
-        debate_dates: Debate previo
+        debate_dates: Consulta  pública previa
         draft_publication_date: Publicación borrador
         result_publication_date: Publicación resultados
         proposals_dates: Propuestas
@@ -104,7 +104,7 @@ es-AR:
         unauthenticated: Necesitas %{signin} o %{signup} para participar en el debate.
         verified_only: Solo los usuarios verificados pueden participar en el debate, %{verify_account}.
         verify_account: verifica tu cuenta
-        debate_phase_not_open: La fase de debate previo ya ha finalizado y en este momento no se aceptan respuestas
+        debate_phase_not_open: La fase de consulta  pública previa ya ha finalizado y en este momento no se aceptan respuestas
     shared:
       share: Compartir
       share_comment: Comentario sobre la %{version_name} del borrador del proceso %{process_name}

@@ -2,7 +2,7 @@
   <% if setting['blog_url'] %>
     <li>
       <%= link_to t("layouts.header.external_link_blog"),
-                  setting['blog_url'],
+                  (setting['blog_url'] =~ /^https?:\/\/|^www\./i ? setting['blog_url'] : (root_path + setting['blog_url']).sub("//", "/")),
                   target: "_blank",
                   rel: "nofollow",
                   title: t("shared.go_to_page") + t("layouts.header.external_link_blog") + t('shared.target_blank_html') %>

@@ -16,8 +16,14 @@ $small-font-size:     rem-calc(14);
 $line-height:         rem-calc(24);
 $tiny-font-size:      rem-calc(12);
 
-$brand:             #004a83;
-$dark:              darken($brand, 10%);
+$brand:             #64A1C4;
+$dark:              #0768AC;
+$secondary:         #FEDF62;
+$brand-light:       #C4D0DC;
+$brand-lighter:     rgba(51, 51, 51, 0.05);
+$brad-2:            #0F5B95;
+
+$dark-text:       #003366;
 
 $text:              #222;
 $text-medium:       #515151;
@@ -39,8 +45,8 @@ $check:             #46db91;
 $proposals:         #ffa42d;
 $proposals-dark:    #794500;
 
-$budget:            #7e328a;
-$budget-hover:      #7571bf;
+$budget:            #0768AC;
+$budget-hover:      #64A1C4;
 
 $highlight:         #e7f2fc;
 $highlight-soft:    #f3f8fd;

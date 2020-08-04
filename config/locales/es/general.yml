@@ -216,7 +216,7 @@ es:
       administration_menu: Admin
       administration: Administración
       available_locales: Idiomas disponibles
-      collaborative_legislation: Procesos legislativos
+      collaborative_legislation: Elaboración normativa
       debates: Debates
       external_link_blog: Blog
       locale: 'Idioma:'
@@ -291,9 +291,13 @@ es:
       sign_in: Entra con Twitter
       sign_up: Regístrate con Twitter
       name: Twitter
-    info_sign_in: "Entra con:"
+    saml:
+      sign_in: Entra con Identidad de Plataforma de Participación Ciudadana
+      sign_up: Regístrate en la Plataforma de Participación Ciudadana
+      name: Acceso a la Plataforma de Participación Ciudadana
+    info_sign_in: "Para la ciudadanía, entra con:"
     info_sign_up: "Regístrate con:"
-    or_fill: "O rellena el siguiente formulario:"
+    or_fill: "Solo si eres personal autorizado usa el siguiente formulario:"
   proposals:
     create:
       form:
@@ -791,8 +795,8 @@ es:
       see_all_debates: Ver todos los debates
       see_all_proposals: Ver todas las propuestas
       see_all_processes: Ver todos los procesos
-      process_label: Proceso
-      see_process: Ver proceso
+      process_label: Elaboración Normativa
+      see_process: Ver elaboración normativa
     cards:
       title: Destacados
     recommended:

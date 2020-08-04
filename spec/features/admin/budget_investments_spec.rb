@@ -976,7 +976,7 @@ feature 'Admin budget investments' do
 
       click_button 'Update'
 
-      expect(page).to have_content "can't be blank"
+      expect(page).to have_content "Can't be blank"
     end
 
   end
@@ -993,7 +993,10 @@ feature 'Admin budget investments' do
     scenario "Filtering by valuation and selection", :js do
       visit admin_budget_budget_investments_path(budget)
 
-      within('#filter-subnav') { click_link 'Valuation finished' }
+      within('#filter-subnav') do
+        click_link 'Valuation finished'
+      end
+
       expect(page).not_to have_content(unfeasible_bi.title)
       expect(page).not_to have_content(feasible_bi.title)
       expect(page).to have_content(feasible_vf_bi.title)
@@ -1188,8 +1191,8 @@ feature 'Admin budget investments' do
 
       login_as(valuator.user.reload)
       visit root_path
-      click_link "Admin"
-      click_link "Valuation"
+      click_link("Admin", match: :first)
+      click_link("Valuation", match: :first)
 
       within "#budget_#{budget.id}" do
         click_link "Evaluate"

@@ -46,6 +46,16 @@
   </div>
 
   <div class="small-12 medium-4 column">
+  <label><%= t('admin.legislation.processes.form.member_type1') %></label>
+  </div>
+
+  <div class="small-12 medium-4 column">
+    <%= f.collection_select :member_type_ids, MemberType.all, :id, :value, {:include_hidden => false, :label => t('admin.legislation.processes.form.member_type2')}, {:multiple => true} %>
+  </div>
+
+  <div class="small-12 column"> <hr> </div>
+
+  <div class="small-12 medium-4 column">
     <label><%= t("admin.legislation.processes.form.process") %></label>
   </div>
 

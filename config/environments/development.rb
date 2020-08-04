@@ -1,3 +1,5 @@
+require 'logstash-logger'
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -10,12 +12,12 @@ Rails.application.configure do
   config.eager_load = false
 
   # Show full error reports and disable caching.
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local = true
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = {host: 'localhost', port: 3000}
   config.action_mailer.asset_host = "http://localhost:3000"
 
   # Deliver emails to a development mailbox at /letter_opener
@@ -32,19 +34,40 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  config.force_ssl = false
+  config.ssl_options = {hsts: { expires: 0 }}
+
+
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
   # yet still be able to expire them through the digest params.
   config.assets.digest = true
+
 
   # Adds additional error checking when serving assets at runtime.
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
+  config.web_console.whitelisted_ips = '172.23.0.1'
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
+=begin
+  config.logger = LogStashLogger::MultiLogger.new(
+    [
+      EdoLogger.new(STDOUT),
+      #LogStashLogger.new(type: :tcp, host: 'localhost', port: 5044, formatter: EdoFormatter)
+    ]
+  )
+=end
+
+  # Debug level prints a lot of stuff
+  config.log_level = :debug
+
   config.cache_store = :dalli_store
+
+  config.relative_url_root = ENV['CONSUL_RELATIVE_URL'].nil? || ENV['CONSUL_RELATIVE_URL'].empty? ? '/' : ENV['CONSUL_RELATIVE_URL']
 
   config.after_initialize do
     Bullet.enable = true

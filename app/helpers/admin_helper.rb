@@ -9,7 +9,7 @@ module AdminHelper
   end
 
   def namespaced_root_path
-    "/#{namespace}"
+    "#{root_path}/#{namespace}".gsub("//", "/")
   end
 
   def namespaced_header_title
@@ -50,7 +50,7 @@ module AdminHelper
   end
 
   def menu_settings?
-    ["settings", "tags", "geozones", "images", "content_blocks"].include?(controller_name)
+    ["settings", "tags", "geozones", "images", "content_blocks", "member_types"].include?(controller_name)
   end
 
   def menu_customization?

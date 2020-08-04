@@ -1,0 +1,53 @@
+<h1>Configuración de Participantes</h1>
+
+<% if @member_types.any? %>
+
+  <table class="stack">
+    <thead>
+      <tr>
+        <th><%= t("admin.member_types.member_type.value") %></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @member_types.sort_by{ |obj| obj.id }.each do |member_type| %>
+
+        <tr id="<%= dom_id(member_type) %>">
+          <td class="small-12 medium-6">
+            <%= form_tag admin_site_customization_member_type_path(member_type), {controller: admin_site_customization_member_type_path(member_type), action: "update", method: :put} do |f| %>
+              <%= text_field_tag "value", member_type.value, {disabled: member_type.fixed, class: "mitad1" } %>
+              <%= text_field_tag "url_ws", member_type.url_ws, { class: "mitad2" } %>
+                <%= submit_tag t("admin.member_types.member_type.index.update"), :action => :update, name: "update#{member_type.id}", class: "button hollow" %>
+              <% if !member_type.fixed %>
+                <%= link_to t("admin.member_types.member_type.index.delete"), admin_site_customization_member_type_path(member_type), method: :delete, class: 'button hollow alert' %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% else %>
+  <div class="callout primary">
+    <%= page_entries_info @member_types %>
+  </div>
+<% end %>
+
+<%= form_tag "", {controller: "admin/site_customization/member_types", action: "create" } do |f| %>
+<table class="stack">
+  <thead>
+    <tr>
+      <th colspan=2><%= t("admin.member_types.member_type.index.new") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr id="new_value">
+      <td class="small-12 medium-6">
+        <%= text_field_tag "new_value", "", class: "mitad1" %>
+        <%= submit_tag t("admin.member_types.member_type.index.add"), :action => :create, name: "nuevo_valor", class: "button hollow" %>
+      </td>
+    </tr>
+  </tbody>
+ </table>
+ <% end %>

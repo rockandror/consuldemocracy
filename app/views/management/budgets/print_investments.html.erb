@@ -9,6 +9,7 @@
     </tr>
   </thead>
   <tbody>
+  <% if @budget %>
     <tr id="<%= dom_id(@budget) %>">
       <td><%= @budget.name %></td>
       <td><%= @budget.translated_phase %></td>
@@ -17,5 +18,12 @@
           print_management_budget_investments_path(@budget) %>
       </td>
     </tr>
+  <% else %>
+    <tr>
+      <td><%= t("budgets.index.empty_budgets") %></td>
+      <td></td>
+      <td></td>
+    </tr>
+  <% end %>
   </tbody>
 </table>

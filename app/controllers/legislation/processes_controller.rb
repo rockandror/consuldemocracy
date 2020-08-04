@@ -99,11 +99,13 @@ class Legislation::ProcessesController < Legislation::BaseController
     set_process
     @phase = :proposals_phase
 
-    @proposals = ::Legislation::Proposal.where(process: @process)
-    @proposals = @proposals.search(params[:search]) if params[:search].present?
+      @proposals = ::Legislation::Proposal.where(process: @process)
+      @proposals = @proposals.search(params[:search]) if params[:search].present?
 
-    @current_filter = "winners" if params[:filter].blank? && @proposals.winners.any?
-    @proposals = @proposals.send(@current_filter).page(params[:page])
+      @current_filter = "winners" if params[:filter].blank? && @proposals.winners.any?
+      @proposals = @proposals.send(@current_filter).page(params[:page])
+
+    @mensajeAlert=MemberType.textoParticipanteTipo2WithPrefix(current_user, @process.member_type_ids, t("legislation.processes.proposals.member_type_denied"))
 
     if @process.proposals_phase.started? || (current_user && current_user.administrator?)
       legislation_proposal_votes(@proposals)

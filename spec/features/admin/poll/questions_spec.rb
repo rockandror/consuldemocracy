@@ -138,7 +138,11 @@ feature 'Admin poll questions' do
       @edit_question_url = edit_admin_question_path(question)
     end
 
-    scenario "translates the poll name in options", :js do
+    xscenario "translates the poll name in options", :js do
+      # DESACTIVADO, PORQUE SE ELIMINÓ EL SELECTOR DE IDIOMA DEL MENÜ PRINCIPAL DE LA PÁGINA WEB
+      # para más detalles, buscar el siguiente texto en el proyecto: shared/locale_switcher
+      # se podrán ver la líneas de código comentadas sobre dicho selector
+
       visit @edit_question_url
 
       expect(page).to have_select('poll_question_poll_id', options: [poll.name_en])
@@ -148,7 +152,10 @@ feature 'Admin poll questions' do
       expect(page).to have_select('poll_question_poll_id', options: [poll.name_es])
     end
 
-    scenario "uses fallback if name is not translated to current locale", :js do
+    xscenario "uses fallback if name is not translated to current locale", :js do
+      # DESACTIVADO, PORQUE SE ELIMINÓ EL SELECTOR DE IDIOMA DEL MENÜ PRINCIPAL DE LA PÁGINA WEB
+      # para más detalles, buscar el siguiente texto en el proyecto: shared/locale_switcher
+      # se podrán ver la líneas de código comentadas sobre dicho selector
       unless globalize_french_fallbacks.first == :es
         skip("Spec only useful when French falls back to Spanish")
       end

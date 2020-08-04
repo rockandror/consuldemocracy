@@ -126,9 +126,11 @@
           <%= link_to t("admin.menu.site_customization.pages"), admin_site_customization_pages_path %>
         </li>
 
-        <li <%= "class=is-active" if controller_name == "banners" %>>
-          <%= link_to t("admin.menu.banner"), admin_banners_path %>
+        <!--
+        <li <%#= "class=is-active" if controller_name == "banners" %>>
+          <%#= link_to t("admin.menu.banner"), admin_banners_path %>
         </li>
+        -->
 
         <li <%= "class=is-active" if controller_name == "information_texts" %>>
           <%= link_to t("admin.menu.site_customization.information_texts"), admin_site_customization_information_texts_path %>
@@ -254,6 +256,10 @@
 
         <li <%= "class=is-active" if controller_name == "content_blocks" %>>
           <%= link_to t("admin.menu.site_customization.content_blocks"), admin_site_customization_content_blocks_path%>
+        </li>
+
+        <li <%= "class=is-active" if controller_name == "member_types" %>>
+          <%= link_to t("admin.menu.member_types"), admin_site_customization_member_types_path %>
         </li>
       </ul>
     </li>

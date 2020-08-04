@@ -11,12 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190103132925) do
+ActiveRecord::Schema.define(version: 20210119010101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "unaccent"
   enable_extension "pg_trgm"
+
+  create_table "Budgets_MemberTypes", id: false, force: :cascade do |t|
+    t.integer "member_type_id", null: false
+    t.integer "budget_id",      null: false
+  end
+
+  add_index "Budgets_MemberTypes", ["budget_id", "member_type_id"], name: "index_budget_id_and_member_type_id", using: :btree
+  add_index "Budgets_MemberTypes", ["member_type_id", "budget_id"], name: "index_member_type_id_and_budget_id", using: :btree
+
+  create_table "LegislationProcesses_MemberTypes", id: false, force: :cascade do |t|
+    t.integer "member_type_id",         null: false
+    t.integer "legislation_process_id", null: false
+  end
+
+  add_index "LegislationProcesses_MemberTypes", ["legislation_process_id", "member_type_id"], name: "index_legislation_process_id_and_member_type_id", using: :btree
+  add_index "LegislationProcesses_MemberTypes", ["member_type_id", "legislation_process_id"], name: "index_member_type_id_and_legislation_process_id", using: :btree
+
+  create_table "MemberTypes_Polls", id: false, force: :cascade do |t|
+    t.integer "member_type_id", null: false
+    t.integer "poll_id",        null: false
+  end
+
+  add_index "MemberTypes_Polls", ["member_type_id", "poll_id"], name: "index_member_type_id_and_poll_id", using: :btree
+  add_index "MemberTypes_Polls", ["poll_id", "member_type_id"], name: "index_poll_id_and_member_type_id", using: :btree
 
   create_table "activities", force: :cascade do |t|
     t.integer  "user_id"
@@ -799,6 +823,14 @@ ActiveRecord::Schema.define(version: 20190103132925) do
   add_index "map_locations", ["investment_id"], name: "index_map_locations_on_investment_id", using: :btree
   add_index "map_locations", ["proposal_id"], name: "index_map_locations_on_proposal_id", using: :btree
 
+  create_table "member_types", force: :cascade do |t|
+    t.string   "value"
+    t.boolean  "fixed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "url_ws"
+  end
+
   create_table "milestone_statuses", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -1403,6 +1435,7 @@ ActiveRecord::Schema.define(version: 20190103132925) do
     t.boolean  "public_interests",                          default: false
     t.boolean  "recommended_debates",                       default: true
     t.boolean  "recommended_proposals",                     default: true
+    t.string   "postal_code"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

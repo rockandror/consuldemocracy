@@ -14,7 +14,7 @@ feature 'Voters' do
     create(:poll_officer_assignment, officer: officer, booth_assignment: booth_assignment)
   end
 
-  scenario "Can vote", :js do
+  xscenario "Can vote", :js do
     visit new_officing_residence_path
     officing_verify_residence
 
@@ -53,7 +53,7 @@ feature 'Voters' do
     end
   end
 
-  scenario "Had already verified his residence, but is not level 2 yet", :js do
+  xscenario "Had already verified his residence, but is not level 2 yet", :js do
     user = create(:user, residence_verified_at: Time.current, document_type: "1", document_number: "12345678Z")
     expect(user).not_to be_level_two_verified
 
@@ -64,7 +64,7 @@ feature 'Voters' do
     expect(page).to have_content poll.name
   end
 
-  scenario "Display only current polls on which officer has a voting shift today, and user can answer", :js do
+  xscenario "Display only current polls on which officer has a voting shift today, and user can answer", :js do
     poll_current = create(:poll, :current)
     second_booth = create(:poll_booth)
     booth_assignment = create(:poll_booth_assignment, poll: poll_current, booth: second_booth)

@@ -1,0 +1,5 @@
+es:
+  verification:
+    residence:
+      new:
+        platino_error: "El servicio de verificación no está disponible. Por favor, inténtelo mas tarde."

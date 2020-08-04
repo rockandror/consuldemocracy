@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Budgets' do
 
   let(:budget)             { create(:budget) }
-  let(:level_two_user)     { create(:user, :level_two) }
+  let(:level_two_user)     { create(:user, :level_two, document_number: "12345678A") }
   let(:allowed_phase_list) { ['balloting', 'reviewing_ballots', 'finished'] }
 
   context 'Index' do

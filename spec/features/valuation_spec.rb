@@ -63,7 +63,7 @@ feature 'Valuation' do
       visit root_path
 
       expect(page).to have_link("Valuation")
-      click_on "Valuation"
+      click_link('Valuation', match: :first)
 
       expect(page).to have_current_path(valuation_root_path)
       expect(page).not_to have_content "You do not have permission to access this page"
@@ -77,7 +77,7 @@ feature 'Valuation' do
       visit root_path
 
       expect(page).to have_link("Valuation")
-      click_on "Valuation"
+      click_link('Valuation', match: :first)
 
       expect(page).to have_current_path(valuation_root_path)
       expect(page).not_to have_content "You do not have permission to access this page"
@@ -103,7 +103,7 @@ feature 'Valuation' do
     login_as(user)
     visit root_path
 
-    click_link 'Valuation'
+    click_link('Valuation', match: :first)
 
     expect(page).to have_current_path(valuation_root_path)
     expect(page).to have_css('#valuation_menu')

@@ -49,6 +49,14 @@ class ProposalsController < ApplicationController
 
   def vote
     @proposal.register_vote(current_user, 'yes')
+
+    if @proposal.successful?
+      ProposalNotification.create(title: "#{@proposal.name} has reached",
+                                   body: "Testing body",
+                                   author: current_user,
+                                   proposal: @proposal)
+    end
+
     set_proposal_votes(@proposal)
   end
 

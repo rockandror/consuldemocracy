@@ -11,8 +11,10 @@ Rails.application.configure do
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
-  config.consider_all_requests_local       = false
-  config.action_controller.perform_caching = true
+  config.consider_all_requests_local       = true
+  config.action_controller.perform_caching = false
+
+  config.relative_url_root = ENV['CONSUL_RELATIVE_URL'].nil? || ENV['CONSUL_RELATIVE_URL'].empty? ? '/' : ENV['CONSUL_RELATIVE_URL']
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
   # Add `rack-cache` to your Gemfile before enabling this.
@@ -22,10 +24,10 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
-
+  #config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.serve_static_files = true
   # Compress JavaScripts and CSS.
-  config.assets.js_compressor = :uglifier
+  #config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
@@ -46,7 +48,8 @@ Rails.application.configure do
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
-  config.log_level = :warn
+  loglevel = ENV['RAILS_LOG_LEVEL'] || "info"
+  config.log_level = loglevel.to_sym
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
@@ -63,20 +66,20 @@ Rails.application.configure do
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_url_options = { host: Rails.application.secrets.server_name }
+  config.action_mailer.default_url_options = { protocol: "https", host: Rails.application.secrets.server_name }
   config.action_mailer.asset_host = "https://#{Rails.application.secrets.server_name}"
 
   # SMTP configuration to deliver emails
   # Uncomment the following block of code and add your SMTP service credentials
-  # config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.smtp_settings = {
-  #   address:              'smtp.example.com',
-  #   port:                 587,
-  #   domain:               'example.com',
-  #   user_name:            '<username>',
-  #   password:             '<password>',
-  #   authentication:       'plain',
-  #   enable_starttls_auto: true }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              ENV['MAIL_ADDRESS'],
+    port:                 ENV['MAIL_PORT'] || 25,
+    domain:               ENV['MAIL_DOMAIN'],
+    user_name:            ENV['MAIL_USER'],
+    password:             ENV['MAIL_PASSWORD']|| '',
+    authentication:       ENV['MAIL_AUTH'] || 'plain',
+    enable_starttls_auto: ENV['MAIL_STARTTLS'] || true }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
@@ -86,7 +89,14 @@ Rails.application.configure do
   config.active_support.deprecation = :notify
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
-  config.log_formatter = ::Logger::Formatter.new
+  # config.log_formatter = ::Logger::Formatter.new
+
+  config.logger = LogStashLogger::MultiLogger.new(
+    [
+      EdoLogger.new(STDOUT),
+      #LogStashLogger.new(type: :tcp, host: ENV['LOGSTASH_HOST'] || 'localhost', port: ENV['LOGSTASH_PORT'] || 5044, formatter: EdoFormatter)
+    ]
+  )
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false

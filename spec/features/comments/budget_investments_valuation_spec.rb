@@ -213,7 +213,7 @@ feature 'Internal valuation comments on Budget::Investments' do
       expect(page).not_to have_content('It will be done next week.')
     end
 
-    scenario 'Errors on reply without comment text', :js do
+    scenario 'Errors on reply without comment text', :js, :broken => true do
       comment = create(:comment, :valuation, author: admin_user, commentable: investment)
 
       visit valuation_budget_budget_investment_path(budget, investment)

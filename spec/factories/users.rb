@@ -24,6 +24,7 @@ FactoryBot.define do
       date_of_birth Date.new(1980, 12, 31)
       gender "female"
       geozone
+      postal_code 38000
     end
 
     trait :level_three do
@@ -48,6 +49,7 @@ FactoryBot.define do
     trait :in_census do
       document_number "12345678Z"
       document_type "1"
+      postal_code 38000
       verified_at { Time.current }
     end
   end

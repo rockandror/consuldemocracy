@@ -13,6 +13,9 @@ class PollsController < ApplicationController
   end
 
   def show
+
+    @mensajeAlert=MemberType.textoParticipanteTipo2WithPrefix(current_user, @poll.member_type_ids, t("polls.show.member_type_denied"))
+
     @questions = @poll.questions.for_render.sort_for_list
     @token = poll_voter_token(@poll, current_user)
     @poll_questions_answers = Poll::Question::Answer.where(question: @poll.questions).where.not(description: "").order(:given_order)

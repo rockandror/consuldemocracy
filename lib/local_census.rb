@@ -12,11 +12,11 @@ class LocalCensus
 
   class Response
     def initialize(body)
-      @body = body
+      @body = ((body.nil?)? nil: body.try(:first))
     end
 
     def valid?
-      @body.present? ? !@body.attributes.values.include?("" || nil) : false
+      @body.present?
     end
 
     def date_of_birth
@@ -60,7 +60,11 @@ class LocalCensus
   private
 
     def get_record(document_type, document_number)
-      LocalCensusRecord.find_by(document_type: document_type, document_number: document_number)
+      if Setting['feature.localcensus.useLocalCensusRecord']
+        LocalCensusRecord.find_by(document_type: document_type, document_number: document_number)
+      else
+        User.where(document_type: document_type).where(document_number: document_number).where.not(verified_at: nil)
+      end
     end
 
     def dni?(document_type)

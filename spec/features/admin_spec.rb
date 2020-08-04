@@ -82,7 +82,7 @@ feature 'Admin' do
     login_as(administrator)
     visit root_path
 
-    click_link 'Administration'
+    click_link("Administration", match: :first)
 
     expect(page).to have_current_path(admin_root_path)
     expect(page).to have_css('#admin_menu')

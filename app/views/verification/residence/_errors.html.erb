@@ -9,6 +9,13 @@
     setting['verification_offices_url'], title: t('shared.target_blank_html'), target: "_blank")).html_safe %>
   </div>
 
+<% elsif @residence.errors[:platino].present? %>
+  <div id="error_explanation" data-alert class="callout alert" data-closable>
+    <button class="close-button" aria-label="<%= t("application.close") %>" type="button" data-close>
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <%= t("verification.residence.new.platino_error") %>
+  </div>
 <% else %>
   <%= render "shared/errors",
              resource: @residence,

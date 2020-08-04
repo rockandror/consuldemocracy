@@ -1,0 +1,113 @@
+<footer>
+  <div class="row gob-logos">
+    <div class="small-6 column">
+      <%= link_to "https://ec.europa.eu/regional_policy/index_es.cfm", accesskey: "0" do %>
+        <%= image_tag(image_path_for('logo_canarias.png'), class: 'float-left canarias-with-europe', alt: "Canarias Avanza con Europa") %>
+      <% end %>
+    </div>
+    <div class="small-6 column">
+      <div class="text-right">
+        <h2 class="european-development-program">
+          Fondo Europeo de<br>
+          Desarrollo Regional
+        </h2>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 large-4 column">
+      <h1 class="logo">
+        <%= link_to t("layouts.header.open_gov", open: "#{t('layouts.header.open')}").html_safe %>
+      </h1>
+
+      <p class="info">
+        <%= t("layouts.footer.description",
+              open_source: link_to(t("layouts.footer.open_source"), t("layouts.footer.open_source_url"), target: "blank", rel: "nofollow"),
+              consul: link_to(t("layouts.footer.consul"), t("layouts.footer.consul_url"), target: "blank", rel: "nofollow")).html_safe
+        %>
+        <%# <%= t("layouts.footer.contact_us") %>
+      </p>
+    </div>
+
+    <div class="small-12 medium-4 column social">
+      <div class="text-right">
+        <ul>
+          <% if setting['twitter_handle'] %>
+            <li class="inline-block">
+              <%= link_to "https://twitter.com/#{setting['twitter_handle']}", target: "_blank",
+                          title: t("shared.go_to_page") + t("social.twitter", org: setting['org_name']) + t('shared.target_blank_html') do %>
+                <%= image_tag(image_path_for('twitter.png')) %>
+              <% end %>
+            </li>
+          <% end %>
+          <% if setting['facebook_handle'] %>
+            <li class="inline-block">
+              <%= link_to "https://www.facebook.com/#{setting['facebook_handle']}/", target: "_blank",
+                          title: t("shared.go_to_page") + t("social.facebook", org: setting['org_name']) + t('shared.target_blank_html') do %>
+                <%= image_tag(image_path_for('facebook.png')) %>
+              <% end %>
+            </li>
+          <% end %>
+          <% if setting['blog_url'] %>
+            <li class="inline-block">
+              <%= link_to (setting['blog_url'] =~ /^https?:\/\/|^www\./i ? setting['blog_url'] : (root_path + setting['blog_url']).sub("//", "/")),
+                          target: "_blank",
+                          title: t("shared.go_to_page") + t("social.blog", org: setting['org_name']) + t('shared.target_blank_html') do %>
+                <span class="show-for-sr"><%= t("social.blog", org: setting['org_name']) %></span>
+                <span class="icon-blog" aria-hidden="true"></span>
+              <% end %>
+            </li>
+          <% end %>
+          <% if setting['youtube_handle'] %>
+            <li class="inline-block">
+              <%= link_to "https://www.youtube.com/#{setting['youtube_handle']}", target: "_blank",
+                          title: t("shared.go_to_page") + t("social.youtube", org: setting['org_name']) + t('shared.target_blank_html') do %>
+                <%= image_tag(image_path_for('youtube.png')) %>
+              <% end %>
+            </li>
+          <% end %>
+          <% if setting['telegram_handle'] %>
+            <li class="inline-block">
+              <%= link_to "https://www.telegram.me/#{setting['telegram_handle']}", target: "_blank",
+                          title: t("shared.go_to_page") + t("social.telegram", org: setting['org_name']) + t('shared.target_blank_html') do %>
+                <span class="show-for-sr"><%= t("social.telegram", org: setting['org_name']) %></span>
+                <span class="icon-telegram" aria-hidden="true"></span>
+              <% end %>
+            </li>
+          <% end %>
+          <% if setting['instagram_handle'] %>
+            <li class="inline-block">
+              <%= link_to "https://www.instagram.com/#{setting['instagram_handle']}", target: "_blank",
+                          title: t("shared.go_to_page") + t("social.instagram", org: setting['org_name']) + t('shared.target_blank_html') do %>
+                <%= image_tag(image_path_for('instagram.png')) %>
+              <% end %>
+            </li>
+          <% end %>
+          <%= raw content_block("footer", I18n.locale) %>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="subfooter-wrapper">
+    <div class="row">
+      <div class="subfooter column row-no-padding">
+        <span class="first-footer-item">© Gobierno de Canarias</span>
+        <span class="footer-item-divider">|</span>
+        <%= link_to t("layouts.footer.legal_advice"), "http://www.gobiernodecanarias.org/principal/avisolegal.html", class: 'footer-item' %>
+        <span class="footer-item-divider">|</span>
+        <%= link_to t("layouts.footer.privacy"), page_path('privacy'), class: 'footer-item' %>
+        <%# <span class="footer-item-divider">|</span>
+        <%= link_to t("layouts.footer.conditions"), page_path('conditions'), class: 'footer-item' %>
+        <%# <span class="footer-item-divider">|</span> %>
+        <%# <%= link_to t("layouts.footer.accessibility"), page_path('accessibility'), class: 'footer-item' %>
+        <span class="footer-item-divider">|</span>
+        <%= link_to t("layouts.footer.accessibility"), "http://www.gobiernodecanarias.org/principal/accesibilidad.html", class: 'footer-item' %>
+        <span class="footer-item-divider">|</span>
+        <%= link_to t("layouts.footer.suggestions"), "https://www.gobiernodecanarias.org/principal/sugrec/", class: 'footer-item' %>
+      <!--  <span class="footer-item-divider">|</span> -->
+        <%= link_to t("layouts.footer.faq_questions"), root_path + "faq", class: 'footer-item' %>
+      </div>
+    </div>
+  </div>
+</footer>

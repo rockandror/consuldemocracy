@@ -13,7 +13,7 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
   if Rails.env.test? || !ActiveRecord::Base.connection.table_exists?('settings')
-    config.mailer_sender = "noreply@consul.dev"
+    config.mailer_sender = "noreply@gobiernodecanarias.org"
   else
     config.mailer_sender = "'#{Setting['mailer_from_name']}' <#{Setting['mailer_from_address']}>"
   end
@@ -246,6 +246,25 @@ Devise.setup do |config|
   config.omniauth :twitter, Rails.application.secrets.twitter_key, Rails.application.secrets.twitter_secret
   config.omniauth :facebook, Rails.application.secrets.facebook_key, Rails.application.secrets.facebook_secret, scope: 'email', info_fields: 'email,name,verified'
   config.omniauth :google_oauth2, Rails.application.secrets.google_oauth2_key, Rails.application.secrets.google_oauth2_secret
+  config.omniauth :saml,
+                  :assertion_consumer_service_url     => (ENV['CALLBACK_URL'] || 'http://localhost:3000') + '/users/auth/saml/callback',
+                  request_attributes: [
+                    { :name => 'email', :name_format => 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic', :friendly_name => 'Email address' },
+                    { :name => 'name', :name_format => 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic', :friendly_name => 'Full name' },
+                    { :name => 'first_name', :name_format => 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic', :friendly_name => 'Given name' },
+                    { :name => 'last_name', :name_format => 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic', :friendly_name => 'Family name', :is_required => true },
+                  ],
+                  attribute_statements: {
+                    name: ["name"],
+                    role: ["role"],
+                    email: ["email", "mail"],
+                    first_name: ["first_name", "firstname", "firstName"],
+                    last_name: ["last_name", "lastname", "lastName"]
+                  },
+                  issuer: Rails.application.secrets.saml_issuer,
+                  idp_cert: Rails.application.secrets.saml_idp_cert,
+                  idp_sso_target_url: Rails.application.secrets.saml_idp_sso_target_url,
+                  name_identifier_format: Rails.application.secrets.saml_name_identifier_format
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

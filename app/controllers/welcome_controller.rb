@@ -1,5 +1,8 @@
 class WelcomeController < ApplicationController
   skip_authorization_check
+
+  skip_before_action :audit
+
   before_action :set_user_recommendations, only: :index, if: :current_user
 
   layout "devise", only: [:welcome, :verification]

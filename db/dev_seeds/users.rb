@@ -10,7 +10,8 @@ section "Creating Users" do
       terms_of_service:       "1",
       gender:                 ['Male', 'Female'].sample,
       date_of_birth:          rand((Time.current - 80.years)..(Time.current - 16.years)),
-      public_activity:        (rand(1..100) > 30)
+      public_activity:        (rand(1..100) > 30),
+      postal_code:            ['35000', '38000'].sample
     )
   end
 

@@ -483,7 +483,10 @@ feature 'Valuation budget investments' do
       click_button 'Save changes'
 
       expect(page).to have_content('2 errors')
-      expect(page).to have_content('Only integer numbers', count: 2)
+      # CONSUL original
+      #expect(page).to have_content('Only integer numbers', count: 2)
+      # Consul EDO
+      expect(page).to have_content('Only integer numbers', count: 4)
     end
 
     scenario 'not visible to valuators when budget is not valuating' do

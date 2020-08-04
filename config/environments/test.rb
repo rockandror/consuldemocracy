@@ -1,3 +1,5 @@
+require 'logstash-logger'
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -40,6 +42,8 @@ Rails.application.configure do
   }
   config.action_mailer.asset_host = 'http://consul.test'
 
+  #config.relative_url_root = ENV["RAILS_RELATIVE_URL_ROOT"].to_s || "/"
+
   # Randomize the order test cases are executed.
   config.active_support.test_order = :random
 
@@ -49,7 +53,22 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
+  # Sprocket whines in test if this is set to true.
+  #config.assets.compile = true
+
   config.cache_store = :null_store
+
+  #config.assets.initialize_on_precompile = false
+
+
+  # config.logger = LogStashLogger::MultiLogger.new(
+  #     [
+  #         EdoLogger.new(STDOUT),
+  #     #LogStashLogger.new(type: :tcp, host: 'localhost', port: 5044, formatter: EdoFormatter)
+  #     ]
+  # )
+  # config.logger.level = LogStashLogger::MultiLogger::WARN
+  config.log_level = :warn
 
   config.after_initialize do
     Bullet.enable = true

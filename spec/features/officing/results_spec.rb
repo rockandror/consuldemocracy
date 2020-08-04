@@ -27,7 +27,7 @@ feature 'Officing Results', :with_frozen_time do
     not_allowed_poll_3 = regular_officer_assignment_2.booth_assignment.poll
 
     visit root_path
-    click_link 'Polling officers'
+    click_link("Polling officers", match: :first)
 
     expect(page).to have_content('Poll officing')
     within('#side_menu') do

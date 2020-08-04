@@ -1,0 +1,23 @@
+<ul class="no-bullet external-links">
+  <% if setting['blog_url'] %>
+    <li>
+      <%= link_to t("layouts.header.external_link_blog"),
+                  (setting['blog_url'] =~ /^https?:\/\/|^www\./i ? setting['blog_url'] : (root_path + setting['blog_url']).sub("//", "/")),
+                  target: "_blank",
+                  rel: "nofollow",
+                  title: t("shared.go_to_page") + t("layouts.header.external_link_blog") + t('shared.target_blank_html') %>
+    </li>
+  <% end %>
+
+  <div id="responsive-menu">
+    <div class="top-bar-right">
+      <ul class="menu" data-responsive-menu="medium-dropdown">
+        <%= render "shared/admin_login_items" %>
+        <%= render "layouts/notification_item" %>
+        <%= render "devise/menu/login_items" %>
+      </ul>
+    </div>
+  </div>
+
+  <%= raw content_block("top_links", I18n.locale) %>
+</ul>

@@ -9,7 +9,7 @@ feature 'Proposal Notifications' do
     login_as(author)
     visit root_path
 
-    click_link "My activity"
+    click_link("My activity", match: :first)
 
     within("#proposal_#{proposal.id}") do
       click_link "Send notification"

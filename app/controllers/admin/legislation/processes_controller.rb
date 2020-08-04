@@ -68,10 +68,11 @@ class Admin::Legislation::ProcessesController < Admin::Legislation::BaseControll
         :published,
         :custom_list,
         :background_color,
-        :font_color,
+        :font_color,        
         translation_params(::Legislation::Process),
         documents_attributes: [:id, :title, :attachment, :cached_attachment, :user_id, :_destroy],
-        image_attributes: [:id, :title, :attachment, :cached_attachment, :user_id, :_destroy]
+        image_attributes: [:id, :title, :attachment, :cached_attachment, :user_id, :_destroy],
+        member_type_ids: []
       ]
     end
 

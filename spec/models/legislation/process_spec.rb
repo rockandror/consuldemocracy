@@ -11,27 +11,27 @@ describe Legislation::Process do
     it "is invalid if debate_start_date is present but debate_end_date is not" do
       process = build(:legislation_process, debate_start_date: Date.current, debate_end_date: "")
       expect(process).to be_invalid
-      expect(process.errors.messages[:debate_end_date]).to include("can't be blank")
+      expect(process.errors.messages[:debate_end_date]).to include("Can't be blank")
     end
 
     it "is invalid if debate_end_date is present but debate_start_date is not" do
       process = build(:legislation_process, debate_start_date: nil, debate_end_date: Date.current)
       expect(process).to be_invalid
-      expect(process.errors.messages[:debate_start_date]).to include("can't be blank")
+      expect(process.errors.messages[:debate_start_date]).to include("Can't be blank")
     end
 
     it "is invalid if allegations_start_date is present but debate_end_date is not" do
       process = build(:legislation_process, allegations_start_date: Date.current,
                                             allegations_end_date: "")
       expect(process).to be_invalid
-      expect(process.errors.messages[:allegations_end_date]).to include("can't be blank")
+      expect(process.errors.messages[:allegations_end_date]).to include("Can't be blank")
     end
 
     it "is invalid if debate_end_date is present but allegations_start_date is not" do
       process = build(:legislation_process, allegations_start_date: nil,
                                             allegations_end_date: Date.current)
       expect(process).to be_invalid
-      expect(process.errors.messages[:allegations_start_date]).to include("can't be blank")
+      expect(process.errors.messages[:allegations_start_date]).to include("Can't be blank")
     end
   end
 

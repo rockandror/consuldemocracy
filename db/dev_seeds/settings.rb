@@ -38,6 +38,7 @@ section "Creating Settings" do
   Setting.create(key: 'feature.twitter_login', value: "true")
   Setting.create(key: 'feature.facebook_login', value: "true")
   Setting.create(key: 'feature.google_login', value: "true")
+  Setting.create(key: 'feature.saml_login', value: "true")
   Setting.create(key: 'feature.signature_sheets', value: "true")
   Setting.create(key: 'feature.legislation', value: "true")
   Setting.create(key: 'feature.user.recommendations', value: "true")
@@ -48,14 +49,15 @@ section "Creating Settings" do
   Setting.create(key: 'feature.allow_images', value: "true")
   Setting.create(key: 'feature.allow_attached_documents', value: "true")
   Setting.create(key: 'feature.public_stats', value: "true")
-  Setting.create(key: 'feature.user.skip_verification', value: "true")
+  Setting.create(key: 'feature.guides', value: nil)
+  Setting.create(key: 'feature.user.skip_verification', value: nil)
   Setting.create(key: 'feature.help_page', value: "true")
 
   Setting.create(key: 'per_page_code_head', value: "")
-  Setting.create(key: 'per_page_code_body', value: "")
+  Setting.create(key: 'per_page_code_body', value: '<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">')
   Setting.create(key: 'comments_body_max_length', value: '1000')
   Setting.create(key: 'mailer_from_name', value: 'CONSUL')
-  Setting.create(key: 'mailer_from_address', value: 'noreply@consul.dev')
+  Setting.create(key: 'mailer_from_address', value: (ENV['MAIL_USER']+"@"+ENV['MAIL_DOMAIN']))
   Setting.create(key: 'meta_title', value: 'CONSUL')
   Setting.create(key: 'meta_description', value: 'Citizen participation tool for an open, '\
                                                  'transparent and democratic government')
@@ -74,4 +76,7 @@ section "Creating Settings" do
   Setting['feature.homepage.widgets.feeds.proposals'] = true
   Setting['feature.homepage.widgets.feeds.debates'] = true
   Setting['feature.homepage.widgets.feeds.processes'] = true
+
+  Setting['feature.localcensus.useLocalCensusRecord'] = false
 end
+

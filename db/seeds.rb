@@ -78,6 +78,7 @@ Setting['feature.polls'] = true
 Setting['feature.twitter_login'] = true
 Setting['feature.facebook_login'] = true
 Setting['feature.google_login'] = true
+Setting['feature.saml_login'] = true
 Setting['feature.public_stats'] = true
 Setting['feature.budgets'] = true
 Setting['feature.signature_sheets'] = true
@@ -110,7 +111,7 @@ Setting['direct_message_max_per_day'] = 3
 
 # Email settings
 Setting['mailer_from_name'] = 'CONSUL'
-Setting['mailer_from_address'] = 'noreply@consul.dev'
+Setting['mailer_from_address'] = (ENV['MAIL_USER']+"@"+ENV['MAIL_DOMAIN'])
 
 # Verification settings
 Setting['verification_offices_url'] = 'http://oficinas-atencion-ciudadano.url/'
@@ -136,6 +137,8 @@ Setting['feature.homepage.widgets.feeds.proposals'] = true
 Setting['feature.homepage.widgets.feeds.debates'] = true
 Setting['feature.homepage.widgets.feeds.processes'] = true
 
+Setting['feature.localcensus.useLocalCensusRecord'] = false
+
 # Votes hot_score configuration
 Setting['hot_score_period_in_days'] = 31
 
@@ -144,3 +147,6 @@ WebSection.create(name: 'debates')
 WebSection.create(name: 'proposals')
 WebSection.create(name: 'budgets')
 WebSection.create(name: 'help_page')
+
+# Default custom pages
+load Rails.root.join("db", "pages.rb")

@@ -1,6 +1,7 @@
 class SiteCustomization::Image < ActiveRecord::Base
   VALID_IMAGES = {
     "logo_header" => [260, 80],
+    "gobcan-azul-260x80" => [260, 80],    
     "social_media_icon" => [470, 246],
     "social_media_icon_twitter" => [246, 246],
     "apple-touch-icon-200" => [200, 200],

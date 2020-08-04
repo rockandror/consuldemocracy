@@ -1,4 +1,5 @@
 shared_examples "acts as imageable" do |imageable_factory|
+  include ImagesHelper
 
   let!(:image)                  { build(:image, imageable_factory.to_sym) }
   let!(:imageable)              { image.imageable }

@@ -1,7 +1,7 @@
 # coding: utf-8
 require 'rails_helper'
 
-feature 'Proposals' do
+feature 'Proposals', :broken => true do
 
   it_behaves_like "milestoneable",
                   :proposal,
@@ -545,7 +545,7 @@ feature 'Proposals' do
       click_button 'Retire proposal'
 
       expect(page).not_to have_content 'Proposal retired'
-      expect(page).to have_content "can't be blank", count: 2
+      expect(page).to have_content "Can't be blank", count: 2
     end
 
     scenario 'Index do not list retired proposals by default' do

@@ -121,7 +121,7 @@ feature "Admin budget headings" do
 
       expect(page).not_to have_content "Heading created successfully!"
       expect(page).to have_css("label.error", text: "Heading name")
-      expect(page).to have_content "can't be blank"
+      expect(page).to have_content "Can't be blank"
     end
 
     scenario "Heading amount is mandatory" do
@@ -130,7 +130,7 @@ feature "Admin budget headings" do
 
       expect(page).not_to have_content "Heading created successfully!"
       expect(page).to have_css("label.error", text: "Amount")
-      expect(page).to have_content "can't be blank"
+      expect(page).to have_content "Can't be blank"
     end
 
   end

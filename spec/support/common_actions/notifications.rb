@@ -1,6 +1,6 @@
 module Notifications
   def click_notifications_icon
-    find("#notifications a").click
+    find("#notifications a", match: :first).click
   end
 
   def model_name(described_class)
@@ -17,7 +17,7 @@ module Notifications
     login_as(proposal.author)
     visit root_path
 
-    click_link "My activity"
+    click_link("My activity", match: :first)
 
     within("#proposal_#{proposal.id}") do
       click_link "Send notification"

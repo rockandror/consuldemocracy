@@ -228,11 +228,15 @@ class Budget
       return :no_selecting_allowed unless budget.selecting?
     end
 
-    def reason_for_not_being_ballotable_by(user, ballot)
+    def reason_for_not_being_ballotable_by(user, ballot, memberTypePrefix="")
       return permission_problem(user)         if permission_problem?(user)
       return :not_selected                    unless selected?
       return :no_ballots_allowed              unless budget.balloting?
       return :different_heading_assigned_html unless ballot.valid_heading?(heading)
+
+      mensajeAlert=MemberType.textoParticipanteTipo2WithPrefix(user, budget.member_type_ids, memberTypePrefix)
+
+      return mensajeAlert                     if not mensajeAlert.nil?
       return :not_enough_money_html           if ballot.present? && !enough_money?(ballot)
     end
 
@@ -240,6 +244,7 @@ class Budget
       return :not_logged_in unless user
       return :organization  if user.organization?
       return :not_verified  unless user.can?(:vote, Budget::Investment)
+      return :not_verified  unless user.postal_code =~ /^38|^35/
       nil
     end
 
@@ -268,8 +273,8 @@ class Budget
       headings_voted_by_user(user).include?(heading.id)
     end
 
-    def ballotable_by?(user)
-      reason_for_not_being_ballotable_by(user).blank?
+    def ballotable_by?(user, ballot)
+      reason_for_not_being_ballotable_by(user, ballot).blank?
     end
 
     def enough_money?(ballot)

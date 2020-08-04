@@ -86,7 +86,7 @@ shared_examples "mappable" do |mappable_factory_name,
 
       send("submit_#{mappable_factory_name}_form")
 
-      expect(page).to have_content "Map location can't be blank"
+      expect(page).to have_content "Map location Can't be blank"
     end
 
     scenario 'Skip map', :js do
@@ -97,7 +97,7 @@ shared_examples "mappable" do |mappable_factory_name,
       check "#{mappable_factory_name}_skip_map"
       send("submit_#{mappable_factory_name}_form")
 
-      expect(page).not_to have_content "Map location can't be blank"
+      expect(page).not_to have_content "Map location Can't be blank"
     end
 
     scenario 'Toggle map', :js do
@@ -186,7 +186,7 @@ shared_examples "mappable" do |mappable_factory_name,
       click_link "Remove map marker"
       click_on "Save changes"
 
-      expect(page).not_to have_content "Map location can't be blank"
+      expect(page).not_to have_content "Map location Can't be blank"
     end
 
     scenario 'No need to skip map on update' do
@@ -196,7 +196,7 @@ shared_examples "mappable" do |mappable_factory_name,
       click_link "Remove map marker"
       click_on "Save changes"
 
-      expect(page).not_to have_content "Map location can't be blank"
+      expect(page).not_to have_content "Map location Can't be blank"
     end
 
   end

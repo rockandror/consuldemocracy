@@ -338,7 +338,7 @@ en:
         map_location:
           attributes:
             map:
-              invalid: Map location can't be blank. Place a marker or select the checkbox if geolocalization is not needed
+              invalid: Map location Can't be blank. Place a marker or select the checkbox if geolocalization is not needed
         poll/voter:
           attributes:
             document_number:

@@ -16,6 +16,9 @@ class Budget < ActiveRecord::Base
   has_many :headings, through: :groups
   has_many :phases, class_name: Budget::Phase
 
+  has_and_belongs_to_many(:member_types, :join_table => :Budgets_MemberTypes, :foreign_key => :budget_id)
+                        
+
   before_validation :sanitize_descriptions
 
   after_create :generate_phases

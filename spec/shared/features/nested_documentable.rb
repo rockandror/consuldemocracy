@@ -170,7 +170,7 @@ shared_examples "nested documentable" do |login_as_name, documentable_factory_na
       click_on submit_button
 
       within "#nested-documents .document" do
-        expect(page).to have_content("can't be blank", count: 2)
+        expect(page).to have_content("Can't be blank", count: 2)
       end
     end
 

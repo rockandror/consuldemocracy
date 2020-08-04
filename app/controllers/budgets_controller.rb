@@ -10,6 +10,9 @@ class BudgetsController < ApplicationController
   respond_to :html, :js
 
   def show
+    if @budget
+      @mensajeAlert=MemberType.textoParticipanteTipo2(current_user, @budget.member_type_ids)
+    end
     raise ActionController::RoutingError, 'Not Found' unless budget_published?(@budget)
   end
 
@@ -17,6 +20,10 @@ class BudgetsController < ApplicationController
     @finished_budgets = @budgets.finished.order(created_at: :desc)
     @budgets_coordinates = current_budget_map_locations
     @banners = Banner.in_section('budgets').with_active
+
+    if current_budget
+      @mensajeAlert=MemberType.textoParticipanteTipo2(current_user, current_budget.member_type_ids)
+    end
   end
 
 end

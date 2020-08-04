@@ -64,7 +64,7 @@ feature 'Moderation' do
     visit root_path
 
     expect(page).to have_link("Moderation")
-    click_on "Moderation"
+    click_link("Moderation", match: :first)
 
     expect(page).to have_current_path(moderation_root_path)
     expect(page).not_to have_content "You do not have permission to access this page"
@@ -77,7 +77,7 @@ feature 'Moderation' do
     visit root_path
 
     expect(page).to have_link("Moderation")
-    click_on "Moderation"
+    click_link("Moderation", match: :first)
 
     expect(page).to have_current_path(moderation_root_path)
     expect(page).not_to have_content "You do not have permission to access this page"
@@ -107,7 +107,7 @@ feature 'Moderation' do
       login_as(user)
       visit root_path
 
-      click_link 'Moderation'
+      click_link("Moderation", match: :first)
 
       expect(page).to have_link('Go back to OrgName')
       expect(page).to have_current_path(moderation_root_path)

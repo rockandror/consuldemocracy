@@ -17,8 +17,6 @@
 /tmp
 
 /spec/examples.txt
-/config/database.yml
-/config/secrets.yml
 /config/deploy-secrets.yml
 /config/maintenance.yml
 
@@ -33,5 +31,30 @@
 
 public/sitemap.xml
 public/system/
+public/assets
+public/uploads
+
+.consul.env
+*.swp
+
+# Ignore all credentials
+config/credentials/*
+
+\.idea/
 /public/ckeditor_assets/
+
+
+\.vscode/*
+
+adminjs
+
+*.p12
+
+\.generators
+
+\.rakeTasks
+
+cert\.pem
+
+key\.pem
 

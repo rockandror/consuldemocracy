@@ -4,8 +4,8 @@ class Legislation::Process < ActiveRecord::Base
   include Milestoneable
   include Imageable
   include Documentable
-  documentable max_documents_allowed: 3,
-               max_file_size: 3.megabytes,
+  documentable max_documents_allowed: 6,
+               max_file_size: 5.megabytes,
                accepted_content_types: [ "application/pdf" ]
 
   acts_as_paranoid column: :hidden_at
@@ -35,6 +35,8 @@ class Legislation::Process < ActiveRecord::Base
   has_many :proposals, -> { order(:id) }, class_name: 'Legislation::Proposal',
                                           foreign_key: 'legislation_process_id', dependent: :destroy
 
+  has_and_belongs_to_many(:member_types, :join_table => :LegislationProcesses_MemberTypes, :foreign_key => :legislation_process_id)
+
   validates_translation :title, presence: true
   validates :start_date, presence: true
   validates :end_date, presence: true
@@ -49,7 +51,7 @@ class Legislation::Process < ActiveRecord::Base
   validates :background_color, format: { allow_blank: true, with: CSS_HEX_COLOR }
   validates :font_color, format: { allow_blank: true, with: CSS_HEX_COLOR }
 
-  scope :open, -> { where("start_date <= ? and end_date >= ?", Date.current, Date.current) }
+  scope :open, -> { where("start_date <= ? and end_date >= ?", Date.current, Date.current).order('id DESC') }
   scope :next, -> { where("start_date > ?", Date.current) }
   scope :past, -> { where("end_date < ?", Date.current) }
 

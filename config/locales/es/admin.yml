@@ -107,6 +107,8 @@ es:
         unable_notice: No se puede eliminar un presupuesto con proyectos asociados
       new:
         title: Nuevo presupuesto ciudadano
+      form:
+          member_type: Conjunto de Participantes
       winners:
         calculate: Calcular proyectos ganadores
         calculated: Calculando ganadores, puede tardar un minuto.
@@ -442,6 +444,8 @@ es:
           banner_title: Colores del encabezado
           banner_background_color: Color de fondo
           banner_font_color: Color del texto
+          member_type1: Participantes
+          member_type2: Conjunto de Participantes
         index:
           create: Nuevo proceso
           delete: Borrar
@@ -579,6 +583,22 @@ es:
       milestones:
         index:
           title: Seguimiento
+    member_types:
+      member_type:
+        value: Conjunto de Participantes
+        fixed: Fijo
+        creation_date: Fecha creación
+        index:
+          new: Nuevo Conjunto de Participantes
+          add: Añadir
+          update: Aplicar
+          delete: Borrar
+          creation_ok: Conjunto de Participantes creado correctamente
+          creation_ko: Debe indicar un valor para el nuevo Conjunto de Participantes
+          destroyed: Conjunto de Participantes eliminado correctamente
+          destroy_error: No se pudo eliminar el Conjunto de Participantes
+          updated: Conjunto de Participantes modificado correctamente
+          update_error: No se pudo modificar el Conjunto de Participantes
     managers:
       index:
         title: Gestores
@@ -599,6 +619,7 @@ es:
       proposals_topics: Temas de propuestas
       budgets: Presupuestos participativos
       geozones: Gestionar distritos
+      member_types: Participantes
       hidden_comments: Comentarios ocultos
       hidden_debates: Debates ocultos
       hidden_proposals: Propuestas ocultas

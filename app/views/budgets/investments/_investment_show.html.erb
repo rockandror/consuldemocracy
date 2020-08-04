@@ -109,6 +109,14 @@
 
         <% if investment.should_show_aside? %>
           <% if investment.should_show_votes? %>
+
+          <% if not @mensajeAlert.nil? %>
+
+          <div class="callout warning">
+            <%= @mensajeAlert %>
+          </div>
+          <% else %>
+
             <div class="sidebar-divider"></div>
             <h2><%= t("budgets.investments.show.supports") %></h2>
             <div class="text-center">
@@ -120,7 +128,16 @@
                 } %>
               </div>
             </div>
+            <% end %>
           <% elsif investment.should_show_vote_count? %>
+
+          <% if not @mensajeAlert.nil? %>
+
+          <div class="callout warning">
+            <%= @mensajeAlert %>
+          </div>
+          <% else %>
+
             <div class="sidebar-divider"></div>
             <h2><%= t("budgets.investments.show.supports") %></h2>
             <div class="text-center">
@@ -131,7 +148,14 @@
                 </strong>
               </span>
             </div>
+            <% end %>
           <% elsif investment.should_show_ballots? %>
+          <% if not @mensajeAlert.nil? %>
+
+          <div class="callout warning">
+            <%= @mensajeAlert %>
+          </div>
+          <% else %>
             <div class="sidebar-divider"></div>
             <h2><%= t("budgets.investments.show.votes") %></h2>
             <div class="text-center">
@@ -143,7 +167,9 @@
                 } %>
               </div>
             </div>
+            <% end %>
           <% end %>
+
         <% end %>
 
         <% if investment.unfeasible? %>

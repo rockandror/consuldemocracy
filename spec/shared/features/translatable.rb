@@ -94,7 +94,7 @@ shared_examples "translatable" do |factory_name, path_name, input_fields, textar
 
       expect_page_to_have_translatable_field field, :en, with: text_for(field, :en)
 
-      select('Español', from: 'locale-switcher')
+      select('Español', from: 'translation_locale')
 
       expect_page_to_have_translatable_field field, :es, with: updated_text
     end
@@ -204,7 +204,7 @@ shared_examples "translatable" do |factory_name, path_name, input_fields, textar
 
       visit path
 
-      select('Português brasileiro', from: 'locale-switcher')
+      select('Português brasileiro', from: 'translation_locale')
 
       field = fields.sample
       expect_page_to_have_translatable_field field, :"pt-BR", with: text_for(field, :"pt-BR")
@@ -214,10 +214,9 @@ shared_examples "translatable" do |factory_name, path_name, input_fields, textar
   context "Globalize javascript interface" do
     scenario "Highlight current locale", :js do
       visit path
-
       expect(find("a.js-globalize-locale-link.is-active")).to have_content "English"
 
-      select('Español', from: 'locale-switcher')
+      select('Español', from: 'translation_locale')
 
       expect(find("a.js-globalize-locale-link.is-active")).to have_content "Español"
     end

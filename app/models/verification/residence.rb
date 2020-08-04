@@ -3,9 +3,9 @@ class Verification::Residence
   include ActiveModel::Dates
   include ActiveModel::Validations::Callbacks
 
-  attr_accessor :user, :document_number, :document_type, :date_of_birth, :postal_code, :terms_of_service
+  attr_accessor :user, :document_number, :document_type, :date_of_birth, :postal_code, :terms_of_service, :genero
 
-  before_validation :retrieve_census_data
+  #before_validation :retrieve_census_data
 
   validates :document_number, presence: true
   validates :document_type, presence: true
@@ -13,6 +13,7 @@ class Verification::Residence
   validates :postal_code, presence: true
   validates :terms_of_service, acceptance: { allow_nil: false }
   validates :postal_code, length: { is: 5 }
+  validates :genero, presence: true
 
   validate :allowed_age
   validate :document_number_uniqueness
@@ -31,9 +32,10 @@ class Verification::Residence
 
     user.update(document_number:       document_number,
                 document_type:         document_type,
-                geozone:               geozone,
                 date_of_birth:         date_of_birth.in_time_zone.to_datetime,
-                gender:                gender,
+                gender:                genero,
+                postal_code:           postal_code,
+                verified_at:           Time.current,
                 residence_verified_at: Time.current)
   end
 
@@ -75,9 +77,10 @@ class Verification::Residence
     end
 
     def residency_valid?
-      @census_data.valid? &&
-        @census_data.postal_code == postal_code &&
-        @census_data.date_of_birth == date_of_birth
+      # @census_data.valid? &&
+      #   @census_data.postal_code == postal_code &&
+      #   @census_data.date_of_birth == date_of_birth
+      return true
     end
 
     def clean_document_number

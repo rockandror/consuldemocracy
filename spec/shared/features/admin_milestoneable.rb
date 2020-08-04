@@ -65,7 +65,7 @@ shared_examples "admin_milestoneable" do |factory_name, path_name|
         click_button 'Create milestone'
 
         within "#new_milestone" do
-          expect(page).to have_content "can't be blank", count: 1
+          expect(page).to have_content "Can't be blank", count: 1
           expect(page).to have_content 'New description milestone'
         end
       end
@@ -78,7 +78,7 @@ shared_examples "admin_milestoneable" do |factory_name, path_name|
         click_button "Create milestone"
 
         within "#new_milestone" do
-          expect(page).to have_content "can't be blank", count: 1
+          expect(page).to have_content "Can't be blank", count: 1
         end
       end
     end
@@ -90,10 +90,9 @@ shared_examples "admin_milestoneable" do |factory_name, path_name|
         document = create(:document, documentable: milestone)
 
         visit path
+
         expect(page).to have_link document.title
-
         click_link milestone.title
-
         expect(page).to have_css("img[alt='#{milestone.image.title}']")
 
         fill_in 'Description', with: 'Changed description'

@@ -108,7 +108,7 @@ shared_examples "notifiable in-app" do |described_class|
       expect(page).to have_content "I commented on my own notifiable"
     end
 
-    within("#notifications") do
+    within first ("#notifications") do
       find(".icon-no-notification").click
       expect(page).to have_css ".notification", count: 0
     end
@@ -130,7 +130,7 @@ shared_examples "notifiable in-app" do |described_class|
       expect(page).to have_content "I replied to my own comment"
     end
 
-    within("#notifications") do
+    within first ("#notifications") do
       find(".icon-no-notification").click
       expect(page).to have_css ".notification", count: 0
     end

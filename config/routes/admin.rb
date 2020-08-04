@@ -228,6 +228,7 @@ namespace :admin do
     resources :information_texts, only: [:index] do
       post :update, on: :collection
     end
+    resources :member_types, only: [:index, :create, :update, :destroy]
   end
 
   resource :homepage, controller: :homepage, only: [:show]

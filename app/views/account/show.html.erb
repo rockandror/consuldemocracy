@@ -1,9 +1,9 @@
 <div class="row account">
   <div class="small-12 column">
     <div class="float-right text-right">
-      <%= link_to t("account.show.change_credentials_link"), edit_user_registration_path, class: "button hollow" %>
+      <%= link_to t("account.show.change_credentials_link"), ENV['OPENAM_HOST'], class: "button hollow" %>
       <br>
-      <%= link_to t("account.show.erase_account_link"), users_registrations_delete_form_path, class: "delete" %>
+      <!-- <%= link_to t("account.show.erase_account_link"), users_registrations_delete_form_path, class: "delete" %> -->
     </div>
 
     <%= avatar_image(@account, seed: @account.id, size: 100, class: "margin-bottom") %>
@@ -30,6 +30,8 @@
               <%= f.text_field :username, maxlength: User.username_max_length, placeholder: t("account.show.username_label") %>
             <% end %>
           </div>
+
+          <!-- <%= f.text_field :document_number, placeholder: "Numero" %> -->
 
           <div>
             <%= f.label :public_activity do %>

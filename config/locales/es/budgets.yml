@@ -72,7 +72,7 @@ es:
       index:
         title: Presupuestos participativos
         unfeasible: Propuestas de inversión no viables
-        unfeasible_text: "Los proyectos presentados deben cumplir una serie de criterios (legalidad, concreción, ser competencia del Ayuntamiento, no superar el tope del presupuesto) para ser declarados viables y llegar hasta la fase de votación final. Todos los proyectos que no cumplen estos criterios son marcados como inviables y publicados en la siguiente lista, junto con su informe de inviabilidad."
+        unfeasible_text: "Los proyectos presentados deben cumplir una serie de criterios (legalidad, concreción, ser competencia del Gobierno, no superar el tope del presupuesto) para ser declarados viables y llegar hasta la fase de votación final. Todos los proyectos que no cumplen estos criterios son marcados como inviables y publicados en la siguiente lista, junto con su informe de inviabilidad."
         by_heading: "Propuestas de inversión con ámbito: %{heading}"
         search_form:
           button: Buscar
@@ -130,6 +130,8 @@ es:
         see_price_explanation: Ver informe de coste
       wrong_price_format: Solo puede incluir caracteres numéricos
       investment:
+        member_type_denied_creating: Solo se permite crear proyectos de gasto a miembros de
+        member_type_denied: Solo se permite participar a miembros de
         add: Votar
         already_added: Ya has añadido este proyecto de gasto
         already_supported: Ya has apoyado este proyecto de inversión. ¡Compártelo!

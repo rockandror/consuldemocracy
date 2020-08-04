@@ -13,6 +13,10 @@
     </div>
   </div>
 
+  <div class="small-12 medium-4 column">
+    <%= f.collection_select :member_type_ids, MemberType.all, :id, :value, {:include_hidden => false, :label => t('admin.budgets.form.member_type')}, {:multiple => true} %>
+  </div>
+
   <% if @budget.phases.present? %>
     <div class="small-12 column">
       <table id="budget-phases-table" class="table-for-mobile">

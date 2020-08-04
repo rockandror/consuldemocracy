@@ -132,13 +132,14 @@ feature 'Legislation Proposals' do
     create(:legislation_proposal, process: process)
 
     login_as user
+    user[:document_number] = "12345678Z"
 
     visit new_legislation_process_proposal_path(process)
 
     fill_in 'Proposal title', with: 'Legislation proposal with image'
     fill_in 'Proposal summary', with: 'Including an image on a legislation proposal'
-    imageable_attach_new_file(create(:image), Rails.root.join('spec/fixtures/files/clippy.jpg'))
     check 'legislation_proposal_terms_of_service'
+    imageable_attach_new_file(create(:image), Rails.root.join('spec/fixtures/files/clippy.jpg'))
     click_button 'Create proposal'
 
     expect(page).to have_content 'Legislation proposal with image'

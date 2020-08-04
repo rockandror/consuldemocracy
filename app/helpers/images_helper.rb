@@ -33,10 +33,10 @@ module ImagesHelper
   def render_destroy_image_link(builder, image)
     if !image.persisted? && image.cached_attachment.present?
       link_to t('images.form.delete_button'),
-              direct_upload_destroy_url("direct_upload[resource_type]": image.imageable_type,
-                                        "direct_upload[resource_id]": image.imageable_id,
-                                        "direct_upload[resource_relation]": "image",
-                                        "direct_upload[cached_attachment]": image.cached_attachment),
+              direct_upload_destroy_path("direct_upload[resource_type]": image.imageable_type,
+                                         "direct_upload[resource_id]": image.imageable_id,
+                                         "direct_upload[resource_relation]": "image",
+                                         "direct_upload[cached_attachment]": image.cached_attachment),
               method: :delete,
               remote: true,
               class: "delete remove-cached-attachment"
@@ -49,15 +49,15 @@ module ImagesHelper
     klass = image.errors[:attachment].any? ? "error" : ""
     klass = image.persisted? || image.cached_attachment.present? ? " hide" : ""
     html = builder.label :attachment,
-                          t("images.form.attachment_label"),
-                          class: "button hollow #{klass}"
+                         t("images.form.attachment_label"),
+                         class: "button hollow #{klass}"
     html += builder.file_field :attachment,
                                label: false,
                                accept: imageable_accepted_content_types_extensions,
                                class: 'js-image-attachment',
                                data: {
-                                 url: image_direct_upload_url(imageable),
-                                 nested_image: true
+                                   url: image_direct_upload_url(imageable),
+                                   nested_image: true
                                }
 
     html
@@ -71,9 +71,21 @@ module ImagesHelper
   end
 
   def image_direct_upload_url(imageable)
-    direct_uploads_url("direct_upload[resource_type]": imageable.class.name,
-                       "direct_upload[resource_id]": imageable.id,
-                       "direct_upload[resource_relation]": "image")
+    direct_uploads_path("direct_upload[resource_type]": imageable.class.name,
+                        "direct_upload[resource_id]": imageable.id,
+                        "direct_upload[resource_relation]": "image")
   end
 
+=begin
+  def image_url_relative(image, version="")
+    return "" unless image
+
+    image = image.attachment.url(version)
+
+    #url = Rails.configuration.relative_url_root + image
+    url = image
+
+    url.gsub("//", "/")
+  end
+=end
 end

@@ -1,40 +1,79 @@
-version: '3'
+version: "3"
 services:
-  # service configuration for our database
-  database:
-
-    # use the preferred version of the official Postgres image
-    # see https://hub.docker.com/_/postgres/
-    image: postgres:9.4.5
-
-    # persist the database between containers by storing it in a volume
+  db:
+    image: postgres
     volumes:
-      - docker-example-postgres:/var/lib/postgresql/data
-
-  # service configuration for our dockerized Rails app
-  app:
-
-    # use the Dockerfile next to this file
+      - ./tmp/db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD
+  consul:
+    image: gobcan-consul:20210302
+    environment:
+      - CALLBACK_URL
+      - CONSUL_RELATIVE_URL
+      - COOKIES_NAME
+      - DATABASE
+      - DATABASE_ADAPTER
+      - DATABASE_HOST
+      - DATABASE_PASS
+      - DATABASE_USER
+      - LISTEN_ON
+      - MAIL_ADDRESS
+      - MAIL_AUTH
+      - MAIL_DOMAIN
+      - MAIL_PASSWORD
+      - MAIL_PORT
+      - MAIL_STARTTLS
+      - MAIL_USER
+      - OPENAM_HOST
+      - OPENAM_PASSWORD
+      - OPENAM_USER
+      - RAILS_ENV
+      - RAILS_LOG_LEVEL
+      - RAILS_LOG_TO_STDOUT=true
+      - RAILS_SCOPE
+      - RAILS_SERVE_STATIC_FILES=true
+      - SAML_IDP_CERT
+      - SAML_IDP_URL
+      - SAML_ISSUER
+      - SAML_NAME_IDENTIFIER_FORMAT
+      - SARA_WSDL_URL
+      - SERVER_NAME
+      - SOAP_PLATINO_PKCS12_PASSWORD
+      - SOAP_URL_AMB
+      - SOAP_URL_NS8
+      - SOAP_URL_PET
+      - SOAP_URL_SVD
+      - SOAP_URL_VER
+      - SOAP_URL_VER1
+      - SOAP_VERIFICAR_IDENTIDAD_COD_PROCEDIMIENTO
+      - SOAP_VERIFICAR_IDENTIDAD_FINALIDAD
+      - SOAP_VERIFICAR_IDENTIDAD_IDENTIFICADOR_SOLICITANTE
+      - SOAP_VERIFICAR_IDENTIDAD_ID_EXPEDIENTE
+      - SOAP_VERIFICAR_IDENTIDAD_NIF_FUNCIONARIO
+      - SOAP_VERIFICAR_IDENTIDAD_NOMBRE_PROCEDIMIENTO
+      - SOAP_VERIFICAR_IDENTIDAD_NOMBRE_SOLICITANTE
+      - SOAP_VERIFICAR_RESIDENCIA_COD_PROCEDIMIENTO
+      - SOAP_VERIFICAR_RESIDENCIA_FINALIDAD=
+      - SOAP_VERIFICAR_RESIDENCIA_IDENTIFICADOR_SOLICITANTE
+      - SOAP_VERIFICAR_RESIDENCIA_ID_EXPEDIENTE
+      - SOAP_VERIFICAR_RESIDENCIA_NIF_FUNCIONARIO
+      - SOAP_VERIFICAR_RESIDENCIA_NOMBRE_PROCEDIMIENTO
+      - SOAP_VERIFICAR_RESIDENCIA_NOMBRE_SOLICITANTE
+      - WORKER_PROCESSES
     build: .
-    entrypoint: /usr/local/bin/entrypoint.sh
-    command: bundle exec rails s -p 3000 -b '0.0.0.0'
-    working_dir: /var/www/consul
+    #entrypoint: "tail -f /dev/null"
+    #command: sh -c "rm -f tmp/pids/server.pid && bundle exec rdebug-ide --host 0.0.0.0 --port 1234 --  bin/rails server puma -p 3000 -b 'ssl://0.0.0.0:3000'"
+    #entrypoint: sh -c "bundle exec rake db:create && bundle exec rake db:migrate && bundle exec rake db:seed && bundle exec rake db:setup && rake assets:precompile -j4 -s && bundle exec rails server -b 'ssl://0.0.0.0:3000'"
+    entrypoint: sh -c "bundle exec rails server -b 'ssl://0.0.0.0:3000'"
 
-    # rely on the RAILS_ENV value of the host machine
-    # environment:
-    #RAILS_ENV: $RAILS_ENV
-
-    # makes the app container aware of the DB container
-    depends_on:
-      - database
-
-    # expose the port we configured Unicorn to bind to
+    #volumes:
+    #- .:/app
+    #- ./dockerfiles/start.sh:/app/dockerfiles/start.sh
     ports:
       - "3000:3000"
-    # map our application source code, in full, to the application root of our container
-    volumes:
-      - .:/var/www/consul:delegated
-      - bundle:/usr/local/bundle:delegated
-volumes:
-  docker-example-postgres: {}
-  bundle: {}
+      - "1234:1234"
+    depends_on:
+      - db

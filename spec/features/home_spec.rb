@@ -39,7 +39,10 @@ feature "Home" do
       scenario 'Display recommended section when feature flag recommended is active' do
         debate = create(:debate, tag_list: "Sport")
         visit root_path
-        expect(page).to have_content "Recommendations that may interest you"
+        # Consul Original
+        #expect(page).to have_content "Recommendations that may interest you"
+        # Versión EDO
+        expect(page).to have_no_content "Recommendations that may interest you"
       end
 
       scenario 'Not display recommended section when feature flag recommended is not active' do
@@ -56,14 +59,21 @@ feature "Home" do
 
         visit root_path
 
-        expect(page).to have_content debate.title
-        expect(page).to have_content debate.description
+        # Consul original
+        #expect(page).to have_content debate.title
+        #expect(page).to have_content debate.description
+        # Consul modificado EDO
+        expect(page).to have_no_content debate.title
+        expect(page).to have_no_content debate.description
       end
 
       scenario 'Display all recommended debates link' do
         debate = create(:debate, tag_list: "Sport")
         visit root_path
-        expect(page).to have_link("All recommended debates", href: debates_path(order: "recommendations"))
+        # CONSUL original
+        #expect(page).to have_link("All recommended debates", href: debates_path(order: "recommendations"))
+        # Consul EDO
+        expect(page).to have_no_link("All recommended debates", href: debates_path(order: "recommendations"))
       end
 
       scenario 'Display proposal' do
@@ -71,14 +81,21 @@ feature "Home" do
 
         visit root_path
 
-        expect(page).to have_content proposal.title
-        expect(page).to have_content proposal.description
+        # Consul Original
+        #expect(page).to have_content proposal.title
+        #expect(page).to have_content proposal.description
+        # Consul modificado EDO
+        expect(page).to have_no_content proposal.title
+        expect(page).to have_no_content proposal.description
       end
 
       scenario 'Display all recommended proposals link' do
         debate = create(:proposal, tag_list: "Sport")
         visit root_path
-        expect(page).to have_link("All recommended proposals", href: proposals_path(order: "recommendations"))
+        # CONSUL original
+        #expect(page).to have_link("All recommended proposals", href: proposals_path(order: "recommendations"))
+        # Consul EDO
+        expect(page).to have_no_link("All recommended proposals", href: proposals_path(order: "recommendations"))
       end
 
       scenario 'Display orbit carrousel' do
@@ -86,12 +103,17 @@ feature "Home" do
 
         visit root_path
 
-        expect(page).to have_selector('li[data-slide="0"]')
-        expect(page).to have_selector('li[data-slide="1"]', visible: false)
-        expect(page).to have_selector('li[data-slide="2"]', visible: false)
+        # CONSUL ORIGINAL
+        #expect(page).to have_selector('li[data-slide="0"]')
+        #expect(page).to have_selector('li[data-slide="1"]', visible: false)
+        #expect(page).to have_selector('li[data-slide="2"]', visible: false)
+        # Consul EDO
+        expect(page).to have_no_selector('li[data-slide="0"]')
+        expect(page).to have_no_selector('li[data-slide="1"]', visible: false)
+        expect(page).to have_no_selector('li[data-slide="2"]', visible: false)
       end
 
-      scenario 'Display recommended show when click on carousel' do
+      xscenario 'Display recommended show when click on carousel' do
         debate = create(:debate, tag_list: "Sport")
 
         visit root_path
@@ -152,9 +174,13 @@ feature "Home" do
       link_url: "consul.dev"
     )
 
+
     visit root_path
 
-    expect(page).to have_css(".title", text: "Featured")
+    # Consul Original
+    # expect(page).to have_css(".title", text: "Featured")
+    # Consul modificado EDO
+    expect(page).to have_no_css(".title", text: "Featured")
   end
 
   scenario 'if there are no cards, the "featured" title will not render' do

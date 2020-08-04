@@ -1,5 +1,18 @@
 class Users::SessionsController < Devise::SessionsController
 
+  def create
+    logger.info("AUDIT") { "#{params[:user][:login]} is trying logging" }
+    params[:ip] = request.remote_ip
+    super
+    logger.info("AUDIT") { "#{current_user.email} log in successful" }
+  end
+
+
+  def destroy
+    logger.info("AUDIT") { "#{current_user.email} logging out" }
+    super
+  end
+
   private
 
     def after_sign_in_path_for(resource)

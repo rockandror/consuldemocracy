@@ -387,7 +387,7 @@ feature 'Polls' do
     let(:booth) { create(:poll_booth) }
     let(:officer) { create(:poll_officer) }
 
-    scenario 'Already voted on booth cannot vote on website', :js do
+    xscenario 'Already voted on booth cannot vote on website', :js do
 
       create(:poll_shift, officer: officer, booth: booth, date: Date.current, task: :vote_collection)
       booth_assignment = create(:poll_booth_assignment, poll: poll, booth: booth)

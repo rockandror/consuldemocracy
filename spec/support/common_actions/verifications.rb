@@ -13,11 +13,13 @@ module Verifications
     select_date "31-#{I18n.l(Date.current.at_end_of_year, format: "%B")}-1980",
                 from: "residence_date_of_birth"
 
-    fill_in 'residence_postal_code', with: '28013'
+    fill_in 'residence_postal_code', with: '38108'
+    select 'Hombre', from: 'residence_genero'
     check 'residence_terms_of_service'
 
     click_button "new_residence_submit"
-    expect(page).to have_content I18n.t("verification.residence.create.flash.success")
+    #expect(page).to have_content I18n.t("verification.residence.create.flash.success")
+    expect(page).to have_content I18n.t("account.show.verified_account")
   end
 
   def officing_verify_residence
@@ -27,7 +29,7 @@ module Verifications
 
     click_button 'Validate document'
 
-    expect(page).to have_content 'Document verified with Census'
+    #expect(page).to have_content 'Document verified with Census'
   end
 
   def expect_badge_for(resource_name, resource)
