@@ -134,6 +134,8 @@ es:
     instagram_link: "Instagram"
   welcome:
     title: "Portal of citizen participation of the City of Madrid"
+    eventos_title: Eventos
+    conectados_title: Conectados
     recommended:
       help: "Estas recomendaciones se generan por las etiquetas de los debates y propuestas que estás siguiendo."
       debates:
