@@ -134,8 +134,12 @@ es:
     instagram_link: "Instagram"
   welcome:
     title: "Portal of citizen participation of the City of Madrid"
-    eventos_title: Eventos
-    conectados_title: Conectados
+    eventos_title: Eventos - Decide Madrid
+    eventos_description: "Conoce las acciones de participación ciudadana y participa."
+    eventos_keywords: "participación ciudadana; eventos; gobierno abierto; agenda Madrid"
+    conectados_title: Conectados - Decide Madrid
+    conectados_description: "En Conectados podrás participar en encuentros digitales con expertos del Ayuntamiento de Madrid"
+    conectados_keywords: "participación ciudadana; debates; gobierno abierto; debates Madrid; ayuntamiento de madrid"
     recommended:
       help: "Estas recomendaciones se generan por las etiquetas de los debates y propuestas que estás siguiendo."
       debates:
