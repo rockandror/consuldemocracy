@@ -248,6 +248,7 @@ shared_examples "translatable" do |factory_name, path_name, input_fields, textar
       select "Français", from: "translation_locale"
 
       expect(page).to have_link "Français"
+      expect(page).to have_select "translation_locale", selected: "Add language"
 
       click_link "Français"
 
