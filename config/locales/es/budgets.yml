@@ -61,6 +61,7 @@ es:
         description: Con los presupuestos participativos la ciudadanía decide a qué proyectos va destinada una parte del presupuesto.
       milestones: Seguimiento de proyectos
       budget_ayto: Presupuestos del ayuntamiento
+      boam_link: Resolución de inicio de expediente de inviabilidades sobrevenidas
     investments:
       form:
         tag_category_label: "Categorías"
