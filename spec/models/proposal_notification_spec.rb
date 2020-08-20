@@ -22,7 +22,7 @@ describe ProposalNotification do
     expect(notification).not_to be_valid
   end
 
-  describe "#attributes method"
+  describe "#attributes method" do
     it "author_name is nil" do
       notification.author = nil
       expect(notification.author_name).to eq(nil)

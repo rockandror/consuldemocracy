@@ -41,7 +41,7 @@ describe Proposal do
     end
   end
 
-  describe "#attributes method"
+  describe "#attributes method" do
     it "author_name is nil" do
       proposal.author = nil
       expect(proposal.author_name).to eq(nil)
