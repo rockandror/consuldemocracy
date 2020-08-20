@@ -50,7 +50,7 @@ describe Debate do
     end
   end
 
-  describe "#attributes method"
+  describe "#attributes method" do
     it "author_name is nil" do
       debate.author = nil
       expect(debate.author_name).to eq(nil)
