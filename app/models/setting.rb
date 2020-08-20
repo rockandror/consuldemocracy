@@ -108,6 +108,7 @@ class Setting < ApplicationRecord
         "homepage.widgets.feeds.debates": true,
         "homepage.widgets.feeds.processes": true,
         "homepage.widgets.feeds.proposals": true,
+        "homepage.widgets.feeds.topics": true,
         "hot_score_period_in_days": 31,
         # Code to be included at the top (inside <body>) of every page
         "html.per_page_code_body": "",
