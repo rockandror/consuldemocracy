@@ -6,8 +6,6 @@ rvm:
 - 2.6.1
 cache: bundler
 bundler_args: --without development
-before_install:
-- gem install bundler:1.17.2
 before_script:
 - wget -N https://chromedriver.storage.googleapis.com/2.36/chromedriver_linux64.zip -P ~/
 - unzip ~/chromedriver_linux64.zip -d ~/
