@@ -111,6 +111,7 @@
 //= require columns_selector
 //= require budget_edit_associations
 //= require datepicker
+//= require dashboard_graphs
 
 var initialize_modules = function() {
   "use strict";
@@ -163,6 +164,7 @@ var initialize_modules = function() {
     App.ColumnsSelector.initialize();
   }
   App.BudgetEditAssociations.initialize();
+  App.DashboardGraphs.initialize();
 };
 
 var destroy_non_idempotent_modules = function() {
@@ -174,6 +176,7 @@ var destroy_non_idempotent_modules = function() {
   App.LegislationAnnotatable.destroy();
   App.Map.destroy();
   App.SocialShare.destroy();
+  App.DashboardGraphs.destroy();
 };
 
 $(document).on("turbolinks:load", initialize_modules);

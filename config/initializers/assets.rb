@@ -11,7 +11,7 @@ Rails.application.config.assets.version = "1.0"
 # Rails.application.config.assets.precompile += %w( search.js )
 Rails.application.config.assets.precompile += %w[ckeditor/config.js]
 Rails.application.config.assets.precompile += %w[stat_graphs.js]
-Rails.application.config.assets.precompile += %w[dashboard_graphs.js]
+Rails.application.config.assets.precompile += %w[proposal_graph.js]
 Rails.application.config.assets.precompile += %w[print.css]
 Rails.application.config.assets.precompile += %w[pdf_fonts.css]
 
