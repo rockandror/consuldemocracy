@@ -87,6 +87,7 @@ feature "Auto moderated content" do
     it "allows a comment to be shown again", :js do
       visit debate_path(my_debate)
 
+      expect(page).to have_content "Comments (1)"
       expect(page).to have_content(another_comment.body)
       expect(page).not_to have_content(comment.body)
       expect(page).not_to have_content(a_new_comment.body)
@@ -105,6 +106,7 @@ feature "Auto moderated content" do
 
       visit debate_path(my_debate)
 
+      expect(page).to have_content "Comments (2)"
       expect(page).to have_content(a_new_comment.body)
       expect(page).to have_content(another_comment.body)
       expect(page).not_to have_content(comment.body)
@@ -115,6 +117,7 @@ feature "Auto moderated content" do
     it "does not allow a comment to be shown again", :js do
       visit debate_path(my_debate)
 
+      expect(page).to have_content "Comments (1)"
       expect(page).to have_content(another_comment.body)
       expect(page).not_to have_content(comment.body)
       expect(page).not_to have_content(a_new_comment.body)
@@ -133,6 +136,7 @@ feature "Auto moderated content" do
 
       visit debate_path(my_debate)
 
+      expect(page).to have_content "Comments (1)"
       expect(page).to have_content(another_comment.body)
       expect(page).not_to have_content(comment.body)
       expect(page).not_to have_content(a_new_comment.body)

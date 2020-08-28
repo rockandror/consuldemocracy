@@ -155,6 +155,7 @@ class CommentsController < ApplicationController
 
       ::ModeratedContent.import(@moderated_records)
       comment.is_offensive = true
+      comment.decrement_comments_count
     end
 
     def build_records(comment, matches)

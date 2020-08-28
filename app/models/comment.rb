@@ -70,6 +70,16 @@ class Comment < ApplicationRecord
 
   after_create :call_after_commented
 
+  def decrement_comments_count
+    return if self.commentable.nil?
+    self.commentable.class.decrement_counter(:comments_count, self.commentable_id)
+  end
+
+  def increment_comments_count
+    return if self.commentable.nil?
+    self.commentable.class.increment_counter(:comments_count, self.commentable_id)
+  end
+
   def self.build(commentable, user, body, p_id = nil, valuation = false)
     new(commentable: commentable,
         user_id:     user.id,
