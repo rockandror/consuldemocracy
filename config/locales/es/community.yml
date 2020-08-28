@@ -9,6 +9,7 @@ es:
     show:
       title:
         proposal: "Comunidad en el distrito de %{district}"
+        proposal_with_out: "Comunidad en cualquier distrito"
         investment: Comunidad del presupuesto participativo
       description:
         proposal: Participa en la comunidad de esta propuesta. Una comunidad activa puede ayudar a mejorar la participación ciudadana así como a facilitar propuestas de ayuda, cooperación o mejoras vecinales.
