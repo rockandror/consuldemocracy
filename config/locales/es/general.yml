@@ -47,6 +47,7 @@ es:
       author: Autor
       deleted: Este comentario ha sido eliminado
       moderator: Moderador
+      moderated_html: 'Pendiente de Moderación: Este comentario ha sido determinado ofensivo y no será visible la próxima vez que recargue la página. Puede editarlo accediendo a la sección de <a href="%{link}">Mi contenido</a>'
       responses:
         zero: Sin respuestas
         one: 1 respuesta
@@ -208,6 +209,7 @@ es:
     document: el documento
     topic: Tema
     image: Imagen
+    comment: Comentario
   geozones:
     none: Toda la ciudad
   layouts:
@@ -874,6 +876,9 @@ es:
       debates: Debates
       budget_investments: Proyectos de presupuestos participativos
       comments: Comentarios
+      labels:
+        pending_moderated: Pendiente de moderación
+        confirmed_moderation: Moderado
       actions: Acciones
       filters:
         comments:
@@ -903,6 +908,11 @@ es:
       see: "Ver propuesta"
       actions: Acciones
       retired_help_text: Dashboard no disponible para propuestas retiradas
+    comments:
+      edit:
+        info_message_html: "Este comentario contiene las siguientes palabras consideradas ofensivas, y que están impidiendo que tu comentario sea público: <strong>%{words}</strong>"
+        header: Comentario
+        button: Corregir comentario
   votes:
     share: Comparte
     agree: Estoy de acuerdo

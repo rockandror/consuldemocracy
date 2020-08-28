@@ -1,6 +1,6 @@
 namespace :admin do
   root to: "dashboard#index"
-  
+
   resources :organizations, only: :index do
     get :search, on: :collection
     member do
@@ -45,6 +45,16 @@ namespace :admin do
 
   resources :users, only: [:index, :show, :destroy] do
     get :hide, on: :member
+  end
+
+  resources :moderated_texts
+  namespace :moderated_texts do
+    resources :imports, only: [:new, :create]
+  end
+
+  resources :auto_moderated_content, controller: :auto_moderated_content, only: :index do
+    put :show_again
+    put :confirm_moderation
   end
 
   resources :proposal_notifications, only: :index do
@@ -221,7 +231,7 @@ namespace :admin do
       resources :draft_versions
       resources :milestones
       resources :progress_bars, except: :show
-      resource :homepage, only: [:edit, :update] 
+      resource :homepage, only: [:edit, :update]
     end
   end
 
