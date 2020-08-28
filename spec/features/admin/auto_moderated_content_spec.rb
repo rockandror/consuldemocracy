@@ -87,7 +87,6 @@ feature "Auto moderated content" do
     it "allows a comment to be shown again", :js do
       visit debate_path(my_debate)
 
-      expect(page).to have_content "Comments (1)"
       expect(page).to have_content(another_comment.body)
       expect(page).not_to have_content(comment.body)
       expect(page).not_to have_content(a_new_comment.body)
@@ -106,10 +105,38 @@ feature "Auto moderated content" do
 
       visit debate_path(my_debate)
 
-      expect(page).to have_content "Comments (2)"
       expect(page).to have_content(a_new_comment.body)
       expect(page).to have_content(another_comment.body)
       expect(page).not_to have_content(comment.body)
+    end
+
+    it "update correctly comments count after decline moderation", :js do
+      debate = create(:debate)
+
+      visit debate_path(debate)
+
+      fill_in "comment-body-debate_#{debate.id}", with: "Have you thought about...?"
+      click_button "Publish comment"
+      expect(page).to have_content("Have you thought about...?")
+
+      fill_in "comment-body-debate_#{debate.id}", with: "vulgar"
+      click_button "Publish comment"
+      expect(page).to have_content("vulgar")
+
+      visit admin_auto_moderated_content_index_path
+
+      expect(page).to have_content("vulgar")
+
+      within "#comment_#{Comment.last.id}" do
+        accept_confirm "Are you sure you want to show this comment again?" do
+          click_link "Show again"
+        end
+      end
+
+      visit debate_path(debate)
+
+      expect(page).to have_content "Comments (2)"
+      expect(page).to have_content("vulgar")
     end
   end
 
@@ -117,7 +144,6 @@ feature "Auto moderated content" do
     it "does not allow a comment to be shown again", :js do
       visit debate_path(my_debate)
 
-      expect(page).to have_content "Comments (1)"
       expect(page).to have_content(another_comment.body)
       expect(page).not_to have_content(comment.body)
       expect(page).not_to have_content(a_new_comment.body)
@@ -136,10 +162,38 @@ feature "Auto moderated content" do
 
       visit debate_path(my_debate)
 
-      expect(page).to have_content "Comments (1)"
       expect(page).to have_content(another_comment.body)
       expect(page).not_to have_content(comment.body)
       expect(page).not_to have_content(a_new_comment.body)
+    end
+
+    it "update correctly comments count after confirm moderation", :js do
+      debate = create(:debate)
+
+      visit debate_path(debate)
+
+      fill_in "comment-body-debate_#{debate.id}", with: "Have you thought about...?"
+      click_button "Publish comment"
+      expect(page).to have_content("Have you thought about...?")
+
+      fill_in "comment-body-debate_#{debate.id}", with: "vulgar"
+      click_button "Publish comment"
+      expect(page).to have_content("vulgar")
+
+      visit admin_auto_moderated_content_index_path
+
+      expect(page).to have_content("vulgar")
+
+      within "#comment_#{Comment.last.id}" do
+        accept_confirm "Are you sure you want to hide this comment permanently?" do
+          click_link "Confirm moderation"
+        end
+      end
+
+      visit debate_path(debate)
+
+      expect(page).to have_content "Comments (1)"
+      expect(page).not_to have_content("vulgar")
     end
   end
 
