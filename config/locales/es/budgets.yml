@@ -54,6 +54,7 @@ es:
       investment_proyects: Ver lista completa de proyectos de gasto
       unfeasible_investment_proyects: Ver lista de proyectos de gasto inviables
       not_selected_investment_proyects: Ver lista de proyectos de gasto no seleccionados para la votación final
+      inviabilities_information: Información sobre las inviabilidades – 2016-2019
       finished_budgets: Presupuestos participativos terminados
       see_results: Ver resultados
       section_footer:
@@ -61,6 +62,7 @@ es:
         description: Con los presupuestos participativos la ciudadanía decide a qué proyectos va destinada una parte del presupuesto.
       milestones: Seguimiento de proyectos
       budget_ayto: Presupuestos del ayuntamiento
+      boam_link: Resolución de inicio de expediente de inviabilidades sobrevenidas
     investments:
       form:
         tag_category_label: "Categorías"
