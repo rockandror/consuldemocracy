@@ -96,7 +96,7 @@
             </ul>
           <% end %>
         </div>
-
+                                
         <% unless current_budget.informing? %>
           <div class="map inline">
             <h3><%= t("budgets.index.map") %></h3>
@@ -126,6 +126,11 @@
                 <% end %>
               </li>
             <% end %>
+              <li>
+                <%= link_to "https://decide.madrid.es/inviabilidades-2016-2019" do %>
+                  <small><%= t("budgets.index.inviabilities_information") %></small>
+                <% end %>
+              </li>
           </ul>
         <% end %>
 
