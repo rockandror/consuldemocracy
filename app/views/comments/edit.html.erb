@@ -9,10 +9,42 @@
       </p>
     </div>
 
-    <%= render "form", {
-      commentable: @comment.commentable,
-      parent_id: nil,
-      toggeable: false
-    } %>
+    <% valuation = local_assigns.fetch(:valuation, false) %>
+    <% css_id = parent_or_commentable_dom_id(nil, @comment.commentable) %>
+    <div id="js-comment-form-<%= css_id %>" class="comment-form">
+      <%= form_for @comment, remote: false do |f| %>
+        <%= label_tag "comment-body-#{css_id}", leave_comment_text(@comment.commentable, nil) %>
+        <%= f.text_area :body, id: "comment-body-#{css_id}", maxlength: Comment.body_max_length, label: false %>
+        <%= f.hidden_field :commentable_type, value: @comment.commentable.class.name %>
+        <%= f.hidden_field :commentable_id, value: @comment.commentable.id %>
+        <%= f.hidden_field :parent_id, value: nil %>
+        <%= f.hidden_field :valuation, value: valuation %>
+
+        <%= f.submit comment_button_text(nil, @comment.commentable), class: "button", id: "publish_comment" %>
+
+        <% if can? :comment_as_moderator, @comment.commentable %>
+          <div class="float-right">
+            <%= f.check_box :as_moderator,
+                            title: t("comments.form.comment_as_moderator"),
+                            id: "comment-as-moderator-#{css_id}",
+                            label: false %>
+            <%= label_tag "comment-as-moderator-#{css_id}",
+                          t("comments.form.comment_as_moderator"),
+                          class: "checkbox" %>
+          </div>
+        <% end %>
+
+        <% if can? :comment_as_administrator, @comment.commentable %>
+          <div class="float-right">
+            <%= f.check_box :as_administrator,
+                            title: t("comments.form.comment_as_admin"),
+                            id: "comment-as-administrator-#{css_id}",
+                            label: false %>
+            <%= label_tag "comment-as-administrator-#{css_id}", t("comments.form.comment_as_admin"), class: "checkbox" %>
+          </div>
+        <% end %>
+
+      <% end %>
+    </div>
   </div>
 </div>
