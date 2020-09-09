@@ -575,7 +575,7 @@ describe "Commenting Budget::Investments" do
       visit budget_investment_path(investment.budget, investment)
 
       within "#tab-comments-label" do
-        expect(page).to have_content "Comments (2)"
+        expect(page).to have_content "Comments (1)"
       end
 
       within "#comments" do

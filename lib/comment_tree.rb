@@ -16,7 +16,7 @@ class CommentTree
   end
 
   def root_comments
-    base_comments.roots.send("sort_by_#{order}").page(page).per(ROOT_COMMENTS_PER_PAGE).for_render
+    base_comments.roots.filtered.send("sort_by_#{order}").page(page).per(ROOT_COMMENTS_PER_PAGE).for_render
   end
 
   def base_comments

@@ -47,6 +47,7 @@ class CommentsController < ApplicationController
       if new_matches.empty?
         remove_offenses(@comment)
         @comment.is_offensive = false
+        @comment.increment_comments_count
         redirect_to user_path(current_user, filter: "comments"), notice: t("flash.actions.update.comment")
       else
         remove_offenses(@comment, removed_offenses)
@@ -155,6 +156,7 @@ class CommentsController < ApplicationController
 
       ::ModeratedContent.import(@moderated_records)
       comment.is_offensive = true
+      comment.decrement_comments_count
     end
 
     def build_records(comment, matches)
