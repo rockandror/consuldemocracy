@@ -774,7 +774,7 @@ describe "Commenting legislation questions" do
         legislation_annotation
       )
 
-      expect(page).to have_content "Comments (3)"
+      expect(page).to have_content "Comments (2)"
 
       within "#comments" do
         expect(page).not_to have_content "vulgar comment"
