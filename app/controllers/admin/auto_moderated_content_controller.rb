@@ -13,6 +13,7 @@ class Admin::AutoModeratedContentController < Admin::BaseController
   def show_again
     @contents.update_all(declined_at: Time.current)
     Mailer.declined_moderation(@contents.first.moderable).deliver_later
+    @contents.first.moderable.touch
     @contents.first.moderable.increment_comments_count
     redirect_to admin_auto_moderated_content_index_path(filter: "pending")
   end
