@@ -608,7 +608,7 @@ describe "Commenting legislation questions" do
         legislation_question
       )
 
-      expect(page).to have_content "(2)"
+      expect(page).to have_content "(1)"
 
       within "#comments" do
         expect(page).not_to have_content "vulgar comment"
