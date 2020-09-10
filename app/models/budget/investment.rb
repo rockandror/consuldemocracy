@@ -2,7 +2,7 @@ class Budget
   class Investment < ApplicationRecord
     SORTING_OPTIONS = {id: "id", title: "title", supports: "cached_votes_up + physical_votes"}.freeze
 
-    include Rails.application.routes.url_helpers
+    include Rails.application.routes.url_helpers    
     include Measurable
     include Sanitizable
     include Taggable
@@ -18,11 +18,11 @@ class Budget
     acts_as_paranoid column: :hidden_at
     include ActsAsParanoidAliases
     include Relationable
-    include Notifiable
-    include Filterable
+    include Notifiable    
     include Flaggable
     include Milestoneable
     include Randomizable
+    include Filterable
 
     belongs_to :author, -> { with_hidden }, class_name: "User", foreign_key: "author_id"
     belongs_to :heading
@@ -347,9 +347,11 @@ class Budget
       investments = investments.send(current_filter)             if current_filter.present?
       investments = investments.by_heading(params[:heading_id])  if params[:heading_id].present?
       investments = investments.search(params[:search])          if params[:search].present?
-      investments = investments.filter(params[:advanced_search]) if params[:advanced_search].present?
+      investments = investments.filter_by(params[:advanced_search]) if params[:advanced_search].present?
       investments
     end
+
+    
 
     def self.by_heading(heading_id)
       heading_ids = [heading_id]
