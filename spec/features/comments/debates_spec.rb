@@ -578,7 +578,7 @@ describe "Commenting debates" do
       end
 
       visit debate_path(debate)
-      expect(page).to have_content "Comments (2)"
+      expect(page).to have_content "Comments (1)"
 
       within "#comments" do
         expect(page).not_to have_content "vulgar comment"

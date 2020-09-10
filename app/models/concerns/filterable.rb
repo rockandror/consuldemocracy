@@ -6,9 +6,9 @@ module Filterable
     scope :by_date_range,     ->(date_range)     { where(created_at: date_range) }
   end
 
-  class_methods do
+  module ClassMethods
 
-    def filter(params)
+    def filter_by(params)
       resources = all
       params.each do |filter, value|
         if allowed_filter?(filter, value)

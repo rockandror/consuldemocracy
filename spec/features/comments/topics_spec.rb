@@ -613,7 +613,7 @@ describe "Commenting topics from proposals" do
       visit community_topic_path(@community, @topic)
 
       within "#tab-comments-label" do
-        expect(page).to have_content "Comments (2)"
+        expect(page).to have_content "Comments (1)"
       end
 
       within "#comments" do
@@ -1249,7 +1249,7 @@ describe "Commenting topics from budget investments" do
       visit community_topic_path(@community, @topic)
 
       within "#tab-comments-label" do
-        expect(page).to have_content "Comments (2)"
+        expect(page).to have_content "Comments (1)"
       end
 
       within "#comments" do
