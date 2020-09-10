@@ -8,8 +8,8 @@ module Filterable
 
   module ClassMethods
 
-    def filter(params, resources=nil)
-      resources = all if resources.blank?
+    def filter_by(params)
+      resources = all
       params.each do |filter, value|
         if allowed_filter?(filter, value)
           resources = resources.send("by_#{filter}", value)
