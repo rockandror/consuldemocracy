@@ -2,14 +2,29 @@
   <div class="field">
     <div class="small-12 medium-9 column">
       <%= f.translatable_fields do |translations_form| %>
+      
         <div class="small-12 medium-9 column">
           <%= translations_form.text_field :value,
                                          placeholder: t("admin.legislation.questions.form.value_placeholder"),
                                          label: false %>
         </div>
-        <div class="small-12 medium-3 column">
-          <%= translations_form.check_box :other, label: t("admin.legislation.questions.form.other") %>
+        <div class="small-12 medium-3 column", id: "other_option">
+          <label class="control radio is-active" onload="setHidden(1)">
+            
+            <%= translations_form.check_box :other, {label: false, class: "checkbox-answer-#{translations_form.object.id}", onchange: "setHiddenResponse(#{translations_form.object.id})"} %>
+            <span class="control-indicator"></span>
+            <%= t("admin.legislation.questions.form.other") %>
+          </label>
         </div>
+
+        <div class="small-12 medium-3 column", id: "range_option">
+          <label class="control radio is-active" onload="setHidden(1)">
+            <%= translations_form.check_box :is_range, {label: false, class: "checkbox-answer-#{translations_form.object.id}", onchange: "setHiddenResponse(#{translations_form.object.id})"} %>
+            <span class="control-indicator"></span>
+            <%= t("admin.legislation.questions.form.range") %>
+          </label>
+        </div>
+      <hr>
       <% end %>
     </div>
 

@@ -53,8 +53,8 @@ class Admin::Legislation::QuestionsController < Admin::Legislation::BaseControll
 
     def question_params
       params.require(:legislation_question).permit(
-        translation_params(::Legislation::Question),
-        :multiple_answers, question_options_attributes: [:id, :_destroy,
+        translation_params(::Legislation::Question), :is_range,
+        :multiple_answers, question_options_attributes: [:id, :_destroy, :is_range,
                                       translation_params(::Legislation::QuestionOption)]
       )
     end

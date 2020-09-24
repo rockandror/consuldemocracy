@@ -18,20 +18,33 @@
         <% question.question_options.each do |question_option| %>
           <div class="row">
             <% if question_option.other == false %>
-              <%if Legislation::Answer.find_by(legislation_question_option_id: question_option.id, user_id: current_user.id) %>
-              <label class="control radio is-active" onload="setHidden(1)">
-                <%= f.check_box :legislation_question_option_id, {checked: true, multiple: true, label: false, class: "checkbox-answer", onchange: "setHidden(#{question.multiple_answers})"}, question_option.id %>
-                <span class="control-indicator"></span>
+              <%if question_option.is_range == true %>
                 <%= question_option.value %>
-              </label>
+                <div style="width:10%">
+                  <%= f.select :value_range,
+                                ((1..10).map {|i| [i,i]}), 
+                                {include_blank: "",
+                                label: false,
+                                class: "control radio is-active",
+                                onchange: "setRange(#{answer.value_range})"} %>
+                </div>
+                <%= f.hidden_field :legislation_question_option_id, multiple: true, value: question_option.id %>
               <%else%>
-              <label class="control radio">
-                <%= f.check_box :legislation_question_option_id, {multiple: true, label: false, class: "checkbox-answer", onchange: "setHidden(#{question.multiple_answers})"}, question_option.id %>
-                <span class="control-indicator"></span>
-                <%= question_option.value %>
-              </label>
+                <%if Legislation::Answer.find_by(legislation_question_option_id: question_option.id, user_id: current_user.id) %>
+                  <label class="control radio is-active" onload="setHidden(1)">
+                    <%= f.check_box :legislation_question_option_id, {checked: true, multiple: true, label: false, class: "checkbox-answer", onchange: "setHidden(#{question.multiple_answers})"}, question_option.id %>
+                    <span class="control-indicator"></span>
+                    <%= question_option.value %>
+                  </label>
+                <%else%>
+                  <label class="control radio">
+                    <%= f.check_box :legislation_question_option_id, {multiple: true, label: false, class: "checkbox-answer", onchange: "setHidden(#{question.multiple_answers})"}, question_option.id %>
+                    <span class="control-indicator"></span>
+                    <%= question_option.value %>
+                  </label>
+                <%end%>
               <%end%>
-              <%= f.hidden_field :value_other%>
+              
             <% else %>
               <%= f.hidden_field :legislation_question_option_id, multiple: true, value: question_option.id %>
               <%= f.text_field :value_other, value: Legislation::Answer.find_by(legislation_question_option_id: question_option.id, user_id: current_user.id).try(:value_other), label: t("legislation.questions.show.value_other") %>

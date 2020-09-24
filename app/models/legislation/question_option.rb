@@ -4,6 +4,7 @@ class Legislation::QuestionOption < ApplicationRecord
 
   translates :value, touch: true
   translates :other, touch: true
+  translates :is_range, touch: true
   include Globalizable
 
   belongs_to :question, class_name: "Legislation::Question", foreign_key: "legislation_question_id", inverse_of: :question_options

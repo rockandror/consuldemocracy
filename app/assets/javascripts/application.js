@@ -156,6 +156,15 @@ function hide_element(element) {
   }
 }
 
+function hide_checkboxs(element) {
+  var x = document.getElementById(element);
+  if (x.disabled == false) {
+    x.disabled = true;
+  } else {
+    x.disabled = false;
+  }
+}
+
 function cleanCommentsForm() {
   document.getElementById("new_comment").reset();
 }
@@ -169,7 +178,29 @@ function setHidden(limit) {
   });
   $(".checkbox-answer").each(function(){
     if(count >= limit){
-      console.log("LIMIT COUNT");
+      if($(this).prop("checked") == false){
+        $(this).attr("disabled", true);
+      }else{
+        $(this).attr("disabled", false);
+      }
+    }else{
+      $(this).attr("disabled", false);
+    }
+  });
+  if(count >= 1){
+    document.getElementById("submit").display = "block";
+  }
+}
+
+function setHiddenResponse(id) {
+  count = 0
+  $(".checkbox-answer-"+id).each(function(){
+    if($(this).prop("checked")){
+      count = count +1
+    }
+  });
+  $(".checkbox-answer-"+id).each(function(){
+    if(count >= 1){
       if($(this).prop("checked") == false){
         $(this).attr("disabled", true);
       }else{

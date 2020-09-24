@@ -104,5 +104,10 @@ CKEDITOR.editorConfig = function( config )
     { name: "insert", items: [ "Image", "Table" ] }
   ]);
 
+  config.toolbar_questions = [
+    { name: "links", items: [ "Link", "Unlink" ] },
+    { name: "basicstyles", groups: [ "basicstyles", "cleanup" ], items: [ "Bold", "Italic", "Underline", "Strike" ] }
+  ];
+
   config.toolbar = "mini";
 };
