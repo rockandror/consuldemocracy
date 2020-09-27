@@ -55,7 +55,7 @@ class Debate < ApplicationRecord
   attr_accessor :link_required
 
   def url
-    debate_path(self).limit(5)
+    debate_path(self) #.limit(5)
   end
 
   def self.recommendations(user)
