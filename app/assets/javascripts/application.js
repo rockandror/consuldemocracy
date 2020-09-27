@@ -192,6 +192,24 @@ function setHidden(limit) {
   }
 }
 
+function uniqueCheck(select, other_ids) {
+  var aux = $('.' + other_ids)
+
+  for(var i=0; i< aux.length; i++){
+    $('#' + aux[i].id).prop("checked", false);
+  }
+
+  select.prop("checked", true);
+}
+
+function showhideElement(element_show, elements_hide) {
+  for(var i=0; i< elements_hide.length; i++){
+    $('#' + elements_hide[i]).hide();
+  }
+
+  $('#' + element_show).show();  
+}
+
 function setHiddenResponse(id) {
   count = 0
   $(".checkbox-answer-"+id).each(function(){

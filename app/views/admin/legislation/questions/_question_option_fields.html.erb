@@ -3,25 +3,42 @@
     <div class="small-12 medium-9 column">
       <%= f.translatable_fields do |translations_form| %>
       
-        <div class="small-12 medium-9 column">
+        <div class="small-12 medium-9 column" id="value_<%=translations_form.index%>">
           <%= translations_form.text_field :value,
                                          placeholder: t("admin.legislation.questions.form.value_placeholder"),
                                          label: false %>
         </div>
-        <div class="small-12 medium-3 column", id: "other_option">
-          <label class="control radio is-active" onload="setHidden(1)">
-            
-            <%= translations_form.check_box :other, {label: false, class: "checkbox-answer-#{translations_form.object.id}", onchange: "setHiddenResponse(#{translations_form.object.id})"} %>
+        <div class="small-12 medium-9 column" id="ranges_<%=translations_form.index%>">
+          <div class="row">
+           <div class="small-12 medium-6 column"><%= translations_form.number_field :range_first, label: false %></div>
+           <div class="small-12 medium-6 column"><%= translations_form.number_field :range_last, label: false %></div>
+          </div>
+        </div>
+
+        <div class="small-12 medium-3 column"  id="other_option_<%=translations_form.index%>">
+          <label class="control radio is-active">            
+            <%= translations_form.check_box :other, {label: false, class: "checkbox-answer-#{translations_form.index}", onload: "setHidden(1)",
+              onchange: "uniqueCheck($(this),'checkbox-answer-#{translations_form.index}'); showhideElement('value_#{translations_form.index}', ['ranges_#{translations_form.index}'])"} %>
             <span class="control-indicator"></span>
             <%= t("admin.legislation.questions.form.other") %>
           </label>
         </div>
 
-        <div class="small-12 medium-3 column", id: "range_option">
-          <label class="control radio is-active" onload="setHidden(1)">
-            <%= translations_form.check_box :is_range, {label: false, class: "checkbox-answer-#{translations_form.object.id}", onchange: "setHiddenResponse(#{translations_form.object.id})"} %>
+        <div class="small-12 medium-3 column" id="range_option_<%=translations_form.index%>">
+          <label class="control radio is-active">
+            <%= translations_form.check_box :is_range, {label: false, class: "checkbox-answer-#{translations_form.index}", onload: "setHidden(1)",
+            onchange: "uniqueCheck($(this),'checkbox-answer-#{translations_form.index}'); showhideElement('ranges_#{translations_form.index}', ['value_#{translations_form.index}'])"} %>
             <span class="control-indicator"></span>
             <%= t("admin.legislation.questions.form.range") %>
+          </label>
+        </div>
+
+
+        <div class="small-12 medium-3 column" id="number_option_<%=translations_form.index%>">
+          <label class="control radio is-active" >
+            <%= translations_form.check_box :is_number, {label: false, class: "checkbox-answer-#{translations_form.index}",onload: "setHidden(1)", onchange: "uniqueCheck($(this),'checkbox-answer-#{translations_form.index}'); showhideElement('value_#{translations_form.index}', ['ranges_#{translations_form.index}'])"} %>
+            <span class="control-indicator"></span>
+            <%= t("admin.legislation.questions.form.number") %>
           </label>
         </div>
       <hr>

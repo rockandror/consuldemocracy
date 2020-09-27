@@ -646,6 +646,7 @@ es:
           multiple_answers: Nº de respuestas posibles
           other: Otra respuesta
           range: Rango de valores
+          number: Valor numérico
           add_option: Añadir respuesta cerrada
           title: Pregunta
           title_placeholder: Escribe un título a la pregunta
