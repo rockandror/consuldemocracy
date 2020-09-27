@@ -194,7 +194,6 @@ function setHidden(limit) {
 
 function uniqueCheck(select, other_ids) {
   var aux = $('.' + other_ids)
-
   for(var i=0; i< aux.length; i++){
     $('#' + aux[i].id).prop("checked", false);
   }
@@ -204,10 +203,14 @@ function uniqueCheck(select, other_ids) {
 
 function showhideElement(element_show, elements_hide) {
   for(var i=0; i< elements_hide.length; i++){
-    $('#' + elements_hide[i]).hide();
+    if ( elements_hide[i]) {
+      $('#' + elements_hide[i]).hide();
+    }
   }
 
-  $('#' + element_show).show();  
+  if (element_show) {
+    $('#' + element_show).show(); 
+  }
 }
 
 function setHiddenResponse(id) {

@@ -647,6 +647,7 @@ es:
           other: Otra respuesta
           range: Rango de valores
           number: Valor numérico
+          normal: Valor respuesta cerrada
           add_option: Añadir respuesta cerrada
           title: Pregunta
           title_placeholder: Escribe un título a la pregunta

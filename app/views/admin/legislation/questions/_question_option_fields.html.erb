@@ -2,45 +2,61 @@
   <div class="field">
     <div class="small-12 medium-9 column">
       <%= f.translatable_fields do |translations_form| %>
-      
-        <div class="small-12 medium-9 column" id="value_<%=translations_form.index%>">
-          <%= translations_form.text_field :value,
-                                         placeholder: t("admin.legislation.questions.form.value_placeholder"),
-                                         label: false %>
-        </div>
-        <div class="small-12 medium-9 column" id="ranges_<%=translations_form.index%>">
-          <div class="row">
-           <div class="small-12 medium-6 column"><%= translations_form.number_field :range_first, label: false %></div>
-           <div class="small-12 medium-6 column"><%= translations_form.number_field :range_last, label: false %></div>
+        <div class="row">
+          <div class="small-12 medium-8 column">
+            <div class="row">
+              <% nome ="_#{f.index}_#{translations_form.index}_"%>
+              <div class="small-12 medium-12 column" id="value_<%=nome%>">
+                <%= translations_form.text_field :value,
+                      placeholder: t("admin.legislation.questions.form.value_placeholder"),
+                      label: false %>
+                </div>
+                <div class="small-12 medium-12 column" id="ranges_<%=nome%>">
+                  <div class="row">
+                  <div class="small-12 medium-6 column"><%= translations_form.number_field :range_first, label: false %></div>
+                  <div class="small-12 medium-6 column"><%= translations_form.number_field :range_last, label: false %></div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="small-12 medium-4 column">
+            <div class="row">
+              <label class="control radio is-active">            
+                <%= check_box_tag "normal_#{nome}",nil,true, label: false, class: "checkbox-answer-#{nome}", 
+                  onchange: "uniqueCheck($(this),'checkbox-answer-#{nome}'); showhideElement('value_#{nome}', ['ranges_#{nome}'])" %>
+                <span class="control-indicator"></span>
+                <%= t("admin.legislation.questions.form.normal") %>
+              </label>
+            </div>
+            <div class="row">
+              <label class="control radio is-active">            
+                <%= translations_form.check_box :other, {label: false, class: "checkbox-answer-#{nome}", onload: "setHidden(1)",
+                  onchange: "uniqueCheck($(this),'checkbox-answer-#{nome}'); showhideElement('', ['ranges_#{nome}', 'value_#{nome}'])"} %>
+                <span class="control-indicator"></span>
+                <%= t("admin.legislation.questions.form.other") %>
+              </label>
+            </div>
+            <div class="row">
+              <label class="control radio is-active">
+                <%= translations_form.check_box :is_range, {label: false, class: "checkbox-answer-#{nome}", onload: "setHidden(1)",
+                onchange: "uniqueCheck($(this),'checkbox-answer-#{nome}'); showhideElement('ranges_#{nome}', ['value_#{nome}'])"} %>
+                <span class="control-indicator"></span>
+                <%= t("admin.legislation.questions.form.range") %>
+              </label>
+            </div>
+            <div class="row">
+              <label class="control radio is-active" >
+                <%= translations_form.check_box :is_number, {label: false, class: "checkbox-answer-#{nome}",onload: "setHidden(1)",
+                  onchange: "uniqueCheck($(this),'checkbox-answer-#{nome}'); showhideElement('', ['ranges_#{nome}', 'value_#{nome}'])"} %>
+                <span class="control-indicator"></span>
+                <%= t("admin.legislation.questions.form.number") %>
+              </label>
+            </div>
           </div>
         </div>
-
-        <div class="small-12 medium-3 column"  id="other_option_<%=translations_form.index%>">
-          <label class="control radio is-active">            
-            <%= translations_form.check_box :other, {label: false, class: "checkbox-answer-#{translations_form.index}", onload: "setHidden(1)",
-              onchange: "uniqueCheck($(this),'checkbox-answer-#{translations_form.index}'); showhideElement('value_#{translations_form.index}', ['ranges_#{translations_form.index}'])"} %>
-            <span class="control-indicator"></span>
-            <%= t("admin.legislation.questions.form.other") %>
-          </label>
-        </div>
-
-        <div class="small-12 medium-3 column" id="range_option_<%=translations_form.index%>">
-          <label class="control radio is-active">
-            <%= translations_form.check_box :is_range, {label: false, class: "checkbox-answer-#{translations_form.index}", onload: "setHidden(1)",
-            onchange: "uniqueCheck($(this),'checkbox-answer-#{translations_form.index}'); showhideElement('ranges_#{translations_form.index}', ['value_#{translations_form.index}'])"} %>
-            <span class="control-indicator"></span>
-            <%= t("admin.legislation.questions.form.range") %>
-          </label>
-        </div>
-
-
-        <div class="small-12 medium-3 column" id="number_option_<%=translations_form.index%>">
-          <label class="control radio is-active" >
-            <%= translations_form.check_box :is_number, {label: false, class: "checkbox-answer-#{translations_form.index}",onload: "setHidden(1)", onchange: "uniqueCheck($(this),'checkbox-answer-#{translations_form.index}'); showhideElement('value_#{translations_form.index}', ['ranges_#{translations_form.index}'])"} %>
-            <span class="control-indicator"></span>
-            <%= t("admin.legislation.questions.form.number") %>
-          </label>
-        </div>
+        <script>
+          $('#ranges_<%=nome%>').hide();
+        </script>
       <hr>
       <% end %>
     </div>
