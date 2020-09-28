@@ -36,10 +36,14 @@
               <%= content_tag :ul do %>
                 <% question.question_options.each do |question_option| %>
                   <%= content_tag :li do %>
-                    <%if question_option.other == false %>
-                    <%= question_option.value %> (<%= Legislation::Answer.where(legislation_question_option_id: question_option.id).uniq.count %>)
-                    <%else%>
-                    <%= link_to question_option.value + "(#{Legislation::Answer.where(legislation_question_option_id: question_option.id).uniq.count})", other_answers_admin_legislation_process_questions_path(@process, question, question: question, option: question_option)%>
+                    <%if (question_option.other == false || question_option.other.blank?) && (question_option.is_range == false || question_option.is_range.blank?) && (question_option.is_number == false || question_option.is_number.blank?) %>
+                      <%= question_option.value %> (<%= Legislation::Answer.where(legislation_question_option_id: question_option.id).uniq.count %>)
+                    <%elsif question_option.other == true%>
+                      <%= link_to t("admin.legislation.questions.form.other") + "(#{Legislation::Answer.where("legislation_question_option_id = ? AND value_other is not NULL AND value_other != ''", question_option.id).uniq.count})", other_answers_admin_legislation_process_questions_path(@process, question, question: question, option: question_option)%>
+                    <%elsif question_option.is_range == true%>
+                      <%= link_to t("admin.legislation.questions.form.range") + "(#{Legislation::Answer.where("legislation_question_option_id = ? AND value_range is not NULL", question_option.id).uniq.count})", range_answers_admin_legislation_process_questions_path(@process, question, question: question, option: question_option)%>
+                    <%elsif question_option.is_number == true%>
+                      <%= link_to t("admin.legislation.questions.form.number") + "(#{Legislation::Answer.where("legislation_question_option_id = ? AND value_number is not NULL", question_option.id).uniq.count})", number_answers_admin_legislation_process_questions_path(@process, question, question: question, option: question_option)%>
                     <%end%>
                   <% end %>
                 <% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200921081804) do
+ActiveRecord::Schema.define(version: 20200928092720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -655,6 +655,7 @@ ActiveRecord::Schema.define(version: 20200921081804) do
     t.datetime "updated_at",                     null: false
     t.string   "value_other"
     t.integer  "value_range"
+    t.integer  "value_number"
     t.index ["hidden_at"], name: "index_legislation_answers_on_hidden_at", using: :btree
     t.index ["legislation_question_id"], name: "index_legislation_answers_on_legislation_question_id", using: :btree
     t.index ["legislation_question_option_id"], name: "index_legislation_answers_on_legislation_question_option_id", using: :btree

@@ -11,12 +11,13 @@
     <% @answers.each do |answer| %>
         <tr>
             <td>
-                <%= answer.value_other %>
+                <%= answer.value_range %>
             </td>
         </tr>
     <% end %>
     </tbody>
     </table>
+    
 <% else %>
     <%= t("admin.legislation.questions.table.no_options") %>
 <% end %>

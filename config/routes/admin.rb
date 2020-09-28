@@ -224,6 +224,8 @@ namespace :admin do
     resources :processes do
       resources :questions do
         get :other_answers, on: :collection
+        get :range_answers, on: :collection
+        get :number_answers, on: :collection
       end
       resources :proposals do
         member { patch :toggle_selection }

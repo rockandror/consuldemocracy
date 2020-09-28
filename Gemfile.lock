@@ -487,6 +487,7 @@ GEM
     sshkit (1.21.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    starrr (0.2.0)
     sync (0.5.0)
     term-ansicolor (1.7.1)
       tins (~> 1.0)
@@ -621,6 +622,7 @@ DEPENDENCIES
   spring (~> 2.0.1)
   spring-commands-rspec (~> 1.0.4)
   sprockets (~> 3.7.2)
+  starrr
   turbolinks (~> 2.5.3)
   turnout (~> 2.4.0)
   uglifier (~> 4.2)
@@ -631,4 +633,4 @@ DEPENDENCIES
   wkhtmltopdf-binary (= 0.12.4)
 
 BUNDLED WITH
-   2.0.2
+   2.1.4

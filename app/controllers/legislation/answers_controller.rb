@@ -19,25 +19,25 @@ class Legislation::AnswersController < Legislation::BaseController
     if opt.count >= 1
       if @process.debate_phase.open?
         opt.each do |option|
+
           @answer = Legislation::Answer.new
           @answer.user = current_user
           @answer.question_option = Legislation::QuestionOption.find(option)
           @answer.legislation_question_id = params[:question_id]
           @answer.value_range = params[:legislation_answer][:value_range] if Legislation::QuestionOption.find(option).is_range == true
           @answer.value_other = params[:legislation_answer][:value_other] if Legislation::QuestionOption.find(option).other == true
-          puts "=================================================================="
-          puts params
-          puts "================="
-          puts params[:legislation_answer][:value_range]
-          puts "================"
-          puts @answer.attributes
-          puts "=================================================================="
-          if @answer.save
-            track_event
-          else
-            puts @answer.errors.full_messages
+          @answer.value_number = params[:legislation_answer][:value_number] if Legislation::QuestionOption.find(option).is_number == true
+         
+          if Legislation::QuestionOption.find(option).is_range == true && !params[:legislation_answer][:value_range].blank? ||
+            Legislation::QuestionOption.find(option).other == true && !params[:legislation_answer][:value_other].blank? ||
+            Legislation::QuestionOption.find(option).is_number == true && !params[:legislation_answer][:value_number].blank?
+            if @answer.save
+              track_event
+            else
+              puts @answer.errors.full_messages
+            end
           end
-          xxx
+          
         end
       end
       redirect_to legislation_process_question_path(@process, @question), notice: "Respuestas guardadas"
@@ -71,7 +71,7 @@ class Legislation::AnswersController < Legislation::BaseController
 
     def answer_params
       params.require(:legislation_answer).permit(
-        :value_other, :value_range, :legislation_question_option_id => []
+        :value_other, :value_range,:value_number, :legislation_question_option_id => []
       )
     end
 

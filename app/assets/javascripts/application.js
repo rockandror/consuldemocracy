@@ -87,6 +87,7 @@
 //= require send_admin_notification_alert
 //= require settings
 //= require login_form
+//= require starrr.js
 
 var initialize_modules = function() {
   App.Answers.initialize();
@@ -235,3 +236,4 @@ function setHiddenResponse(id) {
     document.getElementById("submit").display = "block";
   }
 }
+
