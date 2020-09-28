@@ -1,4 +1,4 @@
-<% provide :title do %><%= @question.title %><% end %>
+<% provide :title do %><%= @process.title %><% end %>
 
 <section class="debate-questions">
   <div class="quiz-header row small-collapse">
@@ -38,7 +38,7 @@
   </div>
   <div class="row">
     <div class="small-12 medium-9 column">
-      <h2 class="quiz-question"><%= @question.title %></h2>
+      <h2 class="quiz-question"><%= @question.title.html_safe %></h2>
       <div class="debate-questions" id="legislation-answer-form">
         <% if !@question.try(:question_options).blank?%>
           <%= render "answer_form", process: @process, question: @question, answer: @answer %>

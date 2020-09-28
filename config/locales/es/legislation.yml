@@ -116,6 +116,8 @@ es:
         debate: Debate
       show:
         value_other: Otra respuesta
+        value_range: Respuesta de un rango
+        value_number: Respuesta numérica
         answer_question: Enviar respuesta
         last_question: Anterior pregunta 
         next_question: Siguiente pregunta

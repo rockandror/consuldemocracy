@@ -87,6 +87,7 @@
 //= require send_admin_notification_alert
 //= require settings
 //= require login_form
+//= require starrr.js
 
 var initialize_modules = function() {
   App.Answers.initialize();
@@ -156,6 +157,15 @@ function hide_element(element) {
   }
 }
 
+function hide_checkboxs(element) {
+  var x = document.getElementById(element);
+  if (x.disabled == false) {
+    x.disabled = true;
+  } else {
+    x.disabled = false;
+  }
+}
+
 function cleanCommentsForm() {
   document.getElementById("new_comment").reset();
 }
@@ -169,7 +179,6 @@ function setHidden(limit) {
   });
   $(".checkbox-answer").each(function(){
     if(count >= limit){
-      console.log("LIMIT COUNT");
       if($(this).prop("checked") == false){
         $(this).attr("disabled", true);
       }else{
@@ -183,3 +192,48 @@ function setHidden(limit) {
     document.getElementById("submit").display = "block";
   }
 }
+
+function uniqueCheck(select, other_ids) {
+  var aux = $('.' + other_ids)
+  for(var i=0; i< aux.length; i++){
+    $('#' + aux[i].id).prop("checked", false);
+  }
+
+  select.prop("checked", true);
+}
+
+function showhideElement(element_show, elements_hide) {
+  for(var i=0; i< elements_hide.length; i++){
+    if ( elements_hide[i]) {
+      $('#' + elements_hide[i]).hide();
+    }
+  }
+
+  if (element_show) {
+    $('#' + element_show).show(); 
+  }
+}
+
+function setHiddenResponse(id) {
+  count = 0
+  $(".checkbox-answer-"+id).each(function(){
+    if($(this).prop("checked")){
+      count = count +1
+    }
+  });
+  $(".checkbox-answer-"+id).each(function(){
+    if(count >= 1){
+      if($(this).prop("checked") == false){
+        $(this).attr("disabled", true);
+      }else{
+        $(this).attr("disabled", false);
+      }
+    }else{
+      $(this).attr("disabled", false);
+    }
+  });
+  if(count >= 1){
+    document.getElementById("submit").display = "block";
+  }
+}
+
