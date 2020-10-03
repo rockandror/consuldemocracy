@@ -7,6 +7,6 @@ class Budgets::SupportsInfoComponent < ApplicationComponent
   end
 
   def total_supports
-    Vote.where(votable: budget.investments, voter: current_user).count
+    Vote.where(votable: budget.investments, voter: current_user, vote_flag: true).count
   end
 end
