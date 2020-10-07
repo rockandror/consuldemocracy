@@ -2,6 +2,7 @@ class ModeratedContent < ApplicationRecord
   belongs_to :comment, foreign_key: "moderable_id"
   belongs_to :moderated_text, foreign_key: "moderated_text_id"
   belongs_to :moderable, polymorphic: true
+  before_destroy :mantain_consistency_comments_count
 
   scope :confirmed,        -> { where("confirmed_at IS NOT ?", nil) }
   scope :declined,         -> { where("declined_at IS NOT ?", nil) }
@@ -18,4 +19,9 @@ class ModeratedContent < ApplicationRecord
     "moderable_type = ? AND moderated_text_id IN (?) AND moderable_id = ?",
     type, word_ids, id
   ).delete_all }
+
+  def mantain_consistency_comments_count
+    moderable.touch
+    moderable.increment_comments_count
+  end
 end

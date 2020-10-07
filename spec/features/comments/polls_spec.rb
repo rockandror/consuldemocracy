@@ -628,5 +628,28 @@ describe "Commenting polls" do
       expect(page).to have_content(parent.body)
       expect(page).not_to have_content("A vulgar reply")
     end
+
+    scenario "mantain consistency comments count when destroy word with ofenses", :js do
+      admin = create(:administrator)
+
+      fill_in "comment-body-poll_#{poll.id}", with: "vulgar comment"
+      click_button 'Publish comment'
+      expect(page).to have_content "Comments (2)"
+
+      visit poll_path(poll)
+      expect(page).to have_content "Comments (1)"
+
+      logout
+      login_as(admin.user)
+      visit admin_moderated_texts_path
+      expect(page).to have_content("vulgar")
+      expect(page).to have_content("1")
+      accept_confirm "Are you sure you want to delete this word? There is 1 comment that contains it, when you delete this word the comment will be visible again to everybody." do
+        click_link 'Delete'
+      end
+
+      visit poll_path(poll)
+      expect(page).to have_content "Comments (2)"
+    end
   end
 end
