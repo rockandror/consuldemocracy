@@ -14,7 +14,7 @@ class Legislation::QuestionOption < ApplicationRecord
   has_many :answers, class_name: "Legislation::Answer", foreign_key: "legislation_question_id", dependent: :destroy, inverse_of: :question
 
   validates :question, presence: true
-  validates_translation :value, presence: true, if: -> {self.other.to_s != "true" && self.is_range.to_s != "true" && self.is_number.to_s != "true"}
+  validates_translation :value, presence: true, if: -> {self.other.to_s != "true" && self.is_range.to_s != "true"}
   validates_translation :range_first, presence: true, if: -> {self.is_range}
   validates_translation :range_last, presence: true, if: -> {self.is_range}
 end

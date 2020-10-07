@@ -29,9 +29,6 @@
                      %>                          
                 <%= f.hidden_field :legislation_question_option_id, multiple: true, value: question_option.id %>              
                 
-            <% elsif question_option.is_number == true%>
-              <%= f.hidden_field :legislation_question_option_id, multiple: true, value: question_option.id %>
-              <%= f.number_field :value_number, value: Legislation::Answer.find_by(legislation_question_option_id: question_option.id, user_id: current_user.id).try(:value_number), label: t("legislation.questions.show.value_number") %>
             <%else%>
                 <%if Legislation::Answer.find_by(legislation_question_option_id: question_option.id, user_id: current_user.id) %>
                   <label class="control radio is-active" onload="setHidden(1)">

@@ -43,15 +43,7 @@
                 <span class="control-indicator"></span>
                 <%= t("admin.legislation.questions.form.range") %>
               </label>
-            </div>
-            <div class="row">
-              <label class="control radio is-active" >
-                <%= translations_form.check_box :is_number, {label: false, class: "checkbox-answer-#{nome}",onload: "setHidden(1)",
-                  onchange: "uniqueCheck($(this),'checkbox-answer-#{nome}'); showhideElement('', ['ranges_#{nome}', 'value_#{nome}'])"} %>
-                <span class="control-indicator"></span>
-                <%= t("admin.legislation.questions.form.number") %>
-              </label>
-            </div>
+            </div>            
           </div>
         </div>
         <script>

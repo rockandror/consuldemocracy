@@ -26,11 +26,10 @@ class Legislation::AnswersController < Legislation::BaseController
           @answer.legislation_question_id = params[:question_id]
           @answer.value_range = params[:legislation_answer][:value_range] if Legislation::QuestionOption.find(option).is_range == true
           @answer.value_other = params[:legislation_answer][:value_other] if Legislation::QuestionOption.find(option).other == true
-          @answer.value_number = params[:legislation_answer][:value_number] if Legislation::QuestionOption.find(option).is_number == true
+          
          
           if Legislation::QuestionOption.find(option).is_range == true && !params[:legislation_answer][:value_range].blank? ||
-            Legislation::QuestionOption.find(option).other == true && !params[:legislation_answer][:value_other].blank? ||
-            Legislation::QuestionOption.find(option).is_number == true && !params[:legislation_answer][:value_number].blank?
+            Legislation::QuestionOption.find(option).other == true && !params[:legislation_answer][:value_other].blank?
             if @answer.save
               track_event
             else
@@ -71,7 +70,7 @@ class Legislation::AnswersController < Legislation::BaseController
 
     def answer_params
       params.require(:legislation_answer).permit(
-        :value_other, :value_range,:value_number, :legislation_question_option_id => []
+        :value_other, :value_range, :legislation_question_option_id => []
       )
     end
 
