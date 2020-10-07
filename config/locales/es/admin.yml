@@ -702,9 +702,9 @@ es:
         error: Ha ocurrido un error al modificar esta palabra. Por favor, intente nuevamente
       destroy:
         alert:
-          zero: ¿Esta seguro que desea eliminar esta palabra?
-          one: "¿Esta seguro que desea eliminar esta palabra? Existe 1 comentario que la contiene, al eliminar esta palabra el comentario se hará de nuevo visibles para todo el mundo."
-          other: "¿Esta seguro que desea eliminar esta palabra? Existen %{count} comentarios que la contienen, al eliminar esta palabra los %{count} comentarios se harán de nuevo visibles para todo el mundo."
+          zero: ¿Está seguro que desea eliminar esta palabra?
+          one: "Está seguro que desea eliminar esta palabra? Existe 1 comentario que la contiene, al eliminar esta palabra el comentario se hará de nuevo visibles para todo el mundo."
+          other: "Está seguro que desea eliminar esta palabra? Existen %{count} comentarios que la contienen, al eliminar esta palabra los %{count} comentarios se harán de nuevo visibles para todo el mundo."
         notice: Palabra eliminada correctamente.
       imports:
         index:
