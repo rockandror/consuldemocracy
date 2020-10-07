@@ -19,7 +19,7 @@
       <tr id="<%= dom_id(question) %>">
         <td>
           <strong>
-            <%= link_to question.title, admin_question_path(question) %>
+            <%= link_to markdown(question.title), admin_question_path(question) %>
           </strong>
           <% if question.proposal.present? %>
             <small>

@@ -15,7 +15,7 @@
     <% @poll.questions.each do |question| %>
       <div class="row">
         <div class="small-12 column">
-          <h3><%= question.title %></h3>
+          <h3><%= markdown(question.title) %></h3>
         </div>
         <% question.question_answers.each_with_index do |answer, i| %>
           <div class="small-12 medium-6 large-3 column end">

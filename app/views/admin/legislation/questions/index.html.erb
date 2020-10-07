@@ -30,7 +30,7 @@
         <% @process.questions.each do |question| %>
           <tr id="<%= dom_id(question) %>">
             <td>
-              <%= link_to simple_format(strip_links question.title.html_safe), edit_admin_legislation_process_question_path(@process, question) %>
+              <%= link_to simple_format(strip_links markdown(question.title.html_safe)), edit_admin_legislation_process_question_path(@process, question) %>
             </td>
             <td>
               <%= content_tag :ul do %>

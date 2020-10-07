@@ -1,5 +1,5 @@
 <%= back_link_to %>
-<h1><%= @question.title.html_safe%></h1>
+<h1><%= markdown(@question.title).html_safe%></h1>
 <%if @answers.count >= 1 %>
     <table class="stack">
     <thead>

@@ -3,7 +3,7 @@
 <h2><%= t("admin.questions.show.answers.documents_list") %></h2>
 
 <ul class="breadcrumbs">
-  <li><%= @answer.question.title %></li>
+  <li><%= markdown(@answer.question.title) %></li>
   <li><%= @answer.title %></li>
 </ul>
 

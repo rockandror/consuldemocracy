@@ -1,5 +1,5 @@
 <% provide :title do %>
-  <%= t("admin.header.title") %> - <%= t("admin.menu.legislation") %> - <%= @process.title %> - <%= t("admin.legislation.questions.index.title") %> - <%= @question.title %>
+  <%= t("admin.header.title") %> - <%= t("admin.menu.legislation") %> - <%= @process.title %> - <%= t("admin.legislation.questions.index.title") %> - <%= markdown(@question.title) %>
 <% end %>
 
 <div class="legislation-questions-edit legislation-questions-form">
@@ -11,7 +11,7 @@
     <%= render "admin/legislation/processes/subnav", process: @process, active: "questions" %>
 
     <div class="small-12 column">
-      <h3 class="inline-block"><%= t("admin.legislation.questions.edit.title", question_title: @question.title).html_safe %></h3>
+      <h3 class="inline-block"><%= t("admin.legislation.questions.edit.title", question_title: markdown(@question.title)).html_safe %></h3>
 
       <div class="float-right">
         <%= link_to t("admin.legislation.questions.index.delete"), admin_legislation_process_question_path(@process, @question),

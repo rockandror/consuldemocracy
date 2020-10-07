@@ -23,12 +23,14 @@
                                       rows: 5,
                                       placeholder: t("admin.legislation.questions.form.title_placeholder"),
                                       label: t("admin.legislation.questions.form.title") %>
-      <div class="ckeditor">
-        <%= translations_form.cktext_area :title,
+      <div >
+        <%= translations_form.text_area :title,
+                                          hint: t("admin.legislation.processes.form.use_markdown"),
                                           rows: 5,
                                           placeholder: t("admin.legislation.questions.form.title_placeholder"),
-                                          label: t("admin.legislation.questions.form.title"),
-                                          ckeditor: { language: I18n.locale, toolbar: "questions" } %>
+                                          label: t("admin.legislation.questions.form.title")
+                                          
+                                           %>
       </div>
     </div>
   <% end %>

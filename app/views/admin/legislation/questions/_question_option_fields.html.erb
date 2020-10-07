@@ -31,7 +31,7 @@
             <div class="row">
               <label class="control radio is-active">            
                 <%= translations_form.check_box :other, {label: false, class: "checkbox-answer-#{nome}", onload: "setHidden(1)",
-                  onchange: "uniqueCheck($(this),'checkbox-answer-#{nome}'); showhideElement('', ['ranges_#{nome}', 'value_#{nome}'])"} %>
+                  onchange: "uniqueCheck($(this),'checkbox-answer-#{nome}'); showhideElement(value_#{nome}', ['ranges_#{nome}'])"} %>
                 <span class="control-indicator"></span>
                 <%= t("admin.legislation.questions.form.other") %>
               </label>
@@ -39,7 +39,7 @@
             <div class="row">
               <label class="control radio is-active">
                 <%= translations_form.check_box :is_range, {label: false, class: "checkbox-answer-#{nome}", onload: "setHidden(1)",
-                onchange: "uniqueCheck($(this),'checkbox-answer-#{nome}'); showhideElement('ranges_#{nome}', ['value_#{nome}'])"} %>
+                onchange: "uniqueCheck($(this),'checkbox-answer-#{nome}'); showhideElement('ranges_#{nome}', [])"} %>
                 <span class="control-indicator"></span>
                 <%= t("admin.legislation.questions.form.range") %>
               </label>
@@ -49,10 +49,10 @@
         <script>
           if ('<%=translations_form.object.is_range%>' == 'true') {
             $('#ranges_<%=nome%>').show();
-            $('#value_<%=nome%>').hide();
-          } else if ('<%=translations_form.object.other%>' == 'true' || '<%=translations_form.object.is_number%>' == 'true') {
+            $('#value_<%=nome%>').show();
+          } else if ('<%=translations_form.object.other%>' == 'true' ) {
             $('#ranges_<%=nome%>').hide();
-            $('#value_<%=nome%>').hide();
+            $('#value_<%=nome%>').show();
           } else {
             $('#ranges_<%=nome%>').hide();
             $('#value_<%=nome%>').show();
