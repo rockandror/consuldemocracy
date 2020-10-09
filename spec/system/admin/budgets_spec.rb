@@ -377,6 +377,26 @@ describe "Admin budgets", :admin do
       end
     end
 
+    scenario "Show the number of votes allowed on approval style budgets" do
+      visit edit_admin_budget_path(budget)
+
+      budget.groups.each do |group|
+        group.headings.each do |heading|
+          expect(page).not_to have_content "Votes allowed"
+          expect(page).not_to have_content "1"
+        end
+      end
+
+      budget.update!(voting_style: "approval")
+
+      budget.groups.each do |group|
+        group.headings.each do |heading|
+          expect(page).to have_content "Votes allowed"
+          expect(page).to have_content "1"
+        end
+      end
+    end
+
     scenario "Show CTA link in public site if added" do
       visit edit_admin_budget_path(budget)
       expect(page).to have_content("Main call to action (optional)")
