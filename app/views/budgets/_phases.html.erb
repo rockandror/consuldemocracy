@@ -54,7 +54,7 @@
                   <%= l(phase.ends_at.to_date - 1.day, format: :long) if phase.ends_at.present? %>
                 </p>
 
-                <%= auto_link_already_sanitized_html(wysiwyg(phase.description)) %></p>
+                <%= auto_link_already_sanitized_html(wysiwyg(phase.description)) %>
 
                 <% if phase.main_button_text.present? && phase.main_button_url.present? %>
                   <%= link_to phase.main_button_text, phase.main_button_url, class: "button large" %>
