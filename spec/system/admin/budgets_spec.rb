@@ -183,12 +183,11 @@ describe "Admin budgets" do
   context "New" do
     scenario "Create budget - Knapsack voting (default)" do
       visit admin_budgets_path
-      click_link "Create new budget"
+      click_button "Create new budget"
+      click_link "Create single heading budget"
 
       fill_in "Name", with: "M30 - Summer campaign"
-      select "Accepting projects", from: "budget[phase]"
-
-      click_button "Create Budget"
+      click_button "Continue to groups"
 
       expect(page).to have_content "New participatory budget created successfully!"
       expect(page).to have_content "M30 - Summer campaign"
@@ -197,12 +196,12 @@ describe "Admin budgets" do
 
     scenario "Create budget - Approval voting", :js do
       visit admin_budgets_path
-      click_link "Create new budget"
+      click_button "Create new budget"
+      click_link "Create single heading budget"
 
       fill_in "Name", with: "M30 - Summer campaign"
-      select "Accepting projects", from: "budget[phase]"
       select "Approval", from: "Final voting style"
-      click_button "Create Budget"
+      click_button "Continue to groups"
 
       expect(page).to have_content "New participatory budget created successfully!"
       expect(page).to have_content "M30 - Summer campaign"

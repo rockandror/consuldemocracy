@@ -196,7 +196,7 @@ describe "Admin budget headings" do
         expect(page).to have_field "Votes allowed", with: 1
 
         fill_in "Heading name", with: "All City"
-        fill_in "Amount", with: "1000"
+        fill_in "Money amount", with: "1000"
         fill_in "Votes allowed", with: 14
         click_button "Create new heading"
 

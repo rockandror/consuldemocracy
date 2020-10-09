@@ -160,10 +160,10 @@ describe "Admin budget groups" do
       create(:budget_heading, group: group_with_headings)
 
       visit edit_admin_budget_group_path(budget, group_with_headings)
-      expect(page).to have_field "Maximum number of headings in which a user can vote"
+      expect(page).to have_field "Maximum number of headings in which a user can select projects"
 
       visit edit_admin_budget_group_path(budget, group_without_headings)
-      expect(page).not_to have_field "Maximum number of headings in which a user can vote"
+      expect(page).not_to have_field "Maximum number of headings in which a user can select projects"
     end
 
     scenario "Changing name for current locale will update the slug if budget is in draft phase", :js do
