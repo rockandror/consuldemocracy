@@ -57,7 +57,7 @@
                 <%= auto_link_already_sanitized_html(wysiwyg(phase.description)) %></p>
 
                 <% if phase.main_button_text.present? && phase.main_button_url.present? %>
-                  <%= link_to phase.main_button_text, phase.main_button_url, class: "button" %>
+                  <%= link_to phase.main_button_text, phase.main_button_url, class: "button large" %>
                 <% end %>
               </div>
 
