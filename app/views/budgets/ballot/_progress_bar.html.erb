@@ -1,5 +1,5 @@
 <span class="total-amount">
-  <% if budget.approval_voting? %>
+  <% if @budget.approval_voting? %>
     <%= sanitize(ballot.amount_limit_info(heading)) %>
   <% else %>
     <%= t("budgets.progress_bar.assigned") %>
