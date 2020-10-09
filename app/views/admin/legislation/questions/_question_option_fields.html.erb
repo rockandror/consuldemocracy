@@ -31,7 +31,7 @@
             <div class="row">
               <label class="control radio is-active">            
                 <%= translations_form.check_box :other, {label: false, class: "checkbox-answer-#{nome}", onload: "setHidden(1)",
-                  onchange: "uniqueCheck($(this),'checkbox-answer-#{nome}'); showhideElement(value_#{nome}', ['ranges_#{nome}'])"} %>
+                  onchange: "uniqueCheck($(this),'checkbox-answer-#{nome}'); showhideElement('value_#{nome}', ['ranges_#{nome}'])"} %>
                 <span class="control-indicator"></span>
                 <%= t("admin.legislation.questions.form.other") %>
               </label>

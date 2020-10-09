@@ -12,21 +12,29 @@ class Legislation::AnswersController < Legislation::BaseController
     delete_answers = "delete from legislation_answers where legislation_question_id = #{params[:question_id]} AND user_id = #{current_user.id}"
     ActiveRecord::Base.connection.execute(delete_answers)
     opt = []
+    
     params[:legislation_answer][:legislation_question_option_id].each do |o|
       opt.push(o) if o.to_i != 0
     end
 
     if opt.count >= 1
       if @process.debate_phase.open?
+        other_count = 0
+        other_range = 0
         opt.each do |option|
 
           @answer = Legislation::Answer.new
           @answer.user = current_user
           @answer.question_option = Legislation::QuestionOption.find(option)
           @answer.legislation_question_id = params[:question_id]
-          @answer.value_range = params[:legislation_answer][:value_range] if Legislation::QuestionOption.find(option).is_range == true
-          @answer.value_other = params[:legislation_answer][:value_other] if Legislation::QuestionOption.find(option).other == true
-          
+          if Legislation::QuestionOption.find(option).is_range == true
+            @answer.value_range = params[:legislation_answer][:value_range][other_range]
+            other_range= other_range + 1
+          end
+          if Legislation::QuestionOption.find(option).other == true
+            @answer.value_other = params[:legislation_answer][:value_other][other_count]
+            other_count = other_count + 1
+          end
          
           if Legislation::QuestionOption.find(option).is_range == true && !params[:legislation_answer][:value_range].blank? ||
             Legislation::QuestionOption.find(option).other == true && !params[:legislation_answer][:value_other].blank?
@@ -39,6 +47,7 @@ class Legislation::AnswersController < Legislation::BaseController
           
         end
       end
+      
       redirect_to legislation_process_question_path(@process, @question), notice: "Respuestas guardadas"
     else
       ans = Legislation::Answer.find_by(legislation_question_id: params[:question_id], user_id: current_user.id)
@@ -70,7 +79,7 @@ class Legislation::AnswersController < Legislation::BaseController
 
     def answer_params
       params.require(:legislation_answer).permit(
-        :value_other, :value_range, :legislation_question_option_id => []
+        :value_other => [], :value_range => [], :legislation_question_option_id => []
       )
     end
 
