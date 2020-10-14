@@ -130,9 +130,7 @@ describe "Ballots" do
         create(:budget_investment, :selected, heading: new_york, price: 10000, title: "Bring back King Kong")
         create(:budget_investment, :selected, heading: new_york, price: 20000, title: "Paint cabs black")
 
-        visit budget_path(budget)
-        click_link "See all investments"
-        click_link "New York €1,000,000"
+        visit budget_investments_path(budget, heading_id: new_york.id)
 
         add_to_ballot("Bring back King Kong")
 
@@ -160,9 +158,7 @@ describe "Ballots" do
       scenario "Removing a investment", :js do
         investment = create(:budget_investment, :selected, heading: new_york, price: 10000, balloters: [user])
 
-        visit budget_path(budget)
-        click_link "See all investments"
-        click_link "New York €1,000,000"
+        visit budget_investments_path(budget, heading_id: new_york.id)
 
         expect(page).to have_content investment.title
         expect(page).to have_css("#amount_spent", text: "€10,000")
@@ -191,9 +187,7 @@ describe "Ballots" do
       scenario "the Map shoud be visible before and after", :js do
         create(:budget_investment, :selected, heading: new_york, price: 10000, title: "More bridges")
 
-        visit budget_path(budget)
-        click_link "See all investments"
-        click_link "New York €1,000,000"
+        visit budget_investments_path(budget, heading_id: new_york.id)
 
         within("#sidebar") do
           expect(page).to have_content "OpenStreetMap"
