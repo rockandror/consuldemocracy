@@ -9,18 +9,21 @@ class Legislation::AnswersController < Legislation::BaseController
   respond_to :html, :js
 
   def create
-    delete_answers = "delete from legislation_answers where legislation_question_id = #{params[:question_id]} AND user_id = #{current_user.id}"
-    ActiveRecord::Base.connection.execute(delete_answers)
     opt = []
     
     params[:legislation_answer][:legislation_question_option_id].each do |o|
       opt.push(o) if o.to_i != 0
     end
 
-    if opt.count >= 1
+    question= Legislation::Question.find_by(id: params[:question_id])
+
+    if opt.count >= 1 && question.multiple_answers >= opt.count
       if @process.debate_phase.open?
         other_count = 0
         other_range = 0
+        delete_answers = "delete from legislation_answers where legislation_question_id = #{params[:question_id]} AND user_id = #{current_user.id}"
+        ActiveRecord::Base.connection.execute(delete_answers)
+    
         opt.each do |option|
 
           @answer = Legislation::Answer.new
@@ -36,8 +39,9 @@ class Legislation::AnswersController < Legislation::BaseController
             other_count = other_count + 1
           end
          
-          if Legislation::QuestionOption.find(option).is_range == true && !params[:legislation_answer][:value_range].blank? ||
-            Legislation::QuestionOption.find(option).other == true && !params[:legislation_answer][:value_other].blank?
+          if Legislation::QuestionOption.find(option).is_range == true && !@answer.value_range.blank? ||
+            Legislation::QuestionOption.find(option).other == true && !@answer.value_other.blank? || 
+            !Legislation::QuestionOption.find(option).is_range && !Legislation::QuestionOption.find(option).other
             if @answer.save
               track_event
             else
@@ -49,6 +53,9 @@ class Legislation::AnswersController < Legislation::BaseController
       end
       
       redirect_to legislation_process_question_path(@process, @question), notice: "Respuestas guardadas"
+    elsif @process.debate_phase.open? && question.multiple_answers < opt.count
+      alert = "No se permiten más de #{question.multiple_answers} respuestas"
+      redirect_to legislation_process_question_path(@process, @question), alert: alert 
     else
       ans = Legislation::Answer.find_by(legislation_question_id: params[:question_id], user_id: current_user.id)
       if !ans.blank?
