@@ -146,17 +146,17 @@ class CommentsController < ApplicationController
     end
 
     def auto_moderate_comment(comment, matches = nil)
+      offensive_matches = comment.check_for_offenses
       if matches.nil?
-        offensive_matches = comment.check_for_offenses
         return if offensive_matches.nil? || offensive_matches.empty?
         build_records(comment, offensive_matches)
+        comment.decrement_comments_count
       else
         build_records(comment, matches)
+        comment.decrement_comments_count if offensive_matches.empty?
       end
-
       ::ModeratedContent.import(@moderated_records)
       comment.is_offensive = true
-      comment.decrement_comments_count
     end
 
     def build_records(comment, matches)

@@ -636,6 +636,74 @@ describe "Users" do
         end
         expect(page).to have_content("Comment updated successfully")
       end
+
+      describe "Mantain consistency comments count" do
+        it "if the original offense is replaced with another offense", :js do
+          debate = create(:debate)
+          visit debate_path(debate)
+          fill_in "comment-body-debate_#{debate.id}", with: "vulgar comment"
+          click_button 'Publish comment'
+          expect(page).to have_content "Comments (1)"
+
+          visit debate_path(debate)
+          expect(page).to have_content "Comments (0)"
+
+          visit user_path(@user, filter: 'comments')
+          within "#comment_#{debate.comments.first.id}" do
+            click_link 'Edit'
+          end
+          fill_in "comment-body-debate_#{debate.id}", with: "damn"
+          click_button "Amend comment"
+
+          visit debate_path(debate)
+
+          expect(page).to have_content "Comments (0)"
+        end
+
+        it "if updates the comment successfully when no offenses are detected", :js do
+          debate = create(:debate)
+          visit debate_path(debate)
+          fill_in "comment-body-debate_#{debate.id}", with: "vulgar comment"
+          click_button 'Publish comment'
+          expect(page).to have_content "Comments (1)"
+
+          visit debate_path(debate)
+          expect(page).to have_content "Comments (0)"
+
+          visit user_path(@user, filter: 'comments')
+          within "#comment_#{debate.comments.first.id}" do
+            click_link 'Edit'
+          end
+          fill_in "comment-body-debate_#{debate.id}", with: "I'm not offensive :D"
+          click_button "Amend comment"
+
+          visit debate_path(debate)
+
+          expect(page).to have_content "Comments (1)"
+        end
+
+        it "if remove one of two offenses", :js do
+          debate = create(:debate)
+          visit debate_path(debate)
+          fill_in "comment-body-debate_#{debate.id}", with: "vulgar damn comment"
+          click_button 'Publish comment'
+          expect(page).to have_content "Comments (1)"
+
+          visit debate_path(debate)
+          expect(page).to have_content "Comments (0)"
+
+          visit user_path(@user, filter: 'comments')
+          within "#comment_#{debate.comments.first.id}" do
+            click_link 'Edit'
+          end
+          fill_in "comment-body-debate_#{debate.id}", with: "only damn comment"
+          click_button "Amend comment"
+
+          visit debate_path(debate)
+
+          expect(page).to have_content "Comments (0)"
+        end
+      end
     end
 
     context "Administration" do
