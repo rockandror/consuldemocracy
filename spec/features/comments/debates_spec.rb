@@ -541,4 +541,107 @@ describe "Commenting debates" do
     end
   end
 
+  describe "Automated moderation" do
+    let!(:parent) { create(:comment,
+      body: "parent comment",
+      commentable: debate,
+      user: user)
+    }
+
+    before do
+      create(:moderated_text, text: "vulgar")
+      login_as(user)
+      visit debate_path(debate)
+    end
+
+    scenario "Non-offensive comments are created successfully", :js do
+      fill_in "comment-body-debate_#{debate.id}", with: "not a comment"
+      click_button 'Publish comment'
+
+      expect(page).to have_content "Comments (1)"
+
+      within "#comments" do
+        expect(page).to have_content "not a comment"
+        expect(page).not_to have_content "This comment won't be shown next time this page is reloaded as it has been deemed offensive"
+      end
+    end
+
+    scenario "Offensive comment hides after reloading", :js do
+      fill_in "comment-body-debate_#{debate.id}", with: "vulgar comment"
+      click_button 'Publish comment'
+
+      expect(page).to have_content "Comments (1)"
+
+      within "#comments" do
+        expect(page).to have_content "This comment won't be shown next time this page is reloaded as it has been deemed offensive"
+        expect(page).to have_content "vulgar comment"
+      end
+
+      visit debate_path(debate)
+      expect(page).to have_content "Comments (1)"
+
+      within "#comments" do
+        expect(page).not_to have_content "vulgar comment"
+        expect(page).not_to have_content "This comment won't be shown next time this page is reloaded as it has been deemed offensive"
+      end
+    end
+
+    scenario "Non-offensive replies are created succesfully", :js do
+      within "#comment_#{parent.id}" do
+        expect(page).to have_content(parent.body)
+        click_link "Reply"
+      end
+
+      within "#js-comment-form-comment_#{parent.id}" do
+        fill_in "comment-body-comment_#{parent.id}", with: "not a reply"
+        click_button "Publish reply"
+      end
+
+      expect(page).to have_content "not a reply"
+      expect(page).not_to have_content "This comment won't be shown next time this page is reloaded as it has been deemed offensive"
+    end
+
+    scenario "Offensive reply hides after reloading", :js do
+      within "#comment_#{parent.id}" do
+        expect(page).to have_content(parent.body)
+        click_link "Reply"
+      end
+
+      within "#js-comment-form-comment_#{parent.id}" do
+        fill_in "comment-body-comment_#{parent.id}", with: "A vulgar reply"
+        click_button "Publish reply"
+      end
+
+      expect(page).to have_content("A vulgar reply")
+      expect(page).to have_content("This comment won't be shown next time this page is reloaded as it has been deemed offensive")
+
+      visit debate_path(debate)
+
+      expect(page).to have_content(parent.body)
+      expect(page).not_to have_content("A vulgar reply")
+    end
+
+    scenario "mantain consistency comments count when destroy word with ofenses", :js do
+      admin = create(:administrator)
+
+      fill_in "comment-body-debate_#{debate.id}", with: "vulgar comment"
+      click_button 'Publish comment'
+      expect(page).to have_content "Comments (2)"
+
+      visit debate_path(debate)
+      expect(page).to have_content "Comments (1)"
+
+      logout
+      login_as(admin.user)
+      visit admin_moderated_texts_path
+      expect(page).to have_content("vulgar")
+      expect(page).to have_content("1")
+      accept_confirm "Are you sure you want to delete this word? There is 1 comment that contains it, when you delete this word the comment will be visible again to everybody." do
+        click_link 'Delete'
+      end
+
+      visit debate_path(debate)
+      expect(page).to have_content "Comments (2)"
+    end
+  end
 end

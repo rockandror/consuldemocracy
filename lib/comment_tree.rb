@@ -16,20 +16,20 @@ class CommentTree
   end
 
   def root_comments
-    base_comments.roots.send("sort_by_#{order}").page(page).per(ROOT_COMMENTS_PER_PAGE).for_render
+    base_comments.roots.filtered.send("sort_by_#{order}").page(page).per(ROOT_COMMENTS_PER_PAGE).for_render
   end
 
   def base_comments
     if @valuations && commentable.respond_to?("valuations")
       commentable.valuations
     else
-      commentable.comments
+      commentable.comments.filtered
     end
   end
 
   def root_descendants
     root_comments.each_with_object([]) do |root, array|
-      array.concat(Comment.descendants_of(root).send("sort_descendants_by_#{order}").for_render.to_a)
+      array.concat(Comment.descendants_of(root).filtered.send("sort_descendants_by_#{order}").for_render.to_a)
     end
   end
 

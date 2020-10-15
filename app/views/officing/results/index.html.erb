@@ -30,7 +30,7 @@
 
       <% by_question = @partial_results.group_by(&:question_id) %>
       <% @poll.questions.each do |question| %>
-        <h3><%= question.title %></h3>
+        <h3><%= markdown(question.title) %></h3>
 
         <table>
           <thead>

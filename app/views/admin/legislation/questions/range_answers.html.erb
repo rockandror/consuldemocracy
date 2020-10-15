@@ -1,0 +1,25 @@
+<%= back_link_to %>
+<h1><%= markdown(@question.title).html_safe%></h1>
+<%if @answers.count >= 1 %>
+    <table class="stack">
+    <thead>
+        <tr>
+        <th><%= "Respuestas" %></th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @answers.each do |answer| %>
+        <tr>
+            <td>
+                <%= answer.value_range %>
+            </td>
+        </tr>
+    <% end %>
+    </tbody>
+    </table>
+    <p>
+    <b>Total:</b> <%=@media%>
+    </p>
+<% else %>
+    <%= t("admin.legislation.questions.table.no_options") %>
+<% end %>

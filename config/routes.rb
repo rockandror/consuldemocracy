@@ -76,4 +76,6 @@ Rails.application.routes.draw do
     get :new_password_sent, on: :collection
     post :request_post_access_key, on: :collection
   end
+
+  get "*missing" => redirect { |p, req| req.flash[:alert] = "No existe la ruta"; '/' }
 end

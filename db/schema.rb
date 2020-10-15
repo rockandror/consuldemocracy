@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200608072147) do
+ActiveRecord::Schema.define(version: 20200928092720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -654,6 +654,8 @@ ActiveRecord::Schema.define(version: 20200608072147) do
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.string   "value_other"
+    t.integer  "value_range"
+    t.integer  "value_number"
     t.index ["hidden_at"], name: "index_legislation_answers_on_hidden_at", using: :btree
     t.index ["legislation_question_id"], name: "index_legislation_answers_on_legislation_question_id", using: :btree
     t.index ["legislation_question_option_id"], name: "index_legislation_answers_on_legislation_question_option_id", using: :btree
@@ -824,6 +826,10 @@ ActiveRecord::Schema.define(version: 20200608072147) do
     t.datetime "updated_at",                                     null: false
     t.string   "value"
     t.boolean  "other",                          default: false
+    t.boolean  "is_range"
+    t.integer  "range_first",                    default: 1
+    t.integer  "range_last",                     default: 2
+    t.boolean  "is_number"
     t.index ["legislation_question_option_id"], name: "index_61bcec8729110b7f8e1e9e5ce08780878597a209", using: :btree
     t.index ["locale"], name: "index_legislation_question_option_translations_on_locale", using: :btree
   end
@@ -834,6 +840,10 @@ ActiveRecord::Schema.define(version: 20200608072147) do
     t.datetime "hidden_at"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.boolean  "is_range"
+    t.integer  "range_first",             default: 1
+    t.integer  "range_last",              default: 2
+    t.boolean  "is_number"
     t.index ["hidden_at"], name: "index_legislation_question_options_on_hidden_at", using: :btree
     t.index ["legislation_question_id"], name: "index_legislation_question_options_on_legislation_question_id", using: :btree
   end
@@ -932,6 +942,25 @@ ActiveRecord::Schema.define(version: 20200608072147) do
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.index ["status_id"], name: "index_milestones_on_status_id", using: :btree
+  end
+
+  create_table "moderated_contents", force: :cascade do |t|
+    t.string   "moderable_type"
+    t.integer  "moderated_text_id"
+    t.integer  "moderable_id"
+    t.datetime "confirmed_at"
+    t.datetime "declined_at"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["moderable_type", "moderable_id"], name: "index_moderated_contents_on_moderable_type_and_moderable_id", using: :btree
+    t.index ["moderated_text_id"], name: "index_moderated_contents_on_moderated_text_id", using: :btree
+  end
+
+  create_table "moderated_texts", force: :cascade do |t|
+    t.string   "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["text"], name: "index_moderated_texts_on_text", unique: true, using: :btree
   end
 
   create_table "moderators", force: :cascade do |t|

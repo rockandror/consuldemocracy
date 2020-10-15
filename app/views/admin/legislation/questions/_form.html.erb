@@ -19,10 +19,19 @@
 
   <%= f.translatable_fields do |translations_form| %>
     <div class="small-12 medium-9 column end">
-      <%= translations_form.text_area :title,
+      <%#= translations_form.text_area :title,
                                       rows: 5,
                                       placeholder: t("admin.legislation.questions.form.title_placeholder"),
                                       label: t("admin.legislation.questions.form.title") %>
+      <div >
+        <%= translations_form.text_area :title,
+                                          hint: t("admin.legislation.processes.form.use_markdown"),
+                                          rows: 5,
+                                          placeholder: t("admin.legislation.questions.form.title_placeholder"),
+                                          label: t("admin.legislation.questions.form.title")
+                                          
+                                           %>
+      </div>
     </div>
   <% end %>
 

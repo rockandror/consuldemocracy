@@ -13,7 +13,7 @@ class Comment < ApplicationRecord
   acts_as_votable
   has_ancestry touch: true
 
-  attr_accessor :as_moderator, :as_administrator
+  attr_accessor :as_moderator, :as_administrator, :is_offensive
 
   validates :body, presence: true
   validates :user, presence: true
@@ -22,6 +22,9 @@ class Comment < ApplicationRecord
 
   validate :validate_body_length, unless: -> { valuation }
   validate :comment_valuation, if: -> { valuation }
+
+  has_many :moderated_texts, through: :moderated_contents
+  has_many :moderated_contents, dependent: :destroy, foreign_key: "moderable_id", as: :moderable
 
   belongs_to :commentable, -> { with_hidden }, polymorphic: true, counter_cache: true, touch: true
   belongs_to :user, -> { with_hidden }
@@ -39,7 +42,7 @@ class Comment < ApplicationRecord
     not_valuations
       .where(%{(comments.commentable_type = 'Debate' and comments.commentable_id in (?)) or
             (comments.commentable_type = 'Proposal' and comments.commentable_id in (?)) or
-            (comments.commentable_type = 'Poll' and comments.commentable_id in (?)) or 
+            (comments.commentable_type = 'Poll' and comments.commentable_id in (?)) or
             (comments.commentable_type = 'Topic' and comments.commentable_id in (?))},
           Debate.public_for_api.pluck(:id),
           Proposal.public_for_api.pluck(:id),
@@ -58,7 +61,26 @@ class Comment < ApplicationRecord
 
   scope :not_valuations, -> { where(valuation: false) }
 
+  scope :filtered, -> {
+    includes(:moderated_contents)
+      .joins("LEFT JOIN moderated_contents
+        ON moderated_contents.moderable_id = comments.id
+        AND moderated_contents.moderable_type = 'Comment'")
+      .where("moderated_contents.moderable_id IS NULL
+        OR moderated_contents.declined_at IS NOT NULL").distinct
+  }
+
   after_create :call_after_commented
+
+  def decrement_comments_count
+    return if self.commentable.nil?
+    self.commentable.class.decrement_counter(:comments_count, self.commentable_id)
+  end
+
+  def increment_comments_count
+    return if self.commentable.nil?
+    self.commentable.class.increment_counter(:comments_count, self.commentable_id)
+  end
 
   def self.build(commentable, user, body, p_id = nil, valuation = false)
     new(commentable: commentable,
@@ -149,6 +171,23 @@ class Comment < ApplicationRecord
     return false unless ["Proposal", "Debate"].include? commentable_type
     return false unless commentable.public_for_api?
     return true
+  end
+
+  def check_for_offenses
+    moderated_words = ::ModeratedText.all.pluck(:text)
+    return if moderated_words.empty?
+    regex = /\b(?:#{::Regexp.union(moderated_words).source})\b/i
+
+    self.body.scan(regex).map(&:downcase)
+  end
+
+  def allows_editing?
+    moderated_contents.any? &&
+      moderated_contents.where("confirmed_at IS NULL and declined_at IS NULL").any?
+  end
+
+  def confirmed_moderation?
+    moderated_contents.where("confirmed_at IS NOT NULL").any?
   end
 
   private
