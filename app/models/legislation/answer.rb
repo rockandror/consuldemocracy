@@ -11,4 +11,12 @@ class Legislation::Answer < ApplicationRecord
   validates :question, presence: true#, uniqueness: { scope: :user_id}
   validates :question_option, presence: true
   validates :user, presence: true
+
+  scope :legislation_by_question_option,  -> (question_option) { where(legislation_question_option_id: question_option)}
+  scope :legislation_other, -> { where("value_other is not NULL AND value_other != ''")}
+  scope :legislation_range, -> { where("value_range is not NULL")}
+
+
+ 
+
 end
