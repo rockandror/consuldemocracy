@@ -170,13 +170,13 @@ $budget-2018-yellow:   #fef384;
   }
 
   .jumbo {
-    background: #e2846b image-url("welcome/background_header_last.png");
+    background: #e2846b image-url("welcome/banner_pagina_madrid.png");
     background-position: bottom;
     background-repeat: no-repeat;
-    padding-bottom: rem-calc(300);
+    /*padding-bottom: rem-calc(150);*/
 
     @include breakpoint(medium) {
-      background: image-url("welcome/background_header_last.png");
+      background: image-url("welcome/banner_pagina_madrid.png");
       background-size: 100% auto;
       background-repeat: no-repeat;
     }
