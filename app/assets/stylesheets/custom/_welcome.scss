@@ -173,11 +173,11 @@ $budget-2018-yellow:   #fef384;
     background: #e2846b image-url("welcome/banner_pagina_madrid.png");
     background-position: bottom;
     background-repeat: no-repeat;
-    /*padding-bottom: rem-calc(150);*/
+    padding-bottom: rem-calc(300);
 
     @include breakpoint(medium) {
       background: image-url("welcome/banner_pagina_madrid.png");
-      background-size: 100% auto;
+      background-size: auto 100%;
       background-repeat: no-repeat;
     }
 
