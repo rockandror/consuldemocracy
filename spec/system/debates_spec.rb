@@ -693,7 +693,7 @@ describe "Debates" do
             visit debates_path
 
             click_link "Advanced search"
-            select "Last 24 hours", from: "js-advanced-search-date-min"
+            select "Last 24 hours", from: "By date"
             click_button "Filter"
 
             within("#debates") do
@@ -713,7 +713,7 @@ describe "Debates" do
             visit debates_path
 
             click_link "Advanced search"
-            select "Last week", from: "js-advanced-search-date-min"
+            select "Last week", from: "By date"
             click_button "Filter"
 
             within("#debates") do
@@ -733,7 +733,7 @@ describe "Debates" do
             visit debates_path
 
             click_link "Advanced search"
-            select "Last month", from: "js-advanced-search-date-min"
+            select "Last month", from: "By date"
             click_button "Filter"
 
             within("#debates") do
@@ -753,7 +753,7 @@ describe "Debates" do
             visit debates_path
 
             click_link "Advanced search"
-            select "Last year", from: "js-advanced-search-date-min"
+            select "Last year", from: "By date"
             click_button "Filter"
 
             within("#debates") do
@@ -774,7 +774,7 @@ describe "Debates" do
           visit debates_path
 
           click_link "Advanced search"
-          select "Customized", from: "js-advanced-search-date-min"
+          select "Customized", from: "By date"
           fill_in "advanced_search_date_min", with: 7.days.ago
           fill_in "advanced_search_date_max", with: 1.day.ago
           click_button "Filter"
@@ -796,7 +796,7 @@ describe "Debates" do
           visit debates_path
 
           click_link "Advanced search"
-          select "Customized", from: "js-advanced-search-date-min"
+          select "Customized", from: "By date"
           fill_in "advanced_search_date_min", with: "9"
           fill_in "advanced_search_date_max", with: "444444444"
           click_button "Filter"
@@ -823,7 +823,7 @@ describe "Debates" do
           click_link "Advanced search"
           fill_in "Write the text", with: "Schwifty"
           select Setting["official_level_1_name"], from: "advanced_search_official_level"
-          select "Last 24 hours", from: "js-advanced-search-date-min"
+          select "Last 24 hours", from: "By date"
 
           click_button "Filter"
 
@@ -839,14 +839,14 @@ describe "Debates" do
 
           fill_in "Write the text", with: "Schwifty"
           select Setting["official_level_1_name"], from: "advanced_search_official_level"
-          select "Last 24 hours", from: "js-advanced-search-date-min"
+          select "Last 24 hours", from: "By date"
 
           click_button "Filter"
 
           within "#js-advanced-search" do
             expect(page).to have_selector("input[name='search'][value='Schwifty']")
             expect(page).to have_select("advanced_search[official_level]", selected: Setting["official_level_1_name"])
-            expect(page).to have_select("advanced_search[date_min]", selected: "Last 24 hours")
+            expect(page).to have_select("advanced_search[by_date]", selected: "Last 24 hours")
           end
         end
 
@@ -854,13 +854,13 @@ describe "Debates" do
           visit debates_path
           click_link "Advanced search"
 
-          select "Customized", from: "js-advanced-search-date-min"
+          select "Customized", from: "By date"
           fill_in "advanced_search_date_min", with: 7.days.ago.strftime("%d/%m/%Y")
           fill_in "advanced_search_date_max", with: 1.day.ago.strftime("%d/%m/%Y")
           click_button "Filter"
 
           within "#js-advanced-search" do
-            expect(page).to have_select("advanced_search[date_min]", selected: "Customized")
+            expect(page).to have_select("advanced_search[by_date]", selected: "Customized")
             expect(page).to have_selector("input[name='advanced_search[date_min]'][value*='#{7.days.ago.strftime("%d/%m/%Y")}']")
             expect(page).to have_selector("input[name='advanced_search[date_max]'][value*='#{1.day.ago.strftime("%d/%m/%Y")}']")
           end

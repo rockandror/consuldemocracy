@@ -33,10 +33,10 @@ class AdvancedSearchComponent < ApplicationComponent
     end
 
     def selected_date_range
-      custom_date_range? ? "custom" : params[:advanced_search].try(:[], :date_min)
+      custom_date_range? ? "custom" : params[:advanced_search].try(:[], :by_date)
     end
 
     def custom_date_range?
-      params[:advanced_search].try(:[], :date_max).present?
+      params[:advanced_search].try(:[], :by_date) == "custom"
     end
 end

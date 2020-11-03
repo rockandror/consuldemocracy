@@ -22,10 +22,10 @@
 
       <div class="small-12 large-9">
         <div class="small-12 large-4 column">
-          <label for="js-advanced-search-date-min"><%= t("shared.advanced_search.date") %></label>
-          <%= select_tag("advanced_search[date_min]", date_range_options,
+          <label for="js-advanced-search-by-date"><%= t("shared.advanced_search.date") %></label>
+          <%= select_tag("advanced_search[by_date]", date_range_options,
                         include_blank: t("shared.advanced_search.date_range_blank"),
-                        id: "js-advanced-search-date-min") %>
+                        id: "js-advanced-search-by-date") %>
         </div>
 
         <div id="js-custom-date" class="small-12 large-8 column" style="<%= display_date_range %>">

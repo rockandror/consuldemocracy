@@ -6,7 +6,7 @@
       $("#js-advanced-search").slideToggle();
     },
     toggle_date_options: function() {
-      if ($("#js-advanced-search-date-min").val() === "custom") {
+      if ($("#js-advanced-search-by-date").val() === "custom") {
         $("#js-custom-date").show();
         $(".js-calendar").datepicker("option", "disabled", false);
       } else {
@@ -20,7 +20,7 @@
           App.AdvancedSearch.toggle_form(event);
         }
       });
-      $("#js-advanced-search-date-min").on({
+      $("#js-advanced-search-by-date").on({
         change: function() {
           App.AdvancedSearch.toggle_date_options();
         }

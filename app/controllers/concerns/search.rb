@@ -23,11 +23,11 @@ module Search
   end
 
   def search_by_date?
-    params[:advanced_search] && params[:advanced_search][:date_min].present?
+    params[:advanced_search] && params[:advanced_search][:by_date].present?
   end
 
   def search_start_date
-    case params[:advanced_search][:date_min]
+    case params[:advanced_search][:by_date]
     when "1"
       24.hours.ago
     when "2"
