@@ -4,7 +4,7 @@
 
 <div class="row advanced-search-form">
   <%= form_tag search_path, id: "advanced_search_form", method: :get do %>
-    <div id="js-advanced-search" data-advanced-search-terms="<%= @advanced_search_terms.present? %>" style="display: none">
+    <div id="js-advanced-search" style="<%= display_advanced_search %>">
 
       <div class="small-12 column">
         <label for="search">
@@ -28,7 +28,7 @@
                         id: "js-advanced-search-date-min") %>
         </div>
 
-        <div id="js-custom-date" class="small-12 large-8 column" style="display: none">
+        <div id="js-custom-date" class="small-12 large-8 column" style="<%= display_date_range %>">
           <div class="row">
             <div class="small-12 large-6 column">
               <label for="advanced_search_date_min">

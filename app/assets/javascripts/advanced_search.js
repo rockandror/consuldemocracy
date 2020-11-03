@@ -1,9 +1,6 @@
 (function() {
   "use strict";
   App.AdvancedSearch = {
-    advanced_search_terms: function() {
-      return $("#js-advanced-search").data("advanced-search-terms");
-    },
     toggle_form: function(event) {
       event.preventDefault();
       $("#js-advanced-search").slideToggle();
@@ -18,10 +15,6 @@
       }
     },
     initialize: function() {
-      if (App.AdvancedSearch.advanced_search_terms()) {
-        $("#js-advanced-search").show();
-        App.AdvancedSearch.toggle_date_options();
-      }
       $("#js-advanced-search-title").on({
         click: function(event) {
           App.AdvancedSearch.toggle_form(event);

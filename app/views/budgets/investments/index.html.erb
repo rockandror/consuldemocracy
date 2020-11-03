@@ -55,7 +55,7 @@
         </div>
       <% end %>
 
-      <%= render("shared/advanced_search", search_path: budget_investments_path(@budget)) %>
+      <%= render AdvancedSearchComponent.new(search_path: budget_investments_path(@budget), terms: @advanced_search_terms) %>
 
       <% if unfeasible_or_unselected_filter %>
         <ul class="no-bullet submenu">

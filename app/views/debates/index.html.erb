@@ -52,7 +52,7 @@
         </div>
       </div>
 
-      <%= render "shared/advanced_search", search_path: debates_path(page: 1) %>
+      <%= render AdvancedSearchComponent.new(search_path: debates_path(page: 1), terms: @advanced_search_terms) %>
 
       <%= render "shared/order_links", i18n_namespace: "debates.index" %>
 

@@ -73,8 +73,8 @@
       <% end %>
 
       <% unless params[:retired].present? || params[:selected].present? %>
-        <%= render "shared/advanced_search",
-                   search_path: proposals_path(page: 1) %>
+        <%= render AdvancedSearchComponent.new(search_path: proposals_path(page: 1), 
+                   terms: @advanced_search_terms) %>
       <% end %>
 
       <% unless params[:selected].present? %>
