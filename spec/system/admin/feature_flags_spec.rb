@@ -101,4 +101,26 @@ describe "Admin feature flags" do
       expect(page).not_to have_button "Enable"
     end
   end
+
+  describe "SDG feature flag" do
+    scenario "Show SDG Content section on sidebar when SDG feature flag is enabled" do
+      Setting["feature.sdg"] = true
+
+      visit admin_root_path
+
+      within("#side_menu") do
+        expect(page).to have_content "SDG content"
+      end
+    end
+
+    scenario "Not show SDG Content section on sidebar when SDG feature flag is disabled" do
+      Setting["feature.sdg"] = false
+
+      visit admin_root_path
+
+      within("#side_menu") do
+        expect(page).not_to have_content "SDG content"
+      end
+    end
+  end
 end
