@@ -74,7 +74,7 @@ $pdf-secondary:     #ff9e00;
 $black: #222;
 $white: #fff;
 
-$body-font-family: "Source Sans Pro", "Helvetica", "Arial", sans-serif !important;
+$body-font-family: "Inter" !important;
 
 $header-font-family: $body-font-family;
 
@@ -82,7 +82,7 @@ $global-radius: rem-calc(3);
 
 $button-radius: $global-radius;
 
-$font-family-serif: Georgia, "Times New Roman", Times, serif;
+$font-family-serif: "Inter";
 
 $header-styles: (
   small: (

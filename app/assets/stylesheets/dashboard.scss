@@ -82,8 +82,10 @@
 }
 
 .title {
-  border-bottom: 1px solid $border;
+  border-bottom: 4px solid $border;
   margin: $line-height 0;
+  width: 100%;
+  margin-bottom: 1rem;
 }
 
 .dashboard-related-content {

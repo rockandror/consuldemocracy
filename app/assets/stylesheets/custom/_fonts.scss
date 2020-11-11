@@ -2,6 +2,7 @@
 
 01. Rubik (https://fonts.google.com/specimen/Rubik)
 02. ITC Souvenir
+03. Inter
 
 
 01. Rubik
@@ -138,4 +139,70 @@
        font-url("souvenirstd-lightitalic.woff") format("woff"),
        font-url("souvenirstd-lightitalic.ttf") format("truetype"),
        font-url("souvenirstd-lightitalic.svg") format("svg");
+}
+
+/*03. Inter
+- - - - - - - - - - - - - - - - - - - - - - - - -*/
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  src: font-url("Inter-Bold-slnt=0.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100;
+  src: font-url("Inter-Thin-slnt=0.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 200;
+  src: font-url("Inter-ExtraLight-slnt=0.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 300;
+  src: font-url("Inter-Light-slnt=0.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  src: font-url("Inter-Regular-slnt=0.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  src: font-url("Inter-Medium-slnt=0.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  src: font-url("Inter-SemiBold-slnt=0.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 800;
+  src: font-url("Inter-ExtraBold-slnt=0.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 900;
+  src: font-url("Inter-Black-slnt=0.ttf") format("truetype");
 }

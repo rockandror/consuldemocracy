@@ -8,7 +8,7 @@
 
           <% feed.items.each do |item| %>
             <%= link_to url_for(item) do %>
-              <figure class="figure-card <%= item.class.to_s.parameterize(separator: "_") %>">
+              <figure class="figure-card medium-4 <%= item.class.to_s.parameterize(separator: "_") %>">
                 <%= image_tag("welcome_process.png", alt: "") %>
                 <figcaption>
                   <span><%= t("welcome.feed.process_label") %></span><br>
@@ -16,11 +16,11 @@
                 </figcaption>
               </figure>
               <p class="description small"><%= item.summary %></p>
-              <p class="small"><%= t("welcome.feed.see_process") %></p>
+              <p style="margin: 2rem 0"><span class="see-all"><%= t("welcome.feed.see_process") %></span></p>
             <% end %>
           <% end %>
 
-          <%= link_to t("welcome.feed.see_all_processes"), legislation_processes_path, class: "float-right see-all" %>
+          <%= link_to t("welcome.feed.see_all_processes"), legislation_processes_path, class: "see-all", style: "margin: 2rem 0" %>
         </div>
       </div>
     <% end %>

@@ -7,7 +7,7 @@
 
     p {
 
-      &.description {
+      &.description {        
         color: $text;
       }
     }
@@ -66,7 +66,7 @@
     padding: $line-height * 2 0;
 
     .lead-title {
-      font-family: "Franklin Gothic" !important;
+      font-family: "Inter" !important;
       font-size: rem-calc(40);
       font-weight: bold;
       line-height: rem-calc(40);
@@ -148,6 +148,13 @@
 }
 
 .see-all {
+  border: 2px solid #dee0e3;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  font-size: 1rem;
+  margin: 1.5rem 0 0.75rem;
+  text-align: center;
+  width: 100%;
   margin-top: $line-height / 2;
 
   .icon-angle-right {
