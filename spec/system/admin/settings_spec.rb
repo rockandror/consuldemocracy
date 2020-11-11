@@ -294,6 +294,7 @@ describe "Admin settings" do
     end
 
     scenario "On #tab-sdg-configuration", :js do
+      Setting["feature.sdg"] = true
       sdg_setting = Setting.create!(key: "sdg.whatever")
       admin = create(:administrator).user
       login_as(admin)
@@ -338,6 +339,28 @@ describe "Admin settings" do
       expect(page).to have_content "Value updated"
 
       Setting["feature.user.skip_verification"] = nil
+    end
+  end
+
+  describe "Global settings tabs" do
+    scenario "Render SDG configuration tab when SDG feature setting is enabled" do
+      Setting["feature.sdg"] = true
+      admin = create(:administrator).user
+      login_as(admin)
+
+      visit admin_settings_path
+
+      expect(page).to have_css("#sdg-tab")
+    end
+
+    scenario "Do not render SDG configuration tab when SDG feature setting is disabled" do
+      Setting["feature.sdg"] = false
+      admin = create(:administrator).user
+      login_as(admin)
+
+      visit admin_settings_path
+
+      expect(page).not_to have_css("#sdg-tab")
     end
   end
 end
