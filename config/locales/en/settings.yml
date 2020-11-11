@@ -207,3 +207,14 @@ en:
         max_size_description: "Maximum size allowed for an uploaded document (in Megabytes/MB)"
         content_types: "Accepted content types for documents"
         content_types_description: "Select all the content types allowed for uploaded documents"
+    sdg:
+      process_debates: Linking debates to SDG
+      process_debates_description: Enable debates to be linked to Sustainable Development Goals
+      process_proposals: Linking proposals to SDG
+      process_proposals_description: Enable proposals to be linked to Sustainable Development Goals
+      process_polls: Linking polls to SDG
+      process_polls_description: Enable polls to be linked to Sustainable Development Goals
+      process_investments: Linking partipatory budgets to SDG
+      process_investments_description: Enable participatory budgets to be linked to Sustainable Development Goals
+      process_legislation: Linking collaborative legislation to SDG
+      process_legislation_description: Enable collaborative legislation to be linked to Sustainable Development Goals
