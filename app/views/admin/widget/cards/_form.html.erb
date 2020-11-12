@@ -4,12 +4,12 @@
 
   <%= f.translatable_fields do |translations_form| %>
     <div class="small-12 medium-6">
-      <%= translations_form.text_field :label %>
+      <%= translations_form.text_field :label, hint: t("admin.legislation.processes.form.use_markdown") %>
     </div>
 
-    <%= translations_form.text_field :title %>
+    <%= translations_form.text_field :title, hint: t("admin.legislation.processes.form.use_markdown") %>
 
-    <%= translations_form.text_area :description, rows: 5 %>
+    <%= translations_form.text_area :description, hint: t("admin.legislation.processes.form.use_markdown"),rows: 5 %>
 
     <div class="small-12 medium-6">
       <%= translations_form.text_field :link_text %>

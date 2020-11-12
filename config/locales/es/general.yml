@@ -38,6 +38,7 @@ es:
   application:
     close: Cerrar
     menu: Menú
+    title: "Decide Madrid: portal de participación ciudadana del Ayuntamiento de Madrid"
   comments:
     comments_closed: Los comentarios están cerrados
     verified_only: Para participar %{verify_account}
