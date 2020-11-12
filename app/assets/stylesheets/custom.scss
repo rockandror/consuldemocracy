@@ -144,17 +144,22 @@ header,
   }
 
   &::after {
-    background: #ededed image-url("banner_oct_2018.gif");
+    //background: #ededed image-url("banner_oct_2018.gif");
     content: " ";
     display: inline-block;
-    height: 100px;
-    width: 100px;
+    //height: 100px;
+    //width: 100px;
 
     @include breakpoint(medium) {
       position: absolute;
       right: 0;
       top: 12px;
     }
+  }
+
+  .image-preview {
+    margin: 0;
+    padding: 0;
   }
 }
 
@@ -3025,6 +3030,7 @@ h3 {
   width: auto;
   margin-top: 1.5rem;
   float: right;
+  margin-bottom: 1rem;
 }
 
 .linea-negra-bottom {

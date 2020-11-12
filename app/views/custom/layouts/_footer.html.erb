@@ -24,16 +24,16 @@
 
   <div class="subfooter">
     <div class="row">
-      <div class="small-12 medium-6 column">
-        <%= t("layouts.footer.copyright", year: Time.current.year) %>&nbsp;
+      <div class="small-12 medium-7 column">        
         <ul class="no-bullet inline-block">
+          <li class="inline-block"><%= t("layouts.footer.copyright", year: Time.current.year) %>&nbsp;&nbsp;</li>
           <li class="inline-block"><%= link_to t("layouts.footer.privacy"), privacy_path %>&nbsp;|</li>
           <li class="inline-block"><%= link_to t("layouts.footer.conditions"), conditions_path %>&nbsp;|</li>
           <li class="inline-block"><%= link_to t("layouts.footer.accessibility"), accessibility_path %></li>
         </ul>
       </div>
 
-      <div class="small-12 medium-6 column social">
+      <div class="small-12 medium-5 column social">
         <div class="text-right">
           <ul>
             <% if setting["twitter_handle"] %>
