@@ -1,4 +1,5 @@
 class Banner < ApplicationRecord
+  include Imageable
 
   acts_as_paranoid column: :hidden_at
   include ActsAsParanoidAliases
@@ -7,10 +8,9 @@ class Banner < ApplicationRecord
   translates :description, touch: true
   include Globalizable
 
-  validates_translation :title, presence: true, length: { minimum: 2 }
-  validates_translation :description, presence: true
+  validates_translation :title,presence: false
+  validates_translation :description, presence: false
 
-  validates :target_url, presence: true
   validates :post_started_at, presence: true
   validates :post_ended_at, presence: true
 
@@ -22,4 +22,6 @@ class Banner < ApplicationRecord
   scope :with_inactive, -> { where("post_started_at > ? or post_ended_at < ?", Time.current, Time.current) }
 
   scope :in_section, ->(section_name) { joins(:web_sections, :sections).where("web_sections.name ilike ?", section_name) }
+
+  scope :subsection, ->(subsection) { where(subsection: subsection) }
 end

@@ -1,5 +1,6 @@
 class Admin::BannersController < Admin::BaseController
   include Translatable
+  include ImageAttributes
 
   has_filters %w{all with_active with_inactive}, only: :index
 
@@ -39,9 +40,10 @@ class Admin::BannersController < Admin::BaseController
 
     def banner_params
       attributes = [:target_url, :post_started_at, :post_ended_at,
-                    :background_color, :font_color,
+                    :background_color, :font_color, :subsection,                    
                     translation_params(Banner),
-                    web_section_ids: []]
+                    web_section_ids: [],
+                    image_attributes: image_attributes,]
       params.require(:banner).permit(*attributes)
     end
 

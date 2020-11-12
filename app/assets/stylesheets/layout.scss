@@ -571,7 +571,7 @@ header {
   .has-submenu {
 
     &.is-active a {
-      color: #fff;
+      color: #000;
       font-weight: bold;
     }
   }
@@ -592,7 +592,7 @@ header {
       margin-bottom: 0;
 
       a {
-        color: $text;
+        color: #000;
       }
     }
   }
@@ -618,8 +618,8 @@ header {
 
     &:hover::after,
     &::after {
-      background: #fff;
-      box-shadow: 0 7px 0 #fff, 0 14px 0 #fff;
+      background: #000;
+      box-shadow: 0 7px 0 #000, 0 14px 0 #000;
     }
   }
 }
@@ -632,7 +632,7 @@ header {
 .dropdown.menu > li {
 
   &.is-dropdown-submenu-parent > a::after {
-    border-color: #fff transparent transparent;
+    border-color: #000 transparent transparent;
   }
 }
 
@@ -692,7 +692,7 @@ header {
   }
 
   a {
-    color: #fff;
+    color: #000;
     display: inline-block;
     line-height: $line-height * 2;
     position: relative;
@@ -711,7 +711,7 @@ header {
     }
 
     &.is-active {
-      color: #fff;
+      color: #000;
 
       @include breakpoint(medium) {
         border-bottom: 2px solid $brand;
@@ -1294,7 +1294,7 @@ form {
   }
 
   .icon-circle {
-    color: #ecf00b;
+    color: rgb(0,173,177);
     font-size: rem-calc(10);
     position: absolute;
     left: 12px;
@@ -2920,7 +2920,7 @@ table {
     &.see-all {
       border: 2px solid rgb(35,103,181);
         border-radius: 0.5rem;
-        padding: 1rem;
+        padding: 0.5rem 1rem;
         font-size: 1rem;
         margin: 1.5rem 0 0.75rem;
         text-align: center;
@@ -2956,6 +2956,7 @@ table {
 .feed-content {
 
   .debate,
+  .topic,
   .proposal {
     margin-top: 0;
     margin-bottom: 1rem;
