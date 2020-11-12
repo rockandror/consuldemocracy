@@ -5,22 +5,26 @@
       <div class="card small-12 column margin-bottom">
         <div class="feed-content">
           <h3 class="title"><%= t("welcome.feed.most_active.#{feed.kind}") %></h3>
-
-          <% feed.items.each do |item| %>
-            <%= link_to url_for(item) do %>
-              <figure class="figure-card medium-4 <%= item.class.to_s.parameterize(separator: "_") %>">
-                <%= image_tag("welcome_process.png", alt: "") %>
-                <figcaption>
-                  <span><%= t("welcome.feed.process_label") %></span><br>
-                  <h3><%= item.title %></h3>
-                </figcaption>
-              </figure>
-              <p class="description small"><%= item.summary %></p>
-              <p style="margin: 2rem 0"><span class="see-all"><%= t("welcome.feed.see_process") %></span></p>
+          <div class="row">
+            <% feed.items.each do |item| %>
+              <div class="small-12 medium-4 column">
+                <%= link_to url_for(item) do %>
+                  <figure class="figure-card <%= item.class.to_s.parameterize(separator: "_") %>">
+                    <%= image_tag("welcome_process.png", alt: "") %>
+                    <figcaption>
+                      <span><%= t("welcome.feed.process_label") %></span><br>
+                      <h3><%= item.title %></h3>
+                    </figcaption>
+                  </figure>
+                  <p class="description small"><%= item.summary %></p>
+                  <p style="margin: 2rem 0"><span class="see-all"><%= t("welcome.feed.see_process") %></span></p>
+                <% end %>
+              </div>
             <% end %>
-          <% end %>
-
-          <%= link_to t("welcome.feed.see_all_processes"), legislation_processes_path, class: "see-all", style: "margin: 2rem 0" %>
+          </div>
+          <div class="row" style= "margin: 2rem 0">
+            <%= link_to t("welcome.feed.see_all_processes"), legislation_processes_path, class: "see-all" %>
+          </div>
         </div>
       </div>
     <% end %>
