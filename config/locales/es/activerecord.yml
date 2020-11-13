@@ -262,6 +262,7 @@ es:
       banner:
         background_color: Color del fondo
         font_color: Color del texto
+        subsection: Subsección
       legislation/category:
         name: Título
         tag: Etiqueta
@@ -359,15 +360,15 @@ es:
         body: Texto
       widget/card:
         label: Etiqueta (opcional)
-        title: Título
-        description: Descripción
+        title: Título (opcional)
+        description: Descripción (opcional)
         link_text: Texto del enlace
         link_url: URL del enlace
         columns: Número de columnas
       widget/card/translation:
         label: Etiqueta (opcional)
-        title: Título
-        description: Descripción
+        title: Título (opcional)
+        description: Descripción (opcional)
         link_text: Texto del enlace
       widget/feed:
         limit: Número de elementos

@@ -3,18 +3,22 @@
     
 
     <div class="footer-sections small-12 large-8 column">
-      <div class="small-12 medium-4 column">
+     <div class="small-12 medium-3 column">       
+        <p><%= t("layouts.footer.decide_madrid_text") %></p>
+      </div>
+      
+      <div class="small-12 medium-3 column">
         <%= link_to t("layouts.footer.participation_title"), root_path, class: "title sin-linea-border" %>
         <p><%= t("layouts.footer.participation_text") %></p>
       </div>
 
-      <div class="small-12 medium-4 column">
+      <div class="small-12 medium-3 column">
         <%= link_to t("layouts.footer.transparency_title"), setting["transparency_url"].presence || t("layouts.footer.transparency_url"),
                     target: "_blank", title: t("shared.target_blank_html"), class: "title sin-linea-border" %>
         <p><%= t("layouts.footer.transparency_text") %></p>
       </div>
 
-      <div class="small-12 medium-4 column">
+      <div class="small-12 medium-3 column">
         <%= link_to t("layouts.footer.open_data_title"), setting["opendata_url"].presence || t("layouts.header.external_link_opendata_url"),
                     target: "_blank", title: t("shared.target_blank_html"), class: "title sin-linea-border" %>
         <p><%= t("layouts.footer.open_data_text") %></p>

@@ -26,9 +26,9 @@ es:
           with_inactive: Inactivos
         preview: Vista previa
       banner:
-        title: Título
-        description: Descripción
-        target_url: Enlace
+        title: Título (opcional)
+        description: Descripción (opcional)
+        target_url: Enlace (opcional)
         post_started_at: Inicio de publicación
         post_ended_at: Fin de publicación
         subsection_label: ¿Aparece en una subsección?
