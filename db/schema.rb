@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200928092720) do
+ActiveRecord::Schema.define(version: 20201112123718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,10 +114,11 @@ ActiveRecord::Schema.define(version: 20200928092720) do
     t.date     "post_started_at"
     t.date     "post_ended_at"
     t.datetime "hidden_at"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.text     "background_color"
     t.text     "font_color"
+    t.boolean  "subsection",       default: false
     t.index ["hidden_at"], name: "index_banners_on_hidden_at", using: :btree
   end
 

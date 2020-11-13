@@ -80,12 +80,13 @@ a {
 
   &:focus {
     color: $link-hover;
-    outline: 3px solid #ffbf47;
+    outline: 0px solid #ffbf47;
   }
 }
 
 .button {
-  background: $brand;
+  background: rgb(0, 173, 177);
+  font-weight: 500;
   font-size: $base-font-size;
 
   &:hover {
@@ -495,7 +496,7 @@ header {
 
 .top-bar {
   background: $brand !important;
-  color: #fff;
+  color: #000;
   padding-bottom: 0;
   padding-top: 0;
 
@@ -512,9 +513,9 @@ header {
     padding: 0;
 
     a {
-      color: #fff;
+      color: #000;
       display: inline-block;
-      font-family: "Lato" !important;
+      font-family: "Inter" !important;
       font-size: rem-calc(24);
       font-weight: lighter;
       line-height: $line-height * 2;
@@ -544,22 +545,24 @@ header {
     }
 
     a {
-      color: #fff;
+      color: #000;
       padding-left: 0;
+      font-weight: 500;
 
-      @include breakpoint(medium) {
-        font-size: $small-font-size;
+      @include breakpoint(medium) {        
         padding: rem-calc(11) rem-calc(16);
       }
     }
 
     .button {
-      background: none;
+      background: rgb(0, 173, 177);
       text-align: left;
+      border-radius: 0.25rem;
+      font-weight: 500;
 
       @include breakpoint(medium) {
-        background: #fff;
-        color: $brand;
+        background: rgb(0, 173, 177);
+        color: #fff;
         text-align: center;
       }
     }
@@ -568,7 +571,7 @@ header {
   .has-submenu {
 
     &.is-active a {
-      color: #fff;
+      color: #000;
       font-weight: bold;
     }
   }
@@ -589,7 +592,7 @@ header {
       margin-bottom: 0;
 
       a {
-        color: $text;
+        color: #000;
       }
     }
   }
@@ -615,8 +618,8 @@ header {
 
     &:hover::after,
     &::after {
-      background: #fff;
-      box-shadow: 0 7px 0 #fff, 0 14px 0 #fff;
+      background: #000;
+      box-shadow: 0 7px 0 #000, 0 14px 0 #000;
     }
   }
 }
@@ -629,7 +632,7 @@ header {
 .dropdown.menu > li {
 
   &.is-dropdown-submenu-parent > a::after {
-    border-color: #fff transparent transparent;
+    border-color: #000 transparent transparent;
   }
 }
 
@@ -689,7 +692,7 @@ header {
   }
 
   a {
-    color: #fff;
+    color: #000;
     display: inline-block;
     line-height: $line-height * 2;
     position: relative;
@@ -708,7 +711,7 @@ header {
     }
 
     &.is-active {
-      color: #fff;
+      color: #000;
 
       @include breakpoint(medium) {
         border-bottom: 2px solid $brand;
@@ -734,7 +737,7 @@ header {
     padding-bottom: 0;
 
     button {
-      background: $border;
+      background: rgb(0, 173, 177);
       border: 1px solid #ccc;
       border-left: 0;
       color: $text;
@@ -1291,7 +1294,7 @@ form {
   }
 
   .icon-circle {
-    color: #ecf00b;
+    color: rgb(0,173,177);
     font-size: rem-calc(10);
     position: absolute;
     left: 12px;
@@ -2849,7 +2852,6 @@ table {
     overflow: visible;
 
     a {
-
       img {
         transition-duration: 0.3s;
         transition-property: transform;
@@ -2874,8 +2876,8 @@ table {
 
     &.title {
       display: inline-block;
-      border-top: 4px solid $brand;
-      margin-bottom: 0;
+      /*border-top: 4px solid $brand;*/
+      margin-bottom: 1rem;
       min-width: rem-calc(240);
       padding: $line-height / 2 0;
     }
@@ -2916,12 +2918,13 @@ table {
   a {
 
     &.see-all {
-      border-bottom: 1px solid $border;
-      display: block;
-      font-size: $small-font-size;
-      margin: $line-height 0 $line-height / 2;
-      text-align: right;
-      width: 100%;
+      border: 2px solid rgb(35,103,181);
+        border-radius: 0.5rem;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        margin: 1.5rem 0 0.75rem;
+        text-align: center;
+        width: 100%;
     }
   }
 }
@@ -2953,9 +2956,10 @@ table {
 .feed-content {
 
   .debate,
+  .topic,
   .proposal {
-    margin-bottom: 0;
     margin-top: 0;
+    margin-bottom: 1rem;
     padding: $line-height / 2 0;
   }
 }
@@ -2965,6 +2969,7 @@ table {
   margin: 0 0 $line-height;
   overflow: hidden;
   position: relative;
+  border-radius: 0.5rem;
 
   @include breakpoint(medium down) {
     min-height: $line-height * 4;
@@ -2997,17 +3002,19 @@ table {
 
   figcaption {
     bottom: 0;
+    height: 6rem;
     color: #fff;
     font-size: rem-calc(24);
-    line-height: rem-calc(24);
-    text-transform: uppercase;
+    line-height: rem-calc(24);    
     padding: $line-height / 4 $line-height / 2;
     position: absolute;
     width: 100%;
 
     h3,
     .title {
+      text-transform: uppercase;
       font-size: $base-font-size;
+      font-weight: 400;
 
       @include breakpoint(medium) {
         font-size: rem-calc(20);
@@ -3020,14 +3027,13 @@ table {
     }
 
     span {
-      background: #fff;
-      border-radius: rem-calc(4);
-      color: #000;
+      border-radius: rem-calc(8);
+      color: #fff;
       display: inline-block;
       font-size: $small-font-size;
       font-weight: bold;
       margin-bottom: $line-height / 4;
-      padding: rem-calc(4) rem-calc(8);
+      /*padding: rem-calc(4) rem-calc(8);*/
     }
   }
 }

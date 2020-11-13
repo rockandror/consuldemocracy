@@ -1,7 +1,14 @@
-<% banner = @banners.sample %>
-<div class="banner" style="background-color:<%= banner.background_color %>;">
-  <%= link_to banner.target_url do %>
-    <h2 style="color:<%= banner.font_color %>;"><%= banner.title %></h2>
-    <h3 style="color:<%= banner.font_color %>;"><%= banner.description %></h3>
-  <% end %>
+<% subsection ||= false
+banner = @banners.subsection(subsection).sample %>
+<div class="banner" style="background-color:<%= banner.try(:background_color) %>">
+  <% if !banner.target_url.blank? %>
+    <%= link_to banner.target_url do %>
+      <h2 style="color:<%= banner.font_color %>"><%= banner.try(:title) %></h2>
+      <h3 style="color:<%= banner.font_color %>"><%= banner.try(:description) %></h3>
+    <% end %>
+  <%else%>
+      <h2 style="color:<%= banner.font_color %>"><%= banner.try(:title) %></h2>
+      <h3 style="color:<%= banner.font_color %>"><%= banner.try(:description) %></h3>
+  <%end%>
+  <%= render_image(banner.image, :large, false) if !banner.image.try(:attachment).blank? %>
 </div>

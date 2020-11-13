@@ -82,8 +82,10 @@
 }
 
 .title {
-  border-bottom: 1px solid $border;
+  border-bottom: 4px solid #000;
   margin: $line-height 0;
+  width: 100%;
+  margin-bottom: 1rem;
 }
 
 .dashboard-related-content {
@@ -502,7 +504,7 @@
     text-align: left;
 
     .button {
-      background: #064c86;
+      background: rgb(0, 173, 177);
       box-shadow: -4px 18px 45px -19px rgba(0, 0, 0, 0.75);
       margin-bottom: $line-height * 2;
       margin-top: $line-height;
