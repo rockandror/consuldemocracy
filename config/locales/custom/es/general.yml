@@ -120,14 +120,16 @@ es:
       open_data_title: Datos Abiertos
       open_data_text: "Encuentra todos los datos de Madrid para utilizarlos, 
         reutilizarlos y redistribuirlos libremente y realizar nuevas aplicaciones con ellos.<br><br>
-        <a href='http://transparencia.madrid.es/'>Portal de transparencia</a><br><br>
-        <a href='https://presupuestosabiertos.madrid.es/es/'>Presupuestos abiertos</a><br>
+         <a href='http://datos.madrid.es/'>Portal de datos abiertos</a><br><br>
+        <a href='https://geoportal.madrid.es/IDEAM_WBGEOPORTAL/index.iam'>Geoportal</a><br>
+       
         "
       transparency_title: Transparencia
       transparency_text: "Conoce qué hace el Ayuntamiento de Madrid, con qué recursos lo consigue, por qué, para qué y 
       para quién lo lleva a cabo, cómo y cuánto cuesta.<br><br>
-        <a href='http://datos.madrid.es/'>Portal de datos abiertos</a><br><br>
-        <a href='https://geoportal.madrid.es/IDEAM_WBGEOPORTAL/index.iam'>Geoportal</a><br>"
+       <a href='http://transparencia.madrid.es/'>Portal de transparencia</a><br><br>
+        <a href='https://presupuestosabiertos.madrid.es/es/'>Presupuestos abiertos</a><br>
+       "
       transparency_url: http://transparencia.madrid.es
       faq: Asistencia técnica
     header:
