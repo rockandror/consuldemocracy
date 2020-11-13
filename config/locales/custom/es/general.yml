@@ -103,11 +103,31 @@ es:
       open_source_url: http://www.gnu.org/licenses/agpl-3.0.html
       participation_title: Participación
       participation_text: Decide cómo debe ser la ciudad de Madrid que quieres.
-      decide_madrid_text: Decide Madrid es un espacio para fomentar la participación de la ciudadanía en la generación de ideas para mejorar la gestión de la ciudad
+      decide_madrid_title: Decide Madrid
+      decide_madrid_text: Es un espacio para fomentar la participación de la ciudadanía en la generación de ideas para mejorar la gestión de la ciudad.
+      problem_title: ¿Problemas técnicos?
+      problem_text: "Lee las preguntas frecuentes y resuelve tus dudas: <br>
+        <a href='mas-informacion/faq'>Preguntas frecuentes</a><br><br>        
+        O escribe a <a href='mailto:incidenciasdm@madrid.es'>incidenciasdm@madrid.es</a>"
+      help_title: Ayuda
+      help_text: "
+        <a href='mas-informacion#debates'>Debates</a><br><br>
+        <a href='mas-informacion#proposals'>Propuestas</a><br><br>
+        <a href='mas-informacion#budgets'>Presupuestos participativos</a><br><br>
+        <a href='mas-informacion#polls'>Votaciones</a><br><br>
+        <a href='mas-informacion#processes'>Procesos participativos</a><br>
+        "
       open_data_title: Datos Abiertos
-      open_data_text: Todos los datos del Ayuntamiento son tuyos.
+      open_data_text: "Encuentra todos los datos de Madrid para utilizarlos, 
+        reutilizarlos y redistribuirlos libremente y realizar nuevas aplicaciones con ellos.<br><br>
+        <a href='http://transparencia.madrid.es/'>Portal de transparencia</a><br><br>
+        <a href='https://presupuestosabiertos.madrid.es/es/'>Presupuestos abiertos</a><br>
+        "
       transparency_title: Transparencia
-      transparency_text: Obtén cualquier información sobre el Ayuntamiento de Madrid.
+      transparency_text: "Conoce qué hace el Ayuntamiento de Madrid, con qué recursos lo consigue, por qué, para qué y 
+      para quién lo lleva a cabo, cómo y cuánto cuesta.<br><br>
+        <a href='http://datos.madrid.es/'>Portal de datos abiertos</a><br><br>
+        <a href='https://geoportal.madrid.es/IDEAM_WBGEOPORTAL/index.iam'>Geoportal</a><br>"
       transparency_url: http://transparencia.madrid.es
       faq: Asistencia técnica
     header:
