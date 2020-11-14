@@ -1449,6 +1449,9 @@ es:
       goals:
         index:
           title: "Objetivos"
+      targets:
+        index:
+          title: "Metas"
     site_customization:
       content_blocks:
         information: Información sobre los bloques de contenido

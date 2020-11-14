@@ -1450,6 +1450,9 @@ en:
       goals:
         index:
           title: "Goals"
+      targets:
+        index:
+          title: "Targets"
     site_customization:
       content_blocks:
         information: Information about content blocks

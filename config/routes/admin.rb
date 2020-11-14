@@ -255,6 +255,7 @@ namespace :admin do
 
   namespace :sdg do
     resources :goals, only: [:index]
+    resources :targets, only: [:index]
   end
 end
 
