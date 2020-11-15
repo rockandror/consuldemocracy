@@ -9,20 +9,19 @@ services:
 
     # persist the database between containers by storing it in a volume
     volumes:
-      - docker-example-postgres:/var/lib/postgresql/data
+      - postgres_database:/var/lib/postgresql/data
 
   # service configuration for our dockerized Rails app
   app:
 
     # use the Dockerfile next to this file
     build: .
-    entrypoint: /usr/local/bin/entrypoint.sh
+    entrypoint: /usr/local/bin/wait-for-it.sh database:5432 -- /usr/local/bin/entrypoint.sh
     command: bundle exec rails s -p 3000 -b "0.0.0.0"
     working_dir: /var/www/consul
 
     # rely on the RAILS_ENV value of the host machine
-    # environment:
-    #RAILS_ENV: $RAILS_ENV
+    env_file: .env
 
     # makes the app container aware of the DB container
     depends_on:
@@ -35,9 +34,10 @@ services:
     volumes:
       - .:/var/www/consul:delegated
       - bundle:/usr/local/bundle:delegated
-      - "$SSH_AUTH_SOCK:/tmp/agent.sock"
-    environment:
-      - SSH_AUTH_SOCK=/tmp/agent.sock
 volumes:
-  docker-example-postgres: {}
+  postgres_database: {}
   bundle: {}
+# networks:
+  # default:
+    # external:
+      # name: nginxproxy_default
