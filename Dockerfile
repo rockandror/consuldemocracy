@@ -1,5 +1,5 @@
-# Use Ruby 2.4.9 as base image
-FROM ruby:2.4.9
+# Use Ruby 2.4.10 as base image
+FROM ruby:2.4.10
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -16,6 +16,7 @@ RUN echo 'Defaults secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bi
 RUN chmod 0440 /etc/sudoers.d/secure_path
 
 COPY scripts/entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY scripts/wait-for-it.sh /usr/local/bin/wait-for-it.sh
 
 # Define where our application will live inside the image
 ENV RAILS_ROOT /var/www/consul
@@ -39,10 +40,10 @@ COPY Gemfile_custom Gemfile_custom
 RUN gem install bundler
 
 # Finish establishing our Ruby environment
-RUN bundle install --full-index
+#RUN bundle install --full-index
 
 # Install Chromium for E2E integration tests
-RUN apt-get update -qq && apt-get install -y chromium
+#RUN apt-get update -qq && apt-get install -y chromium
 
 # Copy the Rails application into place
 COPY . .
