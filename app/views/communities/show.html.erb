@@ -1,4 +1,4 @@
-<%if @community.proposal.comunity_hide == true %>
+<%if @community.try(:proposal).try(:comunity_hide) == true %>
   <div class="community_map" style="margin-top:-1.5rem;margin-bottom:1.5rem">
     <%= render_map(@map_locations, "budgets", false, nil, nil) %>
   </div>
