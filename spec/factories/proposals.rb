@@ -2,6 +2,8 @@ FactoryBot.define do
   factory :proposal do
     sequence(:title)     { |n| "Proposal #{n} title" }
     sequence(:summary)   { |n| "In summary, what we want is... #{n}" }
+    details              { "Proposal details" }
+    request              { "Proposal request" }
     description          { "Proposal description" }
     video_url            { "https://youtu.be/nhuNb0XtRhQ" }
     responsible_name     { "John Snow" }
