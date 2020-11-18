@@ -325,7 +325,7 @@ end
 
 def fill_in_proposal_form
   fill_in "Proposal title", with: "Help refugees"
-  fill_in "Proposal summary", with: "In summary, what we want is..."
+  fill_in_ckeditor "Proposal summary", with: "In summary, what we want is..."
 end
 
 def submit_proposal_form

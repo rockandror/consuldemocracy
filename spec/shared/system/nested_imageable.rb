@@ -275,7 +275,7 @@ end
 
 def imageable_fill_new_valid_proposal
   fill_in "Proposal title", with: "Proposal title"
-  fill_in "Proposal summary", with: "Proposal summary"
+  fill_in_ckeditor "Proposal summary", with: "Proposal summary"
   check :proposal_terms_of_service
 end
 
