@@ -29,6 +29,13 @@
   </p>
 <% end %>
 
+<% if @proposal.details.present? %>
+  <p>
+    <%= t("proposals.show.details") %>
+    <%= @proposal.details %>
+  </p>
+<% end %>
+
 <blockquote><%= auto_link_already_sanitized_html wysiwyg(@proposal.summary) %></blockquote>
 
 <% if @proposal.video_url.present? %>
@@ -40,6 +47,14 @@
 <% end %>
 
 <%= auto_link_already_sanitized_html wysiwyg(@proposal.description) %>
+
+<% if @proposal.request.present? %>
+  <p>
+    <%= t("proposals.show.request") %>
+    <br>
+    <%= auto_link_already_sanitized_html simple_format(@proposal.request) %>
+  </p>
+<% end %>
 
 <% if feature?(:map) && map_location_available?(@proposal.map_location) %>
   <div class="margin">
