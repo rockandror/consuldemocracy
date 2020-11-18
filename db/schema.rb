@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200908084257) do
+ActiveRecord::Schema.define(version: 20201118123555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1213,6 +1213,8 @@ ActiveRecord::Schema.define(version: 20200908084257) do
     t.text "summary"
     t.text "retired_explanation"
     t.datetime "hidden_at"
+    t.string "details"
+    t.text "request"
     t.index ["hidden_at"], name: "index_proposal_translations_on_hidden_at"
     t.index ["locale"], name: "index_proposal_translations_on_locale"
     t.index ["proposal_id"], name: "index_proposal_translations_on_proposal_id"
