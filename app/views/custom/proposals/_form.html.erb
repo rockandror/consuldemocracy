@@ -21,8 +21,9 @@
 
       <div class="small-12 column">
         <%= translations_form.text_area :summary,
-                                        rows: 4, maxlength: 200,
-                                        hint: t("proposals.form.proposal_summary_note") %>
+                                        maxlength: 200,
+                                        hint: t("proposals.form.proposal_summary_note"),
+                                        class: "html-area" %>
       </div>
 
       <div class="small-12 column">
