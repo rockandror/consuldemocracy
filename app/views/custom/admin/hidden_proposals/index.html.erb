@@ -20,7 +20,7 @@
         </td>
         <td>
           <div class="moderation-description">
-            <p><small><%= proposal.summary %></small></p>
+            <%= wysiwyg(proposal.summary) %>
             <%= wysiwyg(proposal.description) %>
             <% if proposal.video_url.present? %>
               <p><%= sanitize_and_auto_link proposal.video_url %></p>

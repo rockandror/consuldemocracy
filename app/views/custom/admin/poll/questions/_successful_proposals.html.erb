@@ -10,9 +10,7 @@
       <tr id="<%= dom_id(proposal) %>">
         <td>
           <%= link_to proposal.title, proposal_path(proposal) %>
-          <p>
-            <%= proposal.summary %><br>
-          </p>
+          <%= wysiwyg(proposal.summary) %>
         </td>
         <td>
           <%= link_to t("admin.questions.index.create_question"),

@@ -29,7 +29,7 @@
   </p>
 <% end %>
 
-<blockquote><%= @proposal.summary %></blockquote>
+<blockquote><%= auto_link_already_sanitized_html wysiwyg(@proposal.summary) %></blockquote>
 
 <% if @proposal.video_url.present? %>
   <div class="small-12 medium-7 small-centered">
