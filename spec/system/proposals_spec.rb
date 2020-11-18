@@ -132,6 +132,8 @@ describe "Proposals" do
     expect(page).to have_content proposal.title
     expect(page).to have_content proposal.code
     expect(page).to have_content "Proposal description"
+    expect(page).to have_content "Proposal details"
+    expect(page).to have_content "Proposal request"
     expect(page).to have_content proposal.author.name
     expect(page).to have_content I18n.l(proposal.created_at.to_date)
     expect(page).to have_selector(avatar(proposal.author.name))
@@ -209,6 +211,18 @@ describe "Proposals" do
       go_back
 
       expect(page).to have_css "span.show-for-sr", text: "twitter", count: 1
+    end
+
+    scenario "Do not render details and requests fields label when are not filled", :js do
+      login_as(create(:user))
+      visit new_proposal_path
+
+      fill_in "Proposal title", with: "Help refugees"
+      fill_in_ckeditor "Proposal summary", with: "In summary, what we want is..."
+      check "proposal_terms_of_service"
+
+      expect(page).not_to have_content "Proposal details:"
+      expect(page).not_to have_content "Proposal request:"
     end
   end
 
@@ -334,8 +348,10 @@ describe "Proposals" do
     visit new_proposal_path
 
     fill_in "Proposal title", with: "Help refugees"
+    fill_in "Proposal details", with: "Madrid (Spain) - 12/12/2022"
     fill_in "Proposal summary", with: "In summary, what we want is..."
     fill_in "Proposal text", with: "This is very important because..."
+    fill_in "Proposal request", with: "Requests the..."
     fill_in "proposal_video_url", with: "https://www.youtube.com/watch?v=yPQfcG-eimk"
     fill_in "proposal_responsible_name", with: "Isabel Garcia"
     fill_in "proposal_tag_list", with: "Refugees, Solidarity"
@@ -353,8 +369,10 @@ describe "Proposals" do
     click_link "Not now, go to my proposal"
 
     expect(page).to have_content "Help refugees"
+    expect(page).to have_content "Madrid (Spain) - 12/12/2022"
     expect(page).to have_content "In summary, what we want is..."
     expect(page).to have_content "This is very important because..."
+    expect(page).to have_content "Requests the..."
     expect(page).to have_content "https://www.youtube.com/watch?v=yPQfcG-eimk"
     expect(page).to have_content author.name
     expect(page).to have_content "Refugees"
