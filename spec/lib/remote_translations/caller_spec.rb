@@ -216,9 +216,10 @@ describe RemoteTranslations::Caller, :remote_translations do
 
     it "sanitize field value when the field contains entity references as &Sigma;" do
       field_values_sanitized = [proposal.title, "Σ with sample text", proposal.summary,
-                                proposal.retired_reason]
+                                proposal.retired_reason, proposal.details, proposal.request]
       locale = remote_translation.locale
-      fake_response = ["translated title", "translated description", "translated summary", nil]
+      fake_response = ["translated title", "translated description", "translated summary", nil,
+                       "Proposal details", "Proposal request"]
 
       expect_any_instance_of(client).to receive(:call).with(field_values_sanitized, locale).
                                                        and_return(fake_response)
