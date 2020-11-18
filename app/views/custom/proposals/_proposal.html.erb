@@ -54,7 +54,7 @@
               <% end %>
             </p>
             <div class="proposal-description">
-              <p><%= proposal.summary %></p>
+              <%= auto_link_already_sanitized_html wysiwyg(proposal.summary) %>
               <div class="truncate"></div>
             </div>
             <%= render "shared/tags", taggable: proposal, limit: 5 %>
