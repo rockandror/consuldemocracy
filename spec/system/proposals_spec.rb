@@ -213,7 +213,7 @@ describe "Proposals" do
       expect(page).to have_css "span.show-for-sr", text: "twitter", count: 1
     end
 
-    scenario "Do not render details and requests fields label when are not filled", :js do
+    scenario "Do not render details, requests and description fields label when are not filled", :js do
       login_as(create(:user))
       visit new_proposal_path
 
@@ -223,6 +223,7 @@ describe "Proposals" do
 
       expect(page).not_to have_content "Proposal details:"
       expect(page).not_to have_content "Proposal request:"
+      expect(page).not_to have_content "Proposal text:"
     end
   end
 
