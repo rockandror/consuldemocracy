@@ -36,6 +36,8 @@
   </p>
 <% end %>
 
+<%= t("proposals.show.summary") %>
+<br>
 <blockquote><%= auto_link_already_sanitized_html wysiwyg(@proposal.summary) %></blockquote>
 
 <% if @proposal.video_url.present? %>
@@ -46,7 +48,11 @@
   </div>
 <% end %>
 
-<%= auto_link_already_sanitized_html wysiwyg(@proposal.description) %>
+<% if @proposal.description.present? %>
+  <%= t("proposals.show.description") %>
+  <br>
+  <%= auto_link_already_sanitized_html wysiwyg(@proposal.description) %>
+<% end %>
 
 <% if @proposal.request.present? %>
   <p>

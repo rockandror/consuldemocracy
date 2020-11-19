@@ -3,3 +3,5 @@ en:
     show:
       details: "Proposal details:"
       request: "Proposal request:"
+      description: "Proposal text:"
+      summary: "Proposal summary:"
