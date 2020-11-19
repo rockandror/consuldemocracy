@@ -1,0 +1,6 @@
+en:
+  activerecord:
+    attributes:
+      proposal/translation:
+        details: "Proposal details"
+        request: "Proposal request"

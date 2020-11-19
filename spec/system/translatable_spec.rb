@@ -24,7 +24,7 @@ describe "Public area translatable records" do
       visit new_proposal_path
 
       fill_in "Proposal title", with: "Olympic Games in Melbourne"
-      fill_in "Proposal summary", with: "Full proposal for our candidature"
+      fill_in_ckeditor "Proposal summary", with: "Full proposal for our candidature"
       fill_in_ckeditor "Proposal text", with: "2032 will make Australia famous again"
       check "proposal_terms_of_service"
       click_button "Create proposal"
@@ -60,7 +60,7 @@ describe "Public area translatable records" do
       select "Français", from: :add_language
 
       fill_in "Proposal title", with: "Titre en Français"
-      fill_in "Proposal summary", with: "Résumé en Français"
+      fill_in_ckeditor "Proposal summary", with: "Résumé en Français"
       check "proposal_terms_of_service"
       click_button "Create proposal"
 
