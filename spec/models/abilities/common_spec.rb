@@ -15,6 +15,10 @@ describe Abilities::Common do
   let(:own_comment)  { create(:comment,  author: user) }
   let(:own_proposal) { create(:proposal, author: user) }
 
+  let(:annotation)         { create(:legislation_annotation) }
+  let(:annotation_comment) { create(:comment, commentable: annotation) }
+  let(:annotation_reply)   { create(:comment, commentable: annotation, parent: annotation_comment) }
+
   let(:accepting_budget) { create(:budget, :accepting) }
   let(:reviewing_budget) { create(:budget, :reviewing) }
   let(:selecting_budget) { create(:budget, :selecting) }
@@ -66,7 +70,9 @@ describe Abilities::Common do
   it { should be_able_to(:edit, user) }
 
   it { should be_able_to(:create, Comment) }
-  it { should be_able_to(:vote, Comment)   }
+  it { should be_able_to(:vote, comment) }
+  it { should be_able_to(:vote, annotation_comment) }
+  it { should_not be_able_to(:vote, annotation_reply) }
 
   it { should     be_able_to(:index, Proposal) }
   it { should     be_able_to(:show, proposal) }
