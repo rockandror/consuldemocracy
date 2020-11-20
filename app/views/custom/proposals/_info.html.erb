@@ -38,7 +38,7 @@
 
 <%= t("proposals.show.summary") %>
 <br>
-<blockquote><%= auto_link_already_sanitized_html wysiwyg(@proposal.summary) %></blockquote>
+<%= auto_link_already_sanitized_html wysiwyg(@proposal.summary) %>
 
 <% if @proposal.video_url.present? %>
   <div class="small-12 medium-7 small-centered">
