@@ -78,6 +78,8 @@ class Admin::Legislation::ProcessesController < Admin::Legislation::BaseControll
         :published,
         :geozone_restricted,
         :custom_list,
+        :film_library_limit,
+        :film_library_admin,
         :background_color,
         :font_color,
         :proposals_title,

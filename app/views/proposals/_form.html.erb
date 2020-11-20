@@ -44,7 +44,7 @@
 
     <div class="ckeditor small-12 column">
       <%= f.label :description, t("proposals.form.proposal_text") %>
-      <%= f.cktext_area :description, maxlength: Proposal.description_max_length, ckeditor: { language: I18n.locale }, label: false %>
+      <%= f.cktext_area :description, maxlength: Proposal.description_max_length, ckeditor: { language: I18n.locale, toolbar: "admin" }, label: false %>
     </div>
 
     <div class="small-12 column">

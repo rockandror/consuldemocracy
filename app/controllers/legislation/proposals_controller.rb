@@ -10,6 +10,7 @@ class Legislation::ProposalsController < Legislation::BaseController
   before_action :destroy_map_location_association, only: :update
 
   before_action :authenticate_user!, except: [:index, :show, :map, :summary]
+  before_action :validate_process, only: [:new,:edit,:create,:update]
   load_and_authorize_resource :process, class: "Legislation::Process"
   load_and_authorize_resource :proposal, class: "Legislation::Proposal", through: :process
 
@@ -82,6 +83,16 @@ class Legislation::ProposalsController < Legislation::BaseController
                     ],
                     category_ids: [],
                     map_location_attributes: [:latitude, :longitude, :zoom])
+    end
+
+    def validate_process
+      process = Legislation::Process.find_by(id: params[:process_id])
+      if !process.blank? && process.film_library && params[:other].blank?
+        proposals = Legislation::Proposal.where(process: process).where(type_other_proposal: nil)
+        if !(process.proposals_phase.open? && !current_user.blank? && (!process.film_library? || process.film_library? && (process.film_library_limit.blank? || process.film_library_limit == 0 || process.film_library_limit.to_i > proposals.count) && (!process.film_library_admin || process.film_library_admin && current_user.administrator?)))
+          redirect_to legislation_process_path(params[:process_id]), alert: "El proceso tiene bloqueada la gestión de la propuesta"
+        end
+      end
     end
 
     def resource_model

@@ -166,7 +166,7 @@
   }
 
   .button-support {
-    background: $proposals;
+    background: #33FFA6;
     color: $text;
     display: inline-block;
     font-size: $small-font-size;
@@ -174,7 +174,7 @@
 
     &:hover,
     &:active {
-      background: lighten($proposals, 25%);
+      background: lighten(#33FFA6, 25%);
       cursor: pointer;
     }
   }
@@ -1077,7 +1077,8 @@
 }
 
 .featured-proposals {
-  background: $featured;
+  background: #fff;
+  border: 2px solid #000;
 
   .proposal-featured {
     min-height: $line-height * 3.5;
@@ -1099,13 +1100,12 @@
     }
 
     .button-support {
-      background: $text;
-      color: $featured;
+      background: #33FFA6;
+      color: #000;
       margin-top: 0;
 
       &:hover {
-        background: #fff;
-        color: $text;
+        color: #fff;
       }
     }
 

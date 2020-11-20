@@ -1,7 +1,27 @@
-<div class="small-12 medium-9 column">
-  <%= f.check_box :film_library, checked: process.film_library?, label: t("admin.legislation.processes.form.film_library") %>
+
+<div class="small-12 column">
+  <h3><%= t("admin.legislation.processes.form.film_library_properties") %></h3>
 </div>
 
 <div class="small-12 column">
-  <hr>
+  <%= f.check_box :film_library, checked: process.film_library?, label: t("admin.legislation.processes.form.film_library"), onchange: "showhideElementChecked($('#film_library_properties'),$(this))" %>
 </div>
+<div id="film_library_properties" >
+    <br>
+    <div class="small-12 medium-6 column">
+      <label><%= t("admin.legislation.processes.form.film_library_limit") %></label>
+      <p class="help-text"><%= t("admin.legislation.processes.form.film_library_limit_down") %></p>
+      <%= f.text_field :film_library_limit, label: false  %>
+    </div>
+    <div class="small-12 medium-6 column">
+      <%= f.check_box :film_library_admin, checked: process.film_library_admin?, label: t("admin.legislation.processes.form.film_library_admin") %>
+    </div>
+</div>
+<script>
+  if ('<%=f.object.film_library%>' == 'true') {
+    $('#film_library_properties').show();
+  } else {
+    $('#film_library_properties').hide();
+  }
+</script> 
+
