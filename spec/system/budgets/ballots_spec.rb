@@ -658,8 +658,6 @@ describe "Ballots" do
       new_york.update!(price: 10)
 
       within("#budget_investment_#{investment1.id}") do
-        find(".in-favor a").click
-
         expect(page).not_to have_content "Remove"
         expect(page).not_to have_selector(".participation-not-allowed")
 
