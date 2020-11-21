@@ -1,7 +1,7 @@
-ENV['RAILS_ENV'] ||= 'test'
-if ENV['TRAVIS']
-  require 'coveralls'
-  Coveralls.wear!('rails')
+ENV["RAILS_ENV"] ||= "test"
+if ENV["COVERALLS"]
+  require "coveralls"
+  Coveralls.wear!("rails")
 end
 
 if ENV['COVERAGE']
