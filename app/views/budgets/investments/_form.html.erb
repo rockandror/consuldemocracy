@@ -20,7 +20,7 @@
     <div class="ckeditor small-12 column">
       <%= f.cktext_area :description,
                         maxlength: Budget::Investment.description_max_length,
-                        ckeditor: { language: I18n.locale, toolbar: "admin" } %>
+                        ckeditor: { language: I18n.locale, toolbar: current_user.administrator? ? "admin" : 'mini' } %>
     </div>
 
     <% if feature?(:allow_images) %>
