@@ -24,7 +24,7 @@
         </div>
 
         <div class="small-12 medium-3 column">
-          <% if process.proposals_phase.open? && !current_user.blank? %>
+          <% if process.proposals_phase.open? && !current_user.blank? && (!process.film_library? || !params[:type].blank? || process.film_library? && (process.film_library_limit.blank? || process.film_library_limit == 0 || process.film_library_limit.to_i > proposals.count) && (!process.film_library_admin || process.film_library_admin && current_user.administrator?)) %>
             <p><%= link_to new_legislation_proposal_link_text(process, params[:type]),
                           new_legislation_process_proposal_path(process, type: params[:filter], other: params[:type]),
                           class: "button expanded",

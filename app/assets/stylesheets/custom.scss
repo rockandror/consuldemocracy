@@ -2318,7 +2318,7 @@ a {
   }
 
   @include breakpoint(medium) {
-    background: $budget-2019-pink image-url("budget_welcome/background_header.jpg");
+    background: #fff image-url("budget_welcome/background_header.png");
     background-position: 100% top;
     background-repeat: no-repeat;
     background-size: cover;
@@ -2357,16 +2357,20 @@ a {
     background: $budget-2019-pink;
 
     @include breakpoint(medium) {
-      background: $budget-2019-pink image-url("budget_welcome/background_header.jpg");
-      background-position: 100% top;
+      background: #fff image-url("budget_welcome/background_header.png");
+      background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
+    //padding-bottom: rem-calc(300);
+      /*background-position: 100% top;
       background-repeat: no-repeat;
-      background-size: contain;
+      background-size: cover;*/
     }
   }
 
   .info {
-    background: rgba(255, 253, 232, 0.8);
-    border-bottom: 1px solid $budget-2019-orange;
+    background: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid #000;
 
     @include breakpoint(medium) {
       border-bottom: 0;
@@ -2381,16 +2385,35 @@ a {
     a {
 
       &.button {
-        background: #000;
-        color: #fff;
-        text-decoration: none;
+        /*background: #000;
+        color: #000;
+        text-decoration: none;*/
+
+        border: 2px solid #2367b5;
+        color: #2367b5;
+        border-radius: 0.5rem;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        margin: 1.5rem 0 0.75rem;
+        text-align: center;
+        width: 100%;
       }
     }
 
     &.button {
-      background: #000;
+      /*background: #000;
       color: #fff;
+      text-decoration: none;*/
+
       text-decoration: none;
+        border: 2px solid #2367b5;
+        background: #fff;
+        color: #2367b5;
+        border-radius: 0.5rem;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        margin: 1.5rem 0 0.75rem;
+        text-align: center;
     }
 
     p {
@@ -2402,9 +2425,19 @@ a {
 }
 
 .expanded.budget.button {
-  background: #000;
+  /*background: #000;
   color: #fff;
+  */
   text-decoration: none;
+  border: 2px solid #2367b5;
+  background: #fff;
+        color: #2367b5;
+        border-radius: 0.5rem;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        margin: 1.5rem 0 0.75rem;
+        text-align: center;
+        //width: 100%;
 }
 
 .budget-info {
@@ -2426,7 +2459,17 @@ a {
   .budget-investments-list {
 
     .button {
-      background: #000;
+      //background: #000;
+
+      text-decoration: none;
+      border: 2px solid #2367b5;
+      background: #fff;
+            color: #2367b5;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            margin: 1.5rem 0 0.75rem;
+            text-align: center;
     }
   }
 }

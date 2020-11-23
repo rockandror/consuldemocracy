@@ -188,7 +188,7 @@ class ProposalsController < ApplicationController
       if Setting["feature.featured_proposals"]
         @featured_proposals = Proposal.not_archived.not_proceedings.unsuccessful
                               .sort_by_confidence_score.limit(Setting["featured_proposals_number"])
-
+        
         if @featured_proposals.present?
           set_featured_proposal_votes(@featured_proposals)
           @resources = @resources.where("proposals.id NOT IN (?)", @featured_proposals.map(&:id))
