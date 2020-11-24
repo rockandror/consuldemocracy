@@ -166,15 +166,15 @@
   }
 
   .button-support {
-    background: #33FFA6;
-    color: $text;
+    background: rgb(0,173,177);
+    color: #fff;
     display: inline-block;
     font-size: $small-font-size;
     margin-top: rem-calc(12);
 
     &:hover,
     &:active {
-      background: lighten(#33FFA6, 25%);
+      background: lighten(rgb(0,173,177), 25%);
       cursor: pointer;
     }
   }
@@ -927,7 +927,7 @@
 
   h1 {
     font-size: rem-calc(50);
-    text-transform: uppercase;
+    //text-transform: uppercase;
   }
 }
 
@@ -1100,8 +1100,8 @@
     }
 
     .button-support {
-      background: #33FFA6;
-      color: #000;
+      background: rgb(0,173,177);
+      color: #fff;
       margin-top: 0;
 
       &:hover {

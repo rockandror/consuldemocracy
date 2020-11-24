@@ -2318,7 +2318,7 @@ a {
   }
 
   @include breakpoint(medium) {
-    background: #fff image-url("budget_welcome/background_header.png");
+    background: $budget-2019-pink image-url("budget_welcome/background_header.jpg");
     background-position: 100% top;
     background-repeat: no-repeat;
     background-size: cover;
@@ -2357,7 +2357,7 @@ a {
     background: $budget-2019-pink;
 
     @include breakpoint(medium) {
-      background: #fff image-url("budget_welcome/background_header.png");
+      background: $budget-2019-pink image-url("budget_welcome/background_header.jpg");
       background-position: bottom;
     background-repeat: no-repeat;
     background-size: contain;
