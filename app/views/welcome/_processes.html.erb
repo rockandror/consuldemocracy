@@ -1,12 +1,12 @@
 <div class="feeds-list">
   <% @feeds.each do |feed| %>
 
-    <% if feed_processes?(feed) && feed.items.where(film_library: false).count > 0 %>
+    <% if feed_processes?(feed) && feed.items.count > 0 %>
       <div class="card small-12 column margin-bottom">
         <div class="feed-content">
           <h3 class="title"><%= t("welcome.feed.most_active.#{feed.kind}") %></h3>
           <div class="row">
-            <% feed.items.where(film_library: false).each do |item| %>
+            <% feed.items.each do |item| %>
               <div class="small-12 medium-4 column">
                 <%= link_to url_for(item) do %>
                   <figure class="figure-card <%= item.class.to_s.parameterize(separator: "_") %>">
