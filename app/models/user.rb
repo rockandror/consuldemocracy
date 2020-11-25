@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_one :moderator
   has_one :valuator
   has_one :manager
+  has_one :sdg_manager, class_name: "SDG::Manager"
   has_one :poll_officer, class_name: "Poll::Officer"
   has_one :organization
   has_one :lock
@@ -197,6 +198,9 @@ class User < ApplicationRecord
     manager.present?
   end
 
+  def sdg_manager?
+    sdg_manager.present?
+  end
   def poll_officer?
     poll_officer.present?
   end

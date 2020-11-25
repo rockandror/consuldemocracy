@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_17_200945) do
+ActiveRecord::Schema.define(version: 2020_11_24_145559) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -1304,6 +1304,11 @@ ActiveRecord::Schema.define(version: 2020_11_17_200945) do
     t.index ["code"], name: "index_sdg_goals_on_code", unique: true
   end
 
+  create_table "sdg_managers", force: :cascade do |t|
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_sdg_managers_on_user_id"
+  end
+
   create_table "sdg_relations", force: :cascade do |t|
     t.string "related_sdg_type"
     t.bigint "related_sdg_id"
@@ -1676,6 +1681,7 @@ ActiveRecord::Schema.define(version: 2020_11_17_200945) do
   add_foreign_key "proposals", "communities"
   add_foreign_key "related_content_scores", "related_contents"
   add_foreign_key "related_content_scores", "users"
+  add_foreign_key "sdg_managers", "users"
   add_foreign_key "users", "geozones"
   add_foreign_key "valuators", "users"
 end
