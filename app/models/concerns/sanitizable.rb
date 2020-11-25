@@ -15,10 +15,12 @@ module Sanitizable
   protected
 
     def sanitize_description
-      if translatable_description?
-        sanitize_description_translations
-      else
-        self.description = WYSIWYGSanitizer.new.sanitize(description)
+      if self.author.blank? || !self.author.administrator?  
+        if translatable_description?
+          sanitize_description_translations
+        else
+          self.description = WYSIWYGSanitizer.new.sanitize(description)
+        end
       end
     end
 
