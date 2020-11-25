@@ -1,7 +1,7 @@
 <div class="feeds-list">
   <% @feeds.each do |feed| %>
 
-    <% if feed_processes?(feed) %>
+    <% if feed_processes?(feed) && feed.items.count > 0 %>
       <div class="card small-12 column margin-bottom">
         <div class="feed-content">
           <h3 class="title"><%= t("welcome.feed.most_active.#{feed.kind}") %></h3>

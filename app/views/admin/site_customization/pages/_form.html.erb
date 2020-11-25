@@ -43,7 +43,7 @@
       <%= translations_form.text_field :subtitle %>
       <div class="ckeditor">
         <%= translations_form.cktext_area :content,
-                                          ckeditor: { language: I18n.locale, toolbar: "admin" } %>
+                                          ckeditor: { language: I18n.locale, toolbar: current_user.administrator? ? "admin" : 'mini' } %>
       </div>
     <% end %>
 

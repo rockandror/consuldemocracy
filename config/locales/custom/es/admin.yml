@@ -9,6 +9,10 @@ es:
       processes:
         form:
           film_library: Filmoteca
+          film_library_properties: "Propiedades de filmoteca"
+          film_library_limit: "Límite de películas"
+          film_library_limit_down: "Si no se introduce limite o se indica que es '0', no hay limite de propuestas"
+          film_library_admin: "Sólo administradores"
     segment_recipient:
       beta_testers: "Beta testers"
     budget_investments:

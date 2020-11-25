@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201112123718) do
+ActiveRecord::Schema.define(version: 20201125101402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -771,6 +771,8 @@ ActiveRecord::Schema.define(version: 20201112123718) do
     t.boolean  "permit_hiden_proposals"
     t.boolean  "permit_like_proposals",          default: false
     t.string   "proposals_title"
+    t.integer  "film_library_limit"
+    t.boolean  "film_library_admin",             default: false
     t.index ["allegations_end_date"], name: "index_legislation_processes_on_allegations_end_date", using: :btree
     t.index ["allegations_start_date"], name: "index_legislation_processes_on_allegations_start_date", using: :btree
     t.index ["debate_end_date"], name: "index_legislation_processes_on_debate_end_date", using: :btree

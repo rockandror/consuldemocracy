@@ -87,7 +87,7 @@
           </span>
         <% end %>
       <% end %>
-      <%= f.cktext_area :description, maxlength: Legislation::Proposal.description_max_length, ckeditor: { language: I18n.locale }, label: false %>
+      <%= f.cktext_area :description, maxlength: Legislation::Proposal.description_max_length, ckeditor: { language: I18n.locale, toolbar: current_user.administrator? ? "admin" : 'mini' }, label: false %>
     </div>
     
     

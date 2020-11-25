@@ -81,4 +81,8 @@ module ApplicationHelper
     controller.class.to_s.include?("Management")
   end
 
+  def host_helper
+    root_url
+  end
+
 end

@@ -6,11 +6,12 @@ banner = @banners.subsection(subsection).sample %>
     <%= link_to banner.target_url do %>
       <h2 style="color:<%= banner.font_color %>"><%= banner.try(:title) %></h2>
       <h3 style="color:<%= banner.font_color %>"><%= banner.try(:description) %></h3>
+      <%= render_image(banner.image, :large, false) if !banner.image.try(:attachment).blank? %>
     <% end %>
   <%else%>
       <h2 style="color:<%= banner.font_color %>"><%= banner.try(:title) %></h2>
       <h3 style="color:<%= banner.font_color %>"><%= banner.try(:description) %></h3>
-  <%end%>
-  <%= render_image(banner.image, :large, false) if !banner.image.try(:attachment).blank? %>
+      <%= render_image(banner.image, :large, false) if !banner.image.try(:attachment).blank? %>
+  <%end%>  
 </div>
 <%end%>

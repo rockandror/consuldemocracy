@@ -237,3 +237,11 @@ function setHiddenResponse(id) {
   }
 }
 
+function showhideElementChecked(element, check) {
+  if(check.prop("checked") == true) {
+    element.show();
+  } else {
+    element.hide();
+  }
+}
+
