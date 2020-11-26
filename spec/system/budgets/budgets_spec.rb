@@ -205,18 +205,18 @@ describe "Budgets" do
 
     phases.informing.update!(starts_at: "30-12-2017", ends_at: "31-12-2017", enabled: true,
                              description: "Description of informing phase",
-                             summary: "<p>This is the summary for informing phase</p>")
+                             name: "Custom name for description phase")
 
     phases.accepting.update!(starts_at: "01-01-2018", ends_at: "10-01-2018", enabled: true,
                             description: "Description of accepting phase",
-                            summary: "This is the summary for accepting phase")
+                            name: "Custom name for accepting phase")
 
     phases.reviewing.update!(starts_at: "11-01-2018", ends_at: "20-01-2018", enabled: false,
                             description: "Description of reviewing phase")
 
     phases.selecting.update!(starts_at: "21-01-2018", ends_at: "01-02-2018", enabled: true,
                             description: "Description of selecting phase",
-                            summary: "This is the summary for selecting phase")
+                            name: "Custom name for selecting phase")
 
     phases.valuating.update!(starts_at: "10-02-2018", ends_at: "20-02-2018", enabled: false,
                             description: "Description of valuating phase")

@@ -12,7 +12,11 @@
       <% @budget.phases.order(:id).each do |phase| %>
         <tr id="<%= dom_id(phase) %>" class="phase">
           <td>
+            <% if phase.name.present? %>
+              <%= phase.name %>
+            <% else %>
               <%= t("budgets.phase.#{phase.kind}") %>
+            <% end %>
             <% if @budget.current_phase == phase %>
               <span class="label success"><strong><%= t("admin.budgets.edit.active") %></strong></span>
             <% end %>

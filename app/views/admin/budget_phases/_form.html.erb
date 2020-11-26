@@ -33,6 +33,12 @@
 
   <%= f.translatable_fields do |translations_form| %>
     <div class="small-12 column">
+      <%= translations_form.label :name %>
+      <p class="help-text"><%= t("admin.budget_phases.edit.phase_name_help_text") %></p>
+      <%= translations_form.text_field :name, label: false %>
+    </div>
+
+    <div class="small-12 column">
       <%= translations_form.text_area :description,
                                        maxlength: Budget::Phase::DESCRIPTION_MAX_LENGTH,
                                        class: "html-area",

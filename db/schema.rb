@@ -286,6 +286,7 @@ ActiveRecord::Schema.define(version: 2020_09_08_084257) do
     t.datetime "updated_at", null: false
     t.text "description"
     t.text "summary"
+    t.string "name"
     t.index ["budget_phase_id"], name: "index_budget_phase_translations_on_budget_phase_id"
     t.index ["locale"], name: "index_budget_phase_translations_on_locale"
   end

@@ -27,6 +27,25 @@ describe "Admin budget phases" do
       expect(budget.current_phase.enabled).to be(false)
     end
 
+    scenario "Show default phase name or custom if present" do
+      visit edit_admin_budget_path(budget)
+      phase = budget.current_phase
+
+      within "#budget_phase_#{phase.id}" do
+        expect(page).to have_content "Accepting projects"
+        expect(page).not_to have_content "My phase custom name"
+        click_link "Edit content"
+      end
+
+      fill_in "Phase's Name", with: "My phase custom name"
+      click_button "Save changes"
+
+      within "#budget_phase_#{phase.id}" do
+        expect(page).to have_content "My phase custom name"
+        expect(page).not_to have_content "Accepting projects"
+      end
+    end
+
     scenario "Enable and disable a phase is possible from the budget view", :js do
       visit edit_admin_budget_path(budget)
       phase = budget.phases.enabled.sample
