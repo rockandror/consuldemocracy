@@ -199,6 +199,7 @@ es:
         save_changes: Guardar cambios
         duration: "Duración de la fase"
         duration_description: "El período de tiempo que esta fase estará activa."
+        image_description: "Si se proporciona una imagen será usada como fondo del presupuesto cuando esta fase esté activa, si no el fondo será del color por defecto para los presupuestos."
         phase_name_help_text: "Este es el título de la fase que los usuarios leerán en el encabezado cuando la fase esté activa."
     budget_investments:
       index:

@@ -63,6 +63,10 @@
 
                 <%= auto_link_already_sanitized_html(wysiwyg(phase.description)) %></p>
 
+              <div class="small-12 medium-6 column text-center">
+                <% if phase.image.present? %>
+                  <%= image_tag phase.image.attachment.url(:large) %>
+                <% end %>
               </div>
             </div>
           </div>
