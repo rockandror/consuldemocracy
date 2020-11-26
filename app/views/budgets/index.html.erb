@@ -19,6 +19,11 @@
           <span class="budget-title"><%= t("budgets.index.title") %></span>
           <h1><%= current_budget.name %></h1>
 
+          <% if current_budget.main_button_text.present? && current_budget.main_button_url.present? %>
+            <%= link_to current_budget.main_button_text, current_budget.main_button_url,
+                        class: "button large" %>
+          <% end %>
+
           <p>
             <%= link_to t("budgets.index.section_header.help"), "#section_help" %>
           </p>

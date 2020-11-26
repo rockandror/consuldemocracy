@@ -359,6 +359,18 @@ describe "Admin budgets" do
       end
     end
 
+    scenario "Show CTA button in public site if added" do
+      visit edit_admin_budget_path(budget)
+      expect(page).to have_content("Main call to action (optional)")
+
+      fill_in "Text on the button", with: "Participate now"
+      fill_in "The button takes you to (add a link)", with: "https://consulproject.org"
+      click_button "Update Budget"
+
+      visit budgets_path
+      expect(page).to have_link("Participate now", href: "https://consulproject.org")
+    end
+
     scenario "Changing name for current locale will update the slug if budget is in draft phase", :js do
       budget.update!(published: false)
       old_slug = budget.slug

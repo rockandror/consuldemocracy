@@ -144,6 +144,8 @@ en:
         voting_style: "Final voting style"
         voting_style_knapsack: "Knapsack"
         voting_style_approval: "Approval"
+        main_button_text: "Text on the button"
+        main_button_url: "The button takes you to (add a link)"
       budget/translation:
         name: "Name"
       budget/investment:
