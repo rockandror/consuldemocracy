@@ -217,6 +217,8 @@ es:
         enabled: "Fase habilitada"
         ends_at: "Fecha de fin"
         starts_at: "Fecha de inicio"
+        main_button_text: "Texto del botón"
+        main_button_url: "El botón te lleva a (añade un enlace)"
       budget/phase/translation:
         name: "Nombre"
         description: "Descripción"

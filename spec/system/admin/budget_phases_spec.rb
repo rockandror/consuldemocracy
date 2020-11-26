@@ -46,6 +46,20 @@ describe "Admin budget phases" do
       end
     end
 
+    scenario "Show CTA button in public site if added" do
+      visit edit_admin_budget_budget_phase_path(budget, budget.current_phase)
+      expect(page).to have_content "Main call to action (optional)"
+
+      fill_in "Text on the button", with: "Button on the phase"
+      fill_in "The button takes you to (add a link)", with: "https://consulproject.org"
+      click_button "Save changes"
+
+      visit budgets_path
+      within "##{budget.current_phase.kind.parameterize}" do
+        expect(page).to have_link("Button on the phase", href: "https://consulproject.org")
+      end
+    end
+
     scenario "Enable and disable a phase is possible from the budget view", :js do
       visit edit_admin_budget_path(budget)
       phase = budget.phases.enabled.sample

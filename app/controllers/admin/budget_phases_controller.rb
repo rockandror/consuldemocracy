@@ -28,6 +28,7 @@ class Admin::BudgetPhasesController < Admin::BaseController
 
     def budget_phase_params
       valid_attributes = [:starts_at, :ends_at, :enabled,
+                          :main_button_text, :main_button_url,
                           image_attributes: image_attributes]
       params.require(:budget_phase).permit(*valid_attributes, translation_params(Budget::Phase))
     end

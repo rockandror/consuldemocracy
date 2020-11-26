@@ -202,6 +202,8 @@ es:
         duration: "Duración de la fase"
         duration_description: "El período de tiempo que esta fase estará activa."
         image_description: "Si se proporciona una imagen será usada como fondo del presupuesto cuando esta fase esté activa, si no el fondo será del color por defecto para los presupuestos."
+        main_call_to_action: "Botón de acción principal (opcional)"
+        main_call_to_action_description: "Este botón aparecerá en la cabecera de este presupuesto participativo cuando esta fase esté activa y permite al usuario ejecutar una acción específica como crear una nueva propuesta, votar las existentes, o leer más sobre el funcionamiento de los presupuestos participativos."
         phase_name_help_text: "Este es el título de la fase que los usuarios leerán en el encabezado cuando la fase esté activa."
     budget_investments:
       index:
