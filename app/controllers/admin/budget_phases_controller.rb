@@ -1,7 +1,7 @@
 class Admin::BudgetPhasesController < Admin::BaseController
   include Translatable
 
-  before_action :load_phase, only: [:edit, :update]
+  before_action :load_phase, only: [:edit, :update, :toggle_enable]
 
   def edit
   end
@@ -13,6 +13,10 @@ class Admin::BudgetPhasesController < Admin::BaseController
     else
       render :edit
     end
+  end
+
+  def toggle_enable
+    @phase.update!(enabled: !@phase.enabled)
   end
 
   private

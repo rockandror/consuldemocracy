@@ -14,7 +14,6 @@ describe "Admin budget phases" do
 
       fill_in "start_date", with: Date.current + 1.day
       fill_in "end_date", with: Date.current + 12.days
-      fill_in_ckeditor "Summary", with: "New summary of the phase."
       fill_in_ckeditor "Description", with: "New description of the phase."
       uncheck "budget_phase_enabled"
       click_button "Save changes"
@@ -24,9 +23,34 @@ describe "Admin budget phases" do
 
       expect(budget.current_phase.starts_at.to_date).to eq((Date.current + 1.day).to_date)
       expect(budget.current_phase.ends_at.to_date).to eq((Date.current + 12.days).to_date)
-      expect(budget.current_phase.summary).to include("New summary of the phase.")
       expect(budget.current_phase.description).to include("New description of the phase.")
       expect(budget.current_phase.enabled).to be(false)
+    end
+
+    scenario "Enable and disable a phase is possible from the budget view", :js do
+      visit edit_admin_budget_path(budget)
+      phase = budget.phases.enabled.sample
+
+      expect(phase.enabled).to be true
+      within "#budget_phase_#{phase.id}" do
+        expect(find("#phase_enabled")).to be_checked
+        uncheck "phase_enabled"
+      end
+
+      visit edit_admin_budget_path(budget)
+
+      within "#budget_phase_#{phase.id}" do
+        expect(find("#phase_enabled")).not_to be_checked
+        expect(phase.reload.enabled).to be false
+        check "phase_enabled"
+      end
+
+      visit edit_admin_budget_path(budget)
+
+      within "#budget_phase_#{phase.id}" do
+        expect(find("#phase_enabled")).to be_checked
+      end
+      expect(phase.reload.enabled).to be true
     end
   end
 end

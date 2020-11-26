@@ -151,6 +151,19 @@ class Budget < ApplicationRecord
     current_phase&.balloting_or_later?
   end
 
+  def single_heading?
+    groups.count == 1 && headings.count == 1
+  end
+
+  def enabled_phases_amount
+    phases.enabled.count
+  end
+
+  def current_enabled_phase_number
+    first_enabled_phase_position = phases.enabled.order(:id).find_index { |phase| phase.kind == self.phase }
+    first_enabled_phase_position.present? ? first_enabled_phase_position + 1 : 0
+  end
+
   def heading_price(heading)
     heading_ids.include?(heading.id) ? heading.price : -1
   end
