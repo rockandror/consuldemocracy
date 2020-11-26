@@ -6,6 +6,14 @@ describe "Admin budgets" do
     login_as(admin.user)
   end
 
+  it_behaves_like "nested imageable",
+                  "budget",
+                  "new_admin_budget_path",
+                  {},
+                  "imageable_fill_new_valid_budget",
+                  "Create Budget",
+                  "New participatory budget created successfully!"
+
   context "Feature flag" do
     before do
       Setting["process.budgets"] = nil

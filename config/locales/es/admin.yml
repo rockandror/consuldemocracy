@@ -122,6 +122,7 @@ es:
         empty_administrators: "No hay administradores"
         empty_valuators: "No hay evaluadores"
         name_description: "Este es el nombre del presupuesto participativo usado en la cabecera y tarjetas cuando éste está activo"
+        image_description: "Si se proporciona una imagen será usada como fondo del presupuesto, si no el fondo será del color por defecto para los presupuestos."
         info:
           budget_settings: "Configuración genérica del presupuesto participativo"
           heading_settings: "Configuración de la partida"

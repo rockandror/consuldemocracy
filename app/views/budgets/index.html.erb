@@ -7,7 +7,13 @@
 <% end %>
 
 <% if current_budget.present? %>
+  <% if current_budget.image.present? %>
+    <div id="budget_heading"
+         class="expanded budget with-background-image"
+         style="background-image: url(<%= asset_url current_budget.image.attachment.url(:large) %>);">
+  <% else %>
     <div id="budget_heading" class="expanded budget">
+  <% end %>
     <div class="row">
       <div class="small-12 column text-center">
           <span class="budget-title"><%= t("budgets.index.title") %></span>

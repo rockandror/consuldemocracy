@@ -24,6 +24,15 @@
     <%= f.select :currency_symbol, budget_currency_symbol_select_options %>
   </div>
 
+  <% if feature?(:allow_images) %>
+    <div class="budget-investment-form">
+      <div class="images small-12 column">
+        <%= render "/images/nested_image", imageable: @budget, f: f %>
+        <p class="help-text"><%= t("admin.budgets.edit.image_description") %></p>
+      </div>
+    </div>
+  <% end %>
+
   <p class="form-section-divider"><span><%= t("admin.budgets.edit.info.staff_settings") %></span></p>
 
   <div class="clear">

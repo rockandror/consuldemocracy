@@ -101,6 +101,19 @@ a {
   &.medium {
     font-size: $small-font-size;
   }
+
+  &.direct-upload-button {
+    font-weight: bold;
+    padding-left: $line-height * 1.5;
+    position: relative;
+
+    &::before {
+      content: "\f03e";
+      font-family: "Font Awesome 5 Free";
+      left: 10px;
+      position: absolute;
+    }
+  }
 }
 
 .button.hollow {

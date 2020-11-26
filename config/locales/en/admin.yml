@@ -122,6 +122,7 @@ en:
         empty_administrators: "There are no administrators"
         empty_valuators: "There are no valuators"
         name_description: "This is the name of the participatory budget used on the header and cards whenever it is active"
+        image_description: "If an image is uplodaded it will be used as the banner on top of this participatory budget, otherwise the default color for budgets will be used."
         info:
           budget_settings: "General participatory budget settings"
           heading_settings: "Heading settings"

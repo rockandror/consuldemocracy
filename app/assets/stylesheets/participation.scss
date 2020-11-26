@@ -310,6 +310,7 @@
 }
 
 .budget-investment-new,
+.budget-investment-form,
 .proposal-form,
 .proposal-edit,
 .polls-form,
@@ -1213,6 +1214,12 @@
         margin-bottom: 0;
         text-transform: uppercase;
       }
+    }
+
+    &.with-background-image {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
     }
   }
 }
