@@ -53,6 +53,9 @@ describe "Welcome screen" do
 
     visit email_path(email_verification_token: encrypted)
 
+    expect(page).to have_current_path new_user_session_path
+
+    visit new_user_session_path(sign_in_form: "1")
     fill_in "user_login", with: user.email
     fill_in "user_password", with: user.password
 

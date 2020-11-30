@@ -14,8 +14,7 @@ module Users
   end
 
   def login_through_form_with_email_and_password(email = "manuela@consul.dev", password = "judgementday")
-    visit root_path
-    click_link "Sign in"
+    visit new_user_session_path(sign_in_form: "1")
 
     fill_in "user_login", with: email
     fill_in "user_password", with: password
@@ -24,8 +23,7 @@ module Users
   end
 
   def login_through_form_as(user)
-    visit root_path
-    click_link "Sign in"
+    visit new_user_session_path(sign_in_form: "1")
 
     fill_in "user_login", with: user.email
     fill_in "user_password", with: user.password
@@ -34,8 +32,7 @@ module Users
   end
 
   def login_through_form_as_officer(user)
-    visit root_path
-    click_link "Sign in"
+    visit new_user_session_path(sign_in_form: "1")
 
     fill_in "user_login", with: user.email
     fill_in "user_password", with: user.password
@@ -66,8 +63,7 @@ module Users
   def reset_password
     create(:user, email: "manuela@consul.dev")
 
-    visit "/"
-    click_link "Sign in"
+    visit new_user_session_path(sign_in_form: "1")
     click_link "Forgotten your password?"
 
     fill_in "user_email", with: "manuela@consul.dev"

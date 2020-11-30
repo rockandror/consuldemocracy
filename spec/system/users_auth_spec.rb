@@ -45,11 +45,17 @@ describe "Users" do
     end
 
     context "Sign in" do
+      scenario "Does not show form to sign in by default" do
+        visit new_user_session_path
+
+        expect(page).not_to have_field "Password"
+        expect(page).not_to have_button "Enter"
+      end
+
       scenario "sign in with email" do
         create(:user, email: "manuela@consul.dev", password: "judgementday")
 
-        visit "/"
-        click_link "Sign in"
+        visit new_user_session_path(sign_in_form: "1")
         fill_in "user_login",    with: "manuela@consul.dev"
         fill_in "user_password", with: "judgementday"
         click_button "Enter"
@@ -60,8 +66,7 @@ describe "Users" do
       scenario "Sign in with username" do
         create(:user, username: "👻👽👾🤖", email: "ash@nostromo.dev", password: "xenomorph")
 
-        visit "/"
-        click_link "Sign in"
+        visit new_user_session_path(sign_in_form: "1")
         fill_in "user_login",    with: "👻👽👾🤖"
         fill_in "user_password", with: "xenomorph"
         click_button "Enter"
@@ -73,8 +78,7 @@ describe "Users" do
         u1 = create(:user, username: "Spidey", email: "peter@nyc.dev", password: "greatpower")
         u2 = create(:user, username: "peter@nyc.dev", email: "venom@nyc.dev", password: "symbiote")
 
-        visit "/"
-        click_link "Sign in"
+        visit new_user_session_path(sign_in_form: "1")
         fill_in "user_login",    with: "peter@nyc.dev"
         fill_in "user_password", with: "greatpower"
         click_button "Enter"
@@ -90,7 +94,7 @@ describe "Users" do
 
         expect(page).to have_content "You have been signed out successfully."
 
-        click_link "Sign in"
+        visit new_user_session_path(sign_in_form: "1")
         fill_in "user_login",    with: "peter@nyc.dev"
         fill_in "user_password", with: "symbiote"
         click_button "Enter"
@@ -526,8 +530,7 @@ describe "Users" do
   scenario "Reset password" do
     create(:user, email: "manuela@consul.dev")
 
-    visit "/"
-    click_link "Sign in"
+    visit new_user_session_path(sign_in_form: "1")
     click_link "Forgotten your password?"
 
     fill_in "user_email", with: "manuela@consul.dev"
@@ -548,8 +551,7 @@ describe "Users" do
   end
 
   scenario "Reset password with unexisting email" do
-    visit "/"
-    click_link "Sign in"
+    visit new_user_session_path(sign_in_form: "1")
     click_link "Forgotten your password?"
 
     fill_in "user_email", with: "fake@mail.dev"
@@ -562,8 +564,7 @@ describe "Users" do
   scenario "Re-send confirmation instructions", skip: "Confirmation is disabled" do
     create(:user, email: "manuela@consul.dev")
 
-    visit "/"
-    click_link "Sign in"
+    visit new_user_session_path(sign_in_form: "1")
     click_link "Haven't received instructions to activate your account?"
 
     fill_in "user_email", with: "manuela@consul.dev"
@@ -575,8 +576,7 @@ describe "Users" do
   end
 
   scenario "Re-send confirmation instructions with unexisting email", skip: "Confirmation is disabled" do
-    visit "/"
-    click_link "Sign in"
+    visit new_user_session_path(sign_in_form: "1")
     click_link "Haven't received instructions to activate your account?"
 
     fill_in "user_email", with: "fake@mail.dev"
