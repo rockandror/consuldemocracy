@@ -6,7 +6,7 @@ describe "Sessions" do
     debate = create(:debate)
 
     visit debate_path(debate)
-    click_link "Sign in"
+    visit new_user_session_path(sign_in_form: "1")
     fill_in "user_login", with: user.email
     fill_in "user_password", with: user.password
     click_button "Enter"
@@ -25,7 +25,7 @@ describe "Sessions" do
     heading = create(:budget_heading, name: "outskirts")
 
     visit budget_investments_path(heading.budget, heading_id: "outskirts")
-    click_link "Sign in"
+    visit new_user_session_path(sign_in_form: "1")
     fill_in "user_login",    with: "dev@consul.dev"
     fill_in "user_password", with: "consuldev"
     click_button "Enter"
@@ -38,7 +38,7 @@ describe "Sessions" do
 
     visit debates_path
     visit "/"
-    click_link "Sign in"
+    visit new_user_session_path(sign_in_form: "1")
     fill_in "user_login", with: user.email
     fill_in "user_password", with: user.password
     click_button "Enter"

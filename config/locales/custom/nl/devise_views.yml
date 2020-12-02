@@ -1,0 +1,7 @@
+nl:
+  devise_views:
+    users:
+      registrations:
+        new:
+          first_name: Voornaam
+          last_name: Achternaam

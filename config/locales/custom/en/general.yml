@@ -1,4 +1,7 @@
 en:
+  omniauth:
+    finish_signup:
+      username_warning: "Please fill in your first name and/or your last name"
   proposals:
     show:
       details: "Proposal details:"

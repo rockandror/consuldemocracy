@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe "Users" do
   context "Regular authentication" do
-    context "Sign up" do
+    context "Sign up", skip: "Sign up is disabled" do
       scenario "Success" do
         message = "You have been sent a message containing a verification link. Please click on this link to activate your account."
         visit "/"
@@ -32,12 +32,30 @@ describe "Users" do
       end
     end
 
+    scenario "Link to register is not present" do
+      visit root_path
+
+      expect(page).not_to have_link "Register"
+    end
+
+    scenario "Sign up redirects to sign in" do
+      visit new_user_registration_path
+
+      expect(page).to have_current_path new_user_session_path
+    end
+
     context "Sign in" do
+      scenario "Does not show form to sign in by default" do
+        visit new_user_session_path
+
+        expect(page).not_to have_field "Password"
+        expect(page).not_to have_button "Enter"
+      end
+
       scenario "sign in with email" do
         create(:user, email: "manuela@consul.dev", password: "judgementday")
 
-        visit "/"
-        click_link "Sign in"
+        visit new_user_session_path(sign_in_form: "1")
         fill_in "user_login",    with: "manuela@consul.dev"
         fill_in "user_password", with: "judgementday"
         click_button "Enter"
@@ -48,8 +66,7 @@ describe "Users" do
       scenario "Sign in with username" do
         create(:user, username: "👻👽👾🤖", email: "ash@nostromo.dev", password: "xenomorph")
 
-        visit "/"
-        click_link "Sign in"
+        visit new_user_session_path(sign_in_form: "1")
         fill_in "user_login",    with: "👻👽👾🤖"
         fill_in "user_password", with: "xenomorph"
         click_button "Enter"
@@ -61,8 +78,7 @@ describe "Users" do
         u1 = create(:user, username: "Spidey", email: "peter@nyc.dev", password: "greatpower")
         u2 = create(:user, username: "peter@nyc.dev", email: "venom@nyc.dev", password: "symbiote")
 
-        visit "/"
-        click_link "Sign in"
+        visit new_user_session_path(sign_in_form: "1")
         fill_in "user_login",    with: "peter@nyc.dev"
         fill_in "user_password", with: "greatpower"
         click_button "Enter"
@@ -78,7 +94,7 @@ describe "Users" do
 
         expect(page).to have_content "You have been signed out successfully."
 
-        click_link "Sign in"
+        visit new_user_session_path(sign_in_form: "1")
         fill_in "user_login",    with: "peter@nyc.dev"
         fill_in "user_password", with: "symbiote"
         click_button "Enter"
@@ -216,9 +232,12 @@ describe "Users" do
         OmniAuth.config.add_mock(:twitter, twitter_hash_with_verified_email)
 
         visit "/"
-        click_link "Register"
+        click_link "Sign in"
 
-        click_link "Sign up with Twitter"
+        click_link "Sign in with Twitter"
+
+        fill_in "First name", with: "Manuela"
+        click_button "Register"
 
         expect_to_be_signed_in
 
@@ -233,15 +252,20 @@ describe "Users" do
         OmniAuth.config.add_mock(:twitter, twitter_hash_with_email)
 
         visit "/"
-        click_link "Register"
+        click_link "Sign in"
 
-        click_link "Sign up with Twitter"
+        click_link "Sign in with Twitter"
 
-        expect(page).to have_current_path(new_user_session_path)
-        expect(page).to have_content "To continue, please click on the confirmation link that we have sent you via email"
+        expect(page).to have_current_path(finish_signup_path)
 
-        confirm_email
-        expect(page).to have_content "Your account has been confirmed"
+        fill_in "First name", with: "Manuela"
+        click_button "Register"
+
+        expect_to_be_signed_in
+
+        click_link "Sign out"
+
+        expect_not_to_be_signed_in
 
         visit "/"
         click_link "Sign in"
@@ -259,17 +283,20 @@ describe "Users" do
         OmniAuth.config.add_mock(:twitter, twitter_hash)
 
         visit "/"
-        click_link "Register"
-        click_link "Sign up with Twitter"
+        click_link "Sign in"
+        click_link "Sign in with Twitter"
 
         expect(page).to have_current_path(finish_signup_path)
-        fill_in "user_email", with: "manueladelascarmenas@example.com"
+
+        fill_in "First name", with: "Manuela"
+        fill_in "Email", with: "manueladelascarmenas@example.com"
         click_button "Register"
 
-        expect(page).to have_content "To continue, please click on the confirmation link that we have sent you via email"
+        expect_to_be_signed_in
 
-        confirm_email
-        expect(page).to have_content "Your account has been confirmed"
+        click_link "Sign out"
+
+        expect_not_to_be_signed_in
 
         visit "/"
         click_link "Sign in"
@@ -287,8 +314,8 @@ describe "Users" do
         OmniAuth.config.add_mock(:twitter, twitter_hash)
 
         visit "/"
-        click_link "Register"
-        click_link "Sign up with Twitter"
+        click_link "Sign in"
+        click_link "Sign in with Twitter"
 
         expect(page).to have_current_path(finish_signup_path)
         click_link "Cancel login"
@@ -320,18 +347,12 @@ describe "Users" do
         OmniAuth.config.add_mock(:twitter, twitter_hash_with_verified_email)
 
         visit "/"
-        click_link "Register"
-        click_link "Sign up with Twitter"
+        click_link "Sign in"
+        click_link "Sign in with Twitter"
 
         expect(page).to have_current_path(finish_signup_path)
 
-        expect(page).to have_field("user_username", with: "manuela")
-
-        click_button "Register"
-
-        expect(page).to have_current_path(do_finish_signup_path)
-
-        fill_in "user_username", with: "manuela2"
+        fill_in "First name", with: "Manuela"
         click_button "Register"
 
         expect_to_be_signed_in
@@ -348,11 +369,12 @@ describe "Users" do
         OmniAuth.config.add_mock(:twitter, twitter_hash)
 
         visit "/"
-        click_link "Register"
-        click_link "Sign up with Twitter"
+        click_link "Sign in"
+        click_link "Sign in with Twitter"
 
         expect(page).to have_current_path(finish_signup_path)
 
+        fill_in "First name", with: "Manuela"
         fill_in "user_email", with: "manuela@example.com"
         click_button "Register"
 
@@ -361,10 +383,11 @@ describe "Users" do
         fill_in "user_email", with: "somethingelse@example.com"
         click_button "Register"
 
-        expect(page).to have_content "To continue, please click on the confirmation link that we have sent you via email"
+        expect_to_be_signed_in
 
-        confirm_email
-        expect(page).to have_content "Your account has been confirmed"
+        click_link "Sign out"
+
+        expect_not_to_be_signed_in
 
         visit "/"
         click_link "Sign in"
@@ -383,19 +406,21 @@ describe "Users" do
         OmniAuth.config.add_mock(:twitter, twitter_hash_with_email)
 
         visit "/"
-        click_link "Register"
-        click_link "Sign up with Twitter"
+        click_link "Sign in"
+        click_link "Sign in with Twitter"
 
         expect(page).to have_current_path(finish_signup_path)
-
         expect(page).to have_field("user_email", with: "manuelacarmena@example.com")
+
+        fill_in "First name", with: "Manuela"
         fill_in "user_email", with: "somethingelse@example.com"
         click_button "Register"
 
-        expect(page).to have_content "To continue, please click on the confirmation link that we have sent you via email"
+        expect_to_be_signed_in
 
-        confirm_email
-        expect(page).to have_content "Your account has been confirmed"
+        click_link "Sign out"
+
+        expect_not_to_be_signed_in
 
         visit "/"
         click_link "Sign in"
@@ -425,15 +450,20 @@ describe "Users" do
         OmniAuth.config.add_mock(:wordpress_oauth2, wordpress_hash)
 
         visit "/"
-        click_link "Register"
+        click_link "Sign in"
 
-        click_link "Sign up with Wordpress"
+        click_link "Sign in with Wordpress"
 
-        expect(page).to have_current_path(new_user_session_path)
-        expect(page).to have_content "To continue, please click on the confirmation link that we have sent you via email"
+        expect(page).to have_current_path(finish_signup_path)
 
-        confirm_email
-        expect(page).to have_content "Your account has been confirmed"
+        fill_in "First name", with: "Manuela"
+        click_button "Register"
+
+        expect_to_be_signed_in
+
+        click_link "Sign out"
+
+        expect_not_to_be_signed_in
 
         visit "/"
         click_link "Sign in"
@@ -452,26 +482,25 @@ describe "Users" do
         OmniAuth.config.add_mock(:wordpress_oauth2, wordpress_hash)
 
         visit "/"
-        click_link "Register"
-        click_link "Sign up with Wordpress"
+        click_link "Sign in"
+        click_link "Sign in with Wordpress"
 
         expect(page).to have_current_path(finish_signup_path)
 
-        expect(page).to have_field("user_username", with: "manuela")
-
+        fill_in "First name", with: "Manuela"
         click_button "Register"
 
         expect(page).to have_current_path(do_finish_signup_path)
 
-        fill_in "Username", with: "manuela2"
         fill_in "Email", with: "manuela@consul.dev"
         click_button "Register"
 
-        expect(page).to have_current_path(new_user_session_path)
-        expect(page).to have_content "To continue, please click on the confirmation link that we have sent you via email"
+        expect(page).to have_current_path(root_path)
+        expect_to_be_signed_in
 
-        confirm_email
-        expect(page).to have_content "Your account has been confirmed"
+        click_link "Sign out"
+
+        expect_not_to_be_signed_in
 
         visit "/"
         click_link "Sign in"
@@ -501,8 +530,7 @@ describe "Users" do
   scenario "Reset password" do
     create(:user, email: "manuela@consul.dev")
 
-    visit "/"
-    click_link "Sign in"
+    visit new_user_session_path(sign_in_form: "1")
     click_link "Forgotten your password?"
 
     fill_in "user_email", with: "manuela@consul.dev"
@@ -523,8 +551,7 @@ describe "Users" do
   end
 
   scenario "Reset password with unexisting email" do
-    visit "/"
-    click_link "Sign in"
+    visit new_user_session_path(sign_in_form: "1")
     click_link "Forgotten your password?"
 
     fill_in "user_email", with: "fake@mail.dev"
@@ -534,11 +561,10 @@ describe "Users" do
                                  "you will receive a link to use to reset your password."
   end
 
-  scenario "Re-send confirmation instructions" do
+  scenario "Re-send confirmation instructions", skip: "Confirmation is disabled" do
     create(:user, email: "manuela@consul.dev")
 
-    visit "/"
-    click_link "Sign in"
+    visit new_user_session_path(sign_in_form: "1")
     click_link "Haven't received instructions to activate your account?"
 
     fill_in "user_email", with: "manuela@consul.dev"
@@ -549,9 +575,8 @@ describe "Users" do
                                  "your password."
   end
 
-  scenario "Re-send confirmation instructions with unexisting email" do
-    visit "/"
-    click_link "Sign in"
+  scenario "Re-send confirmation instructions with unexisting email", skip: "Confirmation is disabled" do
+    visit new_user_session_path(sign_in_form: "1")
     click_link "Haven't received instructions to activate your account?"
 
     fill_in "user_email", with: "fake@mail.dev"
