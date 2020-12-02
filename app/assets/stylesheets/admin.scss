@@ -312,6 +312,12 @@ $admin-text:     #434d54;
     label {
       color: $admin-title;
     }
+
+    .locale-form {
+
+      label {
+        color: #fff;
+      }
     }
   }
 
@@ -320,6 +326,9 @@ $admin-text:     #434d54;
     font-weight: bold;
     margin-bottom: 0;
   }
+
+  .globalize-languages {
+    max-width: none;
   }
 
   .menu.simple {
