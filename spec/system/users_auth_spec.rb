@@ -433,6 +433,17 @@ describe "Users" do
         visit edit_user_registration_path
         expect(page).to have_field("user_email", with: "somethingelse@example.com")
       end
+
+      scenario "Sign in with an unconfirmed user", :js do
+        OmniAuth.config.add_mock(:twitter, twitter_hash_with_verified_email)
+
+        create(:user, username: "manuela", email: "manuelacarmena@example.com", confirmed_at: nil)
+
+        visit new_user_session_path
+        click_link "Sign in with Twitter"
+
+        expect_to_be_signed_in
+      end
     end
 
     context "Wordpress" do

@@ -4,8 +4,15 @@ class User
   attr_accessor :first_name
   attr_accessor :last_name
 
+  def confirmation_required?
+    false
+  end
+
   def postpone_email_change?
     false
+  end
+
+  def send_confirmation_instructions
   end
 
   def send_oauth_confirmation_instructions
