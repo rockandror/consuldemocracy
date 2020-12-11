@@ -77,5 +77,5 @@ Rails.application.routes.draw do
     post :request_post_access_key, on: :collection
   end
 
-  get "*missing" => redirect { |p, req| req.flash[:alert] = "No existe la ruta"; '/' }
+  get "*missing" => redirect('/') 
 end
