@@ -4,7 +4,7 @@
     <% if feed_proposals?(feed) %>
       <div id="feed_proposals" class="small-12 column margin-top 
         <%= "medium-12" if feed_debates_and_proposals_enabled? %>" style="float: left">
-        <div class="feed-content" data-equalizer-watch>
+        <div class="feed-content" >
           <h3 class="title"><%= t("welcome.feed.most_active.#{feed.kind}") %></h3>
 
           <div class="row">
@@ -34,7 +34,7 @@
     <% if feed_debates?(feed) %>
       <div id="feed_debates" class="small-12 column margin-top
             <%= "medium-6" if feed_debates_and_proposals_enabled? %><%= "medium-6" if feed_debates_and_topics_enabled? %>" style="float: left">
-        <div class="feed-content" data-equalizer-watch>
+        <div class="feed-content" >
           <h3 class="title"><%= t("welcome.feed.most_active.#{feed.kind}") %></h3>
 
           <% feed.items.each do |item| %>
@@ -51,7 +51,7 @@
     <% if feed_topics?(feed) %>
       <div id="feed_debates" class="small-12 column margin-top
             <%= "medium-6" if feed_debates_and_proposals_enabled? %><%= "medium-6" if feed_debates_and_topics_enabled? %>" style="float: left">
-        <div class="feed-content" data-equalizer-watch>
+        <div class="feed-content" >
           <h3 class="title"><%= t("welcome.feed.most_active.#{feed.kind}") %></h3>
 
           <% feed.items.each do |item| %>

@@ -29,7 +29,9 @@
 
   <h2 class="show-for-sr"><%= t("welcome.title") %></h2>
 
-  <%= render "feeds" %>
+  <div class="row">
+    <%= render "feeds" %>
+  </div>
 
   <div class="row">
     <% if @cards.any? %>
@@ -37,7 +39,8 @@
         <%= render "cards" %>
       </div>
     <% end %>
-
+  </div>
+  <div class="row">
     <div class="small-12 column">
       <%= render "processes" %>
     </div>
