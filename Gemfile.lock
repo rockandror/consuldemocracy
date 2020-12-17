@@ -342,6 +342,9 @@ GEM
     paperclip-av-transcoder (0.6.4)
       av (~> 0.9.0)
       paperclip (>= 2.5.2)
+    paperclip-ffmpeg (1.2.0)
+      paperclip (>= 2.5.2)
+      rails
     parallel (1.19.2)
     paranoia (2.4.2)
       activerecord (>= 4.0, < 6.1)
@@ -563,6 +566,7 @@ DEPENDENCIES
   capistrano3-delayed-job (~> 1.7.3)
   capybara (~> 2.17.0)
   ckeditor (~> 4.2.3)
+  cocaine
   cocoon (~> 1.2.9)
   coffee-rails (~> 4.2.2)
   coveralls (~> 0.8.22)
@@ -602,6 +606,7 @@ DEPENDENCIES
   omniauth-twitter (~> 1.4.0)
   paperclip (~> 5.2.1)
   paperclip-av-transcoder
+  paperclip-ffmpeg
   paranoia (~> 2.4.1)
   pg (~> 0.21.0)
   pg_search (~> 2.0.1)
