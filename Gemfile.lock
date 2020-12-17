@@ -78,6 +78,8 @@ GEM
     ast (2.4.1)
     autoprefixer-rails (8.2.0)
       execjs
+    av (0.9.0)
+      cocaine (~> 0.5.3)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
@@ -337,6 +339,9 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (~> 0.3.0)
+    paperclip-av-transcoder (0.6.4)
+      av (~> 0.9.0)
+      paperclip (>= 2.5.2)
     parallel (1.19.2)
     paranoia (2.4.2)
       activerecord (>= 4.0, < 6.1)
@@ -596,6 +601,7 @@ DEPENDENCIES
   omniauth-google-oauth2 (~> 0.4.0)
   omniauth-twitter (~> 1.4.0)
   paperclip (~> 5.2.1)
+  paperclip-av-transcoder
   paranoia (~> 2.4.1)
   pg (~> 0.21.0)
   pg_search (~> 2.0.1)
