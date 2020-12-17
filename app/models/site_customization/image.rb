@@ -9,11 +9,25 @@ class SiteCustomization::Image < ApplicationRecord
     "map" => [420, 500],
     "logo_email" => [400, 80]
   }
-
-  has_attached_file :image
+  
+  has_attached_file :image,
+                    styles: lambda{ |a|
+                    return {} unless a.content_type.in?  %w(image/jpeg image/jpg image/png image/gif video/mp4) 
+                    { thumb:  '100x100#', small:  '200x200#', medium: '300x300>' }
+                    },
+                    processors: lambda { |a| 
+                      begin
+                        a.is_video? ? [ :ffmpeg ] : [ :thumbnail ] 
+                      rescue => exception
+                        [ :thumbnail ] 
+                      end
+                    }
+  
+  validates_attachment_content_type :image, content_type: [ 'image/jpg', 'image/jpeg', 'image/png', 'video/mp4', 'image/gif'] 
+  # has_attached_file :image
 
   validates :name, presence: true, uniqueness: true, inclusion: { in: VALID_IMAGES.keys }
-  validates_attachment_content_type :image, content_type: ["image/png", "image/jpeg"]
+  # validates_attachment_content_type :image, content_type: ["image/png", "image/jpeg", "image/gif", "video/mp4"]
   validate :check_image
 
   def self.all_images

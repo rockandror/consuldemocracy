@@ -62,7 +62,8 @@ class Setting < ApplicationRecord
         "images" => {
           "jpg"  => "image/jpeg",
           "png"  => "image/png",
-          "gif"  => "image/gif"
+          "gif"  => "image/gif",
+          "mp4"  => "video/mp4"
         },
         "documents" => {
           "pdf"  => "application/pdf",
@@ -72,6 +73,9 @@ class Setting < ApplicationRecord
           "xlsx" => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
           "csv"  => "text/plain",
           "zip"  => "application/zip"
+        },
+        "videos" => {
+          "mp4" => "video/mp4"
         }
       }
     end
@@ -164,13 +168,14 @@ class Setting < ApplicationRecord
         "transparency_url": "http://transparencia.madrid.es/",
         "twitter_handle": "abriendomadrid",
         "twitter_hashtag": "#decidemadrid",
-        # Images and Documents
+        # Images, videos and Documents
         "uploads.images.title.min_length": 4,
         "uploads.images.title.max_length": 80,
         "uploads.images.min_width": 0,
         "uploads.images.min_height": 475,
         "uploads.images.max_size": 1,
         "uploads.images.content_types": "image/jpeg",
+        "uploads.videos.content_types": "video/mp4",
         "uploads.documents.max_amount": 3,
         "uploads.documents.max_size": 3,
         "uploads.documents.content_types": "application/pdf",
