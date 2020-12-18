@@ -63,6 +63,7 @@ gem 'starrr'
 gem 'paperclip-ffmpeg'
 gem 'paperclip-av-transcoder'
 gem "cocaine"
+gem 'jw_player_helper'
 
 source "https://rails-assets.org" do
   gem "rails-assets-leaflet"
