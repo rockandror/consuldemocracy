@@ -121,12 +121,12 @@ App.Imageable =
     $(data.errorContainer).append(errors)
 
   setPreview: (data) ->
-    # video_preview = "<div class='small-12 column text-center image-preview'><video width='320' height='240' controls><source src='#{data.result.attachment_url}' class='cached-image' type='video/mp4'>No se muestra el video</video></div>"
-    video_preview = "<video id='player' playsinline controls><source src='#{data.result.attachment_url}' type='video/mp4'></video>"
+    
+    video_preview = "<video id='player' width='320' height='240' playsinline controls><source src='#{data.result.attachment_url}' type='video/mp4'></video>"
     image_preview = "<div class='small-12 column text-center image-preview'><figure><img src='#{data.result.attachment_url}' class='cached-image'></figure></div>"
     if $(data.preview).length > 0
       if "mp4".indexOf(data.result.filename)
-        $(data.preview).replaceWith(video_preview)
+        $(data.preview).replaceWith(data.result.filename)
       else
         $(data.preview).replaceWith(image_preview)
     else
