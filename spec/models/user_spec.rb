@@ -823,4 +823,14 @@ describe User do
       expect(other_user_legislation_proposal.reload).to be_hidden
     end
   end
+
+  describe "#add_subscriptions_token" do
+    let(:user) { build(:user, subscriptions_token: nil) }
+
+    it "generate subscriptions_token" do
+      user.add_subscriptions_token
+
+      expect(user.subscriptions_token).to be_present
+    end
+  end
 end
