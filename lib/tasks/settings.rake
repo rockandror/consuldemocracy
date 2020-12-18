@@ -125,4 +125,10 @@ namespace :settings do
       puts "Temas añadidos a la página principal"
     end
   end
+
+  task add_video_content_types: :environment do
+    if Setting.new(key: "uploads.videos.content_types", value: "video/mp4").save!
+      puts "Tipos de videos añadidos a la página principal"
+    end
+  end
 end

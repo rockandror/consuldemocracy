@@ -104,7 +104,8 @@ es:
       participation_title: Participación
       participation_text: Decide cómo debe ser la ciudad de Madrid que quieres.
       decide_madrid_title: Decide Madrid
-      decide_madrid_text: Es un espacio para fomentar la participación de la ciudadanía en la generación de ideas para mejorar la gestión de la ciudad.
+      decide_madrid_text: Es un espacio para fomentar la participación de la ciudadanía en la generación de ideas para mejorar la gestión de la ciudad.<br>
+        <a href='https://decide.madrid.es/siparticipasdecides'>Si participas, decides</a>
       problem_title: ¿Problemas técnicos?
       problem_text: "Lee las preguntas frecuentes y resuelve tus dudas: <br>
         <a href='mas-informacion/faq'>Preguntas frecuentes</a><br><br>        
