@@ -1,7 +1,7 @@
 <%= back_link_to %>
 
 <ul class="breadcrumbs margin-top">
-  <li><%= @question.title %></li>
+  <li><%= markdown(@question.title) %></li>
   <li><%= t("admin.answers.new.title") %></li>
 </ul>
 

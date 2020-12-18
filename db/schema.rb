@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200608072147) do
+ActiveRecord::Schema.define(version: 20201125101402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,10 +114,11 @@ ActiveRecord::Schema.define(version: 20200608072147) do
     t.date     "post_started_at"
     t.date     "post_ended_at"
     t.datetime "hidden_at"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.text     "background_color"
     t.text     "font_color"
+    t.boolean  "subsection",       default: false
     t.index ["hidden_at"], name: "index_banners_on_hidden_at", using: :btree
   end
 
@@ -654,6 +655,8 @@ ActiveRecord::Schema.define(version: 20200608072147) do
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.string   "value_other"
+    t.integer  "value_range"
+    t.integer  "value_number"
     t.index ["hidden_at"], name: "index_legislation_answers_on_hidden_at", using: :btree
     t.index ["legislation_question_id"], name: "index_legislation_answers_on_legislation_question_id", using: :btree
     t.index ["legislation_question_option_id"], name: "index_legislation_answers_on_legislation_question_option_id", using: :btree
@@ -768,6 +771,8 @@ ActiveRecord::Schema.define(version: 20200608072147) do
     t.boolean  "permit_hiden_proposals"
     t.boolean  "permit_like_proposals",          default: false
     t.string   "proposals_title"
+    t.integer  "film_library_limit"
+    t.boolean  "film_library_admin",             default: false
     t.index ["allegations_end_date"], name: "index_legislation_processes_on_allegations_end_date", using: :btree
     t.index ["allegations_start_date"], name: "index_legislation_processes_on_allegations_start_date", using: :btree
     t.index ["debate_end_date"], name: "index_legislation_processes_on_debate_end_date", using: :btree
@@ -824,6 +829,10 @@ ActiveRecord::Schema.define(version: 20200608072147) do
     t.datetime "updated_at",                                     null: false
     t.string   "value"
     t.boolean  "other",                          default: false
+    t.boolean  "is_range"
+    t.integer  "range_first",                    default: 1
+    t.integer  "range_last",                     default: 2
+    t.boolean  "is_number"
     t.index ["legislation_question_option_id"], name: "index_61bcec8729110b7f8e1e9e5ce08780878597a209", using: :btree
     t.index ["locale"], name: "index_legislation_question_option_translations_on_locale", using: :btree
   end
@@ -834,6 +843,10 @@ ActiveRecord::Schema.define(version: 20200608072147) do
     t.datetime "hidden_at"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.boolean  "is_range"
+    t.integer  "range_first",             default: 1
+    t.integer  "range_last",              default: 2
+    t.boolean  "is_number"
     t.index ["hidden_at"], name: "index_legislation_question_options_on_hidden_at", using: :btree
     t.index ["legislation_question_id"], name: "index_legislation_question_options_on_legislation_question_id", using: :btree
   end

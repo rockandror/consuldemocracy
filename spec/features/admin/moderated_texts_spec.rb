@@ -88,7 +88,9 @@ feature "Moderated texts", type: :feature do
       visit admin_moderated_texts_path
       expect(page).to have_content('vulgar')
 
-      accept_confirm { click_link 'Delete' }
+      accept_confirm "Are you sure you want to delete this word?" do
+        click_link "Delete"
+      end
 
       expect(page).to have_content('Word successfully deleted.')
       expect(page).not_to have_content('vulgar')
@@ -102,7 +104,9 @@ feature "Moderated texts", type: :feature do
       within "#moderated_text_#{word.id}" do
         expect(page).to have_content("vulgar")
         expect(page).to have_content("1")
-        accept_confirm { click_link 'Delete' }
+        accept_confirm "Are you sure you want to delete this word? There is 1 comment that contains it, when you delete this word the comment will be visible again to everybody." do
+          click_link 'Delete'
+        end
       end
 
       expect(page).not_to have_content("vulgar")

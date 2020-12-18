@@ -12,7 +12,7 @@
  ------------------------------*/
 
 .franklin-title {
-  font-family: "Franklin Gothic" !important;
+  font-family: "Inter" !important;
   text-transform: uppercase;
 }
 
@@ -27,7 +27,7 @@
 
     h1 {
       color: $text;
-      font-family: "Franklin Gothic" !important;
+      font-family: "Inter" !important;
       font-size: rem-calc(40);
       line-height: rem-calc(40);
       margin-top: $line-height * 2;
@@ -74,7 +74,7 @@ $villaverde:        #8e4e28;
 
     h1 {
       color: $text;
-      font-family: "Franklin Gothic" !important;
+      font-family: "Inter" !important;
       font-size: rem-calc(40);
       line-height: rem-calc(40);
       margin-top: $line-height;
@@ -98,7 +98,7 @@ $villaverde:        #8e4e28;
     figcaption {
       bottom: 0;
       color: #fff;
-      font-family: "Franklin Gothic" !important;
+      font-family: "Inter" !important;
       font-size: rem-calc(36);
       line-height: rem-calc(36);
       text-transform: uppercase;
@@ -108,7 +108,7 @@ $villaverde:        #8e4e28;
 
       h3 {
         color: #000;
-        font-family: "Franklin Gothic" !important;
+        font-family: "Inter" !important;
         font-size: rem-calc(36);
         line-height: rem-calc(36);
       }
@@ -341,7 +341,7 @@ $villaverde:        #8e4e28;
 
     h1 {
       color: $budget-2018-pink;
-      font-family: "Source Sans Pro", "Helvetica", "Arial", sans-serif !important;
+      font-family: "Inter" !important;
       font-size: rem-calc(40);
       line-height: rem-calc(40);
 
@@ -543,7 +543,7 @@ $geocraft: #006800;
     &.phrase {
       background: #f3efa2;
       display: inline;
-      font-family: "Souvenir" !important;
+      font-family: "Inter" !important;
       font-size: rem-calc(30);
       line-height: rem-calc(30);
       text-transform: uppercase;
@@ -574,7 +574,7 @@ $geocraft: #006800;
   }
 
   .auth-image {
-    background: #000 image-url("landings/bg_landing.jpg");
+    background: #000 image-url("landings/bg_landing_new.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     padding-bottom: $line-height * 2;

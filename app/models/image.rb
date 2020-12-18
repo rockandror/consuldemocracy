@@ -2,15 +2,23 @@ class Image < ApplicationRecord
   include ImagesHelper
   include ImageablesHelper
 
-  has_attached_file :attachment, styles: {
-                                   large: "x#{Setting["uploads.images.min_height"]}",
-                                   medium: "300x300#",
-                                   thumb: "140x245#"
-                                 },
-                                 url: "/system/:class/:prefix/:style/:hash.:extension",
-                                 hash_data: ":class/:style",
-                                 use_timestamp: false,
-                                 hash_secret: Rails.application.secrets.secret_key_base
+  has_attached_file :attachment, 
+        styles: lambda{ |a|
+          return {} unless a.content_type.in?  %w(image/jpeg image/jpg image/png image/gif) 
+          { large: "x#{Setting["uploads.images.min_height"]}", medium: "300x300#", thumb: "140x245#" }
+          },
+        url: "/system/:class/:prefix/:style/:hash.:extension",
+        hash_data: ":class/:style",
+        use_timestamp: false,
+        processors: lambda { |a| 
+        begin
+          a.is_video? ? [ :ffmpeg ] : [ :thumbnail ] 
+        rescue => exception
+          [ :thumbnail ] 
+        end
+      },
+      hash_secret: Rails.application.secrets.secret_key_base
+
   attr_accessor :cached_attachment
 
   belongs_to :user
@@ -27,7 +35,7 @@ class Image < ApplicationRecord
   validates :user_id, presence: true
   validates :imageable_id, presence: true,         if: -> { persisted? }
   validates :imageable_type, presence: true,       if: -> { persisted? }
-  validate :validate_image_dimensions, if: -> { attachment.present? && attachment.dirty? }
+  validate :validate_image_dimensions, if: -> { attachment.present? && attachment.dirty? && attachment.content_type != 'video/mp4' }
 
   before_save :set_attachment_from_cached_attachment, if: -> { cached_attachment.present? }
   after_save :remove_cached_attachment,               if: -> { cached_attachment.present? }

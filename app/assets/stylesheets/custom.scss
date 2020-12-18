@@ -51,7 +51,8 @@ $madrid-grey:  #f1f1f1;
 
 header,
 .top-bar {
-  background: $madrid-blue !important;
+  background: #fff !important;
+  color: $madrid-black;  
 
   .top-bar-title {
     line-height: $line-height;
@@ -143,17 +144,22 @@ header,
   }
 
   &::after {
-    background: #ededed image-url("banner_oct_2018.gif");
+    //background: #ededed image-url("banner_oct_2018.gif");
     content: " ";
     display: inline-block;
-    height: 100px;
-    width: 100px;
+    //height: 100px;
+    //width: 100px;
 
     @include breakpoint(medium) {
       position: absolute;
       right: 0;
       top: 12px;
     }
+  }
+
+  .image-preview {
+    margin: 0;
+    padding: 0;
   }
 }
 
@@ -2060,7 +2066,7 @@ a {
 
     h1 {
       color: #000;
-      font-family: "Franklin Gothic" !important;
+      font-family: "Inter" !important;
       font-size: rem-calc(36);
       text-transform: uppercase;
 
@@ -2105,7 +2111,7 @@ a {
     }
 
     .day {
-      font-family: "Franklin Gothic" !important;
+      font-family: "Inter" !important;
       font-size: rem-calc(30);
       line-height: rem-calc(30);
       text-transform: uppercase;
@@ -2163,10 +2169,10 @@ a {
 
   .title {
     color: #0054a1;
-    font-family: "Franklin Gothic" !important;
+    font-family: "Inter" !important;
     font-size: rem-calc(40);
     line-height: rem-calc(40);
-    margin-bottom: 0;
+    margin-bottom: 1rem;
     text-transform: uppercase;
   }
 
@@ -2352,15 +2358,19 @@ a {
 
     @include breakpoint(medium) {
       background: $budget-2019-pink image-url("budget_welcome/background_header.jpg");
-      background-position: 100% top;
+      background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
+    //padding-bottom: rem-calc(300);
+      /*background-position: 100% top;
       background-repeat: no-repeat;
-      background-size: contain;
+      background-size: cover;*/
     }
   }
 
   .info {
-    background: rgba(255, 253, 232, 0.8);
-    border-bottom: 1px solid $budget-2019-orange;
+    background: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid #000;
 
     @include breakpoint(medium) {
       border-bottom: 0;
@@ -2375,16 +2385,35 @@ a {
     a {
 
       &.button {
-        background: #000;
-        color: #fff;
-        text-decoration: none;
+        /*background: #000;
+        color: #000;
+        text-decoration: none;*/
+
+        border: 2px solid #2367b5;
+        color: #2367b5;
+        border-radius: 0.5rem;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        margin: 1.5rem 0 0.75rem;
+        text-align: center;
+        width: 100%;
       }
     }
 
     &.button {
-      background: #000;
+      /*background: #000;
       color: #fff;
+      text-decoration: none;*/
+
       text-decoration: none;
+        border: 2px solid #2367b5;
+        background: #fff;
+        color: #2367b5;
+        border-radius: 0.5rem;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        margin: 1.5rem 0 0.75rem;
+        text-align: center;
     }
 
     p {
@@ -2396,9 +2425,19 @@ a {
 }
 
 .expanded.budget.button {
-  background: #000;
+  /*background: #000;
   color: #fff;
+  */
   text-decoration: none;
+  border: 2px solid #2367b5;
+  background: #fff;
+        color: #2367b5;
+        border-radius: 0.5rem;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        margin: 1.5rem 0 0.75rem;
+        text-align: center;
+        //width: 100%;
 }
 
 .budget-info {
@@ -2420,7 +2459,17 @@ a {
   .budget-investments-list {
 
     .button {
-      background: #000;
+      //background: #000;
+
+      text-decoration: none;
+      border: 2px solid #2367b5;
+      background: #fff;
+            color: #2367b5;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            margin: 1.5rem 0 0.75rem;
+            text-align: center;
     }
   }
 }
@@ -2553,7 +2602,7 @@ ul {
   p {
 
     &.budgets-lead-title {
-      font-family: "Franklin Gothic" !important;
+      font-family: "Inter" !important;
       font-size: rem-calc(40);
       line-height: rem-calc(40);
       text-transform: uppercase;
@@ -2624,7 +2673,7 @@ h2 {
 
     h2 {
       color: $budget-2018-pink;
-      font-family: "Souvenir" !important;
+      font-family: "Inter" !important;
 
       span {
         color: #fff;
@@ -2786,7 +2835,7 @@ p {
 
   h3 {
     color: #000;
-    font-family: "Franklin Gothic" !important;
+    font-family: "Inter" !important;
   }
 
   img {
@@ -2815,7 +2864,7 @@ p {
   h1,
   h2 {
     color: #fff;
-    font-family: "Franklin Gothic" !important;
+    font-family: "Inter" !important;
   }
 
   .icon-angle-left,
@@ -2857,7 +2906,7 @@ p {
     border-radius: rem-calc(100);
     color: #000;
     display: inline-block;
-    font-family: "Franklin gothic";
+    font-family: "Inter";
     font-size: rem-calc(40);
     height: rem-calc(60);
     line-height: rem-calc(50);
@@ -2899,6 +2948,8 @@ h3 {
   display: flex;
   margin: 0 0 $line-height;
   position: relative;
+  border-radius: 0.5rem;
+  min-height: 16rem;
 
   &.pdf::after {
     background: image-url("icon_pdf_white.png");
@@ -2923,30 +2974,31 @@ h3 {
   }
 
   figcaption {
+    background: black;
+    height: 6rem;
     bottom: 0;
     color: #fff;
-    font-family: "Franklin Gothic" !important;
-    font-size: rem-calc(36);
-    line-height: rem-calc(36);
-    text-transform: uppercase;
+    font-family: "Inter" !important;
+    font-size: rem-calc(24);
+    line-height: rem-calc(24);    
     padding: $line-height / 4 $line-height / 2;
     position: absolute;
     width: 100%;
 
     h3,
     .title {
-      font-family: "Franklin Gothic" !important;
-      font-size: rem-calc(36);
-      line-height: rem-calc(36);
+      text-transform: uppercase;
+      font-family: "Inter" !important;
+      font-size: rem-calc(24);
+      line-height: rem-calc(24);
+      font-weight: 400;
     }
 
-    span {
-      background: #fff;
-      border-radius: rem-calc(4);
-      color: #000;
+    span {      
+      border-radius: rem-calc(8);
       display: inline;
       font-size: $base-font-size;
-      padding: rem-calc(4) rem-calc(8);
+      /*padding: rem-calc(4) rem-calc(8);*/
     }
   }
 }
@@ -3005,4 +3057,29 @@ h3 {
     padding: $line-height;
     margin-right: $line-height;
   }
+}
+
+// 16. Generic
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+
+.application_title {
+  padding: 2rem 0;
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+.application-logo {
+  height: 3rem;
+  width: auto;
+  margin-top: 1.5rem;
+  float: right;
+  margin-bottom: 1rem;
+}
+
+.linea-negra-bottom {
+  border-bottom: 1px solid $madrid-black;
+}
+
+.sin-linea-border {
+  border: 0;
 }

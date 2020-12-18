@@ -33,7 +33,7 @@
             <%= link_to t("admin.actions.delete"),
                         admin_moderated_text_path(word),
                         method: :delete,
-                        "data-confirm": t("admin.moderated_texts.destroy.alert"),
+                        "data-confirm": t("admin.moderated_texts.destroy.alert", count: @occurrence_count.has_key?(word.id) ? @occurrence_count[word.id] : "0"),
                         class: "button hollow alert" %>
           </td>
         </tr>

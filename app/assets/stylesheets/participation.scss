@@ -166,15 +166,15 @@
   }
 
   .button-support {
-    background: $proposals;
-    color: $text;
+    background: rgb(0,173,177);
+    color: #fff;
     display: inline-block;
     font-size: $small-font-size;
     margin-top: rem-calc(12);
 
     &:hover,
     &:active {
-      background: lighten($proposals, 25%);
+      background: lighten(rgb(0,173,177), 25%);
       cursor: pointer;
     }
   }
@@ -455,7 +455,7 @@
     margin-top: rem-calc(12);
     padding-top: 0;
     font-size: rem-calc(15);
-    line-height: rem-calc(30);
+    line-height: 1.5rem;
   }
 
   .video-link {
@@ -926,8 +926,8 @@
   padding-top: $line-height;
 
   h1 {
-    font-size: rem-calc(24);
-    text-transform: uppercase;
+    font-size: rem-calc(50);
+    //text-transform: uppercase;
   }
 }
 
@@ -1077,7 +1077,8 @@
 }
 
 .featured-proposals {
-  background: $featured;
+  background: #fff;
+  border: 2px solid #000;
 
   .proposal-featured {
     min-height: $line-height * 3.5;
@@ -1099,13 +1100,12 @@
     }
 
     .button-support {
-      background: $text;
-      color: $featured;
+      background: rgb(0,173,177);
+      color: #fff;
       margin-top: 0;
 
       &:hover {
-        background: #fff;
-        color: $text;
+        color: #fff;
       }
     }
 

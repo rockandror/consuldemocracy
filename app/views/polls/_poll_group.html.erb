@@ -38,7 +38,7 @@
 
           <ul class="margin-top">
             <% poll.questions.each do |question| %>
-              <li><%= question.title %></li>
+              <li><%= markdown(question.title) %></li>
             <% end %>
           </ul>
         <% end %>

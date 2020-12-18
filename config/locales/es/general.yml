@@ -38,6 +38,7 @@ es:
   application:
     close: Cerrar
     menu: Menú
+    title: "Decide Madrid: portal de participación ciudadana del Ayuntamiento de Madrid"
   comments:
     comments_closed: Los comentarios están cerrados
     verified_only: Para participar %{verify_account}
@@ -262,6 +263,7 @@ es:
       available_locales: Idiomas disponibles
       collaborative_legislation: Legislación colaborativa
       debates: Debates
+      inicio: Inicio
       locale: 'Idioma:'
       logo: Logo de CONSUL
       management: Gestión

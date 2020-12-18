@@ -180,6 +180,7 @@ es:
         max_size: "Tamaño máximo de imagen"
         max_size_description: "Tamaño máximo permitido al subir una imagen (en Megabytes/MB)"
         content_types: "Tipos de imagenes permitidos"
+        mp4_active: "Tipos de videos permitidos"
         content_types_description: "Selecciona todos los tipos permitidos para las imágenes subidas"
         title:
           min_length: "Longitud mínima del título de la imagen"
@@ -193,3 +194,6 @@ es:
         max_size_description: "Tamaño máximo permitido al subir un documento (en Megabytes/MB)"
         content_types: "Tipos de documentos permitidos"
         content_types_description: "Selecciona todos los tipos permitidos para los documentos subidos"
+      videos:
+        content_types: "Tipos de videos permitidos"
+        content_types_description: "Selecciona todos los tipos permitidos para los videos subidos"

@@ -13,7 +13,26 @@ class Admin::Legislation::QuestionsController < Admin::Legislation::BaseControll
 
   def other_answers
     @question = Legislation::Question.find(params[:question])
-    @answers = Legislation::Answer.where(legislation_question_id: params[:question], legislation_question_option_id: params[:option])
+    @answers = Legislation::Answer.where("legislation_question_id = ? AND legislation_question_option_id= ? AND value_other is not null AND value_other != ''",params[:question], params[:option])
+    #render :other_answers
+  end
+
+  def range_answers
+    @question = Legislation::Question.find(params[:question])
+    @answers = Legislation::Answer.where("legislation_question_id = ? AND legislation_question_option_id= ? AND value_range is not null",params[:question], params[:option])
+    @media = 0
+
+    @answers.each do |answer|
+      @media = @media + answer.value_range
+    end
+    @media = @media / @answers.count if @media > 0 &&  @answers.count > 0
+    #render :other_answers
+  end
+
+  def number_answers
+    @question = Legislation::Question.find(params[:question])
+    @answers = Legislation::Answer.where("legislation_question_id = ? AND legislation_question_option_id= ? AND value_number is not null",params[:question], params[:option])
+   
     #render :other_answers
   end
 
@@ -53,8 +72,8 @@ class Admin::Legislation::QuestionsController < Admin::Legislation::BaseControll
 
     def question_params
       params.require(:legislation_question).permit(
-        translation_params(::Legislation::Question),
-        :multiple_answers, question_options_attributes: [:id, :_destroy,
+        translation_params(::Legislation::Question), :is_range,
+        :multiple_answers, question_options_attributes: [:id, :_destroy, :is_range,
                                       translation_params(::Legislation::QuestionOption)]
       )
     end

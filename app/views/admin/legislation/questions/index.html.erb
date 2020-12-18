@@ -28,24 +28,31 @@
         </thead>
         <tbody>
         <% @process.questions.each do |question| %>
+          <% count = 0%>
           <tr id="<%= dom_id(question) %>">
             <td>
-              <%= link_to question.title, edit_admin_legislation_process_question_path(@process, question) %>
+              <%= link_to simple_format(strip_links markdown(question.title.html_safe)), edit_admin_legislation_process_question_path(@process, question) %>
             </td>
             <td>
               <%= content_tag :ul do %>
+                
                 <% question.question_options.each do |question_option| %>
                   <%= content_tag :li do %>
-                    <%if question_option.other == false %>
-                    <%= question_option.value %> (<%= Legislation::Answer.where(legislation_question_option_id: question_option.id).uniq.count %>)
-                    <%else%>
-                    <%= link_to question_option.value + "(#{Legislation::Answer.where(legislation_question_option_id: question_option.id).uniq.count})", other_answers_admin_legislation_process_questions_path(@process, question, question: question, option: question_option)%>
+                    <%if (question_option.other == false || question_option.other.blank?) && (question_option.is_range == false || question_option.is_range.blank?) && (question_option.is_number == false || question_option.is_number.blank?) %>
+                      <%= question_option.value %> (<%= Legislation::Answer.legislation_by_question_option(question_option.id).uniq.count %>)
+                      <% count= count + Legislation::Answer.legislation_by_question_option(question_option.id).uniq.count %>
+                    <%elsif question_option.other == true%>
+                      <%= link_to (question_option.value.blank? ? t("admin.legislation.questions.form.other") : question_option.value) + "(#{Legislation::Answer.legislation_by_question_option(question_option.id).legislation_other.uniq.count})", other_answers_admin_legislation_process_questions_path(@process, question, question: question, option: question_option)%>
+                      <% count= count + Legislation::Answer.legislation_by_question_option(question_option.id).legislation_other.uniq.count %>
+                    <%elsif question_option.is_range == true%>
+                      <%= link_to (question_option.value.blank? ? t("admin.legislation.questions.form.range") : question_option.value) + "(#{Legislation::Answer.legislation_by_question_option(question_option.id).legislation_range.uniq.count})", range_answers_admin_legislation_process_questions_path(@process, question, question: question, option: question_option)%>
+                      <% count= count + Legislation::Answer.legislation_by_question_option(question_option.id).legislation_range.uniq.count %>
                     <%end%>
                   <% end %>
                 <% end %>
               <% end %>
             </td>
-            <td class="text-center"><%= Legislation::Answer.where(legislation_question_id: question.id).uniq.count %></td>
+            <td class="text-center"><%= count %></td>
             <td class="text-center"><%= link_to question.comments.count, legislation_process_question_path(@process, question, anchor: "comments") %></td>
           </tr>
         <% end %>

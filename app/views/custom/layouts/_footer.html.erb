@@ -1,39 +1,45 @@
 <footer>
   <div class="row">
-    
-
-    <div class="footer-sections small-12 large-8 column">
-      <div class="small-12 medium-4 column">
-        <%= link_to t("layouts.footer.participation_title"), root_path, class: "title" %>
-        <p><%= t("layouts.footer.participation_text") %></p>
+    <div class="footer-sections small-12 column">
+      <div class="small-12 medium-2 column end">      
+        <p class="title sin-linea-border"><%= t("layouts.footer.decide_madrid_title")%></p>
+        <p><%= t("layouts.footer.decide_madrid_text").html_safe %></p>
       </div>
 
-      <div class="small-12 medium-4 column">
-        <%= link_to t("layouts.footer.transparency_title"), setting["transparency_url"].presence || t("layouts.footer.transparency_url"),
-                    target: "_blank", title: t("shared.target_blank_html"), class: "title" %>
-        <p><%= t("layouts.footer.transparency_text") %></p>
+      <div class="small-12 medium-2 column end">      
+        <p class="title sin-linea-border"><%= t("layouts.footer.problem_title")%></p>
+        <p><%= t("layouts.footer.problem_text").html_safe %></p>
       </div>
 
-      <div class="small-12 medium-4 column">
-        <%= link_to t("layouts.footer.open_data_title"), setting["opendata_url"].presence || t("layouts.header.external_link_opendata_url"),
-                    target: "_blank", title: t("shared.target_blank_html"), class: "title" %>
-        <p><%= t("layouts.footer.open_data_text") %></p>
+      <div class="small-12 medium-2 column end">      
+        <p class="title sin-linea-border"><%= t("layouts.footer.help_title")%></p>
+        <p><%= t("layouts.footer.help_text").html_safe %></p>
+      </div>
+
+      <div class="small-12 medium-2 column end">      
+        <p class="title sin-linea-border"><%= t("layouts.footer.transparency_title")%></p>
+        <p><%= t("layouts.footer.transparency_text").html_safe %></p>
+      </div>
+
+      <div class="small-12 medium-2 column end">      
+        <p class="title sin-linea-border"><%= t("layouts.footer.open_data_title")%></p>
+        <p><%= t("layouts.footer.open_data_text").html_safe %></p>
       </div>
     </div>
   </div>
 
   <div class="subfooter">
     <div class="row">
-      <div class="small-12 medium-6 column">
-        <%= t("layouts.footer.copyright", year: Time.current.year) %>&nbsp;|
+      <div class="small-12 medium-7 column">        
         <ul class="no-bullet inline-block">
+          <li class="inline-block"><%= t("layouts.footer.copyright", year: Time.current.year) %>&nbsp;&nbsp;</li>
           <li class="inline-block"><%= link_to t("layouts.footer.privacy"), privacy_path %>&nbsp;|</li>
           <li class="inline-block"><%= link_to t("layouts.footer.conditions"), conditions_path %>&nbsp;|</li>
           <li class="inline-block"><%= link_to t("layouts.footer.accessibility"), accessibility_path %></li>
         </ul>
       </div>
 
-      <div class="small-12 medium-6 column social">
+      <div class="small-12 medium-5 column social">
         <div class="text-right">
           <ul>
             <% if setting["twitter_handle"] %>

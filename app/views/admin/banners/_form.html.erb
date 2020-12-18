@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'swfobject' %>
 <%= render "admin/shared/globalize_locales", resource: @banner %>
 
 <%= translatable_form_for [:admin, @banner] do |f| %>
@@ -53,6 +54,11 @@
                         placeholder: t("admin.banners.banner.target_url") %>
     </div>
   </div>
+  <div class="image-form">
+    <div class="image small-12 column">
+      <%= render "images/nested_image", imageable: @banner, f: f %>
+    </div>
+  </div>
 
   <div class="row">
     <div class="small-12 column">
@@ -62,6 +68,14 @@
       <% end %>
     </div>
   </div>
+ <div class="row">
+    <div class="small-12 column">
+      <%= f.label :subsection, t("admin.banners.banner.subsection_label") %>     
+      <%= f.check_box :subsection%> <%#= t("admin.banners.banner.subsection") %><br>
+    </div>
+  </div>
+
+  
 
   <div class="row">
     <div class="small-12 medium-6 large-3 column">

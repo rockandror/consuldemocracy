@@ -7,7 +7,7 @@
 
     p {
 
-      &.description {
+      &.description {        
         color: $text;
       }
     }
@@ -66,7 +66,7 @@
     padding: $line-height * 2 0;
 
     .lead-title {
-      font-family: "Franklin Gothic" !important;
+      font-family: "Inter" !important;
       font-size: rem-calc(40);
       font-weight: bold;
       line-height: rem-calc(40);
@@ -148,6 +148,13 @@
 }
 
 .see-all {
+  border: 2px solid rgb(35,103,181);
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  margin: 1.5rem 0 0.75rem;
+  text-align: center;
+  width: 100%;
   margin-top: $line-height / 2;
 
   .icon-angle-right {
@@ -170,14 +177,14 @@ $budget-2018-yellow:   #fef384;
   }
 
   .jumbo {
-    background: #e2846b image-url("welcome/background_header.jpg");
+    background: #fff image-url("welcome/banner_pagina_madrid.png");
     background-position: bottom;
     background-repeat: no-repeat;
     padding-bottom: rem-calc(300);
 
     @include breakpoint(medium) {
-      background: image-url("welcome/background_header.jpg");
-      background-size: 100% auto;
+      background: image-url("welcome/banner_pagina_madrid.png");
+      background-size: auto 100%;
       background-repeat: no-repeat;
     }
 

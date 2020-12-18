@@ -42,7 +42,7 @@ class Comment < ApplicationRecord
     not_valuations
       .where(%{(comments.commentable_type = 'Debate' and comments.commentable_id in (?)) or
             (comments.commentable_type = 'Proposal' and comments.commentable_id in (?)) or
-            (comments.commentable_type = 'Poll' and comments.commentable_id in (?)) or 
+            (comments.commentable_type = 'Poll' and comments.commentable_id in (?)) or
             (comments.commentable_type = 'Topic' and comments.commentable_id in (?))},
           Debate.public_for_api.pluck(:id),
           Proposal.public_for_api.pluck(:id),
@@ -67,7 +67,7 @@ class Comment < ApplicationRecord
         ON moderated_contents.moderable_id = comments.id
         AND moderated_contents.moderable_type = 'Comment'")
       .where("moderated_contents.moderable_id IS NULL
-        OR moderated_contents.declined_at IS NOT NULL")
+        OR moderated_contents.declined_at IS NOT NULL").distinct
   }
 
   after_create :call_after_commented
