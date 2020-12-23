@@ -1,14 +1,13 @@
 class SDGManagement::LocalTargetsController < SDGManagement::BaseController
   include Translatable
 
-  LocalTarget = ::SDG::LocalTarget
+  load_and_authorize_resource class: "SDG::LocalTarget"
 
   def index
-    @local_targets = LocalTarget.all.sort
+    @local_targets = @local_targets.sort
   end
 
   def new
-    @local_target = LocalTarget.new
   end
 
   def create
@@ -22,12 +21,9 @@ class SDGManagement::LocalTargetsController < SDGManagement::BaseController
   end
 
   def edit
-    @local_target = LocalTarget.find(params[:id])
   end
 
   def update
-    @local_target = LocalTarget.find(params[:id])
-
     if @local_target.update(local_target_params)
       redirect_to sdg_management_local_targets_path, notice: t("sdg_management.local_targets.update.notice")
     else
@@ -36,7 +32,6 @@ class SDGManagement::LocalTargetsController < SDGManagement::BaseController
   end
 
   def destroy
-    @local_target = LocalTarget.find(params[:id])
     @local_target.destroy!
     redirect_to sdg_management_local_targets_path, notice: t("sdg_management.local_targets.destroy.notice")
   end
