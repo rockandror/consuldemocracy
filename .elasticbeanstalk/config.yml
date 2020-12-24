@@ -1,0 +1,20 @@
+branch-defaults:
+  elasticbeanstalk:
+    environment: consul-demo-production
+  v1.2.0:
+    environment: null
+    group_suffix: null
+global:
+  application_name: consul-demo
+  branch: null
+  default_ec2_keyname: senen-private-account-ireland
+  default_platform: Puma with Ruby 2.5 running on 64bit Amazon Linux
+  default_region: eu-west-1
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: null
+  repository: null
+  sc: git
+  workspace_type: Application
