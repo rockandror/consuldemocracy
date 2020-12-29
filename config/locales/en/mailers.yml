@@ -25,11 +25,11 @@ en:
       title: New response to your comment
     proposal_notification_digest:
       info: "Here are the new notifications that have been published by authors of the proposals that you have supported in %{org_name}."
+      notifications_link: Notificaciones
       title: "Proposal notifications in %{org_name}"
       share: Share proposal
       comment: Comment proposal
-      unsubscribe: "If you don't want to receive any proposal notifications, visit %{account} and uncheck 'Receive a summary of proposal notifications'."
-      unsubscribe_account: My account
+      unsubscribe_text: "If you don't want to receive any proposal notifications, visit %{notifications} and uncheck 'Receive a summary of proposal notifications'."
       unfollow: "Visit this proposal and unfollow it to stop receiving notifications."
     direct_message_for_receiver:
       notifications_link: Notificaciones
