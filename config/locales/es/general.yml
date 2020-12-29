@@ -961,6 +961,10 @@ es:
         more:
           one: "Una etiqueta más"
           other: "%{count} etiquetas más"
+  subscriptions:
+    edit:
+      notifications: "Notificaciones"
+      save_changes_submit: "Guardar cambios"
   machine_learning:
     comments_summary: "Resumen de comentarios"
     info_text: "Contenido generado mediante IA / Machine Learning"
