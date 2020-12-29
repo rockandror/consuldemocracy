@@ -29,4 +29,28 @@ describe Mailer do
       expect(email.subject).to include("commented on your proposal")
     end
   end
+
+  describe "#manage_subscriptions_token" do
+    let(:user) { create(:user) }
+    let(:proposal) { create(:proposal, author: user) }
+    let(:comment) { create(:comment, commentable: proposal) }
+
+    it "when receiver has not subscriptions_token we generate subscriptions_token for it" do
+      expect(user.subscriptions_token).not_to be_present
+
+      Mailer.comment(comment).deliver_now
+
+      expect(user.reload.subscriptions_token).to be_present
+    end
+
+    it "when the receiver already has subscriptions_token, we keep it " do
+      user.update!(subscriptions_token: "subscriptions_token_value")
+
+      expect(user.subscriptions_token).to be_present
+
+      Mailer.comment(comment).deliver_now
+
+      expect(user.subscriptions_token).to eq "subscriptions_token_value"
+    end
+  end
 end
