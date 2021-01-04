@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'swfobject' %>
 <% if header.present? %>
   <hr style="max-width: 100%">
   <div>
@@ -13,9 +14,14 @@
 
       <% if header.image.present? %>
         <div class="small-12 medium-6 column">
-          <%= image_tag(header.image_url(:large),
-                        class: "margin",
-                        alt: header.image.title)  %>
+          <% if header.image.title.include? "mp4" %>
+            <video width='500' height='300' controls="controls" autoplay loop><source src="<%=header.image.attachment.url %>"/></video>
+          <%else%>
+            <%= image_tag(header.image_url(:large),
+                          class: "margin",
+                          alt: header.image.title)  %>
+          <%end%>
+
         </div>
       <% end %>
     </div>
