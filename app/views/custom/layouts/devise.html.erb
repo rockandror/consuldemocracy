@@ -27,12 +27,8 @@
 
     <div class="wrapper">
       <div class="auth-image small-12 medium-5 column <%= !params[:sures].blank? ? "landing_bg" : "" %>">
-        <h1 class="margin">
-          <%= link_to root_path do %>
-            <%#= image_tag(image_path_for("landings/logo_header_negative.png"), alt: setting["org_name"]) %>
-            <%= !params[:sures].blank? ? image_tag(image_path_for("landings/sures_bg.jpg"), alt: setting["org_name"]) : ""%>
-          <% end %>
-        </h1>
+        
+        <%= image_tag(image_path_for("landings/bg_landing_new.jpg"), class: "landing-background",alt: setting["org_name"]) %>
       </div>
 
       <div class="small-12 medium-7 column">

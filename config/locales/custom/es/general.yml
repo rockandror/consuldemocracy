@@ -105,18 +105,18 @@ es:
       participation_text: Decide cómo debe ser la ciudad de Madrid que quieres.
       decide_madrid_title: Decide Madrid
       decide_madrid_text: Es un espacio para fomentar la participación de la ciudadanía en la generación de ideas para mejorar la gestión de la ciudad.<br>
-        <a href='https://decide.madrid.es/siparticipasdecides'>Si participas, decides</a>
+        <a href='/siparticipasdecides'>Si participas, decides</a>
       problem_title: ¿Problemas técnicos?
       problem_text: "Lee las preguntas frecuentes y resuelve tus dudas: <br>
-        <a href='mas-informacion/faq'>Preguntas frecuentes</a><br><br>        
+        <a href='/mas-informacion/faq'>Preguntas frecuentes</a><br><br>        
         O escribe a <a href='mailto:incidenciasdm@madrid.es'>incidenciasdm@madrid.es</a>"
       help_title: Ayuda
       help_text: "
-        <a href='mas-informacion#debates'>Debates</a><br><br>
-        <a href='mas-informacion#proposals'>Propuestas</a><br><br>
-        <a href='mas-informacion#budgets'>Presupuestos participativos</a><br><br>
-        <a href='mas-informacion#polls'>Votaciones</a><br><br>
-        <a href='mas-informacion#processes'>Procesos participativos</a><br>
+        <a href='/mas-informacion#debates'>Debates</a><br><br>
+        <a href='/mas-informacion#proposals'>Propuestas</a><br><br>
+        <a href='/mas-informacion#budgets'>Presupuestos participativos</a><br><br>
+        <a href='/mas-informacion#polls'>Votaciones</a><br><br>
+        <a href='/mas-informacion#processes'>Procesos participativos</a><br>
         "
       open_data_title: Datos Abiertos
       open_data_text: "Encuentra todos los datos de Madrid para utilizarlos, 
@@ -157,7 +157,7 @@ es:
     telegram_link: "Telegram"
     instagram_link: "Instagram"
   welcome:
-    title: "Portal of citizen participation of the City of Madrid"
+    title: "Portal de participación ciudadana del Ayuntamiento de Madrid"
     eventos_title: Eventos - Decide Madrid
     eventos_description: "Conoce las acciones de participación ciudadana y participa."
     eventos_keywords: "participación ciudadana; eventos; gobierno abierto; agenda Madrid"

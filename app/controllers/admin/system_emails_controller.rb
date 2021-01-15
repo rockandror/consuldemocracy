@@ -116,8 +116,8 @@ class Admin::SystemEmailsController < Admin::BaseController
 
     def load_sample_moderable
       if ModeratedContent.any?
-        @moderable = ModeratedContent.where(moderable_type: 'Comment').sample
-        @subject   = t("mailers.moderable.#{@system_email}_subject", moderable: t("mailers.moderable.resource.#{@moderable.moderable_type.downcase}"))
+        @moderable = ModeratedContent.where(moderable_type: 'Comment').sample.moderable
+        @subject = t("mailers.moderable.#{@system_email}_subject", moderable: t("mailers.moderable.resource.#{@moderable.class.to_s.downcase}"))
       else
         redirect_to admin_system_emails_path, alert: t("admin.system_emails.alert.no_moderations")
       end

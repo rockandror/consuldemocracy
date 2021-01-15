@@ -248,6 +248,27 @@ describe "System Emails" do
       expect(page).to have_content "Some example data is needed in order to preview the email."
     end
 
+    context "Moderated Content" do
+      let(:vulgar) { create(:moderated_text, text: "vulgar") }
+      let!(:comment) { create(:comment, body: "vulgar comment", author: user) }
+      let!(:offense) { create(:moderated_content, moderable: comment, moderated_text: vulgar) }
+
+      scenario "#confirmed_moderation" do
+        visit admin_system_email_view_path("confirmed_moderation")
+
+        expect(page).to have_content "Your comment has been deemed offensive to the community."
+        expect(page).to have_content "Your comment has been deemed offensive to the community, and won't be shown publicly."
+        expect(page).to have_content "vulgar"
+      end
+
+      scenario "#declined_moderation" do
+        visit admin_system_email_view_path("declined_moderation")
+
+        expect(page).to have_content "Your comment has been deemed not offensive to the community."
+        expect(page).to have_content "Your comment has been deemed not offensive to the community, and will be shown publicly soon."
+        expect(page).to have_content "vulgar"
+      end
+    end
   end
 
   context "Preview Pending" do

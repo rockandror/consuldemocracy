@@ -1,5 +1,43 @@
 namespace :users do
-  
+  desc "Actualización de datos DEMAD-106"
+  task update_106: :environment do
+    #RAKE temporal
+    puts "==========================================================================="
+    puts "Cambio de geozona usuario: 72351"
+    puts "==========================================================================="
+    user = User.find_by(id: 72351)
+
+    if !user.blank?
+      user.geozone = Geozone.find_by(name: "Moncloa-Aravaca")
+      if user.save
+        puts "Se ha guardado correctamente la geozona: #{user.id} (#{user.geozone.name})"
+      else
+        puts "ERROR: no se ha podido guardar la geozona: #{user.errors.full_messages}"
+      end
+    else
+      puts "No se ha encontrado el usuario con id: 72351"
+    end
+    puts "==========================================================================="
+    puts
+    puts "==========================================================================="
+    puts "Actualización de contraseña usuario: 278975"
+    puts "==========================================================================="
+    pwd = (0...20).map { ("a".."z").to_a[rand(26)] }.join
+    user = User.find_by(id: 278975)
+
+    if !user.blank?
+      user.password = pwd
+      user.password_confirmation = pwd
+      if user.save
+        puts "Se ha guardado correctamente la contraseña: #{user.id} (#{pwd})"
+      else
+        puts "ERROR: no se ha podido guardar la contraseña: #{user.errors.full_messages}"
+      end
+    else
+      puts "No se ha encontrado el usuario con id: 278975"
+    end
+    puts "==========================================================================="
+  end
 
   desc "Generate admin user"
   task admin: :environment do
