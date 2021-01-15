@@ -37,7 +37,7 @@
         <div class="feed-content" >
           <h3 class="title"><%= t("welcome.feed.most_active.#{feed.kind}") %></h3>
 
-          <% feed.items.order(comments_count: :desc).each do |item| %>
+          <% feed.items.order(hot_score: :asc).each do |item| %>
             <div class="<%= item.class.to_s.parameterize(separator: "_") %>">
               <strong><%= link_to item.title, url_for(item) %></strong>
             </div>
