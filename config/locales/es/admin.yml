@@ -815,6 +815,7 @@ es:
       index:
         title: Administradores
         create: Nuevo administrador
+        back: Volver
         name: Nombre
         email: Email
         id: ID de Administrador
@@ -825,6 +826,8 @@ es:
         restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
       search:
         title: "Administradores: Búsqueda de usuarios"
+      new: 
+        title: Crear nuevo usuario administrador
     moderators:
       index:
         title: Moderadores
