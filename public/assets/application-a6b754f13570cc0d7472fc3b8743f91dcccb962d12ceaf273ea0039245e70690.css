@@ -12952,7 +12952,7 @@ a {
   color: #004a83;
 }
 /* line 66, /opt/CONSUL/consul/app/assets/stylesheets/layout.scss */
-a:hover, a:active {
+a:hover, a:active, a:focus {
   color: #00101d;
   text-decoration: underline;
 }
@@ -12967,7 +12967,13 @@ a:active h2,
 a:active h3,
 a:active h4,
 a:active h5,
-a:active h6 {
+a:active h6,
+a:focus h1,
+a:focus h2,
+a:focus h3,
+a:focus h4,
+a:focus h5,
+a:focus h6 {
   color: #00101d;
 }
 /* line 81, /opt/CONSUL/consul/app/assets/stylesheets/layout.scss */
