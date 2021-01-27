@@ -11,6 +11,14 @@
           <%= link_to t("management.menu.select_user"), management_document_verifications_path %>
         </li>
 
+        <li <%= "class=is-active" if new_user? %>>
+          <%= link_to t("management.menu.create_user"), new_management_user_path %>
+        </li>
+
+        <li <%= "class=is-active" if import_user? %>>
+          <%= link_to t("management.menu.import_users"), management_import_users_path %>
+        </li>
+
         <% if managed_user.email %>
           <li <%= "class=is-active" if menu_edit_password_email? %>>
             <%= link_to t("management.account.menu.reset_password_email"), edit_password_email_management_account_path %>

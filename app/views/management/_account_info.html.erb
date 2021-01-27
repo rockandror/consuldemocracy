@@ -2,6 +2,11 @@
   <section class="small-12 medium-9 column">
     <div class="account-info">
 
+      <%= link_to(t("management.account_info.padron"),
+                    padron_management_user_path(@user),
+                    method: :get,
+                    class: "float-right btchange-user button hollow") %>
+
       <%= link_to(t("management.account_info.change_user"),
                     logout_management_users_path,
                     method: :delete,

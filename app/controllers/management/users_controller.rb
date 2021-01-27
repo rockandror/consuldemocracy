@@ -1,22 +1,23 @@
 class Management::UsersController < Management::BaseController
 
   def new
-    @user = User.new(user_params)
+    @profiles = ["Super Administrador", "Administrador", "Administrador Sures", "Administrador Sectorial", "Gestor", "Moderador", "Evaluador", "Consultor"]
+    @user = User.new()
   end
 
   def create
     @user = User.new(user_params)
 
-    if @user.email.blank?
-      user_without_email
-    else
-      user_with_email
-    end
+    # if @user.email.blank?
+    #   user_without_email
+    # else
+    #   user_with_email
+    # end
 
     @user.terms_of_service = "1"
     @user.residence_verified_at = Time.current
     @user.verified_at = Time.current
-
+    
     if @user.save
       render :show
     else
@@ -35,10 +36,16 @@ class Management::UsersController < Management::BaseController
     redirect_to management_root_url, notice: t("management.sessions.signed_out_managed_user")
   end
 
+  def padron
+    xxxx
+    @user
+    render :show
+  end
+
   private
 
     def user_params
-      params.require(:user).permit(:document_type, :document_number, :username, :email, :date_of_birth)
+      params.require(:user).permit(:document_type, :document_number, :username, :email, :date_of_birth, :last_name, :last_name_alt, :phone_number)
     end
 
     def destroy_session

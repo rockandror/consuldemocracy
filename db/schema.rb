@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201125101402) do
+ActiveRecord::Schema.define(version: 20210120153400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,9 +63,35 @@ ActiveRecord::Schema.define(version: 20201125101402) do
     t.datetime "updated_at",        null: false
   end
 
+  create_table "admin_sections", force: :cascade do |t|
+    t.integer "users_id"
+    t.index ["users_id"], name: "index_admin_sections_on_users_id", using: :btree
+  end
+
+  create_table "admin_sures", force: :cascade do |t|
+    t.integer "users_id"
+    t.index ["users_id"], name: "index_admin_sures_on_users_id", using: :btree
+  end
+
   create_table "administrators", force: :cascade do |t|
     t.integer "user_id"
     t.index ["user_id"], name: "index_administrators_on_user_id", using: :btree
+  end
+
+  create_table "adresses", force: :cascade do |t|
+    t.integer  "users_id"
+    t.text     "road_type"
+    t.text     "road_name"
+    t.text     "road_number"
+    t.text     "floor"
+    t.text     "door"
+    t.text     "gate"
+    t.text     "district"
+    t.text     "borought"
+    t.text     "postal_code"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["users_id"], name: "index_adresses_on_users_id", using: :btree
   end
 
   create_table "ahoy_events", id: :uuid, default: nil, force: :cascade do |t|
@@ -411,6 +437,11 @@ ActiveRecord::Schema.define(version: 20201125101402) do
   create_table "communities", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "consultants", force: :cascade do |t|
+    t.integer "users_id"
+    t.index ["users_id"], name: "index_consultants_on_users_id", using: :btree
   end
 
   create_table "dashboard_actions", force: :cascade do |t|
@@ -1504,6 +1535,11 @@ ActiveRecord::Schema.define(version: 20201125101402) do
     t.index ["process_type", "process_id"], name: "index_stats_versions_on_process_type_and_process_id", using: :btree
   end
 
+  create_table "superadmins", force: :cascade do |t|
+    t.integer "users_id"
+    t.index ["users_id"], name: "index_superadmins_on_users_id", using: :btree
+  end
+
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
     t.string   "taggable_type"
@@ -1630,6 +1666,12 @@ ActiveRecord::Schema.define(version: 20201125101402) do
     t.date     "access_key_generated_at"
     t.integer  "access_key_tried",                          default: 0
     t.date     "date_hide"
+    t.string   "name"
+    t.string   "last_name"
+    t.string   "last_name_alt"
+    t.integer  "adress_id"
+    t.integer  "profiles"
+    t.index ["adress_id"], name: "index_users_on_adress_id", using: :btree
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["geozone_id"], name: "index_users_on_geozone_id", using: :btree
@@ -1792,8 +1834,12 @@ ActiveRecord::Schema.define(version: 20201125101402) do
     t.datetime "updated_at",             null: false
   end
 
+  add_foreign_key "admin_sections", "users", column: "users_id"
+  add_foreign_key "admin_sures", "users", column: "users_id"
   add_foreign_key "administrators", "users"
+  add_foreign_key "adresses", "users", column: "users_id"
   add_foreign_key "budget_investments", "communities"
+  add_foreign_key "consultants", "users", column: "users_id"
   add_foreign_key "dashboard_administrator_tasks", "users"
   add_foreign_key "dashboard_executed_actions", "dashboard_actions", column: "action_id"
   add_foreign_key "dashboard_executed_actions", "proposals"
@@ -1844,6 +1890,8 @@ ActiveRecord::Schema.define(version: 20201125101402) do
   add_foreign_key "proposals", "communities"
   add_foreign_key "related_content_scores", "related_contents"
   add_foreign_key "related_content_scores", "users"
+  add_foreign_key "superadmins", "users", column: "users_id"
+  add_foreign_key "users", "adresses"
   add_foreign_key "users", "geozones"
   add_foreign_key "valuators", "users"
 end

@@ -43,7 +43,7 @@ namespace :admin do
     end
   end
 
-  resources :users, only: [:index, :show, :destroy] do
+  resources :users, only: [:index, :new, :show, :destroy] do
     get :hide, on: :member
   end
 
