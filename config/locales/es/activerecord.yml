@@ -364,8 +364,26 @@ es:
         description: Descripción (opcional)
         link_text: Texto del enlace
         link_url: URL del enlace
+        position_image: Posición de la imagen
+        left: Izquierda
+        right: Derecha
         columns: Número de columnas
       widget/card/translation:
+        label: Etiqueta (opcional)
+        title: Título (opcional)
+        description: Descripción (opcional)
+        link_text: Texto del enlace
+      sures/customize_card:
+        label: Etiqueta (opcional)
+        title: Título (opcional)
+        description: Descripción (opcional)
+        link_text: Texto del enlace
+        link_url: URL del enlace
+        position_image: Posición de la imagen
+        left: Izquierda
+        right: Derecha
+        columns: Número de columnas
+      sures/customize_card/translation:
         label: Etiqueta (opcional)
         title: Título (opcional)
         description: Descripción (opcional)

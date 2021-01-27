@@ -9,6 +9,13 @@ namespace :admin do
     end
   end
 
+  namespace :sures do
+    resources :actuations
+    resources :customizes
+    resources :searchs_settings
+    resources :customize_cards
+  end
+
   resources :hidden_users, only: [:index, :show] do
     member do
       put :restore

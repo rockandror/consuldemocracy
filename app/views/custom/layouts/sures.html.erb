@@ -22,71 +22,12 @@
     <%= setting["html.per_page_code_head"].try(:html_safe) %>
   </head>
   <body class="auth-page landing-budgets">
-    <div class="row" style="border-bottom: 1px solid black">
-      <div class="small-12 medium-8 column" style="padding:1em"><%= t("landings.header") %></div>
-      <div class="small-12 medium-4 column" style="text-align:right"><%= image_tag(image_path_for("logo_header_web_madrid.png"), alt: t("layouts.header.logo")) %></div>
+  <div class="row" style="border-bottom: 1px solid black">
+    <div class="small-12 medium-8 column" style="padding:1em"><%= t("landings.header") %></div>
+    <div class="small-12 medium-4 column" style="text-align:right"><%= image_tag(image_path_for("logo_header_web_madrid.png"), alt: t("layouts.header.logo")) %></div>
     </div>
-    
-    <div class="row" style="border-bottom:1px solid black; padding-bottom:2em">
-      <%= image_tag(image_path_for("banner_landing.png"), alt: t("layouts.header.logo")) %>
-    </div>
-    
-    <div class="row" style="padding-top:2em;padding-bottom:2em;text-align:center;color:#04C4D9;border-bottom: 1px solid black">
-      <h1><%= t("landings.title") %></h1>
-    </div>
-    
-    <div class="row" style="border-bottom: 1px solid black">
-      <div class="small-12 medium-4 column">
-        <h2 style="padding-top:1em"><%= t("landings.sures") %></h2>
-        <%= t("landings.sures_desc") %>
-      </div>
-      <div class="small-12 medium-6 column">
-        <%= image_tag(image_path_for("logo_imagen.png"), alt: t("layouts.header.logo")) %>
-      </div>
-    </div>
-    
-    <div class="row" style="padding-top:2em;padding-bottom:2em;border-bottom: 1px solid black">
-      <div class="small-12 medium-8 column">
-        <%= image_tag(image_path_for("mapa_distritos_sur.png"), alt: t("layouts.header.logo")) %>
-      </div>
-      <div class="small-12 medium-4 column">
-        <h2 style="padding-top:3em"><%= t("landings.title_districts") %></h2>
-        <%= t("landings.districts") %>
-      </div>
-    </div>
-    
-    <div class="row" style="padding-top:2em;padding-bottom:2em;border-bottom: 1px solid black">
-      <div class="small-12 medium-4 column">
-        <h2><%= t("landings.title_strategy") %></h2>
-        <%= t("landings.strategy") %>
-      </div>
-      <div class="small-12 medium-5 column" style="padding-right:1em">
-        <%= image_tag(image_path_for("9lineas.png"), alt: t("layouts.header.logo")) %>
-      </div>
-    </div>
-    
-    <div class="row" style="padding-top:2em;padding-bottom:2em;border-bottom: 1px solid black">
-      <div class="small-12 medium-8 column">
-        <%= image_tag(image_path_for("consultas_ciudadanas.png"), alt: t("layouts.header.logo"), id: "landings_photo_inquires") %>
-      </div>
-      <div class="small-12 medium-4 column">
-        <h2 style="padding-top:3em"><%= t("landings.title_consultas_ciudadanas") %></h2>
-        <%= t("landings.consultas_ciudadanas") %>
-        <h4 style="padding-top:1em;padding-bottom:2em;"><%= link_to t("landings.link_consultas"), "https://decide.madrid.es/legislation/processes/118/debate", target: "_blank", style: "color:#04C4D9 !important;"%></h4>
-      </div>
-    </div>
-    
-    <h3 style="text-align:center;padding-top:2em;padding-bottom:2em;"><%= link_to t("landings.learn_more_sures"), "https://www.madrid.es/sites/v/index.jsp?vgnextrefresh=1&vgnextoid=1c9c5c3a93f30710VgnVCM2000001f4a900aRCRD&vgnextlocale=es&vgnextfmt=default&vgnextchannel=1c9c5c3a93f30710VgnVCM2000001f4a900aRCRD", target: "_blank", style: "color:#04C4D9 !important;"%></h3>
-
-    <div class="row" style="text-align:center;background:#ECECEC;">
-      <div class="row">
-        <div class="small-12 medium-8 column medium-centered">
-          <h1  style="padding-top:2em;padding-bottom:1em;"><%= t("landings.want_info") %></h1>
-        </div>
-      </div>
-      <h3 style="padding-bottom:2em;"><%= link_to t("landings.user_register"), new_sure_registration_url, target: "_blank", style: "color:#04C4D9 !important;" %></h3>
-
-    </div>
+    <%= render "sures/header", header: @header %>
+    <%= yield %>
     <div class="footer">
       <%= render "layouts/footer" %>
     </div>

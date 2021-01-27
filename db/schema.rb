@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201125101402) do
+ActiveRecord::Schema.define(version: 20210127102516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1502,6 +1502,58 @@ ActiveRecord::Schema.define(version: 20201125101402) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["process_type", "process_id"], name: "index_stats_versions_on_process_type_and_process_id", using: :btree
+  end
+
+  create_table "sures_actuations", force: :cascade do |t|
+    t.string   "proposal_title"
+    t.text     "proposal_objective"
+    t.string   "territorial_scope"
+    t.string   "location_performance"
+    t.string   "technical_visibility"
+    t.string   "actions_taken"
+    t.string   "status"
+    t.string   "financig_performance"
+    t.boolean  "check_anno",           default: false
+    t.boolean  "cechk_multianno",      default: false
+    t.string   "annos"
+    t.string   "tracking"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  create_table "sures_customize_card_translations", force: :cascade do |t|
+    t.integer  "sures_customize_card_id", null: false
+    t.string   "locale",                  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "label"
+    t.string   "title"
+    t.text     "description"
+    t.string   "link_text"
+    t.index ["locale"], name: "index_sures_customize_card_translations_on_locale", using: :btree
+    t.index ["sures_customize_card_id"], name: "index_a5b2f928f909372aebe48d55c60ea154c06a6816", using: :btree
+  end
+
+  create_table "sures_customize_cards", force: :cascade do |t|
+    t.string   "link_url"
+    t.boolean  "header",                     default: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.integer  "site_customization_page_id"
+    t.integer  "columns",                    default: 4
+    t.string   "position_image",             default: "left"
+    t.index ["site_customization_page_id"], name: "index_sures_customize_cards_on_site_customization_page_id", using: :btree
+  end
+
+  create_table "sures_search_settings", force: :cascade do |t|
+    t.string   "title"
+    t.string   "data_type"
+    t.string   "data"
+    t.string   "resource"
+    t.string   "field"
+    t.string   "rules"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "taggings", force: :cascade do |t|

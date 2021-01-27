@@ -799,6 +799,11 @@ es:
           save: "Guardar cambios"
           content_block:
             update: "Actualizar Bloque"
+      title_sures: SURES
+      sures:
+        actuations: "Gestión de actuaciones"
+        customize: "Contenido de la página"
+        search_settings: "Gestionar buscador"
       title_moderated_content: Contenido moderado
       title_profiles: Perfiles
       title_settings: Configuración
@@ -1692,6 +1697,7 @@ es:
           link_text: Texto del enlace
           link_url: URL del enlace
           columns_help: "Ancho de la tarjeta en número de columnas. En pantallas móviles siempre es un ancho del 100%."
+          position_image_help: "Posición de la imagen con respecto al texto de la descripción, en pantallas móviles aparecerá por encima del texto o debajo"
           create:
             notice: "¡Tarjeta creada con éxito!"
           update:
@@ -1717,6 +1723,30 @@ es:
         debates: Debates
         processes: Procesos
         topics: Temas de Barrios
+      new:
+        header_title: Nuevo encabezado
+        submit_header: Crear encabezado
+        card_title: Nueva tarjeta
+        submit_card: Crear tarjeta
+      edit:
+        header_title: Editar encabezado
+        submit_header: Guardar encabezado
+        card_title: Editar tarjeta
+        submit_card: Guardar tarjeta
+    sures:
+      title: SURES
+      description: Los módulos activos aparecerán en la página de sures en el mismo orden que aquí.
+      header_title: Encabezado
+      no_header: No hay encabezado.
+      create_header: Crear encabezado
+      cards_title: Tarjetas
+      create_card: Crear tarjeta
+      no_cards: No hay tarjetas.
+      cards:
+        title: Título
+        description: Descripción
+        link_text: Texto del enlace
+        link_url: URL del enlace     
       new:
         header_title: Nuevo encabezado
         submit_header: Crear encabezado
