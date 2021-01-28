@@ -60,16 +60,16 @@ module AdminHelper
     ["sures", "actuations", "customizes", "searchs"].include?(controller_name) || menu_sures_customize? ||  menu_sures_actuation? || menu_sures_search?
   end
 
-  def menu_sures_actuation?
-    ["sures"].include?(controller_name) && ["actuations"].include?(controller_name)
+  def menu_sures_actuation? 
+    ["actuations"].include?(controller_name) && controller.class.parent.to_s == "Admin::Sures"
   end
 
   def menu_sures_customize?
-    ["sures"].include?(controller_name) && ["customizes","customize_cards"].include?(controller_name) || controller.class.parent == Admin::Sures
+    ["customizes","customize_cards"].include?(controller_name) && controller.class.parent.to_s == "Admin::Sures"
   end
 
   def menu_sures_search?
-    ["sures"].include?(controller_name) && ["searchs"].include?(controller_name)
+    ["searchs"].include?(controller_name) && controller.class.parent.to_s == "Admin::Sures"
   end
 
   def menu_homepage?

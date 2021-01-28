@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210127102516) do
+ActiveRecord::Schema.define(version: 20210128095845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1504,17 +1504,27 @@ ActiveRecord::Schema.define(version: 20210127102516) do
     t.index ["process_type", "process_id"], name: "index_stats_versions_on_process_type_and_process_id", using: :btree
   end
 
-  create_table "sures_actuations", force: :cascade do |t|
+  create_table "sures_actuation_translations", force: :cascade do |t|
+    t.integer  "sures_actuation_id",   null: false
+    t.string   "locale",               null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.string   "proposal_title"
     t.text     "proposal_objective"
-    t.string   "territorial_scope"
-    t.string   "location_performance"
-    t.string   "technical_visibility"
-    t.string   "actions_taken"
+    t.text     "territorial_scope"
+    t.text     "location_performance"
+    t.text     "technical_visibility"
+    t.text     "actions_taken"
+    t.string   "other"
+    t.index ["locale"], name: "index_sures_actuation_translations_on_locale", using: :btree
+    t.index ["sures_actuation_id"], name: "index_sures_actuation_translations_on_sures_actuation_id", using: :btree
+  end
+
+  create_table "sures_actuations", force: :cascade do |t|
     t.string   "status"
     t.string   "financig_performance"
     t.boolean  "check_anno",           default: false
-    t.boolean  "cechk_multianno",      default: false
+    t.boolean  "check_multianno",      default: false
     t.string   "annos"
     t.string   "tracking"
     t.datetime "created_at",                           null: false

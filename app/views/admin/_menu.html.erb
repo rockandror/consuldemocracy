@@ -27,6 +27,27 @@
       </li>
     <% end %>
 
+    <li class="section-title">
+      <a href="#">
+        <span class="icon-edit"></span>
+        <strong><%= t("admin.menu.title_sures") %></strong>
+      </a>
+      <ul <%= "class=is-active" if menu_sures? %>>
+
+        <li <%= "class=is-active" if menu_sures_actuation? %>>
+          <%= link_to t("admin.menu.sures.actuations"), admin_sures_actuations_path %>
+        </li>
+
+        <li <%= "class=is-active" if menu_sures_customize? %>>
+          <%= link_to t("admin.menu.sures.customize"), admin_sures_customizes_path %>
+        </li>
+
+        <li <%= "class=is-active" if menu_sures_search? %>>
+          <%= link_to t("admin.menu.sures.search_settings"), admin_sures_searchs_settings_path %>
+        </li>        
+      </ul>
+    </li>
+
     <% if feature?(:budgets) %>
       <li class="section-title <%= "is-active" if menu_budgets? %>">
         <%= link_to admin_budgets_path do %>
@@ -97,26 +118,7 @@
       </ul>
     </li>
 
-    <li class="section-title">
-      <a href="#">
-        <span class="icon-edit"></span>
-        <strong><%= t("admin.menu.title_sures") %></strong>
-      </a>
-      <ul <%= "class=is-active" if menu_sures? %>>
-
-        <li <%= "class=is-active" if menu_sures_actuation? %>>
-          <%= link_to t("admin.menu.sures.actuations"), admin_sures_actuations_path %>
-        </li>
-
-        <li <%= "class=is-active" if menu_sures_customize? %>>
-          <%= link_to t("admin.menu.sures.customize"), admin_sures_customizes_path %>
-        </li>
-
-        <li <%= "class=is-active" if menu_sures_search? %>>
-          <%= link_to t("admin.menu.sures.search_settings"), admin_sures_searchs_settings_path %>
-        </li>        
-      </ul>
-    </li>
+   
 
     <li class="section-title">
       <a href="#">

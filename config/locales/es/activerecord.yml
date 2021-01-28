@@ -7,6 +7,9 @@ es:
     budget_link_enabled: "Mostrar enlace de presupuestos del Ayuntamiento"
   activerecord:
     models:
+      sures/actuation:
+        one: "actuación"
+        other: "actuaciones"
       activity:
         one: "actividad"
         other: "actividades"
@@ -355,6 +358,21 @@ es:
         title: Título
         link: Enlace
         body: Texto
+      sures/actuation:
+        status: Estado actual de la propuesta
+        financig_performance: Financiación de la actuación y cronograma de las actuaciones a realizar para ejecutar la propuesta
+        check_anno: Anual
+        check_multianno: Plurianual
+        annos: "Año(s)"
+        tracking: Indicadores de seguimiento y evaluación de la propuesta
+      sures/actuation/translation:
+        other: Otro
+        proposal_title: Propuesta
+        proposal_objective: "Objetivo de la propuesta"
+        territorial_scope: "Ámbito territorial"
+        location_performance: "Ubicación de la actuación"
+        technical_visibility: "Viabilidad técnica"
+        actions_taken: "Actualizaciones a realizar"
       admin_notification/translation:
         title: Título
         body: Texto

@@ -1,0 +1,165 @@
+<div class="row" style="border-bottom: 1px solid black; display: flex;
+   align-items: center;" >
+  <div class="small-12 column">
+    <p style="padding-top:1em"><%= link_to t("landings.return_sures"), sures_path,  style: "color:#04C4D9 !important"%></p>
+  </div>
+</div>
+
+<%
+=begin%>
+ <% if @actuations.any?%>
+
+
+<%else%>
+
+<%end%> 
+<%
+=end%>
+
+
+<main>
+  <div class="row">
+    <div id="actuations" class="actuations-list small-12 medium-9 column">
+
+      <% if has_banners? %>
+        <%= render "shared/banner" %>
+      <% end %>
+
+      <% if Budget.balloting.any? %>
+        <%= render "budgets/banner" %>
+      <% end %>
+
+      <%
+=begin%>
+ <% if show_featured_actuations? %>
+        <div id="featured-actuations" class="row featured-actuations margin-bottom">
+          <div class="small-12 column">
+            <h2>
+              <%= t("actuations.index.featured_actuations") %>
+            </h2>
+          </div>
+          <% @featured_actuations.each do |featured_actuation| %>
+            <%= render "featured_actuation", actuation: featured_actuation %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% unless params[:selected].present? || human_rights? %>
+        <div class="row">
+          <div class="small-12 column">
+            <%= render "view_mode" %>
+          </div>
+        </div>
+      <% end %>
+
+      <% unless params[:retired].present? || params[:selected].present? %>
+        <%= render "shared/advanced_search",
+                   search_path: path_to_search_actuations  %>
+      <% end %> 
+<%
+=end%>
+
+      <%
+=begin%>
+ <% unless params[:selected].present? %>
+        <%= render "shared/order_links", i18n_namespace: "actuations.index" %>
+      <% end %> 
+<%
+=end%>
+
+      <%
+=begin%>
+ <% if @actuations.any? %>
+        <% if request.path != human_rights_actuations_path %>
+          <div class="show-for-small-only">
+            <%= link_to t("actuations.index.start_actuation"),
+                        new_actuation_guide,
+                        class: "button expanded" %>
+          </div>
+        <% end %>
+      <% end %> 
+<%
+=end%>
+   
+      <div id="actuations-list">
+        <% if @actuations.any? %>
+        <%= render partial: "sures/actuation", collection: @actuations %>
+          <%
+=begin%>
+ <% if request.path == human_rights_actuations_path || actuations_default_view? %>
+            
+          <% else %>
+            <% @actuations.each do |actuation| %>
+              <%= render partial: "/actuations/actuation_minimal", locals: { actuation: actuation } %>
+            <% end %>
+          <% end %> 
+<%
+=end%>
+        <% else %>
+          <%#= empty_recommended_actuations_message_text(current_user) %>
+        <% end %>
+        <%#= paginate @actuations %>
+
+        <%
+=begin%>
+ <% unless @search_terms || @advanced_search_terms || @tag_filter %>
+
+          <% if @current_order == "recommendations" %>
+            <p class="margin">
+              *<%= t("welcome.recommended.help") %>
+            </p>
+          <% end %>
+
+          <div id="section_help" class="margin" data-magellan-target="section_help">
+            <p class="lead">
+              <strong><%= t("actuations.index.section_footer.title") %></strong>
+            </p>
+            <p><%= t("actuations.index.section_footer.description") %></p>
+            <p><%= t("actuations.index.section_footer.help_text_1") %></p>
+            <p><%= t("actuations.index.section_footer.help_text_1b",
+                      blog: link_to(t("actuations.index.section_footer.help_text_1b_blog"), "https://diario.madrid.es/decidemadrid/2017/09/07/diez-claves-para-crear-una-propuesta-ciudadana-en-decide-madrid/", target: "_blank")).html_safe %></p>
+            <p><%= t("actuations.index.section_footer.help_text_2",
+                      org: link_to(setting["org_name"], new_user_registration_path),
+                      supports: setting["votes_for_actuation_success"]).html_safe %></p>
+            <p><%= t("actuations.index.section_footer.help_text_3") %></p>
+            <p><%= t("actuations.index.section_footer.help_text_4") %></p>
+          </div>
+        <% end %> 
+<%
+=end%>
+      </div>
+    </div>
+
+    <%
+=begin%>
+ <div class="small-12 medium-3 column">
+      <aside class="margin-bottom">
+        <% if request.path != human_rights_actuations_path %>
+          <%= link_to t("actuations.index.start_actuation"),
+                      new_actuation_guide,
+                      class: "button expanded" %>
+        <% end %>
+
+        <div class="sidebar-divider"></div>
+        <h2 class="sidebar-title"><%= t("actuations.index.selected_actuations") %></h2>
+        <br>
+        <p class="small">
+          <%= link_to t("actuations.index.selected_actuations_link"), actuations_path(selected: "all") %>
+        </p>
+
+        <% if params[:retired].blank? %>
+          <%= render "categories" %>
+          <% if request.path != human_rights_actuations_path %>
+            <%= render "shared/tag_cloud", taggable: "actuation" %>
+          <% end %>
+          <%= render "geozones" %>
+        <% end %>
+        <%= render "retired" %>
+        <%= render "actuations_lists" %>
+      </aside>
+    </div> 
+<%
+=end%>
+
+  </div>
+</main>

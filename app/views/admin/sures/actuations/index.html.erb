@@ -1,0 +1,48 @@
+<% provide :title do %>
+  <%= t("admin.header.title") %> - <%= t("admin.menu.sures.actuations") %> - <%= t("admin.sures.actuations.index.filters.#{@current_filter}") %>
+<% end %>
+
+<h2 class="inline-block"><%= t("admin.sures.actuations.index.title") %></h2>
+
+<%= link_to t("admin.sures.actuations.index.create"), new_admin_sures_actuation_path,
+            class: "button float-right" %>
+
+<%= render "shared/filter_subnav", i18n_namespace: "admin.sures.actuations.index" %>
+
+<% if @actuations.any? %>
+  <h3><%= page_entries_info @actuations %></h3>
+
+  <table class="stack">
+    <thead>
+      <tr>
+        <th><%= t("admin.sures.actuations.actuation.proposal_title") %></th>
+        <th><%= t("admin.sures.actuations.actuation.proposal_objective") %></th>
+        <th class="text-center"><%= t("admin.sures.actuations.actuation.status") %></th>        
+        <th><%= t("admin.actions.actions") %></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @actuations.each do |actuation| %>
+        <tr id="<%= dom_id(actuation) %>">
+          <td class="small-12 medium-6 large-4">
+            <%= link_to actuation.try(:proposal_title), edit_admin_sures_actuation_path(actuation) %>
+          </td>
+          <td><%= actuation.try(:proposal_objective) %></td>
+          <td class="text-center"><%= t("admin.sures.actuations.actuation.status_#{actuation.try(:status)}") %></td>
+          <td>
+            <%= link_to t("admin.sures.actuations.index.delete"), admin_sures_actuation_path(actuation),
+                        method: :delete,
+                        class: "button hollow alert expanded" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @actuations %>
+<% else %>
+  <div class="callout primary">
+    <%= page_entries_info @actuations %>
+  </div>
+<% end %>

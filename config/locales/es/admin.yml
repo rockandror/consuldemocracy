@@ -675,6 +675,57 @@ es:
       milestones:
         index:
           title: Seguimiento
+    sures:
+      actuations:
+        create:
+          notice: 'Actuación creada correctamente. <a href="%{link}">Haz click para verla</a>'
+          error: No se ha podido crear la actuación
+        update:
+          notice: 'Actuación actualizada correctamente. <a href="%{link}">Haz click para verla</a>'
+          error: No se ha podido actualizar la actuación
+        destroy:
+          notice: Actuación eliminada correctamente
+        edit:
+          back: Volver
+          submit_button: Guardar cambios
+        errors:
+          form:
+            error: Error
+        form:
+          placeholder_proposals_title: "Título para la pestaña."
+          help_proposals_title: "Si no se rellena, por defecto se mostrará como 'Propuestas'."
+          enabled: Habilitado
+          process: Proceso
+          debate_phase: Fase de debate
+          draft_phase: Fase de borrador
+          draft_phase_description: Si esta fase está activa, el proceso no aparecerá en la página de procesos. Permite previsualizar el proceso y crear contenido antes del inicio.
+          allegations_phase: Fase de comentarios
+          proposals_phase: Fase de propuestas
+          use_markdown: Usa Markdown para formatear el texto
+          title_placeholder: Escribe el título del proceso
+          summary_placeholder: Resumen corto de la descripción
+          description_placeholder: Añade una descripción del proceso
+          additional_info_placeholder: Añade cualquier información adicional que pueda ser de interés
+          homepage: Descripción
+          homepage_description: Aquí puedes explicar el contenido del proceso
+          homepage_enabled: Homepage activada
+          banner_title: Colores del encabezado
+          permit_text_proposals: Habilitar texto libre entre las pestañas de propuestas y los filtros
+          permit_proposals_top_relevance: Habilitar filtro de pestaña de las 10 propuestas más votadas
+          permit_hiden_proposals: Ocultar pestaña de propuestas
+          other_proposals: Habilitar propuestas para reparto, comercios y asociaciones
+          permit_like_proposals: Mostrar apoyos de propuestas
+        index:
+          create: Nueva actuación
+          delete: Borrar
+          title: Actuaciones de SURES          
+          filters:
+            active: Activos
+            all: Todos
+        new:
+          back: Volver
+          title: Crear nueva actuación de SURES
+          submit_button: Crear actuación
     managers:
       index:
         title: Gestores
@@ -801,7 +852,7 @@ es:
             update: "Actualizar Bloque"
       title_sures: SURES
       sures:
-        actuations: "Gestión de actuaciones"
+        actuations: "Gestión de las actuaciones"
         customize: "Contenido de la página"
         search_settings: "Gestionar buscador"
       title_moderated_content: Contenido moderado

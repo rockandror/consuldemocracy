@@ -1,5 +1,5 @@
 class CreateSuresCustomizeCardTranslations < ActiveRecord::Migration[5.0]
-  def self.up
+  def self.up  
     Sures::CustomizeCard.create_translation_table!(
       {
         label:       :string,
@@ -12,6 +12,6 @@ class CreateSuresCustomizeCardTranslations < ActiveRecord::Migration[5.0]
   end
 
   def self.down
-    Sires::CustomizeCard.drop_translation_table!
+    Sures::CustomizeCard.drop_translation_table!
   end
 end

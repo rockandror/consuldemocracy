@@ -319,6 +319,7 @@ es:
     index:
       start_proposal_question: Crear propuesta o pregunta
   landings:
+    return_sures: Volver a la páguina principal de SURES
     header: SURES. Estrategia de desarrollo del sur y del este de Madrid
     title: "Conoce el plan que cambiará el sur y el este de Madrid"
     sures: ¿Qué es SURES?
