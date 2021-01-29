@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210120153400) do
+ActiveRecord::Schema.define(version: 20210129110809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1327,6 +1327,12 @@ ActiveRecord::Schema.define(version: 20210120153400) do
     t.index ["codename"], name: "index_probes_on_codename", using: :btree
   end
 
+  create_table "profiles", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "progress_bar_translations", force: :cascade do |t|
     t.integer  "progress_bar_id", null: false
     t.string   "locale",          null: false
@@ -1670,13 +1676,14 @@ ActiveRecord::Schema.define(version: 20210120153400) do
     t.string   "last_name"
     t.string   "last_name_alt"
     t.integer  "adress_id"
-    t.integer  "profiles"
+    t.integer  "profiles_id"
     t.index ["adress_id"], name: "index_users_on_adress_id", using: :btree
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["geozone_id"], name: "index_users_on_geozone_id", using: :btree
     t.index ["hidden_at"], name: "index_users_on_hidden_at", using: :btree
     t.index ["password_changed_at"], name: "index_users_on_password_changed_at", using: :btree
+    t.index ["profiles_id"], name: "index_users_on_profiles_id", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["username"], name: "index_users_on_username", using: :btree
   end
@@ -1893,5 +1900,6 @@ ActiveRecord::Schema.define(version: 20210120153400) do
   add_foreign_key "superadmins", "users", column: "users_id"
   add_foreign_key "users", "adresses"
   add_foreign_key "users", "geozones"
+  add_foreign_key "users", "profiles", column: "profiles_id"
   add_foreign_key "valuators", "users"
 end

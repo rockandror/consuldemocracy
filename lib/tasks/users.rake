@@ -441,4 +441,23 @@ namespace :users do
       puts "====================================================="
     end
   end
+
+  desc "create user profiles"
+  task create_profiles: :environment do
+    profiles = ["Super Administrador", "Administrador", "Administrador Sures", "Administrador Sectorial", "Gestor", "Moderador", "Evaluador", "Consultor"]
+    puts "============================================"
+    profiles.each do |p|
+      profile = Profile.new
+      profile.name = p.to_s
+      if profile.save
+        puts "Perfil #{profile.name} creado."
+      else
+        puts "--------------------------------------------"
+        puts "No se ha podido crear el perfil #{p}."
+        puts profile.errors.full_messages
+        puts "--------------------------------------------"
+      end
+    end
+    puts "============================================"
+  end
 end

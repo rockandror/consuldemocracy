@@ -1,7 +1,10 @@
 class Management::UsersController < Management::BaseController
 
   def new
-    @profiles = ["Super Administrador", "Administrador", "Administrador Sures", "Administrador Sectorial", "Gestor", "Moderador", "Evaluador", "Consultor"]
+    @profiles={}
+    Profile.all.name.each do |p|
+      @profiles.merge!({p.name => p.id })
+    end
     @user = User.new()
   end
 
@@ -17,6 +20,8 @@ class Management::UsersController < Management::BaseController
     @user.terms_of_service = "1"
     @user.residence_verified_at = Time.current
     @user.verified_at = Time.current
+    @user.password = "Admin12345678"
+    @user.password_confirmation = "Admin12345678"
     
     if @user.save
       render :show
@@ -36,16 +41,12 @@ class Management::UsersController < Management::BaseController
     redirect_to management_root_url, notice: t("management.sessions.signed_out_managed_user")
   end
 
-  def padron
-    xxxx
-    @user
-    render :show
-  end
-
   private
 
     def user_params
-      params.require(:user).permit(:document_type, :document_number, :username, :email, :date_of_birth, :last_name, :last_name_alt, :phone_number)
+      params.require(:user).permit(:document_type, :document_number, :username, :email, :gender, :date_of_birth, :name, 
+        :last_name, :last_name_alt, :phone_number, :profiles_id,
+        adress_attributes: [:road_type, :road_name, :road_number, :floor, :gate, :door, :district, :borought, :postal_code])
     end
 
     def destroy_session

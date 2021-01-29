@@ -4,12 +4,14 @@ namespace :management do
   resources :document_verifications, only: [:index, :new, :create] do
     post :check, on: :collection
   end
+  
+
   resources :import_users, only: [:index, :new, :create]
+  resources :padron, only: [:index]
   resources :email_verifications, only: [:new, :create]
   resources :user_invites, only: [:new, :create]
 
-  resources :users, only: [:new, :create, :import, :update] do
-    get :padron, on: :member
+  resources :users, only: [:new, :create, :import] do
     collection do
       delete :logout
       delete :erase

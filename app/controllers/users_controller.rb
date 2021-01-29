@@ -10,7 +10,50 @@ class UsersController < ApplicationController
     load_filtered_activity if valid_access?
   end
 
+  def edit
+    @profiles={}
+    Profile.all.each do |p|
+      @profiles.merge!({p.name => p.id })
+    end
+  end
+
+  def update
+    if @user != user_params[:profiles_id]
+      case user_params[:profiles_id]
+        when 1 then set_superadmin
+        when 2 then set_admin
+        when 3 then set_admin_sures
+        when 4 then set_admin_sectorial
+        when 5 then set_manager
+        when 6 then set_moderator
+        when 7 then set_evaluator
+        when 8 then set_consultant
+      end
+    end
+    @user.update_attributes(user_params)
+    if @user.save
+      redirect_to user_path(@user), notice: "Usuario actualizado."
+    else
+      redirect_to user_path(@user), alert: "No se pudo actualizar el usuario."
+    end
+  end
+
+  def update_padron
+    response = Padron.new.update_user(params[:user])
+    if response == true
+      redirect_to user_path(params[:user]), notice: "Dirección actualizada"
+    else
+      redirect_to user_path(params[:user]), alert: response
+    end
+  end
+
   private
+
+    def user_params
+      params.require(:user).permit(:document_type, :document_number, :username, :email, :gender, :date_of_birth, :name, 
+        :last_name, :last_name_alt, :phone_number, :profiles_id,
+        adress_attributes: [:road_type, :road_name, :road_number, :floor, :gate, :door, :district, :borought, :postal_code])
+    end
 
     def set_activity_counts
       @activity_counts = ActiveSupport::HashWithIndifferentAccess.new(

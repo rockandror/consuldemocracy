@@ -10,6 +10,12 @@ class CensusApi
     response
   end
 
+  def update_addres(document_type, document_number)
+    response = nil
+    response = Response.new(get_response_body(document_type, document_number))
+    response.vivienda
+  end
+
   class Response
     DDMMYYYY_REGEX = /(\d\d?)\D(\d\d?)\D(\d\d\d\d)/
     YYYYMMDD_REGEX = /(\d\d\d\d)\D(\d\d?)\D(\d\d?)/
@@ -56,6 +62,11 @@ class CensusApi
 
     def document_number
       "#{datos_habitante[:identificador_documento]}#{datos_habitante[:letra_documento_string]}"
+    end
+
+    def vivienda
+      return {} if (data[:datos_vivienda][:item].blank?)
+      data[:datos_vivienda][:item]
     end
 
     private
@@ -123,7 +134,7 @@ class CensusApi
     end
 
     def end_point_available?
-      Rails.env.staging? || Rails.env.preproduction? || Rails.env.production?
+      Rails.env.development? || Rails.env.staging? || Rails.env.preproduction? || Rails.env.production?
     end
 
     def stubbed_response(document_type, document_number)

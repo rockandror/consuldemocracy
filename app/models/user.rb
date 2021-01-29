@@ -35,6 +35,7 @@ class User < ApplicationRecord
   has_many :follows, dependent: :destroy
   belongs_to :geozone
   belongs_to :adress
+  belongs_to :profile
 
   validates :username, presence: true, if: :username_required?
   validates :username, uniqueness: { scope: :registering_with_oauth }, if: :username_required?
@@ -50,6 +51,7 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :organization, update_only: true
   accepts_nested_attributes_for :adress
+  accepts_nested_attributes_for :profile
 
   attr_accessor :skip_password_validation
   attr_accessor :use_redeemable_code
