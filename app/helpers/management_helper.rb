@@ -1,7 +1,15 @@
 module ManagementHelper
 
   def menu_users?
-    ["users", "email_verifications", "document_verifications"].include?(controller_name)
+    ["document_verifications"].include?(controller_name)
+  end
+
+  def import_user?
+    controller_name == "users" && action_name == "import" 
+  end
+
+  def new_user?
+    controller_name == "users" && action_name == "new"
   end
 
   def menu_edit_password_email?

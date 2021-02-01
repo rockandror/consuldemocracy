@@ -34,6 +34,8 @@ class User < ApplicationRecord
   has_many :legislation_answers, class_name: "Legislation::Answer", dependent: :destroy, inverse_of: :user
   has_many :follows, dependent: :destroy
   belongs_to :geozone
+  belongs_to :adress
+  belongs_to :profile
 
   validates :username, presence: true, if: :username_required?
   validates :username, uniqueness: { scope: :registering_with_oauth }, if: :username_required?
@@ -48,6 +50,8 @@ class User < ApplicationRecord
   validates_associated :organization, message: false
 
   accepts_nested_attributes_for :organization, update_only: true
+  accepts_nested_attributes_for :adress
+  accepts_nested_attributes_for :profile
 
   attr_accessor :skip_password_validation
   attr_accessor :use_redeemable_code

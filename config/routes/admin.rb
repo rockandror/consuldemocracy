@@ -50,7 +50,7 @@ namespace :admin do
     end
   end
 
-  resources :users, only: [:index, :show, :destroy] do
+  resources :users, only: [:index, :new, :show, :destroy] do
     get :hide, on: :member
   end
 
@@ -142,7 +142,7 @@ namespace :admin do
     get :search, on: :collection
   end
 
-  resources :administrators, only: [:index, :create, :destroy] do
+  resources :administrators, only: [:index, :new, :create, :destroy] do
     get :search, on: :collection
   end
 

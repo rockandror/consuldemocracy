@@ -1,0 +1,54 @@
+<div class="small-12 medium-12 column">
+    <h3 style="font-weight:0!important"><%= t("management.users.adress") %></h3>
+    <%= f.fields_for :adress, (f.object.adress.presence || f.object.build_adress) do |f_adress|  %>
+            <div class="small-12 medium-2 column">
+                <%= f_adress.select :road_type, ["Calle", "Crta"],
+                    label: t("management.users.new.adress.road_type"),
+                    placeholder: t("management.users.new.adress.road_type"),
+                    include_blank: :true   %>
+            </div>
+            <div class="small-12 medium-6 column">
+                <%= f_adress.text_field :road_name,
+                label: t("management.users.new.adress.road_name"),
+                placeholder: t("management.users.new.adress.road_name")  %>
+            </div>
+        
+            <div class="small-12 medium-1 column">
+                <%= f_adress.text_field :road_number,
+                    label: t("management.users.new.adress.road_number"),
+                    placeholder: t("management.users.new.adress.road_number")  %>
+            </div>
+            <div class="small-12 medium-1 column">
+                <%= f_adress.text_field :floor,
+                    label: t("management.users.new.adress.floor"),
+                    placeholder: t("management.users.new.adress.floor")  %>
+            </div>
+            <div class="small-12 medium-1 column">
+                <%= f_adress.text_field :door,
+                    label: t("management.users.new.adress.door"),
+                    placeholder: t("management.users.new.adress.door")  %>
+            </div>
+            <div class="small-12 medium-1 column">
+                <%= f_adress.text_field :gate,
+                    label: t("management.users.new.adress.gate"),
+                    placeholder: t("management.users.new.adress.gate")  %>
+            </div>
+            <div class="small-12 medium-3 large-3 column">
+                <%= f_adress.select :district, Geozone.all.map {|d| d.name},
+                    label: t("management.users.new.adress.district"),
+                    placeholder: t("management.users.new.adress.district"),
+                    include_blank: :true  %>
+            </div>
+            <div class="small-12 medium-3 large-3 column">
+                <%= f_adress.select :borought, Proposal.all.where(comunity_hide: :true).map {|b| b.title},
+                    label: t("management.users.new.adress.borought"),
+                    placeholder: t("management.users.new.adress.borought"),
+                    include_blank: :true   %>
+            </div>
+            <div class="small-12 large-3 small-12 column left">
+                <%= f_adress.text_field :postal_code,
+                    label: t("management.users.new.adress.postal_code"),
+                    placeholder: t("management.users.new.adress.postal_code")  %>
+            </div>
+    <%end%>
+</div>

@@ -854,6 +854,8 @@ es:
     manage:
       all: "No tienes permiso para realizar la acción '%{action}' sobre %{subject}."
   users:
+    edit:
+      title: "Editar usuario: %{receiver}"
     direct_messages:
       new:
         body_label: Mensaje
@@ -903,6 +905,7 @@ es:
       private_activity: Este usuario ha decidido mantener en privado su lista de actividades.
       send_private_message: "Enviar un mensaje privado"
       delete_alert: "¿Estás seguro de que deseas borrar tu proyecto de gasto? Esta acción no se puede deshacer"
+      update_padron: Actualizar datos padron
     proposals:
       retired: "Propuesta retirada"
       draft: Borrador

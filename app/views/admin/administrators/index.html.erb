@@ -1,5 +1,8 @@
 <h2><%= t("admin.administrators.index.title") %></h2>
 
+<%= link_to t("admin.administrators.index.create"), new_admin_user_path,
+            class: "button float-right" %>
+
 <%= render "admin/shared/user_search", url: search_admin_administrators_path %>
 
 <div id="administrators">

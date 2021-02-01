@@ -870,6 +870,8 @@ es:
     administrators:
       index:
         title: Administradores
+        create: Nuevo administrador
+        back: Volver
         name: Nombre
         email: Email
         id: ID de Administrador
@@ -880,6 +882,8 @@ es:
         restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
       search:
         title: "Administradores: Búsqueda de usuarios"
+      new: 
+        title: Crear nuevo usuario administrador
     moderators:
       index:
         title: Moderadores
@@ -1655,6 +1659,8 @@ es:
         confirm_data: "Si confirma esta eliminación también se eliminarán las propuestas, comentarios, mensajes, actividad, documentos, seguimientos, debates, rol, denuncias, relación con la organización, bloqueos, identidades, resultados, preguntas, respuestas, notificaciones, imágenes y votaciones relacionadas con este usuario, ¿Desea continuar?"
         successfuly_deleted: El usuario se ha eliminado correctamente
         no_deleted: No se ha podido eliminar el usuario correctamente
+      new:
+        title: Nuevo usuario
     verifications:
       index:
         phone_not_given: No ha dado su teléfono

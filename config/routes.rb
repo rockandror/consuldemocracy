@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   root "welcome#index"
   get "/welcome", to: "welcome#welcome"
   get "/conectados", to: "welcome#encuentrosconexpertos"
+  get '/update_padron' => 'users#update_padron', as: :update_padron
   get "/eventos", to: "welcome#eventos"  
 
   get "/madridsalealbalcon" => redirect("/legislation/processes/#{Rails.application.secrets.id}")

@@ -63,9 +63,35 @@ ActiveRecord::Schema.define(version: 20210201100610) do
     t.datetime "updated_at",        null: false
   end
 
+  create_table "admin_sections", force: :cascade do |t|
+    t.integer "users_id"
+    t.index ["users_id"], name: "index_admin_sections_on_users_id", using: :btree
+  end
+
+  create_table "admin_sures", force: :cascade do |t|
+    t.integer "users_id"
+    t.index ["users_id"], name: "index_admin_sures_on_users_id", using: :btree
+  end
+
   create_table "administrators", force: :cascade do |t|
     t.integer "user_id"
     t.index ["user_id"], name: "index_administrators_on_user_id", using: :btree
+  end
+
+  create_table "adresses", force: :cascade do |t|
+    t.integer  "users_id"
+    t.text     "road_type"
+    t.text     "road_name"
+    t.text     "road_number"
+    t.text     "floor"
+    t.text     "door"
+    t.text     "gate"
+    t.text     "district"
+    t.text     "borought"
+    t.text     "postal_code"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["users_id"], name: "index_adresses_on_users_id", using: :btree
   end
 
   create_table "ahoy_events", id: :uuid, default: nil, force: :cascade do |t|
@@ -411,6 +437,11 @@ ActiveRecord::Schema.define(version: 20210201100610) do
   create_table "communities", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "consultants", force: :cascade do |t|
+    t.integer "users_id"
+    t.index ["users_id"], name: "index_consultants_on_users_id", using: :btree
   end
 
   create_table "dashboard_actions", force: :cascade do |t|
@@ -1296,6 +1327,12 @@ ActiveRecord::Schema.define(version: 20210201100610) do
     t.index ["codename"], name: "index_probes_on_codename", using: :btree
   end
 
+  create_table "profiles", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "progress_bar_translations", force: :cascade do |t|
     t.integer  "progress_bar_id", null: false
     t.string   "locale",          null: false
@@ -1567,6 +1604,11 @@ ActiveRecord::Schema.define(version: 20210201100610) do
     t.boolean  "active",     default: true
   end
 
+  create_table "superadmins", force: :cascade do |t|
+    t.integer "users_id"
+    t.index ["users_id"], name: "index_superadmins_on_users_id", using: :btree
+  end
+
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
     t.string   "taggable_type"
@@ -1693,11 +1735,18 @@ ActiveRecord::Schema.define(version: 20210201100610) do
     t.date     "access_key_generated_at"
     t.integer  "access_key_tried",                          default: 0
     t.date     "date_hide"
+    t.string   "name"
+    t.string   "last_name"
+    t.string   "last_name_alt"
+    t.integer  "adress_id"
+    t.integer  "profiles_id"
+    t.index ["adress_id"], name: "index_users_on_adress_id", using: :btree
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["geozone_id"], name: "index_users_on_geozone_id", using: :btree
     t.index ["hidden_at"], name: "index_users_on_hidden_at", using: :btree
     t.index ["password_changed_at"], name: "index_users_on_password_changed_at", using: :btree
+    t.index ["profiles_id"], name: "index_users_on_profiles_id", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["username"], name: "index_users_on_username", using: :btree
   end
@@ -1855,8 +1904,12 @@ ActiveRecord::Schema.define(version: 20210201100610) do
     t.datetime "updated_at",             null: false
   end
 
+  add_foreign_key "admin_sections", "users", column: "users_id"
+  add_foreign_key "admin_sures", "users", column: "users_id"
   add_foreign_key "administrators", "users"
+  add_foreign_key "adresses", "users", column: "users_id"
   add_foreign_key "budget_investments", "communities"
+  add_foreign_key "consultants", "users", column: "users_id"
   add_foreign_key "dashboard_administrator_tasks", "users"
   add_foreign_key "dashboard_executed_actions", "dashboard_actions", column: "action_id"
   add_foreign_key "dashboard_executed_actions", "proposals"
@@ -1907,6 +1960,9 @@ ActiveRecord::Schema.define(version: 20210201100610) do
   add_foreign_key "proposals", "communities"
   add_foreign_key "related_content_scores", "related_contents"
   add_foreign_key "related_content_scores", "users"
+  add_foreign_key "superadmins", "users", column: "users_id"
+  add_foreign_key "users", "adresses"
   add_foreign_key "users", "geozones"
+  add_foreign_key "users", "profiles", column: "profiles_id"
   add_foreign_key "valuators", "users"
 end
