@@ -245,3 +245,14 @@ function showhideElementChecked(element, check) {
   }
 }
 
+function showhideFieldActuation(element, value, field) {
+
+  console.log(element.val())
+
+  if (element.val() == value) {
+    field.show();
+  } else {
+    field.hide();
+  }
+}
+

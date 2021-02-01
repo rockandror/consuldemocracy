@@ -1,0 +1,13 @@
+<% provide :title do %>
+  <%= t("admin.header.title") %> - <%= t("admin.menu.sures.actuations") %> - <%= @actuation.proposal_title %>
+<% end %>
+
+<div class="sures-actuation-edit">
+  <%= back_link_to admin_sures_actuations_path, t("admin.sures.actuations.edit.back") %>
+
+  <h2><%= @actuation.proposal_title %></h2>
+
+  <%#= render "subnav", process: @process, active: "info" %>
+
+  <%= render "form" %>
+</div>

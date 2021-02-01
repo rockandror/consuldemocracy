@@ -561,7 +561,8 @@ $geocraft: #006800;
  -----------------------*/
 
 .auth-image {
-
+  padding-right: 0px;
+  padding-left: 0px;
   h1 img {
     height: auto;
     width: auto;
@@ -574,7 +575,7 @@ $geocraft: #006800;
   }
 
   .auth-image {
-    background: #000 image-url("landings/bg_landing_new.jpg");
+    background: #F8F7F5;
     background-repeat: no-repeat;
     background-size: cover;
     padding-bottom: $line-height * 2;

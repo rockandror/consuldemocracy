@@ -1,0 +1,87 @@
+<% provide :title do %>
+  <%= t("admin.header.title") %> - <%= t("admin.sures.searchs_settings.title") %>
+<% end %>
+
+<div class="sures-searchs_settings-edit">
+  <h2><%= t("admin.sures.searchs_settings.title") %></h2>
+  <% if @search_settings.any? %>
+    <ul class="menu simple clear" id="filter-subnav">
+      <%  get_filter_sures_search_tab.each do |filter| %>
+        <li class="<%="is-active" if @type.to_s==filter[:type].to_s%>">
+          <% if @type.to_s==filter[:type].to_s %>
+            <h2><%=filter[:name]%></h2>
+          <%else%>  
+            <%= link_to filter[:name], admin_sures_searchs_settings_path(type: filter[:type].to_s) %>
+          <%end%>
+        </li>
+      <%end%>
+    </ul>
+    <%=form_tag ({type: @type.to_s}) do %>
+      <% @search_settings.each do |s|%>
+        <div class="row">
+          <div class="small-12 column">
+            <fieldset style="border: 1px solid grey;margin: 1em 0;padding: 1em;">
+              <legend><%= text_field_tag "title_#{s.id}".to_sym, s.title%></legend>
+              <div class="row">
+                <div class="small-12 medium-3 column">
+                  <%=label_tag "data_type_#{s.id}".to_sym, t('admin.sures.searchs_settings.form.data_type')%>
+                  <%= select_tag "data_type_#{s.id}".to_sym, options_for_select(get_sures_search_types_data, s.data_type) %>
+                </div>
+                <div class="small-12 medium-3 column">
+                  <%=label_tag t('admin.sures.searchs_settings.form.resource')%>
+                  <%= s.resource %>
+                </div> 
+                <div class="small-12 medium-3 column end">
+                  <%=label_tag "field_#{s.id}".to_sym, t('admin.sures.searchs_settings.form.field')%>
+                  <%= select_tag "field_#{s.id}".to_sym, options_for_select(Sures::SearchSetting.fieldSuresAnotation.map{|x| [s.resource.classify.constantize.human_attribute_name(x),x]} , s.field) %>
+                </div>  
+                <div class="small-12 medium-3 column">
+                  <%=label_tag "active_#{s.id}".to_sym, t('admin.sures.searchs_settings.form.active')%>
+                  <%= check_box_tag "active_#{s.id}".to_sym, s.active, s.active %>
+                </div>              
+              </div>
+              <div class="row">    
+                <%if s.data_type == 'order' %>            
+                  <div class="small-12 medium-6 column end">
+                    <%=label_tag "rules_#{s.id}".to_sym, t('admin.sures.searchs_settings.form.rules')%>
+                    <%= select_tag "rules_#{s.id}".to_sym, options_for_select(get_sures_search_rules, s.rules) %>
+                  </div>  
+                <%end%>
+                <%if s.data_type == 'select' %>  
+                  <div class="small-12 medium-9 column end">
+                    <%=label_tag "data_#{s.id}".to_sym, t('admin.sures.searchs_settings.form.data')%>
+                    <% if !s.data.blank?%>
+                      <div class="row">
+                        <div class="small-6 column">
+                          <%=label_tag t('admin.sures.searchs_settings.form.key')%>
+                        </div>
+                        <div class="small-6 column">
+                          <%=label_tag t('admin.sures.searchs_settings.form.value')%>
+                        </div>
+                      </div>
+                      <% parse_data_json(s.data).each_with_index do |k, i|%>
+                        <div class="row">
+                          <div class="small-6 column">
+                            <%= text_field_tag "data_key_#{s.id}_#{i}".to_sym, k[0]%>
+                          </div>
+                          <div class="small-6  column">
+                            <%= text_field_tag "data_value_#{s.id}_#{i}".to_sym, k[1]%>
+                          </div>
+                        </div>
+                      <%end%>
+                    <%end%>
+                  </div>
+                <%end%>
+              </div>         
+            </fieldset>
+          </div>
+        </div>
+      <% end%>
+      <div class="small-12 medium-3 column end">
+        <%= submit_tag t('admin.sures.searchs_settings.form.button_send'), class: "button expanded" %>
+      </div>
+    <%end%>
+  <% else%>
+    <%= t('admin.sures.searchs_settings.form.no_data') %>
+  <% end%>
+</div>

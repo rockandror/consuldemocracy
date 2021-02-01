@@ -1,5 +1,99 @@
 es:
   admin:
+    sures:
+      searchs_settings:
+        title: Gestión del buscador de SURES
+        filter: 
+          order: "Filtros de ordenación"
+          search: "Campos del buscador"
+        form:
+          data_type: "Tipo de configuración"
+          data: "Datos del seleccionable"
+          rules: "Reglas de ordenación"
+          resource: "Recurso afectado"
+          field: "Campo afectado"
+          key: "Clave"
+          value: "Valor"
+          active: Activo
+          no_data: "No hay datos"
+          button_send: "Guardar cambios"
+          notice: Configuraciones actualizadas correctamente
+          error: No se han podido actualizar todas las configuraciones correctamente
+        types_data:
+          select: "Desplegable"
+          order: "Ordenación"
+          text: "Texto"
+          fulltext: "Texto varios campos"
+        rules:
+          default_asc: "Ascendente, por defecto"
+          default_desc: "Descendente, por defecto"
+          asc: "Ascendente"
+          desc: "Descendente"
+      actuations:
+        create:
+          notice: 'Actuación creada correctamente. <a href="%{link}">Haz click para verla</a>'
+          error: No se ha podido crear la actuación
+        update:
+          notice: 'Actuación actualizada correctamente. <a href="%{link}">Haz click para verla</a>'
+          error: No se ha podido actualizar la actuación
+        destroy:
+          notice: Actuación eliminada correctamente
+        edit:
+          back: Volver
+          submit_button: Guardar cambios
+        errors:
+          form:
+            error: Error
+        form:
+          placeholder_proposals_title: "Título para la pestaña."
+          help_proposals_title: "Si no se rellena, por defecto se mostrará como 'Propuestas'."
+          enabled: Habilitado
+          process: Proceso
+          debate_phase: Fase de debate
+          draft_phase: Fase de borrador
+          draft_phase_description: Si esta fase está activa, el proceso no aparecerá en la página de procesos. Permite previsualizar el proceso y crear contenido antes del inicio.
+          allegations_phase: Fase de comentarios
+          proposals_phase: Fase de propuestas
+          use_markdown: Usa Markdown para formatear el texto
+          title_placeholder: Escribe el título del proceso
+          summary_placeholder: Resumen corto de la descripción
+          description_placeholder: Añade una descripción del proceso
+          additional_info_placeholder: Añade cualquier información adicional que pueda ser de interés
+          homepage: Descripción
+          homepage_description: Aquí puedes explicar el contenido del proceso
+          homepage_enabled: Homepage activada
+          banner_title: Colores del encabezado
+          permit_text_proposals: Habilitar texto libre entre las pestañas de propuestas y los filtros
+          permit_proposals_top_relevance: Habilitar filtro de pestaña de las 10 propuestas más votadas
+          permit_hiden_proposals: Ocultar pestaña de propuestas
+          other_proposals: Habilitar propuestas para reparto, comercios y asociaciones
+          permit_like_proposals: Mostrar apoyos de propuestas
+        index:
+          create: Nueva actuación
+          delete: Borrar
+          title: Actuaciones de SURES          
+          filters:
+            study: "En estudio"
+            tramit: "En tramitación"
+            process: "En ejecución"
+            fhinish: "Finalizada"
+            all: Todas
+        new:
+          back: Volver
+          title: Crear nueva actuación de SURES
+          submit_button: Crear actuación
+        actuation:
+          proposal_title: "Propuesta"
+          proposal_objective: "Objetivo de la propuesta"
+          status: "Estado de propuesta"
+          status_study: "En estudio"
+          status_tramit: "En tramitación"
+          status_process: "En ejecución"
+          status_fhinish: "Finalizada"
+          financing_planed: "Planes estratégicos de reequilibrio territorial (PERT)"
+          financing_tramit: "Presupuesto ordinario"
+          financing_ifs: "IFS"
+          financing_other: "Otro"
     officing_booth:
       title: "Estás ahora mismo en la mesa ubicada en %{booth}. Si esto no es correcto no sigas adelante y llama al teléfono de incidencias. Gracias."
     legislation:
