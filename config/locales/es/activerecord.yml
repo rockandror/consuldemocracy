@@ -365,6 +365,15 @@ es:
         check_multianno: Plurianual
         annos: "Año(s)"
         tracking: Indicadores de seguimiento y evaluación de la propuesta
+        other: Otro
+        proposal_title: Propuesta
+        proposal_objective: "Objetivo de la propuesta"
+        territorial_scope: "Ámbito territorial"
+        location_performance: "Ubicación de la actuación"
+        technical_visibility: "Viabilidad técnica"
+        actions_taken: "Actualizaciones a realizar"
+        updated_at: "Fecha de actualización"
+        created_at: "Fecha de creación"
       sures/actuation/translation:
         other: Otro
         proposal_title: Propuesta

@@ -1,6 +1,34 @@
 es:
   admin:
     sures:
+      searchs_settings:
+        title: Gestión del buscador de SURES
+        filter: 
+          order: "Filtros de ordenación"
+          search: "Campos del buscador"
+        form:
+          data_type: "Tipo de configuración"
+          data: "Datos del seleccionable"
+          rules: "Reglas de ordenación"
+          resource: "Recurso afectado"
+          field: "Campo afectado"
+          key: "Clave"
+          value: "Valor"
+          active: Activo
+          no_data: "No hay datos"
+          button_send: "Guardar cambios"
+          notice: Configuraciones actualizadas correctamente
+          error: No se han podido actualizar todas las configuraciones correctamente
+        types_data:
+          select: "Desplegable"
+          order: "Ordenación"
+          text: "Texto"
+          fulltext: "Texto varios campos"
+        rules:
+          default_asc: "Ascendente, por defecto"
+          default_desc: "Descendente, por defecto"
+          asc: "Ascendente"
+          desc: "Descendente"
       actuations:
         create:
           notice: 'Actuación creada correctamente. <a href="%{link}">Haz click para verla</a>'

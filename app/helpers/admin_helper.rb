@@ -69,7 +69,7 @@ module AdminHelper
   end
 
   def menu_sures_search?
-    ["searchs"].include?(controller_name) && controller.class.parent.to_s == "Admin::Sures"
+    ["searchs_settings"].include?(controller_name) && controller.class.parent.to_s == "Admin::Sures"
   end
 
   def menu_homepage?

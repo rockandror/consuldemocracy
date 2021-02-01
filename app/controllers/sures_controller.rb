@@ -9,7 +9,7 @@ class SuresController < SuresBaseController
     end
 
     def search
-        @actuations = Sures::Actuation.all
+        @actuations = Sures::Actuation.all.page(params[:page])
     end
 
     def actuation
