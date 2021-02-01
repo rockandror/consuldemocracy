@@ -12,11 +12,14 @@ class User < ApplicationRecord
   include ActsAsParanoidAliases
 
   include Graphqlable
-
+  has_one :superadmin
   has_one :administrator
   has_one :moderator
   has_one :valuator
   has_one :manager
+  has_one :admin_sures
+  has_one :admin_sectorial
+  has_one :consultant
   has_one :poll_officer, class_name: "Poll::Officer"
   has_one :organization
   has_one :lock
@@ -158,8 +161,20 @@ class User < ApplicationRecord
     Budget::Investment.where(id: votes.for_budget_investments.pluck(:votable_id))
   end
 
+  def super_administrator?
+    !Superadministrator.find_by(user_id: self.id).blank?
+  end
+
   def administrator?
     !Administrator.find_by(user_id: self.id).blank?
+  end
+
+  def sures_administrator?
+    !SuresAdministrator.find_by(user_id: self.id).blank?
+  end
+
+  def section_administrator?
+    !SectionAdministrator.find_by(user_id: self.id).blank?
   end
 
   def moderator?
@@ -172,6 +187,10 @@ class User < ApplicationRecord
 
   def manager?
     manager.present?
+  end
+
+  def consultant?
+    !Consultant.find_by(user_id: self.id).blank?
   end
 
   def poll_officer?
@@ -453,7 +472,7 @@ class User < ApplicationRecord
 
   def exceeded_failed_login_attempts?
     failed_attempts >= Setting["captcha.max_failed_login_attempts"].to_i
-  end
+  end  
 
   private
 

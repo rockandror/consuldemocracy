@@ -2,9 +2,36 @@ class Management::UsersController < Management::BaseController
 
   def new
     @profiles={}
-    Profile.all.name.each do |p|
-      @profiles.merge!({p.name => p.id })
+    Profile.all.each do |p|
+      if !current_user.super_administrator? && p.id == 1
+        nil
+      else
+        @profiles.merge!({p.name => p.id })
+      end
     end
+
+    @districts ={}
+    Geozone.all.each do |g|
+      @districts.merge!({g.name => g.id })
+    end
+
+    @boroughts = {}
+    Proposal.all.where(comunity_hide: :true).each do |borought|
+      @boroughts.merge!({borought.title => borought.id })
+    end
+
+    @document_types = {
+      "1" => "NIF",
+      "2" => "Pasaporte",
+      "3" => "Tarjeta de residencia"
+    }
+
+    @gender = {
+      "1" => "Masculino",
+      "2" => "Femenino"
+    }
+
+
     @user = User.new()
   end
 

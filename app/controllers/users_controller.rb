@@ -13,29 +13,49 @@ class UsersController < ApplicationController
   def edit
     @profiles={}
     Profile.all.each do |p|
-      @profiles.merge!({p.name => p.id })
+      if !current_user.super_administrator? && p.id == 1
+        nil
+      else
+        @profiles.merge!({p.name => p.id })
+      end
     end
+
+    @districts ={}
+    Geozone.all.each do |g|
+      @districts.merge!({g.name => g.id })
+    end
+
+    @boroughts = {}
+    Proposal.all.where(comunity_hide: :true).each do |borought|
+      @boroughts.merge!({borought.title => borought.id })
+    end
+
+    @document_types = {
+      "NIF" => "1",
+      "Pasaporte" => "2",
+      "Tarjeta de residencia" => "3"
+    }
+
+    @gender = {
+      "Masculino" => "Male",
+      "Femenino" => "Female"
+    }
   end
 
   def update
-    if @user != user_params[:profiles_id]
-      case user_params[:profiles_id]
-        when 1 then set_superadmin
-        when 2 then set_admin
-        when 3 then set_admin_sures
-        when 4 then set_admin_sectorial
-        when 5 then set_manager
-        when 6 then set_moderator
-        when 7 then set_evaluator
-        when 8 then set_consultant
+    if @user.profiles_id != user_params[:profiles_id]
+      old_profile = remove_old_profile(@user)
+      if old_profile == true
+        new_profile = set_new_profile(@user, user_params[:profiles_id])
+        if newprofile == true
+          @user.update_attributes(user_params)
+          if @user.save
+            
+          end
+        end
       end
     end
-    @user.update_attributes(user_params)
-    if @user.save
-      redirect_to user_path(@user), notice: "Usuario actualizado."
-    else
-      redirect_to user_path(@user), alert: "No se pudo actualizar el usuario."
-    end
+    redirect_to user_path(@user), notice: "Usuario actualizado."
   end
 
   def update_padron
@@ -50,9 +70,9 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:document_type, :document_number, :username, :email, :gender, :date_of_birth, :name, 
+      params.require(:user).permit(:id, :document_type, :document_number, :username, :email, :gender, :date_of_birth, :name, 
         :last_name, :last_name_alt, :phone_number, :profiles_id,
-        adress_attributes: [:road_type, :road_name, :road_number, :floor, :gate, :door, :district, :borought, :postal_code])
+        adress_attributes: [:road_type, :road_name, :road_number, :floor, :gate, :door, :district, :borought, :postal_code, :id])
     end
 
     def set_activity_counts
@@ -164,4 +184,79 @@ class UsersController < ApplicationController
         all_user_comments
       end
     end
+
+    def remove_old_profile(user)
+      case user.profiles_id
+        when "1" then true if Superadministrator.find_by(user_id: user).remove
+        when "2" then true if Administrator.find_by(user_id: user).remove
+        when "3" then true if SuresAdministrator.find_by(user_id: user).remove
+        when "4" then true if SectionAdministrator.find_by(user_id: user).remove
+        when "5" then true if Manager.find_by(user_id: user).remove
+        when "6" then true if Moderator.find_by(user_id: user).remove
+        when "7" then true if Evaluator.find_by(user_id: user).remove
+        when "8" then true if Consultant.find_by(user_id: user).remove
+      end
+    end
+
+    def set_new_profile(user, id)
+      case id
+        when "1" then true if set_surperadmin(user)
+        when "2" then true if set_admin(user)
+        when "3" then true if set_sures_admin(user)
+        when "4" then true if set_section_admin(user)
+        when "5" then true if set_manager(user)
+        when "6" then true if set_moderator(user)
+        when "7" then true if set_evaluator(user)
+        when "8" then true if set_consultant(user)
+      end
+    end
+
+    def set_superadmin(user)
+      profile = Superadministrator.new
+      profile.user = user
+      true if profile.save!
+    end
+
+    def set_admin(user)
+      profile = Administrator.new
+      profile.user = user
+      true if profile.save!
+    end
+
+    def set_sures_admin(user)
+      profile = SuresAdministrator.new
+      profile.user = user
+      true if profile.save!
+    end
+
+    def set_section_admin(user)
+      profile = SectionAdministrator.new
+      profile.user = user
+      true if profile.save!
+    end
+
+    def set_manager(user)
+      profile = Manager.new
+      profile.user = user
+      true if profile.save!
+    end
+
+    def set_moderator(user)
+      profile = Moderator.new
+      profile.user = user
+      true if profile.save!
+    end
+
+    def set_evaluator(user)
+      profile = Evaluator.new
+      profile.user = user
+      true if profile.save!
+    end
+
+    def set_consultant(user)
+      profile = Consultant.new
+      profile.user = user
+      true if profile.save!
+    end
+
 end

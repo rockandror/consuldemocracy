@@ -34,13 +34,13 @@
                     placeholder: t("management.users.new.adress.gate")  %>
             </div>
             <div class="small-12 medium-3 large-3 column">
-                <%= f_adress.select :district, Geozone.all.map {|d| d.name},
+                <%= f_adress.select :district, options_for_select(@districts||{}, selected: @user.try(:address).try(:district)),
                     label: t("management.users.new.adress.district"),
                     placeholder: t("management.users.new.adress.district"),
                     include_blank: :true  %>
             </div>
             <div class="small-12 medium-3 large-3 column">
-                <%= f_adress.select :borought, Proposal.all.where(comunity_hide: :true).map {|b| b.title},
+                <%= f_adress.select :borought, options_for_select(@boroughts||{}, selected: @user.try(:address).try(:borought)),
                     label: t("management.users.new.adress.borought"),
                     placeholder: t("management.users.new.adress.borought"),
                     include_blank: :true   %>

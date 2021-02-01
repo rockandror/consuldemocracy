@@ -35,7 +35,7 @@
         placeholder: t("management.users.new.phone_number") %>
     </div>
     <div class="small-12 medium-2 column">
-        <%= f.select :document_type, ["NIF", "CIF"],
+        <%= f.select :document_type, options_for_select(@document_types||{}, selected: @user.try(:document_type)),
         label: t("management.users.new.document_type"),
         placeholder: t("management.users.new.document_type"),
             include_blank: :true   %>
@@ -46,13 +46,13 @@
         placeholder: t("management.users.new.document_number")  %>
     </div>
     <div class="small-12 medium-2 column">
-        <%= f.select :gender, ["Hombre", "Mujer"],
+        <%= f.select :gender, options_for_select(@gender||{}, selected: @user.try(:gender)),
         label: t("management.users.new.gender"),
         placeholder: t("management.users.new.gender"),
             include_blank: :true   %>
     </div>
 </div>  
-<div class="small-12 medium-12 column">
+<div class="small-12 medium-6 column">
     <div class="small-12 medium-12 column">
         <div class="date-of-birth">
             <%= f.label t("management.date_of_birth") %>

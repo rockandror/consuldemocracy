@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20210129131309) do
+=======
 ActiveRecord::Schema.define(version: 20210201100610) do
+>>>>>>> DEMAD-111
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,16 +65,6 @@ ActiveRecord::Schema.define(version: 20210201100610) do
     t.date     "sent_at"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
-  end
-
-  create_table "admin_sections", force: :cascade do |t|
-    t.integer "users_id"
-    t.index ["users_id"], name: "index_admin_sections_on_users_id", using: :btree
-  end
-
-  create_table "admin_sures", force: :cascade do |t|
-    t.integer "users_id"
-    t.index ["users_id"], name: "index_admin_sures_on_users_id", using: :btree
   end
 
   create_table "administrators", force: :cascade do |t|
@@ -440,8 +434,8 @@ ActiveRecord::Schema.define(version: 20210201100610) do
   end
 
   create_table "consultants", force: :cascade do |t|
-    t.integer "users_id"
-    t.index ["users_id"], name: "index_consultants_on_users_id", using: :btree
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_consultants_on_user_id", using: :btree
   end
 
   create_table "dashboard_actions", force: :cascade do |t|
@@ -1454,6 +1448,11 @@ ActiveRecord::Schema.define(version: 20210201100610) do
     t.index ["process_type", "process_id"], name: "index_reports_on_process_type_and_process_id", using: :btree
   end
 
+  create_table "section_administrators", force: :cascade do |t|
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_section_administrators_on_user_id", using: :btree
+  end
+
   create_table "settings", force: :cascade do |t|
     t.string  "key"
     t.string  "value"
@@ -1541,6 +1540,16 @@ ActiveRecord::Schema.define(version: 20210201100610) do
     t.index ["process_type", "process_id"], name: "index_stats_versions_on_process_type_and_process_id", using: :btree
   end
 
+<<<<<<< HEAD
+  create_table "superadministrators", force: :cascade do |t|
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_superadministrators_on_user_id", using: :btree
+  end
+
+  create_table "sures_administrators", force: :cascade do |t|
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_sures_administrators_on_user_id", using: :btree
+=======
   create_table "sures_actuation_translations", force: :cascade do |t|
     t.integer  "sures_actuation_id",   null: false
     t.string   "locale",               null: false
@@ -1607,6 +1616,7 @@ ActiveRecord::Schema.define(version: 20210201100610) do
   create_table "superadmins", force: :cascade do |t|
     t.integer "users_id"
     t.index ["users_id"], name: "index_superadmins_on_users_id", using: :btree
+>>>>>>> DEMAD-111
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -1904,12 +1914,10 @@ ActiveRecord::Schema.define(version: 20210201100610) do
     t.datetime "updated_at",             null: false
   end
 
-  add_foreign_key "admin_sections", "users", column: "users_id"
-  add_foreign_key "admin_sures", "users", column: "users_id"
   add_foreign_key "administrators", "users"
   add_foreign_key "adresses", "users", column: "users_id"
   add_foreign_key "budget_investments", "communities"
-  add_foreign_key "consultants", "users", column: "users_id"
+  add_foreign_key "consultants", "users"
   add_foreign_key "dashboard_administrator_tasks", "users"
   add_foreign_key "dashboard_executed_actions", "dashboard_actions", column: "action_id"
   add_foreign_key "dashboard_executed_actions", "proposals"
@@ -1960,7 +1968,9 @@ ActiveRecord::Schema.define(version: 20210201100610) do
   add_foreign_key "proposals", "communities"
   add_foreign_key "related_content_scores", "related_contents"
   add_foreign_key "related_content_scores", "users"
-  add_foreign_key "superadmins", "users", column: "users_id"
+  add_foreign_key "section_administrators", "users"
+  add_foreign_key "superadministrators", "users"
+  add_foreign_key "sures_administrators", "users"
   add_foreign_key "users", "adresses"
   add_foreign_key "users", "geozones"
   add_foreign_key "users", "profiles", column: "profiles_id"
