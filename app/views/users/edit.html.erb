@@ -13,7 +13,7 @@
                 <h3 style="font-weight:0!important"><%= t("management.users.new.profiles") %></h3>
                 <div class="small-12 medium-12 column">
                     <div class="small-12 large-2 medium-2 column left">
-                        <%= f.select :profiles_id, options_for_select(@profiles||{}),
+                        <%= f.select :profiles_id, options_for_select(@profiles||{}, selected: @user.try(:profiles_id)),
                             label: t("management.users.new.profiles"),
                             placeholder: t("management.users.new.profiles"),
                             include_blank: :true %>
