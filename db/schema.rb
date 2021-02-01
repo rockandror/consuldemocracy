@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20210129131309) do
+=======
+ActiveRecord::Schema.define(version: 20210201100610) do
+>>>>>>> DEMAD-111
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1536,6 +1540,7 @@ ActiveRecord::Schema.define(version: 20210129131309) do
     t.index ["process_type", "process_id"], name: "index_stats_versions_on_process_type_and_process_id", using: :btree
   end
 
+<<<<<<< HEAD
   create_table "superadministrators", force: :cascade do |t|
     t.integer "user_id"
     t.index ["user_id"], name: "index_superadministrators_on_user_id", using: :btree
@@ -1544,6 +1549,74 @@ ActiveRecord::Schema.define(version: 20210129131309) do
   create_table "sures_administrators", force: :cascade do |t|
     t.integer "user_id"
     t.index ["user_id"], name: "index_sures_administrators_on_user_id", using: :btree
+=======
+  create_table "sures_actuation_translations", force: :cascade do |t|
+    t.integer  "sures_actuation_id",   null: false
+    t.string   "locale",               null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "proposal_title"
+    t.text     "proposal_objective"
+    t.text     "territorial_scope"
+    t.text     "location_performance"
+    t.text     "technical_visibility"
+    t.text     "actions_taken"
+    t.string   "other"
+    t.index ["locale"], name: "index_sures_actuation_translations_on_locale", using: :btree
+    t.index ["sures_actuation_id"], name: "index_sures_actuation_translations_on_sures_actuation_id", using: :btree
+  end
+
+  create_table "sures_actuations", force: :cascade do |t|
+    t.string   "status"
+    t.string   "financig_performance"
+    t.boolean  "check_anno",           default: false
+    t.boolean  "check_multianno",      default: false
+    t.string   "annos"
+    t.string   "tracking"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  create_table "sures_customize_card_translations", force: :cascade do |t|
+    t.integer  "sures_customize_card_id", null: false
+    t.string   "locale",                  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "label"
+    t.string   "title"
+    t.text     "description"
+    t.string   "link_text"
+    t.index ["locale"], name: "index_sures_customize_card_translations_on_locale", using: :btree
+    t.index ["sures_customize_card_id"], name: "index_a5b2f928f909372aebe48d55c60ea154c06a6816", using: :btree
+  end
+
+  create_table "sures_customize_cards", force: :cascade do |t|
+    t.string   "link_url"
+    t.boolean  "header",                     default: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.integer  "site_customization_page_id"
+    t.integer  "columns",                    default: 4
+    t.string   "position_image",             default: "left"
+    t.index ["site_customization_page_id"], name: "index_sures_customize_cards_on_site_customization_page_id", using: :btree
+  end
+
+  create_table "sures_search_settings", force: :cascade do |t|
+    t.string   "title"
+    t.string   "data_type"
+    t.string   "data"
+    t.string   "resource"
+    t.string   "field"
+    t.string   "rules"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "active",     default: true
+  end
+
+  create_table "superadmins", force: :cascade do |t|
+    t.integer "users_id"
+    t.index ["users_id"], name: "index_superadmins_on_users_id", using: :btree
+>>>>>>> DEMAD-111
   end
 
   create_table "taggings", force: :cascade do |t|

@@ -56,6 +56,22 @@ module AdminHelper
     menu_homepage? || menu_pages?
   end
 
+  def menu_sures?
+    ["sures", "actuations", "customizes", "searchs"].include?(controller_name) || menu_sures_customize? ||  menu_sures_actuation? || menu_sures_search?
+  end
+
+  def menu_sures_actuation? 
+    ["actuations"].include?(controller_name) && controller.class.parent.to_s == "Admin::Sures"
+  end
+
+  def menu_sures_customize?
+    ["customizes","customize_cards"].include?(controller_name) && controller.class.parent.to_s == "Admin::Sures"
+  end
+
+  def menu_sures_search?
+    ["searchs_settings"].include?(controller_name) && controller.class.parent.to_s == "Admin::Sures"
+  end
+
   def menu_homepage?
     ["homepage", "cards"].include?(controller_name) && params[:page_id].nil?
   end

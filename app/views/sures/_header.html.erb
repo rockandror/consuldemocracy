@@ -1,0 +1,34 @@
+<%= javascript_include_tag 'swfobject' %>
+<% if header.present? %>
+  <div>
+    <% if header.image.present? %>
+      <div class="row" style="padding-top:2em;padding-bottom:2em;text-align:center;color:#04C4D9;border-bottom: 1px solid black">
+        <div class="small-12 column">
+          <% if header.image.title.include? "mp4" %>
+            <video width='500' height='300' controls="controls" autoplay loop><source src="<%=header.image.attachment.url %>"/></video>
+          <%else%>
+            <%= image_tag(header.image.attachment, alt: header.image.title)  %>
+          <%end%>
+        </div>
+      </div>
+    <% end %>
+    <% if !header.label.blank? || !header.title.blank?%>
+    <div class="row" style="padding-top:2em;padding-bottom:2em;text-align:center;color:#04C4D9;border-bottom: 1px solid black">
+      <span><%= markdown(header.label).html_safe %></span>
+      <h1><%=  markdown(header.title).html_safe %></h1>
+    </div>
+    <%end%>
+    <% if !header.description.blank? || !header.link_text.blank? || !header.link_url.blank?%>
+    <div class="row" style="padding-top:2em;padding-bottom:2em;text-align:center;border-bottom: 1px solid black">
+      <div class="small-12 medium-12 column">        
+        <p class="lead"><%=  markdown(header.description).html_safe %></p>
+        <% if !header.link_text.blank? && !header.link_url.blank?%>
+          <div class="small-12 medium-6 large-4">
+            <%= link_to header.link_text, header.link_url, class: "button expanded large" %>
+          </div>
+        <%end%>
+      </div>
+    </div>
+    <%end%>
+  </div>
+<% end %>

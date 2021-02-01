@@ -36,13 +36,13 @@ Rails.application.routes.draw do
   draw :user
   draw :valuation
   draw :verification
+  draw :sures
 
   root "welcome#index"
   get "/welcome", to: "welcome#welcome"
   get "/conectados", to: "welcome#encuentrosconexpertos"
-  get "/eventos", to: "welcome#eventos"
-  get "/sures", to: "sures/sures#index"
   get '/update_padron' => 'users#update_padron', as: :update_padron
+  get "/eventos", to: "welcome#eventos"  
 
   get "/madridsalealbalcon" => redirect("/legislation/processes/#{Rails.application.secrets.id}")
   get "/compartimosbarrio" => redirect("/legislation/processes/#{Rails.application.secrets.id_barrio}")
