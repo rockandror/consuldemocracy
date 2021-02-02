@@ -15,7 +15,7 @@
             <% if !@sures_searchs_settings.blank? %>
                 <div class="small-12 medium-2 column">
                     <div class="relative">
-                        <%= link_to t("shared.advanced_search.title"), "#advanced_search_form", id: "js-advanced-search-title", class: "advanced-search small" %>
+                        <%= link_to t("shared.advanced_search.title"), "#advanced_search_form", id: "js-advanced-search-title", class: "advanced-search small", onclick: "changeShowFields($('#js-advanced-search'), $('#show_fields'))" %>
                     </div>
                 </div>
             <%end%>
@@ -23,6 +23,7 @@
 
         <div id="advanced_search_form" >
             <div id="js-advanced-search" data-advanced-search-terms="<%= @advanced_search_terms.present? %>" style="display: none">
+                <%= hidden_field_tag :show_fields, true %>
                 <div class="row" style="border: 1px solid grey;margin: 0 0 5em 0;padding: 1em;">
                 <% @sures_searchs_settings.each do |search|%>
                     <div class="small-12 large-4 column end">

@@ -45,7 +45,7 @@ describe Organization do
   end
 
   describe "self.search" do
-    let!(:organization) { create(:organization, name: "Watershed", user: create(:user, phone_number: "333")) }
+    let!(:organization) { create(:organization, name: "Watershed", user: create(:user, phone_number: "645454545")) }
 
     it "returns no results if search term is empty" do
       expect(described_class.search(" ").size).to eq(0)

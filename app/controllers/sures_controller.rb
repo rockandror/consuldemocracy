@@ -32,6 +32,7 @@ class SuresController < SuresBaseController
             end
         end
 
+        @search_terms = aux_active
         if aux_active
             @actuations = Sures::Actuation.joins(:translations).all
 
@@ -44,16 +45,20 @@ class SuresController < SuresBaseController
                     translate(UPPER(cast(actions_taken as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast(? as varchar)), 'ÁÉÍÓÚ', 'AEIOU') OR
                     translate(UPPER(cast(other as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast(? as varchar)), 'ÁÉÍÓÚ', 'AEIOU') OR
                     translate(UPPER(cast(tracking as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast(? as varchar)), 'ÁÉÍÓÚ', 'AEIOU')",
-                    "'%#{parametrize[:search]}%'", "'%#{parametrize[:search]}%'", "'%#{parametrize[:search]}%'",
-                    "'%#{parametrize[:search]}%'", "'%#{parametrize[:search]}%'", "'%#{parametrize[:search]}%'",
-                    "'%#{parametrize[:search]}%'", "'%#{parametrize[:search]}%'"
+                    "%#{parametrize[:search]}%", "%#{parametrize[:search]}%", "%#{parametrize[:search]}%",
+                    "%#{parametrize[:search]}%", "%#{parametrize[:search]}%", "%#{parametrize[:search]}%",
+                    "%#{parametrize[:search]}%", "%#{parametrize[:search]}%"
                 )
             end
 
-            aux_fields.each do |f|
-                if !parametrize[f.to_sym].blank?
-                    aux_field_search = @sures_searchs_settings.select {|f| f.title.parameterize.underscore.to_s == f.to_s }
-                    @actuations = @actuations.where("translate(UPPER(cast(#{aux_field_search.field} as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast(? as varchar)), 'ÁÉÍÓÚ', 'AEIOU')", "'%#{parametrize[f.to_sym]}%'")
+            if !parametrize[:show_fields].blank? && parametrize[:show_fields].to_s != "true"
+                aux_fields.each do |f|
+                    if !parametrize[f.to_sym].blank? && f.to_s != "search"
+                        aux_field_search = @sures_searchs_settings.select {|x| x.title.parameterize.underscore.to_s == f.to_s }[0]
+                        if !aux_field_search.blank?
+                            @actuations = @actuations.where("translate(UPPER(cast(#{aux_field_search.field} as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast(? as varchar)), 'ÁÉÍÓÚ', 'AEIOU')", "%#{parametrize[f.to_sym]}%")
+                        end
+                    end
                 end
             end
 

@@ -5,6 +5,22 @@
   </div>
 </div>
 <%= render "advanced_search", search_path: search_sures_path(page: 1) %>
+
+<% if @search_terms %>
+  <div class="highlight no-margin-top padding margin-bottom">
+    <div class="row">
+      <div class="small-12 column">
+        
+          <h2><%= t("shared.search_results") %></h2>
+          <p>
+            <%= page_entries_info @actuations %>
+            <%= t("debates.index.search_results_html", count: @actuations.size, search_term: params[:search]) %>
+          </p>
+        
+      </div>
+    </div>
+  </div>
+<%end%>
 <% if @actuations.any? %>
   <%= render "orders", type: @type %>
   <main>
