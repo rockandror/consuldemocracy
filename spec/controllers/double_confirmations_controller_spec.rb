@@ -26,7 +26,7 @@ describe DoubleConfirmationsController do
         user.create_poll_officer
 
         sign_in(user)
-        get :new_password_sentrspec 
+        get :new_password_sent
 
         expect(response.status).to eq(302)
     end
