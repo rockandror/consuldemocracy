@@ -1,9 +1,9 @@
 class Management::UsersController < Management::BaseController
-
+  load_and_authorize_resource
   def new
     @profiles={}
     Profile.all.each do |p|
-      if !current_user.super_administrator? && p.id == 1
+      if current_user.profiles_id != 1 && p.id == 1
         nil
       else
         @profiles.merge!({p.name => p.id })
@@ -47,8 +47,8 @@ class Management::UsersController < Management::BaseController
     @user.terms_of_service = "1"
     @user.residence_verified_at = Time.current
     @user.verified_at = Time.current
-    @user.password = "Admin12345678"
-    @user.password_confirmation = "Admin12345678"
+    @user.password = "12345678"
+    @user.password_confirmation = "12345678"
     
     if @user.save
       render :show

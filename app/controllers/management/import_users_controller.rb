@@ -1,5 +1,5 @@
 class Management::ImportUsersController < Management::BaseController
-
+    load_and_authorize_resource
     def new
         @import = ImportUser.new
     end
@@ -18,7 +18,6 @@ class Management::ImportUsersController < Management::BaseController
     private
 
         def import_users_params
-            #return {} unless params[:import_users].present?
             params.require(:import_user).permit(:file)
         end
     

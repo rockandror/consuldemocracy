@@ -169,7 +169,7 @@ class User < ApplicationRecord
     !Administrator.find_by(user_id: self.id).blank?
   end
 
-  def sures_administrator?
+  def sures?
     !SuresAdministrator.find_by(user_id: self.id).blank?
   end
 

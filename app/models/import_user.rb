@@ -23,12 +23,7 @@ class ImportUser
 
   def save
     return false if invalid?
-
-    CSV.open(file.path, headers: true).each do |row|
-      next if empty_row?(row)
-      build_user row
-    end
-    true
+    csv_converter = CsvConverters::Importer.new(file.path).import!
   end
 
   def save!
@@ -58,10 +53,5 @@ class ImportUser
 
     def valid_headers?
       headers = CSV.open(file.path, &:readline)
-
-      # return if headers.all? { |header| ATTRIBUTES.include?(header) } &&
-      #           ATTRIBUTES.all? { |attr| headers.include?(attr) }
-
-      # errors.add :file, :headers, required_headers: ATTRIBUTES.join(", ")
     end
 end

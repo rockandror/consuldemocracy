@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20210129131309) do
-=======
 ActiveRecord::Schema.define(version: 20210201100610) do
->>>>>>> DEMAD-111
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1540,16 +1536,11 @@ ActiveRecord::Schema.define(version: 20210201100610) do
     t.index ["process_type", "process_id"], name: "index_stats_versions_on_process_type_and_process_id", using: :btree
   end
 
-<<<<<<< HEAD
   create_table "superadministrators", force: :cascade do |t|
     t.integer "user_id"
     t.index ["user_id"], name: "index_superadministrators_on_user_id", using: :btree
   end
 
-  create_table "sures_administrators", force: :cascade do |t|
-    t.integer "user_id"
-    t.index ["user_id"], name: "index_sures_administrators_on_user_id", using: :btree
-=======
   create_table "sures_actuation_translations", force: :cascade do |t|
     t.integer  "sures_actuation_id",   null: false
     t.string   "locale",               null: false
@@ -1575,6 +1566,11 @@ ActiveRecord::Schema.define(version: 20210201100610) do
     t.string   "tracking"
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
+  end
+
+  create_table "sures_administrators", force: :cascade do |t|
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_sures_administrators_on_user_id", using: :btree
   end
 
   create_table "sures_customize_card_translations", force: :cascade do |t|
@@ -1611,12 +1607,6 @@ ActiveRecord::Schema.define(version: 20210201100610) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.boolean  "active",     default: true
-  end
-
-  create_table "superadmins", force: :cascade do |t|
-    t.integer "users_id"
-    t.index ["users_id"], name: "index_superadmins_on_users_id", using: :btree
->>>>>>> DEMAD-111
   end
 
   create_table "taggings", force: :cascade do |t|

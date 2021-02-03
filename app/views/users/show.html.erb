@@ -1,19 +1,20 @@
 <main>
   <div class="activity row margin-top">
     <div class="small-12 column">
+      <%if !current_user.blank? && current_user.administrator? %>
+        <%= link_to t("users.show.update_padron"),
+                    update_padron_path(user: @user),
+                    class: "float-right btchange-user button hollow" %>
+
+        <%= link_to t("users.show.edit_user"),
+                  edit_user_path(@user),
+                  class: "float-right btchange-user button hollow" %>
+      <%end%>
       <% if @user != current_user %>
         <% if @user.email_on_direct_message? %>
           <%= link_to t("users.show.send_private_message"),
                       new_user_direct_message_path(@user),
                       class: "button hollow float-right" %>
-
-          <%= link_to t("users.show.update_padron"),
-                    update_padron_path(user: @user),
-                    class: "float-right btchange-user button hollow" %>
-
-          <%= link_to t("users.show.update_padron"),
-                    edit_user_path(@user),
-                    class: "float-right btchange-user button hollow" %>
         <% else %>
           <div class="callout primary float-right">
             <%= t("users.show.no_private_messages") %>

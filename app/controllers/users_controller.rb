@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def edit
     @profiles={}
     Profile.all.each do |p|
-      if !current_user.super_administrator? && p.id == 1
+      if !current_user.administrator? && p.id == 1
         nil
       else
         @profiles.merge!({p.name => p.id })
@@ -43,19 +43,23 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.profiles_id != user_params[:profiles_id]
-      old_profile = remove_old_profile(@user)
-      if old_profile == true
-        new_profile = set_new_profile(@user, user_params[:profiles_id])
-        if newprofile == true
-          @user.update_attributes(user_params)
-          if @user.save
-            
-          end
+    begin
+      if !@user.profiles_id.blank? && @user.profiles_id != user_params[:profiles_id]
+        old_profile = remove_old_profile(@user) if @user.profiles_id == 1 && user_params[:profiles_id] == 2
+        if old_profile == true
+          set_new_profile(@user, user_params[:profiles_id] == 1 ? 2 : user_params[:profiles_id])
         end
+      else
+        set_new_profile(@user, user_params[:profiles_id] == 1 ? 2 : user_params[:profiles_id]) if @user.profiles_id.blank?
       end
+
+      @user.update_attributes(user_params)
+      
+      redirect_to user_path(@user), notice: "Usuario actualizado." if @user.save
+      
+    rescue
+      redirect_to user_path(@user), alert: @user.errors.full_messages
     end
-    redirect_to user_path(@user), notice: "Usuario actualizado."
   end
 
   def update_padron
@@ -121,7 +125,6 @@ class UsersController < ApplicationController
       @p_hash = Hash.new
       count = 0
       @proposals.each do |p|
-        puts "--------> #{p.id}"
         @p_hash[count] = p.id
         count = count + 1
       end
@@ -167,7 +170,7 @@ class UsersController < ApplicationController
     end
 
     def authorized_current_user?
-      @authorized_current_user ||= current_user && (current_user == @user || current_user.moderator? || current_user.administrator?)
+      @authorized_current_user ||= current_user && (current_user == @user || current_user.moderator? || current_user.administrator? || current_user.super_administrator?)
     end
 
     def all_user_comments
@@ -186,15 +189,32 @@ class UsersController < ApplicationController
     end
 
     def remove_old_profile(user)
-      case user.profiles_id
-        when "1" then true if Superadministrator.find_by(user_id: user).remove
-        when "2" then true if Administrator.find_by(user_id: user).remove
-        when "3" then true if SuresAdministrator.find_by(user_id: user).remove
-        when "4" then true if SectionAdministrator.find_by(user_id: user).remove
-        when "5" then true if Manager.find_by(user_id: user).remove
-        when "6" then true if Moderator.find_by(user_id: user).remove
-        when "7" then true if Evaluator.find_by(user_id: user).remove
-        when "8" then true if Consultant.find_by(user_id: user).remove
+      sql = "delete from "
+      case user.profiles_id.to_s
+        when "1" 
+          sql = sql + "superadministrators"
+          response = ActiveRecord::Base.connection.execute(sql + " where user_id = #{user.id}")
+        when "2" 
+          sql = sql + "administrators"
+          response = ActiveRecord::Base.connection.execute(sql + " where user_id = #{user.id}")
+        when "3" 
+          sql = sql + "sures_administrators"
+          response = ActiveRecord::Base.connection.execute(sql + " where user_id = #{user.id}")
+        when "4" 
+          sql = sql + "section_administrators"
+          response = ActiveRecord::Base.connection.execute(sql + " where user_id = #{user.id}")
+        when "5"
+          sql = sql + "managers"
+          response = ActiveRecord::Base.connection.execute(sql + " where user_id = #{user.id}")
+        when "6"
+          sql = sql + "moderators"
+          response = ActiveRecord::Base.connection.execute(sql + " where user_id = #{user.id}")
+        when "7"
+          sql = sql + "evaluators"
+          response = ActiveRecord::Base.connection.execute(sql + " where user_id = #{user.id}")
+        when "8"
+          sql = sql + "consultant"
+          response = ActiveRecord::Base.connection.execute(sql + " where user_id = #{user.id}")
       end
     end
 
@@ -214,49 +234,49 @@ class UsersController < ApplicationController
     def set_superadmin(user)
       profile = Superadministrator.new
       profile.user = user
-      true if profile.save!
+      true if profile.save
     end
 
     def set_admin(user)
       profile = Administrator.new
       profile.user = user
-      true if profile.save!
+      true if profile.save
     end
 
     def set_sures_admin(user)
       profile = SuresAdministrator.new
       profile.user = user
-      true if profile.save!
+      true if profile.save
     end
 
     def set_section_admin(user)
       profile = SectionAdministrator.new
       profile.user = user
-      true if profile.save!
+      true if profile.save
     end
 
     def set_manager(user)
       profile = Manager.new
       profile.user = user
-      true if profile.save!
+      true if profile.save
     end
 
     def set_moderator(user)
       profile = Moderator.new
       profile.user = user
-      true if profile.save!
+      true if profile.save
     end
 
     def set_evaluator(user)
       profile = Evaluator.new
       profile.user = user
-      true if profile.save!
+      true if profile.save
     end
 
     def set_consultant(user)
       profile = Consultant.new
       profile.user = user
-      true if profile.save!
+      true if profile.save
     end
 
 end
