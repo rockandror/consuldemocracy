@@ -13,6 +13,7 @@ module CacheKeysHelper
       user_status += ":verified" if current_user.level_two_or_three_verified?
       user_status += ":org" if current_user.organization?
       user_status += ":admin" if current_user.administrator?
+      user_status += ":sures" if current_user.sures?
       user_status += ":moderator" if current_user.moderator?
       user_status += ":author" if authorable && authorable.author == current_user
     else

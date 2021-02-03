@@ -100,8 +100,6 @@ module Abilities
       can [:manage], ::Legislation::Question
       can [:manage], ::Legislation::Proposal
 
-      can [:manage], ::Sures::Actuation
-
       cannot :comment_as_moderator, [::Legislation::Question, Legislation::Annotation, ::Legislation::Proposal]
 
       can [:create], Document

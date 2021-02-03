@@ -9,12 +9,10 @@ class Ability
       merge Abilities::Valuator.new(user) if user.valuator?
       merge Abilities::Officing::Voter.new(user) if user.officing_voter?
 
-      if user.administrator?
+      if user.administrator? || user.sures?
         merge Abilities::Administrator.new(user)
       elsif user.moderator?
         merge Abilities::Moderator.new(user)
-      elsif user.sures?
-        merge Abilities::SuresAdministrator.new(user)
       else
         merge Abilities::Common.new(user)
       end

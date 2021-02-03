@@ -27,7 +27,7 @@ class Management::SessionsController < ActionController::Base
     end
 
     def admin?
-      if current_user.try(:administrator?)
+      if current_user.try(:administrator?) || current_user.try(:sures_administrator)
         session[:manager] = {login: "admin_user_#{current_user.id}"}
       end
     end

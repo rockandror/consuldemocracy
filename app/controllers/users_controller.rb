@@ -170,7 +170,7 @@ class UsersController < ApplicationController
     end
 
     def authorized_current_user?
-      @authorized_current_user ||= current_user && (current_user == @user || current_user.moderator? || current_user.administrator? || current_user.super_administrator?)
+      @authorized_current_user ||= current_user && (current_user == @user || current_user.moderator? || current_user.administrator? || current_user.sures?)
     end
 
     def all_user_comments
