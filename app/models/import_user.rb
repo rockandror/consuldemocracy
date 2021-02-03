@@ -1,6 +1,7 @@
 require "csv"
+require 'base_importer'
 
-class ImportUser
+class ImportUser < BaseImporter
   include ActiveModel::Model
 
   ATTRIBUTES = %w[username email document_number].freeze
@@ -14,6 +15,7 @@ class ImportUser
   validate :valid_headers?, if: -> { @file.present? && valid_extension? }
 
   def initialize(attrs = {})
+    super
     if attrs.present?
       attrs.each do |attr, value|
         public_send("#{attr}=", value)
@@ -23,11 +25,8 @@ class ImportUser
 
   def save
     return false if invalid?
-
-    CSV.open(file.path, headers: true).each do |row|
-      next if empty_row?(row)
-      build_user row
-    end
+    @path_to_file = file.path
+    import!
     true
   end
 
@@ -37,10 +36,16 @@ class ImportUser
 
   private
 
+
+    def import!
+      super
+      each_row do |row|
+        user = build_user(row)
+      end
+    end
+
     def build_user(row)
-      user = User.new 
-      user.attributes = row.to_hash.slice(*ATTRIBUTES)
-      user
+      User.new(username: row[:username], email:  row[:email], document_number:  row[:document_number])
     end
 
     def empty_row?(row)
