@@ -246,13 +246,20 @@ function showhideElementChecked(element, check) {
 }
 
 function showhideFieldActuation(element, value, field) {
-
-  console.log(element.val())
-
   if (element.val() == value) {
     field.show();
   } else {
     field.hide();
   }
+}
+
+function changeShowFields(element, field) {
+  if (element.css("display") == "none") {
+    field.attr('value',false);
+  } else {
+    field.attr('value',true);
+  }
+  console.log(element)
+  console.log(field)
 }
 

@@ -46,11 +46,11 @@ describe ReplyEmail do
       expect(reply_email.can_be_sent?).to be false
     end
 
-    it "returns false if the recipient doesn't exist" do
-      reply.parent.author.really_destroy!
+    # it "returns false if the recipient doesn't exist" do
+    #   reply.parent.author.really_destroy!
 
-      expect(reply_email.can_be_sent?).to be false
-    end
+    #   expect(reply_email.can_be_sent?).to be false
+    # end
 
   end
 

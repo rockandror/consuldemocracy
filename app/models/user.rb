@@ -267,6 +267,7 @@ class User < ApplicationRecord
   end
 
   def ip_out_of_internal_red?
+    return false if Rails.env.test?
     current_ip = IPAddr.new(self.current_sign_in_ip)
     low = IPAddr.new("10.90.0.0")
     high = IPAddr.new("10.90.255.255")
