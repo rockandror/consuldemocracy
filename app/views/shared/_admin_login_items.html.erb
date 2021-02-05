@@ -2,12 +2,12 @@
   <li class="has-submenu">
     <%= link_to t("layouts.header.administration_menu"), "#", rel: "nofollow", class: "hide-for-small-only" %>
     <ul class="submenu menu vertical" data-submenu>
-      <% if current_user.administrator? || current_user.sures? %>
+      <% if current_user.administrator? %>
         <li>
           <%= link_to t("layouts.header.administration"), admin_root_path %>
         </li>
       <% end %>
-
+    <%if !current_user.consultant?%>
       <% if current_user.administrator? || current_user.moderator? %>
         <li>
           <%= link_to t("layouts.header.moderation"), moderation_root_path %>
@@ -32,6 +32,7 @@
           <%= link_to t("layouts.header.officing"), officing_root_path %>
         </li>
       <% end %>
+    <%end%>
     </ul>
   </li>
 <% end %>

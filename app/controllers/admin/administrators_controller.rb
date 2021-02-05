@@ -25,6 +25,8 @@ class Admin::AdministratorsController < Admin::BaseController
         if !current_user.blank? && current_user.id == @administrator.user_id
           flash[:error] = I18n.t("admin.administrators.administrator.restricted_removal")
         else
+          user = User.find(@administrator.user_id).profiles_id = nil
+          user.save
           @administrator.destroy
         end
       else

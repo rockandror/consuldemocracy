@@ -767,6 +767,7 @@ es:
           title: Importar desde un archivo CSV
         create:
           notice: Su archivo ha sido procesado correctamente.
+          error: Se han encontrado errores en el archivo.
       errors:
         form:
           error:
@@ -812,6 +813,9 @@ es:
       hidden_proposal_notifications: Notificationes de propuesta ocultas
       hidden_users: Usuarios bloqueados
       administrators: Administradores
+      sures_administrators: Administradores de Sures
+      section_administrators: Administradores Sectoriales
+      consultants: Consultores
       managers: Gestores
       moderators: Moderadores
       messaging_users: Mensajes a usuarios
@@ -884,6 +888,58 @@ es:
         title: "Administradores: Búsqueda de usuarios"
       new: 
         title: Crear nuevo usuario administrador
+    sures_administrators:
+      index:
+        title: Administradores de Sures
+        create: Nuevo administrador de Sures
+        back: Volver
+        name: Nombre
+        email: Email
+        id: ID de Administrador de Sures
+        no_administrators: No hay administradores de Sures.
+      administrator:
+        add: Añadir como Administrador de Sures
+        delete: Borrar
+        restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
+      search:
+        title: "Administradores de Sures: Búsqueda de usuarios"
+      new: 
+        title: Crear nuevo usuario administrador de Sures
+
+    section_administrators:
+      index:
+        title: Administradores Sectoriales
+        create: Nuevo administrador Sectorial
+        back: Volver
+        name: Nombre
+        email: Email
+        id: ID de Administrador Sectorial
+        no_section_administrators: No hay administradores Sectoriales.
+      section_administrator:
+        add: Añadir como Administrador Sectorial
+        delete: Borrar
+        restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
+      search:
+        title: "Administradores Sectoriales: Búsqueda de usuarios"
+      new: 
+        title: Crear nuevo usuario Administrador Sectorial
+    consultants:
+      index:
+        title: Consultores
+        create: Nuevo consultor
+        back: Volver
+        name: Nombre
+        email: Email
+        id: ID de Consultor
+        no_consultants: No hay consultores.
+      consultant:
+        add: Añadir como Consultor
+        delete: Borrar
+        restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
+      search:
+        title: "Consultores: Búsqueda de usuarios"
+      new: 
+        title: Crear nuevo usuario consultor
     moderators:
       index:
         title: Moderadores
@@ -898,6 +954,7 @@ es:
     segment_recipient:
       all_users: Todos los usuarios
       administrators: Administradores
+      sures_administrators: Administradores de Sures
       all_proposal_authors: Usuarios autores de propuestas (incluyendo archivadas y retiradas)
       proposal_authors: Usuarios autores de propuestas
       investment_authors: Usuarios autores de proyectos de gasto en los actuales presupuestos

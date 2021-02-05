@@ -1,54 +1,18 @@
 class Management::UsersController < Management::BaseController
-  load_and_authorize_resource
-  def new
-    @profiles={}
-    Profile.all.each do |p|
-      if current_user.profiles_id != 1 && p.id == 1
-        nil
-      else
-        @profiles.merge!({p.name => p.id })
-      end
-    end
-
-    @districts ={}
-    Geozone.all.each do |g|
-      @districts.merge!({g.name => g.id })
-    end
-
-    @boroughts = {}
-    Proposal.all.where(comunity_hide: :true).each do |borought|
-      @boroughts.merge!({borought.title => borought.id })
-    end
-
-    @document_types = {
-      "1" => "NIF",
-      "2" => "Pasaporte",
-      "3" => "Tarjeta de residencia"
-    }
-
-    @gender = {
-      "1" => "Masculino",
-      "2" => "Femenino"
-    }
-
-
+  before_action :load_data
+  def new    
     @user = User.new()
   end
 
   def create
     @user = User.new(user_params)
 
-    # if @user.email.blank?
-    #   user_without_email
-    # else
-    #   user_with_email
-    # end
-
     @user.terms_of_service = "1"
     @user.residence_verified_at = Time.current
     @user.verified_at = Time.current
-    @user.password = "12345678"
-    @user.password_confirmation = "12345678"
+    pass = Digest::SHA1.hexdigest("#{@user.created_at.to_s}--#{@user.username}")[0,8].upcase
+    @user.password = pass
+    @user.password_confirmation = pass
     
     if @user.save
       render :show
@@ -100,6 +64,43 @@ class Management::UsersController < Management::BaseController
 
     def user_with_email
       @user.skip_password_validation = true
+    end
+
+    def superadmin
+      user_id = session[:manager]["login"].split("_")
+      User.find(user_id[2].to_i).super_administrator?
+    end
+
+    def load_data
+      @profiles={}
+      Profile.all.each do |p|
+        if !superadmin && p.id == 1
+          nil
+        else
+          @profiles.merge!({p.name => p.id })
+        end
+      end
+
+      @districts ={}
+      Geozone.all.each do |g|
+        @districts.merge!({g.name => g.id })
+      end
+
+      @boroughts = {}
+      Proposal.all.where(comunity_hide: :true).each do |borought|
+        @boroughts.merge!({borought.title => borought.id })
+      end
+
+      @document_types = {
+        "NIF" => "1",
+        "Pasaporte" => "2",
+        "Tarjeta de residencia" => "3"
+      }
+
+      @gender = {
+        "Masculino" => "Male",
+        "Femenino" => "Female"
+      }
     end
 
 end

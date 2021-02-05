@@ -146,6 +146,17 @@ namespace :admin do
     get :search, on: :collection
   end
 
+  resources :sures_administrators, only: [:index, :new, :create, :destroy] do
+    get :search, on: :collection
+  end
+
+  resources :section_administrators, only: [:index, :new, :create, :destroy] do
+    get :search, on: :collection
+  end
+
+  resources :consultants, only: [:index, :new, :create, :destroy] do
+    get :search, on: :collection
+  end
   #resources :users, only: [:index, :show, :destroy, :hide]
 
   scope module: :poll do

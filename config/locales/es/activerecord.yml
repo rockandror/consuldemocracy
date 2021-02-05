@@ -46,6 +46,15 @@ es:
       administrator:
         one: "Administrador"
         other: "Administradores"
+      sures_administrator:
+        one: "Administrador de Sures"
+        other: "Administradores de Sures"
+      section_administrator:
+        one: "Administrador sectorial"
+        other: "Administradores sectoriales"
+      consultant:
+        one: "Consultor"
+        other: "Consultores"
       valuator:
         one: "Evaluador"
         other: "Evaluadores"

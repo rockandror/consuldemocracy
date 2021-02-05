@@ -21,6 +21,8 @@ class Admin::ManagersController < Admin::BaseController
 
   def destroy
     @manager.destroy
+    user = User.find(@manager.user_id).profiles_id = nil
+    user.save
     redirect_to admin_managers_path
   end
 end

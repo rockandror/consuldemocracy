@@ -6,7 +6,7 @@ class Management::SessionsController < ActionController::Base
 
   def create
     destroy_session
-    if admin? || manager? || authenticated_manager?
+    if super_admin? || admin? || manager? || authenticated_manager?
       redirect_to management_root_path
     else
       raise CanCan::AccessDenied
@@ -28,6 +28,12 @@ class Management::SessionsController < ActionController::Base
 
     def admin?
       if current_user.try(:administrator?) || current_user.try(:sures_administrator)
+        session[:manager] = {login: "admin_user_#{current_user.id}"}
+      end
+    end
+
+    def super_admin?
+      if current_user.try(:superadministrator?)
         session[:manager] = {login: "admin_user_#{current_user.id}"}
       end
     end

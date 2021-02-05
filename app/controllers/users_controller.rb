@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   has_filters %w{proposals debates budget_investments comments follows}, only: :show
-
+  before_action :load_data, only: :edit
   load_and_authorize_resource
   helper_method :author?
   helper_method :current_user_is_author?
@@ -11,35 +11,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @profiles={}
-    Profile.all.each do |p|
-      if !current_user.administrator? && p.id == 1
-        nil
-      else
-        @profiles.merge!({p.name => p.id })
-      end
-    end
-
-    @districts ={}
-    Geozone.all.each do |g|
-      @districts.merge!({g.name => g.id })
-    end
-
-    @boroughts = {}
-    Proposal.all.where(comunity_hide: :true).each do |borought|
-      @boroughts.merge!({borought.title => borought.id })
-    end
-
-    @document_types = {
-      "NIF" => "1",
-      "Pasaporte" => "2",
-      "Tarjeta de residencia" => "3"
-    }
-
-    @gender = {
-      "Masculino" => "Male",
-      "Femenino" => "Female"
-    }
+    
   end
 
   def update
@@ -170,7 +142,7 @@ class UsersController < ApplicationController
     end
 
     def authorized_current_user?
-      @authorized_current_user ||= current_user && (current_user == @user || current_user.moderator? || current_user.administrator? || current_user.sures?)
+      @authorized_current_user ||= current_user && (current_user == @user || current_user.moderator? || current_user.administrator?)
     end
 
     def all_user_comments
@@ -278,5 +250,37 @@ class UsersController < ApplicationController
       profile.user = user
       true if profile.save
     end
+
+    def load_data
+      @profiles={}
+      Profile.all.each do |p|
+        if !current_user.super_administrator? && p.id == 1
+          nil
+        else
+          @profiles.merge!({p.name => p.id })
+        end
+      end
+
+      @districts ={}
+      Geozone.all.each do |g|
+        @districts.merge!({g.name => g.id })
+      end
+
+      @boroughts = {}
+      Proposal.all.where(comunity_hide: :true).each do |borought|
+        @boroughts.merge!({borought.title => borought.id })
+      end
+
+      @document_types = {
+        "NIF" => "1",
+        "Pasaporte" => "2",
+        "Tarjeta de residencia" => "3"
+      }
+
+      @gender = {
+        "Masculino" => "Male",
+        "Femenino" => "Female"
+      }
+  end
 
 end
