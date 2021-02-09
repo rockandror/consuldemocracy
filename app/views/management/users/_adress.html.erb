@@ -2,7 +2,7 @@
     <h3 style="font-weight:0!important"><%= t("management.users.adress") %></h3>
     <%= f.fields_for :adress, (f.object.adress.presence || f.object.build_adress) do |f_adress|  %>
             <div class="small-12 medium-2 column">
-                <%= f_adress.select :road_type, ["Calle", "Crta"],
+                <%= f_adress.text_field :road_type,
                     label: t("management.users.new.adress.road_type"),
                     placeholder: t("management.users.new.adress.road_type"),
                     include_blank: :true   %>
@@ -34,13 +34,13 @@
                     placeholder: t("management.users.new.adress.gate")  %>
             </div>
             <div class="small-12 medium-3 large-3 column">
-                <%= f_adress.select :district, options_for_select(@districts||{}, selected: @user.try(:address).try(:district)),
+                <%= f_adress.select :district, options_for_select(@districts||{}, selected: @user.try(:adress).try(:district)),
                     label: t("management.users.new.adress.district"),
                     placeholder: t("management.users.new.adress.district"),
                     include_blank: :true  %>
             </div>
             <div class="small-12 medium-3 large-3 column">
-                <%= f_adress.select :borought, options_for_select(@boroughts||{}, selected: @user.try(:address).try(:borought)),
+                <%= f_adress.select :borought, options_for_select(@boroughts||{}, selected: @user.try(:adress).try(:borought)),
                     label: t("management.users.new.adress.borought"),
                     placeholder: t("management.users.new.adress.borought"),
                     include_blank: :true   %>
@@ -48,7 +48,7 @@
             <div class="small-12 large-3 small-12 column left">
                 <%= f_adress.text_field :postal_code,
                     label: t("management.users.new.adress.postal_code"),
-                    placeholder: t("management.users.new.adress.postal_code")  %>
+                    placeholder: t("management.users.new.adress.postal_code")%>
             </div>
     <%end%>
 </div>

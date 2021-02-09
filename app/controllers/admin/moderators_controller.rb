@@ -21,6 +21,8 @@ class Admin::ModeratorsController < Admin::BaseController
 
   def destroy
     @moderator.destroy
+    user = User.find(@moderator.user_id).profiles_id = nil
+    user.save
     redirect_to admin_moderators_path
   end
 end

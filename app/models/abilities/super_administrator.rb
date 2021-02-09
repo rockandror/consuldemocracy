@@ -1,9 +1,10 @@
 module Abilities
-  class Administrator
+  class Superadministrator
     include CanCan::Ability
 
     def initialize(user)
       merge Abilities::Moderation.new(user)
+      merge Abilities::SuresAdministrator.new(user)
 
       can :restore, Comment
       cannot :restore, Comment, hidden_at: nil
@@ -59,9 +60,6 @@ module Abilities
                                       Topic, ProbeOption]
 
       can [:search, :create, :index, :destroy], ::Administrator
-      can [:search, :create, :index, :destroy], ::SuresAdministrator
-      can [:search, :create, :index, :destroy], ::SectionAdministrator
-      can [:search, :create, :index, :destroy], ::Consultant
       can [:search, :create, :index, :destroy], ::Moderator
       can [:search, :show, :edit, :update, :create, :index, :destroy, :summary], ::Valuator
       can [:search, :create, :index, :destroy], ::Manager

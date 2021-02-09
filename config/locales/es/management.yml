@@ -135,6 +135,7 @@ es:
           postal_code: Código Postal
         rol: Rol
         profiles: Perfiles
+      unpermited: Permisos insuficientes
       personal_data: Datos personales
       adress: Dirección
       import_users: Importar usuarios

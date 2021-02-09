@@ -1,5 +1,6 @@
 <div class="admin-sidebar" data-equalizer-watch>
   <ul id="admin_menu" data-accordion-menu data-multi-open="false">
+    <%if !current_user.consultant?%>
     <% if feature?(:proposals) %>
       <li class="section-title">
         <%= link_to admin_proposals_path do %>
@@ -26,27 +27,28 @@
         <% end %>
       </li>
     <% end %>
+    <%if current_user.sures? || current_user.super_administrator? %>
+      <li class="section-title">
+        <a href="#">
+          <span class="icon-edit"></span>
+          <strong><%= t("admin.menu.title_sures") %></strong>
+        </a>
+        <ul <%= "class=is-active" if menu_sures? %>>
 
-    <li class="section-title">
-      <a href="#">
-        <span class="icon-edit"></span>
-        <strong><%= t("admin.menu.title_sures") %></strong>
-      </a>
-      <ul <%= "class=is-active" if menu_sures? %>>
+          <li <%= "class=is-active" if menu_sures_actuation? %>>
+            <%= link_to t("admin.menu.sures.actuations"), admin_sures_actuations_path %>
+          </li>
 
-        <li <%= "class=is-active" if menu_sures_actuation? %>>
-          <%= link_to t("admin.menu.sures.actuations"), admin_sures_actuations_path %>
-        </li>
+          <li <%= "class=is-active" if menu_sures_customize? %>>
+            <%= link_to t("admin.menu.sures.customize"), admin_sures_customizes_path %>
+          </li>
 
-        <li <%= "class=is-active" if menu_sures_customize? %>>
-          <%= link_to t("admin.menu.sures.customize"), admin_sures_customizes_path %>
-        </li>
-
-        <li <%= "class=is-active" if menu_sures_search? %>>
-          <%= link_to t("admin.menu.sures.search_settings"), admin_sures_searchs_settings_path %>
-        </li>        
-      </ul>
-    </li>
+          <li <%= "class=is-active" if menu_sures_search? %>>
+            <%= link_to t("admin.menu.sures.search_settings"), admin_sures_searchs_settings_path %>
+          </li>        
+        </ul>
+      </li>
+    <%end%>
 
     <% if feature?(:budgets) %>
       <li class="section-title <%= "is-active" if menu_budgets? %>">
@@ -215,6 +217,14 @@
           <%= link_to t("admin.menu.administrators"), admin_administrators_path %>
         </li>
 
+        <li <%= "class=is-active" if controller_name == "sures_administrators" %>>
+          <%= link_to t("admin.menu.sures_administrators"), admin_sures_administrators_path %>
+        </li>
+
+        <li <%= "class=is-active" if controller_name == "section_administrators" %>>
+          <%= link_to t("admin.menu.section_administrators"), admin_section_administrators_path %>
+        </li>
+
         <li <%= "class=is-active" if controller_name == "organizations" %>>
           <%= link_to t("admin.menu.organizations"), admin_organizations_path %>
         </li>
@@ -235,19 +245,23 @@
           <%= link_to t("admin.menu.managers"), admin_managers_path %>
         </li>
 
+        <li <%= "class=is-active" if controller_name == "consultants" %>>
+          <%= link_to t("admin.menu.consultants"), admin_consultants_path %>
+        </li>
+
         <li <%= "class=is-active" if controller_name == "users" %>>
           <%= link_to t("admin.menu.users"), admin_users_path %>
         </li>
 
       </ul>
     </li>
-
+    <%end%>
     <li class="section-title" <%= "class=is-active" if controller_name == "stats" %>>
       <%= link_to admin_stats_path do %>
         <span class="icon-stats"></span><%= t("admin.menu.stats") %>
       <% end %>
     </li>
-
+    <%if !current_user.consultant?%>
     <li class="section-title">
       <a href="#">
         <span class="icon-settings"></span>
@@ -294,5 +308,6 @@
         </li>
       </ul>
     </li>
+    <%end%>
   </ul>
 </div>

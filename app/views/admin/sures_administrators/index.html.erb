@@ -1,0 +1,50 @@
+<h2><%= t("admin.sures_administrators.index.title") %></h2>
+
+<div id="administrators">
+  <% if @sures_administrators.any? %>
+    <h3 class="margin"><%= page_entries_info @sures_administrators %></h3>
+
+    <table>
+      <thead>
+        <th scope="col" class="text-center"><%= t("admin.sures_administrators.index.id") %></th>
+        <th scope="col"><%= t("admin.sures_administrators.index.name") %></th>
+        <th scope="col"><%= t("admin.sures_administrators.index.email") %></th>
+        <th scope="col" class="small-3"><%= t("admin.shared.actions") %></th>
+      </thead>
+      <% @sures_administrators.each do |sures_administrator| %>
+        <tr id="<%= dom_id(sures_administrator)%>">
+          <td class="text-center">
+            <%= sures_administrator.try(:id)%>
+          </td>
+          <td>
+            <%= sures_administrator.try(:name) %>
+          </td>
+          <td>
+            <%= sures_administrator.try(:email) %>
+          </td>
+          <td>
+            <% if sures_administrator.try(:persisted?) %>
+              <%= link_to t("admin.sures_administrators.administrator.delete"),
+                          admin_sures_administrator_path(sures_administrator),
+                          method: :delete,
+                          class: "button hollow alert expanded"
+              %>
+            <% else %>
+              <%= link_to t("admin.sures_administrators.administrator.add"),
+                          { controller: "admin/sures_administrators", action: :create,
+                            user_id: sures_administrator.user_id },
+                            method: :post,
+                            class: "button success expanded" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+
+    <%= paginate @sures_administrators %>
+  <% else %>
+    <div class="callout primary margin">
+      <%= t("admin.sures_administrators.index.no_administrators") %>
+    </div>
+  <% end %>
+</div>

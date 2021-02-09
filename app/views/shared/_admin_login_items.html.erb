@@ -7,7 +7,7 @@
           <%= link_to t("layouts.header.administration"), admin_root_path %>
         </li>
       <% end %>
-
+    <%if !current_user.consultant?%>
       <% if current_user.administrator? || current_user.moderator? %>
         <li>
           <%= link_to t("layouts.header.moderation"), moderation_root_path %>
@@ -32,6 +32,7 @@
           <%= link_to t("layouts.header.officing"), officing_root_path %>
         </li>
       <% end %>
+    <%end%>
     </ul>
   </li>
 <% end %>

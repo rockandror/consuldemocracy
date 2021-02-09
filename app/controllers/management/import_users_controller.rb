@@ -1,15 +1,19 @@
 class Management::ImportUsersController < Management::BaseController
-
     def new
         @import = ImportUser.new
     end
 
     def create
         @import = ImportUser.new(import_users_params)
-        
+        @logs = {}
         if @import.save
             notice = t("admin.moderated_texts.imports.create.notice")
-            redirect_to management_import_users_path, notice: notice
+            error = t("admin.moderated_texts.imports.create.error")
+            if @logs.blank? 
+                redirect_to management_import_users_path, notice: notice 
+            else
+                redirect_to management_import_users_path(@logs), alert: error
+            end
         else
             render :new
         end
@@ -18,7 +22,6 @@ class Management::ImportUsersController < Management::BaseController
     private
 
         def import_users_params
-            #return {} unless params[:import_users].present?
             params.require(:import_user).permit(:file)
         end
     

@@ -14,11 +14,11 @@ class User < ApplicationRecord
   include Graphqlable
   has_one :superadmin
   has_one :administrator
+  has_one :sures_administrator
+  has_one :section_administrator
   has_one :moderator
   has_one :valuator
   has_one :manager
-  has_one :admin_sures
-  has_one :admin_sectorial
   has_one :consultant
   has_one :poll_officer, class_name: "Poll::Officer"
   has_one :organization
@@ -166,10 +166,10 @@ class User < ApplicationRecord
   end
 
   def administrator?
-    !Administrator.find_by(user_id: self.id).blank?
+    !Administrator.find_by(user_id: self.id).blank? || self.sures? || self.super_administrator? || self.consultant?
   end
 
-  def sures_administrator?
+  def sures?
     !SuresAdministrator.find_by(user_id: self.id).blank?
   end
 
@@ -288,7 +288,7 @@ class User < ApplicationRecord
   end
 
   def double_verification?
-    return true if !self.ip_out_of_internal_red? && self.administrator?
+    return true if !self.ip_out_of_internal_red? && self.administrator? || !self.ip_out_of_internal_red? && self.sures?
     self.ip_out_of_internal_red? && self.try(:administrator?) && self.access_key_inserted_correct? && !required_new_password? && (self.try(:access_key_tried) < 3)
   end
 

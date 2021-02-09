@@ -6,4 +6,11 @@
 
 <div class="moderated-text-imports-form">
   <%= render "form" %>
+  <%=@logs%>
+  <%if !@logs.blank? %>
+    <%@logs.each do |error| %>
+      <%= error %>
+    <% end %>
+  <% end %>
+
 </div>
