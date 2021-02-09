@@ -254,10 +254,10 @@ class UsersController < ApplicationController
     def load_data
       @profiles={}
       Profile.all.each do |p|
-        if !current_user.super_administrator? && p.id == 1
+        if !current_user.super_administrator? && p.code == 1
           nil
         else
-          @profiles.merge!({p.name => p.id })
+          @profiles.merge!({p.name => p.code })
         end
       end
 

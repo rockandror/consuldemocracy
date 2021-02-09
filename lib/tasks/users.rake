@@ -444,13 +444,17 @@ namespace :users do
 
   desc "create user profiles"
   task create_profiles: :environment do
-    profiles = ["Super Administrador", "Administrador", "Administrador Sures", "Administrador Sectorial", "Gestor", "Moderador", "Evaluador", "Consultor"]
-    puts "============================================"
-    profiles.each do |p|
-      profile = Profile.new
-      profile.name = p.to_s
+    [["Super Administrador", 1], ["Administrador", 2], ["Administrador Sures",3], ["Administrador Sectorial",4], ["Gestor",5], ["Moderador", 6], ["Evaluador", 7], ["Consultor", 8]].each do |p|
+      profile = Profile.find_by(name: p[0].to_s)
+
+      if !profile.blank?
+        profile.name = p[0].to_s
+        profile.code = p[1].to_s
+      else      
+        profile = Profile.new(name: p[0].to_s, code: p[1].to_s )
+      end
       if profile.save
-        puts "Perfil #{profile.name} creado."
+        puts "Perfil #{profile.name} creado/actualizado."
       else
         puts "--------------------------------------------"
         puts "No se ha podido crear el perfil #{p}."
@@ -458,6 +462,5 @@ namespace :users do
         puts "--------------------------------------------"
       end
     end
-    puts "============================================"
   end
 end
