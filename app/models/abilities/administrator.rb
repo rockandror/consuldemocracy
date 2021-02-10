@@ -59,10 +59,13 @@ module Abilities
                                       Topic, ProbeOption]
 
       can [:search, :create, :index, :destroy], ::Administrator
+      can [:search, :create, :index, :destroy], ::SuresAdministrator
+      can [:search, :create, :index, :destroy], ::SectionAdministrator
+      can [:search, :create, :index, :destroy], ::Consultant
       can [:search, :create, :index, :destroy], ::Moderator
       can [:search, :show, :edit, :update, :create, :index, :destroy, :summary], ::Valuator
       can [:search, :create, :index, :destroy], ::Manager
-      can [:search, :index, :destroy], ::User
+      can [:search, :index, :new, :destroy, :update_padron, :edit, :update], ::User
 
       can :manage, Dashboard::Action
 
@@ -95,6 +98,8 @@ module Abilities
       can :access, :ckeditor
       can :manage, Ckeditor::Picture
 
+      can [:manage], ::Sures::Actuation
+
       can [:manage], ::Legislation::Process
       can [:manage], ::Legislation::DraftVersion
       can [:manage], ::Legislation::Question
@@ -111,6 +116,8 @@ module Abilities
 
       can :manage, ModeratedText
       can :create, ModeratedTexts::Import
+
+      can :manage, ImportUser
     end
   end
 end

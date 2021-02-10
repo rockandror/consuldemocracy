@@ -1,0 +1,48 @@
+<% unless actuation.blank? %>
+<div id="<%= dom_id(actuation) %>" class="actuation clear" data-type="actuation">
+  <div class="panel">
+    <div class="icon-successful"></div>
+    <div class="icon-human-rights"></div>
+      <div class="row">
+        <div class="actuation-content">
+            <h3><%= link_to actuation.proposal_title, actuation_sure_path(actuation) %></h3>
+            <div class="actuation-description">
+              <p><%= markdown(actuation.proposal_objective).html_safe %></p>
+              <div class="truncate"></div>
+            </div>
+        </div>
+      </div>
+
+      <%
+=begin%>
+ <% if show_actuation_votes? %>
+        <div id="<%= dom_id(actuation) %>_votes"
+             class="small-12 medium-3 column supports-container"
+             <%= "data-equalizer-watch" if feature?(:allow_images) && actuation.image&.present? %>>
+          <% if actuation.successful? %>
+            <div class="padding">
+              <div class="supports text-center">
+                <%= render "actuations/supports", actuation: actuation %>
+              </div>
+            </div>
+          <% elsif actuation.archived? %>
+            <div class="message">
+              <strong>
+                <%= t("actuations.actuation.supports", count: actuation.total_votes) %>
+              </strong>
+              <p><%= t("actuations.actuation.archived") %></p>
+            </div>
+          <% else %>
+            <%= render "votes",
+                       { actuation: actuation,
+                         vote_url: vote_actuation_path(actuation, value: "yes") } %>
+          <% end %>
+        </div>
+      <% end %> 
+<%
+=end%>
+
+    </div>
+  </div>
+</div>
+<%end%>

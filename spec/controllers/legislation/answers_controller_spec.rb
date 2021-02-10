@@ -17,7 +17,7 @@ describe Legislation::AnswersController do
                       process_id: legal_process.id,
                       question_id: question.id,
                       legislation_answer: {
-                        legislation_question_option_id: question_option.id
+                        legislation_question_option_id: [question_option.id]
                       }
                     }
       expect(Ahoy::Event.where(name: :legislation_answer_created).count).to eq 1
@@ -33,7 +33,7 @@ describe Legislation::AnswersController do
                         process_id: legal_process.id,
                         question_id: question.id,
                         legislation_answer: {
-                          legislation_question_option_id: question_option.id
+                          legislation_question_option_id: [question_option.id]
                         }
                       }
       end.to change { question.reload.answers_count }.by(1)
@@ -49,7 +49,7 @@ describe Legislation::AnswersController do
                         process_id: legal_process.id,
                         question_id: question.id,
                         legislation_answer: {
-                          legislation_question_option_id: question_option.id
+                          legislation_question_option_id: [question_option.id]
                         }
                       }
       end.not_to change { question.reload.answers_count }

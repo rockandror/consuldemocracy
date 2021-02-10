@@ -1,0 +1,18 @@
+
+<% if !@sures_orders_filter.blank?%>
+    <div class="row">
+        <div class="small-12 column">
+            <ul class="menu simple clear" id="filter-subnav">
+                <%  @sures_orders_filter.each do |filter| %>
+                    <li class="<%="is-active" if type.to_s==filter.title.parameterize.underscore.to_s%>">
+                        <% if type.to_s==filter.title.parameterize.underscore.to_s %>
+                            <h2><%=filter.title%></h2>
+                        <%else%>  
+                            <%= link_to filter.title, search_sures_path(type: filter.title.parameterize.underscore.to_s) %>
+                        <%end%>
+                    </li>
+                <%end%>
+            </ul>
+        </div>
+    </div>
+<%end%>

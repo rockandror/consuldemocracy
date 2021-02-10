@@ -1,0 +1,43 @@
+<div class="row advanced-search-form">
+    <%= form_tag search_path, method: :get do %>
+        <div class="row" style="margin: 1em 0">
+            <div class="small-12 medium-10 column">
+                <div class="input-group">
+                    <%= text_field_tag :search, params[:search], label: false, placeholder: t("landings.search_sures")%>
+                    <div class="input-group-button">
+                        <button type="submit" class="button" title="<%= t("landings.search_sures") %>">
+                            <span class="show-for-sr"><%= t("landings.search_sures") %></span>
+                            <span class='icon-search'></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <% if !@sures_searchs_settings.blank? %>
+                <div class="small-12 medium-2 column">
+                    <div class="relative">
+                        <%= link_to t("shared.advanced_search.title"), "#advanced_search_form", id: "js-advanced-search-title", class: "advanced-search small", onclick: "changeShowFields($('#js-advanced-search'), $('#show_fields'))" %>
+                    </div>
+                </div>
+            <%end%>
+        </div>
+
+        <div id="advanced_search_form" >
+            <div id="js-advanced-search" data-advanced-search-terms="<%= @search_terms.present? && @search_terms%>" style="display: none">
+                <%= hidden_field_tag :show_fields, true %>
+                <div class="row" style="border: 1px solid grey;margin: 0 0 5em 0;padding: 1em;">
+                <% @sures_searchs_settings.each do |search|%>
+                    <div class="small-12 large-4 column end">
+                        <%= label_tag search.title.parameterize.underscore.to_sym, search.title %>
+                        <% if search.data_type == 'select'%>
+                            <%= select_tag search.title.parameterize.underscore.to_sym, options_for_select(parse_data_json(search.data).map {|k,v| [k,v]}, params[search.title.parameterize.underscore.to_sym]),
+                                include_blank: "" %>
+                        <%else%>
+                            <%= text_field_tag search.title.parameterize.underscore.to_sym, params[search.title.parameterize.underscore.to_sym] %>
+                        <%end%>
+                    </div>
+                <%end%>
+                </div>
+            </div>
+        </div>
+    <% end %>
+</div>

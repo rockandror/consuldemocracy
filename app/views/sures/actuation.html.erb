@@ -1,0 +1,92 @@
+<% provide :title do %><%= @actuation.proposal_title %><% end %>
+<% content_for :meta_description do %><%= @actuation.proposal_objective %><% end %>
+
+
+  <div class="actuation-show" style="margin-top: 2em">
+    <div id="<%= dom_id(@actuation) unless @actuation.blank? %>" class="row">
+        <div class="small-12 medium-9 column">       
+            <%= back_link_to search_sures_path %>
+            <h1><%= @actuation.proposal_title %></h1>
+            <div class="row">
+                <div class="small-12 medium-3 column">
+                    <div class="callout alert margin-top">
+                        <strong><%= t("admin.sures.actuations.actuation.status_#{@actuation.status}") %></strong>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-12 column">
+                    <p><strong><%= Sures::Actuation.human_attribute_name(:proposal_objective) %></strong></p>
+                    <p><%= markdown(@actuation.proposal_objective).html_safe %></p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="small-12 column">
+                    <p><strong><%= Sures::Actuation.human_attribute_name(:territorial_scope) %></strong></p>
+                    <p><%= markdown(@actuation.territorial_scope).html_safe %></p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="small-12 column">
+                    <p><strong><%= Sures::Actuation.human_attribute_name(:location_performance) %></strong></p>
+                    <p><%= markdown(@actuation.location_performance).html_safe %></p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="small-12 column">
+                    <p><strong><%= Sures::Actuation.human_attribute_name(:technical_visibility) %></strong></p>
+                    <p><%= markdown(@actuation.technical_visibility).html_safe %></p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="small-12 column">
+                    <p><strong><%= Sures::Actuation.human_attribute_name(:actions_taken) %></strong></p>
+                    <p><%= markdown(@actuation.actions_taken).html_safe %></p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="small-12 column">
+                    <p><strong><%=Sures::Actuation.human_attribute_name(:financig_performance) %></strong></p>
+                    <%if @actuation.financig_performance.to_s == 'other'%>
+                        <p><%= markdown(@actuation.other).html_safe %></p>
+                    <%else%>
+                        <p><%= t("admin.sures.actuations.actuation.financing_#{@actuation.financig_performance}") %></p>
+                    <%end%>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="small-12 column">
+                    <%if @actuation.check_anno%>
+                        <p><strong><%=Sures::Actuation.human_attribute_name(:check_anno) %></strong></p>
+                        <p><%= @actuation.annos %></p>
+                    <%elsif @actuation.check_multianno%>
+                        <p><strong><%=Sures::Actuation.human_attribute_name(:check_multianno) %></strong></p>
+                        <p>
+                        <ul>
+                        <% aux=''
+                         @actuation.annos.split(';').each {|x| aux = aux + "<li>#{x}</li>"} %>
+                         <%=aux.html_safe%>
+                        </ul>
+                        </p>
+                    <%end%>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="small-12 column">                    
+                    <p><strong><%=Sures::Actuation.human_attribute_name(:borought) %></strong></p>
+                    <p><%= @actuation.borought %> (<%= @actuation.try(:geozone).try(:name)%>)</p>                    
+                </div>
+            </div>            
+        </div>
+    </div>
+  </div>
+
+
+

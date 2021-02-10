@@ -1,0 +1,16 @@
+<div class="small-12 column">
+  <%= back_link_to %>
+
+  <h2><%= t("management.import_users") %></h2>
+</div>
+
+<div class="moderated-text-imports-form">
+  <%= render "form" %>
+  <%=@logs%>
+  <%if !@logs.blank? %>
+    <%@logs.each do |error| %>
+      <%= error %>
+    <% end %>
+  <% end %>
+
+</div>

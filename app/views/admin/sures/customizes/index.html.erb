@@ -1,0 +1,37 @@
+<h2><%= t("admin.sures.title") %></h2>
+
+<p><%= t("admin.sures.description") %></p>
+
+<div id="header">
+  <h3 class="inline-block"><%= t("admin.sures.header_title") %></h3>
+
+  <div class="float-right">
+    <%= link_to t("admin.sures.create_header"), new_admin_sures_customize_card_path(header_card: true), class: "button" %>
+  </div>
+
+  <% if @header.present? %>
+    <%= render "cards", cards: @header %>
+  <% else %>
+    <div class="callout primary clear">
+      <%= t("admin.sures.no_header") %>
+    </div>
+  <% end %>
+</div>
+
+<hr>
+
+<div id="cards">
+  <h3 class="inline-block"><%= t("admin.sures.cards_title") %></h3>
+
+  <div class="float-right">
+    <%= link_to t("admin.sures.create_card"), new_admin_sures_customize_card_path, class: "button" %>
+  </div>
+
+  <% if @cards.present? %>
+    <%= render "cards", cards: @cards %>
+  <% else %>
+    <div class="callout primary clear">
+      <%= t("admin.sures.no_cards") %>
+    </div>
+  <% end %>
+</div>

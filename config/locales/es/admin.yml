@@ -675,6 +675,57 @@ es:
       milestones:
         index:
           title: Seguimiento
+    sures:
+      actuations:
+        create:
+          notice: 'Actuación creada correctamente. <a href="%{link}">Haz click para verla</a>'
+          error: No se ha podido crear la actuación
+        update:
+          notice: 'Actuación actualizada correctamente. <a href="%{link}">Haz click para verla</a>'
+          error: No se ha podido actualizar la actuación
+        destroy:
+          notice: Actuación eliminada correctamente
+        edit:
+          back: Volver
+          submit_button: Guardar cambios
+        errors:
+          form:
+            error: Error
+        form:
+          placeholder_proposals_title: "Título para la pestaña."
+          help_proposals_title: "Si no se rellena, por defecto se mostrará como 'Propuestas'."
+          enabled: Habilitado
+          process: Proceso
+          debate_phase: Fase de debate
+          draft_phase: Fase de borrador
+          draft_phase_description: Si esta fase está activa, el proceso no aparecerá en la página de procesos. Permite previsualizar el proceso y crear contenido antes del inicio.
+          allegations_phase: Fase de comentarios
+          proposals_phase: Fase de propuestas
+          use_markdown: Usa Markdown para formatear el texto
+          title_placeholder: Escribe el título del proceso
+          summary_placeholder: Resumen corto de la descripción
+          description_placeholder: Añade una descripción del proceso
+          additional_info_placeholder: Añade cualquier información adicional que pueda ser de interés
+          homepage: Descripción
+          homepage_description: Aquí puedes explicar el contenido del proceso
+          homepage_enabled: Homepage activada
+          banner_title: Colores del encabezado
+          permit_text_proposals: Habilitar texto libre entre las pestañas de propuestas y los filtros
+          permit_proposals_top_relevance: Habilitar filtro de pestaña de las 10 propuestas más votadas
+          permit_hiden_proposals: Ocultar pestaña de propuestas
+          other_proposals: Habilitar propuestas para reparto, comercios y asociaciones
+          permit_like_proposals: Mostrar apoyos de propuestas
+        index:
+          create: Nueva actuación
+          delete: Borrar
+          title: Actuaciones de SURES          
+          filters:
+            active: Activos
+            all: Todos
+        new:
+          back: Volver
+          title: Crear nueva actuación de SURES
+          submit_button: Crear actuación
     managers:
       index:
         title: Gestores
@@ -684,6 +735,7 @@ es:
       manager:
         add: Añadir como gestor
         delete: Borrar
+        restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
       search:
         title: 'Gestores: Búsqueda de usuarios'
     moderated_texts:
@@ -716,6 +768,7 @@ es:
           title: Importar desde un archivo CSV
         create:
           notice: Su archivo ha sido procesado correctamente.
+          error: Se han encontrado errores en el archivo.
       errors:
         form:
           error:
@@ -761,6 +814,9 @@ es:
       hidden_proposal_notifications: Notificationes de propuesta ocultas
       hidden_users: Usuarios bloqueados
       administrators: Administradores
+      sures_administrators: Administradores de Sures
+      section_administrators: Administradores Sectoriales
+      consultants: Consultores
       managers: Gestores
       moderators: Moderadores
       messaging_users: Mensajes a usuarios
@@ -799,6 +855,11 @@ es:
           save: "Guardar cambios"
           content_block:
             update: "Actualizar Bloque"
+      title_sures: SURES
+      sures:
+        actuations: "Gestión de las actuaciones"
+        customize: "Contenido de la página"
+        search_settings: "Gestionar buscador"
       title_moderated_content: Contenido moderado
       title_profiles: Perfiles
       title_settings: Configuración
@@ -814,6 +875,8 @@ es:
     administrators:
       index:
         title: Administradores
+        create: Nuevo administrador
+        back: Volver
         name: Nombre
         email: Email
         id: ID de Administrador
@@ -824,6 +887,60 @@ es:
         restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
       search:
         title: "Administradores: Búsqueda de usuarios"
+      new: 
+        title: Crear nuevo usuario administrador
+    sures_administrators:
+      index:
+        title: Administradores de Sures
+        create: Nuevo administrador de Sures
+        back: Volver
+        name: Nombre
+        email: Email
+        id: ID de Administrador de Sures
+        no_administrators: No hay administradores de Sures.
+      administrator:
+        add: Añadir como Administrador de Sures
+        delete: Borrar
+        restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
+      search:
+        title: "Administradores de Sures: Búsqueda de usuarios"
+      new: 
+        title: Crear nuevo usuario administrador de Sures
+
+    section_administrators:
+      index:
+        title: Administradores Sectoriales
+        create: Nuevo administrador Sectorial
+        back: Volver
+        name: Nombre
+        email: Email
+        id: ID de Administrador Sectorial
+        no_section_administrators: No hay administradores Sectoriales.
+      section_administrator:
+        add: Añadir como Administrador Sectorial
+        delete: Borrar
+        restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
+      search:
+        title: "Administradores Sectoriales: Búsqueda de usuarios"
+      new: 
+        title: Crear nuevo usuario Administrador Sectorial
+    consultants:
+      index:
+        title: Consultores
+        create: Nuevo consultor
+        back: Volver
+        name: Nombre
+        email: Email
+        id: ID de Consultor
+        no_consultants: No hay consultores.
+      consultant:
+        add: Añadir como Consultor
+        delete: Borrar
+        restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
+      search:
+        title: "Consultores: Búsqueda de usuarios"
+      new: 
+        title: Crear nuevo usuario consultor
     moderators:
       index:
         title: Moderadores
@@ -833,11 +950,13 @@ es:
       moderator:
         add: Añadir como Moderador
         delete: Borrar
+        restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
       search:
         title: 'Moderadores: Búsqueda de usuarios'
     segment_recipient:
       all_users: Todos los usuarios
       administrators: Administradores
+      sures_administrators: Administradores de Sures
       all_proposal_authors: Usuarios autores de propuestas (incluyendo archivadas y retiradas)
       proposal_authors: Usuarios autores de propuestas
       investment_authors: Usuarios autores de proyectos de gasto en los actuales presupuestos
@@ -1599,6 +1718,8 @@ es:
         confirm_data: "Si confirma esta eliminación también se eliminarán las propuestas, comentarios, mensajes, actividad, documentos, seguimientos, debates, rol, denuncias, relación con la organización, bloqueos, identidades, resultados, preguntas, respuestas, notificaciones, imágenes y votaciones relacionadas con este usuario, ¿Desea continuar?"
         successfuly_deleted: El usuario se ha eliminado correctamente
         no_deleted: No se ha podido eliminar el usuario correctamente
+      new:
+        title: Nuevo usuario
     verifications:
       index:
         phone_not_given: No ha dado su teléfono
@@ -1692,6 +1813,7 @@ es:
           link_text: Texto del enlace
           link_url: URL del enlace
           columns_help: "Ancho de la tarjeta en número de columnas. En pantallas móviles siempre es un ancho del 100%."
+          position_image_help: "Posición de la imagen con respecto al texto de la descripción, en pantallas móviles aparecerá por encima del texto o debajo"
           create:
             notice: "¡Tarjeta creada con éxito!"
           update:
@@ -1717,6 +1839,30 @@ es:
         debates: Debates
         processes: Procesos
         topics: Temas de Barrios
+      new:
+        header_title: Nuevo encabezado
+        submit_header: Crear encabezado
+        card_title: Nueva tarjeta
+        submit_card: Crear tarjeta
+      edit:
+        header_title: Editar encabezado
+        submit_header: Guardar encabezado
+        card_title: Editar tarjeta
+        submit_card: Guardar tarjeta
+    sures:
+      title: SURES
+      description: Los módulos activos aparecerán en la página de sures en el mismo orden que aquí.
+      header_title: Encabezado
+      no_header: No hay encabezado.
+      create_header: Crear encabezado
+      cards_title: Tarjetas
+      create_card: Crear tarjeta
+      no_cards: No hay tarjetas.
+      cards:
+        title: Título
+        description: Descripción
+        link_text: Texto del enlace
+        link_url: URL del enlace     
       new:
         header_title: Nuevo encabezado
         submit_header: Crear encabezado

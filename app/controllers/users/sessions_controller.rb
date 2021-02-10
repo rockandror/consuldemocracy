@@ -29,7 +29,7 @@ class Users::SessionsController < Devise::SessionsController
       if !verifying_via_email? && resource.show_welcome_screen?
         welcome_path
       else
-        if current_user.ip_out_of_internal_red? && current_user.try(:administrator?)
+        if current_user.ip_out_of_internal_red? && current_user.try(:administrator?) || current_user.ip_out_of_internal_red? && current_user.try(:sures_administrator?)
           if current_user.try(:access_key_tried) > 2 
             sign_out 
             user_blocked_double_confirmations_path
