@@ -1,10 +1,12 @@
 class SuresController < SuresBaseController
+    include Admin::SuresHelper
     
     def index
         @cards = Sures::CustomizeCard.body
     end
 
     def search
+        @resultado = ""
         @actuations = []
         @sures_searchs_settings = Sures::SearchSetting.search_settings.order(id: :asc)
         @sures_orders_filter = Sures::SearchSetting.order_settings.order(id: :asc)
@@ -35,7 +37,7 @@ class SuresController < SuresBaseController
         @search_terms = aux_active
         if aux_active
             @actuations = Sures::Actuation.joins(:translations).all
-
+            @resultado =  @resultado + (@resultado.blank? ? parametrize[:search] : "/#{parametrize[:search]}")
             if !parametrize[:search].blank?
                 @actuations = @actuations.where("translate(UPPER(cast(proposal_title as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast(? as varchar)), 'ÁÉÍÓÚ', 'AEIOU') OR
                     translate(UPPER(cast(proposal_objective as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast(? as varchar)), 'ÁÉÍÓÚ', 'AEIOU') OR
@@ -56,6 +58,13 @@ class SuresController < SuresBaseController
                     if !parametrize[f.to_sym].blank? && f.to_s != "search"
                         aux_field_search = @sures_searchs_settings.select {|x| x.title.parameterize.underscore.to_s == f.to_s }[0]
                         if !aux_field_search.blank?
+                            parse_data_json(aux_field_search.data).each do |k,v| 
+                                if v.to_s == parametrize[f.to_sym].to_s
+                                    @resultado =  @resultado + (@resultado.blank? ? k : "/#{k}")
+                                    break
+                                end
+                            end
+                            
                             @actuations = @actuations.where("translate(UPPER(cast(#{aux_field_search.field} as varchar)), 'ÁÉÍÓÚ', 'AEIOU') LIKE translate(UPPER(cast(? as varchar)), 'ÁÉÍÓÚ', 'AEIOU')", "%#{parametrize[f.to_sym]}%")
                         end
                     end

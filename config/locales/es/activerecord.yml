@@ -368,6 +368,9 @@ es:
         link: Enlace
         body: Texto
       sures/actuation:
+        borought: Barrio
+        geozone: Distrito
+        geozone_id: Distrito
         status: Estado actual de la propuesta
         financig_performance: Financiación de la actuación y cronograma de las actuaciones a realizar para ejecutar la propuesta
         check_anno: Anual

@@ -15,7 +15,6 @@
   <% end %>
 
   <%= f.translatable_fields do |translations_form| %>
-    <% nome ="_#{f.index}_#{translations_form.index}_"%>
 
     <div class="small-12 medium-6 column clear end">
       <%= translations_form.text_field :proposal_title %>
@@ -46,27 +45,26 @@
                                         placeholder: t("admin.sures.actuations.form.additional_info_placeholder"),
                                         hint: t("admin.sures.actuations.form.use_markdown") %>
     </div>
-    <div class="small-12 medium-3 column end">
-      <%= f.select :status, options_for_select(get_list_sures_status, @actuation[:status]) %>
-    </div>
-
-
-    <div class="small-12 medium-9 column end">
-      <%= f.select :financig_performance, options_for_select(get_list_sures_financing, @actuation[:financig_performance]), {}, onchange: "showhideFieldActuation($(this),'other',$('#otherfield_#{nome}'))"%>
-    </div>
-    <div id="otherfield_<%=nome%>" style="display: none">
-      <div class="small-12  column end"  >
-        <%= translations_form.text_field :other %>
-      </div>
-    </div>
-    <script>
-      if ('<%=f.object.financig_performance%>' == 'other') {
-        $('#otherfield_<%=nome%>').show();
-      } else {
-        $('#otherfield_<%=nome%>').hide();
-      }
-    </script>
   <%end%>
+
+  <div class="small-12 medium-3 column end">
+    <%= f.select :status, options_for_select(get_list_sures_status, @actuation[:status]) %>
+  </div>
+   <div class="small-12 medium-9 column end">
+    <%= f.select :financig_performance, options_for_select(get_list_sures_financing, @actuation[:financig_performance]), {}, onchange: "showhideFieldActuation($(this),'other',$('#otherfield'))"%>
+  </div>
+  <div id="otherfield" style="display: none">
+    <div class="small-12  column end"  >
+      <%= f.text_field :other %>
+    </div>
+  </div>
+  <script>
+    if ('<%=f.object.financig_performance%>' == 'other') {
+      $('#otherfield').show();
+    } else {
+      $('#otherfield').hide();
+    }
+  </script>
   
   
   <div class="small-12 medium-6 column clear end">
@@ -84,8 +82,16 @@
   <div class="small-12  column">
     <%= f.text_field :tracking %>
   </div>
+
+  
+
+  <div class="small-12 medium-3 column end">
+    <%= f.select :borought, options_for_select(@boroughts, @actuation[:borought]) %>
+  </div>
  
   <div class="small-12 medium-3 column clear end">
     <%= f.submit(class: "button success expanded", value: t("admin.sures.actuations.#{admin_submit_action(@actuation)}.submit_button")) %>
   </div>
+
+ 
 <% end %>

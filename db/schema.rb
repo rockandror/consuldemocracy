@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210209162211) do
+ActiveRecord::Schema.define(version: 20210210092140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1553,7 +1553,6 @@ ActiveRecord::Schema.define(version: 20210209162211) do
     t.text     "location_performance"
     t.text     "technical_visibility"
     t.text     "actions_taken"
-    t.string   "other"
     t.index ["locale"], name: "index_sures_actuation_translations_on_locale", using: :btree
     t.index ["sures_actuation_id"], name: "index_sures_actuation_translations_on_sures_actuation_id", using: :btree
   end
@@ -1567,6 +1566,10 @@ ActiveRecord::Schema.define(version: 20210209162211) do
     t.string   "tracking"
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
+    t.string   "borought"
+    t.integer  "geozone_id"
+    t.string   "other"
+    t.index ["geozone_id"], name: "index_sures_actuations_on_geozone_id", using: :btree
   end
 
   create_table "sures_administrators", force: :cascade do |t|
@@ -1961,6 +1964,7 @@ ActiveRecord::Schema.define(version: 20210209162211) do
   add_foreign_key "related_content_scores", "users"
   add_foreign_key "section_administrators", "users"
   add_foreign_key "superadministrators", "users"
+  add_foreign_key "sures_actuations", "geozones"
   add_foreign_key "sures_administrators", "users"
   add_foreign_key "users", "adresses"
   add_foreign_key "users", "geozones"

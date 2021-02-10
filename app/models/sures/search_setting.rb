@@ -10,7 +10,7 @@ class Sures::SearchSetting < ApplicationRecord
 
     def self.fieldSuresAnotation
         [
-            :proposal_title, :proposal_objective, :territorial_scope, :location_performance, :technical_visibility,
+            :proposal_title, :proposal_objective, :territorial_scope, :location_performance, :technical_visibility, :geozone_id, :borought,
             :actions_taken, :status, :financig_performance, :check_anno, :check_multianno, :annos, :tracking, :other, :updated_at, :created_at
         ]
     end

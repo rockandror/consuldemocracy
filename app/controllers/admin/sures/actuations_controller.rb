@@ -1,5 +1,7 @@
 class Admin::Sures::ActuationsController < Admin::Sures::BaseController
   include Translatable
+
+  before_action :load_resources, only: [:new,:edit,:create,:update]
   has_filters %w[all study tramit process fhinish], only: :index
 
   load_and_authorize_resource :actuation, class: "Sures::Actuation"
@@ -10,6 +12,7 @@ class Admin::Sures::ActuationsController < Admin::Sures::BaseController
   end
 
   def create
+    @actuation.geozone = Proposal.find_by(comunity_hide: :true, title: @actuation.borought).try(:geozone)
     if @actuation.save
       notice = t("admin.sures.actuations.create.notice", link: actuation_sure_path(@actuation).html_safe)
       redirect_to edit_admin_sures_actuation_path(@actuation), notice: notice
@@ -21,6 +24,8 @@ class Admin::Sures::ActuationsController < Admin::Sures::BaseController
 
   def update
     if @actuation.update(actuation_params)
+      @actuation.geozone = Proposal.find_by(comunity_hide: :true, title: @actuation.borought).try(:geozone)
+      @actuation.save
       notice = t("admin.sures.actuations.update.notice", link: actuation_sure_path(@actuation).html_safe)
       redirect_to edit_admin_sures_actuation_path(@actuation), notice: notice
     else
@@ -56,11 +61,20 @@ class Admin::Sures::ActuationsController < Admin::Sures::BaseController
         :annos,
         :tracking,
         :other,
+        :borought,
+        :geozone_id,
         translation_params(::Sures::Actuation)    
       ]
     end
 
     def resource
       @actuation || ::Sures::Actuation.find(params[:id])
+    end
+
+    def load_resources
+      @boroughts = {}
+      Proposal.all.where(comunity_hide: :true).each do |borought|
+        @boroughts.merge!({"#{borought.title} (#{borought.try(:geozone).try(:name)})" => borought.title })
+      end
     end
 end

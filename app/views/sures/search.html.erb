@@ -14,7 +14,7 @@
           <h2><%= t("shared.search_results") %></h2>
           <p>
             <%= page_entries_info @actuations %>
-            <%= t("debates.index.search_results_html", count: @actuations.size, search_term: params[:search]) %>
+            <%= t("debates.index.search_results_html", count: @actuations.size, search_term: @resultado) %>
           </p>
         
       </div>

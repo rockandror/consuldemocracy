@@ -1,4 +1,6 @@
 class Sures::Actuation < ApplicationRecord
+    belongs_to :geozone
+
     scope :study, -> { where(status: "study") }
     scope :tramit, -> { where(status: "tramit") }
     scope :process, -> { where(status: "process") }
@@ -12,10 +14,12 @@ class Sures::Actuation < ApplicationRecord
     translates :location_performance,   touch: true
     translates :technical_visibility,   touch: true
     translates :actions_taken,          touch: true
-    translates :other,                  touch: true
     include Globalizable
 
 
+    validates :proposal_title, presence: true
+    validates :status, presence: true
+    validates :borought, presence: true
     validate :valid_annos
 
 

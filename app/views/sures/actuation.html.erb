@@ -77,7 +77,13 @@
                     <%end%>
                 </div>
             </div>
-            
+            <hr>
+            <div class="row">
+                <div class="small-12 column">                    
+                    <p><strong><%=Sures::Actuation.human_attribute_name(:borought) %></strong></p>
+                    <p><%= @actuation.borought %> (<%= @actuation.try(:geozone).try(:name)%>)</p>                    
+                </div>
+            </div>            
         </div>
     </div>
   </div>

@@ -22,17 +22,17 @@
         </div>
 
         <div id="advanced_search_form" >
-            <div id="js-advanced-search" data-advanced-search-terms="<%= @advanced_search_terms.present? %>" style="display: none">
+            <div id="js-advanced-search" data-advanced-search-terms="<%= @search_terms.present? && @search_terms%>" style="display: none">
                 <%= hidden_field_tag :show_fields, true %>
                 <div class="row" style="border: 1px solid grey;margin: 0 0 5em 0;padding: 1em;">
                 <% @sures_searchs_settings.each do |search|%>
                     <div class="small-12 large-4 column end">
                         <%= label_tag search.title.parameterize.underscore.to_sym, search.title %>
                         <% if search.data_type == 'select'%>
-                            <%= select_tag search.title.parameterize.underscore.to_sym, options_for_select(parse_data_json(search.data).map {|k,v| [k,v]}),
+                            <%= select_tag search.title.parameterize.underscore.to_sym, options_for_select(parse_data_json(search.data).map {|k,v| [k,v]}, params[search.title.parameterize.underscore.to_sym]),
                                 include_blank: "" %>
                         <%else%>
-                            <%= text_field_tag search.title.parameterize.underscore.to_sym %>
+                            <%= text_field_tag search.title.parameterize.underscore.to_sym, params[search.title.parameterize.underscore.to_sym] %>
                         <%end%>
                     </div>
                 <%end%>
