@@ -735,6 +735,7 @@ es:
       manager:
         add: Añadir como gestor
         delete: Borrar
+        restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
       search:
         title: 'Gestores: Búsqueda de usuarios'
     moderated_texts:
@@ -949,6 +950,7 @@ es:
       moderator:
         add: Añadir como Moderador
         delete: Borrar
+        restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
       search:
         title: 'Moderadores: Búsqueda de usuarios'
     segment_recipient:
