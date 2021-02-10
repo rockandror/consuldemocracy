@@ -20,23 +20,22 @@ class Admin::ConsultantsController < Admin::BaseController
   end
 
   def destroy
-    begin
-      if !@consultant.blank?
-        if !current_user.blank? && current_user.id == @consultant.user_id
-          flash[:error] = I18n.t("admin.consultants.consultant.restricted_removal")
-        else
-          user = User.find(@consultant.user_id).profiles_id = nil
-          user.save
-          @consultant.destroy
-        end
-      else
+    if !@consultant.blank?
+      if !current_user.blank? && current_user.id == @consultant.user_id
         flash[:error] = I18n.t("admin.consultants.consultant.restricted_removal")
+      else
+        user = User.find(@consultant.user_id)
+        user.profiles_id = nil
+        user.save
+        @consultant.destroy
       end
-
-      redirect_to admin_consultants_path
-    rescue
+    else
       flash[:error] = I18n.t("admin.consultants.consultant.restricted_removal")
-      redirect_to admin_consultants_path
     end
+
+    redirect_to admin_consultants_path
+  rescue
+    flash[:error] = I18n.t("admin.consultants.consultant.restricted_removal")
+    redirect_to admin_consultants_path
   end
 end

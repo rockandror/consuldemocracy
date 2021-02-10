@@ -43,7 +43,7 @@ module AdminHelper
   end
 
   def menu_profiles?
-    %w[administrators organizations officials moderators valuators managers users].include?(controller_name)
+    %w[administrators sures_administrators section_administrators consultants organizations officials moderators valuators managers users].include?(controller_name)
   end
 
   def menu_settings?
