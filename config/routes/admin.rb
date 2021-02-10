@@ -9,6 +9,13 @@ namespace :admin do
     end
   end
 
+  namespace :sures do
+    resources :actuations
+    resources :customizes
+    resources :searchs_settings
+    resources :customize_cards
+  end
+
   resources :hidden_users, only: [:index, :show] do
     member do
       put :restore
@@ -43,7 +50,7 @@ namespace :admin do
     end
   end
 
-  resources :users, only: [:index, :show, :destroy] do
+  resources :users, only: [:index, :new, :show, :destroy] do
     get :hide, on: :member
   end
 
@@ -135,10 +142,21 @@ namespace :admin do
     get :search, on: :collection
   end
 
-  resources :administrators, only: [:index, :create, :destroy] do
+  resources :administrators, only: [:index, :new, :create, :destroy] do
     get :search, on: :collection
   end
 
+  resources :sures_administrators, only: [:index, :new, :create, :destroy] do
+    get :search, on: :collection
+  end
+
+  resources :section_administrators, only: [:index, :new, :create, :destroy] do
+    get :search, on: :collection
+  end
+
+  resources :consultants, only: [:index, :new, :create, :destroy] do
+    get :search, on: :collection
+  end
   #resources :users, only: [:index, :show, :destroy, :hide]
 
   scope module: :poll do

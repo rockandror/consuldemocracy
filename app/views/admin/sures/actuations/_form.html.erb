@@ -1,0 +1,97 @@
+<%= render "admin/shared/globalize_locales", resource: @actuation  %>
+<%= translatable_form_for [:admin, @actuation], html: {data: {watch_changes: true}} do |f| %>
+
+  <% if @actuation.errors.any? %>
+    <div id="error_explanation" data-alert class="callout alert" data-closable>
+      <button class="close-button" aria-label="<%= t("application.close") %>" type="button" data-close>
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+      <strong>
+        <%= @actuation.errors.count %>
+        <%= t("admin.sures.actuations.errors.form.error", count: @actuation.errors.count) %>
+      </strong>
+    </div>
+  <% end %>
+
+  <%= f.translatable_fields do |translations_form| %>
+
+    <div class="small-12 medium-6 column clear end">
+      <%= translations_form.text_field :proposal_title %>
+    </div>
+
+    <div class="small-12  column end">
+      <%= translations_form.text_area :proposal_objective, rows: 5,
+                                        placeholder: t("admin.sures.actuations.form.additional_info_placeholder"),
+                                        hint: t("admin.sures.actuations.form.use_markdown") %>
+    </div>
+    <div class="small-12  column end">
+      <%= translations_form.text_area :territorial_scope, rows: 5,
+                                        placeholder: t("admin.sures.actuations.form.additional_info_placeholder"),
+                                        hint: t("admin.sures.actuations.form.use_markdown") %>
+    </div>
+    <div class="small-12 column end">
+      <%= translations_form.text_area :location_performance , rows: 5,
+                                        placeholder: t("admin.sures.actuations.form.additional_info_placeholder"),
+                                        hint: t("admin.sures.actuations.form.use_markdown") %>
+    </div>
+    <div class="small-12  column end">
+      <%= translations_form.text_area :technical_visibility, rows: 5,
+                                        placeholder: t("admin.sures.actuations.form.additional_info_placeholder"),
+                                        hint: t("admin.sures.actuations.form.use_markdown") %>
+    </div>
+    <div class="small-12 column end">
+      <%= translations_form.text_area :actions_taken , rows: 5,
+                                        placeholder: t("admin.sures.actuations.form.additional_info_placeholder"),
+                                        hint: t("admin.sures.actuations.form.use_markdown") %>
+    </div>
+  <%end%>
+
+  <div class="small-12 medium-3 column end">
+    <%= f.select :status, options_for_select(get_list_sures_status, @actuation[:status]) %>
+  </div>
+   <div class="small-12 medium-9 column end">
+    <%= f.select :financig_performance, options_for_select(get_list_sures_financing, @actuation[:financig_performance]), {}, onchange: "showhideFieldActuation($(this),'other',$('#otherfield'))"%>
+  </div>
+  <div id="otherfield" style="display: none">
+    <div class="small-12  column end"  >
+      <%= f.text_field :other %>
+    </div>
+  </div>
+  <script>
+    if ('<%=f.object.financig_performance%>' == 'other') {
+      $('#otherfield').show();
+    } else {
+      $('#otherfield').hide();
+    }
+  </script>
+  
+  
+  <div class="small-12 medium-6 column clear end">
+    <%= f.check_box :check_anno, onchange: "uniqueCheck($(this),'checkbox-actuation');",  class: "checkbox-actuation" %>
+  </div>
+
+  <div class="small-12 medium-6 column clear end">
+    <%= f.check_box :check_multianno,onchange: "uniqueCheck($(this),'checkbox-actuation');" ,  class: "checkbox-actuation" %>
+  </div>
+
+  <div class="small-12  column" >
+    <%= f.text_field :annos %>
+  </div>
+
+  <div class="small-12  column">
+    <%= f.text_field :tracking %>
+  </div>
+
+  
+
+  <div class="small-12 medium-3 column end">
+    <%= f.select :borought, options_for_select(@boroughts, @actuation[:borought]) %>
+  </div>
+ 
+  <div class="small-12 medium-3 column clear end">
+    <%= f.submit(class: "button success expanded", value: t("admin.sures.actuations.#{admin_submit_action(@actuation)}.submit_button")) %>
+  </div>
+
+ 
+<% end %>

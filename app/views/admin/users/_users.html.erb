@@ -20,14 +20,16 @@
           <td><%= params[:hidden_users].blank? ? display_user_roles(user) : "" %></td>
           <td><%= params[:hidden_users].blank? ? user.user_type : "" %></td>
           
-          <%if !params[:hidden_users].blank? %>
-            <td><%= link_to t("admin.users.user.delete"),
-                admin_user_path(user),
-                method: :delete,
-                class: "button hollow alert expanded",
-                :data => {:confirm => t("admin.users.user.confirm_data")} %></td>
+          <% if !params[:hidden_users].blank? %>
+              <td><%= link_to t("admin.users.user.delete"),
+                  admin_user_path(user),
+                  method: :delete,
+                  class: "button hollow alert expanded",
+                  :data => {:confirm => t("admin.users.user.confirm_data")} %></td>
           <% else %>
-            <td><button class="button hollow alert expanded" onclick="hide_element('data_confirm_<%=user.id%>')">Eliminar</button></td>
+            <%unless user.super_administrator? && !current_user.super_administrator? %>
+              <td><button class="button hollow alert expanded" onclick="hide_element('data_confirm_<%=user.id%>')">Eliminar</button></td>
+            <%end%>
           <% end %>
 
         </tr>

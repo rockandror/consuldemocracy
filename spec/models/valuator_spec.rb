@@ -9,6 +9,12 @@ describe Valuator do
       expect(valuator.description_or_email).to eq("Urbanism manager")
     end
 
+    it "returns description if present name" do
+      valuator = create(:valuator, description: "Urbanism manager")
+
+      expect(valuator.description_or_name).to eq("Urbanism manager")
+    end
+
     it "returns email if not description present" do
       valuator = create(:valuator)
 

@@ -32,6 +32,11 @@ es:
             file:
               extension: "El fichero cargado es inválido. El formato permitido es %{valid_extensions}."
               headers: "Las cabeceras del fichero cargado son incorrectas. Las cabeceras deben contener los siguientes nombres: %{required_headers}."
+        import_user:
+          attributes:
+            file:
+              extension: "El fichero cargado es inválido. El formato permitido es %{valid_extensions}."
+              headers: "Las cabeceras del fichero cargado son incorrectas. Las cabeceras deben contener los siguientes nombres: %{required_headers}."
   categories:
     title: Categorías de ecosistema
     form:

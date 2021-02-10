@@ -43,7 +43,7 @@ module AdminHelper
   end
 
   def menu_profiles?
-    %w[administrators organizations officials moderators valuators managers users].include?(controller_name)
+    %w[administrators sures_administrators section_administrators consultants organizations officials moderators valuators managers users].include?(controller_name)
   end
 
   def menu_settings?
@@ -54,6 +54,22 @@ module AdminHelper
   def menu_customization?
     ["pages", "banners", "information_texts", "documents"].include?(controller_name) ||
     menu_homepage? || menu_pages?
+  end
+
+  def menu_sures?
+    ["sures", "actuations", "customizes", "searchs"].include?(controller_name) || menu_sures_customize? ||  menu_sures_actuation? || menu_sures_search?
+  end
+
+  def menu_sures_actuation? 
+    ["actuations"].include?(controller_name) && controller.class.parent.to_s == "Admin::Sures"
+  end
+
+  def menu_sures_customize?
+    ["customizes","customize_cards"].include?(controller_name) && controller.class.parent.to_s == "Admin::Sures"
+  end
+
+  def menu_sures_search?
+    ["searchs_settings"].include?(controller_name) && controller.class.parent.to_s == "Admin::Sures"
   end
 
   def menu_homepage?
@@ -106,6 +122,7 @@ module AdminHelper
   def user_roles(user)
     roles = []
     roles << :admin if user.administrator?
+    roles << :sures if user.sures?
     roles << :moderator if user.moderator?
     roles << :valuator if user.valuator?
     roles << :manager if user.manager?

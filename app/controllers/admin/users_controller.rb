@@ -138,4 +138,10 @@ class Admin::UsersController < Admin::BaseController
   def hide_params
     params.require(:hide).permit(:hidden_datak, :date_hide)
   end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:email, :username, :document_number, :document_type, :encrypted_password, :phone_number, :gender)
+  end
 end

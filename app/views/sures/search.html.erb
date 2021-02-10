@@ -1,0 +1,36 @@
+<div class="row" style="border-bottom: 1px solid black; display: flex;
+   align-items: center;" >
+  <div class="small-12 column">
+    <p style="padding-top:1em"><%= link_to t("landings.return_sures"), sures_path,  style: "color:#04C4D9 !important"%></p>
+  </div>
+</div>
+<%= render "advanced_search", search_path: search_sures_path(page: 1) %>
+
+<% if @search_terms %>
+  <div class="highlight no-margin-top padding margin-bottom">
+    <div class="row">
+      <div class="small-12 column">
+        
+          <h2><%= t("shared.search_results") %></h2>
+          <p>
+            <%= page_entries_info @actuations %>
+            <%= t("debates.index.search_results_html", count: @actuations.size, search_term: @resultado) %>
+          </p>
+        
+      </div>
+    </div>
+  </div>
+<%end%>
+<% if @actuations.any? %>
+  <%= render "orders", type: @type %>
+  <main>
+    <div class="row">
+      <div id="actuations" class="actuations-list small-12 column">
+        <div id="actuations-list" style="margin-top: 2em">
+          <%= render partial: "sures/actuation", collection: @actuations %>
+          <%= paginate @actuations %>        
+        </div>
+      </div>
+    </div>
+  </main>
+<% end %>

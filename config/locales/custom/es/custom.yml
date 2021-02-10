@@ -319,9 +319,11 @@ es:
     index:
       start_proposal_question: Crear propuesta o pregunta
   landings:
+    return_sures: Volver a la páguina principal de SURES
     header: SURES. Estrategia de desarrollo del sur y del este de Madrid
     title: "Conoce el plan que cambiará el sur y el este de Madrid"
     sures: ¿Qué es SURES?
+    search_sures: Actuaciones
     sures_desc: "Es un plan estratégico de reequilibrio territorial para mejorar la calidad de vida de los distritos del sur y del este de Madrid."
     title_districts: "9 Distritos"
     districts: "Carabanchel, Latina, Moratalaz, Puente de Vallecas, San Blas, Usera, Vicálvaro, Villa de Vallecas y Villaverde son los 9 distritos del ámbito de actuación del Plan SURES."
