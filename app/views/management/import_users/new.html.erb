@@ -6,11 +6,11 @@
 
 <div class="moderated-text-imports-form">
   <%= render "form" %>
-  <%=@logs%>
-  <%if !@logs.blank? %>
-    <%@logs.each do |error| %>
-      <%= error %>
+  <%if !@logs.blank?%>
+  <div class="small-12 column import-errors">
+    <% @logs.each do |k,v| %>
+    <p><%= "Fila #{k}: #{v}"%></p>
     <% end %>
-  <% end %>
-
+  </div>
+  <%end%>
 </div>

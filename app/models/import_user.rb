@@ -26,8 +26,13 @@ class ImportUser < BaseImporter
   def save
     return false if invalid?
     @path_to_file = file.path
-    import!
-    true
+    valid = valid_users
+    if valid == true
+      import!
+      true
+    else
+      return valid
+    end
   end
 
   def save!
@@ -36,42 +41,64 @@ class ImportUser < BaseImporter
 
   private
 
-    def import!
-      super
+    def valid_users
+      count = 0
+      message = "Fila #{count}, el nombre, el email y el documento no pueden estar en blanco."
+      errors = {}
       each_row do |row|
-        if @logs.blank?
-          begin
-            user = build_user(row)
-            if user.save
-              if user.adress.save
-                puts "===================================================="
-                puts "Usuario creado"
-                puts "===================================================="
-              else
-                puts "===================================================="
-                puts  user.adress.errors.full_messages
-                puts "===================================================="
-              end
-            else
-              puts "===================================================="
-              puts  user.errors.full_messages
-              puts "===================================================="
-            end
-          rescue
-            puts "========================================================================="
-            puts "El usuario '#{row[:usuario]}' no se ha podido generar."
-            puts  user.adress.errors.full_messages
-            puts  user.errors.full_messages
-            puts "========================================================================="
-            @logs.merge!("El usuario '#{row[:usuario]}' no se ha podido generar.")
-            @logs.merge!(user.errors.full_messages)
-            @logs.merge(user.adress.errors.full_messages)
-          end
-        else
-          break
-          redirect_to management_import_users_path(@logs), alert: error
+        count = count + 1
+        if row[:usuario].blank?
+          errors.merge!({count => "Usuario en blanco"})
+        elsif !User.find_by(username: row[:usuario]).blank?
+          errors.merge!({count => "El nombre de usuario ya está en uso."})
+        elsif row[:email].blank?
+          errors.merge!({count => "Email en blanco"})
+        elsif !User.find_by(email: row[:email]).blank?
+          errors.merge!({count => "El email ya está en uso."})
+        elsif row[:documento].blank?
+          errors.merge!({count => "Documento en blanco"})
+        elsif !User.find_by(document_number: row[:documento]).blank?
+          errors.merge!({count => "Ya existe un usuario con el mismo documento."})
         end
       end
+      return errors if errors.length > 0
+      true
+    end
+
+    def import!
+      super
+      count = 0
+      each_row do |row|
+        begin
+          user = build_user(row)
+          if user.save!
+            if user.adress.save!
+              puts "===================================================="
+              puts "Usuario creado"
+              puts "===================================================="
+            else
+              puts "===================================================="
+              puts  user.adress.errors.full_messages
+              puts "===================================================="
+            end
+          else
+            puts "===================================================="
+            puts  user.errors.full_messages
+            puts "===================================================="
+          end
+        rescue
+          puts "========================================================================="
+          puts "El usuario '#{row[:usuario]}' no se ha podido generar."
+          puts  user.adress.errors.full_messages
+          puts  user.errors.full_messages
+          puts "========================================================================="
+        end
+      end
+    end
+
+    def valid_data(row)
+      return false if row[:usuario].blank? || row[:email].blank? || row[:documento].blank?
+      true
     end
 
     def build_user(row)

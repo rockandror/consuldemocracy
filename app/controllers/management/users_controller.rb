@@ -68,13 +68,13 @@ class Management::UsersController < Management::BaseController
 
     def superadmin
       user_id = session[:manager]["login"].split("_")
-      User.find(user_id[2].to_i).super_administrator?
+      !Superadministrator.find_by(user_id: User.find(user_id[2].to_i)).blank?
     end
 
     def load_data
       @profiles={}
       Profile.all.each do |p|
-        if !superadmin && p.code == 1
+        if p.id == 1 && !superadmin
           nil
         else
           @profiles.merge!({p.name => p.code })

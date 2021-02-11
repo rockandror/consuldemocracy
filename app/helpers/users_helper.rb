@@ -37,35 +37,35 @@ module UsersHelper
   end
 
   def current_administrator?
-    current_user && (current_user.administrator? || current_user.profile_id.to_s == "2" )
+    current_user && (current_user.administrator? || current_user.profiles_id.to_s == "2" )
   end
 
   def current_sures?
-    current_user && (current_user.sures? || current_user.profile_id.to_s == "3")
+    current_user && (current_user.sures? || current_user.profiles_id.to_s == "3")
   end
 
   def current_super_administrator?
-    current_user && (current_user.super_administrator? || current_user.profile_id.to_s == "1")
+    current_user && (current_user.super_administrator? || current_user.profiles_id.to_s == "1")
   end
 
   def current_consultant?
-    current_user && (current_user.consultant? || current_user.profile_id.to_s == "8")
+    current_user && (current_user.consultant? || current_user.profiles_id.to_s == "8")
   end
 
   def current_moderator?
-    current_user && (current_user.moderator? || current_user.profile_id.to_s == "6")
+    current_user && (current_user.moderator? || current_user.profiles_id.to_s == "6")
   end
 
   def current_valuator?
-    current_user && (current_user.valuator? || current_user.profile_id.to_s == "7")
+    current_user && (current_user.valuator? || current_user.profiles_id.to_s == "7")
   end
 
   def current_manager?
-    current_user && (current_user.manager? || current_user.profile_id.to_s == "5")
+    current_user && (current_user.manager? || current_user.profiles_id.to_s == "5")
   end
 
   def current_section_administrator?
-    current_user && (current_user.section_administrator? || current_user.profile_id.to_s == "4")
+    current_user && (current_user.section_administrator? || current_user.profiles_id.to_s == "4")
   end
 
   def current_poll_officer?
