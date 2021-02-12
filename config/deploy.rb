@@ -30,8 +30,8 @@ set :keep_releases, 5
 
 set :local_user, ENV["USER"]
 
-set :delayed_job_workers, 2
-set :delayed_job_roles, :background
+# set :delayed_job_workers, 2
+# set :delayed_job_roles, :background
 
 set(:config_files, %w(
   log_rotation
@@ -49,7 +49,7 @@ namespace :deploy do
 
   after "deploy:migrate", "add_new_settings"
   after :publishing, "deploy:restart"
-  after :published, "delayed_job:restart"
+  # after :published, "delayed_job:restart"
   after :published, "refresh_sitemap"
 
   after :finishing, "deploy:cleanup"
