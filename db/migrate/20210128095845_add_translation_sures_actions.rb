@@ -13,8 +13,7 @@ class AddTranslationSuresActions < ActiveRecord::Migration[5.0]
         territorial_scope: :text,
         location_performance:   :text,
         technical_visibility:   :text,
-        actions_taken: :text,
-        other: :string
+        actions_taken: :text
       },
       { migrate_data: true }
     )
