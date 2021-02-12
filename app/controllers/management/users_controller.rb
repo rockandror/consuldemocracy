@@ -6,14 +6,18 @@ class Management::UsersController < Management::BaseController
 
   def create
     @user = User.new(user_params)
-
+    # puts "=================================================================="
+    # puts user_params
+    # puts "=================================================================="
+    # xxx
     @user.terms_of_service = "1"
     @user.residence_verified_at = Time.current
     @user.verified_at = Time.current
     pass = Digest::SHA1.hexdigest("#{@user.created_at.to_s}--#{@user.username}")[0,8].upcase
     @user.password = pass
     @user.password_confirmation = pass
-    
+    set_new_profile(@user, user_params[:profiles_id]) if !user_params[:profiles_id].blank?
+
     if @user.save
       render :show
     else
@@ -101,6 +105,67 @@ class Management::UsersController < Management::BaseController
         "Masculino" => "Male",
         "Femenino" => "Female"
       }
+    end
+
+    def set_new_profile(user, id)
+      case id
+        when "1" then true if set_surperadmin(user)
+        when "2" then true if set_admin(user)
+        when "3" then true if set_sures_admin(user)
+        when "4" then true if set_section_admin(user)
+        when "5" then true if set_manager(user)
+        when "6" then true if set_moderator(user)
+        when "7" then true if set_evaluator(user)
+        when "8" then true if set_consultant(user)
+      end
+    end
+
+    def set_superadmin(user)
+      profile = Superadministrator.new
+      profile.user = user
+      if profile.save
+    end
+
+    def set_admin(user)
+      profile = Administrator.new
+      profile.user = user
+      profile.save
+    end
+
+    def set_sures_admin(user)
+      profile = SuresAdministrator.new
+      profile.user = user
+      profile.save
+    end
+
+    def set_section_admin(user)
+      profile = SectionAdministrator.new
+      profile.user = user
+      profile.save
+    end
+
+    def set_manager(user)
+      profile = Manager.new
+      profile.user = user
+      profile.save
+    end
+
+    def set_moderator(user)
+      profile = Moderator.new
+      profile.user = user
+      profile.save
+    end
+
+    def set_evaluator(user)
+      profile = Evaluator.new
+      profile.user = user
+      profile.save
+    end
+
+    def set_consultant(user)
+      profile = Consultant.new
+      profile.user = user
+      profile.save
     end
 
 end
