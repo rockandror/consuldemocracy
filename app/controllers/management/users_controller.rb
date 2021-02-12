@@ -74,7 +74,7 @@ class Management::UsersController < Management::BaseController
     def load_data
       @profiles={}
       Profile.all.each do |p|
-        if p.id == 1 && !superadmin
+        if p.code == 1 && !superadmin
           nil
         else
           @profiles.merge!({p.name => p.code })
