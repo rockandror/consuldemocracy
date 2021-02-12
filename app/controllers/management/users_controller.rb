@@ -123,49 +123,49 @@ class Management::UsersController < Management::BaseController
     def set_superadmin(user)
       profile = Superadministrator.new
       profile.user = user
-      true if profile.save
+      if profile.save
     end
 
     def set_admin(user)
       profile = Administrator.new
       profile.user = user
-      true if profile.save
+      profile.save
     end
 
     def set_sures_admin(user)
       profile = SuresAdministrator.new
       profile.user = user
-      true if profile.save
+      profile.save
     end
 
     def set_section_admin(user)
       profile = SectionAdministrator.new
       profile.user = user
-      true if profile.save
+      profile.save
     end
 
     def set_manager(user)
       profile = Manager.new
       profile.user = user
-      true if profile.save
+      profile.save
     end
 
     def set_moderator(user)
       profile = Moderator.new
       profile.user = user
-      true if profile.save
+      profile.save
     end
 
     def set_evaluator(user)
       profile = Evaluator.new
       profile.user = user
-      true if profile.save
+      profile.save
     end
 
     def set_consultant(user)
       profile = Consultant.new
       profile.user = user
-      true if profile.save
+      profile.save
     end
 
 end
