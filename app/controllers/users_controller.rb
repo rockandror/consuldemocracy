@@ -14,24 +14,23 @@ class UsersController < ApplicationController
     
   end
 
-  def update
-    begin
-      if !@user.profiles_id.blank? && @user.profiles_id != user_params[:profiles_id]
-        old_profile = remove_old_profile(@user) if @user.profiles_id == 1 && user_params[:profiles_id] == 2
-        if old_profile == true
-          set_new_profile(@user, user_params[:profiles_id] == 1 ? 2 : user_params[:profiles_id])
-        end
-      else
-        set_new_profile(@user, user_params[:profiles_id] == 1 ? 2 : user_params[:profiles_id]) if @user.profiles_id.blank?
+  def update    
+    if !@user.profiles_id.blank? && @user.profiles_id.to_i != user_params[:profiles_id].to_i
+      old_profile = remove_old_profile(@user) 
+      if old_profile == true
+        set_new_profile(@user, user_params[:profiles_id]) 
       end
-
-      @user.update_attributes(user_params)
-      
-      redirect_to user_path(@user), notice: "Usuario actualizado." if @user.save
-      
-    rescue
-      redirect_to user_path(@user), alert: @user.errors.full_messages
+    else
+      set_new_profile(@user, user_params[:profiles_id]) 
     end
+
+    if @user.update_attributes(user_params)
+      redirect_to user_path(@user), notice: "Usuario actualizado." 
+    else
+      redirect_to user_path(@user), alert: @user.errors.full_messages
+    end      
+  rescue => e
+    redirect_to user_path(@user), alert: e
   end
 
   def update_padron
@@ -206,49 +205,49 @@ class UsersController < ApplicationController
     def set_superadmin(user)
       profile = Superadministrator.new
       profile.user = user
-      true if profile.save
+      profile.save
     end
 
     def set_admin(user)
       profile = Administrator.new
       profile.user = user
-      true if profile.save
+      profile.save
     end
 
     def set_sures_admin(user)
       profile = SuresAdministrator.new
       profile.user = user
-      true if profile.save
+      profile.save
     end
 
     def set_section_admin(user)
       profile = SectionAdministrator.new
       profile.user = user
-      true if profile.save
+      profile.save
     end
 
     def set_manager(user)
       profile = Manager.new
       profile.user = user
-      true if profile.save
+      profile.save
     end
 
     def set_moderator(user)
       profile = Moderator.new
       profile.user = user
-      true if profile.save
+      profile.save
     end
 
     def set_evaluator(user)
       profile = Evaluator.new
       profile.user = user
-      true if profile.save
+      profile.save
     end
 
     def set_consultant(user)
       profile = Consultant.new
       profile.user = user
-      true if profile.save
+      profile.save
     end
 
     def load_data
