@@ -6,10 +6,6 @@ class Management::UsersController < Management::BaseController
 
   def create
     @user = User.new(user_params)
-    # puts "=================================================================="
-    # puts user_params
-    # puts "=================================================================="
-    # xxx
     @user.terms_of_service = "1"
     @user.residence_verified_at = Time.current
     @user.verified_at = Time.current
