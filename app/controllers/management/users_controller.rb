@@ -119,7 +119,7 @@ class Management::UsersController < Management::BaseController
     def set_superadmin(user)
       profile = Superadministrator.new
       profile.user = user
-      if profile.save
+      profile.save
     end
 
     def set_admin(user)
