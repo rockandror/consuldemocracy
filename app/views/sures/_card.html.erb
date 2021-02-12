@@ -2,10 +2,12 @@
    align-items: center;">
   <% if card.position_image.to_s == "left"%>
     <div class="small-12 medium-<%= card.columns %> column">
-     <% if card.image.title.include? "mp4" %>
-        <video width='500' height='300' controls="controls" autoplay loop><source src="<%=card.image.attachment.url %>"/></video>
-      <%else%>
-        <%= image_tag(card.image.attachment, alt: card.image.title)  %>
+      <% if !card.try(:image).try(:attachment).blank?%>
+        <% if card.image.title.include? "mp4" %>
+          <video width='500' height='300' controls="controls" autoplay loop><source src="<%=card.image.attachment.url %>"/></video>
+        <%else%>
+          <%= image_tag(card.image.attachment, alt: card.image.title)  %>
+        <%end%>
       <%end%>
     </div>
     <%if card.columns < 8 %>
@@ -24,10 +26,12 @@
       <div class="small-12 medium-<%=8 - card.columns%> column"></div>
     <%end%>
     <div class="small-12 medium-<%= card.columns %> column">
-      <% if card.image.title.include? "mp4" %>
-        <video width='500' height='300' controls="controls" autoplay loop><source src="<%=card.image.attachment.url %>"/></video>
-      <%else%>
-        <%= image_tag(card.image.attachment, alt: card.image.title)  %>
+      <% if !card.try(:image).try(:attachment).blank?%>
+        <% if card.image.title.include? "mp4" %>
+          <video width='500' height='300' controls="controls" autoplay loop><source src="<%=card.image.attachment.url %>"/></video>
+        <%else%>
+          <%= image_tag(card.image.attachment, alt: card.image.title)  %>
+        <%end%>
       <%end%>
     </div>
   <%end%>
