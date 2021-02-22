@@ -64,7 +64,15 @@ module MapLocationsHelper
     }
     options[:marker_latitude] = map_location.latitude if map_location.latitude.present?
     options[:marker_longitude] = map_location.longitude if map_location.longitude.present?
+    options[:marker_related_proposals_coordinates] = map_related_proposals_coordinates(map_location.proposal) if map_location.proposal.present?
     options
   end
 
+  def map_related_proposals_coordinates(proposal)
+    related_proposals = proposal.related_proposals.published.not_retired.not_archived.joins(:map_location)
+
+    related_proposals.map do |related_proposal|
+      related_proposal.map_location.json_data.merge({ url: proposal_path(related_proposal), title: related_proposal.title })
+    end
+  end
 end

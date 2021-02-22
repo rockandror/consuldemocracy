@@ -26,14 +26,11 @@ App.Map =
     zoomInputSelector        = $(element).data("zoom-input-selector")
     removeMarkerSelector     = $(element).data("marker-remove-selector")
     addMarkerInvestments     = $(element).data("marker-investments-coordinates")
+    addMarkerProposals       = $(element).data("marker-related-proposals-coordinates")
     editable                 = $(element).data("marker-editable")
     marker                   = null
-    markerIcon               = L.divIcon(
-      className: "map-marker"
-      iconSize:     [30, 30]
-      iconAnchor:   [15, 40]
-      html: '<div class="map-icon"></div>'
-    )
+    markerIcon               = App.Map.createMarkerIcon(icon_related: false)
+    markerRelatedIcon        = App.Map.createMarkerIcon(icon_related: true)
 
     createMarker = (latitude, longitude) ->
       markerLatLng  = new (L.LatLng)(latitude, longitude)
@@ -42,6 +39,11 @@ App.Map =
         marker.on "dragend", updateFormfields
       marker.addTo(map)
       return marker
+
+    createRelatedMarker = (latitude, longitude) ->
+      markerLatLng  = new (L.LatLng)(latitude, longitude)
+      marker  = L.marker(markerLatLng, { icon: markerRelatedIcon })
+      return marker.addTo(map)
 
     removeMarker = (e) ->
       e.preventDefault()
@@ -85,6 +87,9 @@ App.Map =
       content = "<a href='/budgets/#{data["budget_id"]}/investments/#{data["investment_id"]}'>#{data["investment_title"]}</a>"
       return content
 
+    getProposalPopupContent = (url, title) ->
+      return "<a href='#{url}'>#{title}</a>"
+
     mapCenterLatLng  = new (L.LatLng)(mapCenterLatitude, mapCenterLongitude)
     map              = L.map(element.id).setView(mapCenterLatLng, zoom)
     L.tileLayer(mapTilesProvider, attribution: mapAttribution).addTo map
@@ -105,6 +110,13 @@ App.Map =
 
           marker.on "click", openMarkerPopup
 
+    if addMarkerProposals
+      addMarkerProposals.forEach (proposal_info) ->
+        if App.Map.validCoordinates(proposal_info)
+          marker = createRelatedMarker(proposal_info.lat, proposal_info.long)
+
+          marker.bindPopup(getProposalPopupContent(proposal_info.url, proposal_info.title))
+
   toggleMap: ->
     $(".map").toggle()
     $(".js-location-map-remove-marker").toggle()
@@ -120,3 +132,12 @@ App.Map =
 
   isNumeric: (n) ->
     !isNaN(parseFloat(n)) && isFinite(n)
+
+  createMarkerIcon: (marker_option) ->
+    relatedIconClass = "map-icon-related" if marker_option.icon_related
+    L.divIcon(
+      className: "map-marker"
+      iconSize:     [30, 30]
+      iconAnchor:   [15, 40]
+      html: "<div class='map-icon #{relatedIconClass}'></div>"
+    )

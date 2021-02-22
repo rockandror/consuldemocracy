@@ -203,6 +203,27 @@ describe "Proposals" do
         expect(page).not_to have_link("No comments", href: "#comments")
       end
     end
+
+    scenario "Shows clickable markers for related proposals by tag on proposal map", :js do
+      Setting["feature.map"] = true
+      proposal = create(:proposal, tag_list: "culture, sports", map_location: create(:map_location))
+      related_proposal = create(:proposal, tag_list: "culture", map_location: create(:map_location))
+      create(:proposal, tag_list: "sports", map_location: nil)
+
+      visit proposal_path(proposal)
+
+      within ".map_location" do
+        expect(page).to have_selector(".map-icon", count: 2)
+        expect(page).to have_selector(".map-icon.map-icon-related", count: 1)
+      end
+
+      find(".map-icon-related").click
+      within ".leaflet-popup-pane" do
+        click_link related_proposal.title
+      end
+
+      expect(page).to have_current_path proposal_path(related_proposal)
+    end
   end
 
   context "Show on mobile screens" do

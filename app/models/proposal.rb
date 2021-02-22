@@ -309,6 +309,10 @@ class Proposal < ApplicationRecord
     end
   end
 
+  def related_proposals
+    self.class.where.not(id: id).tagged_with(tag_list, any: true)
+  end
+
   protected
 
     def set_responsible_name
