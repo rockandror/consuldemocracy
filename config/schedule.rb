@@ -54,3 +54,4 @@ end
 
 every 1.day, at: "2:00 am", roles: [:cron] do
   rake "padron:update"
+end
