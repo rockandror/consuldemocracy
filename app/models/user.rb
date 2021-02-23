@@ -168,7 +168,7 @@ class User < ApplicationRecord
   end
 
   def administrator?
-    !Administrator.find_by(user_id: self.id).blank? || self.sures? || self.super_administrator? || self.section_administrator?
+    !Administrator.find_by(user_id: self.id).blank? || self.sures? || self.super_administrator? || self.section_administrator? || self.consultant?
   end
 
   def sures?
