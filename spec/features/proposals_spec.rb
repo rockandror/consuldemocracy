@@ -226,6 +226,24 @@ describe "Proposals" do
     end
   end
 
+  context "Edit" do
+    scenario "Does not show markers for related proposals by tag on proposal map", :js do
+      Setting["feature.map"] = true
+      proposal = create(:proposal, tag_list: "culture, sports", map_location: create(:map_location))
+      create(:proposal, tag_list: "culture", map_location: create(:map_location))
+      create(:proposal, tag_list: "sports")
+      login_as(proposal.author)
+
+      visit edit_proposal_path(proposal)
+
+      within ".map_location" do
+        expect(page).to have_selector(".map-icon", count: 1)
+        expect(page).not_to have_selector ".map-icon-related"
+        expect(page).not_to have_field "Related proposals"
+      end
+    end
+  end
+
   context "Show on mobile screens" do
     let!(:window_size) { Capybara.current_window.size }
 
