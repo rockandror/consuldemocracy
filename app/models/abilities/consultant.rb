@@ -3,6 +3,7 @@ module Abilities
     include CanCan::Ability
 
     def initialize(user)   
+      merge Abilities::Common.new(user)
       can :manage, Dashboard::Action
       can [:manage], Dashboard::AdministratorTask
    

@@ -191,7 +191,7 @@ class UsersController < ApplicationController
 
     def set_new_profile(user, id)
       case id
-        when "1" then true if set_surperadmin(user)
+        when "1" then true if set_superadmin(user)
         when "2" then true if set_admin(user)
         when "3" then true if set_sures_admin(user)
         when "4" then true if set_section_admin(user)
