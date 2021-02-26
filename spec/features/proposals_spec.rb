@@ -224,6 +224,41 @@ describe "Proposals" do
 
       expect(page).to have_current_path proposal_path(related_proposal)
     end
+
+    describe "Control layer to show/hide related proposals", :js do
+      scenario "Allow to hide related proposals" do
+        Setting["feature.map"] = true
+        proposal = create(:proposal, tag_list: "culture, sports", map_location: create(:map_location))
+        create(:proposal, tag_list: "culture", map_location: create(:map_location))
+
+        visit proposal_path(proposal)
+
+        within ".map_location" do
+          expect(page).to have_field "Related proposals"
+          expect(page).to have_selector ".map-icon", count: 2
+          expect(page).to have_selector ".map-icon.map-icon-related", count: 1
+          uncheck "Related proposals"
+          expect(page).to have_selector ".map-icon", count: 1
+          expect(page).to have_field "Related proposals"
+          expect(page).not_to have_selector ".map-icon.map-icon-related"
+        end
+      end
+
+      scenario "Does not render when there are no related proposals" do
+        Setting["feature.map"] = true
+        proposal = create(:proposal, tag_list: "culture", map_location: create(:map_location))
+        create(:proposal, tag_list: "sports", map_location: create(:map_location))
+
+        visit proposal_path(proposal)
+
+        within ".map_location" do
+          expect(page).to have_selector(".map-icon", count: 1)
+          expect(page).not_to have_field "Related proposals"
+          expect(page).not_to have_selector ".map-icon-related"
+        end
+        expect(page).not_to have_selector(".leaflet-control-layers-selector")
+      end
+    end
   end
 
   context "Edit" do

@@ -286,6 +286,7 @@ en:
     proposal_for_district: "Start a proposal for your district"
     select_district: Scope of operation
     start_proposal: Create a proposal
+    related_proposals: Related proposals
   omniauth:
     facebook:
       sign_in: Sign in with Facebook

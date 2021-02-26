@@ -286,6 +286,7 @@ es:
     proposal_for_district: "Crea una propuesta para tu distrito"
     select_district: Ámbito de actuación
     start_proposal: Crea una propuesta
+    related_proposals: Propuestas relacionadas
   omniauth:
     facebook:
       sign_in: Entra con Facebook

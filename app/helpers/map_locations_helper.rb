@@ -66,7 +66,12 @@ module MapLocationsHelper
     options[:marker_longitude] = map_location.longitude if map_location.longitude.present?
 
     if render_related_proposals?(map_location, editable)
-      options[:marker_related_proposals_coordinates] = map_related_proposals_coordinates(map_location.proposal)
+      related_proposals_coordinates = map_related_proposals_coordinates(map_location.proposal)
+
+      if related_proposals_coordinates.present?
+        options[:marker_related_proposals_coordinates] = related_proposals_coordinates
+        options[:related_proposals_layer_text] = t("map.related_proposals")
+      end
     end
     options
   end

@@ -1182,9 +1182,24 @@ code {
     }
   }
 
+  .layer-related-icon {
+    @extend %marker-icon;
+    display: inline-block;
+    background: $brand;
+  }
+
   .map-attributtion {
     visibility: visible;
     height: auto;
+  }
+
+  .leaflet-control-layers-overlays label {
+    font-size: $small-font-size;
+    font-weight: normal;
+
+    input[type="checkbox"] {
+      margin-bottom: 0;
+    }
   }
 }
 
