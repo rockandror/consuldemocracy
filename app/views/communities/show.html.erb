@@ -9,7 +9,7 @@
       <div class="small-8 column">
         <div class="small-12 column">
           <span class="uppercase"><%= community_text(@community) %></span>
-          <%if @community.try(:proposal).comunity_hide == true %>
+          <%if @community.try(:proposal).try(:comunity_hide) == true %>
             <h2><%= link_to community_title(@community), community_path(@community.id) %></h2>
           <%else%>
             <h2><%= link_to community_title(@community), community_back_link_path(@community) %></h2>
