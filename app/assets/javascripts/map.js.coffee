@@ -43,8 +43,7 @@ App.Map =
 
     createRelatedMarker = (latitude, longitude) ->
       markerLatLng  = new (L.LatLng)(latitude, longitude)
-      marker  = L.marker(markerLatLng, { icon: markerRelatedIcon })
-      return marker.addTo(map)
+      return L.marker(markerLatLng, { icon: markerRelatedIcon, zIndexOffset: "-1" })
 
     removeMarker = (e) ->
       e.preventDefault()

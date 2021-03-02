@@ -206,8 +206,8 @@ describe "Proposals" do
 
     scenario "Shows clickable markers for related proposals by tag on proposal map", :js do
       Setting["feature.map"] = true
-      proposal = create(:proposal, tag_list: "culture, sports", map_location: create(:map_location))
-      related_proposal = create(:proposal, tag_list: "culture", map_location: create(:map_location))
+      proposal = create(:proposal, tag_list: "culture, sports", map_location: create(:map_location, latitude: 51.48))
+      related_proposal = create(:proposal, tag_list: "culture", map_location: create(:map_location, latitude: 51.50))
       create(:proposal, tag_list: "sports", map_location: nil)
 
       visit proposal_path(proposal)
