@@ -12,9 +12,10 @@ class Management::UsersController < Management::BaseController
     pass = Digest::SHA1.hexdigest("#{@user.created_at.to_s}--#{@user.username}")[0,8].upcase
     @user.password = pass
     @user.password_confirmation = pass
-    set_new_profile(@user, user_params[:profiles_id]) if !user_params[:profiles_id].blank?
+    
 
     if @user.save
+      set_new_profile(@user, user_params[:profiles_id]) if !user_params[:profiles_id].blank?
       render :show
     else
       render :new
@@ -105,7 +106,7 @@ class Management::UsersController < Management::BaseController
 
     def set_new_profile(user, id)
       case id
-        when "1" then true if set_surperadmin(user)
+        when "1" then true if set_superadmin(user)
         when "2" then true if set_admin(user)
         when "3" then true if set_sures_admin(user)
         when "4" then true if set_section_admin(user)
@@ -118,8 +119,14 @@ class Management::UsersController < Management::BaseController
 
     def set_superadmin(user)
       profile = Superadministrator.new
-      profile.user = user
-      profile.save
+      profile.user_id = user.id
+      if profile.save!
+      else
+        puts "====================================================="
+        puts profile.errors.full_messages
+        puts "====================================================="
+        xxx
+      end
     end
 
     def set_admin(user)

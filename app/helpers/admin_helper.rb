@@ -121,6 +121,7 @@ module AdminHelper
 
   def user_roles(user)
     roles = []
+    roles << :superadmin if user.super_administrator?
     roles << :admin if user.administrator?
     roles << :sures if user.sures?
     roles << :moderator if user.moderator?
