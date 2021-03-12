@@ -21,6 +21,9 @@ class DebatesController < ApplicationController
   respond_to :html, :js
   def index
     super
+    if !current_user.blank? && current_user.section_administrator? && !current_user.geozone_id.blank?
+      @debates = Debate.where(geozone_id: current_user.geozone_id)
+    end
     @debates = @debates.page(params[:page]).per(3)
   end
   def index_customization

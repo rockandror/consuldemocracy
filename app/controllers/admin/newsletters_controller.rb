@@ -19,7 +19,11 @@ class Admin::NewslettersController < Admin::BaseController
       notice = t("admin.newsletters.create_success")
       redirect_to [:admin, @newsletter], notice: notice
     else
-      render :new
+      if User.find_by(email: newsletter_params[:segment_recipient]).blank?
+        render :new 
+      else 
+        redirect_to new_admin_newsletter_path(user: User.find_by(email: newsletter_params[:segment_recipient]))
+      end
     end
   end
 
@@ -58,9 +62,23 @@ class Admin::NewslettersController < Admin::BaseController
     redirect_to [:admin, @newsletter]
   end
 
+  def deliver_user
+    @newsletter = Newsletter.find(params[:id])
+
+    if @newsletter.valid?
+      @newsletter.delay.deliver_user
+      @newsletter.update(sent_at: Time.current)
+      flash[:notice] = t("admin.newsletters.send_success")
+    else
+      flash[:error] = t("admin.segment_recipient.invalid_recipients_segment")
+    end
+
+    redirect_to [:admin, @newsletter]
+  end
+
   private
 
     def newsletter_params
-      params.require(:newsletter).permit(:subject, :segment_recipient, :from, :body)
+      params.require(:newsletter).permit(:subject, :segment_recipient, :from, :body, :user)
     end
 end

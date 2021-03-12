@@ -10,6 +10,8 @@ class Ability
       merge Abilities::Officing::Voter.new(user) if user.officing_voter?
       if user.consultant?
         merge Abilities::Consultant.new(user) 
+      elsif user.editor?
+        merge Abilities::Editor.new(user) 
       elsif user.administrator? || user.super_administrator?
         merge Abilities::Administrator.new(user)
       elsif user.moderator?

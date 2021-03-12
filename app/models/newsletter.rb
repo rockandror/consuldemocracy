@@ -29,12 +29,18 @@ class Newsletter < ApplicationRecord
     list_of_recipient_emails_in_batches.each do |recipient_emails|
       recipient_emails.each do |recipient_email|
         if valid_recipient?(recipient_email)
-          Mailer.delay(run_at: run_at).newsletter(self, recipient_email)
-          log_delivery(recipient_email)
+          Mailer.delay(run_at: run_at).newsletter(self, segment_recipient)
+          log_delivery(segment_recipient)
         end
       end
       run_at += batch_interval
     end
+  end
+
+  def deliver_user
+    run_at = first_batch_run_at
+    Mailer.delay(run_at: run_at).newsletter(self, segment_recipient)
+    log_delivery(segment_recipient)
   end
 
   def batch_size
@@ -56,7 +62,9 @@ class Newsletter < ApplicationRecord
   private
 
   def validate_segment_recipient
-    errors.add(:segment_recipient, :invalid) unless valid_segment_recipient?
+    if User.find_by(email: self.segment_recipient).blank?
+      errors.add(:segment_recipient, :invalid) unless valid_segment_recipient?
+    end
   end
 
   def valid_recipient?(email)

@@ -20,6 +20,7 @@ class User < ApplicationRecord
   has_one :valuator
   has_one :manager
   has_one :consultant
+  has_one :editor
   has_one :poll_officer, class_name: "Poll::Officer"
   has_one :organization
   has_one :lock
@@ -168,7 +169,7 @@ class User < ApplicationRecord
   end
 
   def administrator?
-    !Administrator.find_by(user_id: self.id).blank? || self.sures? || self.super_administrator? || self.section_administrator? || self.consultant?
+    !Administrator.find_by(user_id: self.id).blank? || self.sures? || self.super_administrator? || self.section_administrator? || self.consultant? || self.editor?
   end
 
   def sures?
@@ -193,6 +194,10 @@ class User < ApplicationRecord
 
   def consultant?
     !Consultant.find_by(user_id: self.id).blank?
+  end
+
+  def editor?
+    !Editor.find_by(user_id: self.id).blank?
   end
 
   def poll_officer?

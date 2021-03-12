@@ -21,14 +21,21 @@
           <td><%= params[:hidden_users].blank? ? user.user_type : "" %></td>
           
           <% if !params[:hidden_users].blank? %>
-              <td><%= link_to t("admin.users.user.delete"),
+              <td>
+              <%= link_to t("admin.users.user.delete"),
                   admin_user_path(user),
                   method: :delete,
                   class: "button hollow alert expanded",
-                  :data => {:confirm => t("admin.users.user.confirm_data")} %></td>
+                  :data => {:confirm => t("admin.users.user.confirm_data")} %>
+              </td>
+              
           <% else %>
             <%unless user.super_administrator? && !current_user.super_administrator? %>
-              <td><button class="button hollow alert expanded" onclick="hide_element('data_confirm_<%=user.id%>')">Eliminar</button></td>
+            <td>
+            <%= link_to new_admin_newsletter_path(user: user) do %>
+                <span class="icon-letter"></span>
+              <%end%>
+              <button class="button hollow alert expanded" onclick="hide_element('data_confirm_<%=user.id%>')">Eliminar</button></td>
             <%end%>
           <% end %>
 

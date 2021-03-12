@@ -813,10 +813,12 @@ es:
       hidden_budget_investments: Proyectos de gasto ocultos
       hidden_proposal_notifications: Notificationes de propuesta ocultas
       hidden_users: Usuarios bloqueados
+      super_administrators: Super Administradores
       administrators: Administradores
       sures_administrators: Administradores de Sures
       section_administrators: Administradores Sectoriales
       consultants: Consultores
+      editor: Editores
       managers: Gestores
       moderators: Moderadores
       messaging_users: Mensajes a usuarios
@@ -872,6 +874,23 @@ es:
       dashboard_actions: Recursos y acciones
       moderated_texts: Texto para moderación automática
       auto_moderated_content: Contenido moderado automáticamente
+    super_administrators:
+      index:
+        title: Super Administradores
+        create: Nuevo super administrador
+        back: Volver
+        name: Nombre
+        email: Email
+        id: ID de Super Administrador
+        no_administrators: No hay super administradores.
+      administrator:
+        add: Añadir como Super Administrador
+        delete: Borrar
+        restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
+      search:
+        title: "Super Administradores: Búsqueda de usuarios"
+      new: 
+        title: Crear nuevo usuario super administrador
     administrators:
       index:
         title: Administradores
@@ -941,6 +960,23 @@ es:
         title: "Consultores: Búsqueda de usuarios"
       new: 
         title: Crear nuevo usuario consultor
+    editors:
+      index:
+        title: Editores
+        create: Nuevo editor
+        back: Volver
+        name: Nombre
+        email: Email
+        id: ID de Editor
+        no_editors: No hay editores.
+      editor:
+        add: Añadir como Editor
+        delete: Borrar
+        restricted_removal: "Lo sentimos, no puedes eliminarte a ti mismo de la lista"
+      search:
+        title: "Editores: Búsqueda de usuarios"
+      new: 
+        title: Crear nuevo usuario editor
     moderators:
       index:
         title: Moderadores

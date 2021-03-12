@@ -318,6 +318,7 @@ es:
     start_proposal: Crea una propuesta
     edit_organization: Edición de organización
     start_organization: Crea una organización
+    access_denied: No tienes permisos para operar en este distrito.
   omniauth:
     facebook:
       sign_in: Entra con Facebook

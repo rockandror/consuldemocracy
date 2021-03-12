@@ -57,11 +57,12 @@ module Abilities
       can :comment_as_administrator, [Debate, Comment, Proposal, Poll::Question, Budget::Investment,
                                       Legislation::Question, Legislation::Proposal, Legislation::Annotation,
                                       Topic, ProbeOption]
-
+      can [:search, :create, :index, :destroy], ::Superadministrator
       can [:search, :create, :index, :destroy], ::Administrator
       can [:search, :create, :index, :destroy], ::SuresAdministrator
       can [:search, :create, :index, :destroy], ::SectionAdministrator
       can [:search, :create, :index, :destroy], ::Consultant
+      can [:search, :create, :index, :destroy], ::Editor
       can [:search, :create, :index, :destroy], ::Moderator
       can [:search, :show, :edit, :update, :create, :index, :destroy, :summary], ::Valuator
       can [:search, :create, :index, :destroy], ::Manager
