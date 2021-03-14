@@ -15,16 +15,17 @@ class UsersController < ApplicationController
   end
 
   def update    
-    if !@user.profiles_id.blank? && @user.profiles_id.to_i != user_params[:profiles_id].to_i
-      old_profile = remove_old_profile(@user) 
-      if old_profile == true
-        set_new_profile(@user, user_params[:profiles_id]) 
+    if !@user.profiles_id.blank?
+      if @user.profiles_id.to_s != user_params[:profiles_id].to_s
+        remove_old_profile(@user)
+        set_new_profile(@user, user_params[:profiles_id])
       end
     else
       set_new_profile(@user, user_params[:profiles_id]) 
     end
-
-    if @user.update_attributes(user_params)
+    @user.update_attributes(user_params)
+    @user.geozone_id = user_params[:adress_attributes][:district]
+    if @user.save
       redirect_to user_path(@user), notice: "Usuario actualizado." 
     else
       redirect_to user_path(@user), alert: @user.errors.full_messages
@@ -181,10 +182,13 @@ class UsersController < ApplicationController
           sql = sql + "moderators"
           response = ActiveRecord::Base.connection.execute(sql + " where user_id = #{user.id}")
         when "7"
-          sql = sql + "evaluators"
+          sql = sql + "valuators"
           response = ActiveRecord::Base.connection.execute(sql + " where user_id = #{user.id}")
         when "8"
-          sql = sql + "consultant"
+          sql = sql + "consultants"
+          response = ActiveRecord::Base.connection.execute(sql + " where user_id = #{user.id}")
+        when "9"
+          sql = sql + "editor"
           response = ActiveRecord::Base.connection.execute(sql + " where user_id = #{user.id}")
       end
     end
@@ -199,6 +203,7 @@ class UsersController < ApplicationController
         when "6" then true if set_moderator(user)
         when "7" then true if set_evaluator(user)
         when "8" then true if set_consultant(user)
+        when "9" then true if set_editor(user)
       end
     end
 
@@ -239,7 +244,7 @@ class UsersController < ApplicationController
     end
 
     def set_evaluator(user)
-      profile = Evaluator.new
+      profile = Valuator.new
       profile.user = user
       profile.save
     end
@@ -250,10 +255,20 @@ class UsersController < ApplicationController
       profile.save
     end
 
+    def set_editor(user)
+      profile = Editor.new
+      profile.user = user
+      profile.save
+    end
+
+    def superadmin
+      !Superadministrator.find_by(user_id: current_user.id).blank?
+    end
+
     def load_data
       @profiles={}
       Profile.all.each do |p|
-        if !current_user.super_administrator? && p.code == 1
+        if !superadmin && p.code == "1"
           nil
         else
           @profiles.merge!({p.name => p.code })

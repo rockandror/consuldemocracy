@@ -21,7 +21,7 @@
                     
                     <div class="small-12 medium-12 column">
                         <div class="small-12 large-2 medium-2 column left">
-                            <%= f.select :profiles_id, options_for_select(@profiles||{}, selected: @user.try(:profiles_id)),
+                            <%= f.select :profiles_id, options_for_select(@profiles||{}, selected: @user.profiles_id),
                                 label: t("management.users.new.profiles"),
                                 placeholder: t("management.users.new.profiles"),
                                 include_blank: :true %>

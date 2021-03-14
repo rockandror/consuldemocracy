@@ -43,6 +43,9 @@ es:
       moderator:
         one: "Moderador"
         other: "Moderadores"
+      superadministrator:
+        one: "Super Administrador"
+        other: "Super Administradores"
       administrator:
         one: "Administrador"
         other: "Administradores"
@@ -55,6 +58,9 @@ es:
       consultant:
         one: "Consultor"
         other: "Consultores"
+      editor:
+        one: "Editor"
+        other: "Editores"
       valuator:
         one: "Evaluador"
         other: "Evaluadores"

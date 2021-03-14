@@ -1,7 +1,7 @@
 <main>
   <div class="activity row margin-top">
     <div class="small-12 column">
-      <%if !current_user.blank? && current_administrator?  %>
+      <%if !current_user.blank? && current_only_admins? %>
         <%= link_to t("users.show.update_padron"),
                     update_padron_path(user: @user),
                     class: "float-right btchange-user button hollow" %>
@@ -25,7 +25,7 @@
       <h2 class="inline-block">
         <%= avatar_image(@user, seed: @user.id, size: 60) %>
         <%= @user.name %>
-        <% if current_administrator? %>
+        <% if current_only_admins? %>
           <small><%= @user.email %></small>
         <% end %>
       </h2>

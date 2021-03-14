@@ -142,6 +142,10 @@ namespace :admin do
     get :search, on: :collection
   end
 
+  resources :superadministrators, only: [:index, :new, :create, :destroy] do
+    get :search, on: :collection
+  end
+
   resources :administrators, only: [:index, :new, :create, :destroy] do
     get :search, on: :collection
   end
@@ -155,6 +159,10 @@ namespace :admin do
   end
 
   resources :consultants, only: [:index, :new, :create, :destroy] do
+    get :search, on: :collection
+  end
+
+  resources :editors, only: [:index, :new, :create, :destroy] do
     get :search, on: :collection
   end
   #resources :users, only: [:index, :show, :destroy, :hide]
@@ -210,6 +218,7 @@ namespace :admin do
 
   resources :newsletters do
     member do
+      post :deliver_user
       post :deliver
     end
     get :users, on: :collection

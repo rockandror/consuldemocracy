@@ -5,16 +5,26 @@ class Management::UsersController < Management::BaseController
   end
 
   def create
+    verify_address = false
+    user_params[:adress_attributes].each do |k,v|
+      verify_address = true if !v.blank?
+    end
+
     @user = User.new(user_params)
     @user.terms_of_service = "1"
-    @user.residence_verified_at = Time.current
+
+    if verify_address == true
+      @user.residence_verified_at = Time.current
+    end
+
     @user.verified_at = Time.current
     pass = Digest::SHA1.hexdigest("#{@user.created_at.to_s}--#{@user.username}")[0,8].upcase
     @user.password = pass
     @user.password_confirmation = pass
-    set_new_profile(@user, user_params[:profiles_id]) if !user_params[:profiles_id].blank?
+    @user.geozone_id = user_params[:adress_attributes][:district]
 
     if @user.save
+      set_new_profile(@user, user_params[:profiles_id]) if !user_params[:profiles_id].blank?
       render :show
     else
       render :new
@@ -74,7 +84,7 @@ class Management::UsersController < Management::BaseController
     def load_data
       @profiles={}
       Profile.all.each do |p|
-        if p.code == 1 && !superadmin
+        if p.code == "1" && !superadmin
           nil
         else
           @profiles.merge!({p.name => p.code })
@@ -105,7 +115,7 @@ class Management::UsersController < Management::BaseController
 
     def set_new_profile(user, id)
       case id
-        when "1" then true if set_surperadmin(user)
+        when "1" then true if set_superadmin(user)
         when "2" then true if set_admin(user)
         when "3" then true if set_sures_admin(user)
         when "4" then true if set_section_admin(user)
@@ -113,13 +123,14 @@ class Management::UsersController < Management::BaseController
         when "6" then true if set_moderator(user)
         when "7" then true if set_evaluator(user)
         when "8" then true if set_consultant(user)
+        when "9" then true if set_editor(user)
       end
     end
 
     def set_superadmin(user)
       profile = Superadministrator.new
-      profile.user = user
-      profile.save
+      profile.user_id = user.id
+      profile.save!
     end
 
     def set_admin(user)
@@ -153,13 +164,19 @@ class Management::UsersController < Management::BaseController
     end
 
     def set_evaluator(user)
-      profile = Evaluator.new
+      profile = Valuator.new
       profile.user = user
       profile.save
     end
 
     def set_consultant(user)
       profile = Consultant.new
+      profile.user = user
+      profile.save
+    end
+
+    def set_editor(user)
+      profile = Editor.new
       profile.user = user
       profile.save
     end

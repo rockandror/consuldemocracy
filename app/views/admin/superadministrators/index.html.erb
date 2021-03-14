@@ -1,0 +1,52 @@
+<h2><%= t("admin.super_administrators.index.title") %></h2>
+
+<div id="administrators">
+  <% if @super_administrators.any? %>
+    <h3 class="margin"><%= page_entries_info @super_administrators %></h3>
+
+    <table>
+      <thead>
+        <th scope="col" class="text-center"><%= t("admin.super_administrators.index.id") %></th>
+        <th scope="col"><%= t("admin.super_administrators.index.name") %></th>
+        <th scope="col"><%= t("admin.super_administrators.index.email") %></th>
+        <th scope="col" class="small-3"><%= t("admin.shared.actions") %></th>
+      </thead>
+      <% @super_administrators.each do |super_administrator| %>
+        <tr id="<%= dom_id(super_administrator)%>">
+          <td class="text-center">
+            <%= super_administrator.try(:id)%>
+          </td>
+          <td>
+            <%= super_administrator.try(:name) %>
+          </td>
+          <td>
+            <%= super_administrator.try(:email) %>
+          </td>
+          <td>
+            <%if current_user.super_administrator?%>
+              <% if super_administrator.try(:persisted?) %>
+                <%= link_to t("admin.super_administrators.administrator.delete"),
+                            admin_superadministrator_path(super_administrator),
+                            method: :delete,
+                            class: "button hollow alert expanded"
+                %>
+              <% else %>
+                <%= link_to t("admin.super_administrators.administrator.add"),
+                            { controller: "admin/super_administrators", action: :create,
+                              user_id: super_administrator.user_id },
+                              method: :post,
+                              class: "button success expanded" %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+
+    <%= paginate @super_administrators %>
+  <% else %>
+    <div class="callout primary margin">
+      <%= t("admin.super_administrators.index.no_administrators") %>
+    </div>
+  <% end %>
+</div>

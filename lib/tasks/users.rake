@@ -444,7 +444,7 @@ namespace :users do
 
   desc "create user profiles"
   task create_profiles: :environment do
-    [["Super Administrador", 1], ["Administrador", 2], ["Administrador Sures",3], ["Administrador Sectorial",4], ["Gestor",5], ["Moderador", 6], ["Evaluador", 7], ["Consultor", 8]].each do |p|
+    [["Super Administrador", 1], ["Administrador", 2], ["Administrador Sures",3], ["Administrador Sectorial",4], ["Gestor",5], ["Moderador", 6], ["Evaluador", 7], ["Consultor", 8], ["Editor", 9]].each do |p|
       profile = Profile.find_by(name: p[0].to_s)
 
       if !profile.blank?
@@ -461,6 +461,61 @@ namespace :users do
         puts profile.errors.full_messages
         puts "--------------------------------------------"
       end
+    end
+  end
+
+  desc "create new users roles"
+  task new_roles: :environment do
+
+    @user = User.new(username: "admin_sectorial", email: "admin_sectorial@madrid.com", document_type: "1", document_number: "70898770T", profiles_id: 4)
+    @user.terms_of_service = "1"
+    @user.verified_at = Time.current
+    @user.confirmed_at = Time.current
+    @user.password = "12345678"
+    @user.password_confirmation = "12345678"
+    @user.geozone_id = 17
+    if @user.save!
+      puts "="*40
+      puts "Administrador sectorial creado"
+      puts "="*40
+    else
+      puts "="*40
+      puts @user.errors.full_messages
+      puts "="*40
+    end
+
+    @user = User.new(username: "gestor", email: "gestor@madrid.com", document_type: "1", document_number: "70898870T", profiles_id: 5)
+    @user.terms_of_service = "1"
+    @user.verified_at = Time.current
+    @user.confirmed_at = Time.current
+    @user.password = "12345678"
+    @user.password_confirmation = "12345678"
+    @user.geozone_id = 17
+    if @user.save!
+      puts "="*40
+      puts "Gestor creado"
+      puts "="*40
+    else
+      puts "="*40
+      puts @user.errors.full_messages
+      puts "="*40
+    end
+
+    @user = User.new(username: "consultoer", email: "consultor@madrid.com", document_type: "1", document_number: "70898970T", profiles_id: 8)
+    @user.terms_of_service = "1"
+    @user.verified_at = Time.current
+    @user.confirmed_at = Time.current
+    @user.password = "12345678"
+    @user.password_confirmation = "12345678"
+    @user.geozone_id = 17
+    if @user.save!
+      puts "="*40
+      puts "Consultor creado"
+      puts "="*40
+    else
+      puts "="*40
+      puts @user.errors.full_messages
+      puts "="*40
     end
   end
 end
