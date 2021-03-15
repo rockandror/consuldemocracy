@@ -474,6 +474,11 @@ namespace :users do
     @user.password = "12345678"
     @user.password_confirmation = "12345678"
     @user.geozone_id = 17
+
+    profile = SectionAdministrator.new
+    profile.user = @user
+    profile.save
+
     if @user.save!
       puts "="*40
       puts "Administrador sectorial creado"
@@ -491,6 +496,11 @@ namespace :users do
     @user.password = "12345678"
     @user.password_confirmation = "12345678"
     @user.geozone_id = 17
+
+    profile = Manager.new
+    profile.user = @user
+    profile.save
+
     if @user.save!
       puts "="*40
       puts "Gestor creado"
@@ -508,6 +518,11 @@ namespace :users do
     @user.password = "12345678"
     @user.password_confirmation = "12345678"
     @user.geozone_id = 17
+
+    profile = Consultant.new
+    profile.user = @user
+    profile.save
+
     if @user.save!
       puts "="*40
       puts "Consultor creado"
