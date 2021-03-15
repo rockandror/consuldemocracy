@@ -501,7 +501,7 @@ namespace :users do
       puts "="*40
     end
 
-    @user = User.new(username: "consultoer", email: "consultor@madrid.com", document_type: "1", document_number: "70898970T", profiles_id: 8)
+    @user = User.new(username: "consultor", email: "consultor@madrid.com", document_type: "1", document_number: "70898970T", profiles_id: 8)
     @user.terms_of_service = "1"
     @user.verified_at = Time.current
     @user.confirmed_at = Time.current
