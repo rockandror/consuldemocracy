@@ -182,9 +182,9 @@ nl:
       conditions: Gebruiksvoorwaarden
       consul: Consul
       consul_url: https://github.com/consul/consul
-      contact_us: Neem voor ondersteuning contact op met 
+      contact_us: "Ondersteuning nodig?" 
       copyright: Consul, %{year}
-      description: Dit platform gebruikt %{consul}; een %{open_source} applicatie voor participatie.
+      description: Dit platform gebruikt %{consul}, een %{open_source} applicatie voor participatie.
       open_source: open-source software
       open_source_url: http://www.gnu.org/licenses/agpl-3.0.html
       participation_text: Praat mee, bedenk mee, beslis mee!
@@ -265,6 +265,13 @@ nl:
     create:
       form:
         submit_button: Motie indienen
+    created:
+      title: Je hebt je motie ingevoerd.
+      motivation: "Om de benodigde hoeveelheid steun te verzamelen is de kwaliteit van de motie belangrijk."
+      motivation_2: "<strong>Je kan de motie als concept oplaan en er later nog aan werken of te laten toetsen door het team: ledendemocratie@pvda.nl</strong>"
+      publish: Nu publiceren
+      dashboard: Concept bewerken
+      preview_title: Zo ziet je motie eruit als je hem publiceerd   
     share:
       message: "Ik heb de motie %{title} in %{handle} gesteund. Steun ook!"
     edit:
@@ -382,10 +389,12 @@ nl:
       archived: "Deze motie is gearchiveerd en kan niet worden gesteund."
       successful: "Deze motie heeft de vereiste ondersteuning bereikt."
     show:
-      details: "Het congres van de PvdA, bijeen te LOCATIE CONGRES op DATUM CONGRES.."
-      request: "Proposal request:"
-      description: "Proposal text:"
-      summary: "Proposal summary:"
+      title: "Motie Titel"      
+      details: "De Partij van de Arbeid, in congres bijeen op:"
+      summary: "Overwegende dat:"
+      description: "Constaterende dat:"
+      request: "Verzoekt:"
+      retired_explanation: "Uitleg"
       author_deleted: Gebruiker verwijderd
       code: "Motie code:"
       comments:
@@ -435,6 +444,7 @@ nl:
         description: Burger opiniepeilingen zijn een participatieve mechanisme waarmee burgers met stemrecht direct beslissingen kunnen nemen
       no_polls: "Er zijn geen openstaande stemmingen."
     show:
+      dashboard_proposal_link: Dashboar
       already_voted_in_booth: "Je hebt al gestemd op een stemlocatie. Je mag niet nog een keer stemmen."
       already_voted_in_web: "Je hebt al deelgenomen in deze stemronde. Als je nogmaals stemt, wordt je eerdere stemming overschreven."
       back: Terug naar stemmen

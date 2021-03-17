@@ -1,0 +1,12 @@
+<div id="available-resources-section">
+  <% if false %><h3 class="title"><%= t("dashboard.resources.available_resources") %></h3><% end %>
+
+<% if false %>
+  <div data-equalizer="resources" data-equalize-on="medium">
+    <%= render "poll_resource" %>
+    <%= render "mailing_resource" %>
+    <%= render "poster_resource" %>
+    <%= render partial: "resource", collection: active_resources %>
+  </div>
+</div>
+ <% end %>
