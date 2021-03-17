@@ -101,4 +101,9 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  #config.wordpress_oauth_provider_authorize_endpoint = 'https://mijn.pvda.nl/oauth/authorize/'
+  #config.wordpress_oauth_provider_token_endpoint = 'https://mijn.pvda.nl/oauth/token/'
+  #config.wordpress_oauth_redirect_uri = 'https://ledenkamer.pvda.nl/users/auth/wordpress_oauth2/callback'
+  #config.wordpress_oauth_provider_me_endpoint = 'https://mijn.pvda.nl/oauth/me'
+
 end
