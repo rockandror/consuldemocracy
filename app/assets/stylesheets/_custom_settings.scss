@@ -3,3 +3,108 @@
 // * English: https://github.com/consul/consul/blob/master/CUSTOMIZE_EN.md#css
 // * Spanish: https://github.com/consul/consul/blob/master/CUSTOMIZE_ES.md#css
 //
+$brand:             #50A7DD;
+$link:              $brand;
+$brand-secondary:   #E40006;
+$link:              #E40006;
+$link-hover:        darken($link, 20%);
+$body-background:   #fdfdfd;
+$background:        $body-background;
+$light-pink:        #fff4f4;
+$sidebar-hover:     $light-pink;
+$sidebar-active:    $brand;
+$admin-color:       $brand;
+$highlight:         $light-pink;
+$info-bg:           $light-pink; // Pending definition: Bibi? Example en http://localhost:3000/admin/polls/6/recounts
+$info-border:       $light-pink; // Pending definition: Bibi? Example en http://localhost:3000/admin/polls/6/recounts
+$color-info:        $brand; // Pending definition: Bibi? Example en http://localhost:3000/admin/polls/6/recounts
+$highlight-soft:    $light-pink;
+$budget:            $brand;
+$select-background: $background;
+$debates:           $brand;
+$proposals:         $brand;
+
+//  Foundation for Sites Settings
+
+//  To fit slavic font
+
+$body-font-family: "Helvetica Neue", Lato, Helvetica, Arial, sans-serif !important;
+$header-font-family: "Helvetica Neue", Lato !important;
+
+body {
+    font-size: 98% !important;
+   }
+
+header {
+    font-size: 98% !important;
+   }   
+
+h1 {
+    font-size: 190% !important;
+   }  
+
+h2 {
+    font-size: 140% !important;
+   }  
+
+form .checkbox {
+    font-size: 90% !important;
+   }
+
+p {
+    font-size: 90% !important;
+    color: #4c4c4c!important;
+   } 
+
+.button {
+    font-size: 90% !important;
+   }    
+
+//  -----------------------------
+
+// 1. Global
+// ---------
+
+$foundation-palette: (
+  primary: $brand,
+  secondary: #767676,
+  success: #3adb76,
+  warning: #ffae00,
+  alert: #cc4b37,
+);
+
+@include add-foundation-colors;
+
+// 11. Button
+// ----------
+
+$button-background: $primary-color;
+$button-background-hover: scale-color($button-background, $lightness: -15%);
+$button-palette: $foundation-palette;
+
+// 51. Tabs
+// --------
+
+$tab-background: $background;
+$tab-content-background: $background;
+$tab-background-active: $background;
+
+
+
+.auth-image {
+  background-color: #fff !important;
+  border-right: 3px solid $brand !important;
+  border-top: 15px solid $brand;
+  background-image: none !important;
+  min-height: $line-height * 10;
+  @include breakpoint(small) 
+}    
+.logo img {
+  height: 62px;
+  margin-right: 0.75rem;
+  margin-top: 0;
+  width: 206px;    
+}
+
+.locale {
+  float: right !important;     }

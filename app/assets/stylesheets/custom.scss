@@ -3,6 +3,632 @@
 // * English: https://github.com/consul/consul/blob/master/CUSTOMIZE_EN.md#css
 // * Spanish: https://github.com/consul/consul/blob/master/CUSTOMIZE_ES.md#css
 //
+
+
+// Prevent votes on comments and replies
 .annotation-comment .comment-list .comment-list .comment-votes {
   display: none;
+}
+
+header {
+  $border: 1px solid #a8a8a8;
+
+  background-color: $background;
+  border: 0;
+  padding-top: $line-height / 2;
+
+  %link {
+    color: $black;
+
+    &:focus,
+    &:hover {
+      color: $link;
+    }
+  }
+
+  .top-links,
+  .subnavigation,
+  .top-bar {
+    color: $black;
+    background: transparent;
+    align-items: right;
+
+    a {
+      @extend %link;
+    }
+  }
+
+  .top-links,
+  .social {
+
+    ul {
+      line-height: 0;
+    }
+
+    li::after {
+      content: "";
+    }
+  }
+
+  .social {
+
+    @include breakpoint(small only) {
+      ul {
+        margin-left: 0;
+      }
+    }
+
+    li {
+      display: inline-block;
+
+      &:not(:first-child) {
+        margin-left: rem-calc(16);
+
+        @include breakpoint(small only) {
+          margin-left: rem-calc(4);
+        }
+      }
+    }
+
+    a {
+      margin: 0;
+
+      &:hover {
+        text-decoration: none;
+      }
+
+      [class^="icon-"] {
+        align-items: center;
+        border: 1px solid;
+        border-radius: 2em;
+        display: inline-flex;
+        font-size: rem-calc(13);
+        height: 2em;
+        justify-content: center;
+        line-height: 1;
+        width: 2em;
+      }
+    }
+  }
+
+  .locale {
+    height: auto;
+
+    @include breakpoint(small only) {
+      margin-left: auto;
+    }
+
+    &::after {
+      color: $black;
+      font-size: 1rem;
+      top: 1px;
+    }
+
+    label {
+      @include element-invisible;
+    }
+
+    .locale-switcher {
+      background-color: $background;
+      border: 1px solid #979797;
+      border-radius: 4px;
+      color: $black;
+      font-size: rem-calc(14);
+      height: 2em;
+      margin-top: 0;
+    }
+  }
+
+  .top-bar {
+    background: transparent !important; // TODO: Remove when important is removed from the original file
+    padding-left: rem-calc(15);
+    padding-bottom: $line-height / 2;
+
+    @include breakpoint(medium) {
+      align-items: baseline;
+    }
+
+    .top-bar-title {
+      margin-top: 0;
+    }
+
+    > :last-child {
+      border-top: $border;
+
+      @include breakpoint(medium) {
+        display: flex;
+        flex: 1;
+        padding-top: $line-height / 2;
+      }
+    }
+  }
+
+  .top-bar .menu {
+
+    a {
+      @extend %link;
+
+      &.button {
+        color: $link;
+        font-weight: bold;
+
+        @include breakpoint(medium) {
+          border: 1px solid $link;
+        }
+      }
+    }
+
+    .is-active {
+      text-decoration: none;
+
+      > a {
+        color: $link;
+        text-decoration: underline;
+      }
+    }
+
+    .is-dropdown-submenu-parent {
+      a::after {
+        border-top-color: $black;
+      }
+    }
+  }
+
+  .top-bar .menu-icon {
+    &.dark {
+
+      &:hover::after,
+      &::after {
+        background: $black;
+        box-shadow: 0 7px 0 $black, 0 14px 0 $black;
+      }
+    }
+  }
+
+  .subnavigation {
+    padding-top: $line-height / 4;
+
+    @include breakpoint(medium) {
+      border-top: $border;
+    }
+
+    a {
+      font-weight: normal;
+      font-size: 1rem;
+
+      &.is-active {
+        color: $link;
+        border-bottom-color: $link;
+      }
+    }
+  }
+}
+
+$sidebar-hover:     #2ddfdd;
+
+.admin {
+
+  .top-links {
+    background: transparent;
+    max-width: none;
+
+    > :only-child {
+      display: flex;
+      flex-direction: row-reverse;
+      margin: 0;
+      width: 100%;
+
+      > :first-child {
+        margin-left: auto;
+        margin-right: 0;
+      }
+    }
+
+    a {
+      color: $link;
+    }
+  }
+
+  .admin-top-bar {
+    background: transparent;
+
+    .top-bar-title {
+      flex: 19%;
+      margin-right: 0;
+      min-width: 14rem;
+
+      a {
+        float: left;
+      }
+    }
+
+    .responsive-menu {
+      flex: 81%;
+    }
+  }
+
+  .top-bar {
+    background: transparent !important; // TODO: Remove important when it's removed in the original file
+  }
+
+  .top-bar-left {
+    flex: 0;
+  }
+
+  .top-bar .menu > li {
+
+    a {
+      color: $black !important; // TODO: Remove important when it's removed in the original file
+
+      &:hover {
+        color: $link !important; // TODO: Remove important when it's removed in the original file
+      }
+    }
+  }
+
+  tr {
+    border: 0;
+
+    &:hover {
+      color: $brand;
+    }
+  }
+}
+
+footer  a { color: #4C4C4C !important;
+}
+
+.footer {
+  background-color: #d7d7d7;
+  color: #4C4C4C !important;
+  min-height: auto;
+
+  footer {
+    color: $light-pink;
+
+    > :not(.subfooter) {
+      @include grid-row;
+    }
+
+    > * {
+      padding-left: rem-calc(16);
+      padding-right: rem-calc(16);
+    }
+ .subfooter {
+      background-color: #d7d7d7;
+      color: #4C4C4C !important;
+      min-height: auto;
+    }
+
+.subfooter a { color: #4C4C4C !important;
+}  
+
+    .sites,
+    .contact {
+
+      @include breakpoint(medium) {
+        > * {
+          @include grid-column(6);
+        }
+
+        > :nth-child(odd) {
+          padding-left: 0;
+        }
+      }
+
+      @include breakpoint(large) {
+        > * {
+          @include grid-column(3);
+        }
+
+        > :first-child {
+          padding-left: 0;
+        }
+      }
+    }
+
+    .sites {
+
+      .title {
+        border: 0;
+        display: inline-block;
+        margin-bottom: $line-height / 4;
+        margin-top: 0;
+        text-decoration: underline;
+      }
+    }
+
+    p {
+      line-height: 5 * $line-height / 6;
+    }
+
+    a {
+      color: $light-pink;
+
+      &:hover,
+      &:focus {
+        color: $link;
+      }
+    }
+  }
+
+  .logo a,
+  .site-info > a {
+    font-weight: bold;
+  }
+
+  .logo {
+    display: block;
+    font-size: rem-calc(28);
+    margin-bottom: $line-height;
+
+    a {
+      border-bottom: 4px solid $link;
+      padding-bottom: $line-height / 4;
+
+      &:hover,
+      &:focus {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .subfooter {
+    background-color: $background;
+    color: $black;
+    padding-bottom: $line-height / 2;
+
+    > * {
+      @include grid-row;
+      margin-bottom: 0;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    li {
+      @include breakpoint(medium) {
+        display: inline-block;
+
+        &:not(:first-child) {
+          margin-left: 2em;
+        }
+      }
+    }
+
+    a {
+      color: $black;
+
+      &:hover,
+      &:focus {
+        color: $link;
+      }
+    }
+  }
+}
+
+input:focus {
+  outline: 0;
+}
+
+body {
+  background: $background;
+}
+
+// 11. Tables (layout.scss)
+// ----------
+
+table {
+
+  tr {
+
+    &:nth-child(odd) {
+      background: $background;
+
+      &:hover {
+        background: $background;
+      }
+    }
+
+    &:nth-child(even) {
+      background: $light-pink;
+
+      &:hover {
+        background: $light-pink;
+      }
+    }
+  }
+}
+
+// 02. Sidebar (admin.scss)
+// -----------
+
+.admin-sidebar {
+  background: $background;
+
+  ul {
+    [class^="icon-"] {
+      color: $black;
+    }
+  }
+
+  li {
+    &.is-active a {
+      color: $link;
+
+      [class^="icon-"] {
+        color: $link;
+      }
+    }
+  }
+
+  li a {
+    color: $black;
+
+    &:hover {
+      color: $link;
+
+      [class^="icon-"] {
+        color: $link;
+      }
+    }
+  }
+}
+// feed list
+
+.feeds-list {
+  a {
+    &.see-all {
+      text-align: left;
+    }
+  }
+}
+
+// 04. Stats (admin.scss)
+// ---------
+
+.stats {
+  background: $background;
+}
+
+// 01. Header (pages.scss)
+// ----------------------
+
+.background-header {
+  display: none;
+}
+
+.jumbo.highlight {
+  background: $brand-secondary;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: $light-pink;
+}
+
+// 04. List participation (participation.scss)
+// ----------------------
+
+%panel {
+  background: $background;
+
+  h3 {
+    a {
+      color: $brand;
+    }
+  }
+}
+
+.debate,
+.proposal,
+.investment-project,
+.budget-investment,
+.legislation,
+.communities-show {
+  .truncate {
+    background: $background;
+  }
+}
+
+// 04. Tags (layout.scss)
+// --------
+
+.categories a,
+.geozone a {
+  background: $light-pink;
+
+  &:hover,
+  &.is-active {
+    background: $brand;
+    color: $background;
+  }
+}
+
+.card {
+  background: $background;
+}
+
+.figure-card figcaption span {
+  background: $background;
+}
+
+.notifications .icon-circle {
+  color: $brand;
+}
+
+.home-page {
+
+  .processes-feed {
+    @include grid-row;
+  }
+}
+
+.home-page .cards-container {
+  @include grid-column-gutter;
+  $gap: rem-calc(16);
+  margin-left: -$gap;
+
+  .card {
+    $border-radius: rem-calc(8);
+    margin-left: $gap;
+
+    @include breakpoint(medium) {
+      @for $i from 1 through $grid-column-count {
+        &[data-columns='#{$i}'] {
+          width: calc(#{grid-column($i)} - #{$gap});
+        }
+      }
+    }
+
+    a {
+      @include grid-row-nest;
+      background-color: $brand;
+      border-radius: $border-radius;
+      box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
+
+      &:hover {
+        border: 2px solid;
+      }
+    }
+
+    .figure-card {
+      border-top-left-radius: $border-radius;
+      border-top-right-radius: $border-radius;
+      margin: 0;
+    }
+
+    p {
+      @include grid-column-gutter;
+      color: $white;
+      font-weight: bold;
+      font-size: 1.5rem !important;
+      padding-bottom: $line-height / 2;
+      padding-top: $line-height / 2;
+      margin: 0;
+      text-align: center;
+    }
+  }
+}
+
+// 06. Budgets
+// -----------
+
+.expanded {
+
+  &.budget {
+
+    .info {
+      background: $black;
+    }
+
+    h2 {
+      color: $brand;
+    }
+
+    &.budget-heading-background {
+      background: #333 image-url("background-header-budget.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
 }

@@ -1,0 +1,18 @@
+nl:
+  guides:
+    title: "Heb jij een idee voor %{org}?"
+    subtitle: "Kies wat jij wilt creeeren"
+    budget_investment:
+      title: "Een begrotingsvoorstel"
+      feature_1_html: "Ideeen voor een bergotingvoorstel"
+      feature_2_html: "Heeft <strong>%{votes} steunbetuigingen</strong> in %{org} nodig om in stemming te worden gebracht"
+      feature_3_html: "Activeer op elk moment, je hebt <strong>een jaar</strong> om steunbetuigingen te verzamelen"
+      feature_4_html: "Als het bergotingvoorstel genoeg draagkracht heeft gaat het door naar het stemlokaal"
+      new_button: Ik wil een begrotingvoorstel indienen
+    proposal:
+      title: "Een inwonersvoorstel"
+      feature_1_html: "Ideeen voor een motie"
+      feature_2_html: "Heeft <strong>%{votes} steunbetuigingen</strong> in %{org} nodig om in stemming te worden gebracht"
+      feature_3_html: "Activeren op elk gewenst moment, je hebt <strong>binnen de aangegeven periode</strong> om de ondersteuning te verkrijgen"
+      feature_4_html: "Als de motie genoeg draagkracht heeft gaat het door naar het stemlokaal"
+      new_button: Ik wil een motie indienen

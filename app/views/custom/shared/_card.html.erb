@@ -1,0 +1,11 @@
+<div id="<%= dom_id(card) %>"
+     class="card small-12 column margin-bottom end" data-columns="<%= card.columns %>">
+  <%= link_to card.link_url do %>
+    <figure class="figure-card">
+      <% if card.image.present? %>
+        <%= image_tag(card.image_url(:large), alt: card.image.title) %>
+      <% end %>
+    </figure>
+    <p><%= card.title %></p>
+  <% end %>
+</div>

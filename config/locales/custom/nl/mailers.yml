@@ -1,0 +1,65 @@
+nl:
+  mailers:
+    no_reply: "Dit bericht is verzonden vanaf een e-mailadres dat geen reacties accepteert."
+    comment:
+      hi: Hoi
+      new_comment_by_html: Er is een reactie van <b>%{commenter}</b>
+      subject: Iemand heeft een reactie achtergelaten op %{commentable}
+      title: Nieuwe reactie
+    config:
+      manage_email_subscriptions: Om deze mails niet meer te ontvangen moet u uw instellingen aanpassen
+    email_verification:
+      click_here_to_verify: deze link
+      subject: Bevestig je email
+      thanks: Hartelijk dank.
+      title: Bevestig uw account door de volgende link te gebruiken
+    reply:
+      hi: Hoi
+      new_reply_by_html: Er is een reactie van <b>%{commenter}</b> op je reactie op
+      subject: Iemand heeft gereageerd op je reactie
+      title: Nieuwe reactie op je reactie
+    proposal_notification_digest:
+      info: "Dit zijn de nieuwe meldingen die zijn gepubliceerd door auteurs van de voorstellen die u hebt ondersteund in %{org_name}."
+      title: "Voorstelmeldingen in %{org_name}"
+      share: Deel voorstellen
+      comment: Reageren op het voorstel
+      unsubscribe: "Als je geen notificaties van voorstellen wilt ontvangen, ga je naar %{account} en verwijder je het vinkje bij 'Een samenvatting van notificaties ontvangen'."
+      unsubscribe_account: Mijn account
+    direct_message_for_receiver:
+      subject: "U hebt een nieuw prive-bericht ontvangen"
+      reply: Antwoord op %{sender}
+      unsubscribe: "Als u geen directe boodschappen wilt ontvangen, kijk dan eens bij %{account} en haal het vinkje weg bij 'ontvangen e-mails over directe berichten'."
+      unsubscribe_account: Mijn account
+    direct_message_for_sender:
+      subject: "U heeft een nieuw prive bericht verstuurd"
+    user_invite:
+      ignore: "Als u deze uitnodiging niet hebt geaccepteerd maak je geen zorgen, u kunt deze e-mail dan negeren."
+      text: "Dank u voor uw interesse om toe te treden tot %{org}! In een paar seconden kunt u deelnemen, vul het onderstaande formulier in:"
+      thanks: "Heel erg bedankt."
+      title: "Welkom bij %{org}"
+      button: Inschrijving voltooien
+      subject: "Uitnodiging voor %{org_name}"
+    budget_investment_created:
+      subject: "Dank u voor het maken van een investering!"
+      title: "Dank u voor het maken van een investering!"
+      follow_link: "Participatory Budgets"
+      sincerely: "Sincerely,"
+      share: "Comparte tu proyecto"
+    budget_investment_unfeasible:
+      hi: "Beste deelnemer,"
+      new_href: "nieuw investeringsproject"
+      sincerely: "Hoogachtend"
+      sorry: "Sorry voor het ongemak en nogmaals hartelijk dank voor uw waardevolle deelname."
+      subject: "Uw investeringsproject '%{code}' is als onhaalbaar gemarkeerd"
+    budget_investment_selected:
+      subject: "Uw investeringsproject '%{code}' is geselecteerd"
+      hi: "Beste deelnemer,"
+      share: "Begin met het verwerven van stemmen; deel uw project op sociale netwerken, bijvoorbeeld. Delen en communicatie is essentieel om het verder te brengen."
+      share_button: "Deel uw project"
+      thanks: "Nogmaals dank voor uw deelname."
+      sincerely: "Hoogachtend"
+    budget_investment_unselected:
+      subject: "Uw project '%{code}' is niet geselecteerd"
+      hi: "Beste deelnemer,"
+      thanks: "Dank u nogmaals voor uw deelname."
+      sincerely: "Hoogachtend"

@@ -1,0 +1,39 @@
+nl:
+  flash:
+    actions:
+      create:
+        notice: "%{resource_name} is aangemaakt."
+        debate: "Debat is aangemaakt."
+        direct_message: "Je bericht is verzonden."
+        poll: "Je peiling is aangemaakt."
+        poll_booth: "Stemhokje is aangemaakt."
+        poll_question_answer: "Antwoord is aangemaakt"
+        poll_question_answer_video: "Video is aangemaakt"
+        poll_question_answer_image: "Afbeelding is geupload"
+        proposal: "Je motie is aangemaakt."
+        proposal_notification: "Je bericht is verstuurd."
+        spending_proposal: "Begrotingsvoorstel is aangemaakt. Je kunt het inzien via %{activity}"
+        budget_investment: "Budget investering is aangemaakt."
+        signature_sheet: "Handtekeningenlijst is aangemaakt."
+        topic: "Onderwerp is aangemaakt"
+        valuator_group: "Beoordelingsgroep is aangemaakt."
+      save_changes:
+        notice: Wijzigingen opgeslagen
+      update:
+        notice: "%{resource_name} is bijgewerkt"
+        debate: "Debat is bijgewerkt"
+        poll: "Peiling is bijgewerkt"
+        poll_booth: "Stemhokje is bijgewerkt."
+        proposal: "Motie is bijgewerkt."
+        spending_proposal: "Begrotingsvoorstel is bijgewerkt."
+        budget_investment: "Budgetinvestering is bijgewerkt."
+        topic: "Onderwerp is bijgewerkt."
+        valuator_group: "Beoordelingsgroep is bijgewerkt"
+        translation: "Vertaling is succesvol bijgewerkt"
+      destroy:
+        spending_proposal: "Begrotingsvoorstel is verwijderd."
+        budget_investment: "Budgetinvestering is verwijderd."
+        error: "Verwijderen is niet gelukt"
+        topic: "Onderwerp is verwijderd."
+        poll_question_answer_video: "Reactie video is verwijderd."
+        valuator_group: "Beoordelingsgroep is verwijderd"

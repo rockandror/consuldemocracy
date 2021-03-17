@@ -19,6 +19,6 @@ module SiteCustomizationHelper
   end
 
   def information_texts_tabs
-    [:basic, :debates, :community, :proposals, :polls, :layouts, :mailers, :management, :welcome]
+    [:basic, :debates, :community, :proposals, :polls, :layouts, :mailers, :management, :welcome, :annotator, :devise_views, :budgets, :legislation, :devise, :account, :application, :comments, :comments_helper, :errors, :form, :geozones, :notifications, :map, :poll_questions, :proposal_notifications, :shared, :unauthorized, :users, :votes, :related_content]
   end
 end

@@ -1,5 +1,5 @@
-# Use Ruby 2.4.10 as base image
-FROM ruby:2.4.10
+# Use Ruby 2.5.8 as base image
+FROM ruby:2.5.8
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -47,6 +47,10 @@ RUN gem install bundler
 
 # Copy the Rails application into place
 COPY . .
+
+# Persistant volumes for attachments and configuration
+# VOLUME $RAILS_ROOT/config
+# VOLUME $RAILS_ROOT/public/system/images/attachments
 
 # Define the script we want run once the container boots
 # Use the "exec" form of CMD so our script shuts down gracefully on SIGTERM (i.e. `docker stop`)
