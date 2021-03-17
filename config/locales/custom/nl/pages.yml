@@ -5,7 +5,7 @@ nl:
       subtitle: JURIDISCHE KENNISGEVING OP DE GEBRUIKSVOORWAARDEN, PRIVACY EN BESCHERMING VAN GEGEVENS VAN DE OPEN OVERHEID PORTAL
       description: Informatiepagina over de gebruiksvoorwaarden, privacy en bescherming van persoonsgegevens.
     help:
-      title: "Ontdek %{org}"
+      title: "Informatie Ledenkamer %{org}"
       guide: "Deze handleiding behandelt ieder onderdeel van %{org}. Meer informatie vind je door te klikken op onderstaande links."
       menu:
         debates: "Debatten"
@@ -90,16 +90,16 @@ nl:
               page_column: Debatten
             - 
               key_column: 2
-              page_column: Voorstellen
+              page_column: Moties
             - 
               key_column: 3
-              page_column: Votes
+              page_column: Peiling
             - 
               key_column: 4
               page_column: Participatory budgets
             - 
               key_column: 5
-              page_column: Plannen
+              page_column: Amendementen
         browser_table:
           description: "Afhankelijk van het besturingssysteem en de browser die je gebruikt, zullen de toetsencombinaties als volgt zijn:"
           caption: Toetsencombinatie afhankelijk van het besturingssysteem en browser

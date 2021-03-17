@@ -68,7 +68,7 @@ nl:
         orders:
           created_at: Most recent
           flags: Meest gemarkeerd
-        title: Voorstellen
+        title: Moties
     budget_investments:
       index:
         block_authors: Blokkeer auteurs

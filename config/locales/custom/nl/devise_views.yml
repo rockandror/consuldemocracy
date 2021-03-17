@@ -33,7 +33,7 @@ nl:
     menu:
       login_items:
         login: Log in
-        logout: Log out
+        logout: Log uit
         signup: Aanmelden
     organizations:
       registrations:

@@ -109,7 +109,7 @@ nl:
     process:
       debates: "Discussies"
       debates_description: "De debatruimte is bedoeld voor iedereen die kwesties wil presenteren die hen aangaan en waarover zij hun mening met anderen willen afstemmen"
-      proposals: "Voorstellen"
+      proposals: "Moties"
       proposals_description: "Voorstellen bieden mensen een kans om te helpen beslissen en, na het ontvangen van voldoende steun, in stemming te brengen"
       polls: "Peilingen"
       polls_description: "Peilingen bieden een mechanisme om mensen met stemrecht invloed te laten uitoefenen op beslissingen"

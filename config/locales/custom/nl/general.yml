@@ -15,8 +15,8 @@ nl:
       title: Mijn account
       user_permission_debates: Deelnemen aan discussies
       user_permission_info: Met uw account kunt u...
-      user_permission_proposal: Nieuwe voorstellen indienen
-      user_permission_support_proposal: Voorstellen steunen
+      user_permission_proposal: Nieuwe moties indienen
+      user_permission_support_proposal: Moties steunen
       user_permission_title: Deelname
       user_permission_verify: Verifiëer uw account om alles te kunnen.
       user_permission_verify_info: "* Only for users on Census."
@@ -170,6 +170,7 @@ nl:
     image: Afbeelding
   geozones:
     none: Hele partij
+    geozone: Afdeling
   layouts:
     application:
       chrome: Google Chrome
@@ -286,15 +287,16 @@ nl:
     form:
       proposal_responsible_name_note: "(individueel of als vertegenwoordiger van een collectief; niet publiek zichtbaar)"
       proposal_summary_note: "(max is 200 letters)"
-      proposal_video_url_note: U kunt een link naar YouTube of Vimeo toevoegen
-      tag_category_label: "Categories"
-      tags_instructions: "Label deze motie. U kunt uw eigen categorie kiezen of één van de bestaande."
-      tags_label: Tags
+      proposal_video_url_note: Voeg hier een link naar YouTube of Vimeo toe.
+      tag_category_label: "Labels"
+      tags_instructions: "Geef deze motie een label. Hier kan je een kan je een bestaand label kiezen of er een nieuwe aanmaken."
+      tags_label: "Thema's"
       tags_placeholder: "Voer de labels in die je wilt gebruiken, gescheiden door kommas (',')"
       map_location: "Locatie"
       map_location_instructions: "Beweeg de kaart en wijs de locatie aan."
       map_remove_marker: "Locatie verwijderen"
       map_skip_checkbox: "De locatie voor het voorstel is niet bekend."
+      geozone: Afdeling
     index:
       featured_proposals: Alle moties
       orders:
@@ -314,6 +316,10 @@ nl:
           error: "Er is een fout opgetreden. Ga naar de pagina 'Uw account' om aanbevelingen voor moties handmatig uit te schakelen"
       retired_proposals: Teruggetrokken moties
       retired_proposals_link: "Teruggetrokken moties"
+      selected_proposals: Geselecteerde moties
+      selected_proposals_link: Bekijk geselecteerde moties
+      archived_proposals: Gearchiveerde moties
+      proposals_lists: Motie lijst
       retired_links:
         all: All
         duplicated: Dubbele
@@ -346,8 +352,8 @@ nl:
       recommendation_two: Overwegende dat:------(beschrijf je overweging)
       recommendation_three: Constaterende dat:------(beschrijf je constatering)
       recommendation_four: Verzoekt het Partijbestuur / Tweede Kamerfractie / Eerste Kamerfractie / Delegatie EP (kies een van de vier) om:---
-      recommendations_title: Gebruik deze vier punten bij het beschrijven van de motie
-      start_new: Maak nieuwe motie
+      recommendations_title: Gebruik deze vier punten bij je motie
+      start_new: Nieuwe motie maken
     notice:
       retired: Motie teruggetrokken
     proposal:
