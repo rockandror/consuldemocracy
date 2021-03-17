@@ -75,6 +75,8 @@ But for some actions like voting, you will need a verified user, the seeds file 
  **user:** verified@consul.dev
  **pass:** 12345678
 
+https://consul.dev/users/sign_in?sign_in_form
+
 /users/sign_in?sign_in_form
 
 ## Configuration for production environments
