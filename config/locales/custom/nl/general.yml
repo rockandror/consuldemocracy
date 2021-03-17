@@ -260,6 +260,9 @@ nl:
       sign_in: Log in via Mijn Pvda Account
       sign_up: Registreer via Mijn Pvda Account
       name: Mijn Pvda
+    info:
+      sign_in: "via je account bij:"
+      sign_up: "Sign up with:"
     or_fill: "Of vul het volgende in:"
   proposals:
     create:

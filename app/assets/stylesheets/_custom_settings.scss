@@ -89,7 +89,19 @@ $tab-background: $background;
 $tab-content-background: $background;
 $tab-background-active: $background;
 
+.button.button-wordpress {
+  background: $brand-secondary !important;
+  border-left: 3px solid $brand !important;
+  color: #fff !important;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 120% !important;
+  font-weight: bolder !important;
 
+  &::before {
+    color: $brand-secondary!important;
+    content: ""!important;
+  }
+}
 
 .auth-image {
   background-color: #fff !important;
