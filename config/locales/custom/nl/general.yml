@@ -415,6 +415,7 @@ nl:
       retired_explanation: "Uitleg"
       author_deleted: Gebruiker verwijderd
       code: "Motie code:"
+      dashboard_proposal_link: Motie Dashboard
       comments:
         zero: Geen reacties
         one: 1 opmerking
@@ -664,6 +665,7 @@ nl:
     proposals:
       retired: "Teruggetrokken"
       see: "Bekijk moties"
+      actions: Acties
   votes:
     agree: Ik ben het eens
     anonymous: Er zijn al te veel anonieme stemmen; %{verify_account}.

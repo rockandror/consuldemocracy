@@ -26,6 +26,7 @@ nl:
         description: "In dit %{link} onderdeel kun je moties indienen voor jouw partij en reageren op moties van anderen. Moties van leden zijn een kans om de koers van de partij te bepalen. De moties die meer dan 100 steunbetuigingen halen komen in het Stemlokaal. De moties die genoeg draagkracht hebben en voldoen volgens de statuten worden ingediend voor het congres."
         image_alt: "Knop om een voorstel te steunen"
         figcaption_html: 'Knop om een voorstel te "Steunen".<br>Als het mimimum aantal steunbetuigingen is bereikt wordt het in stemming gebracht.'
+        link: "moties"
       budgets:
         title: "Burgerbegroting"
         description: "Het %{link} onderdeel helpt bij het geven van direct zeggenschap aan inwoners over de besteding van gebiedsbudgetten van de gemeente."
@@ -40,7 +41,7 @@ nl:
       processes:
         title: "Proces"
         description: "In het %{link} onderdeel kun je deelnemen in het amenderen van formele stukken."
-        link: "plannen"
+        link: "amendementen"
       faq:
         title: "Technische problemen?"
         description: "Lees de FAQs en kijk of dat helpt."

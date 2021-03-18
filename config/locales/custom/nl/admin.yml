@@ -55,7 +55,7 @@ nl:
           all: All
           on_comments: Comments
           on_debates: Discussie
-          on_proposals: Voorstellen
+          on_proposals: Moties
           on_users: Deelnemer
           on_system_emails: Systeemberichten
         title: Moderator activity
