@@ -1,13 +1,11 @@
 <div class="proposal-form row">
 
   <div class="small-12 medium-9 column">
-    <%= back_link_to %>
+   
 
     <h1><%= t("proposals.new.start_new") %></h1>
     <div data-alert class="callout primary">
-      <%= link_to help_path(anchor: "proposals"), title: t('shared.target_blank_html'), target: "_blank" do %>
-        <%= t("proposals.new.more_info")%>
-      <% end %>
+     <%= link_to "Zo schrijf je een goede motie!", "https://ledenkamer.pvda.nl/schrijf-goede-motie", target: "_blank" %> &nbsp;</a>
     </div>
     <%= render "proposals/form", form_url: proposals_url %>
   </div>
