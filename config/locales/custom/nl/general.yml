@@ -177,6 +177,21 @@ nl:
       firefox: Firefox
       ie: U gebruikt Internet Explorer. We raden %{firefox} of %{chrome} aan voor de beste resultaten.
       ie_title: Deze site is niet geoptimaliseert voor uw browser
+    dashboard:
+      proposal_header:
+        published: Gepubliceerd
+        draft: Concept
+        retired: Teruggetrokken  
+      proposal_totals:
+        active_resources: Middelen
+        community: Deelnemers aan je motie
+        show_proposal: Motie tonen
+        preview_proposal: Concept  motie tonen
+        current_goal: Benodigd aantal
+        supports:
+          zero: Geen steun
+          one: 1 Steun
+          other: "Steunverklaringen"  
     footer:
       accessibility: Toegankelijkheid
       conditions: Gebruiksvoorwaarden
@@ -447,7 +462,7 @@ nl:
         description: Burger opiniepeilingen zijn een participatieve mechanisme waarmee burgers met stemrecht direct beslissingen kunnen nemen
       no_polls: "Er zijn geen openstaande stemmingen."
     show:
-      dashboard_proposal_link: Dashboar
+      dashboard_proposal_link: Dashboard
       already_voted_in_booth: "Je hebt al gestemd op een stemlocatie. Je mag niet nog een keer stemmen."
       already_voted_in_web: "Je hebt al deelgenomen in deze stemronde. Als je nogmaals stemt, wordt je eerdere stemming overschreven."
       back: Terug naar stemmen
@@ -477,6 +492,18 @@ nl:
       results:
         title: "Vragen"
         most_voted_answer: "Antwoord met de meeste stemmen: "
+  dashboard:
+    menu:
+      my_proposal: Motie bewerken
+      progress: Voortgang
+      resources: Resources
+      community: Community
+      polls: Polls
+      mailing: E-mail
+      poster: Poster
+      recommended_actions: Recommended actions
+      messages: Message to users
+      related_content: Related content      
   poll_questions:
     show:
       vote_answer: "Stem %{answer}"
@@ -612,6 +639,7 @@ nl:
       budget_investments: Begrotingsvoorstellen
       comments: Reacties
       actions: Activiteiten
+      proposals_status: Status
       filters:
         comments:
           one: 1 Reactie
