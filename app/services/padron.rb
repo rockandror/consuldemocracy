@@ -17,6 +17,7 @@ class Padron
                 user.adress.postal_code = response[:codigo_postal]
 
                 if user.adress.save!
+                    user.geozone_id = response[:codigo_distrito]
                     user.save
                     true
                 else

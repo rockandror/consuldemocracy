@@ -1,9 +1,9 @@
 <%= form_for @import, url: management_import_users_path do |f| %>
   <%= render "shared/errors", resource: @import %>
 
-  <%= f.file_field :file %>
+  <%= f.file_field :file, :onchange => "changeButton(importbtn)"%>
 
   <div class="small-12 medium-4 large-2 margin-top">
-    <%= f.submit class: "button success expanded", value: t("shared.import") %>
+    <%= f.submit id: "importbtn", class: "button success expanded", disabled: true, value: t("shared.import") %>
   </div>
 <% end %>

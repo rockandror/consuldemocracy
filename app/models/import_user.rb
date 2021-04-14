@@ -27,11 +27,13 @@ class ImportUser < BaseImporter
     return false if invalid?
     @path_to_file = file.path
     valid = valid_users
-    if valid == true
-      import!
+    import! if valid.blank?
+    if valid == false 
+      valid = {0 => "Fichero en blanco"}
+    elsif valid.blank?
       true
     else
-      return valid
+      valid
     end
   end
 
@@ -45,24 +47,33 @@ class ImportUser < BaseImporter
       count = 0
       message = "Fila #{count}, el nombre, el email y el documento no pueden estar en blanco."
       errors = {}
+      blank_file = true
       each_row do |row|
-        count = count + 1
-        if row[:usuario].blank?
-          errors.merge!({count => "Usuario en blanco"})
-        elsif !User.find_by(username: row[:usuario]).blank?
-          errors.merge!({count => "El nombre de usuario ya está en uso."})
-        elsif row[:email].blank?
-          errors.merge!({count => "Email en blanco"})
-        elsif !User.find_by(email: row[:email]).blank?
-          errors.merge!({count => "El email ya está en uso."})
-        elsif row[:documento].blank?
-          errors.merge!({count => "Documento en blanco"})
-        elsif !User.find_by(document_number: row[:documento]).blank?
-          errors.merge!({count => "Ya existe un usuario con el mismo documento."})
+        blank_file = false
+        begin
+          count = count + 1
+          if row.blank?
+            errors.merge!({count => message})
+          else
+            if row[:usuario].blank?
+              errors.merge!({count => "Usuario en blanco"})
+            elsif !User.find_by(username: row[:usuario]).blank?
+              errors.merge!({count => "El nombre de usuario ya está en uso."})
+            elsif row[:email].blank?
+              errors.merge!({count => "Email en blanco"})
+            elsif !User.find_by(email: row[:email]).blank?
+              errors.merge!({count => "El email ya está en uso."})
+            elsif row[:documento].blank?
+              errors.merge!({count => "Documento en blanco"})
+            elsif !User.find_by(document_number: row[:documento]).blank?
+              errors.merge!({count => "Ya existe un usuario con el mismo documento."})
+            end
+          end
+        rescue
+          errors.merge!({count => message})
         end
       end
-      return errors if errors.length > 0
-      true
+      blank_file == false ? errors : false
     end
 
     def import!
@@ -97,8 +108,7 @@ class ImportUser < BaseImporter
     end
 
     def valid_data(row)
-      return false if row[:usuario].blank? || row[:email].blank? || row[:documento].blank?
-      true
+      !(row[:usuario].blank? || row[:email].blank? || row[:documento].blank?)
     end
 
     def build_user(row)

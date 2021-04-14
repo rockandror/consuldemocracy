@@ -16,7 +16,7 @@ class Management::UsersController < Management::BaseController
     if verify_address == true
       @user.residence_verified_at = Time.current
     end
-
+    @user.geozone_id = @user.adress.district
     @user.verified_at = Time.current
     pass = Digest::SHA1.hexdigest("#{@user.created_at.to_s}--#{@user.username}")[0,8].upcase
     @user.password = pass

@@ -121,6 +121,7 @@ class Admin::UsersController < Admin::BaseController
   def hide
     if !params[:hidden_data].blank?
       user = User.find(params[:id])
+      remove_old_profile(user)
       user.username = "Usuario dado de baja-" + user.id.to_s + "-" + params[:hidden_data].to_s
       user.date_hide = Date.today
       delete_email = "update users set email=null where id=#{@user.id}"
@@ -134,7 +135,37 @@ class Admin::UsersController < Admin::BaseController
       redirect_to admin_users_path, alert: "Debe introducir la causa de la baja para poder eliminar un usuario."
     end
   end
-  
+
+  def remove_old_profile(user)
+    Superadministrator.where(user_id: user).each do |superadmin|
+      superadmin.destroy
+    end
+    Administrator.where(user_id: user).each do |administrator|
+      administrator.destroy
+    end
+    SuresAdministrator.where(user_id: user).each do |suresadmin|
+      suresadmin.destroy
+    end
+    SectionAdministrator.where(user_id: user).each do |sectionadmin|
+      sectionadmin.destroy
+    end
+    Consultant.where(user_id: user).each do |consultant|
+      consultant.destroy
+    end
+    Valuator.where(user_id: user).each do |valuator|
+      valuator.destroy
+    end
+    Moderator.where(user_id: user).each do |moderator|
+      moderator.destroy
+    end
+    Manager.where(user_id: user).each do |manager|
+      manager.destroy
+    end
+    Editor.where(user_id: user).each do |editor|
+      editor.destroy
+    end
+  end
+
   def hide_params
     params.require(:hide).permit(:hidden_datak, :date_hide)
   end

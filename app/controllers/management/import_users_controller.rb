@@ -7,9 +7,7 @@ class Management::ImportUsersController < Management::BaseController
         @import = ImportUser.new(import_users_params)
         @logs = @import.save
         if @logs == true
-            notice = t("admin.moderated_texts.imports.create.notice")
-            error = t("admin.moderated_texts.imports.create.error")
-            redirect_to management_import_users_path, notice: notice
+            redirect_to management_import_users_path, notice: t("admin.moderated_texts.imports.create.notice")
         else
             render :new
         end

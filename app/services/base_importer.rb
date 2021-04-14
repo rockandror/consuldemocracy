@@ -20,6 +20,21 @@ require 'csv_converters'
       end
     end
 
+    # def each_row(options = {})
+    #   ##yyy
+    #   text = File.read(@path_to_file)
+    #   puts "============================"
+    #   puts CSV.parse(text, headers: false)
+    #   puts "==============================="
+    #   xxxxxxxxx
+    #   CSV.foreach(@path_to_file, OPTIONS.merge(options)) do |row|
+    #     puts "==============================="
+    #     puts row
+    #     puts "==============================="
+    #     xxxxx
+    #   end
+    # end
+
     def import!
       each_row{ |row| puts row.inspect }
     end

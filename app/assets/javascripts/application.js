@@ -263,3 +263,9 @@ function changeShowFields(element, field) {
   console.log(field)
 }
 
+function changeButton(element){
+  $("#importbtn").each(function(){
+    $(this).attr("disabled", false);
+  });
+}
+
