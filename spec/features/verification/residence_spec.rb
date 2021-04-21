@@ -1,37 +1,6 @@
 require 'rails_helper'
 
-feature 'Residence' do
-
-  # MOCK SaraNET
-  before(:each) do
-
-    ENV['SOAP_PLATINO_PKCS12_PASSWORD'] = ""
-    ENV['SARA_WSDL_URL'] = ""
-    ENV['SOAP_VERIFICAR_IDENTIDAD_NIF_FUNCIONARIO'] = ""
-    ENV['SOAP_VERIFICAR_IDENTIDAD_IDENTIFICADOR_SOLICITANTE'] = ""
-    ENV['SOAP_VERIFICAR_IDENTIDAD_NOMBRE_SOLICITANTE'] = ""
-    ENV['SOAP_VERIFICAR_IDENTIDAD_COD_PROCEDIMIENTO'] = ""
-    ENV['SOAP_VERIFICAR_IDENTIDAD_NOMBRE_PROCEDIMIENTO'] = ""
-    ENV['SOAP_VERIFICAR_IDENTIDAD_FINALIDAD'] = ""
-    ENV['SOAP_VERIFICAR_IDENTIDAD_ID_EXPEDIENTE'] = ""
-    ENV['SOAP_VERIFICAR_RESIDENCIA_NIF_FUNCIONARIO'] = ""
-    ENV['SOAP_VERIFICAR_RESIDENCIA_IDENTIFICADOR_SOLICITANTE'] = ""
-    ENV['SOAP_VERIFICAR_RESIDENCIA_NOMBRE_SOLICITANTE'] = ""
-    ENV['SOAP_VERIFICAR_RESIDENCIA_COD_PROCEDIMIENTO'] = ""
-    ENV['SOAP_VERIFICAR_RESIDENCIA_NOMBRE_PROCEDIMIENTO'] = ""
-    ENV['SOAP_VERIFICAR_RESIDENCIA_FINALIDAD'] = ""
-    ENV['SOAP_VERIFICAR_RESIDENCIA_ID_EXPEDIENTE'] = ""
-    ENV["SOAP_URL_SVD"] = ""
-    ENV["SOAP_URL_PET"] = ""
-    ENV["SOAP_URL_VER"] = ""
-    ENV["SOAP_URL_VER1"] = ""
-    ENV["SOAP_URL_AMB"] = ""
-    ENV["SOAP_URL_NS8"] = ""
-
-    allow_any_instance_of(SaraNet).to(receive(:verify_residence).and_return(true))
-    allow_any_instance_of(ConectorRegistroEntidadesJuridicas).to(receive(:validUserAsoc?).and_return(true))
-    allow_any_instance_of(ConectorRegistroEntidadesJuridicas).to(receive(:validUserFund?).and_return(true))    
-  end
+feature 'Residence', :sara do
 
   background { create(:geozone) }
 
