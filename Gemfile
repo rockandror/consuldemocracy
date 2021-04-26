@@ -6,7 +6,6 @@ gem 'rails', '4.2.11'
 gem 'logstash-logger'
 gem 'omniauth-saml'
 gem 'rest-client', '~> 2.0', '>= 2.0.2'
-gem 'savon', '~> 2.12.1'
 gem 'signer', '~> 1.9'
 gem 'execjs'
 
@@ -95,8 +94,6 @@ group :test do
   gem 'database_cleaner', '~> 1.7.0'
   gem 'email_spec', '~> 2.1.0'
   gem 'rspec-rails', '~> 3.8'
-  gem 'rspec_junit_formatter'
-  gem 'selenium-webdriver', '~> 3.10'
 end
 
 group :development do
