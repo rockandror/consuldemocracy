@@ -172,8 +172,8 @@ FactoryBot.define do
   factory :budget_phase, class: 'Budget::Phase' do
     budget
     kind        :balloting
-    summary     Faker::Lorem.sentence(3)
-    description Faker::Lorem.sentence(10)
+    summary     { Faker::Lorem.sentence(3) }
+    description { Faker::Lorem.sentence(10) }
     starts_at   { Date.yesterday }
     ends_at     { Date.tomorrow }
     enabled     true
