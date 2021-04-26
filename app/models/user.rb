@@ -12,11 +12,15 @@ class User < ApplicationRecord
   include ActsAsParanoidAliases
 
   include Graphqlable
-
+  has_one :superadmin
   has_one :administrator
+  has_one :sures_administrator
+  has_one :section_administrator
   has_one :moderator
   has_one :valuator
   has_one :manager
+  has_one :consultant
+  has_one :editor
   has_one :poll_officer, class_name: "Poll::Officer"
   has_one :organization
   has_one :lock
@@ -34,9 +38,13 @@ class User < ApplicationRecord
   has_many :legislation_answers, class_name: "Legislation::Answer", dependent: :destroy, inverse_of: :user
   has_many :follows, dependent: :destroy
   belongs_to :geozone
+  belongs_to :adress
+  belongs_to :profile
 
   validates :username, presence: true, if: :username_required?
   validates :username, uniqueness: { scope: :registering_with_oauth }, if: :username_required?
+  validates :email, presence: true
+  validates :document_type, presence: true
   validates :document_number, uniqueness: { scope: :document_type }, allow_nil: true
 
   validate :validate_username_length
@@ -48,6 +56,8 @@ class User < ApplicationRecord
   validates_associated :organization, message: false
 
   accepts_nested_attributes_for :organization, update_only: true
+  accepts_nested_attributes_for :adress
+  accepts_nested_attributes_for :profile
 
   attr_accessor :skip_password_validation
   attr_accessor :use_redeemable_code
@@ -154,8 +164,20 @@ class User < ApplicationRecord
     Budget::Investment.where(id: votes.for_budget_investments.pluck(:votable_id))
   end
 
+  def super_administrator?
+    !Superadministrator.find_by(user_id: self.id).blank?
+  end
+
   def administrator?
-    !Administrator.find_by(user_id: self.id).blank?
+    !Administrator.find_by(user_id: self.id).blank? || self.sures? || self.super_administrator? || self.section_administrator? || self.consultant? || self.editor?
+  end
+
+  def sures?
+    !SuresAdministrator.find_by(user_id: self.id).blank?
+  end
+
+  def section_administrator?
+    !SectionAdministrator.find_by(user_id: self.id).blank?
   end
 
   def moderator?
@@ -168,6 +190,14 @@ class User < ApplicationRecord
 
   def manager?
     manager.present?
+  end
+
+  def consultant?
+    !Consultant.find_by(user_id: self.id).blank?
+  end
+
+  def editor?
+    !Editor.find_by(user_id: self.id).blank?
   end
 
   def poll_officer?
@@ -244,6 +274,7 @@ class User < ApplicationRecord
   end
 
   def ip_out_of_internal_red?
+    return false if Rails.env.test?
     current_ip = IPAddr.new(self.current_sign_in_ip)
     low = IPAddr.new("10.90.0.0")
     high = IPAddr.new("10.90.255.255")
@@ -264,7 +295,7 @@ class User < ApplicationRecord
   end
 
   def double_verification?
-    return true if !self.ip_out_of_internal_red? && self.administrator?
+    return true if !self.ip_out_of_internal_red? && self.administrator? || !self.ip_out_of_internal_red? && self.sures?
     self.ip_out_of_internal_red? && self.try(:administrator?) && self.access_key_inserted_correct? && !required_new_password? && (self.try(:access_key_tried) < 3)
   end
 
@@ -449,7 +480,7 @@ class User < ApplicationRecord
 
   def exceeded_failed_login_attempts?
     failed_attempts >= Setting["captcha.max_failed_login_attempts"].to_i
-  end
+  end  
 
   private
 

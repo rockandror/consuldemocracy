@@ -19,8 +19,23 @@ class Admin::ModeratorsController < Admin::BaseController
     redirect_to admin_moderators_path
   end
 
-  def destroy
-    @moderator.destroy
+  def destroy  
+    if !@moderator.blank?
+      if !current_user.blank? && current_user.id == @moderator.user_id
+        flash[:error] = I18n.t("admin.moderators.moderator.restricted_removal")
+      else
+        user = User.find(@moderator.user_id)
+        user.profiles_id = nil
+        user.save
+        @moderator.destroy
+      end
+    else
+      flash[:error] = I18n.t("admin.moderators.moderator.restricted_removal")
+    end
+
+    redirect_to admin_moderators_path
+  rescue
+    flash[:error] = I18n.t("admin.moderators.moderator.restricted_removal")
     redirect_to admin_moderators_path
   end
 end

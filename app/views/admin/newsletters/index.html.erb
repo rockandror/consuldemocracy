@@ -19,7 +19,7 @@
           <%= newsletter.try(:subject) %>
         </td>
         <td>
-          <%= segment_name(newsletter.segment_recipient) %>
+          <%= User.find_by(email: newsletter.segment_recipient).blank? ? segment_name(newsletter.segment_recipient) : newsletter.segment_recipient %>
         </td>
         <td>
           <% if newsletter.draft? %>
@@ -30,7 +30,7 @@
         </td>
         <td>
           <div class="small-4 column">
-          <%= link_to t("admin.newsletters.index.edit"), edit_admin_newsletter_path(newsletter),
+          <%= link_to t("admin.newsletters.index.edit"), User.find_by(email: newsletter.segment_recipient).blank? ? edit_admin_newsletter_path(newsletter) : edit_admin_newsletter_path(newsletter, user: User.find_by(email: newsletter.segment_recipient)),
                                                          method: :get, class: "button hollow expanded" %>
           </div>
           <div class="small-4 column">

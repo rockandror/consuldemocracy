@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201125101402) do
+ActiveRecord::Schema.define(version: 20210312141332) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,22 @@ ActiveRecord::Schema.define(version: 20201125101402) do
   create_table "administrators", force: :cascade do |t|
     t.integer "user_id"
     t.index ["user_id"], name: "index_administrators_on_user_id", using: :btree
+  end
+
+  create_table "adresses", force: :cascade do |t|
+    t.integer  "users_id"
+    t.text     "road_type"
+    t.text     "road_name"
+    t.text     "road_number"
+    t.text     "floor"
+    t.text     "door"
+    t.text     "gate"
+    t.text     "district"
+    t.text     "borought"
+    t.text     "postal_code"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["users_id"], name: "index_adresses_on_users_id", using: :btree
   end
 
   create_table "ahoy_events", id: :uuid, default: nil, force: :cascade do |t|
@@ -413,6 +429,11 @@ ActiveRecord::Schema.define(version: 20201125101402) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "consultants", force: :cascade do |t|
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_consultants_on_user_id", using: :btree
+  end
+
   create_table "dashboard_actions", force: :cascade do |t|
     t.string   "title",                     limit: 80
     t.text     "description"
@@ -527,6 +548,11 @@ ActiveRecord::Schema.define(version: 20201125101402) do
     t.index ["documentable_type", "documentable_id"], name: "index_documents_on_documentable_type_and_documentable_id", using: :btree
     t.index ["user_id", "documentable_type", "documentable_id"], name: "access_documents", using: :btree
     t.index ["user_id"], name: "index_documents_on_user_id", using: :btree
+  end
+
+  create_table "editors", force: :cascade do |t|
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_editors_on_user_id", using: :btree
   end
 
   create_table "failed_census_calls", force: :cascade do |t|
@@ -1296,6 +1322,13 @@ ActiveRecord::Schema.define(version: 20201125101402) do
     t.index ["codename"], name: "index_probes_on_codename", using: :btree
   end
 
+  create_table "profiles", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "code"
+  end
+
   create_table "progress_bar_translations", force: :cascade do |t|
     t.integer  "progress_bar_id", null: false
     t.string   "locale",          null: false
@@ -1417,6 +1450,11 @@ ActiveRecord::Schema.define(version: 20201125101402) do
     t.index ["process_type", "process_id"], name: "index_reports_on_process_type_and_process_id", using: :btree
   end
 
+  create_table "section_administrators", force: :cascade do |t|
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_section_administrators_on_user_id", using: :btree
+  end
+
   create_table "settings", force: :cascade do |t|
     t.string  "key"
     t.string  "value"
@@ -1502,6 +1540,82 @@ ActiveRecord::Schema.define(version: 20201125101402) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["process_type", "process_id"], name: "index_stats_versions_on_process_type_and_process_id", using: :btree
+  end
+
+  create_table "superadministrators", force: :cascade do |t|
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_superadministrators_on_user_id", using: :btree
+  end
+
+  create_table "sures_actuation_translations", force: :cascade do |t|
+    t.integer  "sures_actuation_id",   null: false
+    t.string   "locale",               null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "proposal_title"
+    t.text     "proposal_objective"
+    t.text     "territorial_scope"
+    t.text     "location_performance"
+    t.text     "technical_visibility"
+    t.text     "actions_taken"
+    t.index ["locale"], name: "index_sures_actuation_translations_on_locale", using: :btree
+    t.index ["sures_actuation_id"], name: "index_sures_actuation_translations_on_sures_actuation_id", using: :btree
+  end
+
+  create_table "sures_actuations", force: :cascade do |t|
+    t.string   "status"
+    t.string   "financig_performance"
+    t.boolean  "check_anno",           default: false
+    t.boolean  "check_multianno",      default: false
+    t.string   "annos"
+    t.string   "tracking"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.string   "borought"
+    t.integer  "geozone_id"
+    t.string   "other"
+    t.index ["geozone_id"], name: "index_sures_actuations_on_geozone_id", using: :btree
+  end
+
+  create_table "sures_administrators", force: :cascade do |t|
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_sures_administrators_on_user_id", using: :btree
+  end
+
+  create_table "sures_customize_card_translations", force: :cascade do |t|
+    t.integer  "sures_customize_card_id", null: false
+    t.string   "locale",                  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "label"
+    t.string   "title"
+    t.text     "description"
+    t.string   "link_text"
+    t.index ["locale"], name: "index_sures_customize_card_translations_on_locale", using: :btree
+    t.index ["sures_customize_card_id"], name: "index_a5b2f928f909372aebe48d55c60ea154c06a6816", using: :btree
+  end
+
+  create_table "sures_customize_cards", force: :cascade do |t|
+    t.string   "link_url"
+    t.boolean  "header",                     default: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.integer  "site_customization_page_id"
+    t.integer  "columns",                    default: 4
+    t.string   "position_image",             default: "left"
+    t.index ["site_customization_page_id"], name: "index_sures_customize_cards_on_site_customization_page_id", using: :btree
+  end
+
+  create_table "sures_search_settings", force: :cascade do |t|
+    t.string   "title"
+    t.string   "data_type"
+    t.string   "data"
+    t.string   "resource"
+    t.string   "field"
+    t.string   "rules"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "active",     default: true
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -1630,11 +1744,18 @@ ActiveRecord::Schema.define(version: 20201125101402) do
     t.date     "access_key_generated_at"
     t.integer  "access_key_tried",                          default: 0
     t.date     "date_hide"
+    t.string   "name"
+    t.string   "last_name"
+    t.string   "last_name_alt"
+    t.integer  "adress_id"
+    t.integer  "profiles_id"
+    t.index ["adress_id"], name: "index_users_on_adress_id", using: :btree
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["geozone_id"], name: "index_users_on_geozone_id", using: :btree
     t.index ["hidden_at"], name: "index_users_on_hidden_at", using: :btree
     t.index ["password_changed_at"], name: "index_users_on_password_changed_at", using: :btree
+    t.index ["profiles_id"], name: "index_users_on_profiles_id", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["username"], name: "index_users_on_username", using: :btree
   end
@@ -1793,11 +1914,14 @@ ActiveRecord::Schema.define(version: 20201125101402) do
   end
 
   add_foreign_key "administrators", "users"
+  add_foreign_key "adresses", "users", column: "users_id"
   add_foreign_key "budget_investments", "communities"
+  add_foreign_key "consultants", "users"
   add_foreign_key "dashboard_administrator_tasks", "users"
   add_foreign_key "dashboard_executed_actions", "dashboard_actions", column: "action_id"
   add_foreign_key "dashboard_executed_actions", "proposals"
   add_foreign_key "documents", "users"
+  add_foreign_key "editors", "users"
   add_foreign_key "failed_census_calls", "poll_officers"
   add_foreign_key "failed_census_calls", "users"
   add_foreign_key "flags", "users"
@@ -1844,6 +1968,12 @@ ActiveRecord::Schema.define(version: 20201125101402) do
   add_foreign_key "proposals", "communities"
   add_foreign_key "related_content_scores", "related_contents"
   add_foreign_key "related_content_scores", "users"
+  add_foreign_key "section_administrators", "users"
+  add_foreign_key "superadministrators", "users"
+  add_foreign_key "sures_actuations", "geozones"
+  add_foreign_key "sures_administrators", "users"
+  add_foreign_key "users", "adresses"
   add_foreign_key "users", "geozones"
+  add_foreign_key "users", "profiles", column: "profiles_id"
   add_foreign_key "valuators", "users"
 end

@@ -15,7 +15,7 @@ module Sanitizable
   protected
 
     def sanitize_description
-      if self.author.blank? || !self.author.administrator?  
+      if self.try(:author).blank? || !self.try(:author).try{|x| x.administrator? }
         if translatable_description?
           sanitize_description_translations
         else

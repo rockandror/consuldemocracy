@@ -7,10 +7,15 @@
         <div class="row" style="padding-left:1em">
             <div class="small-12 medium-5 column">
                 <ul id="geozones" class="no-bullet">
+                <%if !current_user.blank? && current_user.section_administrator? && !current_user.geozone_id.blank? && current_user.geozone_id.to_s != params[:geozone]%>
+                    <li style="width:100%"><%= t("map.access_denied")%></li>
+                <%else%>
                     <% @proposals.each do |proposal| %>
                         <li style="width:100%"><%= link_to proposal.title, community_path(proposal.try(:community).id) %></li>
                     <% end %>
+                <%end%>
                 </ul>
+                
             </div>
             <div class="small-12 medium-7 column">
                 <%= image_tag("barrios.jpg", size: "700x200", alt: t("map.img_alt")) %>

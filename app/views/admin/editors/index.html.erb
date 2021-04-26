@@ -1,0 +1,51 @@
+<h2><%= t("admin.editors.index.title") %></h2>
+
+
+<div id="editors">
+  <% if @editors.any? %>
+    <h3 class="margin"><%= page_entries_info @editors %></h3>
+
+    <table>
+      <thead>
+        <th scope="col" class="text-center"><%= t("admin.editors.index.id") %></th>
+        <th scope="col"><%= t("admin.editors.index.name") %></th>
+        <th scope="col"><%= t("admin.editors.index.email") %></th>
+        <th scope="col" class="small-3"><%= t("admin.shared.actions") %></th>
+      </thead>
+      <% @editors.each do |editor| %>
+        <tr id="<%= dom_id(editor)%>">
+          <td class="text-center">
+            <%= editor.try(:id)%>
+          </td>
+          <td>
+            <%= editor.try(:name) %>
+          </td>
+          <td>
+            <%= editor.try(:email) %>
+          </td>
+          <td>
+            <% if editor.try(:persisted?) %>
+              <%= link_to t("admin.editors.editor.delete"),
+                          admin_editor_path(editor),
+                          method: :delete,
+                          class: "button hollow alert expanded"
+              %>
+            <% else %>
+              <%= link_to t("admin.editors.editor.add"),
+                          { controller: "admin/editors", action: :create,
+                            user_id: editor.user_id },
+                            method: :post,
+                            class: "button success expanded" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+
+    <%= paginate @editors %>
+  <% else %>
+    <div class="callout primary margin">
+      <%= t("admin.editors.index.no_editors") %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,37 @@
+<main>
+    <div class="activity row margin-top">
+        <div class="small-12 column">
+            <%= back_link_to %>
+            <h1>
+                <%= t("users.edit.title", receiver: @user.name) %>
+            </h1>
+            <%= form_for @user do |f| %>
+
+                <%= render "management/users/personal_data", f: f %>
+                
+                <%= render "management/users/adress", f: f %>
+                <h3 style="font-weight:0!important"><%= t("management.users.new.profiles") %></h3>
+                <% if @user.profiles_id == 1 && current_user.profiles_id != 1%>
+                    <div class="small-12 medium-12 column">
+                        <div class="small-12 medium-6 column left" style="background:#ededed;margin:1em">
+                            <%= t("management.users.unpermited") %>
+                        </div>
+                    </div>
+                <%else%>
+                    
+                    <div class="small-12 medium-12 column">
+                        <div class="small-12 large-2 medium-2 column left">
+                            <%= f.select :profiles_id, options_for_select(@profiles||{}, selected: @user.profiles_id),
+                                label: t("management.users.new.profiles"),
+                                placeholder: t("management.users.new.profiles"),
+                                include_blank: :true %>
+                        </div>
+                    </div>  
+                <%end%>
+                <div class="small-12 medium-12 column left">
+                    <%= f.submit t("management.users.update_user_submit"), class: "button success" %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</main>

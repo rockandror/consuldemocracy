@@ -45,6 +45,11 @@ $madrid-black: #000;
 $madrid-blue:  #003df6;
 $madrid-grey:  #f1f1f1;
 
+.import-errors {
+  color: red;
+  padding: 1em;
+}
+
 .top-links {
   background: $madrid-black;
 }

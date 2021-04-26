@@ -23,8 +23,8 @@
   </div>
   <div class="small-12 column">
     <strong><%= t("admin.newsletters.show.segment_recipient") %></strong><br>
-    <%= segment_name(@newsletter.segment_recipient) %>
-    <%= t("admin.newsletters.show.affected_users", n: recipients_count) %>
+    <%= User.find_by(email: @newsletter.segment_recipient).blank? ? segment_name(@newsletter.segment_recipient) : @newsletter.segment_recipient %>
+    <%= t("admin.newsletters.show.affected_users", n: User.find_by(email: @newsletter.segment_recipient).blank? ? recipients_count : 1) %>
   </div>
 
   <div class="small-12 column">
@@ -55,10 +55,10 @@
   <%= render file: "app/views/layouts/_mailer_footer.html.erb" %>
 </div>
 
-<% if @newsletter.draft? && @newsletter.valid_segment_recipient? %>
+<% if @newsletter.draft? %>
   <%= link_to t("admin.newsletters.show.send"),
-              deliver_admin_newsletter_path(@newsletter),
-              "data-alert": t("admin.newsletters.show.send_alert", n: recipients_count),
+              User.find_by(email: @newsletter.segment_recipient).blank? ? deliver_admin_newsletter_path(@newsletter) : deliver_user_admin_newsletter_path(@newsletter),
+              "data-alert": t("admin.newsletters.show.send_alert", n: User.find_by(email: @newsletter.segment_recipient).blank? ? recipients_count : 1),
               method: :post,
               id: "js-send-newsletter-alert",
               class: "button success" %>

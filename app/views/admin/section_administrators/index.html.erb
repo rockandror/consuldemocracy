@@ -1,0 +1,50 @@
+<h2><%= t("admin.section_administrators.index.title") %></h2>
+
+<div id="section_administrators">
+  <% if @section_administrators.any? %>
+    <h3 class="margin"><%= page_entries_info @section_administrators %></h3>
+
+    <table>
+      <thead>
+        <th scope="col" class="text-center"><%= t("admin.section_administrators.index.id") %></th>
+        <th scope="col"><%= t("admin.section_administrators.index.name") %></th>
+        <th scope="col"><%= t("admin.section_administrators.index.email") %></th>
+        <th scope="col" class="small-3"><%= t("admin.shared.actions") %></th>
+      </thead>
+      <% @section_administrators.each do |section_administrator| %>
+        <tr id="<%= dom_id(section_administrator)%>">
+          <td class="text-center">
+            <%= section_administrator.try(:id)%>
+          </td>
+          <td>
+            <%= section_administrator.try(:name) %>
+          </td>
+          <td>
+            <%= section_administrator.try(:email) %>
+          </td>
+          <td>
+            <% if section_administrator.try(:persisted?) %>
+              <%= link_to t("admin.section_administrators.section_administrator.delete"),
+                          admin_section_administrator_path(section_administrator),
+                          method: :delete,
+                          class: "button hollow alert expanded"
+              %>
+            <% else %>
+              <%= link_to t("admin.section_administrators.section_administrator.add"),
+                          { controller: "admin/section_administrators", action: :create,
+                            user_id: section_administrator.user_id },
+                            method: :post,
+                            class: "button success expanded" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+
+    <%= paginate @section_administrators %>
+  <% else %>
+    <div class="callout primary margin">
+      <%= t("admin.section_administrators.index.no_section_administrators") %>
+    </div>
+  <% end %>
+</div>

@@ -20,11 +20,13 @@ class Admin::AdministratorsController < Admin::BaseController
   end
 
   def destroy
-    begin
       if !@administrator.blank?
         if !current_user.blank? && current_user.id == @administrator.user_id
           flash[:error] = I18n.t("admin.administrators.administrator.restricted_removal")
         else
+          user = User.find(@administrator.user_id)
+          user.profiles_id = nil
+          user.save
           @administrator.destroy
         end
       else
@@ -32,9 +34,8 @@ class Admin::AdministratorsController < Admin::BaseController
       end
 
       redirect_to admin_administrators_path
-    rescue
-      flash[:error] = I18n.t("admin.administrators.administrator.restricted_removal")
-      redirect_to admin_administrators_path
-    end
+  rescue
+    flash[:error] = I18n.t("admin.administrators.administrator.restricted_removal")
+    redirect_to admin_administrators_path
   end
 end

@@ -1,8 +1,14 @@
 <%= form_for [:admin, @newsletter] do |f| %>
   <%= render "shared/errors", resource: @newsletter %>
 
+  <%if !params[:user].blank?%>
+    <%#= f.hidden_field :user, value: params[:user] %>
+    <%= f.hidden_field :segment_recipient, value: User.find(params[:user]).email %>
+    <%= f.text_field :segment_recipient, value: User.find(params[:user]).email, disabled: :true %>
+  <%else%>
   <%= f.select :segment_recipient, options_for_select(user_segments_options,
                                                       @newsletter[:segment_recipient]) %>
+  <%end%>
   <%= f.text_field :subject %>
   <%= f.label :from, t("admin.newsletters.new.from") %>
   <%= f.text_field :from, label: false %>
