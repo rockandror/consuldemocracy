@@ -2,14 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.11'
 
-# Gobcan gems
-gem 'logstash-logger'
-gem 'omniauth-saml'
-gem 'rest-client', '~> 2.0', '>= 2.0.2'
-gem 'signer', '~> 1.9'
-gem 'execjs'
-
-# General
 gem 'acts-as-taggable-on', '~> 5.0.0'
 gem 'acts_as_votable', '~> 0.11.1'
 gem 'ahoy_matey', '~> 1.6.0'
@@ -62,9 +54,6 @@ gem 'unicorn', '~> 5.4.1'
 gem 'whenever', '~> 0.10.0', require: false
 gem 'globalize', '~> 5.0.0'
 gem 'globalize-accessors', '~> 0.2.1'
-gem 'selenium-webdriver', '~> 3.10'
-gem 'tzinfo-data'
-gem 'puma'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-leaflet'
@@ -83,9 +72,6 @@ group :development, :test do
   gem 'quiet_assets', '~> 1.1.0'
   gem 'spring', '~> 2.0.1'
   gem 'spring-commands-rspec', '~> 1.0.4'
-  gem 'rspec_junit_formatter'
-  gem 'ruby-debug-ide'
-  gem 'debase'
 end
 
 group :test do
@@ -107,7 +93,6 @@ group :development do
   gem 'rvm1-capistrano3', '~> 1.4.0', require: false
   gem 'scss_lint', '~> 0.55.0', require: false
   gem 'web-console', '~> 3.3.0'
-  gem 'rails-erd'
 end
 
-gem "activerecord-nulldb-adapter", "~> 0.3.7"
+eval_gemfile "./Gemfile_custom"

@@ -3,3 +3,22 @@
 # * English: https://github.com/consul/consul/blob/master/CUSTOMIZE_EN.md#gemfile
 # * Spanish: https://github.com/consul/consul/blob/master/CUSTOMIZE_ES.md#gemfile
 #
+gem "activerecord-nulldb-adapter", "~> 0.3.7"
+gem "execjs"
+gem "logstash-logger"
+gem "omniauth-saml"
+gem "puma"
+gem "rest-client", "~> 2.0", ">= 2.0.2"
+gem "selenium-webdriver", "~> 3.10"
+gem "signer", "~> 1.9"
+gem "tzinfo-data"
+
+group :development, :test do
+  gem "debase"
+  gem "rspec_junit_formatter"
+  gem "ruby-debug-ide"
+end
+
+group :development do
+  gem "rails-erd"
+end
