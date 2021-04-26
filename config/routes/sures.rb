@@ -1,4 +1,4 @@
 resources :sures, only: [:index] do
-  get :search, on: :collection
-  get :actuation, on: :member
+  # get :search, on: :collection
+  # get :actuation, on: :member
 end
