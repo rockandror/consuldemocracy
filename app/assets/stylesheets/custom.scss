@@ -62,7 +62,7 @@
   background-color: $brand;
   border-radius: 20px;
 
-  & > p {
+  > p {
     padding-bottom: 10px;
     padding-left: 5px;
     padding-right: 5px;
@@ -74,10 +74,10 @@
   text-decoration: none;
   background-color: $dark;
 
-  & > .welcome-section-header {
+  > .welcome-section-header {
     border: 4px solid $dark;
 
-    & > .welcome-section-header-title {
+    > .welcome-section-header-title {
       text-decoration: none;
       color: $dark;
     }
@@ -142,7 +142,7 @@
   max-width: 275px;
   background-color: $white;
 
-  & > span {
+  > span {
     font-size: 16px;
     color: $dark-text;
   }
@@ -155,7 +155,7 @@
 .header-image {
   margin-left: 50%;
 
-  & > img {
+  > img {
     max-width: none;
   }
 }
@@ -290,13 +290,13 @@
 .row .featured-proposals {
   background: $brand-lighter;
 
-  & > div:first-child {
+  > div:first-child {
     background: $brad-2;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     margin-bottom: 15px;
 
-    & > h2 {
+    > h2 {
       margin-bottom: 0;
       padding: 3px 0;
       color: white;
