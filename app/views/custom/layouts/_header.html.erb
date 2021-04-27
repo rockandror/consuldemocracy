@@ -33,6 +33,12 @@
 
       <div id="responsive-menu">
         <div class="top-bar-right">
+          <ul class="menu" data-responsive-menu="medium-dropdown">
+            <%= render "shared/admin_login_items" %>
+            <%= render "layouts/notification_item" %>
+            <%= render "devise/menu/login_items" %>
+          </ul>
+
           <div class="show-for-small-only">
             <div class="subnavigation row">
               <%= render "shared/subnavigation" %>
