@@ -2,9 +2,7 @@
 // Read more on documentation:
 // * English: https://github.com/consul/consul/blob/master/CUSTOMIZE_EN.md#css
 // * Spanish: https://github.com/consul/consul/blob/master/CUSTOMIZE_ES.md#css
-//
 
-// Overrides
 #responsive-menu {
   display: inline-flex;
 }
@@ -12,8 +10,6 @@
 .dropdown.menu > li.opens-left > .is-dropdown-submenu {
   top: 20%;
 }
-
-//
 
 .margin-right-30 {
   margin-right: 30px;
