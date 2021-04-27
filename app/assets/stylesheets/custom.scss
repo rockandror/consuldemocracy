@@ -3,6 +3,10 @@
 // * English: https://github.com/consul/consul/blob/master/CUSTOMIZE_EN.md#css
 // * Spanish: https://github.com/consul/consul/blob/master/CUSTOMIZE_ES.md#css
 
+.top-links {
+  background: #fb3370 linear-gradient(270deg, #fa007b 0%, #ffb454 100%) 0% 0%;
+}
+
 #responsive-menu {
   display: inline-flex;
 }
