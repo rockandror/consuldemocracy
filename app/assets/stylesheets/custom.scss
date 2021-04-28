@@ -3,8 +3,99 @@
 // * English: https://github.com/consul/consul/blob/master/CUSTOMIZE_EN.md#css
 // * Spanish: https://github.com/consul/consul/blob/master/CUSTOMIZE_ES.md#css
 
+body {
+  color: $text;
+}
+
+body > .wrapper > header {
+  background: transparent;
+}
+
 .top-links {
   background: #fb3370 linear-gradient(270deg, #fa007b 0%, #ffb454 100%) 0% 0%;
+}
+
+.header-logos {
+  @include flex-grid-row;
+  @include grid-column-gutter;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $line-height / 2;
+  margin-top: $line-height / 2;
+
+  > * {
+    max-width: 32%;
+  }
+}
+
+.top-bar {
+  @include grid-column-gutter;
+  @include flex-grid-row;
+  background: transparent !important;
+  color: $text;
+
+  @include breakpoint(medium) {
+    justify-content: flex-end;
+  }
+
+  ul {
+    margin-top: $line-height / 2;
+    padding-right: 0;
+
+    &.dropdown.menu > li {
+      &.is-dropdown-submenu-parent > a::after {
+        border-color: currentcolor transparent transparent;
+      }
+    }
+  }
+
+  .menu li {
+    a {
+      color: inherit;
+    }
+
+    &:last-child a {
+      padding-right: 0;
+    }
+  }
+
+  .has-submenu.is-active a {
+    color: inherit;
+  }
+}
+
+.menu-icon {
+
+  &.dark {
+
+    &:hover::after,
+    &::after {
+      background: currentcolor;
+      box-shadow: 0 7px 0 currentcolor, 0 14px 0 currentcolor;
+    }
+  }
+}
+
+.subnavigation {
+  @include breakpoint(small only) {
+    > * {
+      padding-left: 0;
+    }
+  }
+
+  a {
+    color: inherit;
+
+    @include breakpoint(medium) {
+      color: inherit;
+    }
+
+    &.is-active {
+      @include breakpoint(small only) {
+        color: inherit;
+      }
+    }
+  }
 }
 
 .footer {
@@ -376,36 +467,12 @@ footer .logo a {
   }
 }
 
-.dropdown.menu .is-active > a {
-  color: $brand;
-}
-
 .header-button {
   font-weight: bold;
 
   &:hover > span {
     color: $white;
   }
-}
-
-.european-logo {
-  margin-right: 7%;
-}
-
-.european-logo-small {
-  text-align: right;
-}
-
-.european-logo-img {
-  max-height: 100px;
-  padding: 10px;
-}
-
-.logos-small-header {
-  background-color: white;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-bottom: 15px;
 }
 
 .european-development-program {

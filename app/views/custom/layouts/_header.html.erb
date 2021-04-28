@@ -9,63 +9,38 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="show-for-small-only logos-small-header">
-      <div class="show-for-small-only top-bar-title">
-        <%= link_to root_path, accesskey: "0" do %>
-          <%= image_tag(image_path_for('logo_header.png'), class: 'float-left', alt: t("layouts.header.logo")) %>
-        <% end %>
-      </div>
+  <div class="show-for-small-only">
+    <%= render "layouts/header_logos" %>
+  </div>
 
-      <div class="show-for-small-only european-logo-small">
-        <%= link_to root_path, accesskey: "0" do %>
-          <%= image_tag(image_path_for("logo_european_union.png"), class: "european-logo-img", alt: "Logo europa") %>
-        <% end %>
-      </div>
-    </div>
+  <div class="top-bar">
+    <span data-responsive-toggle="responsive-menu" data-hide-for="medium" class="float-right">
+      <span class="menu-icon dark" data-toggle></span>
+      <%= t("application.menu") %>
+    </span>
 
-    <div class="top-bar">
+    <div id="responsive-menu">
+      <div class="top-bar-right">
+        <ul class="menu" data-responsive-menu="medium-dropdown">
+          <%= render "shared/admin_login_items" %>
+          <%= render "layouts/notification_item" %>
+          <%= render "devise/menu/login_items" %>
+        </ul>
 
-      <span data-responsive-toggle="responsive-menu" data-hide-for="medium" class="float-right">
-        <span class="menu-icon dark" data-toggle></span>
-        <%= t("application.menu") %>
-      </span>
-
-      <div class="top-bar-title">
-        <%= link_to root_path, accesskey: "0" do %>
-          <%= image_tag(image_path_for('logo_header.png'), class: 'float-left', alt: t("layouts.header.logo")) %>
-        <% end %>
-      </div>
-      <div class="top-bar-title">
-        <%= link_to root_path, accesskey: "0" do %>
-          <%= image_tag(image_path_for("logo_canarias_government.png"), class: "float-left", alt: t("layouts.header.logo")) %>
-        <% end %>
-      </div>
-
-      <div id="responsive-menu">
-        <div class="top-bar-right">
-          <ul class="menu" data-responsive-menu="medium-dropdown">
-            <%= render "shared/admin_login_items" %>
-            <%= render "layouts/notification_item" %>
-            <%= render "devise/menu/login_items" %>
-          </ul>
-          <div class="hide-for-small-only small-2 float-right european-logo column">
-            <%= link_to root_path, accesskey: "0" do %>
-              <%= image_tag(image_path_for("logo_european_union.png"), class: "european-logo-img float-right", alt: "Logo europa") %>
-            <% end %>
-          </div>
-
-          <div class="show-for-small-only">
-            <div class="subnavigation row">
-              <%= render "shared/subnavigation" %>
-              <div class="small-12 column">
-                <%= render "shared/top_links" %>
-              </div>
+        <div class="show-for-small-only">
+          <div class="subnavigation row">
+            <%= render "shared/subnavigation" %>
+            <div class="small-12 column">
+              <%= render "shared/top_links" %>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="hide-for-small-only">
+    <%= render "layouts/header_logos" %>
   </div>
 
   <div id="navigation_bar" class="subnavigation expanded">
