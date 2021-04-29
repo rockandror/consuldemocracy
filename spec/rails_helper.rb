@@ -33,7 +33,6 @@ Warden.test_mode!
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
-  config.fail_fast = true
   config.infer_spec_type_from_file_location!
   config.after do
     Warden.test_reset!
