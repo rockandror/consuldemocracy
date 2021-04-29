@@ -1,11 +1,11 @@
 <div class="header-logos">
   <%= link_to root_path, class: "logo-header", accesskey: "0" do %>
-    <%= image_tag(image_path_for("logo_header.png"), alt: t("layouts.header.logo")) %>
+    <%= image_tag(image_path_for("logo_header.png"), alt: t("layouts.header.logos.citizen_participation")) %>
   <% end %>
 
   <%= link_to root_path, class: "logo-canarias-government" do %>
-    <%= image_tag(image_path_for("logo_canarias_government.png"), alt: t("layouts.header.logo")) %>
+    <%= image_tag(image_path_for("logo_canarias_government.png"), alt: t("layouts.header.logos.canarias_government")) %>
   <% end %>
 
-  <%= image_tag(image_path_for("logo_european_union.png"), alt: "Logo europa") %>
+  <%= image_tag(image_path_for("logo_european_union.png"), alt: t("layouts.header.logos.european_union")) %>
 </div>

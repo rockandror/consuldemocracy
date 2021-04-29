@@ -224,6 +224,10 @@ es:
       external_link_blog: Blog
       locale: 'Idioma:'
       logo: Logo de CONSUL
+      logos:
+        canarias_government: "Gobierno de Canarias"
+        citizen_participation: "Participación Ciudadana"
+        european_union: "Logo Unión Europea"
       management: Gestión
       moderation: Moderar
       valuation: Evaluación
