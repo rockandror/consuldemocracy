@@ -21,7 +21,8 @@ RUN apk add --no-cache \
   openssh-client \
   postgresql-dev \
   rsync \
-  linux-headers
+  linux-headers \
+  shared-mime-info
 
 RUN mkdir -p /app
 WORKDIR /app
