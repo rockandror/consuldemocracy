@@ -2,6 +2,14 @@
   <ul>
     <%= raw content_block("subnavigation_left", I18n.locale) %>
 
+    <li>
+      <%= layout_menu_link_to t("layouts.header.home"),
+                              root_path,
+                              controller_name == "welcome",
+                              accesskey: "0",
+                              title: t("shared.go_to_page") + t("layouts.header.home") %>
+    </li>
+
     <% if feature?(:debates) %>
       <li>
         <%= layout_menu_link_to t("layouts.header.debates"),
