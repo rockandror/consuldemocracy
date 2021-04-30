@@ -35,6 +35,10 @@ describe "Home" do
           expect(page).to have_css "img[alt='Canarias Avanza con Europa']"
           expect(page).to have_content "Fondo Europeo de Desarrollo Regional"
         end
+
+        within ".subfooter" do
+          expect(page).to have_content "Gobierno de Canarias, #{Date.current.year}"
+        end
       end
     end
   end

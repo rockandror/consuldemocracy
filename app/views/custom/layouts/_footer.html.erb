@@ -90,7 +90,7 @@
   <div class="subfooter-wrapper">
     <div class="row">
       <div class="subfooter column row-no-padding">
-        <span class="first-footer-item"><%= t("layouts.footer.copyright") %></span>
+        <span class="first-footer-item"><%= t("layouts.footer.copyright", year: Date.current.year) %></span>
         <span class="footer-item-divider">|</span>
         <%= link_to t("layouts.footer.legal_advice"), "http://www.gobiernodecanarias.org/principal/avisolegal.html", class: 'footer-item' %>
         <span class="footer-item-divider">|</span>

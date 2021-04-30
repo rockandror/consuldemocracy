@@ -208,7 +208,7 @@ es:
       consul: aplicación CONSUL
       consul_url: https://github.com/consul/consul
       contact_us: Para asistencia técnica entra en
-      copyright: © Gobierno de Canarias
+      copyright: Gobierno de Canarias, %{year}
       description: Este portal usa la %{consul} que es %{open_source}.
       logos:
         canarias_with_europe: "Canarias Avanza con Europa"
