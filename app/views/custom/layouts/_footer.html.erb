@@ -2,14 +2,12 @@
   <div class="row gob-logos">
     <div class="small-6 column">
       <%= link_to "https://ec.europa.eu/regional_policy/index_es.cfm", accesskey: "0" do %>
-        <%= image_tag(image_path_for('logo_canarias.png'), class: 'float-left canarias-with-europe', alt: "Canarias Avanza con Europa") %>
+        <%= image_tag(image_path_for('logo_canarias.png'), class: 'float-left canarias-with-europe', alt: t("layouts.footer.logos.canarias_with_europe")) %>
       <% end %>
     </div>
     <div class="small-6 column">
       <div class="text-right">
-        <h2 class="european-development-program">
-          Fondo Europeo de<br>
-          Desarrollo Regional
+        <h2 class="european-development-program"><%= sanitize(t("layouts.footer.logos.european_development_program")) %>
         </h2>
       </div>
     </div>
@@ -92,7 +90,7 @@
   <div class="subfooter-wrapper">
     <div class="row">
       <div class="subfooter column row-no-padding">
-        <span class="first-footer-item">© Gobierno de Canarias</span>
+        <span class="first-footer-item"><%= t("layouts.footer.copyright") %></span>
         <span class="footer-item-divider">|</span>
         <%= link_to t("layouts.footer.legal_advice"), "http://www.gobiernodecanarias.org/principal/avisolegal.html", class: 'footer-item' %>
         <span class="footer-item-divider">|</span>

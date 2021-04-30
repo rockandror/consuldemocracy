@@ -25,4 +25,17 @@ describe "Home" do
       end
     end
   end
+
+  describe "footer" do
+    scenario "has the footer content" do
+      visit root_path
+
+      within "footer" do
+        within ".gob-logos" do
+          expect(page).to have_css "img[alt='Canarias Avanza con Europa']"
+          expect(page).to have_content "Fondo Europeo de Desarrollo Regional"
+        end
+      end
+    end
+  end
 end
