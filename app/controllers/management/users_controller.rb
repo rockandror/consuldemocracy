@@ -9,8 +9,7 @@ class Management::UsersController < Management::BaseController
     user_params[:adress_attributes].each do |k,v|
       verify_address = true if !v.blank?
     end
-
-    @user = User.new(user_params)
+    @user = User.new(user_params.merge(:enable_document_validation => true))
     @user.terms_of_service = "1"
 
     if verify_address == true

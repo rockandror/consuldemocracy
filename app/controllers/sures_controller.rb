@@ -5,19 +5,19 @@ class SuresController < SuresBaseController
         @cards = Sures::CustomizeCard.body
     end
 
-    def search
-        @resultado = ""
-        @actuations = []
-        @sures_searchs_settings = Sures::SearchSetting.search_settings.order(id: :asc)
-        @sures_orders_filter = Sures::SearchSetting.order_settings.order(id: :asc)
+    # def search
+    #     @resultado = ""
+    #     @actuations = []
+    #     @sures_searchs_settings = Sures::SearchSetting.search_settings.order(id: :asc)
+    #     @sures_orders_filter = Sures::SearchSetting.order_settings.order(id: :asc)
        
        
-        run_search(params)
-    end
+    #     run_search(params)
+    # end
 
-    def actuation
-        @actuation = Sures::Actuation.find_by(id: params[:id])
-    end
+    # def actuation
+    #     @actuation = Sures::Actuation.find_by(id: params[:id])
+    # end
 
     private
 

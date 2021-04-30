@@ -1,10 +1,11 @@
 <%= render "cards" if @cards.any? %>
-
+<!--
 <div class="row" style="border-bottom: 1px solid black">
   <div class="small-12 column">
-    <h3 style="text-align:center;padding-top:2em;padding-bottom:2em;"><%= link_to t("landings.search_sures"), search_sures_path,  style: "color:#04C4D9 !important"%></h3>
+    <h3 style="text-align:center;padding-top:2em;padding-bottom:2em;"><%#= link_to t("landings.search_sures"), search_sures_path,  style: "color:#04C4D9 !important"%></h3>
   </div>
 </div>
+-->
 
 <h3 style="text-align:center;padding-top:2em;padding-bottom:2em;"><%= link_to t("landings.learn_more_sures"), "https://www.madrid.es/sites/v/index.jsp?vgnextrefresh=1&vgnextoid=1c9c5c3a93f30710VgnVCM2000001f4a900aRCRD&vgnextlocale=es&vgnextfmt=default&vgnextchannel=1c9c5c3a93f30710VgnVCM2000001f4a900aRCRD", target: "_blank", style: "color:#04C4D9 !important;"%></h3>
 

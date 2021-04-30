@@ -1,4 +1,6 @@
-<% unless actuation.blank? %>
+<%
+=begin%>
+ <% unless actuation.blank? %>
 <div id="<%= dom_id(actuation) %>" class="actuation clear" data-type="actuation">
   <div class="panel">
     <div class="icon-successful"></div>
@@ -45,4 +47,6 @@
     </div>
   </div>
 </div>
-<%end%>
+<%end%> 
+<%
+=end%>
