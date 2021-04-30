@@ -40,12 +40,12 @@ class User < ApplicationRecord
   belongs_to :geozone
   belongs_to :adress
   belongs_to :profile
-
+  attr_accessor :enable_document_validation
   validates :username, presence: true, if: :username_required?
   validates :username, uniqueness: { scope: :registering_with_oauth }, if: :username_required?
   validates :email, presence: true
-  validates :document_type, presence: true
-  validates :document_number, uniqueness: { scope: :document_type }, allow_nil: true
+  validates :document_type, presence: true, if: :enable_document_validation
+  validates :document_number, uniqueness: { scope: :document_type }, allow_nil: true, if: :enable_document_validation
 
   validate :validate_username_length
 
