@@ -103,6 +103,41 @@ RSpec.configure do |config|
     allow(Date).to receive(:today).and_return(Time.now.to_date)
   end
 
+  config.before(:each, :sara) do
+    ENV["IDENTIFICADOR_SOLICITANTE"] = ""
+    ENV["NOMBRE_SOLICITANTE"] = ""
+    ENV["COD_PROCEDIMIENTO"] = ""
+    ENV["ID_EXPEDIENTE"] = ""
+    ENV["FINALIDAD"] = ""
+    ENV["SOAP_PLATINO_PKCS12_PASSWORD"] = ""
+    ENV["SARA_WSDL_URL"] = ""
+    ENV["SOAP_URL_SVD"] = ""
+    ENV["SOAP_URL_PET"] = ""
+    ENV["SOAP_URL_VER"] = ""
+    ENV["SOAP_URL_VER1"] = ""
+    ENV["SOAP_URL_AMB"] = ""
+    ENV["SOAP_URL_NS8"] = ""
+    ENV["SOAP_VERIFICAR_IDENTIDAD_NIF_FUNCIONARIO"] = ""
+    ENV["SOAP_VERIFICAR_IDENTIDAD_IDENTIFICADOR_SOLICITANTE"] = ""
+    ENV["SOAP_VERIFICAR_IDENTIDAD_NOMBRE_SOLICITANTE"] = ""
+    ENV["SOAP_VERIFICAR_IDENTIDAD_COD_PROCEDIMIENTO"] = ""
+    ENV["SOAP_VERIFICAR_IDENTIDAD_NOMBRE_PROCEDIMIENTO"] = ""
+    ENV["SOAP_VERIFICAR_IDENTIDAD_FINALIDAD"] = ""
+    ENV["SOAP_VERIFICAR_IDENTIDAD_ID_EXPEDIENTE"] = ""
+    ENV["SOAP_VERIFICAR_RESIDENCIA_NIF_FUNCIONARIO"] = ""
+    ENV["SOAP_VERIFICAR_RESIDENCIA_IDENTIFICADOR_SOLICITANTE"] = ""
+    ENV["SOAP_VERIFICAR_RESIDENCIA_NOMBRE_SOLICITANTE"] = ""
+    ENV["SOAP_VERIFICAR_RESIDENCIA_COD_PROCEDIMIENTO"] = ""
+    ENV["SOAP_VERIFICAR_RESIDENCIA_NOMBRE_PROCEDIMIENTO"] = ""
+    ENV["SOAP_VERIFICAR_RESIDENCIA_FINALIDAD"] = ""
+    ENV["SOAP_VERIFICAR_RESIDENCIA_ID_EXPEDIENTE"] = ""
+
+    allow_any_instance_of(SaraNet).to(receive(:verify_residence).and_return(true))
+
+    allow_any_instance_of(ConectorRegistroEntidadesJuridicas).to(receive(:validUserAsoc?).and_return(true))
+    allow_any_instance_of(ConectorRegistroEntidadesJuridicas).to(receive(:validUserFund?).and_return(true))
+  end
+
   # Allows RSpec to persist some state between runs in order to support
   # the `--only-failures` and `--next-failure` CLI options.
   config.example_status_persistence_file_path = "spec/examples.txt"

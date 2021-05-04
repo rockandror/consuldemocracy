@@ -29,8 +29,8 @@ module Consul
       'pt-BR' => 'es'
     }
 
+    config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**[^custom]*", "*.{rb,yml}")]
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', 'custom', '**', '*.{rb,yml}')]
-    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
 
     config.after_initialize { Globalize.set_fallbacks_to_all_available_locales }
 

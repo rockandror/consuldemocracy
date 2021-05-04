@@ -1,16 +1,6 @@
 require 'rails_helper'
 
-feature 'Stats' do
-
-  # MOCK SaraNET
-  before(:each) do
-    ENV['IDENTIFICADOR_SOLICITANTE'] = ""
-    ENV['NOMBRE_SOLICITANTE'] = ""
-    ENV['COD_PROCEDIMIENTO'] = ""
-    ENV['ID_EXPEDIENTE'] = ""
-    ENV['FINALIDAD'] = ""
-    allow_any_instance_of(SaraNet).to(receive(:verify_residence).and_return(true))
-  end
+feature 'Stats', :sara do
 
   background do
     admin = create(:administrator)

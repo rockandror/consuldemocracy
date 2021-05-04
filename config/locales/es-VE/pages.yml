@@ -19,7 +19,7 @@ es-VE:
         figcaption: 'Botones "Estoy de acuerdo" y "No estoy de acuerdo" para calificar los debates.'
       proposals:
         title: "Propuestas"
-        description: "En la sección %{link} puede hacer propuestas para que el Gobierno las lleve a cabo. Las propuestas requieren apoyo, y si reciben suficiente apoyo, se someten a votación pública. Las propuestas aprobadas en los votos de estos ciudadanos son aceptadas por el Gobierno y llevadas a cabo."
+        description: "En la sección %{link} puede hacer propuestas para que el Ayuntamiento las lleve a cabo. Las propuestas requieren apoyo, y si reciben suficiente apoyo, se someten a votación pública. Las propuestas aprobadas en los votos de estos ciudadanos son aceptadas por el Ayuntamiento y llevadas a cabo."
         link: "propuestas ciudadanas"
         image_alt: "Botón para apoyar una propuesta"
       budgets:
@@ -30,7 +30,7 @@ es-VE:
         figcaption_html: 'Fases de "apoyo" y "votación" de los presupuestos participativos.'
       polls:
         title: "Encuestas"
-        description: "La sección %{link} se activa cada vez que una propuesta alcanza el 1% de apoyo y pasa a votación o cuando el Gobierno propone un asunto para que la gente decida."
+        description: "La sección %{link} se activa cada vez que una propuesta alcanza el 1% de apoyo y pasa a votación o cuando el Ayuntamiento propone un asunto para que la gente decida."
         link: "encuentas"
         feature_1: "Para participar en la votación debes %{link} y verificar su cuenta."
         feature_1_link: "registrarse en %{org_name}"

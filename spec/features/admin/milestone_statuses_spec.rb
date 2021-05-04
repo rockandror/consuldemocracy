@@ -53,7 +53,7 @@ feature 'Admin milestone statuses' do
       click_button 'Create Milestone Status'
 
       within "#new_milestone_status" do
-        expect(page).to have_content "Can't be blank", count: 2
+        expect(page).to have_content "Can't be blank", count: 1
       end
     end
   end

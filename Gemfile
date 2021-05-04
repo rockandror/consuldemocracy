@@ -2,15 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.11'
 
-# Gobcan gems
-gem 'logstash-logger'
-gem 'omniauth-saml'
-gem 'rest-client', '~> 2.0', '>= 2.0.2'
-gem 'savon', '~> 2.12.1'
-gem 'signer', '~> 1.9'
-gem 'execjs'
-
-# General
 gem 'acts-as-taggable-on', '~> 5.0.0'
 gem 'acts_as_votable', '~> 0.11.1'
 gem 'ahoy_matey', '~> 1.6.0'
@@ -63,9 +54,6 @@ gem 'unicorn', '~> 5.4.1'
 gem 'whenever', '~> 0.10.0', require: false
 gem 'globalize', '~> 5.0.0'
 gem 'globalize-accessors', '~> 0.2.1'
-gem 'selenium-webdriver', '~> 3.10'
-gem 'tzinfo-data'
-gem 'puma'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-leaflet'
@@ -75,18 +63,15 @@ end
 group :development, :test do
   gem 'bullet', '~> 5.7.0'
   gem 'byebug', '~> 10.0.0'
+  gem 'factory_bot_rails', '~> 4.8.2'
   gem 'faker', '~> 1.8.7'
   gem 'i18n-tasks', '~> 0.9.25'
   gem 'knapsack_pro', '~> 1.1.0'
   gem 'launchy', '~> 2.4.3'
-  gem 'factory_bot_rails', '~> 4.8.2'
   gem 'letter_opener_web', '~> 1.3.4'
   gem 'quiet_assets', '~> 1.1.0'
   gem 'spring', '~> 2.0.1'
   gem 'spring-commands-rspec', '~> 1.0.4'
-  gem 'rspec_junit_formatter'
-  gem 'ruby-debug-ide'
-  gem 'debase'
 end
 
 group :test do
@@ -95,8 +80,6 @@ group :test do
   gem 'database_cleaner', '~> 1.7.0'
   gem 'email_spec', '~> 2.1.0'
   gem 'rspec-rails', '~> 3.8'
-  gem 'rspec_junit_formatter'
-  gem 'selenium-webdriver', '~> 3.10'
 end
 
 group :development do
@@ -110,7 +93,6 @@ group :development do
   gem 'rvm1-capistrano3', '~> 1.4.0', require: false
   gem 'scss_lint', '~> 0.55.0', require: false
   gem 'web-console', '~> 3.3.0'
-  gem 'rails-erd'
 end
 
-gem "activerecord-nulldb-adapter", "~> 0.3.7"
+eval_gemfile "./Gemfile_custom"
