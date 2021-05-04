@@ -30,9 +30,6 @@ class ImportUser < BaseImporter
     if valid.blank?
       error_import = import!
     end
-    puts "===================="
-    puts error_import
-    puts "===================="
     if valid == false 
       valid = {0 => "Fichero en blanco"}
     elsif valid.blank? && error_import.blank?
@@ -141,7 +138,7 @@ class ImportUser < BaseImporter
         last_name_alt: row[:segundo_apellido], phone_number: row[:telefono], document_number: row[:documento], 
         date_of_birth: row[:fecha_nacimiento], terms_of_service: "1", residence_verified_at: Time.current, 
         verified_at: Time.current)
-      user.document_type = get_document_type(row[:tipo_documento]) if !row[:tipo_documento].blank?
+      user.document_type = !row[:tipo_documento].blank? ? get_document_type(row[:tipo_documento]) : get_document_type(1)
       user.gender = get_gender(row[:sexo]) if !row[:sexo].blank?
       pass = Digest::SHA1.hexdigest("#{user.created_at.to_s}--#{user.username}")[0,8].upcase
       user.password = "12345678" #pass
