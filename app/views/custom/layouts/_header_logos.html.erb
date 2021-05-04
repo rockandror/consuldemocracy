@@ -1,9 +1,9 @@
 <div class="header-logos">
-  <%= link_to ENV["LOGO_CITIZEN_PARTICIPATION_URL"] || "https://www.gobiernodecanarias.org/participacionciudadana/", class: "logo-header" do %>
+  <%= link_to Rails.application.config.sites[:citizen_participation], class: "logo-header" do %>
     <%= image_tag(image_path_for("logo_header.png"), alt: t("layouts.header.logos.citizen_participation")) %>
   <% end %>
 
-  <%= link_to ENV["LOGO_CANARIAS_GOVERNMENT_URL"] || "https://www.gobiernodecanarias.org/", class: "logo-canarias-government" do %>
+  <%= link_to Rails.application.config.sites[:open_government], class: "logo-canarias-government" do %>
     <%= image_tag(image_path_for("logo_canarias_government.png"), alt: t("layouts.header.logos.canarias_government")) %>
   <% end %>
 
