@@ -44,6 +44,11 @@ describe "Home" do
 
         within ".subfooter" do
           expect(page).to have_content "Gobierno de Canarias, #{Date.current.year}"
+          expect(page).to have_link "Accesibilidad"
+          expect(page).to have_link "Condiciones de uso"
+          expect(page).to have_link "Cookies y privacidad"
+          expect(page).to have_link "Contacto"
+          expect(page).to have_link "Aviso legal"
         end
       end
     end

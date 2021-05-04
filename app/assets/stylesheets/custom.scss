@@ -123,6 +123,22 @@ body > .wrapper > header {
   ul {
     margin-bottom: 0;
     margin-left: 0;
+
+    @include breakpoint(large) {
+      flex: 1;
+
+      > :last-child {
+        float: right;
+
+        &::before {
+          content: none;
+        }
+
+        a {
+          padding-right: 0;
+        }
+      }
+    }
   }
 
   li {

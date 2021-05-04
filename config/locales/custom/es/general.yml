@@ -207,6 +207,7 @@ es:
       conditions: Condiciones de uso
       consul: aplicación CONSUL
       consul_url: https://github.com/consul/consul
+      contact: Contacto
       contact_us: Para asistencia técnica entra en
       copyright: Gobierno de Canarias, %{year}
       description: Este portal usa la %{consul} que es %{open_source}.
@@ -222,7 +223,7 @@ es:
       open_source_url: http://www.gnu.org/licenses/agpl-3.0.html
       participation_text: Decide cómo debe ser la ciudad que quieres.
       participation_title: Participación
-      privacy: Política de privacidad
+      privacy: Cookies y privacidad
     header:
       administration_menu: Admin
       administration: Administración

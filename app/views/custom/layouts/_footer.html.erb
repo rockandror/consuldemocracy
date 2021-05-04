@@ -103,11 +103,11 @@
       <div class="subfooter column">
         <span><%= t("layouts.footer.copyright", year: Date.current.year) %></span>
         <ul>
-          <li><%= link_to t("layouts.footer.legal_advice"), "http://www.gobiernodecanarias.org/principal/avisolegal.html" %></li>
-          <li><%= link_to t("layouts.footer.privacy"), page_path('privacy') %></li>
-          <li><%= link_to t("layouts.footer.accessibility"), "http://www.gobiernodecanarias.org/principal/accesibilidad.html" %></li>
-          <li><%= link_to t("layouts.footer.suggestions"), "https://www.gobiernodecanarias.org/principal/sugrec/" %></li>
-          <li><%= link_to t("layouts.footer.faq_questions"), root_path + "faq" %></li>
+          <li><%= link_to t("layouts.footer.accessibility"), page_path("accessibility") %></li>
+          <li><%= link_to t("layouts.footer.conditions"), page_path("conditions") %></li>
+          <li><%= link_to t("layouts.footer.privacy"), page_path("privacy") %></li>
+          <li><%= link_to t("layouts.footer.contact"), ENV["CONTACT_URL"] || "https://www.gobiernodecanarias.org/participacionciudadana/contacto/" %></li>
+          <li><%= link_to t("layouts.footer.legal_advice"), ENV["LEGAL_URL"] || "http://www.gobiernodecanarias.org/principal/avisolegal.html" %></li>
         </ul>
       </div>
     </div>
