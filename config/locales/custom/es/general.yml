@@ -210,9 +210,14 @@ es:
       contact_us: Para asistencia técnica entra en
       copyright: Gobierno de Canarias, %{year}
       description: Este portal usa la %{consul} que es %{open_source}.
+      faq: "Asistencia técnica."
       logos:
         canarias_with_europe: "Canarias Avanza con Europa"
         european_development_program: "Fondo Europeo de<br> Desarrollo Regional"
+      info:
+        open_data: "Punto de encuentro para la publicación de datos del sector público canario en formatos abiertos, gratuitos y reutilizables."
+        open_government: "Espacio para la cogobernanza entre el Gobierno de Canarias y la ciudadanía."
+        transparency: "Portal de acceso a la información pública que aportan todos sus órganos de forma fácil y sencilla."
       open_source: software de código abierto
       open_source_url: http://www.gnu.org/licenses/agpl-3.0.html
       participation_text: Decide cómo debe ser la ciudad que quieres.

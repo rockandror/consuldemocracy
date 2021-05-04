@@ -31,6 +31,12 @@ describe "Home" do
       visit root_path
 
       within "footer" do
+        within ".sites-info" do
+          expect(page).to have_link "Gobierno abierto"
+          expect(page).to have_link "Transparencia"
+          expect(page).to have_link "Datos abiertos"
+        end
+
         within ".gob-logos" do
           expect(page).to have_css "img[alt='Canarias Avanza con Europa']"
           expect(page).to have_content "Fondo Europeo de Desarrollo Regional"

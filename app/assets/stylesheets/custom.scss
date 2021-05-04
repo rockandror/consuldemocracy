@@ -495,5 +495,35 @@ footer .logo a {
 }
 
 .gob-logos {
-  margin-bottom: 15px;
+  border-top: 1px solid $text-light;
+  margin-bottom: $line-height / 2;
+  margin-top: $line-height;
+  padding-top: $line-height;
+}
+
+.sites-info {
+  @include grid-row;
+
+  > :first-child,
+  dl > *
+   {
+    @include grid-column;
+
+    @include breakpoint(large) {
+      width: 25%;
+    }
+  }
+
+  dt a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  dd {
+    font-size: $small-font-size;
+    margin-bottom: $paragraph-margin-bottom;
+  }
 }

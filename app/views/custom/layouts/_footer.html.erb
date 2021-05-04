@@ -1,4 +1,29 @@
 <footer>
+  <div class="sites-info">
+    <div>
+      <p>
+        <%= t("layouts.footer.description",
+              open_source: link_to(t("layouts.footer.open_source"), t("layouts.footer.open_source_url"), target: "blank", rel: "nofollow"),
+              consul: link_to(t("layouts.footer.consul"), t("layouts.footer.consul_url"), target: "blank", rel: "nofollow")).html_safe
+        %>
+      </p>
+
+      <p>
+        <%= t("layouts.footer.contact_us") %>
+        <%= link_to t("layouts.footer.faq"), page_path("faq") %>
+      </p>
+    </div>
+
+    <dl>
+      <% Rails.application.config.sites.reject { |name, _| name == :citizen_participation }.each do |name, url| %>
+        <div>
+          <dt><%= link_to t("sites.#{name}"), url %></dt>
+          <dd><%= t("layouts.footer.info.#{name}") %></dd>
+        </div>
+      <% end %>
+    </dl>
+  </div>
+
   <div class="row gob-logos">
     <div class="small-6 column">
       <%= link_to "https://ec.europa.eu/regional_policy/index_es.cfm" do %>
@@ -12,19 +37,6 @@
     </div>
   </div>
   <div class="row">
-    <div class="small-12 large-4 column">
-      <h1 class="logo">
-        <%= link_to t("layouts.header.open_gov", open: "#{t('layouts.header.open')}").html_safe %>
-      </h1>
-
-      <p class="info">
-        <%= t("layouts.footer.description",
-              open_source: link_to(t("layouts.footer.open_source"), t("layouts.footer.open_source_url"), target: "blank", rel: "nofollow"),
-              consul: link_to(t("layouts.footer.consul"), t("layouts.footer.consul_url"), target: "blank", rel: "nofollow")).html_safe
-        %>
-        <%# <%= t("layouts.footer.contact_us") %>
-      </p>
-    </div>
 
     <div class="small-12 medium-4 column social">
       <div class="text-right">
