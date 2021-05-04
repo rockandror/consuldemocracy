@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210312141332) do
+ActiveRecord::Schema.define(version: 20210504061852) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -598,6 +598,7 @@ ActiveRecord::Schema.define(version: 20210312141332) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.string   "census_code"
+    t.string   "code_district"
   end
 
   create_table "geozones_legislation_processes", force: :cascade do |t|
@@ -1462,6 +1463,51 @@ ActiveRecord::Schema.define(version: 20210312141332) do
     t.index ["key"], name: "index_settings_on_key", using: :btree
   end
 
+  create_table "sg_generics", force: :cascade do |t|
+    t.string   "title"
+    t.string   "generic_type"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "sg_selects", force: :cascade do |t|
+    t.string   "key"
+    t.string   "value"
+    t.jsonb    "data"
+    t.integer  "sg_setting_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["sg_setting_id"], name: "index_sg_selects_on_sg_setting_id", using: :btree
+  end
+
+  create_table "sg_settings", force: :cascade do |t|
+    t.string   "title"
+    t.string   "setting_type"
+    t.string   "data_type"
+    t.boolean  "active"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "sg_table_fields", force: :cascade do |t|
+    t.string   "table_name"
+    t.string   "field_name"
+    t.string   "sgeneric_type"
+    t.integer  "sgeneric_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["sgeneric_type", "sgeneric_id"], name: "index_sg_table_fields_on_sgeneric_type_and_sgeneric_id", using: :btree
+  end
+
+  create_table "sg_table_orders", force: :cascade do |t|
+    t.string   "table_name"
+    t.integer  "order",         default: 0
+    t.integer  "sg_generic_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["sg_generic_id"], name: "index_sg_table_orders_on_sg_generic_id", using: :btree
+  end
+
   create_table "signature_sheets", force: :cascade do |t|
     t.string   "signable_type"
     t.integer  "signable_id"
@@ -1969,6 +2015,8 @@ ActiveRecord::Schema.define(version: 20210312141332) do
   add_foreign_key "related_content_scores", "related_contents"
   add_foreign_key "related_content_scores", "users"
   add_foreign_key "section_administrators", "users"
+  add_foreign_key "sg_selects", "sg_settings"
+  add_foreign_key "sg_table_orders", "sg_generics"
   add_foreign_key "superadministrators", "users"
   add_foreign_key "sures_actuations", "geozones"
   add_foreign_key "sures_administrators", "users"
