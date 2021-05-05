@@ -12,7 +12,7 @@ body > .wrapper > header {
 }
 
 .top-links {
-  background: #fb3370 linear-gradient(270deg, #fa007b 0%, #ffb454 100%) 0% 0%;
+  background: #fb3370 linear-gradient(270deg, $brand-light 0%, #ffb454 100%) 0% 0%;
 }
 
 .header-logos {
@@ -91,6 +91,9 @@ body > .wrapper > header {
     }
 
     &.is-active {
+      border-bottom-color: currentcolor;
+      color: $brand-light;
+
       @include breakpoint(small only) {
         color: inherit;
       }
@@ -272,13 +275,16 @@ body > .wrapper > header {
   margin-top: 30px;
 }
 
-.submenu a {
-  color: $brand;
-}
+.submenu {
 
-.submenu .is-active {
-  border-bottom: 2px solid $dark;
-  color: $dark;
+  a {
+    color: $text;
+  }
+
+  .is-active {
+    border-bottom-color: currentcolor;
+    color: $brand-light;
+  }
 }
 
 .sidebar-title {
@@ -429,11 +435,8 @@ body > .wrapper > header {
 }
 
 .menu.simple li.is-active {
-  color: $dark;
-}
-
-.menu.simple li a {
-  color: $brand;
+  border-bottom-color: currentcolor;
+  color: $brand-light;
 }
 
 .poll h4 a,
