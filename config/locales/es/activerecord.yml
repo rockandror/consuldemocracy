@@ -7,6 +7,9 @@ es:
     budget_link_enabled: "Mostrar enlace de presupuestos del Ayuntamiento"
   activerecord:
     models:
+      event_agend:
+        one: "Evento de agenda"
+        other: "Eventos de agenda"
       sures/actuation:
         one: "actuación"
         other: "actuaciones"
@@ -152,6 +155,14 @@ es:
         one: Texto para moderación automática
         other: Textos para moderación automática
     attributes:
+      event_agend:
+        date_at: "Fecha"
+        hour_at: "Hora de comienzo"
+        hour_to: "Hora de fin"
+        content: "Contenido"
+        hour: "Hora"
+        created_at: "Fecha de creación"
+        updated_at: "Fecha de modificación"
       budget:
         name: "Nombre"
         url: "Enlace a presupuestos del Ayuntamiento"

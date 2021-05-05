@@ -67,6 +67,23 @@ namespace :settings do
     Setting.create(:key => "youtube_playlist_connect", :value => "PLhnvwI6F9eqXTZQc1yUGl4GX9s96u1AmK")
   end
 
+  task add_agend_youtube_settings: :environment do
+    Setting.create(:key => "agend_youtube_connect", :value => "KpgTWGu7ecI")
+    Setting.create(:key => "agend_youtube_playlist_connect", :value => "PLhnvwI6F9eqXTZQc1yUGl4GX9s96u1AmK")
+    Setting.create(:key => "text_agend", :value => "<div class='row'>
+      <div class='small-12 column'>
+          <h1>Semana de la Administración Abierta 2021</h1>
+          <h2>Si participas, decides Madrid 2021</h2>
+          <p>Los días 18, 19 y 20 de mayo de 2021 celebramos las jornadas \"Si participas, decides Madrid 2021\", en el marco de la
+          <a href='#'>Semana de la Administración Abierta</a>, con el ánimo de acercar las políticas y programas de participación ciudadana y 
+          transparencia del Ayuntamiento de Madrid a la ciudadanía</p>
+          <p>Este evento de la Dirección General de Participación Ciudadana forma parte de la iniciativa <a href='#'>OpenGov Week</a> impulsada
+           a nivel mundial por la Alianza para el Gobierno Abierto (<a href='#'>Open Government Partnership</a>). Su objetivo es reforzar los 
+           vínculos entre las instituciones y la ciudadanía, poniendo de manifiesto su compromiso con el desarrollo de los valores de la
+           transparencia, la participación ciudadana y la colaboración de las Administraciones Públicas con la sociedad</p>
+      </div></div>")
+  end
+
   task add_other_proposal_settings: :environment do
     Setting.create(:key => "other_proposal_declaration_1", :value => "Soy el representante legal")
     Setting.create(:key => "other_proposal_declaration_2", :value => "Declaración responsable")

@@ -69,6 +69,7 @@ module Abilities
       can [:search, :index, :new, :destroy, :update_padron, :edit, :update], ::User
 
       can :manage, Dashboard::Action
+      can :manage, EventAgend
 
       can [:index, :read, :new, :create, :update, :destroy, :calculate_winners], Budget
       can [:read, :create, :update, :destroy], Budget::Group

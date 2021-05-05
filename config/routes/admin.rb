@@ -37,6 +37,8 @@ namespace :admin do
     end
   end
 
+  resources :event_agends
+
   resources :proposals, only: [:index, :show, :update] do
     member { patch :toggle_selection }
     resources :milestones, controller: "proposal_milestones"
