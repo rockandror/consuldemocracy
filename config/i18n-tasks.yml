@@ -75,6 +75,7 @@ search:
   ## Paths or `File.find` patterns to search in:
   # paths:
   #  - app/
+  #  - db/custom_seeds.rb
 
   ## Root directories for relative keys resolution.
   # relative_roots:
