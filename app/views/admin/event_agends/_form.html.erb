@@ -21,12 +21,10 @@
   <div class="small-12 medium-3 column end">
     <%= f.time_field :hour_to, :value => f.object.hour_to  %>
   </div>
-  <div class="small-12 column end">
-    <%= f.label :content%>
-    <span><%=t("admin.sures.actuations.form.use_markdown")%></span>
-    <%= f.text_area :content, rows: 5,
+  <div class="small-12 column end ckeditor">
+    <%= f.cktext_area :content, rows: 5,
       placeholder: t("admin.event_agends.additional_info_placeholder"),
-      label: false  %>
+      ckeditor: { language: I18n.locale, toolbar: current_user.administrator? ? "admin" : 'mini' } %>
   </div>
 
   <div class="small-12 medium-3 column clear end" style="margin-top: 2rem">

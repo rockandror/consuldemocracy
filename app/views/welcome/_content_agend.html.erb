@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="small-12 column">
+        <ul class="menu simple clear" id="filter-subnav">
+            <%  @event_agends.each_with_index do |filter, index| %>
+                <li class="<%="is-active" if params[:type].blank? && index.to_i == 0 || params[:type].to_s==filter[0].to_s%>">
+                    <% if params[:type].blank? && index.to_i == 0 || params[:type].to_s==filter[0].to_s %>
+                        <h2><%=l(filter[0],format: :short_compuesto)%></h2>
+                    <%else%>  
+                        <%= link_to l(filter[0],format: :short_compuesto), agenda_administracion_path(type: filter[0].to_s), remote: true %>
+                    <%end%>
+                </li>
+            <%end%>
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="small-12 column">
+        <%  @event_agends.each_with_index do |filter, index| %>
+            <%if params[:type].blank? && index.to_i == 0 || params[:type].to_s==filter[0].to_s%>
+                <h3><%=l(filter[0],format: :long_compuesto)%></h3>
+                <% filter[1].each do |a|%>
+                    <div style="background: #2367b5; color: white;padding: 1rem;font-weight: bold;margin: 2rem 0;" class="small-12 medium-2 clear end"><%=a.hour%></div>
+                    <%= markdown(a.content.to_s)%>
+                <%end%>
+            <%end%>
+        <%end%>
+    </div>
+</div>

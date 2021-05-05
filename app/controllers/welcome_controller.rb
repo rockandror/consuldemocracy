@@ -40,6 +40,7 @@ class WelcomeController < ApplicationController
   def agend_admin
     @videoId = Setting.find_by(key: "agend_youtube_connect").value
     @playlistId = Setting.find_by(key: "agend_youtube_playlist_connect").value
+    @event_agends = EventAgend.all.group_by(&:date_at)
   end
 
   private

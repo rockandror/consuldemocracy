@@ -28,7 +28,7 @@
             <%= link_to event_agend.try(:date_at), edit_admin_event_agend_path(event_agend) %>
           </td>
           <td><%= event_agend.try(:hour) %></td>
-          <td><%= event_agend.try(:content) %></td>
+          <td class="truncate"><%= event_agend.try(:content) %></td>
           <td>
             <%= link_to t("admin.sures.actuations.index.delete"), admin_event_agend_path(event_agend),
                         method: :delete,
