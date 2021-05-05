@@ -287,10 +287,6 @@ body > .wrapper > header {
   }
 }
 
-.sidebar-title {
-  color: $brand;
-}
-
 .debate .votes .voted .icon-like,
 .debate-show .votes .voted .icon-like,
 .proposal-show .votes .voted .icon-like,
@@ -343,7 +339,7 @@ body > .wrapper > header {
 .budget-investment .panel h3 a,
 .legislation .panel h3 a,
 .communities-show .panel h3 a {
-  color: $dark;
+  color: $brand;
 }
 
 .debate .debate-info .icon-comments,
@@ -430,8 +426,11 @@ body > .wrapper > header {
 }
 
 .help-header h1 {
-  color: $dark;
   margin-left: 10px;
+}
+
+.more-info-content h3 {
+  color: $text;
 }
 
 .menu.simple li.is-active {
