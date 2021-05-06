@@ -185,20 +185,6 @@ body > .wrapper > header {
   }
 }
 
-.welcome-sections:hover {
-  text-decoration: none;
-  background-color: $dark;
-
-  > .welcome-section-header {
-    border: 4px solid $dark;
-
-    > .welcome-section-header-title {
-      text-decoration: none;
-      color: $dark;
-    }
-  }
-}
-
 .welcome-sections-link:hover {
   text-decoration: none;
 }
@@ -329,10 +315,6 @@ body > .wrapper > header {
   content: "\6a";
 }
 
-#js-advanced-search-title {
-  color: $dark;
-}
-
 .tag {
   color: $brand;
 }
@@ -344,39 +326,6 @@ body > .wrapper > header {
 .legislation .panel h3 a,
 .communities-show .panel h3 a {
   color: $brand;
-}
-
-.debate .debate-info .icon-comments,
-.debate .proposal-info .icon-comments,
-.debate .investment-project-info .icon-comments,
-.debate .budget-investment-info .icon-comments,
-.debate .topic-info .icon-comments,
-.proposal .debate-info .icon-comments,
-.proposal .proposal-info .icon-comments,
-.proposal .investment-project-info .icon-comments,
-.proposal .budget-investment-info .icon-comments,
-.proposal .topic-info .icon-comments,
-.investment-project .debate-info .icon-comments,
-.investment-project .proposal-info .icon-comments,
-.investment-project .investment-project-info .icon-comments,
-.investment-project .budget-investment-info .icon-comments,
-.investment-project .topic-info .icon-comments,
-.budget-investment .debate-info .icon-comments,
-.budget-investment .proposal-info .icon-comments,
-.budget-investment .investment-project-info .icon-comments,
-.budget-investment .budget-investment-info .icon-comments,
-.budget-investment .topic-info .icon-comments,
-.legislation .debate-info .icon-comments,
-.legislation .proposal-info .icon-comments,
-.legislation .investment-project-info .icon-comments,
-.legislation .budget-investment-info .icon-comments,
-.legislation .topic-info .icon-comments,
-.communities-show .debate-info .icon-comments,
-.communities-show .proposal-info .icon-comments,
-.communities-show .investment-project-info .icon-comments,
-.communities-show .budget-investment-info .icon-comments,
-.communities-show .topic-info .icon-comments {
-  color: $dark;
 }
 
 .tags a,
@@ -442,60 +391,8 @@ body > .wrapper > header {
   color: $brand-light;
 }
 
-.poll h4 a,
-.poll-question h4 a {
-  color: $dark;
-}
-
-.legislation-text h3 a {
-  color: $dark;
-}
-
-.expanded.budget,
-.expanded.budget .info,
-.budget-timeline .phase.is-active h3,
-.jumbo-budget {
-  background: $dark;
-}
-
-.budget-timeline .phase.is-active::before {
-  background-color: $dark;
-}
-
-.budget-timeline .phase::before {
-  border: 4px solid $dark;
-}
-
-.budget-timeline {
-  border-left: 3px solid $dark;
-}
-
-.expanded.budget .button {
-  color: $dark;
-}
-
 footer .logo a {
   font-weight: bold;
-}
-
-.ballot-list {
-  li {
-    &:hover {
-      background: $dark;
-      color: #fff;
-
-      a,
-      span {
-        color: #fff;
-        outline: 0;
-        text-decoration: none;
-      }
-
-      .remove-investment-project .icon-x {
-        color: #fff;
-      }
-    }
-  }
 }
 
 .header-button {
