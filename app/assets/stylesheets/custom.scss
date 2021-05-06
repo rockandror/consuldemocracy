@@ -11,6 +11,10 @@ body > .wrapper > header {
   background: transparent;
 }
 
+.button {
+  background: $brand-light;
+}
+
 .top-links {
   background: #fb3370 linear-gradient(270deg, $brand-light 0%, #ffb454 100%) 0% 0%;
 }
@@ -389,7 +393,7 @@ body > .wrapper > header {
 }
 
 .proposal .supports .button-support {
-  background: $brand;
+  background: $brand-light;
   color: $white;
 }
 
@@ -422,7 +426,7 @@ body > .wrapper > header {
 
 .featured-proposals .supports .button-support {
   color: $white;
-  background: $brand;
+  background: $brand-light;
 }
 
 .help-header h1 {
