@@ -37,7 +37,7 @@ module UsersHelper
   end
 
   def current_only_admins?
-    current_user && (current_user.profiles_id.to_s == "1" || current_user.profiles_id.to_s == "2" || current_user.profiles_id.to_s == "5")
+    current_user && (!Superadministrator.find_by(user_id: current_user.id).blank? || !Administrator.find_by(user_id: current_user.id).blank? || !Manager.find_by(user_id: current_user.id).blank?)
   end
 
   def current_administrator?

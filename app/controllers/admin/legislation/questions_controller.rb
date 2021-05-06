@@ -59,9 +59,14 @@ class Admin::Legislation::QuestionsController < Admin::Legislation::BaseControll
   end
 
   def destroy
-    @question.destroy
-    notice = t("admin.legislation.questions.destroy.notice")
-    redirect_to admin_legislation_process_questions_path, notice: notice
+    begin
+      @question.hidden_at = Time.zone.now
+    if @question.save!
+      redirect_to admin_legislation_process_questions_path, notice: t("admin.legislation.questions.destroy.notice")
+    end
+    rescue
+      redirect_to admin_legislation_process_questions_path, alert: t("admin.legislation.questions.destroy.error")
+    end
   end
 
   private

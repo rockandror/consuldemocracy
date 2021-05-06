@@ -637,6 +637,7 @@ es:
           error: No se ha podido actualizar la pregunta
         destroy:
           notice: Pregunta eliminada correctamente
+          error: No se ha podido eliminar la pregunta
         edit:
           back: Volver
           title: "Editar “%{question_title}”"
