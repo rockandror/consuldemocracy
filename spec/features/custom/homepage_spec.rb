@@ -25,4 +25,32 @@ describe "Home" do
       end
     end
   end
+
+  describe "footer" do
+    scenario "has the footer content" do
+      visit root_path
+
+      within "footer" do
+        within ".sites-info" do
+          expect(page).to have_link "Gobierno abierto"
+          expect(page).to have_link "Transparencia"
+          expect(page).to have_link "Datos abiertos"
+        end
+
+        within ".gob-logos" do
+          expect(page).to have_css "img[alt='Canarias Avanza con Europa']"
+          expect(page).to have_content "Fondo Europeo de Desarrollo Regional"
+        end
+
+        within ".subfooter" do
+          expect(page).to have_content "Gobierno de Canarias, #{Date.current.year}"
+          expect(page).to have_link "Accesibilidad"
+          expect(page).to have_link "Condiciones de uso"
+          expect(page).to have_link "Cookies y privacidad"
+          expect(page).to have_link "Contacto"
+          expect(page).to have_link "Aviso legal"
+        end
+      end
+    end
+  end
 end

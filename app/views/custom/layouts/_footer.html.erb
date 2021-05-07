@@ -1,33 +1,42 @@
 <footer>
-  <div class="row gob-logos">
-    <div class="small-6 column">
-      <%= link_to "https://ec.europa.eu/regional_policy/index_es.cfm", accesskey: "0" do %>
-        <%= image_tag(image_path_for('logo_canarias.png'), class: 'float-left canarias-with-europe', alt: "Canarias Avanza con Europa") %>
-      <% end %>
-    </div>
-    <div class="small-6 column">
-      <div class="text-right">
-        <h2 class="european-development-program">
-          Fondo Europeo de<br>
-          Desarrollo Regional
-        </h2>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="small-12 large-4 column">
-      <h1 class="logo">
-        <%= link_to t("layouts.header.open_gov", open: "#{t('layouts.header.open')}").html_safe %>
-      </h1>
-
-      <p class="info">
+  <div class="sites-info">
+    <div>
+      <p>
         <%= t("layouts.footer.description",
               open_source: link_to(t("layouts.footer.open_source"), t("layouts.footer.open_source_url"), target: "blank", rel: "nofollow"),
               consul: link_to(t("layouts.footer.consul"), t("layouts.footer.consul_url"), target: "blank", rel: "nofollow")).html_safe
         %>
-        <%# <%= t("layouts.footer.contact_us") %>
+      </p>
+
+      <p>
+        <%= t("layouts.footer.contact_us") %>
+        <%= link_to t("layouts.footer.faq"), page_path("faq") %>
       </p>
     </div>
+
+    <dl>
+      <% Rails.application.config.sites.reject { |name, _| name == :citizen_participation }.each do |name, url| %>
+        <div>
+          <dt><%= link_to t("sites.#{name}"), url %></dt>
+          <dd><%= t("layouts.footer.info.#{name}") %></dd>
+        </div>
+      <% end %>
+    </dl>
+  </div>
+
+  <div class="row gob-logos">
+    <div class="small-6 column">
+      <%= link_to "https://ec.europa.eu/regional_policy/index_es.cfm" do %>
+        <%= image_tag(image_path_for('logo_canarias.png'), class: 'float-left canarias-with-europe', alt: t("layouts.footer.logos.canarias_with_europe")) %>
+      <% end %>
+    </div>
+    <div class="small-6 column">
+      <p class="european-development-program">
+        <%= sanitize(t("layouts.footer.logos.european_development_program")) %>
+      </p>
+    </div>
+  </div>
+  <div class="row">
 
     <div class="small-12 medium-4 column social">
       <div class="text-right">
@@ -91,22 +100,15 @@
 
   <div class="subfooter-wrapper">
     <div class="row">
-      <div class="subfooter column row-no-padding">
-        <span class="first-footer-item">© Gobierno de Canarias</span>
-        <span class="footer-item-divider">|</span>
-        <%= link_to t("layouts.footer.legal_advice"), "http://www.gobiernodecanarias.org/principal/avisolegal.html", class: 'footer-item' %>
-        <span class="footer-item-divider">|</span>
-        <%= link_to t("layouts.footer.privacy"), page_path('privacy'), class: 'footer-item' %>
-        <%# <span class="footer-item-divider">|</span>
-        <%= link_to t("layouts.footer.conditions"), page_path('conditions'), class: 'footer-item' %>
-        <%# <span class="footer-item-divider">|</span> %>
-        <%# <%= link_to t("layouts.footer.accessibility"), page_path('accessibility'), class: 'footer-item' %>
-        <span class="footer-item-divider">|</span>
-        <%= link_to t("layouts.footer.accessibility"), "http://www.gobiernodecanarias.org/principal/accesibilidad.html", class: 'footer-item' %>
-        <span class="footer-item-divider">|</span>
-        <%= link_to t("layouts.footer.suggestions"), "https://www.gobiernodecanarias.org/principal/sugrec/", class: 'footer-item' %>
-      <!--  <span class="footer-item-divider">|</span> -->
-        <%= link_to t("layouts.footer.faq_questions"), root_path + "faq", class: 'footer-item' %>
+      <div class="subfooter column">
+        <span><%= t("layouts.footer.copyright", year: Date.current.year) %></span>
+        <ul>
+          <li><%= link_to t("layouts.footer.accessibility"), page_path("accessibility") %></li>
+          <li><%= link_to t("layouts.footer.conditions"), page_path("conditions") %></li>
+          <li><%= link_to t("layouts.footer.privacy"), page_path("privacy") %></li>
+          <li><%= link_to t("layouts.footer.contact"), ENV["CONTACT_URL"] || "https://www.gobiernodecanarias.org/participacionciudadana/contacto/" %></li>
+          <li><%= link_to t("layouts.footer.legal_advice"), ENV["LEGAL_URL"] || "http://www.gobiernodecanarias.org/principal/avisolegal.html" %></li>
+        </ul>
       </div>
     </div>
   </div>

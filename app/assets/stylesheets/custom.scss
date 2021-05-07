@@ -104,40 +104,65 @@ body > .wrapper > header {
 }
 
 .subfooter-wrapper {
-  background-color: $secondary;
+  background-color: #3f3761;
 }
 
 .subfooter {
+  color: $white;
   display: flex;
   flex-wrap: wrap;
   padding-top: 5px;
   padding-bottom: 5px;
 
   border-top: none;
-}
 
-.first-footer-item {
-  flex: 1;
-  text-align: center;
+  > :first-child {
+    margin-right: 1ch;
+  }
 
-  flex-basis: 150px;
-}
+  ul {
+    margin-bottom: 0;
+    margin-left: 0;
 
-.footer-item {
-  flex: 1;
-  text-align: center;
+    @include breakpoint(large) {
+      flex: 1;
 
-  flex-basis: 150px;
-}
+      > :last-child {
+        float: right;
 
-.footer-item-divider {
-  flex: 0.5;
-  text-align: center;
-}
+        &::before {
+          content: none;
+        }
 
-.row-no-padding {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
+        a {
+          padding-right: 0;
+        }
+      }
+    }
+  }
+
+  li {
+    align-items: center;
+    display: inline-flex;
+
+    &::before {
+      border-left: 1px solid;
+      content: "";
+      height: 1em;
+      opacity: 0.8;
+    }
+
+    a {
+      color: inherit;
+      padding: 0 1ch;
+      text-decoration: none;
+
+      &:hover {
+        color: inherit;
+        text-decoration: underline;
+      }
+    }
+  }
 }
 
 .welcome-sections {
@@ -476,8 +501,9 @@ footer .logo a {
 }
 
 .european-development-program {
-  font-size: 12px;
-  margin-right: 30px;
+  display: flex;
+  line-height: $global-lineheight;
+  justify-content: flex-end;
 }
 
 .canarias-with-europe {
@@ -485,5 +511,35 @@ footer .logo a {
 }
 
 .gob-logos {
-  margin-bottom: 15px;
+  border-top: 1px solid $text-light;
+  margin-bottom: $line-height / 2;
+  margin-top: $line-height;
+  padding-top: $line-height;
+}
+
+.sites-info {
+  @include grid-row;
+
+  > :first-child,
+  dl > *
+   {
+    @include grid-column;
+
+    @include breakpoint(large) {
+      width: 25%;
+    }
+  }
+
+  dt a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  dd {
+    font-size: $small-font-size;
+    margin-bottom: $paragraph-margin-bottom;
+  }
 }
