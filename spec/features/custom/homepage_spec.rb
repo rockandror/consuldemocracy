@@ -52,5 +52,32 @@ describe "Home" do
         end
       end
     end
+
+    describe "social" do
+      scenario "renders a list of links when settings are defined" do
+        Setting["twitter_handle"] = "myhandle"
+
+        visit root_path
+
+        within "footer" do
+          expect(page).to have_selector ".social ul"
+        end
+      end
+
+      scenario "does not render an empty list when settings are not defined" do
+        Setting["twitter_handle"] = ""
+        Setting["facebook_handle"] = ""
+        Setting["blog_url"] = ""
+        Setting["youtube_handle"] = ""
+        Setting["telegram_handle"] = ""
+        Setting["instagram_handle"] = ""
+
+        visit root_path
+
+        within "footer" do
+          expect(page).not_to have_selector ".social ul"
+        end
+      end
+    end
   end
 end
