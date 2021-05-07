@@ -69,6 +69,14 @@ class Admin::Legislation::QuestionsController < Admin::Legislation::BaseControll
     end
   end
 
+  # def destroy_question_option
+  #   puts "======================================"
+  #   puts params
+  #   puts "======================================"
+  #   xxxx
+  #   redirect_to edit_admin_legislation_process_question_path(@process, question)
+  # end
+
   private
 
     def question_path
