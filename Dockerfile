@@ -31,6 +31,7 @@ WORKDIR /app
 # de construccion se pueda usar si cambiiamos rl codiigo pero no las
 # dependencias (trucazo!)
 COPY Gemfile /app/
+COPY Gemfile_custom /app/
 COPY Gemfile.lock /app/
 
 # Ojo que en development habia alguna dependencia que me haciia falta
