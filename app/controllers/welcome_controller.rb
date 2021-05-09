@@ -28,19 +28,47 @@ class WelcomeController < ApplicationController
   end
 
   def encuentrosconexpertos
-    @videoId = Setting.find_by(key: "youtube_connect").value
-    @playlistId = Setting.find_by(key: "youtube_playlist_connect").value
+    begin
+      @videoId = Setting.find_by(key: "youtube_connect").value
+    rescue
+      @videoId = ""
+    end
+    begin
+      @playlistId = Setting.find_by(key: "youtube_playlist_connect").value
+    rescue
+      @playlistId = ""
+    end
   end
 
   def eventos
-    @videoId = Setting.find_by(key: "eventos_youtube_connect").value
-    @playlistId = Setting.find_by(key: "eventos_youtube_playlist_connect").value
+    begin
+      @videoId = Setting.find_by(key: "eventos_youtube_connect").value
+    rescue
+      @videoId = ""
+    end
+    begin
+      @playlistId = Setting.find_by(key: "eventos_youtube_playlist_connect").value
+    rescue
+      @playlistId = ""
+    end
   end
 
   def agend_admin
-    @videoId = Setting.find_by(key: "agend_youtube_connect").value
-    @playlistId = Setting.find_by(key: "agend_youtube_playlist_connect").value
+    begin
+      @videoId =  Setting.find_by(key: "agend_youtube_connect").value
+    rescue
+      @videoId = ""
+    end
+    begin 
+      @playlistId = Setting.find_by(key: "agend_youtube_playlist_connect").value
+    rescue
+      @playlistId = ""
+    end
     @event_agends = EventAgend.all.group_by(&:date_at)
+  rescue
+    @videoId = ""
+    @playlistId = ""
+    @event_agends = nil
   end
 
   private
@@ -49,6 +77,10 @@ class WelcomeController < ApplicationController
     @key = Rails.application.secrets.yt_api_key
     @key_x = Rails.application.secrets.yt_api_key_x
     @embed_domain = Rails.application.secrets.embed_domain
+  rescue
+    @key= ""
+    @key_x=""
+    @embed_domain = ""
   end
 
   def set_user_recommendations

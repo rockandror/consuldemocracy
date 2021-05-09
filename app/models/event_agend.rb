@@ -17,7 +17,7 @@ class EventAgend < ApplicationRecord
     private 
 
     def compare_hours
-        if self.hour_at > self.hour_to
+        if !self.hour_at.blank? && !self.hour_to.blank? && self.hour_at > self.hour_to
             self.errors.add(:hour_to, I18n.t('admin.event_agends.error_compare'))
         end
     end
