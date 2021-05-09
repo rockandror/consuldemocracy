@@ -252,6 +252,7 @@ namespace :admin do
   namespace :legislation do
     resources :processes do
       resources :questions do
+        #post :destroy_question_option, on: :member
         get :other_answers, on: :collection
         get :range_answers, on: :collection
         get :number_answers, on: :collection
