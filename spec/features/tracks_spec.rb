@@ -91,7 +91,7 @@ feature 'Tracking', :sara do
       expect(page.html).to include "data-track-event-action=success_sms"
     end
 
-    scenario 'Verification: letter', :broken => true do
+    scenario 'Verification: letter', :broken do
       create(:geozone)
       user = create(:user)
       login_as(user)

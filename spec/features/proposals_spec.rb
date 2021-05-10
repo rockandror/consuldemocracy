@@ -1,7 +1,7 @@
 # coding: utf-8
 require 'rails_helper'
 
-feature 'Proposals', :broken => true do
+feature 'Proposals' do
 
   it_behaves_like "milestoneable",
                   :proposal,
@@ -119,7 +119,7 @@ feature 'Proposals', :broken => true do
     end
   end
 
-  scenario 'Show' do
+  scenario 'Show', broken: true do
     proposal = create(:proposal)
 
     visit proposal_path(proposal)

@@ -44,7 +44,7 @@ shared_examples "nested imageable" do |imageable_factory_name, path,
       expect(page).to have_selector "#new_image_link", visible: false
     end
 
-    scenario "Should update nested image file name after choosing any file", :js, :broken => true do
+    scenario "Should update nested image file name after choosing any file", :js do
       login_as user
       visit send(path, arguments)
 
@@ -59,7 +59,7 @@ shared_examples "nested imageable" do |imageable_factory_name, path,
       expect(page).to have_selector ".file-name", text: "clippy.jpg"
     end
 
-    scenario "Should update nested image file title with file name after choosing a file when no title defined", :js, :broken => true do
+    scenario "Should update nested image file title with file name after choosing a file when no title defined", :js do
       login_as user
       visit send(path, arguments)
 
@@ -92,7 +92,7 @@ shared_examples "nested imageable" do |imageable_factory_name, path,
       end
     end
 
-    scenario "Should update loading bar style after valid file upload", :js, :broken => true do
+    scenario "Should update loading bar style after valid file upload", :js do
       login_as user
       visit send(path, arguments)
 
@@ -104,7 +104,7 @@ shared_examples "nested imageable" do |imageable_factory_name, path,
       expect(page).to have_selector ".loading-bar.complete"
     end
 
-    scenario "Should update loading bar style after invalid file upload", :js, :broken => true do
+    scenario "Should update loading bar style after invalid file upload", :js do
       login_as user
       visit send(path, arguments)
 
@@ -117,7 +117,7 @@ shared_examples "nested imageable" do |imageable_factory_name, path,
       expect(page).to have_selector ".loading-bar.errors"
     end
 
-    scenario "Should update image cached_attachment field after valid file upload", :js, :broken => true do
+    scenario "Should update image cached_attachment field after valid file upload", :js do
       login_as user
       visit send(path, arguments)
 
@@ -129,7 +129,7 @@ shared_examples "nested imageable" do |imageable_factory_name, path,
       expect_image_has_cached_attachment(".jpg")
     end
 
-    scenario "Should not update image cached_attachment field after invalid file upload", :js, :broken => true do
+    scenario "Should not update image cached_attachment field after invalid file upload", :js do
       login_as user
       visit send(path, arguments)
 
@@ -158,7 +158,7 @@ shared_examples "nested imageable" do |imageable_factory_name, path,
       end
     end
 
-    scenario "Should remove nested image after valid file upload and click on remove button", :js, :broken => true do
+    scenario "Should remove nested image after valid file upload and click on remove button", :js do
       login_as user
       visit send(path, arguments)
 
@@ -187,7 +187,7 @@ shared_examples "nested imageable" do |imageable_factory_name, path,
       end
     end
 
-    scenario "Should show successful notice when resource filled correctly and after valid file uploads", :js, :broken => true do
+    scenario "Should show successful notice when resource filled correctly and after valid file uploads", :js do
       login_as user
       visit send(path, arguments)
       send(fill_resource_method_name) if fill_resource_method_name
@@ -202,7 +202,7 @@ shared_examples "nested imageable" do |imageable_factory_name, path,
       expect(page).to have_content imageable_success_notice
     end
 
-    scenario "Should show new image after successful creation with one uploaded file", :js, :broken => true do
+    scenario "Should show new image after successful creation with one uploaded file", :js do
       login_as user
       visit send(path, arguments)
       send(fill_resource_method_name) if fill_resource_method_name

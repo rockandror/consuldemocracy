@@ -46,7 +46,7 @@ feature 'Stats', :sara do
 
   context "Users" do
 
-    scenario 'Summary', :broken => true do
+    scenario 'Summary' do
       1.times { create(:user, :level_three) }
       2.times { create(:user, :level_two) }
       3.times { create(:user) }
@@ -60,7 +60,7 @@ feature 'Stats', :sara do
       expect(page).to have_content "Total users 7"
     end
 
-    scenario "Do not count erased users", :broken => true do
+    scenario "Do not count erased users" do
       1.times { create(:user, :level_three, erased_at: Time.current) }
       2.times { create(:user, :level_two, erased_at: Time.current) }
       3.times { create(:user, erased_at: Time.current) }
@@ -74,7 +74,7 @@ feature 'Stats', :sara do
       expect(page).to have_content "Total users 1"
     end
 
-    scenario "Do not count hidden users", :broken => true do
+    scenario "Do not count hidden users" do
       1.times { create(:user, :level_three, hidden_at: Time.current) }
       2.times { create(:user, :level_two, hidden_at: Time.current) }
       3.times { create(:user, hidden_at: Time.current) }
