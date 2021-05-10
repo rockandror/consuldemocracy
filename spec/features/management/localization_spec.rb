@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Localization', :broken => true do
+feature 'Localization' do
 
   background do
     login_as_manager

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Localization', :broken => true do
+feature 'Localization' do
 
   scenario 'Wrong locale' do
     Globalize.with_locale(:es) do
