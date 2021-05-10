@@ -1,0 +1,34 @@
+<%= form_for [:admin, @event_agend], html: {data: {watch_changes: true}} do |f| %>
+  <% if @event_agend.errors.any? %>
+    <div id="error_explanation" data-alert class="callout alert" data-closable>
+      <button class="close-button" aria-label="<%= t("application.close") %>" type="button" data-close>
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+      <strong>
+        <%= @event_agend.errors.count %>
+        <%= t("admin.event_agends.errors", count: @event_agend.errors.count) %>
+      </strong>
+    </div>
+  <% end %>
+
+  <div class="small-12 medium-6 column ">
+    <%= f.date_field :date_at %>
+  </div>
+  <div class="small-12 medium-3 column">
+    <%= f.time_field :hour_at, :value => f.object.hour_at %>
+  </div>
+  <div class="small-12 medium-3 column end">
+    <%= f.time_field :hour_to, :value => f.object.hour_to  %>
+  </div>
+  <div class="small-12 column end ckeditor">
+    <%= f.cktext_area :content, rows: 5,
+      placeholder: t("admin.event_agends.additional_info_placeholder"),
+      ckeditor: { language: I18n.locale, toolbar: current_user.administrator? ? "admin" : 'mini' } %>
+  </div>
+
+  <div class="small-12 medium-3 column clear end" style="margin-top: 2rem">
+    <%= f.submit(class: "button success expanded", value: t("admin.event_agends.#{admin_submit_action(@event_agend)}.submit_button")) %>
+  </div>
+ 
+<% end %>

@@ -1,0 +1,9 @@
+<% provide :title do %>
+  <%= t("admin.header.title") %> - <%= t("admin.menu.site_customization.event_agends") %> - <%= t("admin.event_agends.edit_title") %> <%= @event_agend.date_at %> <%= @event_agend.hour_at %>
+<% end %>
+
+<div class="event-agends-edit">
+  <%= back_link_to admin_event_agends_path, t("admin.event_agends.back") %>
+  <h2><%= t("admin.event_agends.edit_title") %> <%= @event_agend.date_at %> <%= @event_agend.hour_at %></h2>
+  <%= render "form" %>
+</div>

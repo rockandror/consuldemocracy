@@ -1,0 +1,130 @@
+<%content_for(:title) {t('welcome.admin_agend_title')}%>
+<%content_for(:meta_description) {t('welcome.admin_agend_description')}%>
+<%content_for(:meta_keywords) {t('welcome.admin_agend_keywords')}%>
+<script>
+    function uploadData(key, key_x, videoId, playlist, embed_domain ) {     
+        $.get(
+            "https://www.googleapis.com/youtube/v3/videos",{
+            part : 'player,snippet', 
+            id : videoId, 
+            key: key_x},
+            function(data) {   
+                $('#player').html("<div class=\"video-responsive\">"+data.items[0].player.embedHtml.replace("width=\"480\"", "").replace("height=\"270\"", "")+"</div>");
+                
+                if( navigator.userAgent.match(/Android/i) 
+                    || navigator.userAgent.match(/webOS/i)
+                    || navigator.userAgent.match(/iPhone/i)
+                    || navigator.userAgent.match(/iPad/i)
+                    || navigator.userAgent.match(/iPod/i)
+                    || navigator.userAgent.match(/BlackBerry/i)
+                    || navigator.userAgent.match(/Windows Phone/i)) {
+                    $('#comments').html("El chat no es accesible a través de una plataforma móvil");
+                } else {
+                    if (data.items[0].snippet.liveBroadcastContent != 'none' ) {
+                        $('#comments').html("<iframe frameBorder='0' src=https://www.youtube.com/live_chat?v="+videoId+"&embed_domain="+embed_domain+" width='100%' height='600'></iframe>");
+                    } else {
+                        $.get(
+                            "https://www.googleapis.com/youtube/v3/commentThreads",{
+                            part : 'snippet', 
+                            order: 'time',
+                            videoId : videoId,
+                            maxResults: 6,
+                            key: key_x},
+                            function(data) {   
+                                var contenido = '';
+                                if (data.items.length > 0) {
+                                    $.each( data.items, function( i, cont ) {
+                                        var item = cont.snippet.topLevelComment.snippet
+                                        var datecre =  new Date(Date.parse(item.updatedAt));
+                                        var fecha = datecre.getDay() + "/" + datecre.getMonth() + "/" + datecre.getFullYear();
+                                        contenido = contenido + "<p><b>" + item.authorDisplayName + "</b> - <span class='desc_video'>" + fecha + "</span></p><p>" + item.textDisplay + "</p>"
+            
+                                    });
+                                }else {
+                                    contenido = "No hay comentarios disponibles";
+                                }
+                                $('#comments').html(contenido);
+                            }
+                        );
+                    }
+                }
+            }
+        );
+
+        $.get(
+            "https://www.googleapis.com/youtube/v3/playlistItems",{
+            part : 'snippet', 
+            playlistId : playlist,
+            maxResults : 1000,
+            key: key},
+            function(data) {   
+                var contenido = '';
+                if (data.items.length > 0) {
+                    $.each( data.items, function( i, cont ) {
+                    var item = cont.snippet
+                    var datecre =  new Date(Date.parse(item.publishedAt));
+                    var fecha = datecre.getDay() + "/" + datecre.getMonth() + "/" + datecre.getFullYear();
+                    contenido = contenido + "<div class='small-6 medium-2 column' style='float:left'>"
+                    contenido = contenido + "<div class='row background_uniq_video'>"
+                    contenido = contenido + "<div class='small-12 column'>"
+                    contenido = contenido + "<a href='https://www.youtube.com/watch?v="+ item.resourceId.videoId + "' target='_blank'><img width='100%' src='" +item.thumbnails.high.url +"'></a>"
+                    contenido = contenido + "</div>"
+                    contenido = contenido + "</div>"
+                    contenido = contenido + "<div class='row background_uniq_video'>"
+                    contenido = contenido + "<div class='small-12 column'>"
+                    contenido = contenido + "<p><b>"+item.title.substring(0, 25)+"...</b></p>"
+                    contenido = contenido + "</div>"
+                    contenido = contenido + "</div>"
+                    contenido = contenido + "</div>"
+                    });
+                }else {
+                    contenido = "No hay vídeos disponibles";
+                }
+                $('#playlist').html(contenido);
+            }
+        );
+        
+    }
+</script>
+
+<div class="row">
+    <div class="small-12 column">
+        <%= image_tag(image_path_for("welcome/OGW_Banner_Pagina_DM.jpg"), class: "float-left", style: "height: auto;width: 100%;margin-bottom: 2rem;", alt: t("layouts.header.logo")) %>
+
+        <%= markdown(Setting.find_by(key: 'text_agend').try(:value).to_s)%>
+    </div>
+</div>
+<div class="row">
+    <div class="small-12 column">
+        <h3><%=t('welcome.event_agend.title_agend')%></h3>
+        <hr>
+    </div>
+    <div class="small-12 column" style="margin-bottom: 1rem">
+        <b><%=t('welcome.event_agend.follow_agend')%></b>
+    </div>
+    <div id="player" class="small-12 medium-6 column">
+    
+    </div>
+    <div class="small-12 medium-6 column background_comments">
+        <h3><%=t('welcome.youtube_text.comments')%></h3>
+        <div id="comments"><%=t('welcome.youtube_text.no_comments')%></div>
+    </div>
+</div>
+<div class="row background_videos">
+    <div class="small-12 column">
+        <h3><%=t('welcome.youtube_text.other_video')%></h3>
+        <div id="playlist" class="row"><%=t('welcome.youtube_text.no_other_video')%></div>
+    </div>
+</div>
+<div class="row">
+    <div class="small-12 column">
+        <hr>
+            <h3><%=t('welcome.event_agend.content_agend')%></h3>
+        <hr>
+    </div>
+</div>
+<div id="content_agend">
+    <%= render partial: "content_agend"%>
+</div>
+
+<%= javascript_tag "uploadData('#{ @key}', '#{@key_x}', '#{ @videoId }', '#{@playlistId}','#{@embed_domain}')" %>

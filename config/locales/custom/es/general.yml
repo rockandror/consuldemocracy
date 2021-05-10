@@ -161,9 +161,17 @@ es:
     eventos_title: Eventos - Decide Madrid
     eventos_description: "Conoce las acciones de participación ciudadana y participa."
     eventos_keywords: "participación ciudadana; eventos; gobierno abierto; agenda Madrid"
+    admin_agend_title: Semana de la Administración Abierta 2021 - Decide Madrid
+    admin_agend_description: "Jornadas \"Si participas, decides Madrid 2021\"."
+    admin_agend_keywords: "participación ciudadana; semana abierta 2021; gobierno abierto; agenda Madrid; OpenGov Week; Si participas, decides Madrid; Semana de la Administración Abierta 2021"
     conectados_title: Conectados - Decide Madrid
     conectados_description: "En Conectados podrás participar en encuentros digitales con expertos del Ayuntamiento de Madrid"
     conectados_keywords: "participación ciudadana; debates; gobierno abierto; debates Madrid; ayuntamiento de madrid"
+    youtube_text:
+      comments: "Comentarios más recientes"
+      no_comments: "No hay comentarios disponibles"
+      other_video: "Encuentros anteriores"
+      no_other_video: "No hay vídeos disponibles"
     recommended:
       help: "Estas recomendaciones se generan por las etiquetas de los debates y propuestas que estás siguiendo."
       debates:
@@ -175,3 +183,7 @@ es:
       go_to_index: Ahora no, empezar a participar
       start_using_consul: "Empezar a participar"
       user_permission_verify_info: "* Sólo usuarios empadronados en el municipio de Madrid."
+    event_agend:
+      title_agend: "Agenda"
+      follow_agend: "Sigue las jornadas en directo"
+      content_agend: "Agenda de las Jornadas \"Si participas, decides Madrid 2021\""

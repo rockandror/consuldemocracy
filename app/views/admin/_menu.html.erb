@@ -143,6 +143,11 @@
               <%= link_to t("admin.menu.banner"), admin_banners_path %>
             </li>
 
+            <li <%= "class=is-active" if controller_name == "event_agends" %>>
+              <%= link_to t("admin.menu.site_customization.event_agends"),
+                          admin_event_agends_path %>
+            </li>
+
             <li <%= "class=is-active" if controller_name == "information_texts" %>>
               <%= link_to t("admin.menu.site_customization.information_texts"), admin_site_customization_information_texts_path %>
             </li>
@@ -151,6 +156,8 @@
               <%= link_to t("admin.menu.site_customization.documents"),
                           admin_site_customization_documents_path %>
             </li>
+
+            
           </ul>
         </li>
       <%if !current_user.editor?%>

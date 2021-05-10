@@ -2,6 +2,35 @@ es:
   admin:
     header:
       title: Administración
+    event_agends:
+      index_title: "Agenda de administración abierta"
+      index_create: "Añadir evento"
+      new_title: "Nuevo evento"
+      edit_title: "Evento"
+      date_at: "Fecha"
+      hour_at: "Hora de comienzo"
+      hour_to: "Hora de fin"
+      hour: "Hora"
+      content: "Contenido"
+      back: "Volver"
+      errors: Errores
+      error_compare: "La hora de fin no debe ser mayor a la hora de comienzo"
+      time_one: "A las %{hour}h"
+      time_other: "De %{hour_at}h a %{hour_to}h"
+      additional_info_placeholder: "Introduzca el contenido del evento..."
+      create:
+        notice: 'Evento de agenda creado correctamente.</a>'
+        error: No se ha podido crear el evento
+      update:
+        notice: 'Evento de agenda actualizado correctamente.'
+        error: No se ha podido actualizar el evento
+      destroy:
+        notice: 'Evento de agenda eliminado correctamente.'
+        error: No se ha podido eliminar el evento
+      new:
+        submit_button: "Nuevo evento de agenda"
+      edit:
+        submit_button: "Actualizar evento de agenda"
     actions:
       actions: Acciones
       confirm: '¿Estás seguro?'
@@ -839,6 +868,7 @@ es:
       stats: Estadísticas
       signature_sheets: Hojas de firmas
       site_customization:
+        event_agends: "Eventos agenda administración"
         documents: Documentos
         homepage: Homepage
         pages: Personalizar páginas

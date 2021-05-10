@@ -1,0 +1,47 @@
+<% provide :title do %>
+  <%= t("admin.header.title") %> - <%= t("admin.menu.site_customization.event_agends") %>
+<% end %>
+
+<h2 class="inline-block"><%= t("admin.event_agends.index_title") %></h2>
+
+<%= link_to t("admin.event_agends.index_create"), new_admin_event_agend_path,
+            class: "button float-right" %>
+
+
+<% if @event_agends.any? %>
+  <h3><%= page_entries_info @event_agends %></h3>
+
+  <table class="stack">
+    <thead>
+      <tr>
+        <th><%= t("admin.event_agends.date_at") %></th>
+        <th><%= t("admin.event_agends.hour") %></th>
+        <th><%= t("admin.event_agends.content") %></th>        
+        <th><%= t("admin.actions.actions") %></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @event_agends.each do |event_agend| %>
+        <tr id="<%= dom_id(event_agend) %>">
+          <td class="small-12 medium-6 large-4">
+            <%= link_to event_agend.try(:date_at), edit_admin_event_agend_path(event_agend) %>
+          </td>
+          <td><%= event_agend.try(:hour) %></td>
+          <td class="truncate"><%= event_agend.try(:content) %></td>
+          <td>
+            <%= link_to t("admin.sures.actuations.index.delete"), admin_event_agend_path(event_agend),
+                        method: :delete,
+                        class: "button hollow alert expanded" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @event_agends %>
+<% else %>
+  <div class="callout primary">
+    <%= page_entries_info @event_agends %>
+  </div>
+<% end %>
