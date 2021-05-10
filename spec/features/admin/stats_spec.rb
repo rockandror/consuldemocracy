@@ -88,7 +88,7 @@ feature 'Stats', :sara do
       expect(page).to have_content "Total users 1"
     end
 
-    scenario 'Level 2 user Graph' do
+    scenario 'Level 3 user Graph' do
       create(:geozone)
       visit account_path
       click_link 'Verify my account'
@@ -97,7 +97,7 @@ feature 'Stats', :sara do
 
       visit admin_stats_path
 
-      #expect(page).to have_content "Level 2 User (1)"
+      expect(page).to have_content "Level three users 1"
     end
 
   end
