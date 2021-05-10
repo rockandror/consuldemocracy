@@ -133,9 +133,13 @@ feature 'Cards' do
     context "Page card" do
       let!(:custom_page) { create(:site_customization_page) }
 
-      xscenario "Create", :js do
+      scenario "Create", :js do
         visit admin_site_customization_pages_path
-        click_link "See Cards"
+
+        within "#site_customization_page_#{custom_page.id}" do
+          click_link "See Cards"
+        end
+
         click_link "Create card"
 
         fill_in "Title", with: "Card for a custom page"
