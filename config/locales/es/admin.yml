@@ -586,8 +586,6 @@ es:
     member_types:
       member_type:
         value: Conjunto de Participantes
-        fixed: Fijo
-        creation_date: Fecha creación
         index:
           new: Nuevo Conjunto de Participantes
           add: Añadir
@@ -598,7 +596,6 @@ es:
           destroyed: Conjunto de Participantes eliminado correctamente
           destroy_error: No se pudo eliminar el Conjunto de Participantes
           updated: Conjunto de Participantes modificado correctamente
-          update_error: No se pudo modificar el Conjunto de Participantes
     managers:
       index:
         title: Gestores
