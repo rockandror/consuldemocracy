@@ -64,7 +64,7 @@ class WelcomeController < ApplicationController
     rescue
       @playlistId = ""
     end
-    @event_agends = EventAgend.all.group_by(&:date_at)
+    @event_agends = EventAgend.all.order(date_at: :asc).group_by(&:date_at)
   rescue
     @videoId = ""
     @playlistId = ""

@@ -6,7 +6,7 @@
                     <% if params[:type].blank? && index.to_i == 0 || params[:type].to_s==filter[0].to_s %>
                         <h2><%=l(filter[0],format: :short_compuesto)%></h2>
                     <%else%>  
-                        <%= link_to l(filter[0],format: :short_compuesto), agenda_administracion_path(type: filter[0].to_s), remote: true %>
+                        <%= link_to l(filter[0],format: :short_compuesto), semana_administracion_abierta_path(type: filter[0].to_s), remote: true %>
                     <%end%>
                 </li>
             <%end%>
