@@ -43,7 +43,7 @@ Rails.application.routes.draw do
   get "/conectados", to: "welcome#encuentrosconexpertos"
   get '/update_padron' => 'users#update_padron', as: :update_padron
   get "/eventos", to: "welcome#eventos"  
-  get "/agenda_administracion", to: "welcome#agend_admin" 
+  get "/semana-administracion-abierta", to: "welcome#agend_admin" 
 
   get "/madridsalealbalcon" => redirect("/legislation/processes/#{Rails.application.secrets.id}")
   get "/compartimosbarrio" => redirect("/legislation/processes/#{Rails.application.secrets.id_barrio}")
