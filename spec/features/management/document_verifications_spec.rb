@@ -44,7 +44,7 @@ feature 'DocumentVerifications' do
     expect(page).to have_content "This document is not registered"
   end
 
-  xscenario 'Verifying a user which does exists in the census but not in the db redirects allows sending an email' do
+  scenario 'Verifying a user which does exists in the census but not in the db redirects allows sending an email', :broken do
 
     visit management_document_verifications_path
     fill_in 'document_verification_document_number', with: '12345678Z'
@@ -62,7 +62,7 @@ feature 'DocumentVerifications' do
     expect(page).to have_content "Document number: 12345H"
   end
 
-  xscenario 'User age is checked' do
+  scenario 'User age is checked', :broken do
     expect_any_instance_of(Verification::Management::Document).to receive(:under_age?).and_return(true)
 
     visit management_document_verifications_path

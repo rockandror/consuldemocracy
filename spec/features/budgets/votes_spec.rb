@@ -39,17 +39,17 @@ feature 'Votes' do
         end
       end
 
-      scenario 'Create from spending proposal index', :js do
+      scenario 'Create from spending proposal index', :js, :broken do
         investment = create(:budget_investment, heading: heading, budget: budget)
 
         visit budget_investments_path(budget, heading_id: heading.id)
 
-        #within('.supports') do
-        #  accept_confirm { find('.in-favor a').click }
+        within('.supports') do
+          find(".in-favor a").click
 
-        #  expect(page).to have_content "1 support"
-        #  expect(page).to have_content "You have already supported this investment project. Share it!"
-        #end
+          expect(page).to have_content "1 support"
+          expect(page).to have_content "You have already supported this investment project. Share it!"
+        end
       end
     end
 
@@ -63,22 +63,22 @@ feature 'Votes' do
         expect(page).to have_content "No supports"
       end
 
-      xscenario 'Trying to vote multiple times', :js do
+      scenario 'Trying to vote multiple times', :js, :broken do
         visit budget_investment_path(budget, @investment)
 
         within('.supports') do
-          accept_confirm { find('.in-favor a').click }
+          find(".in-favor a").click
           expect(page).to have_content "1 support"
 
           expect(page).not_to have_selector ".in-favor a"
         end
       end
 
-      xscenario 'Create from proposal show', :js do
+      scenario 'Create from proposal show', :js, :broken do
         visit budget_investment_path(budget, @investment)
 
         within('.supports') do
-          accept_confirm { find('.in-favor a').click }
+          find(".in-favor a").click
 
           expect(page).to have_content "1 support"
           expect(page).to have_content "You have already supported this investment project. Share it!"
@@ -118,7 +118,7 @@ feature 'Votes' do
         group.update(max_votable_headings: 2)
       end
 
-      xscenario "From Index", :js do
+      scenario "From Index", :js, :broken do
         visit budget_investments_path(budget, heading_id: new_york.id)
 
         within("#budget_investment_#{new_york_investment.id}") do
@@ -149,7 +149,7 @@ feature 'Votes' do
         end
       end
 
-      xscenario "From show", :js do
+      scenario "From show", :js, :broken do
         visit budget_investment_path(budget, new_york_investment)
 
         accept_confirm { find('.in-favor a').click }

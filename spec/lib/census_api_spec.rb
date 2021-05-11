@@ -44,7 +44,7 @@ describe CensusApi do
       }
     end
 
-    xit "returns the response for the first valid variant" do
+    it "returns the response for the first valid variant", :broken do
       allow(api).to receive(:get_response_body).with(1, "00123456").and_return(invalid_body)
       allow(api).to receive(:get_response_body).with(1, "123456").and_return(invalid_body)
       allow(api).to receive(:get_response_body).with(1, "0123456").and_return(valid_body)

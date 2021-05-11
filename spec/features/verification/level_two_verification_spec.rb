@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Level two verification', :sara do
 
-  scenario 'Verification with residency and sms' do
+  scenario 'Verification with residency and sms', :broken do
     create(:geozone)
     user = create(:user)
     login_as(user)
@@ -12,16 +12,16 @@ feature 'Level two verification', :sara do
 
     verify_residence
 
-    #fill_in 'sms_phone', with: "611111111"
-    #click_button 'Send'
+    fill_in 'sms_phone', with: "611111111"
+    click_button 'Send'
 
-    #expect(page).to have_content 'Security code confirmation'
+    expect(page).to have_content 'Security code confirmation'
 
-    #user = user.reload
-    #fill_in 'sms_confirmation_code', with: user.sms_confirmation_code
-    #click_button 'Send'
+    user = user.reload
+    fill_in 'sms_confirmation_code', with: user.sms_confirmation_code
+    click_button 'Send'
 
-    #expect(page).to have_content 'Code correct'
+    expect(page).to have_content 'Code correct'
   end
 
   context "In Spanish, with no fallbacks" do

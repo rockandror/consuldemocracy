@@ -50,7 +50,7 @@ feature 'Account' do
     expect(find("#account_email_on_direct_message")).not_to be_checked
   end
 
-  xscenario 'Edit email address' do
+  scenario 'Edit email address', :broken do
     visit account_path
 
     click_link "Change my credentials"
@@ -145,7 +145,7 @@ feature 'Account' do
     expect(page).to have_content error_message
   end
 
-  xscenario 'Errors editing credentials' do
+  scenario 'Errors editing credentials', :broken do
     visit root_path
 
     click_link("My account", match: :first)
@@ -159,7 +159,7 @@ feature 'Account' do
     expect(page).to have_content error_message
   end
 
-  xscenario 'Erasing account' do
+  scenario 'Erasing account', :broken do
     visit account_path
 
     click_link 'Erase my account'

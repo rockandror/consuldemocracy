@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Level three verification', :sara do
 
-  xscenario 'Verification with residency and verified sms' do
+  scenario 'Verification with residency and verified sms', :broken do
     create(:geozone)
     user = create(:user)
 
@@ -34,7 +34,7 @@ feature 'Level three verification', :sara do
     expect(page).to have_content "Account verified"
   end
 
-  scenario 'Verification with residency and verified email' do
+  scenario 'Verification with residency and verified email', :broken do
     create(:geozone)
     user = create(:user)
 
@@ -50,7 +50,6 @@ feature 'Level three verification', :sara do
 
     verify_residence
 
-=begin
     within("#verified_user_#{verified_user.id}_email") do
       click_button "Send code"
     end
@@ -64,10 +63,9 @@ feature 'Level three verification', :sara do
 
     expect(page).not_to have_link "Verify my account"
     expect(page).to have_content "Account verified"
-=end
   end
 
-  xscenario 'Verification with residency and sms and letter' do
+  scenario 'Verification with residency and sms and letter', :broken do
     create(:geozone)
     user = create(:user)
     login_as(user)

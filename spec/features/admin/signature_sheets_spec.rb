@@ -35,7 +35,7 @@ feature 'Signature sheets' do
   end
 
   context 'Create' do
-    scenario 'Proposal' do
+    scenario "Proposal", :broken do
       proposal = create(:proposal)
       visit new_admin_signature_sheet_path
 
@@ -48,10 +48,10 @@ feature 'Signature sheets' do
 
       visit proposal_path(proposal)
 
-      #expect(page).to have_content "1 support"
+      expect(page).to have_content "1 support"
     end
 
-    scenario 'Budget Investment' do
+    scenario 'Budget Investment', :broken do
       investment = create(:budget_investment)
       budget = investment.budget
       budget.update(phase: 'selecting')
@@ -67,7 +67,7 @@ feature 'Signature sheets' do
 
       visit budget_investment_path(budget, investment)
 
-      #expect(page).to have_content "1 support"
+      expect(page).to have_content "1 support"
     end
 
   end
@@ -80,7 +80,7 @@ feature 'Signature sheets' do
     expect(page).to have_content error_message
   end
 
-  scenario 'Show' do
+  scenario 'Show', :broken do
     proposal = create(:proposal)
     user = Administrator.first.user
     signature_sheet = create(:signature_sheet,
@@ -101,7 +101,7 @@ feature 'Signature sheets' do
     end
 
     within("#verified_signatures") do
-      #expect(page).to have_content 1
+      expect(page).to have_content 1
     end
 
     within("#unverified_signatures") do
