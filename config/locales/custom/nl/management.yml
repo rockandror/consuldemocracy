@@ -30,7 +30,7 @@ nl:
     check: Kies bestand
     dashboard:
       index:
-        title: Beheer
+        title: Gebruikersbeheer
         info: Hier kunt u gebruikers beheren via alle acties die in het linkermenu zijn vermeld.
     document_verifications:
       already_verified: Dit gebruikersaccount is al geverifieerd.

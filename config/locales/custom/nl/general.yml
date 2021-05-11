@@ -213,8 +213,8 @@ nl:
       debates: Debatten
       locale: "Taal:"
       logo: Consul logo
-      management: Beheer
-      moderation: Moderation
+      management: Gebruikersbeheer
+      moderation: Modereren
       valuation: Valuation
       officing: Stembureau
       help: Help
@@ -304,10 +304,10 @@ nl:
       retired_explanation_placeholder: Leg kort uit waarom u denkt dat deze motie niet meer gesteund moet worden
       submit_button: Trek motie terug
     retire_options:
-      duplicated: Dubbele
-      started: Is al gestart
-      unfeasible: Unfeasible
-      done: Gerealiseerde
+      duplicated: Er is al een vergelijkbare motie
+      started: Onderwerp word al behandeld
+      unfeasible: Voldoet niet aan de richtlijnen 
+      done: Al gerealiseerd
       other: Anders
     form:
       proposal_responsible_name_note: "(individueel of als vertegenwoordiger van een collectief; niet publiek zichtbaar)"
@@ -504,7 +504,21 @@ nl:
       poster: Poster
       recommended_actions: Recommended actions
       messages: Message to users
-      related_content: Related content      
+      related_content: Related content 
+    progress:
+      title: Statistieken
+      group_by_month: Maandelijks
+      group_by_week: Wekelijks
+      group_by_date: Dagelijks
+      progress: Geaccumuleerde voortgang 
+      supports: Steun
+      success: Ideale voortgang
+      new_action: Nieuw  
+    index:
+      title: Motie concept aanpassen
+      edit_proposal_link: Motie bewerken
+      publish: Motie publiceren
+      retire: Motie terugtrekken           
   poll_questions:
     show:
       vote_answer: "Stem %{answer}"
@@ -549,7 +563,7 @@ nl:
     collective: Collectief
     flag: Markeer als ongepast
     follow: "Volg"
-    following: "Volgend"
+    following: "Gevolgd"
     follow_entity: "Volg %{entity}"
     print:
       print_button: Print
@@ -664,8 +678,11 @@ nl:
       delete_alert: "Weet je zeker dat je jouw investeringsproject wilt verwijderen? Dit kan niet ongedaan gemaakt worden."
     proposals:
       retired: "Teruggetrokken"
+      draft: Concept
+      published: Gepubliceerd 
       see: "Bekijk moties"
       actions: Acties
+      retired_help_text: Dashboard niet beschikbaar voor teruggetrokken moties 
   votes:
     agree: Ik ben het eens
     anonymous: Er zijn al te veel anonieme stemmen; %{verify_account}.
@@ -744,7 +761,7 @@ nl:
       budget_investment: "Begrotingsvoorstel"
   admin/widget:
     header:
-      title: Administration
+      title: Beheer
   annotator:
     help:
       alt: "Selecteer de tekst waarop u wilt reageren en klik de knop met het potlood. * Wijzigen: exacte zin en/of woordgroep of schrappen exacte zin/woordgroep of aanvullen exact aanvullen vanaf waar. * Toelichting: zeer korte toelichting op reden van voorstel tot amenderen"

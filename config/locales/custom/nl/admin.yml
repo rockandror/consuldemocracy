@@ -1,14 +1,14 @@
 nl:
   admin:
     header:
-      title: Administration
+      title: Beheer
     actions:
       actions: Actions
-      confirm: Are you sure?
+      confirm: Weet je het zeker?
       confirm_hide: Bevestig
-      hide: Hide
-      hide_author: Hide author
-      restore: Restore
+      hide: Verbergen
+      hide_author: Verberg indiener
+      restore: Herstellen
       mark_featured: Featured
       unmark_featured: Unmark featured
       edit: Edit
@@ -309,7 +309,7 @@ nl:
     dashboard:
       index:
         back: Terug naar %{org}
-        title: Administration
+        title: Beheer
         description: Welkom op de %{org} beheers pagina.
     hidden_users:
       index:
@@ -364,7 +364,7 @@ nl:
           homepage_description: Hier kun je de stappen van het proces uitleggen
           banner_title: Rubriekkleuren
         index:
-          create: Nieuw plan
+          create: Nieuw proces
           delete: Delete
           title: Plannen
           filters:
@@ -372,7 +372,7 @@ nl:
             all: All
         new:
           back: Terug
-          title: Nieuw plan creëren
+          title: Proces creëren
           submit_button: Nieuw plan
         proposals:
           select_order: Sorteer op
@@ -382,7 +382,7 @@ nl:
             supports: Steunt
         process:
           title: Proces
-          comments: Comments
+          comments: reacties
           status: Status
           start_date: Begindatum
           end_date: Einddatum
@@ -437,7 +437,7 @@ nl:
         index:
           title: Concept versies
           create: Nieuwe versie
-          delete: Delete
+          delete: Verwijder
           preview: Preview
         new:
           back: Terug
@@ -446,7 +446,7 @@ nl:
         table:
           title: Title
           created_at: Aanmaakdatum
-          comments: Comments
+          comments: Reacties
           final_version: Eindversie
           status: Status
       questions:
@@ -471,7 +471,7 @@ nl:
           back: Terug
           title: Vragen bij dit plan
           create: Stel een vraag
-          delete: Delete
+          delete: Verwijder
         new:
           back: Terug
           title: Nieuwe vraag
@@ -489,28 +489,29 @@ nl:
     managers:
       index:
         title: Managers
-        name: Name
+        name: Naam
         email: E-mail
         no_managers: Er zijn geen managers.
       manager:
         add: Add
-        delete: Delete
+        delete: Verwijder
       search:
         title: "Managers: zoek deelnemers"
     menu:
       activity: Moderator activiteit
       admin: Admin menu
       banner: Manage banners
-      proposals: Voorstellen
-      proposals_topics: Voorstelonderwerpen
+      dashboard: Moties menu
+      proposals: Moties
+      proposals_topics: Motieonderwerpen
       budgets: Participatory budgets
       geozones: Manage geozones
       hidden_comments: Verborgen commentaar
       hidden_debates: Verborgen debatten
-      hidden_proposals: Verborgen voorstellen
+      hidden_proposals: Verborgen moties
       hidden_budget_investments: Verborgen begrotingsinvesteringen
       hidden_proposal_notifications: Verborgen notificaties
-      hidden_users: Hidden users
+      hidden_users: Verborgen gebruikers
       administrators: Admins
       managers: Beheerders
       moderators: Moderators
@@ -521,14 +522,14 @@ nl:
       emails_download: E-mails download
       valuators: beoordelaars
       poll_officers: Poll officers
-      polls: Polls
-      poll_booths: Booths location
+      polls: Peilingen
+      poll_booths: Stemlocatie
       poll_booth_assignments: Stemlocatie toewijzingen
       poll_shifts: Bewerk diensten
       officials: Officials
-      organizations: Organisations
+      organizations: Organisaties
       settings: Instellingen
-      stats: Statistics
+      stats: Statistieken
       signature_sheets: Signature Sheets
       site_customization:
         homepage: Homepage
@@ -539,22 +540,22 @@ nl:
         information_texts_menu:
           debates: "Discussie"
           community: "Community"
-          proposals: "Voorstellen"
-          polls: "Polls"
+          proposals: "Moties"
+          polls: "Peilingen"
           layouts: "Lay-outs"
           mailers: "Emails"
-          management: "Beheer"
+          management: "Gebruikersbeheer"
           welcome: "Welkom"
         buttons:
-          save: "Save"
+          save: "Bewaar"
           content_block:
             update: "Blok bijwerken"
-      title_moderated_content: Moderated content
-      title_profiles: Profiles
+      title_moderated_content: Moderatie
+      title_profiles: Profielen
       title_settings: Instellingen
       title_site_customization: Aanpassing Site
       title_booths: Stemhokjes
-      legislation: Plannen
+      legislation: Amenderen
       users: Deelnemer
     administrators:
       index:
@@ -572,12 +573,12 @@ nl:
     moderators:
       index:
         title: Moderators
-        name: Name
+        name: Naam
         email: E-mail
         no_moderators: Er zijn geen moderators.
       moderator:
         add: Voeg toe
-        delete: Delete
+        delete: Verwijder
       search:
         title: "Moderators: zoek deelnemers"
     segment_recipient:

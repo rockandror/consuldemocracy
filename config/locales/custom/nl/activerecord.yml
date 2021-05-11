@@ -177,6 +177,10 @@ nl:
         title: "Titel"
         question: "Vraag"
         description: "Omschrijving"
+        responsible_name: "Volledige naam van de indiener"
+        retired_reason: "Reden om de motie terug te trekken"
+        selected: "Gemarkeerd als geselcteerd"
+        video_url: "Video URL"
         terms_of_service: "Gebruiksvoorwaarden"
       proposal/translation:
         title: "Motie Titel"      
