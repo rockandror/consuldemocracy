@@ -24,7 +24,7 @@
             <div class="welcome-section-header">
               <h2 class="welcome-section-header-title"><%= t("welcome.#{section}.title") %></h2>
             </div>
-            <%= image_tag(image_path_for("#{section}.png"), class: "welcome-section-icon welcome-#{section}-icon", alt: section) %>
+            <%= image_tag(image_path_for("#{section}.png"), class: "welcome-section-icon welcome-#{section}-icon", alt: "", role: "presentation") %>
             <p><%= t("welcome.#{section}.description") %></p>
           </div>
         </div>
