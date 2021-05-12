@@ -16,19 +16,13 @@
 <%= render "header", header: @header %>
 
 <main>
-  <div class="small-12 column text-center">
-    <div class="row margin padding">
-      <% [(:debates if feature?(:debates)), (:proposals if feature?(:proposals)), :decide, :do].compact.each do |section| %>
-        <div class="small-12 medium-6 large-3 column row-no-padding">
-          <div class="welcome-sections">
-            <div class="welcome-section-header">
-              <h2 class="welcome-section-header-title"><%= t("welcome.#{section}.title") %></h2>
-            </div>
-            <%= image_tag(image_path_for("#{section}.png"), class: "welcome-section-icon welcome-#{section}-icon", alt: "", role: "presentation") %>
-            <p><%= t("welcome.#{section}.description") %></p>
-          </div>
-        </div>
-      <% end %>
-    </div>
+  <div class="welcome-sections">
+    <% [(:debates if feature?(:debates)), (:proposals if feature?(:proposals)), :decide, :do].compact.each do |section| %>
+      <div class="welcome-section">
+        <h2 class="welcome-section-header"><%= t("welcome.#{section}.title") %></h2>
+        <%= image_tag(image_path_for("#{section}.png"), class: "welcome-section-icon welcome-#{section}-icon", alt: "", role: "presentation") %>
+        <p><%= t("welcome.#{section}.description") %></p>
+      </div>
+    <% end %>
   </div>
 </main>

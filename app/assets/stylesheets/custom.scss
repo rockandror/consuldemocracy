@@ -184,30 +184,41 @@ body > .wrapper > header {
 }
 
 .welcome-sections {
-  margin: 0 10px;
-  background-color: $brand;
-  border-radius: 20px;
+  @include flex-grid-row;
+  justify-content: center;
+}
+
+.welcome-section {
+  $gap: rem-calc(map-get($grid-margin-gutters, medium));
+
+  @include xy-gutters;
+  background-color: $brand-lighter;
+  text-align: center;
+  margin-top: $line-height;
+
+  @include breakpoint(medium) {
+    width: calc(50% - #{$gap} - 1px);
+  }
+
+  @include breakpoint(large) {
+    width: calc(25% - #{$gap} - 1px);
+  }
 
   > p {
-    padding-bottom: 10px;
-    padding-left: 5px;
-    padding-right: 5px;
-    color: $white;
+    margin-bottom: 0;
+    padding-bottom: $line-height / 2;
+    padding-left: $line-height / 4;
+    padding-right: $line-height / 4;
   }
-}
 
-.welcome-section-header {
-  background-color: #fff;
-  border: 4px solid $brand;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-}
+  .welcome-section-header {
+    font-family: "Lato", serif !important;
+    font-weight: bold;
+  }
 
-.welcome-section-header-title {
-  font-family: "Lato", serif !important;
-  font-weight: bold;
-  color: $brand;
-  margin: 3px 0;
+  img {
+    filter: invert(80%);
+  }
 }
 
 .welcome-section-icon {
