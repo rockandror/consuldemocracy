@@ -387,6 +387,24 @@ body > .wrapper > header {
   }
 }
 
+.key-dates {
+
+  li {
+
+    a {
+      color: inherit;
+    }
+
+    &:not(.is-active):hover {
+      background: $brand-lightest;
+    }
+  }
+
+  .is-active a h4 {
+    color: $brand-light;
+  }
+}
+
 .help-header img {
   display: none;
 }
