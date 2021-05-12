@@ -16,7 +16,7 @@ body > .wrapper > header {
 }
 
 .top-links {
-  background: #fb3370 linear-gradient(270deg, $brand-light 0%, #ffb454 100%) 0% 0%;
+  background: $brand-gradient;
 }
 
 .header-logos {
@@ -354,7 +354,7 @@ body > .wrapper > header {
   background: $brand-lighter;
 
   > div:first-child {
-    background: $brad-2;
+    background: $brand-gradient;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     margin-bottom: 15px;
