@@ -8,3 +8,7 @@ $brand-lighter: #f8f6fe;
 $brand-lightest: #ffb454;
 $brand-gradient: #fb3370 linear-gradient(270deg, $brand-light 0%, $brand-lightest 100%) 0% 0%;
 $dark-text: #036;
+
+$color-info: $text;
+$info-bg: $brand-lighter;
+$info-border: darken($brand-lighter, 3%);
