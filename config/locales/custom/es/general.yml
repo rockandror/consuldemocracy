@@ -808,7 +808,7 @@ es:
     debates:
       title: "Debates"
       description: "Un espacio para encontrarnos, debatir y compartir lo que nos parece importante en Canarias."
-    proposal:
+    proposals:
       title: "Propones"
       description: "Propones lo que quieres que se lleve a cabo y apoyas propuestas de otras personas."
     decide:
