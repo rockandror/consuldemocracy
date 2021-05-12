@@ -6,6 +6,11 @@
 %light-button {
   background: $brand-light;
   color: $white;
+
+  &:hover {
+    background: $brand-lightest;
+    color: $text;
+  }
 }
 
 body {
