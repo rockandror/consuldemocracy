@@ -7,7 +7,7 @@
     <%= header&.description.presence || t("welcome.header.description") %>
   </p>
 
-  <%= link_to current_user.nil? ? new_user_session_path : legislation_processes_path, class: "button header-button" do %>
-    <span><%= t("welcome.header.participa") %></span>
+  <%= link_to header&.link_url.presence || (current_user.nil? ? new_user_session_path : legislation_processes_path), class: "button header-button" do %>
+    <span><%= header&.link_text.presence || t("welcome.header.participa") %></span>
   <% end %>
 </div>

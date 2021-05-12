@@ -46,7 +46,9 @@ describe "Home" do
     scenario "renders texts in the header card" do
       create(:widget_card, header: true,
              title: "Title",
-             description: "Description"
+             description: "Description",
+             link_text: "Go now!",
+             link_url: "/go_now"
             )
 
       visit root_path
@@ -59,13 +61,18 @@ describe "Home" do
         within ".header-description" do
           expect(page).to have_text "Description", exact: true
         end
+
+        expect(page).to have_link count: 1
+        expect(page).to have_link "Go now!", href: "/go_now"
       end
     end
 
     scenario "renders default texts with an empty card" do
       create(:widget_card, header: true,
              title: "",
-             description: ""
+             description: "",
+             link_text: "",
+             link_url: ""
             )
 
       visit root_path
@@ -79,6 +86,7 @@ describe "Home" do
           expect(page).to have_text "Bienvenid@ al portal"
         end
 
+        expect(page).to have_link count: 1
         expect(page).to have_link "Regístrate"
       end
     end
