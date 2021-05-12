@@ -1,18 +1,10 @@
 <div class="header-section">
   <h1 class="header-title">
-    <% if header.nil? || header.title.nil? %>
-      <%= t("welcome.header.title") %>
-    <% else %>
-      <%= header.title %>
-    <% end %>
+    <%= header&.title.presence || t("welcome.header.title") %>
   </h1>
 
   <p class="header-description">
-    <% if header.nil? || header.description.nil? %>
-      <%= t("welcome.header.description") %>
-    <% else %>
-      <%= header.description %>
-    <% end %>
+    <%= header&.description.presence || t("welcome.header.description") %>
   </p>
 
   <%= link_to current_user.nil? ? new_user_session_path : legislation_processes_path, class: "button header-button" do %>

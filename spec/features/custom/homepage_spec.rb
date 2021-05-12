@@ -26,6 +26,64 @@ describe "Home" do
     end
   end
 
+  describe "header card" do
+    scenario "renders default texts without a card" do
+      visit root_path
+
+      within ".header-section" do
+        within ".header-title" do
+          expect(page).to have_text "Slogan del portal", exact: true
+        end
+
+        within ".header-description" do
+          expect(page).to have_text "Bienvenid@ al portal"
+        end
+
+        expect(page).to have_link "Regístrate"
+      end
+    end
+
+    scenario "renders texts in the header card" do
+      create(:widget_card, header: true,
+             title: "Title",
+             description: "Description"
+            )
+
+      visit root_path
+
+      within ".header-section" do
+        within ".header-title" do
+          expect(page).to have_text "Title", exact: true
+        end
+
+        within ".header-description" do
+          expect(page).to have_text "Description", exact: true
+        end
+      end
+    end
+
+    scenario "renders default texts with an empty card" do
+      create(:widget_card, header: true,
+             title: "",
+             description: ""
+            )
+
+      visit root_path
+
+      within ".header-section" do
+        within ".header-title" do
+          expect(page).to have_text "Slogan del portal", exact: true
+        end
+
+        within ".header-description" do
+          expect(page).to have_text "Bienvenid@ al portal"
+        end
+
+        expect(page).to have_link "Regístrate"
+      end
+    end
+  end
+
   describe "footer" do
     scenario "has the footer content" do
       visit root_path
