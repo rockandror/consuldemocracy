@@ -18,10 +18,8 @@
 <main>
   <div class="small-12 column text-center">
     <div class="row margin padding">
-    <% if feature?(:debates) %>
-
-      <div class="small-12 medium-6 large-3 column row-no-padding">
-        <%= link_to debates_path, class: 'welcome-sections-link' do %>
+      <% if feature?(:debates) %>
+        <div class="small-12 medium-6 large-3 column row-no-padding">
           <div class="welcome-sections">
             <div class="welcome-section-header">
               <h2 class="welcome-section-header-title"><%= t("welcome.debates.title") %></h2>
@@ -29,12 +27,11 @@
             <%= image_tag(image_path_for('debate.png'), class: 'welcome-section-icon welcome-debate-icon', alt: 'debates') %>
             <p><%= t("welcome.debates.description") %></p>
           </div>
-        <% end %>
-      </div>
-      <% end%>
-     <% if feature?(:proposals) %>
-      <div class="small-12 medium-6 large-3 column row-no-padding">
-        <%= link_to proposals_path, class: 'welcome-sections-link' do %>
+        </div>
+      <% end %>
+
+      <% if feature?(:proposals) %>
+        <div class="small-12 medium-6 large-3 column row-no-padding">
           <div class="welcome-sections">
             <div class="welcome-section-header">
               <h2 class="welcome-section-header-title"><%= t("welcome.proposal.title") %></h2>
@@ -42,8 +39,7 @@
             <%= image_tag(image_path_for('proposal.png'), class: 'welcome-section-icon', alt: 'proposal') %>
             <p><%= t("welcome.proposal.description") %></p>
           </div>
-        <% end %>
-      </div>
+        </div>
       <% end %>
 
       <div class="small-12 medium-6 large-3 column row-no-padding">
