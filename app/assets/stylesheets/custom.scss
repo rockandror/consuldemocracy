@@ -3,6 +3,11 @@
 // * English: https://github.com/consul/consul/blob/master/CUSTOMIZE_EN.md#css
 // * Spanish: https://github.com/consul/consul/blob/master/CUSTOMIZE_ES.md#css
 
+%light-button {
+  background: $brand-light;
+  color: $white;
+}
+
 body {
   color: $text;
 }
@@ -12,7 +17,7 @@ body > .wrapper > header {
 }
 
 .button {
-  background: $brand-light;
+  @extend %light-button;
 }
 
 .top-links {
@@ -342,8 +347,7 @@ body > .wrapper > header {
 }
 
 .proposal .supports .button-support {
-  background: $brand-light;
-  color: $white;
+  @extend %light-button;
 }
 
 .proposal .supports .progress {
@@ -374,8 +378,7 @@ body > .wrapper > header {
 }
 
 .featured-proposals .supports .button-support {
-  color: $white;
-  background: $brand-light;
+  @extend %light-button;
 }
 
 .legislation-calendar {
