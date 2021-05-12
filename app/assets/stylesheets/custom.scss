@@ -253,13 +253,14 @@ body > .wrapper > header {
   );
 
   @each $section, $icon in $sections {
-    &.welcome-section-#{$section} p:first-of-type {
+    &.welcome-section-#{$section} {
       @include has-fa-icon($icon, regular);
 
       &::before {
         display: block;
         font-size: 5rem;
         margin-bottom: $line-height / 2;
+        margin-top: 2 * $line-height;
         margin-left: 50%;
         transform: translateX(-50%);
       }
