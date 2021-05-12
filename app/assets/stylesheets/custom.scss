@@ -47,6 +47,7 @@ body > .wrapper > header {
   @include flex-grid-row;
   background: transparent !important;
   color: $text;
+  padding-bottom: $line-height / 4;
 
   @include breakpoint(medium) {
     justify-content: flex-end;
@@ -223,39 +224,43 @@ body > .wrapper > header {
 }
 
 .header-section {
-  height: 410px;
-  background: asset_data_url("header-background.png");
-  background-size: cover;
-}
+  font-size: calc(1rem + 0.6vw);
+  margin-top: -$line-height;
+  text-align: center;
 
-.header-title {
-  font-size: 28px;
-  color: $white;
-}
+  @include breakpoint(medium down) {
+    .header-title,
+    .header-description {
+      text-align: left;
+    }
+  }
 
-.header-description {
-  font-size: 16px;
-  color: $white;
-}
+  .header-title {
+    @include grid-column-gutter;
+    background: $brand-gradient;
+    color: $white;
+    text-transform: uppercase;
 
-.header-section-texts-container {
-  padding-left: 4em;
-  padding-top: 35px;
-  background: asset_data_url("header-mask.png");
-  background-size: cover;
-  height: 410px;
-}
+    @include breakpoint(medium) {
+      $padding: calc(100% - min(100%, #{$global-width}) + #{rem-calc(map-get($grid-column-gutter, medium))});
+      padding-left: calc(#{$padding} / 2);
+      padding-right: calc(#{$padding} / 2);
+    }
+  }
 
-.header-button {
-  float: right;
-  border: 2px solid $brand;
-  max-height: 48px;
-  max-width: 275px;
-  background-color: $white;
+  .header-description {
+    @include grid-row;
+    @include grid-column-gutter;
 
-  > span {
-    font-size: 16px;
-    color: $dark-text;
+    font-size: inherit;
+    line-height: 1.5;
+    margin-top: $line-height / 2;
+  }
+
+  .header-button {
+    @extend %light-button;
+    font-size: 0.8em;
+    font-weight: bold;
   }
 }
 
@@ -420,14 +425,6 @@ body > .wrapper > header {
 
 footer .logo a {
   font-weight: bold;
-}
-
-.header-button {
-  font-weight: bold;
-
-  &:hover > span {
-    color: $white;
-  }
 }
 
 .european-development-program {
