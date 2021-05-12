@@ -3,6 +3,27 @@
 // * English: https://github.com/consul/consul/blob/master/CUSTOMIZE_EN.md#css
 // * Spanish: https://github.com/consul/consul/blob/master/CUSTOMIZE_ES.md#css
 
+@mixin has-fa-icon($icon, $style, $position: "before") {
+
+  &::#{$position} {
+    background-image: image-url("fontawesome/#{$style}/#{$icon}.svg");
+    content: "";
+    display: inline-block;
+    height: 1em;
+    width: 1em;
+  }
+
+  @supports (mask-image: url()) {
+
+    &::#{$position} {
+      background: currentcolor;
+      mask-repeat: no-repeat;
+      mask-size: 100% 100%;
+      mask-image: image-url("fontawesome/#{$style}/#{$icon}.svg");
+    }
+  }
+}
+
 %light-button {
   background: $brand-light;
   color: $white;
