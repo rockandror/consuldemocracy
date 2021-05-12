@@ -59,7 +59,7 @@ feature 'Homepage' do
         accept_confirm { click_button "Enable" }
       end
 
-      visit root_path
+      visit root_path(locale: :es)
 
       # Debido al cambio producido en Homepage usando ./app/views/custom/welcome/index.html.erb,
       # no deben existir los Debates, si no un enlace a los debates
@@ -69,7 +69,7 @@ feature 'Homepage' do
       #expect(page).to have_css(".debate", count: 2)
       expect(page).to have_no_content "Most active debates"
       expect(page).to have_no_css(".debate")
-      expect(page).to have_css(".welcome-debate-icon")
+      expect(page).to have_css "h2", exact_text: "Debates"
     end
 
     scenario "Processes", :js do

@@ -18,9 +18,8 @@
 <main>
   <div class="welcome-sections">
     <% [(:debates if feature?(:debates)), (:proposals if feature?(:proposals)), :decide, :do].compact.each do |section| %>
-      <div class="welcome-section">
+      <div class="welcome-section welcome-section-<%= section %>">
         <h2 class="welcome-section-header"><%= t("welcome.#{section}.title") %></h2>
-        <%= image_tag(image_path_for("#{section}.png"), class: "welcome-section-icon welcome-#{section}-icon", alt: "", role: "presentation") %>
         <p><%= t("welcome.#{section}.description") %></p>
       </div>
     <% end %>

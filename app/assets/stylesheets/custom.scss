@@ -24,6 +24,10 @@
   }
 }
 
+@mixin welcome-section-icon($icon, $style) {
+  @include has-fa-icon($icon, $style);
+}
+
 %light-button {
   background: $brand-light;
   color: $white;
@@ -226,8 +230,8 @@ body > .wrapper > header {
   }
 
   > p {
-    margin-bottom: 0;
-    padding-bottom: $line-height / 2;
+    margin-bottom: $line-height / 2;
+    margin-top: $line-height / 2;
     padding-left: $line-height / 4;
     padding-right: $line-height / 4;
   }
@@ -237,18 +241,26 @@ body > .wrapper > header {
     font-weight: bold;
   }
 
-  img {
-    filter: invert(80%);
+  $sections: (
+    debates: comments,
+    proposals: lightbulb,
+    decide: thumbs-up,
+    do: building
+  );
+
+  @each $section, $icon in $sections {
+    &.welcome-section-#{$section} p:first-of-type {
+      @include has-fa-icon($icon, regular);
+
+      &::before {
+        display: block;
+        font-size: 5rem;
+        margin-bottom: $line-height / 2;
+        margin-left: 50%;
+        transform: translateX(-50%);
+      }
+    }
   }
-}
-
-.welcome-section-icon {
-  padding-top: 1em;
-  padding-bottom: 1.3em;
-}
-
-.welcome-debate-icon {
-  padding-bottom: 2em;
 }
 
 .header-section {
