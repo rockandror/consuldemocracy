@@ -221,7 +221,7 @@ feature 'Admin legislation processes' do
       expect(page).not_to have_content 'Draft publication'
     end
 
-    xscenario "Change proposal categories" do
+    scenario "Change proposal categories" do
       visit edit_admin_legislation_process_path(process)
       within(".admin-content") { click_link "Proposals" }
 

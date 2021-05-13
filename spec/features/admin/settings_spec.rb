@@ -9,7 +9,7 @@ feature 'Admin settings' do
     login_as(create(:administrator).user)
   end
 
-  scenario 'Index', :broken => true do
+  scenario 'Index' do
     visit admin_settings_path
 
     expect(page).to have_content @setting1.key
@@ -17,7 +17,7 @@ feature 'Admin settings' do
     expect(page).to have_content @setting3.key
   end
 
-  scenario 'Update', :broken => true do
+  scenario 'Update' do
     visit admin_settings_path
 
     within("#edit_setting_#{@setting2.id}") do
@@ -28,7 +28,7 @@ feature 'Admin settings' do
     expect(page).to have_content 'Value updated'
   end
 
-  describe "Update map", :broken => true do
+  describe "Update map" do
 
     scenario "Should not be able when map feature deactivated" do
       Setting['feature.map'] = false

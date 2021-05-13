@@ -5,7 +5,7 @@ feature 'Commenting legislation questions' do
   let(:user) { create :user }
   let(:legislation_annotation) { create :legislation_annotation, author: user }
 
-  xscenario 'Index' do
+  scenario 'Index' do
     3.times { create(:comment, commentable: legislation_annotation) }
 
     visit legislation_process_draft_version_annotation_path(legislation_annotation.draft_version.process,
@@ -136,7 +136,7 @@ feature 'Commenting legislation questions' do
     expect(old_child.body).to appear_before(new_child.body)
   end
 
-  xscenario 'Turns links into html links' do
+  scenario 'Turns links into html links' do
     legislation_annotation = create :legislation_annotation, author: user
     legislation_annotation.comments << create(:comment, body: 'Built with http://rubyonrails.org/')
 
@@ -152,7 +152,7 @@ feature 'Commenting legislation questions' do
     end
   end
 
-  xscenario 'Sanitizes comment body for security' do
+  scenario 'Sanitizes comment body for security' do
     create :comment, commentable: legislation_annotation,
                      body: "<script>alert('hola')</script> <a href=\"javascript:alert('sorpresa!')\">click me<a/> http://www.url.com"
 

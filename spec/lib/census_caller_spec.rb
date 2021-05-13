@@ -3,7 +3,7 @@ require 'rails_helper'
 describe CensusCaller do
   let(:api) { described_class.new }
 
-  xdescribe '#call' do
+  describe '#call', :broken do
     it 'returns data from local_census_records if census API is not available' do
       census_api_response = CensusApi::Response.new(get_habita_datos_response: {
           get_habita_datos_return: { datos_habitante: {}, datos_vivienda: {} }
@@ -20,7 +20,7 @@ describe CensusCaller do
 
       response = api.call(1, "12345678A")
 
-      #expect(response).to eq(local_census_response)
+      expect(response).to eq(local_census_response)
     end
 
     it "returns data from census API if it's available and valid" do
@@ -40,7 +40,7 @@ describe CensusCaller do
 
       response = api.call(1, "12345678A")
 
-      #expect(response).to eq(census_api_response)
+      expect(response).to eq(census_api_response)
     end
   end
 

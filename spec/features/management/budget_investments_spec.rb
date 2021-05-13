@@ -177,7 +177,7 @@ feature 'Budget Investments' do
     expect(page).not_to have_content(finished.name)
   end
 
-  scenario "Listing - admins can see budgets in accepting, reviewing and selecting phases", :broken => true do
+  scenario "Listing - admins can see budgets in accepting, reviewing and selecting phases" do
     accepting_budget = create(:budget, phase: "accepting")
     reviewing_budget = create(:budget, phase: "reviewing")
     selecting_budget = create(:budget, phase: "selecting")

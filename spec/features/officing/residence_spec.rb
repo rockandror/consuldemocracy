@@ -29,7 +29,7 @@ feature 'Residence', :with_frozen_time do
       visit officing_root_path
     end
 
-    xscenario "Verify voter" do
+    scenario "Verify voter", :broken do
       within("#side_menu") do
         click_link "Validate document"
       end

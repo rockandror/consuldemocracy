@@ -20,7 +20,7 @@ feature 'Tracking', :sara do
       expect(page.html).to include "level_1_user"
     end
 
-    xscenario 'Usertype level_2_user' do
+    scenario 'Usertype level_2_user', :broken do
       create(:geozone)
       user = create(:user)
       login_as(user)
@@ -53,7 +53,7 @@ feature 'Tracking', :sara do
       expect(page.html).to include "data-track-event-action=start_census"
     end
 
-    xscenario 'Verification: success census & start sms' do
+    scenario 'Verification: success census & start sms', :broken do
       create(:geozone)
       user = create(:user)
       login_as(user)
@@ -70,7 +70,7 @@ feature 'Tracking', :sara do
       expect(page.html).to include "data-track-event-action=start_sms"
     end
 
-    xscenario 'Verification: success sms' do
+    scenario 'Verification: success sms', :broken do
       create(:geozone)
       user = create(:user)
       login_as(user)
@@ -91,7 +91,7 @@ feature 'Tracking', :sara do
       expect(page.html).to include "data-track-event-action=success_sms"
     end
 
-    scenario 'Verification: letter', :broken => true do
+    scenario 'Verification: letter', :broken do
       create(:geozone)
       user = create(:user)
       login_as(user)

@@ -4,7 +4,7 @@ feature 'Residence', :sara do
 
   background { create(:geozone) }
 
-  scenario 'Verify resident' do
+  scenario 'Verify resident', :broken do
     user = create(:user)
     login_as(user)
 
@@ -14,15 +14,15 @@ feature 'Residence', :sara do
     fill_in 'residence_document_number', with: "12345678Z"
     select 'DNI', from: 'residence_document_type'
     select_date '31-December-1980', from: 'residence_date_of_birth'
-    fill_in 'residence_postal_code', with: '28013'
+    fill_in 'residence_postal_code', with: '38013'
     check 'residence_terms_of_service'
 
     click_button 'Verify residence'
 
-    #expect(page).to have_content 'Residence verified'
+    expect(page).to have_content 'Residence verified'
   end
 
-  xscenario 'When trying to verify a deregistered account old votes are reassigned' do
+  scenario 'When trying to verify a deregistered account old votes are reassigned', :broken do
     erased_user = create(:user, document_number: '12345678Z', document_type: '1', erased_at: Time.current)
     vote = create(:vote, voter: erased_user)
     new_user = create(:user)
@@ -35,12 +35,12 @@ feature 'Residence', :sara do
     fill_in 'residence_document_number', with: '12345678Z'
     select 'DNI', from: 'residence_document_type'
     select_date '31-December-1980', from: 'residence_date_of_birth'
-    fill_in 'residence_postal_code', with: '28013'
+    fill_in 'residence_postal_code', with: '38013'
     check 'residence_terms_of_service'
 
     click_button 'Verify residence'
 
-    #expect(page).to have_content 'Residence verified'
+    expect(page).to have_content 'Residence verified'
 
     expect(vote.reload.voter).to eq(new_user)
     expect(erased_user.reload.document_number).to be_blank
@@ -79,7 +79,7 @@ feature 'Residence', :sara do
     expect(page).to have_content 'In order to be verified, you must be registered'
   end
 
-  scenario 'Error on census' do
+  scenario 'Error on census', :broken do
     user = create(:user)
     login_as(user)
 
@@ -96,10 +96,10 @@ feature 'Residence', :sara do
 
     click_button 'Verify residence'
 
-    #expect(page).to have_content 'The Census was unable to verify your information'
+    expect(page).to have_content 'The Census was unable to verify your information'
   end
 
-  xscenario '5 tries allowed' do
+  scenario '5 tries allowed', :broken do
     user = create(:user)
     login_as(user)
 
@@ -116,7 +116,7 @@ feature 'Residence', :sara do
       check 'residence_terms_of_service'
 
       click_button 'Verify residence'
-      #expect(page).to have_content 'The Census was unable to verify your information'
+      expect(page).to have_content 'The Census was unable to verify your information'
     end
 
     click_button 'Verify residence'

@@ -53,7 +53,7 @@ feature "Voter", :sara do
       expect(page).not_to have_content("You have already participated in this poll. If you vote again it will be overwritten")
     end
 
-    xscenario 'Voting in booth', :js do
+    scenario 'Voting in booth', :js, :broken do
       user = create(:user, :in_census)
 
       login_through_form_as_officer(officer.user)
@@ -76,7 +76,7 @@ feature "Voter", :sara do
     context "Trying to vote the same poll in booth and web" do
       let!(:user) { create(:user, :in_census) }
 
-      xscenario "Trying to vote in web and then in booth", :js do
+      scenario "Trying to vote in web and then in booth", :js, :broken do
         login_as user
         vote_for_poll_via_web(poll, question, answer_yes.title)
         expect(Poll::Voter.count).to eq(1)
@@ -93,7 +93,7 @@ feature "Voter", :sara do
         expect(page).to have_content "Has already participated in this poll"
       end
 
-      xscenario "Trying to vote in booth and then in web", :js do
+      scenario "Trying to vote in booth and then in web", :js, :broken do
         login_through_form_as_officer(officer.user)
 
         vote_for_poll_via_booth
@@ -141,7 +141,7 @@ feature "Voter", :sara do
       end
     end
 
-    xscenario "Voting in poll and then verifiying account", :js do
+    scenario "Voting in poll and then verifiying account", :js, :broken do
       user = create(:user)
 
       login_through_form_as_officer(officer.user)

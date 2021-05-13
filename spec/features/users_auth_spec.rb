@@ -338,7 +338,7 @@ feature 'Users' do
     expect(page).to have_content 'You have been signed out successfully.'
   end
 
-  xscenario 'Reset password' do
+  scenario 'Reset password', :broken do
     create(:user, email: 'manuela@consul.dev')
 
     visit '/'

@@ -132,17 +132,17 @@ describe Signature do
         expect(Vote.count).to eq(1)
       end
 
-      it "marks the vote as coming from a signature" do
+      it "marks the vote as coming from a signature", :broken do
         signature = create(:signature, document_number: "12345678Z")
 
         signature.verify
 
-        #expect(Vote.last.signature).to eq(signature)
+        expect(Vote.last.signature).to eq(signature)
       end
 
     end
 
-    xdescribe "inexistent user" do
+    describe "inexistent user", :broken do
 
       it "creates a user with that document number" do
         create(:geozone, census_code: "01")

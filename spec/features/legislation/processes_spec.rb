@@ -228,7 +228,7 @@ feature 'Legislation' do
     end
 
     context 'homepage' do
-      xscenario 'enabled' do
+      scenario 'enabled' do
         process = create(:legislation_process, homepage_enabled: true,
                                                homepage: 'This is the process homepage',
                                                debate_start_date: Date.current + 1.day,

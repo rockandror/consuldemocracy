@@ -30,7 +30,7 @@ feature 'Emails' do
     expect(email).to have_body_text(user_confirmation_path)
   end
 
-  xscenario "Reset password" do
+  scenario "Reset password", :broken do
     reset_password
 
     email = open_last_email

@@ -82,7 +82,7 @@ describe Verification::Residence do
   end
 
   describe "tries" do
-    xit "increases tries after a call to the Census" do
+    it "increases tries after a call to the Census", :broken do
       residence.postal_code = "38011"
       residence.valid?
       expect(residence.user.lock.tries).to eq(1)
@@ -95,7 +95,7 @@ describe Verification::Residence do
     end
   end
 
-  xdescribe "Failed census call" do
+  describe "Failed census call", :broken do
     it "stores failed census API calls" do
       residence = build(:verification_residence, :invalid, document_number: "12345678Z")
       residence.save

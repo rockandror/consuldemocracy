@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'sessions_helper'
 
-feature 'Budget Investments', :broken => true do
+feature 'Budget Investments' do
 
 
   let(:author)  { create(:user, :level_two, username: 'Isabel') }
