@@ -473,3 +473,38 @@ footer .logo a {
     margin-bottom: $paragraph-margin-bottom;
   }
 }
+
+.admin-sidebar {
+  background: transparent;
+  color: $text;
+
+  ul {
+    [class^="icon-"] {
+      color: inherit;
+    }
+  }
+
+  li {
+    &.is-active a {
+      background: transparent;
+      color: $brand-light;
+
+      [class^="icon-"] {
+        color: $brand-light;
+      }
+    }
+  }
+
+  li a {
+    color: inherit;
+
+    &:hover {
+      background: transparent;
+      color: $brand-light;
+
+      [class^="icon-"] {
+        color: inherit;
+      }
+    }
+  }
+}
