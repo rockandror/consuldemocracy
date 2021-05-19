@@ -474,6 +474,20 @@ footer .logo a {
   }
 }
 
+.tabs {
+
+  .tabs-title > a {
+    &[aria-selected='true'],
+    &.is-active {
+      color: $brand-light;
+
+      &::after {
+        border-bottom-color: currentcolor;
+      }
+    }
+  }
+}
+
 .admin-sidebar {
   background: transparent;
   color: $text;
