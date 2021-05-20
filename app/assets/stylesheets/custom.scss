@@ -3,6 +3,35 @@
 // * English: https://github.com/consul/consul/blob/master/CUSTOMIZE_EN.md#css
 // * Spanish: https://github.com/consul/consul/blob/master/CUSTOMIZE_ES.md#css
 
+@mixin has-fa-icon($icon, $style, $position: "before") {
+
+  &::#{$position} {
+    background-image: image-url("fontawesome/#{$style}/#{$icon}.svg");
+    content: "";
+    display: inline-block;
+    height: 1em;
+    width: 1em;
+  }
+
+  @supports (mask-image: url()) {
+
+    &::#{$position} {
+      background: currentcolor;
+      mask-repeat: no-repeat;
+      mask-size: 100% 100%;
+      mask-image: image-url("fontawesome/#{$style}/#{$icon}.svg");
+    }
+  }
+}
+
+@mixin welcome-section-icon($icon, $style) {
+  @include has-fa-icon($icon, $style);
+}
+
+@mixin brand-gradient($angle: 270deg) {
+  background: #fb3370 linear-gradient(#{$angle}, $brand-light 0%, $brand-lightest 100%) 0% 0%;
+}
+
 %light-button {
   background: $brand-light;
   color: $white;
@@ -26,7 +55,7 @@ body > .wrapper > header {
 }
 
 .top-links {
-  background: $brand-gradient;
+  @include brand-gradient;
 }
 
 .header-logos {
@@ -47,6 +76,7 @@ body > .wrapper > header {
   @include flex-grid-row;
   background: transparent !important;
   color: $text;
+  padding-bottom: $line-height / 4;
 
   @include breakpoint(medium) {
     justify-content: flex-end;
@@ -183,79 +213,106 @@ body > .wrapper > header {
 }
 
 .welcome-sections {
-  margin: 0 10px;
-  background-color: $brand;
-  border-radius: 20px;
+  @include flex-grid-row;
+  justify-content: center;
+}
+
+.welcome-section {
+  $gap: rem-calc(map-get($grid-margin-gutters, medium));
+
+  @include xy-gutters;
+  background-color: $brand-lighter;
+  text-align: center;
+  margin-top: $line-height;
+
+  @include breakpoint(medium) {
+    width: calc(50% - #{$gap} - 1px);
+  }
+
+  @include breakpoint(large) {
+    width: calc(25% - #{$gap} - 1px);
+  }
 
   > p {
-    padding-bottom: 10px;
-    padding-left: 5px;
-    padding-right: 5px;
-    color: $white;
+    margin-bottom: $line-height / 2;
+    margin-top: $line-height / 2;
+    padding-left: $line-height / 4;
+    padding-right: $line-height / 4;
+  }
+
+  .welcome-section-header {
+    font-family: "Lato", serif !important;
+    font-weight: bold;
+  }
+
+  $sections: (
+    debates: comments,
+    proposals: lightbulb,
+    decide: thumbs-up,
+    do: building
+  );
+
+  @each $section, $icon in $sections {
+    &.welcome-section-#{$section} {
+      @include has-fa-icon($icon, regular);
+
+      &::before {
+        display: block;
+        font-size: 5rem;
+        margin-bottom: $line-height / 2;
+        margin-top: 2 * $line-height;
+        margin-left: 50%;
+        transform: translateX(-50%);
+      }
+
+      @supports (mask-image: url()) {
+
+        &::before {
+          @include brand-gradient(180deg);
+        }
+      }
+    }
   }
 }
 
-.welcome-sections-link:hover {
-  text-decoration: none;
-}
-
-.welcome-section-header {
-  background-color: #fff;
-  border: 4px solid $brand;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-}
-
-.welcome-section-header-title {
-  font-family: "Lato", serif !important;
-  font-weight: bold;
-  color: $brand;
-  margin: 3px 0;
-}
-
-.welcome-section-icon {
-  padding-top: 1em;
-  padding-bottom: 1.3em;
-}
-
-.welcome-debate-icon {
-  padding-bottom: 2em;
-}
-
 .header-section {
-  height: 410px;
-  background: asset_data_url("header-background.png");
-  background-size: cover;
-}
+  font-size: calc(1rem + 0.6vw);
+  margin-top: -$line-height;
+  text-align: center;
 
-.header-title {
-  font-size: 28px;
-  color: $white;
-}
+  @include breakpoint(medium down) {
+    .header-title,
+    .header-description {
+      text-align: left;
+    }
+  }
 
-.header-description {
-  font-size: 16px;
-  color: $white;
-}
+  .header-title {
+    @include grid-column-gutter;
+    @include brand-gradient;
+    color: $white;
+    text-transform: uppercase;
 
-.header-section-texts-container {
-  padding-left: 4em;
-  padding-top: 35px;
-  background: asset_data_url("header-mask.png");
-  background-size: cover;
-  height: 410px;
-}
+    @include breakpoint(medium) {
+      $padding: calc(100% - min(100%, #{$global-width}) + #{rem-calc(map-get($grid-column-gutter, medium))});
+      padding-left: calc(#{$padding} / 2);
+      padding-right: calc(#{$padding} / 2);
+    }
+  }
 
-.header-button {
-  float: right;
-  border: 2px solid $brand;
-  max-height: 48px;
-  max-width: 275px;
-  background-color: $white;
+  .header-description {
+    @include grid-row;
+    @include grid-column-gutter;
 
-  > span {
-    font-size: 16px;
-    color: $dark-text;
+    font-size: inherit;
+    line-height: 1.5;
+    margin-top: $line-height / 2;
+  }
+
+  .header-button {
+    @extend %light-button;
+    font-size: 0.8em;
+    font-weight: bold;
   }
 }
 
@@ -355,7 +412,7 @@ body > .wrapper > header {
   background: $brand-lighter;
 
   > div:first-child {
-    background: $brand-gradient;
+    @include brand-gradient;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     margin-bottom: 15px;
@@ -420,14 +477,6 @@ body > .wrapper > header {
 
 footer .logo a {
   font-weight: bold;
-}
-
-.header-button {
-  font-weight: bold;
-
-  &:hover > span {
-    color: $white;
-  }
 }
 
 .european-development-program {

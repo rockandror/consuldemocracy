@@ -808,7 +808,7 @@ es:
     debates:
       title: "Debates"
       description: "Un espacio para encontrarnos, debatir y compartir lo que nos parece importante en Canarias."
-    proposal:
+    proposals:
       title: "Propones"
       description: "Propones lo que quieres que se lleve a cabo y apoyas propuestas de otras personas."
     decide:
@@ -820,7 +820,7 @@ es:
     header:
       title: "Slogan del portal"
       description: "Bienvenid@ al portal, Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five."
-      participa: "Registrate"
+      participa: "Regístrate"
     feed:
       most_active:
         debates: "Debates más activos"

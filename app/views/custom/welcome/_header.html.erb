@@ -1,29 +1,13 @@
 <div class="header-section">
-  <div class="small-12">
-    <div class="header-section-texts-container">
-    <div class="row">
-        <h1 class="header-title small-12 medium-6 column">
-          <% if header.nil? || header.title.nil? %>
-            <%= t("welcome.header.title") %>
-          <% else %>
-            <%= header.title %>        
-          <% end %>        
-        </h1>
-      </div>
-      <div class="row">
-      <p class="header-description lead small-12 medium-5 column">      
-        <% if header.nil? || header.description.nil? %>
-          <%= t("welcome.header.description") %>
-        <% else %>
-          <%= header.description %>        
-        <% end %>
-      </p>
-      <div class="small-12 medium-7">
-        <%= link_to current_user.nil? ? new_user_session_path : legislation_processes_path, class: "button expanded header-button" do %>
-          <span><%= t("welcome.header.participa") %></span>
-        <% end %>
-      </div>
-      </div>
-    </div>
-  </div>
+  <h1 class="header-title">
+    <%= header&.title.presence || t("welcome.header.title") %>
+  </h1>
+
+  <p class="header-description">
+    <%= header&.description.presence || t("welcome.header.description") %>
+  </p>
+
+  <%= link_to header&.link_url.presence || (current_user.nil? ? new_user_session_path : legislation_processes_path), class: "button header-button" do %>
+    <span><%= header&.link_text.presence || t("welcome.header.participa") %></span>
+  <% end %>
 </div>
