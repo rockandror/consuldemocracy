@@ -3,3 +3,168 @@
 // * English: https://github.com/consul/consul/blob/master/CUSTOMIZE_EN.md#css
 // * Spanish: https://github.com/consul/consul/blob/master/CUSTOMIZE_ES.md#css
 //
+
+// Top menu
+
+.top-links {
+  background: $dark;
+  color: #fff;
+  font-size: $small-font-size;
+  padding-right: $line-height / 2;
+  border-bottom: 2px solid white;
+  a {
+    color: #fff;
+    margin: 0 rem-calc(6);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  ul {
+    margin-bottom: 0;
+  }
+
+  li {
+    display: block;
+
+    @include breakpoint(medium) {
+      display: inline-block;
+
+      &::after {
+        content: none;
+      }
+
+      &:last-child::after {
+        content: none;
+      }
+    }
+  }
+}
+
+// Menu
+.top-bar {
+  height: 60px;
+
+  .left-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    img {
+      margin-right: 15px;
+      height: 30px;
+    }
+    .top-bar-title {
+      background-color: $secondary;
+      height: 100%;
+      margin: 0;
+      text-align: center;
+      border-left: 2px solid white;
+      border-right: 2px solid white;
+
+      h1 {
+        height: 100%;
+        margin: 0 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: medium;
+      }
+    }
+    &-number {
+      margin: 0 15px;
+      font-size: small;
+    }
+  }
+
+  .middle-section {
+    font-size: small;
+  }
+
+  .right-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    .top-bar-right {
+      .menu {
+        li {
+          padding: 0 rem-calc(8);
+        }
+      }
+    }
+    .search {
+      padding-left: rem-calc(10);
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-content: center;
+      span {
+        height: 100%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: rem-calc(5);
+        text-align: center;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+.bluebox-container {
+  margin: 30px auto;
+  .bluebox {
+    background-color: $secondary;
+    color: white;
+    font-size: rem-calc(22);
+    font-weight: 700;
+    text-align: center;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.sectionbox-container {
+  background-color: white;
+  padding: 30px 60px;
+  margin: 0;
+  width: 100%;
+  max-width: none !important;
+
+  .sectionbox {
+    border: 1px solid black;
+    img {
+      padding: 30px;
+    }
+    &-title {
+      background-color: $brand;
+      color: white;
+      font-weight: 800;
+      padding: 20px;
+    }
+  }
+}
+
+// .action-container {
+//   @include block-grid($per-row, $spacing, $base-styles);
+// }
+
+// /* This controls how many elements will be on each row of the block grid. */
+// /* Set this to whatever number you need, up to the max allowed in the variable */
+// $per-row: false;
+
+// /* This controls how much space is between each item in the block grid */
+// $spacing: $block-grid-default-spacing;
+
+// /* This controls whether or not base styles come through, set to false to leave out */
+// /* This is handy for when you create multiple block-grids and want less CSS output repetition */
+// $base-style: true;

@@ -1,0 +1,111 @@
+<% if header.present? %>
+  <div class="jumbo highlight">
+    <div class="bluebox-container row">
+      <div class="small-12 medium-6 column">
+        <div class="bluebox">
+          <span>¿Qué contiene y para qué sirve esta web?</span>
+        </div>
+      </div>
+      <div class="small-12 medium-6 column">
+        <div class="bluebox">
+          <span>¿A quién va dirigida esta web?</span>
+        </div>
+      </div>
+    </div>
+    <div class="sectionbox-container row">
+      <div class="small-12 medium-3 column text-center">
+        <div class="sectionbox">
+          <%= image_tag(image_path_for("icono-cabildo-abierto.png"), class: "") %>
+          <div class="sectionbox-title">
+            <span>Cabildo Abierto</span>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 medium-3 column text-center">
+        <div class="sectionbox">
+          <%= image_tag(image_path_for("icono-cabildo-abierto.png"), class: "") %>
+          <div class="sectionbox-title">
+            <span>Cabildo Abierto</span>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 medium-3 column text-center">
+        <div class="sectionbox">
+          <%= image_tag(image_path_for("icono-cabildo-abierto.png"), class: "") %>
+          <div class="sectionbox-title">
+            <span>Cabildo Abierto</span>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 medium-3 column text-center">
+        <div class="sectionbox">
+          <%= image_tag(image_path_for("icono-cabildo-abierto.png"), class: "") %>
+          <div class="sectionbox-title">
+            <span>Cabildo Abierto</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 medium-6 column <%= "medium-9 small-centered text-center" unless header.image.present? %>">
+        <span><%= header.label %></span>
+        <h1><%= header.title %></h1>
+        <p class="lead"><%= header.description %></p>
+        <div class="small-12 medium-6 large-4 <%= "small-centered" unless header.image.present? %>">
+          <%= link_to header.link_text, header.link_url, class: "button expanded large" %>
+        </div>
+      </div>
+
+      <% if header.image.present? %>
+        <div class="small-12 medium-6 column">
+          <%= image_tag(header.image_url(:large),
+                        class: "margin",
+                        alt: header.image.title) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="background-header"></div>
+  <div class="action-container row">
+      <div class="small-12 medium-2 column text-center">
+        <div class="action">
+          <%= image_tag(image_path_for("icono-participa.png"), class: "") %>
+          <div class="action-title">
+            <span>Cabildo Abierto</span>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 medium-2 column text-center">
+        <div class="action">
+          <%= image_tag(image_path_for("icono-prop-cabildo.png"), class: "") %>
+          <div class="action-title">
+            <span>Cabildo Abierto</span>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 medium-2 column text-center">
+        <div class="action">
+          <%= image_tag(image_path_for("icono-solicita.png"), class: "") %>
+          <div class="action-title">
+            <span>Cabildo Abierto</span>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 medium-2 column text-center">
+        <div class="action">
+          <%= image_tag(image_path_for("icono-queja.png"), class: "") %>
+          <div class="action-title">
+            <span>Cabildo Abierto</span>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 medium-2 column text-center">
+        <div class="action">
+          <%= image_tag(image_path_for("icono-sede.png"), class: "") %>
+          <div class="action-title">
+            <span>Cabildo Abierto</span>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

@@ -1,0 +1,77 @@
+<header>
+  <% if display_remote_translation_info?(@remote_translations, I18n.locale) %>
+    <%= render "shared/remote_translations_button", remote_translations: @remote_translations %>
+  <% end %>
+
+  <div class="top-links">
+    <div class="row">
+      <%= render "shared/locale_switcher" %>
+      <div class="hide-for-small-only">
+        <%= render "shared/top_links" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="top-bar">
+
+      <span data-responsive-toggle="responsive-menu" data-hide-for="medium" class="float-right">
+        <button type="button" class="menu-icon dark" data-toggle></button>
+        <%= t("application.menu") %>
+      </span>
+
+      <div class="left-section">
+        <%= link_to root_path, accesskey: "0" do %>
+          <%= image_tag(image_path_for("logo-cabildo-tenerife.png"), class: "float-left", alt: setting["org_name"]) %>
+        <% end %>
+        <div class="top-bar-title">
+          <h1>
+            Cabildo Abierto
+          </h1>
+        </div>
+
+        <div class="left-section-number">
+          <span>Atención Ciudadana</span><br>
+          <span>922 239 500</span>
+        </div>
+      </div>
+
+      <div class="middle-section">
+         <span>wwww.tenerife.es | Sede Electrónica</span>
+      </div>
+      <div class="right-section">
+        <div class="top-bar-right">
+          <ul class="menu">
+            <li>
+              <span><%= icon('fab', 'facebook-f') %></span>
+            </li>
+            <li>
+              <span><%= icon('fab', 'twitter') %></span>
+            </li>
+            <li>
+              <span><%= icon('fab', 'youtube') %></span>
+            </li>
+            <li>
+              <span><%= icon('fab', 'instagram') %></span>
+            </li>
+          </ul>
+        </div>
+        <div class="search">
+          <span><%= icon('fas', 'search') %></span>
+          <span>Buscar</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="navigation_bar" class="subnavigation expanded">
+    <div class="row">
+      <div class="hide-for-small-only">
+        <%= render "shared/subnavigation" %>
+      </div>
+      <div class="small-12 medium-3 column">
+        <%= yield :header_addon %>
+      </div>
+    </div>
+  </div>
+</header>

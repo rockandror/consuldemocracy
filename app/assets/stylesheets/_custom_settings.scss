@@ -3,3 +3,9 @@
 // * English: https://github.com/consul/consul/blob/master/CUSTOMIZE_EN.md#css
 // * Spanish: https://github.com/consul/consul/blob/master/CUSTOMIZE_ES.md#css
 //
+
+// COLORS
+$brand: #045177;
+$brand-secondary: darken($brand, 10%);
+$dark: $brand-secondary;
+$secondary: #1b8dc0;
