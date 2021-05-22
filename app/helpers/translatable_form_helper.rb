@@ -20,6 +20,11 @@ module TranslatableFormHelper
   class TranslatableFormBuilder < ConsulFormBuilder
     attr_accessor :translations
 
+    def initialize(*args)
+      @emitted_hidden_fields = {}
+      super(*args)
+    end
+
     def translatable_fields(&block)
       @translations = {}
       visible_locales.map do |locale|
@@ -35,21 +40,26 @@ module TranslatableFormHelper
       def fields_for_locale(locale)
         fields_for_translation(@translations[locale]) do |translations_form|
           @template.tag.div translations_options(translations_form.object, locale) do
-            @template.concat translations_form.hidden_field(
-              :_destroy,
-              value: !@template.enabled_locale?(translations_form.object.globalized_model, locale),
-              data: { locale: locale }
-            )
-
-            @template.concat translations_form.hidden_field(:locale, value: locale)
+            translation_hidden_fields(translations_form, locale) unless @emitted_hidden_fields[locale]
 
             yield translations_form
           end
         end
       end
 
+      def translation_hidden_fields(form, locale)
+        @template.concat form.hidden_field(
+          :_destroy,
+          value: !@template.enabled_locale?(form.object.globalized_model, locale),
+          data: { locale: locale }
+        )
+        @template.concat form.hidden_field(:locale, value: locale)
+        @emitted_hidden_fields[locale] = true
+      end
+
       def fields_for_translation(translation)
-        fields_for(:translations, translation, builder: TranslationsFieldsBuilder) do |f|
+        index = I18n.available_locales.find_index(translation.locale)
+        fields_for(:translations, translation, builder: TranslationsFieldsBuilder, child_index: index) do |f|
           yield f
         end
       end
