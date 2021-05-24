@@ -82,6 +82,10 @@
 
   .middle-section {
     font-size: small;
+    a {
+      color: white;
+      text-decoration: none;
+    }
   }
 
   .right-section {
@@ -94,6 +98,9 @@
       .menu {
         li {
           padding: 0 rem-calc(8);
+          a {
+            padding: 0;
+          }
         }
       }
     }
@@ -154,9 +161,32 @@
   }
 }
 
-// .action-container {
-//   @include block-grid($per-row, $spacing, $base-styles);
-// }
+.action-container {
+  display: flex;
+  flex-wrap: wrap;
+  .action {
+    flex: 1 0 20%;
+  }
+}
+
+.footer {
+  background-color: $brand;
+  a {
+    text-decoration: none;
+    .footer-link {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: white;
+      span {
+        margin-left: 8px;
+      }
+    }
+  }
+}
 
 // /* This controls how many elements will be on each row of the block grid. */
 // /* Set this to whatever number you need, up to the max allowed in the variable */

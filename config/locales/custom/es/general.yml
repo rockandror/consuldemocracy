@@ -28,6 +28,10 @@ es:
   application:
     close: Cerrar
     menu: Menú
+    subtitle: "wwww.tenerife.es | Sede Electrónica"
+    support_title: Atención Ciudadana
+    support_number: 922 239 500
+    search: Buscar
   comments:
     actions:
       confirm_delete: "¿Estás seguro/a? Esta acción borrará este comentario. No puedes deshacer esta acción."
@@ -230,7 +234,22 @@ es:
       participation_text: Decide cómo debe ser la ciudad que quieres.
       participation_title: Participación
       privacy: Política de privacidad
+      links:
+        legal: Aviso Legal
+        privacy: Política de Privacidad
+        cookies: Política de Cookies
+        contact: Contacto
+        web: Web del Cabildo
+        faq: Preguntas frequentes
     header:
+      content_question: ¿Qué contiene y para qué sirve esta web?
+      addressed_question: ¿A quién va dirigida esta web?
+      links:
+        proposals: Participa y haz propuestas
+        voting: Propuestas del Cabildo
+        information: Solicita información de Transparencia
+        complains: Presenta una queja, sugerencia o reclamación
+        sede: Tramita a través de la Sede Electrónica
       administration_menu: Menú
       administration: Administración
       available_locales: Idiomas disponibles
@@ -683,6 +702,11 @@ es:
     "yes": "Si"
     "no": "No"
     search_results: "Resultados de la búsqueda"
+    main_links:
+      cabildo: Cabildo Abierto
+      transparency: Transparencia
+      collaboration: Participación y colaboración
+      open_data: Datos Abiertos
     advanced_search:
       author_type: "Por categoría de autor"
       author_type_blank: "Elige una categoría"

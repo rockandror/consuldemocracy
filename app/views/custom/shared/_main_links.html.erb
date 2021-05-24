@@ -1,0 +1,42 @@
+<div class="sectionbox-container">
+    <div class="row">
+      <div class="small-12 medium-3 column text-center">
+      <%= link_to "https://www.youtube.com/channel/UCSnQFzldpaeR5D7zTOp3pRA?view_as=subscriber", accesskey: "0" do %>
+        <div class="sectionbox">
+          <%= image_tag(image_path_for("icono-cabildo-abierto.png"), class: "") %>
+          <div class="sectionbox-title">
+            <span><%= t("shared.main_links.cabildo") %></span>
+          </div>
+          </div>
+          <% end %>
+      </div>
+      <div class="small-12 medium-3 column text-center">
+      <%= link_to "https://transparencia.tenerife.es/", accesskey: "0" do %>
+        <div class="sectionbox">
+          <%= image_tag(image_path_for("icono-transparencia.png"), class: "") %>
+          <div class="sectionbox-title">
+            <span><%= t("shared.main_links.transparency") %></span>
+          </div>
+        </div>
+        <% end %>
+      </div>
+      <div class="small-12 medium-3 column text-center">
+        <div class="sectionbox">
+          <%= image_tag(image_path_for("icono-participacion-colaboracion.png"), class: "") %>
+          <div class="sectionbox-title">
+            <span><%= t("shared.main_links.collaboration") %></span>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 medium-3 column text-center">
+      <%= link_to "https://www.tenerifedata.com/", accesskey: "0" do %>
+        <div class="sectionbox">
+          <%= image_tag(image_path_for("icono-datos-abiertos.png"), class: "") %>
+          <div class="sectionbox-title">
+            <span><%= t("shared.main_links.open_data") %></span>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    </div>
+</div>

@@ -26,51 +26,54 @@
         <% end %>
         <div class="top-bar-title">
           <h1>
-            Cabildo Abierto
+            <%= setting["org_name"] %>
           </h1>
         </div>
 
         <div class="left-section-number">
-          <span>Atención Ciudadana</span><br>
-          <span>922 239 500</span>
+          <%= t("application.support_title") %><br>
+          <%= t("application.support_number") %>
         </div>
       </div>
 
       <div class="middle-section">
-         <span>wwww.tenerife.es | Sede Electrónica</span>
+        <%= link_to "https://sede.tenerife.es/es/", accesskey: "0" do %>
+         <%= t("application.subtitle") %>
+        <% end %>
       </div>
       <div class="right-section">
         <div class="top-bar-right">
           <ul class="menu">
             <li>
-              <span><%= icon('fab', 'facebook-f') %></span>
+            <%= link_to "https://www.facebook.com/CabildoTenerife", accesskey: "0" do %>
+              <span>
+              <%= icon('fab', 'facebook-f') %>
+              </span>
+              <% end %>
             </li>
             <li>
-              <span><%= icon('fab', 'twitter') %></span>
+            <%= link_to "https://twitter.com/CabildoTenerife", accesskey: "0" do %>
+            <span>
+              <%= icon('fab', 'twitter') %>
+              </span>
+              <% end %>
             </li>
             <li>
+            <%= link_to "https://www.youtube.com/channel/UCSnQFzldpaeR5D7zTOp3pRA?view_as=subscriber", accesskey: "0" do %>
               <span><%= icon('fab', 'youtube') %></span>
+              <% end %>
             </li>
             <li>
+            <%= link_to "https://www.instagram.com/cabildotenerife/?hl=es", accesskey: "0" do %>
               <span><%= icon('fab', 'instagram') %></span>
+              <% end %>
             </li>
           </ul>
         </div>
         <div class="search">
           <span><%= icon('fas', 'search') %></span>
-          <span>Buscar</span>
+          <span><%= t("application.search") %></span>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="navigation_bar" class="subnavigation expanded">
-    <div class="row">
-      <div class="hide-for-small-only">
-        <%= render "shared/subnavigation" %>
-      </div>
-      <div class="small-12 medium-3 column">
-        <%= yield :header_addon %>
       </div>
     </div>
   </div>
