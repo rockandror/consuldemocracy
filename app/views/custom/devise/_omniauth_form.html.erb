@@ -38,16 +38,11 @@
                       title: t("omniauth.saml.sign_in"),
                       class: "button expanded" %>
         </div>
-        <div class="small-12 column">
-          <p class="float-right">
-            <%= link_to t("devise_views.shared.links.new_password"), ENV['OPENAM_HOST'], class: "float-right" %>
-          </p>
-          <p class="float-left">
-            <%= t("devise_views.shared.links.signup",
-                  signup_link: link_to(t("devise_views.shared.links.signup_link"), new_user_registration_path)).html_safe %>
-          </p>
-        </div>
       <% end %>
+
+      <div class="small-12 column auth-divider">
+        <span><%= t("omniauth.or_fill") %></span>
+      </div>
     </div>
 
   <% elsif current_page?(new_user_registration_path) %>
@@ -81,6 +76,10 @@
                       class: "button-google button expanded" %>
         </div>
       <% end %>
+
+      <div class="small-12 column auth-divider">
+        <span><%= t("omniauth.or_fill") %></span>
+      </div>
     </div>
   <% end %>
 
