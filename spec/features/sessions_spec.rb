@@ -9,12 +9,11 @@ feature 'Sessions' do
     visit debate_path(debate)
 
     login_through_form_as(user)
-    expect(page).to have_content('You have been signed in successfully')
 
-    visit debate_path(debate)
+    expect(page).to have_content('You have been signed in successfully')
     expect(page).to have_current_path(debate_path(debate))
 
-    click_link("Sign out", match: :first)
+    click_link 'Sign out'
 
     expect(page).to have_content('You have been signed out successfully')
     expect(page).to have_current_path(debate_path(debate))

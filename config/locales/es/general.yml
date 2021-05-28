@@ -291,9 +291,6 @@ es:
       sign_in: Entra con Twitter
       sign_up: Regístrate con Twitter
       name: Twitter
-    saml:
-      sign_in: Entra con Identidad de Plataforma de Participación Ciudadana
-      name: Acceso a la Plataforma de Participación Ciudadana
     info_sign_in: "Para la ciudadanía, entra con:"
     info_sign_up: "Regístrate con:"
     or_fill: "Solo si eres personal autorizado usa el siguiente formulario:"

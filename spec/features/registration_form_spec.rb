@@ -34,17 +34,13 @@ feature 'Registration form' do
     fill_in 'user_redeemable_code',       with: "            "
     check 'user_terms_of_service'
 
-    # Mock OpenAM
-    allow_any_instance_of(OpenAmHelper).to(receive(:register_user).and_return(:ok))
-    # End Mock OpenAM
-
     click_button 'Register'
 
-    expect(page).to have_content "Se ha registrado correctamente"
+    expect(page).to have_content "Thank you for registering"
 
-    #new_user = User.last
-    #expect(new_user.username).to eq("NewUserWithCode77")
-    #expect(new_user.redeemable_code).to be_nil
+    new_user = User.last
+    expect(new_user.username).to eq("NewUserWithCode77")
+    expect(new_user.redeemable_code).to be_nil
   end
 
   scenario 'Create with invisible_captcha honeypot field' do
