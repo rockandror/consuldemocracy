@@ -81,6 +81,7 @@ class SaraNet
 
       @client = Savon.client do
         wsdl ENV["SARA_WSDL_URL"]
+        wsse_auth(ENV["SOAP_PLATINO_USUARIO"], ENV["SOAP_PLATINO_PKCS12_PASSWORD"])
         wsse_signature Akami::WSSE::Signature.new(
             Akami::WSSE::Certs.new(
                 cert_string:            pkcs.certificate.to_pem.to_s,
@@ -153,8 +154,7 @@ class SaraNet
                   "pet:NombreProcedimiento": ENV['SOAP_VERIFICAR_IDENTIDAD_NOMBRE_PROCEDIMIENTO'],
                 },
                 "pet:Finalidad": ENV['SOAP_VERIFICAR_IDENTIDAD_FINALIDAD'],
-                "pet:Consentimiento": "Si",
-                "pet:IdExpediente": ENV['SOAP_VERIFICAR_IDENTIDAD_ID_EXPEDIENTE']
+                "pet:Consentimiento": "Si"
               },
               "pet:Titular": {
                 "pet:TipoDocumentacion": get_document_type(document_type),

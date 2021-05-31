@@ -42,6 +42,7 @@ services:
       - SARA_WSDL_URL
       - SERVER_NAME
       - SOAP_PLATINO_PKCS12_PASSWORD
+      - SOAP_PLATINO_USUARIO
       - SOAP_URL_AMB
       - SOAP_URL_NS8
       - SOAP_URL_PET
