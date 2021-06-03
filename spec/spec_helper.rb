@@ -110,6 +110,7 @@ RSpec.configure do |config|
     ENV["ID_EXPEDIENTE"] = ""
     ENV["FINALIDAD"] = ""
     ENV["SOAP_PLATINO_PKCS12_PASSWORD"] = ""
+    ENV["SOAP_PLATINO_USUARIO"] = ""
     ENV["SARA_WSDL_URL"] = ""
     ENV["SOAP_URL_SVD"] = ""
     ENV["SOAP_URL_PET"] = ""
