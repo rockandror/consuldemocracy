@@ -8,7 +8,7 @@
   <h2><%= @budget.name %></h2>
 </header>
 
-<%= render Admin::Budgets::HelpComponent.new("budget_groups") %>
+<%= render Admin::Budgets::HelpComponent.new("budget_groups", mode: @mode) %>
 <%= render Admin::Budgets::CreationTimelineComponent.new(step: "groups") %>
 
 <% unless @mode == "single" %>

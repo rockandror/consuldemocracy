@@ -6,7 +6,7 @@
   <h2><%= "#{@budget.name} / #{@group.name}" %></h2>
 </header>
 
-<%= render Admin::Budgets::HelpComponent.new("budget_headings") %>
+<%= render Admin::Budgets::HelpComponent.new("budget_headings", mode: @mode) %>
 <%= render Admin::Budgets::CreationTimelineComponent.new(step: "headings") %>
 
 <% unless @mode == "single" %>

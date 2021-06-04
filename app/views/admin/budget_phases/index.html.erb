@@ -1,6 +1,6 @@
 <h2><%= @budget.name %></h2>
 
-<%= render Admin::Budgets::HelpComponent.new("budget_phases") %>
+<%= render Admin::Budgets::HelpComponent.new("budget_phases", mode: @mode) %>
 <%= render Admin::Budgets::CreationTimelineComponent.new(step: "phases") %>
 
 <%= render Admin::BudgetPhases::PhasesComponent.new(@budget, @url_params) %>

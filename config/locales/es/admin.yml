@@ -196,9 +196,12 @@ es:
         max_votable_headings_info: "Solo se aplica en la fase de apoyos. Durante la votación final un usuario solo puede votar en una partida por grupo."
         submit: "Guardar grupo"
       index:
-        back: "Volver a presupuestos"
-        help: "Los grupos sirven para organizar las partidas del presupuesto. Después de que un grupo sea creado y éste contenga partidas, es posible determinar el número de partidas a las que un usuario puede votar por grupo."
+        back: "Volver al presupuesto"
+        multiple:
+          help: "Los grupos sirven para organizar las partidas del presupuesto. Después de que un grupo sea creado y éste contenga partidas, es posible determinar el número de partidas a las que un usuario puede votar por grupo."
         new_button: "Añadir un grupo nuevo"
+        single:
+          help: "Los grupos sirven para organizar las partidas del presupuesto, como este presupuesto sólo contendrá una partida, se puede usar el mismo nombre y éste no aparecerá en ninguna parte. Puedes continuar con el siguiente paso."
     budget_headings:
       name: Nombre de la partida
       price: Cantidad de dinero
@@ -227,8 +230,11 @@ es:
         submit: "Guardar partida"
       index:
         back: "Volver a grupos"
-        help: "Las partidas sirven para dividir el dinero del presupuesto participativo. Aquí puedes ir añadiendo partidas para cada grupo y establecer la cantidad de dinero que se gastará en cada partida."
+        multiple:
+          help: "Las partidas sirven para dividir el dinero del presupuesto participativo. Aquí puedes ir añadiendo partidas para cada grupo y establecer la cantidad de dinero que se gastará en cada partida."
         new_button: "Añadir una partida nueva"
+        single:
+          help: "Las partidas sirven para dividir el dinero del presupuesto participativo. Como este presupuesto solo tendrá una partida aquí podrás establecer la cantidad de dinero que se gastará en este presupuesto participativo."
         showing_headings_from_group: "Mostrando las partidas del grupo:"
     budget_phases:
       edit:
@@ -237,6 +243,10 @@ es:
         duration_description: "El período de tiempo que esta fase estará activa."
         enabled_help_text: Esta fase será pública en el calendario de fases del presupuesto y estará activa para otros propósitos
         image_description: "Si se proporciona una imagen se mostrará junto a la descripción de esta fase."
+        index:
+          help_block: "Los presupuestos participativos tienen distintas fases. Aquí puedes habilitar o deshabilitar fases y también personalizar cada una de las fases."
+          button:
+            continue: "Finalizar"
         main_call_to_action: "Enlace de acción principal (opcional)"
         main_call_to_action_description: "Este enlace aparecerá en la cabecera de este presupuesto participativo cuando esta fase esté activa y permite al usuario ejecutar una acción específica como crear una nueva propuesta, votar las existentes, o leer más sobre el funcionamiento de los presupuestos participativos."
         name_help_text: "Este es el título de la fase que los usuarios leerán en el encabezado cuando la fase esté activa."

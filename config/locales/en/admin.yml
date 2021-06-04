@@ -78,7 +78,6 @@ en:
           all: All
           open: Open
           finished: Finished
-        help: "Participatory budgets allow citizens to propose and decide directly how to spend part of the budget, with monitoring and rigorous evaluation of proposals by the institution."
         heading_mode:
           multiple:
             description: "Create a process with multiple groups, districts or topics. You have something like several bags of money. For example, 25,000€ for \"North District\", 30,000€ for \"Center District\", 28,000€ for \"South District\" and the whole city. Or for several themes like sport, culture or health."
@@ -197,8 +196,11 @@ en:
         submit: "Save group"
       index:
         back: "Go back to budgets"
-        help: "Groups are meant to organize headings. After a group is created and it contais headings, it's possible to determine in how many headings a user can vote per group."
+        multiple:
+          help_block: "Groups are meant to organize headings. After a group is created and it contais headings, it's possible to determine in how many headings a user can vote per group."
         new_button: "Add new group"
+        single:
+          help_block: "Groups are meant to organize headings, since this budget will only contain one heading, the same name can be used because it will not appear anywhere. You can just continue with the next step."
     budget_headings:
       name: Heading name
       price: Money amount
@@ -227,8 +229,11 @@ en:
         submit: "Save heading"
       index:
         back: "Go back to groups"
-        help: "Headings are meant to divide the money of the participatory budget. Here you can add headings for this group and assign the amount of money that will be used for each heading."
+        multiple:
+          help_block: "Headings are meant to divide the money of the participatory budget. Here you can add headings for this group and assign the amount of money that will be used for each heading."
         new_button: "Add new heading"
+        single:
+          help: "Headings are meant to divide the money of the participatory budget. Since this budget will only contain one heading, this is the place where you stablish the money that will be spent in this participaroty budget."
         showing_headings_from_group: "Currently showing headings from the group:"
     budget_phases:
       edit:
