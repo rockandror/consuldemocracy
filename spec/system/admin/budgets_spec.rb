@@ -34,6 +34,54 @@ describe "Admin budgets", :admin do
       expect(page).to have_content "Accepting projects"
     end
 
+    scenario "Displaying budget information" do
+      budget_single = create(:budget, :accepting)
+      budget_multiple = create(:budget, :balloting)
+
+      heading = create(:budget_heading, budget: budget_single)
+      create(:budget_heading, budget: budget_multiple)
+      create(:budget_heading, budget: budget_multiple)
+
+      visit admin_budgets_path
+
+      within "#budget_#{budget_single.id}" do
+        expect(page).to have_content(budget_single.name)
+        expect(page).to have_content("Accepting projects")
+        expect(page).to have_content("Single heading")
+        expect(page).to have_content("(2/9)")
+        expect(page).to have_content("9 months")
+        expect(page).to have_content("#{budget_single.phases.first.starts_at.to_date} 00:00 - "\
+                                     "#{budget_single.phases.last.ends_at.to_date - 1} 23:59")
+      end
+
+      within "#budget_#{budget_multiple.id}" do
+        expect(page).to have_content(budget_multiple.name)
+        expect(page).to have_content("Voting projects")
+        expect(page).to have_content("Multiple headings")
+        expect(page).to have_content("(7/9)")
+        expect(page).to have_content("9 months")
+        expect(page).to have_content("#{budget_multiple.phases.first.starts_at.to_date} 00:00 - "\
+                                     "#{budget_multiple.phases.last.ends_at.to_date - 1} 23:59")
+      end
+    end
+
+    scenario "Displaying budget current phase information for non common cases" do
+      budget_without_enabled_phases = create(:budget, :accepting)
+      budget_without_enabled_phases.phases.each { |phase| phase.update!(enabled: false) }
+      budget_in_a_not_enabled_phase = create(:budget, :accepting)
+      budget_in_a_not_enabled_phase.phases.accepting.update!(enabled: false)
+
+      visit admin_budgets_path
+
+      within "#budget_#{budget_without_enabled_phases.id}" do
+        expect(page).to have_content("(0/0)")
+      end
+
+      within "#budget_#{budget_in_a_not_enabled_phase.id}" do
+        expect(page).to have_content("(0/8)")
+      end
+    end
+
     scenario "Filters by phase" do
       create(:budget, :drafting, name: "Unpublished budget")
       create(:budget, :accepting, name: "Accepting budget")

@@ -91,16 +91,19 @@ en:
           title: "Participatory budget type"
         help_block: "Participatory budgets allow citizens to propose and decide directly how to spend part of the budget, with monitoring and rigorous evaluation of proposals by the institution."
         budget_investments: Manage projects
+        table_budget_type: Budget Type
         table_completed: Completed
         table_draft: "Draft"
         table_duration: "Duration"
         table_name: Name
-        table_phase: Phase
+        table_phase: Current phase
         table_phase_progress: "(%{current_phase_number}/%{total_phases})"
         delete: "Delete budget"
         edit_budget: Edit budget
         admin_ballots: Admin ballots
         no_budgets: "There are no budgets."
+        type_single: Single heading
+        type_multiple: Multiple headings
       create:
         button:
           continue: "Continue to groups"
