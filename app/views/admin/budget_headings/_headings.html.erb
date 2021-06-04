@@ -11,7 +11,9 @@
 
         <th class="text-center"><%= t("admin.budget_headings.population") %></th>
         <th class="text-center"><%= t("admin.budget_headings.allow_custom_content") %></th>
-        <th class="text-right"><%= t("admin.actions.actions") %></th>
+        <% unless @mode.present? %>
+          <th class="text-right"><%= t("admin.actions.actions") %></th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
@@ -26,9 +28,11 @@
           <td class="text-center">
             <%= heading.allow_custom_content ? t("admin.shared.true_value") : t("admin.shared.false_value") %>
           </td>
-          <td class="text-right">
-            <%= render Admin::TableActionsComponent.new(heading) %>
-          </td>
+          <% unless @mode.present? %>
+            <td class="text-right">
+              <%= render Admin::TableActionsComponent.new(heading) %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
