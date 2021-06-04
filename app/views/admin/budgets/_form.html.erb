@@ -74,7 +74,7 @@
         <%= f.select :phase, budget_phases_select_options %>
       </div>
 
-      <%= render Admin::BudgetPhases::PhasesComponent.new(@budget) %>
+      <%= render Admin::BudgetPhases::PhasesComponent.new(@budget, @url_params) %>
     </fieldset>
 
     <%= render "admin/shared/show_results_fields", form: f %>
