@@ -531,18 +531,6 @@ describe "Admin budgets", :admin do
       end
     end
 
-    scenario "Add group from edit view" do
-      visit edit_admin_budget_path(budget)
-
-      click_link "Add group"
-
-      fill_in "Group name", with: "New group"
-      click_button "Create new group"
-
-      visit edit_admin_budget_path(budget)
-      expect(page).to have_content "New group"
-    end
-
     scenario "Add heading from edit view" do
       visit edit_admin_budget_path(budget)
 
