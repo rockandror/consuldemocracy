@@ -323,6 +323,97 @@
   @include direct-uploads;
 }
 
+
+.budget-investment-new {
+
+  .header {
+    background: $brand-secondary;
+    border-bottom-right-radius: rem-calc(12);
+    border-top-right-radius: rem-calc(12);
+    color: #fff;
+    margin-top: $line-height * 2;
+    padding: $line-height * 2 0;
+    position: relative;
+
+    h1 {
+      font-size: rem-calc(36);
+
+      @include breakpoint(large) {
+        font-size: rem-calc(44);
+      }
+    }
+
+    &::before {
+      background: $brand-secondary;
+      border: 4px solid $brand-secondary;
+      content: "";
+      height: 100%;
+      position: absolute;
+      top: 0;
+      right: 100%;
+      width: 100%;
+      z-index: 1;
+    }
+
+    &::after {
+      background: #fff;
+      border: 4px solid $brand-secondary;
+      border-bottom-right-radius: rem-calc(12);
+      border-top-right-radius: rem-calc(12);
+      clip-path: polygon(20% 0, 100% 1%, 100% 100%, 20% 100%, 5% 50%);
+      color: $brand-secondary;
+      content: "\f1ad";
+      display: none;
+      font-family: "Font Awesome 5 Free";
+      font-size: rem-calc(100);
+      height: 100%;
+      padding-left: $line-height;
+      padding-top: $line-height;
+      position: absolute;
+      text-align: center;
+      top: 0;
+      right: 0;
+      width: rem-calc(160);
+
+      @include breakpoint(medium) {
+        display: block;
+      }
+
+      @include breakpoint(large) {
+        padding-top: 0;
+        width: rem-calc(200);
+      }
+    }
+
+    .header-icon {
+      display: block;
+      font-size: rem-calc(36);
+      line-height: rem-calc(60);
+
+      @include breakpoint(large) {
+        font-size: rem-calc(80);
+        padding-right: rem-calc(240);
+        position: absolute;
+        right: 0;
+      }
+    }
+
+    &.header-single-heading {
+
+      .header-icon {
+
+        @include breakpoint(large) {
+          top: 80px;
+        }
+      }
+
+      &::after {
+        padding-top: $line-height;
+      }
+    }
+  }
+}
+
 // 03. Show participation
 // ----------------------
 
@@ -745,6 +836,93 @@
   p {
     color: $text;
   }
+
+  h2 {
+    font-size: $base-font-size;
+  }
+}
+
+.budget-info,
+.budget-investment-index-list {
+
+  h2 {
+    font-size: rem-calc(20);
+    margin: $line-height / 2 0;
+  }
+}
+
+.budget-investment {
+
+  &.index {
+    height: 100%;
+
+    .panel {
+      border-radius: rem-calc(6);
+      height: 100%;
+      padding: 0;
+      position: relative;
+
+      img {
+        border-bottom-left-radius: 0;
+        border-top-left-radius: rem-calc(6);
+        border-top-right-radius: rem-calc(6);
+        width: 100%;
+      }
+
+      .image-container {
+        height: $line-height * 10;
+      }
+
+      .button {
+        font-size: $base-font-size;
+        margin-bottom: 0;
+        min-height: $line-height * 2;
+      }
+
+      .total-supports {
+        display: none;
+      }
+    }
+
+    .budget-investment-content {
+      padding: 0 rem-calc(12);
+    }
+
+    .supports-and-price {
+      background: $light;
+      display: table;
+      table-layout: fixed;
+
+      .price-title,
+      .supports-title {
+        color: #7b7b7b;
+        display: block;
+        font-size: $small-font-size;
+        text-transform: uppercase;
+      }
+
+      .table-cell {
+        padding: $line-height / 4 $line-height / 2;
+
+        &:first-child {
+          border-right: 1px solid $border;
+          position: relative;
+        }
+      }
+    }
+
+    .read-more {
+      bottom: 0;
+      color: $brand;
+      display: block;
+      left: 0;
+      margin-top: 0;
+      padding-right: $line-height / 2;
+      position: absolute;
+      text-align: right;
+      width: 100%;
+    }
+  }
 }
 
 .divider {
@@ -1146,6 +1324,11 @@
     background-size: cover;
   }
 
+  &.groups {
+    min-height: 0;
+    padding-top: 0;
+  }
+
   .budget-title {
     font-weight: bold;
     text-transform: uppercase;
@@ -1169,6 +1352,7 @@
   h2,
   p,
   a,
+  span,
   .back,
   .icon-angle-left,
   .description {
@@ -1262,6 +1446,37 @@
 
 .current-phase {
   @include brand-text;
+}
+
+.single-heading {
+  margin-bottom: $line-height * 2;
+  padding-bottom: $line-height;
+  position: relative;
+
+  &::after {
+    background: $brand;
+    bottom: 0;
+    content: "";
+    height: rem-calc(6);
+    position: absolute;
+    width: 20%;
+  }
+
+  h2 {
+    font-size: rem-calc(60);
+    font-weight: normal;
+  }
+
+  a {
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .heading-amount {
+    font-size: rem-calc(48);
+  }
 }
 
 .progress-votes {
@@ -1379,34 +1594,6 @@
 .ballot-list {
   list-style: none;
   margin-left: 0;
-}
-
-.select-district a {
-  display: inline-block;
-  margin: $line-height / 4 0;
-  padding: $line-height / 4;
-}
-
-.select-district .is-active a {
-  background: #f9f9f9;
-  border-radius: rem-calc(3);
-  color: $budget;
-  font-weight: bold;
-  padding: $line-height / 4;
-
-  &::after {
-    content: "\56";
-    font-family: "icons";
-    font-size: $small-font-size;
-    font-weight: normal;
-    line-height: $line-height;
-    padding-left: rem-calc(3);
-    vertical-align: baseline;
-
-    &:hover {
-      text-decoration: none;
-    }
-  }
 }
 
 .progress-bar-nav {
@@ -1653,38 +1840,41 @@
   }
 }
 
-.orbit-bullets button {
-  background-color: #ccc;
-  height: $line-height / 2;
-  width: $line-height / 2;
+.section-recommended {
 
-  &.is-active {
-    background-color: $brand;
+  .orbit-bullets button {
+    background-color: #ccc;
+    height: $line-height / 2;
+    width: $line-height / 2;
+
+    &.is-active {
+      background-color: $brand;
+    }
   }
-}
 
-.orbit-container {
-  height: 100% !important;
-  max-height: none !important;
+  .orbit-container {
+    height: 100% !important;
+    max-height: none !important;
 
-  li {
-    margin-bottom: 0 !important;
+    li {
+      margin-bottom: 0 !important;
+    }
   }
-}
 
-.orbit-slide {
-  max-height: none !important;
-  position: relative;
-}
+  .orbit-slide {
+    max-height: none !important;
+    position: relative;
+  }
 
-.orbit-caption {
-  background: #eee;
-  color: $text;
-}
+  .orbit-caption {
+    background: #eee;
+    color: $text;
+  }
 
-.orbit-next,
-.orbit-previous {
-  background: rgba(34, 34, 34, 0.25);
+  .orbit-next,
+  .orbit-previous {
+    background: rgba(34, 34, 34, 0.25);
+  }
 }
 
 .zoom-link {

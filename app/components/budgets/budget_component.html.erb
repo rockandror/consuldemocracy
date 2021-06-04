@@ -27,7 +27,13 @@
 <div id="budget_info" class="budget-info">
   <div class="row margin-top">
     <div class="small-12 column">
-      <%= render Budgets::GroupsAndHeadingsComponent.new(budget) %>
+      <% if budget.single_heading? %>
+        <%# # TODO: move to component %>
+        <%= render "single_heading" %>
+      <% else %>
+        <%= render Budgets::GroupsAndHeadingsComponent.new(budget) %>
+      <% end %>
+
       <%= render Budgets::SupportsInfoComponent.new(budget) %>
 
       <% unless budget.informing? %>

@@ -208,11 +208,13 @@ describe "Budgets" do
     end
 
     expect(page).to have_content "Description of accepting phase"
+    expect(page).to have_content "Custom name for accepting phase"
     expect(page).to have_content "January 01, 2018 - January 20, 2018"
 
     click_link "Custom name for selecting phase"
 
     expect(page).to have_content "Description of selecting phase"
+    expect(page).to have_content "Custom name for selecting phase"
     expect(page).to have_content "January 21, 2018 - March 01, 2018"
 
     click_link "Voting projects"
