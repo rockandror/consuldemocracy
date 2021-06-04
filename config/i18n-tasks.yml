@@ -146,6 +146,7 @@ ignore_unused:
   - "admin.hidden_proposals.index.filter*"
   - "admin.hidden_proposal_notifications.index.filter*"
   - "admin.budgets.index.filter*"
+  - "admin.budgets.index.heading_mode.*"
   - "admin.budgets.edit.(administrators|valuators).*"
   - "admin.budget_groups.index.*.help_block"
   - "admin.budget_headings.index.*.help_block"

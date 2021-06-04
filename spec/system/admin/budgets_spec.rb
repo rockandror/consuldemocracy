@@ -115,7 +115,8 @@ describe "Admin budgets", :admin do
   context "New" do
     scenario "Create budget - Knapsack voting (default)" do
       visit admin_budgets_path
-      click_link "Create new budget"
+      click_button "Create new budget"
+      click_link "Create single heading budget"
 
       fill_in "Name", with: "M30 - Summer campaign"
       click_button "Continue to groups"
@@ -132,7 +133,8 @@ describe "Admin budgets", :admin do
       admin = Administrator.first
 
       visit admin_budgets_path
-      click_link "Create new budget"
+      click_button "Create new budget"
+      click_link "Create single heading budget"
 
       fill_in "Name", with: "M30 - Summer campaign"
       select "Approval", from: "Final voting style"
@@ -182,7 +184,8 @@ describe "Admin budgets", :admin do
   context "Create" do
     scenario "A new budget is always created in draft mode" do
       visit admin_budgets_path
-      click_link "Create new budget"
+      click_button "Create new budget"
+      click_link "Create multiple headings budget"
 
       fill_in "Name", with: "M30 - Summer campaign"
 
