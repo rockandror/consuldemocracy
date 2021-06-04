@@ -123,7 +123,8 @@ describe "Admin budgets", :admin do
 
       expect(page).to have_content "New participatory budget created successfully!"
 
-      click_link "Go back to budgets"
+      visit admin_budgets_path
+      click_link "Edit budget"
 
       expect(page).to have_field "Name", with: "M30 - Summer campaign"
       expect(page).to have_select "Final voting style", selected: "Knapsack"
@@ -142,7 +143,9 @@ describe "Admin budgets", :admin do
 
       expect(page).to have_content "New participatory budget created successfully!"
 
-      click_link "Go back to budgets"
+      visit admin_budgets_path
+      click_link "Edit budget"
+
       expect(page).to have_field "Name", with: "M30 - Summer campaign"
       expect(page).to have_select "Final voting style", selected: "Approval"
 

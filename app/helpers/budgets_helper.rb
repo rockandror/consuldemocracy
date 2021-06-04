@@ -89,7 +89,7 @@ module BudgetsHelper
   end
 
   def class_for_form(resource)
-    unless resource.errors.any?
+    unless @mode == "single" || resource.errors.any?
       "hide"
     end
   end
