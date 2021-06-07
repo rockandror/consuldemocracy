@@ -188,6 +188,53 @@
   }
 }
 
+// PAGES
+.page-title {
+  border-bottom: 4px solid $secondary;
+  margin: 0;
+  h1 {
+    font-size: 54px;
+    color: $brand;
+  }
+  h2 {
+    color: $brand;
+  }
+}
+.current-page {
+  background-color: $brand;
+  span {
+    color: white;
+  }
+}
+
+.menu-title {
+  background-color: $secondary;
+  border-bottom: 2px solid white;
+  color: white;
+  padding: 10px 34px 10px 20px;
+  span {
+    font-size: rem-calc(23);
+    font-weight: 800;
+  }
+}
+.menu-sections {
+  list-style-type: none;
+  background-color: lightgray;
+  width: 100%;
+  margin: 0;
+  a {
+    text-decoration: none;
+    li {
+      padding: 10px 34px 10px 20px;
+      color: black;
+    }
+    :hover {
+      background-color: $brand;
+      color: white;
+    }
+  }
+}
+
 // /* This controls how many elements will be on each row of the block grid. */
 // /* Set this to whatever number you need, up to the max allowed in the variable */
 // $per-row: false;
