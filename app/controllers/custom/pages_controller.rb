@@ -27,4 +27,9 @@ class PagesController < ApplicationController
   rescue ActionView::MissingTemplate
     head 404, content_type: "text/html"
   end
+
+  def news
+    @news = SiteCustomization::Page.where(is_news: true)
+    render action: :news
+  end
 end

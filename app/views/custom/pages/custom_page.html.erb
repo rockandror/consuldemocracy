@@ -1,8 +1,20 @@
 <%= content_for :body_class, "custom-page" %>
+
 <% provide :title do %><%= @custom_page.title %><% end %>
 <div class="page-title">
 <div class="row margin-top">
   <div class="small-12 medium-9 column">
+      <% if @custom_page.is_news %>
+        <span>
+        <%= link_to news_path do %>
+          <span>Noticias</span>
+        <% end %>
+         >
+        <%= link_to @custom_page.slug do %>
+          <span><%= @custom_page.title %></span>
+        <% end %>
+        </span>
+      <% end %>
       <h1><%= @custom_page.title %></h1>
       <% if @custom_page.subtitle.present? %>
         <h2><%= @custom_page.subtitle %></h2>
