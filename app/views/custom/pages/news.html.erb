@@ -1,9 +1,9 @@
 <%= content_for :body_class, "news" %>
-<% provide :title do %>Noticias<% end %>
+<% provide :title do %><%= t("news.title") %><% end %>
 <div class="page-title">
   <div class="row margin-top">
     <div class="small-12 medium-9 column">
-        <h1>Noticias</h1>
+        <h1><%= t("news.title") %></h1>
     </div>
   </div>
 </div>
@@ -22,7 +22,7 @@
         <% end %>
         <%= link_to news_path do %>
           <li class = "current-page section">
-            <span>Noticias</span>
+            <span><%= t("news.title") %></span>
           </li>
         <% end %>
         </ul>

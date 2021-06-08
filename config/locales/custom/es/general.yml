@@ -1004,3 +1004,5 @@ es:
       more:
         one: "Una etiqueta más"
         other: "%{count} etiquetas más"
+  news:
+    title: "Noticias"
