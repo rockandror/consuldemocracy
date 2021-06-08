@@ -4,8 +4,10 @@
 <div class="page-title">
 <div class="row margin-top">
   <div class="small-12 medium-9 column">
+
+      <h1><%= @custom_page.title %></h1>
       <% if @custom_page.is_news %>
-        <span>
+        <small>
         <%= link_to news_path do %>
           <span>Noticias</span>
         <% end %>
@@ -13,12 +15,9 @@
         <%= link_to @custom_page.slug do %>
           <span><%= @custom_page.title %></span>
         <% end %>
-        </span>
+        </small>
       <% end %>
-      <h1><%= @custom_page.title %></h1>
-      <% if @custom_page.subtitle.present? %>
-        <h2><%= @custom_page.subtitle %></h2>
-      <% end %>
+      <br><br>
   </div>
 </div>
 </div>
@@ -31,16 +30,27 @@
         <ul class="menu-sections">
         <% @related_pages.each do |related| %>
           <%= link_to related.slug do %>
-          <li class = "<% if @custom_page.id == related.id %>current-page<% end %> section">
+            <li class = "<% if @custom_page.id == related.id %>current-page<% end %> section">
               <span><%= related.title %></span>
-              </li>
-              <% end %>
+            </li>
+          <% end %>
+        <% end %>
+        <% if @has_news %>
+        <%= link_to news_path do %>
+          <li class = "<% if @custom_page.id == "news" %>current-page<% end %> section">
+            <span>Noticias</span>
+          </li>
+        <% end %>
         <% end %>
         </ul>
     </div>
   <% end %>
   <div class="small-12 medium-9 column">
-
+    <div class="subtitle">
+    <% if @custom_page.subtitle.present? %>
+      <h2><%= @custom_page.subtitle %></h2>
+    <% end %>
+    </div>
     <%= auto_link_already_sanitized_html AdminWYSIWYGSanitizer.new.sanitize(@custom_page.content) %>
   </div>
 

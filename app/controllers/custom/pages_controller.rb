@@ -12,10 +12,13 @@ class PagesController < ApplicationController
     @related_pages = SiteCustomization::Page.where("slug LIKE :family", family: "#{family}%")
     if family == 'cabildo'
       @menu_title = 'Cabildo Abierto'
+      @has_news = true
     elsif family == 'participacion'
       @menu_title = 'Participación y colaboración ciudadana'
+      @has_news = false
     else
       @menu_title = false
+      @has_news = false
     end
 
     if @custom_page.present?
@@ -29,7 +32,9 @@ class PagesController < ApplicationController
   end
 
   def news
+    @menu_title = 'Cabildo Abierto'
     @news = SiteCustomization::Page.where(is_news: true)
+    @related_pages = SiteCustomization::Page.where("slug LIKE :family", family: "cabildo%")
     render action: :news
   end
 end

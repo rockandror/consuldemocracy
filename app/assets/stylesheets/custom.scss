@@ -196,6 +196,11 @@
     font-size: 54px;
     color: $brand;
   }
+  small {
+    color: $secondary;
+  }
+}
+.subtitle {
   h2 {
     color: $brand;
   }
