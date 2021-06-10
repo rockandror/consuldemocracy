@@ -92,7 +92,7 @@ module Budgets
     end
 
     def vote
-      @investment.register_selection(current_user, vote_value)
+      @investment.register_selection(current_user, vote_params[:value])
       load_investment_votes(@investment)
       respond_to do |format|
         format.html { redirect_to budget_investments_path(heading_id: @investment.heading.id) }
@@ -189,8 +189,8 @@ module Budgets
         @map_location = MapLocation.load_from_heading(@heading)
       end
 
-      def vote_value
-        params[:value] || "yes"
+      def vote_params
+        params.permit(:value)
       end
   end
 end
