@@ -85,23 +85,6 @@
                       class: "button-google button expanded" %>
         </div>
       <% end %>
-
-      <%# BLOQUE DESACTIVADO %>
-      <% if false %>>
-        <% if feature? :saml_login %>
-          <div class="small-12 medium-12 large-12 column end">
-            <%= link_to t("omniauth.saml.name"), user_omniauth_authorize_path(:saml),
-                        title: t("omniauth.saml.sign_up"),
-                        class: "button expanded" %>
-          </div>
-        <% end %>
-
-
-        <div class="small-12 column auth-divider">
-          <span><%= t("omniauth.or_fill") %></span>
-        </div>
-      <% end %>
-      <%# FIN BLOQUE DESACTIVADO %>
     </div>
   <% end %>
 
