@@ -17,6 +17,10 @@ module Users
     visit root_path
     click_link("Sign in", match: :first)
 
+    expect(page).to have_content "Or fill the following form:"
+
+    find("summary").click
+
     fill_in 'user_login', with: email
     fill_in 'user_password', with: password
 
