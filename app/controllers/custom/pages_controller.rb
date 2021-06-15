@@ -8,8 +8,8 @@ class PagesController < ApplicationController
     puts params[:id]
     @custom_page = SiteCustomization::Page.published.find_by(slug: params[:id])
     string_array = params[:id].split('_')
-    family = string_array[0]
-    @related_pages = SiteCustomization::Page.where("slug LIKE :family", family: "#{family}%")
+    family = string_array[1]
+    @related_pages = SiteCustomization::Page.where("slug LIKE :family", family: "\_#{family}\_%")
     if family == 'cabildo'
       @menu_title = 'Cabildo Abierto'
       @has_news = true
@@ -34,7 +34,7 @@ class PagesController < ApplicationController
   def news
     @menu_title = 'Cabildo Abierto'
     @news = SiteCustomization::Page.where(is_news: true)
-    @related_pages = SiteCustomization::Page.where("slug LIKE :family", family: "cabildo%")
+    @related_pages = SiteCustomization::Page.where("slug LIKE :family", family: "\_cabildo\_%")
     render action: :news
   end
 end
