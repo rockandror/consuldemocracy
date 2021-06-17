@@ -47,7 +47,7 @@ feature 'Account' do
     expect(email).to have_text 'Change your password'
   end
 
-  scenario "Manager changes the password by hand (writen by them)" do
+  scenario "Manager changes the password by hand (written by them)", :js do
     user = create(:user, :level_three)
     login_managed_user(user)
     visit management_root_path

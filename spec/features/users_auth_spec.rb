@@ -45,11 +45,15 @@ feature 'Users' do
 
     context 'Sign in' do
 
-      scenario 'sign in with email' do
+      scenario "sign in with email", :js do
         create(:user, email: 'manuela@consul.dev', password: 'judgementday')
 
         visit '/'
         click_link("Sign in", match: :first)
+
+        expect(page).to have_content "Or fill the following form:"
+
+        find("summary").click
         fill_in 'user_login',    with: 'manuela@consul.dev'
         fill_in 'user_password', with: 'judgementday'
         click_button 'Enter'
