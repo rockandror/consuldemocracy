@@ -45,6 +45,20 @@
 // Menu
 .top-bar {
   height: 60px;
+  @include breakpoint(small down) {
+    height: fit-content;
+    margin: rem-calc(8);
+  }
+
+  .social {
+    display: inline;
+    margin: auto;
+    li:first-child {
+      a {
+        margin-left: 0;
+      }
+    }
+  }
 
   .left-section {
     display: flex;
@@ -134,7 +148,7 @@
     font-size: rem-calc(22);
     font-weight: 700;
     text-align: center;
-    height: 40px;
+    height: fit-content;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -171,6 +185,7 @@
   flex-wrap: wrap;
   .action {
     flex: 1 0 20%;
+    margin: 0 rem-calc(12);
   }
 }
 
@@ -186,6 +201,7 @@
       font-size: 14px;
       font-weight: 700;
       color: white;
+      margin-bottom: rem-calc(12);
       span {
         margin-left: 8px;
       }
