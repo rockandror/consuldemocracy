@@ -261,6 +261,20 @@
   }
 }
 
+// Sign In
+.auth-image {
+  background-image: none !important;
+  h1 {
+    display: block !important;
+    margin-left: auto;
+    margin-right: auto;
+    a {
+      display: block !important;
+      text-align: center;
+    }
+  }
+}
+
 // /* This controls how many elements will be on each row of the block grid. */
 // /* Set this to whatever number you need, up to the max allowed in the variable */
 // $per-row: false;

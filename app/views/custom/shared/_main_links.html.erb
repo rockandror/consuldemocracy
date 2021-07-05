@@ -1,7 +1,7 @@
 <div class="sectionbox-container">
     <div class="row">
       <div class="small-12 medium-3 column text-center">
-      <%= link_to "https://www.youtube.com/channel/UCSnQFzldpaeR5D7zTOp3pRA?view_as=subscriber", accesskey: "0" do %>
+      <%= link_to "/_cabildo_que-es-el-cabildo-abierto", accesskey: "0" do %>
         <div class="sectionbox">
           <%= image_tag(image_path_for("icono-cabildo-abierto.png"), class: "") %>
           <div class="sectionbox-title">
@@ -21,12 +21,14 @@
         <% end %>
       </div>
       <div class="small-12 medium-3 column text-center">
+      <%= link_to "/_participacion_que-hacemos", accesskey: "0" do %>
         <div class="sectionbox">
           <%= image_tag(image_path_for("icono-participacion-colaboracion.png"), class: "") %>
           <div class="sectionbox-title">
             <span><%= t("shared.main_links.collaboration") %></span>
           </div>
         </div>
+        <% end %>
       </div>
       <div class="small-12 medium-3 column text-center">
       <%= link_to "https://www.tenerifedata.com/", accesskey: "0" do %>
