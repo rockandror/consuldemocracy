@@ -546,6 +546,7 @@ GEM
       rubocop (>= 0.82.0)
     rubocop-rspec (1.41.0)
       rubocop (>= 0.68.1)
+    ruby-ntlm (0.0.4)
     ruby-progressbar (1.10.1)
     ruby2_keywords (0.0.4)
     rubyzip (2.3.0)
@@ -758,6 +759,7 @@ DEPENDENCIES
   rubocop-performance (~> 1.7.1)
   rubocop-rails (~> 2.6.0)
   rubocop-rspec (~> 1.41.0)
+  ruby-ntlm
   rvm1-capistrano3 (~> 1.4.0)
   sassc-rails (~> 2.1.2)
   savon (~> 2.12.1)
