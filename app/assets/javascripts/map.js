@@ -16,18 +16,16 @@
     },
     initializeMap: function(element) {
       var addMarkerInvestments, clearFormfields, createMarker, dataCoordinates, editable, formCoordinates,
-        getPopupContent, latitudeInputSelector, longitudeInputSelector, map, center,
+        getPopupContent, inputSelectors, map, center,
         mapCenterLatitude, mapCenterLongitude, marker, markerIcon, markerLatitude,
         markerLongitude, moveOrPlaceMarker, openMarkerPopup, removeMarker, removeMarkerSelector,
-        updateFormfields, zoom, zoomInputSelector;
+        updateFormfields, zoom;
       App.Map.cleanInvestmentCoordinates(element);
-      latitudeInputSelector = $(element).data("latitude-input-selector");
-      longitudeInputSelector = $(element).data("longitude-input-selector");
-      zoomInputSelector = $(element).data("zoom-input-selector");
+      inputSelectors = App.Map.getInputSelectors(element);
       formCoordinates = {
-        lat: $(latitudeInputSelector).val(),
-        long: $(longitudeInputSelector).val(),
-        zoom: $(zoomInputSelector).val()
+        lat: $(inputSelectors.lat).val(),
+        long: $(inputSelectors.long).val(),
+        zoom: $(inputSelectors.zoom).val()
       };
       dataCoordinates = {
         lat: $(element).data("marker-latitude"),
@@ -92,14 +90,14 @@
         updateFormfields();
       };
       updateFormfields = function() {
-        $(latitudeInputSelector).val(marker.getLatLng().lat);
-        $(longitudeInputSelector).val(marker.getLatLng().lng);
-        $(zoomInputSelector).val(map.getZoom());
+        $(inputSelectors.lat).val(marker.getLatLng().lat);
+        $(inputSelectors.long).val(marker.getLatLng().lng);
+        $(inputSelectors.zoom).val(map.getZoom());
       };
       clearFormfields = function() {
-        $(latitudeInputSelector).val("");
-        $(longitudeInputSelector).val("");
-        $(zoomInputSelector).val("");
+        $(inputSelectors.lat).val("");
+        $(inputSelectors.long).val("");
+        $(inputSelectors.zoom).val("");
       };
       openMarkerPopup = function(e) {
         marker = e.target;
@@ -148,6 +146,13 @@
       }).addTo(map);
       App.Map.maps.push(map);
       return map;
+    },
+    getInputSelectors: function(element) {
+      return {
+        lat: $(element).data("latitude-input-selector"),
+        long: $(element).data("longitude-input-selector"),
+        zoom: $(element).data("zoom-input-selector")
+      };
     },
     cleanInvestmentCoordinates: function(element) {
       var clean_markers, markers;
