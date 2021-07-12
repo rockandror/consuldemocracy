@@ -23,11 +23,7 @@
       App.Map.cleanInvestmentCoordinates(element);
       inputSelectors = App.Map.getInputSelectors(element);
       defaultMapSettings = App.Map.getDefaultMapSettings(element);
-      formCoordinates = {
-        lat: $(inputSelectors.lat).val(),
-        long: $(inputSelectors.long).val(),
-        zoom: $(inputSelectors.zoom).val()
-      };
+      formCoordinates = App.Map.getCurrentMarkerLocation(element);
       dataCoordinates = {
         lat: $(element).data("marker-latitude"),
         long: $(element).data("marker-longitude")
@@ -156,6 +152,14 @@
         lat: $(element).data("latitude-input-selector"),
         long: $(element).data("longitude-input-selector"),
         zoom: $(element).data("zoom-input-selector")
+      };
+    },
+    getCurrentMarkerLocation: function(element) {
+      var inputSelectors = App.Map.getInputSelectors(element);
+      return {
+        lat: $(inputSelectors.lat).val(),
+        long: $(inputSelectors.long).val(),
+        zoom: $(inputSelectors.zoom).val()
       };
     },
     getDefaultMapSettings: function(element) {
