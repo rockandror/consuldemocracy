@@ -16,13 +16,11 @@
     },
     initializeMap: function(element) {
       var addMarkerInvestments, clearFormfields, createMarker, dataCoordinates, editable, formCoordinates,
-        getPopupContent, latitudeInputSelector, longitudeInputSelector, map, mapAttribution, mapCenterLatLng,
-        mapCenterLatitude, mapCenterLongitude, mapTilesProvider, marker, markerIcon, markerLatitude,
+        getPopupContent, latitudeInputSelector, longitudeInputSelector, map, center,
+        mapCenterLatitude, mapCenterLongitude, marker, markerIcon, markerLatitude,
         markerLongitude, moveOrPlaceMarker, openMarkerPopup, removeMarker, removeMarkerSelector,
         updateFormfields, zoom, zoomInputSelector;
       App.Map.cleanInvestmentCoordinates(element);
-      mapTilesProvider = $(element).data("map-tiles-provider");
-      mapAttribution = $(element).data("map-tiles-provider-attribution");
       latitudeInputSelector = $(element).data("latitude-input-selector");
       longitudeInputSelector = $(element).data("longitude-input-selector");
       zoomInputSelector = $(element).data("zoom-input-selector");
@@ -116,12 +114,8 @@
       getPopupContent = function(data) {
         return "<a href='/budgets/" + data.budget_id + "/investments/" + data.investment_id + "'>" + data.investment_title + "</a>";
       };
-      mapCenterLatLng = new L.LatLng(mapCenterLatitude, mapCenterLongitude);
-      map = L.map(element.id).setView(mapCenterLatLng, zoom);
-      App.Map.maps.push(map);
-      L.tileLayer(mapTilesProvider, {
-        attribution: mapAttribution
-      }).addTo(map);
+      center = new L.LatLng(mapCenterLatitude, mapCenterLongitude);
+      map = App.Map.buildMap(element, center, zoom);
       if (markerLatitude && markerLongitude && !addMarkerInvestments) {
         marker = createMarker(markerLatitude, markerLongitude);
       }
@@ -143,6 +137,17 @@
           }
         });
       }
+    },
+    buildMap: function(element, center, zoom) {
+      var map, mapTilesProvider, mapAttribution;
+      map = L.map(element.id).setView(center, zoom);
+      mapTilesProvider = $(element).data("map-tiles-provider");
+      mapAttribution = $(element).data("map-tiles-provider-attribution");
+      L.tileLayer(mapTilesProvider, {
+        attribution: mapAttribution
+      }).addTo(map);
+      App.Map.maps.push(map);
+      return map;
     },
     cleanInvestmentCoordinates: function(element) {
       var clean_markers, markers;
