@@ -16,12 +16,13 @@
     },
     initializeMap: function(element) {
       var addMarkerInvestments, clearFormfields, createMarker, dataCoordinates, editable, formCoordinates,
-        getPopupContent, inputSelectors, map, center,
+        getPopupContent, inputSelectors, map, center, defaultMapSettings,
         mapCenterLatitude, mapCenterLongitude, marker, markerIcon, markerLatitude,
         markerLongitude, moveOrPlaceMarker, openMarkerPopup, removeMarker, removeMarkerSelector,
         updateFormfields, zoom;
       App.Map.cleanInvestmentCoordinates(element);
       inputSelectors = App.Map.getInputSelectors(element);
+      defaultMapSettings = App.Map.getDefaultMapSettings(element);
       formCoordinates = {
         lat: $(inputSelectors.lat).val(),
         long: $(inputSelectors.long).val(),
@@ -42,13 +43,13 @@
         mapCenterLatitude = dataCoordinates.lat;
         mapCenterLongitude = dataCoordinates.long;
       } else {
-        mapCenterLatitude = $(element).data("map-center-latitude");
-        mapCenterLongitude = $(element).data("map-center-longitude");
+        mapCenterLatitude = defaultMapSettings.lat;
+        mapCenterLongitude = defaultMapSettings.long;
       }
       if (App.Map.validZoom(formCoordinates.zoom)) {
         zoom = formCoordinates.zoom;
       } else {
-        zoom = $(element).data("map-zoom");
+        zoom = defaultMapSettings.zoom;
       }
       removeMarkerSelector = $(element).data("marker-remove-selector");
       addMarkerInvestments = $(element).data("marker-investments-coordinates");
@@ -155,6 +156,13 @@
         lat: $(element).data("latitude-input-selector"),
         long: $(element).data("longitude-input-selector"),
         zoom: $(element).data("zoom-input-selector")
+      };
+    },
+    getDefaultMapSettings: function(element) {
+      return {
+        lat: $(element).data("map-center-latitude"),
+        long: $(element).data("map-center-longitude"),
+        zoom: $(element).data("map-zoom")
       };
     },
     cleanInvestmentCoordinates: function(element) {
