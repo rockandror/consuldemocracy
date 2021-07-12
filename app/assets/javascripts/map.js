@@ -19,7 +19,7 @@
         inputSelectors, map, center,
         marker,
         moveOrPlaceMarker, openMarkerPopup, removeMarker, removeMarkerSelector,
-        updateFormfields, zoom;
+        zoom;
       App.Map.cleanInvestmentCoordinates(element);
       inputSelectors = App.Map.getInputSelectors(element);
       markerCoordinates = App.Map.getMarkerCoordinates(element);
@@ -37,7 +37,9 @@
           draggable: editable
         });
         if (editable) {
-          marker.on("dragend", updateFormfields);
+          marker.on("dragend", function() {
+            App.Map.updateFormfields(map, marker);
+          });
         }
         marker.addTo(map);
         return marker;
@@ -56,12 +58,7 @@
         } else {
           marker = createMarker(e.latlng.lat, e.latlng.lng);
         }
-        updateFormfields();
-      };
-      updateFormfields = function() {
-        $(inputSelectors.lat).val(marker.getLatLng().lat);
-        $(inputSelectors.long).val(marker.getLatLng().lng);
-        $(inputSelectors.zoom).val(map.getZoom());
+        App.Map.updateFormfields(map, marker);
       };
       clearFormfields = function() {
         $(inputSelectors.lat).val("");
@@ -86,7 +83,7 @@
         $(removeMarkerSelector).on("click", removeMarker);
         map.on("zoomend", function() {
           if (marker) {
-            updateFormfields();
+            App.Map.updateFormfields(map, marker);
           }
         });
         map.on("click", moveOrPlaceMarker);
@@ -186,6 +183,12 @@
         clean_markers = markers.replace(/-?(\*+)/g, null);
         $(element).attr("data-marker-investments-coordinates", clean_markers);
       }
+    },
+    updateFormfields: function(map, marker) {
+      var inputSelectors = App.Map.getInputSelectors(map.getContainer());
+      $(inputSelectors.lat).val(marker.getLatLng().lat);
+      $(inputSelectors.long).val(marker.getLatLng().lng);
+      $(inputSelectors.zoom).val(map.getZoom());
     },
     validZoom: function(zoom) {
       return App.Map.isNumeric(zoom);
