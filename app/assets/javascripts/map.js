@@ -15,13 +15,12 @@
       App.Map.maps = [];
     },
     initializeMap: function(element) {
-      var addMarkerInvestments, clearFormfields, createMarker, markerCoordinates, editable,
-        inputSelectors, map, center,
+      var addMarkerInvestments, createMarker, markerCoordinates, editable,
+        map, center,
         marker,
         moveOrPlaceMarker, openMarkerPopup, removeMarker, removeMarkerSelector,
         zoom;
       App.Map.cleanInvestmentCoordinates(element);
-      inputSelectors = App.Map.getInputSelectors(element);
       markerCoordinates = App.Map.getMarkerCoordinates(element);
       center = App.Map.getMapCenter(element);
       zoom = App.Map.getMapZoom(element);
@@ -50,7 +49,7 @@
           map.removeLayer(marker);
           marker = null;
         }
-        clearFormfields();
+        App.Map.clearFormfields(map);
       };
       moveOrPlaceMarker = function(e) {
         if (marker) {
@@ -59,11 +58,6 @@
           marker = createMarker(e.latlng.lat, e.latlng.lng);
         }
         App.Map.updateFormfields(map, marker);
-      };
-      clearFormfields = function() {
-        $(inputSelectors.lat).val("");
-        $(inputSelectors.long).val("");
-        $(inputSelectors.zoom).val("");
       };
       openMarkerPopup = function(e) {
         marker = e.target;
@@ -119,6 +113,12 @@
         iconAnchor: [15, 40],
         html: '<div class="map-icon"></div>'
       });
+    },
+    clearFormfields: function(map) {
+      var inputSelectors = App.Map.getInputSelectors(map.getContainer());
+      $(inputSelectors.lat).val("");
+      $(inputSelectors.long).val("");
+      $(inputSelectors.zoom).val("");
     },
     getInputSelectors: function(element) {
       return {
