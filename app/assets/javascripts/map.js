@@ -18,7 +18,7 @@
       var addMarkerInvestments, createMarker, markerCoordinates, editable,
         map, center,
         marker,
-        moveOrPlaceMarker, openMarkerPopup, removeMarker, removeMarkerSelector,
+        moveOrPlaceMarker, removeMarker, removeMarkerSelector,
         zoom;
       App.Map.cleanInvestmentCoordinates(element);
       markerCoordinates = App.Map.getMarkerCoordinates(element);
@@ -59,16 +59,6 @@
         }
         App.Map.updateFormfields(map, marker);
       };
-      openMarkerPopup = function(e) {
-        marker = e.target;
-        $.ajax("/investments/" + marker.options.id + "/json_data", {
-          type: "GET",
-          dataType: "json",
-          success: function(data) {
-            e.target.bindPopup(App.Map.getPopupContent(data)).openPopup();
-          }
-        });
-      };
       map = App.Map.buildMap(element, center, zoom);
       if (App.Map.validCoordinates(markerCoordinates) && !addMarkerInvestments) {
         marker = createMarker(markerCoordinates.lat, markerCoordinates.long);
@@ -87,7 +77,7 @@
           if (App.Map.validCoordinates(coordinates)) {
             marker = createMarker(coordinates.lat, coordinates.long);
             marker.options.id = coordinates.investment_id;
-            marker.on("click", openMarkerPopup);
+            marker.on("click", App.Map.openMarkerPopup);
           }
         });
       }
@@ -175,6 +165,16 @@
     },
     getPopupContent: function(data) {
       return "<a href='/budgets/" + data.budget_id + "/investments/" + data.investment_id + "'>" + data.investment_title + "</a>";
+    },
+    openMarkerPopup: function(event) {
+      var marker = event.target;
+      $.ajax("/investments/" + marker.options.id + "/json_data", {
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+          event.target.bindPopup(App.Map.getPopupContent(data)).openPopup();
+        }
+      });
     },
     cleanInvestmentCoordinates: function(element) {
       var clean_markers, markers;
