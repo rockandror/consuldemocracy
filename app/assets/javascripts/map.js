@@ -15,7 +15,7 @@
       App.Map.maps = [];
     },
     initializeMap: function(element) {
-      var addMarkerInvestments, createMarker, markerCoordinates, editable,
+      var addMarkerInvestments, markerCoordinates, editable,
         map, center,
         marker,
         moveOrPlaceMarker, removeMarker, removeMarkerSelector,
@@ -28,21 +28,6 @@
       addMarkerInvestments = $(element).data("marker-investments-coordinates");
       editable = App.Map.isEditable(element);
       marker = null;
-      createMarker = function(latitude, longitude) {
-        var markerLatLng;
-        markerLatLng = new L.LatLng(latitude, longitude);
-        marker = L.marker(markerLatLng, {
-          icon: App.Map.buildMarkerIcon(),
-          draggable: editable
-        });
-        if (editable) {
-          marker.on("dragend", function() {
-            App.Map.updateFormfields(map, marker);
-          });
-        }
-        marker.addTo(map);
-        return marker;
-      };
       removeMarker = function(e) {
         e.preventDefault();
         if (marker) {
@@ -55,13 +40,13 @@
         if (marker) {
           marker.setLatLng(e.latlng);
         } else {
-          marker = createMarker(e.latlng.lat, e.latlng.lng);
+          marker = App.Map.createMarker(map, e.latlng.lat, e.latlng.lng);
         }
         App.Map.updateFormfields(map, marker);
       };
       map = App.Map.buildMap(element, center, zoom);
       if (App.Map.validCoordinates(markerCoordinates) && !addMarkerInvestments) {
-        marker = createMarker(markerCoordinates.lat, markerCoordinates.long);
+        marker = App.Map.createMarker(map, markerCoordinates.lat, markerCoordinates.long);
       }
       if (editable) {
         $(removeMarkerSelector).on("click", removeMarker);
@@ -75,7 +60,7 @@
       if (addMarkerInvestments) {
         addMarkerInvestments.forEach(function(coordinates) {
           if (App.Map.validCoordinates(coordinates)) {
-            marker = createMarker(coordinates.lat, coordinates.long);
+            marker = App.Map.createMarker(map, coordinates.lat, coordinates.long);
             marker.options.id = coordinates.investment_id;
             marker.on("click", App.Map.openMarkerPopup);
           }
@@ -109,6 +94,22 @@
       $(inputSelectors.lat).val("");
       $(inputSelectors.long).val("");
       $(inputSelectors.zoom).val("");
+    },
+    createMarker: function(map, latitude, longitude) {
+      var element, marker, markerLatLng;
+      element = map.getContainer();
+      markerLatLng = new L.LatLng(latitude, longitude);
+      marker = L.marker(markerLatLng, {
+        icon: App.Map.buildMarkerIcon(),
+        draggable: App.Map.isEditable(element)
+      });
+      if (App.Map.isEditable(element)) {
+        marker.on("dragend", function() {
+          App.Map.updateFormfields(map, marker);
+        });
+      }
+      marker.addTo(map);
+      return marker;
     },
     getInputSelectors: function(element) {
       return {
