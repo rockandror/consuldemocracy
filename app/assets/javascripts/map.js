@@ -17,7 +17,7 @@
     initializeMap: function(element) {
       var addMarkerInvestments, clearFormfields, createMarker, markerCoordinates, editable,
         inputSelectors, map, center,
-        marker, markerIcon,
+        marker,
         moveOrPlaceMarker, openMarkerPopup, removeMarker, removeMarkerSelector,
         updateFormfields, zoom;
       App.Map.cleanInvestmentCoordinates(element);
@@ -29,17 +29,11 @@
       addMarkerInvestments = $(element).data("marker-investments-coordinates");
       editable = App.Map.isEditable(element);
       marker = null;
-      markerIcon = L.divIcon({
-        className: "map-marker",
-        iconSize: [30, 30],
-        iconAnchor: [15, 40],
-        html: '<div class="map-icon"></div>'
-      });
       createMarker = function(latitude, longitude) {
         var markerLatLng;
         markerLatLng = new L.LatLng(latitude, longitude);
         marker = L.marker(markerLatLng, {
-          icon: markerIcon,
+          icon: App.Map.buildMarkerIcon(),
           draggable: editable
         });
         if (editable) {
@@ -120,6 +114,14 @@
       }).addTo(map);
       App.Map.maps.push(map);
       return map;
+    },
+    buildMarkerIcon: function() {
+      return L.divIcon({
+        className: "map-marker",
+        iconSize: [30, 30],
+        iconAnchor: [15, 40],
+        html: '<div class="map-icon"></div>'
+      });
     },
     getInputSelectors: function(element) {
       return {
