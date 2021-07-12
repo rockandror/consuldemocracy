@@ -15,29 +15,22 @@
       App.Map.maps = [];
     },
     initializeMap: function(element) {
-      var addMarkerInvestments, clearFormfields, createMarker, dataCoordinates, editable, formCoordinates,
+      var addMarkerInvestments, clearFormfields, createMarker, markerCoordinates, editable, formCoordinates,
         getPopupContent, inputSelectors, map, center, defaultMapSettings,
-        mapCenterLatitude, mapCenterLongitude, marker, markerIcon, markerLatitude,
-        markerLongitude, moveOrPlaceMarker, openMarkerPopup, removeMarker, removeMarkerSelector,
+        mapCenterLatitude, mapCenterLongitude, marker, markerIcon,
+        moveOrPlaceMarker, openMarkerPopup, removeMarker, removeMarkerSelector,
         updateFormfields, zoom;
       App.Map.cleanInvestmentCoordinates(element);
       inputSelectors = App.Map.getInputSelectors(element);
       defaultMapSettings = App.Map.getDefaultMapSettings(element);
       formCoordinates = App.Map.getCurrentMarkerLocation(element);
-      dataCoordinates = {
-        lat: $(element).data("marker-latitude"),
-        long: $(element).data("marker-longitude")
-      };
+      markerCoordinates = App.Map.getMarkerCoordinates(element);
       if (App.Map.validCoordinates(formCoordinates)) {
-        markerLatitude = formCoordinates.lat;
-        markerLongitude = formCoordinates.long;
         mapCenterLatitude = formCoordinates.lat;
         mapCenterLongitude = formCoordinates.long;
-      } else if (App.Map.validCoordinates(dataCoordinates)) {
-        markerLatitude = dataCoordinates.lat;
-        markerLongitude = dataCoordinates.long;
-        mapCenterLatitude = dataCoordinates.lat;
-        mapCenterLongitude = dataCoordinates.long;
+      } else if (App.Map.validCoordinates(markerCoordinates)) {
+        mapCenterLatitude = markerCoordinates.lat;
+        mapCenterLongitude = markerCoordinates.long;
       } else {
         mapCenterLatitude = defaultMapSettings.lat;
         mapCenterLongitude = defaultMapSettings.long;
@@ -111,8 +104,8 @@
       };
       center = new L.LatLng(mapCenterLatitude, mapCenterLongitude);
       map = App.Map.buildMap(element, center, zoom);
-      if (markerLatitude && markerLongitude && !addMarkerInvestments) {
-        marker = createMarker(markerLatitude, markerLongitude);
+      if (App.Map.validCoordinates(markerCoordinates) && !addMarkerInvestments) {
+        marker = createMarker(markerCoordinates.lat, markerCoordinates.long);
       }
       if (editable) {
         $(removeMarkerSelector).on("click", removeMarker);
@@ -168,6 +161,17 @@
         long: $(element).data("map-center-longitude"),
         zoom: $(element).data("map-zoom")
       };
+    },
+    getMarkerCoordinates: function(element) {
+      var formCoordinates = App.Map.getCurrentMarkerLocation(element);
+      if (App.Map.validCoordinates(formCoordinates)) {
+        return formCoordinates;
+      } else {
+        return {
+          lat: $(element).data("marker-latitude"),
+          long: $(element).data("marker-longitude")
+        };
+      }
     },
     cleanInvestmentCoordinates: function(element) {
       var clean_markers, markers;
