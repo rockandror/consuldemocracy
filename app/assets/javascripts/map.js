@@ -52,7 +52,7 @@
       }
       removeMarkerSelector = $(element).data("marker-remove-selector");
       addMarkerInvestments = $(element).data("marker-investments-coordinates");
-      editable = $(element).data("marker-editable");
+      editable = App.Map.isEditable(element);
       marker = null;
       markerIcon = L.divIcon({
         className: "map-marker",
@@ -135,6 +135,9 @@
           }
         });
       }
+    },
+    isEditable: function(element) {
+      return $(element).data("marker-editable");
     },
     buildMap: function(element, center, zoom) {
       var map, mapTilesProvider, mapAttribution;
