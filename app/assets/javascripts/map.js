@@ -20,7 +20,7 @@
     initializeMap: function(element) {
       var addMarkerInvestments, markerCoordinates, editable,
         map, center,
-        moveOrPlaceMarker, removeMarker, removeMarkerSelector,
+        moveOrPlaceMarker, removeMarkerSelector,
         zoom;
       App.Map.cleanInvestmentCoordinates(element);
       markerCoordinates = App.Map.getMarkerCoordinates(element);
@@ -29,14 +29,6 @@
       removeMarkerSelector = $(element).data("marker-remove-selector");
       addMarkerInvestments = $(element).data("marker-investments-coordinates");
       editable = App.Map.isEditable(element);
-      removeMarker = function(e) {
-        e.preventDefault();
-        if (map.marker) {
-          map.removeLayer(map.marker);
-          map.marker = null;
-        }
-        App.Map.clearFormfields(map);
-      };
       moveOrPlaceMarker = function(e) {
         if (map.marker) {
           map.marker.setLatLng(e.latlng);
@@ -50,7 +42,10 @@
         map.marker = App.Map.createMarker(map, markerCoordinates.lat, markerCoordinates.long);
       }
       if (editable) {
-        $(removeMarkerSelector).on("click", removeMarker);
+        $(removeMarkerSelector).on("click", function(e) {
+          e.preventDefault();
+          App.Map.removeMarker(map);
+        });
         map.on("zoomend", function() {
           if (map.marker) {
             App.Map.updateFormfields(map);
@@ -178,6 +173,13 @@
           event.target.bindPopup(App.Map.getPopupContent(data)).openPopup();
         }
       });
+    },
+    removeMarker: function(map) {
+      if (map.marker) {
+        map.removeLayer(map.marker);
+        map.marker = null;
+      }
+      App.Map.clearFormfields(map);
     },
     cleanInvestmentCoordinates: function(element) {
       var clean_markers, markers;
