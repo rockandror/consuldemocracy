@@ -18,7 +18,7 @@
       App.Map.maps = [];
     },
     initializeMap: function(element) {
-      var addMarkerInvestments, markerCoordinates, editable,
+      var addMarkerInvestments, markerCoordinates,
         map, center,
         removeMarkerSelector,
         zoom;
@@ -28,12 +28,11 @@
       zoom = App.Map.getMapZoom(element);
       removeMarkerSelector = $(element).data("marker-remove-selector");
       addMarkerInvestments = $(element).data("marker-investments-coordinates");
-      editable = App.Map.isEditable(element);
       map = App.Map.buildMap(element, center, zoom);
       if (App.Map.validCoordinates(markerCoordinates) && !addMarkerInvestments) {
         map.marker = App.Map.createMarker(map, markerCoordinates.lat, markerCoordinates.long);
       }
-      if (editable) {
+      if (App.Map.isEditable(element)) {
         $(removeMarkerSelector).on("click", function(e) {
           e.preventDefault();
           App.Map.removeMarker(map);
