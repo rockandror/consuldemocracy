@@ -20,7 +20,7 @@
     initializeMap: function(element) {
       var addMarkerInvestments, markerCoordinates, editable,
         map, center,
-        moveOrPlaceMarker, removeMarkerSelector,
+        removeMarkerSelector,
         zoom;
       App.Map.cleanInvestmentCoordinates(element);
       markerCoordinates = App.Map.getMarkerCoordinates(element);
@@ -29,14 +29,6 @@
       removeMarkerSelector = $(element).data("marker-remove-selector");
       addMarkerInvestments = $(element).data("marker-investments-coordinates");
       editable = App.Map.isEditable(element);
-      moveOrPlaceMarker = function(e) {
-        if (map.marker) {
-          map.marker.setLatLng(e.latlng);
-        } else {
-          map.marker = App.Map.createMarker(map, e.latlng.lat, e.latlng.lng);
-        }
-        App.Map.updateFormfields(map);
-      };
       map = App.Map.buildMap(element, center, zoom);
       if (App.Map.validCoordinates(markerCoordinates) && !addMarkerInvestments) {
         map.marker = App.Map.createMarker(map, markerCoordinates.lat, markerCoordinates.long);
@@ -51,7 +43,9 @@
             App.Map.updateFormfields(map);
           }
         });
-        map.on("click", moveOrPlaceMarker);
+        map.on("click", function(e) {
+          App.Map.moveOrPlaceMarker(map, e);
+        });
       }
       if (addMarkerInvestments) {
         addMarkerInvestments.forEach(function(coordinates) {
@@ -163,6 +157,14 @@
     },
     getPopupContent: function(data) {
       return "<a href='/budgets/" + data.budget_id + "/investments/" + data.investment_id + "'>" + data.investment_title + "</a>";
+    },
+    moveOrPlaceMarker: function(map, event) {
+      if (map.marker) {
+        map.marker.setLatLng(event.latlng);
+      } else {
+        map.marker = App.Map.createMarker(map, event.latlng.lat, event.latlng.lng);
+      }
+      App.Map.updateFormfields(map);
     },
     openMarkerPopup: function(event) {
       var marker = event.target;
