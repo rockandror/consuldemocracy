@@ -146,12 +146,6 @@
       zoom = App.Map.getMapZoom(element);
       addMarkerInvestments = App.Map.getInvestmentCoordinates(element);
       map = App.Map.buildMap(element, center, zoom);
-      if (App.Map.validCoordinates(markerCoordinates) && !addMarkerInvestments) {
-        map.marker = App.Map.createMarker(map, markerCoordinates.lat, markerCoordinates.long);
-      }
-      if (App.Map.isEditable(element)) {
-        App.Map.editableMap(map);
-      }
       if (addMarkerInvestments) {
         var marker;
         addMarkerInvestments.forEach(function(coordinates) {
@@ -161,6 +155,11 @@
             marker.on("click", App.Map.openMarkerPopup);
           }
         });
+      } else if (App.Map.validCoordinates(markerCoordinates)) {
+        map.marker = App.Map.createMarker(map, markerCoordinates.lat, markerCoordinates.long);
+      }
+      if (App.Map.isEditable(element)) {
+        App.Map.editableMap(map);
       }
     },
     isEditable: function(element) {
