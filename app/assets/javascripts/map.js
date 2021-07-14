@@ -33,9 +33,7 @@
       });
     },
     initializeMap: function(element) {
-      var addMarkerInvestments, markerCoordinates,
-        map, center,
-        zoom;
+      var addMarkerInvestments, center, map, markerCoordinates, zoom;
       App.Map.cleanInvestmentCoordinates(element);
       markerCoordinates = App.Map.getMarkerCoordinates(element);
       center = App.Map.getMapCenter(element);
