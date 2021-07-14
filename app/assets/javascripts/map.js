@@ -5,60 +5,6 @@
 
   App.Map = {
     maps: [],
-    initialize: function() {
-      $("*[data-map]:visible").each(function() {
-        App.Map.initializeMap(this);
-      });
-    },
-    destroy: function() {
-      App.Map.maps.forEach(function(map) {
-        map.off();
-        map.remove();
-      });
-      App.Map.maps = [];
-    },
-    editableMap: function(map) {
-      var removeMarkerSelector = $(map.getContainer()).data("marker-remove-selector");
-      $(removeMarkerSelector).on("click", function(e) {
-        e.preventDefault();
-        App.Map.removeMarker(map);
-      });
-      map.on("zoomend", function() {
-        if (map.marker) {
-          App.Map.updateFormfields(map);
-        }
-      });
-      map.on("click", function(e) {
-        App.Map.moveOrPlaceMarker(map, e);
-      });
-    },
-    initializeMap: function(element) {
-      var addMarkerInvestments, center, map, markerCoordinates, zoom;
-      App.Map.cleanInvestmentCoordinates(element);
-      markerCoordinates = App.Map.getMarkerCoordinates(element);
-      center = App.Map.getMapCenter(element);
-      zoom = App.Map.getMapZoom(element);
-      addMarkerInvestments = $(element).data("marker-investments-coordinates");
-      map = App.Map.buildMap(element, center, zoom);
-      if (App.Map.validCoordinates(markerCoordinates) && !addMarkerInvestments) {
-        map.marker = App.Map.createMarker(map, markerCoordinates.lat, markerCoordinates.long);
-      }
-      if (App.Map.isEditable(element)) {
-        App.Map.editableMap(map);
-      }
-      if (addMarkerInvestments) {
-        addMarkerInvestments.forEach(function(coordinates) {
-          if (App.Map.validCoordinates(coordinates)) {
-            map.marker = App.Map.createMarker(map, coordinates.lat, coordinates.long);
-            map.marker.options.id = coordinates.investment_id;
-            map.marker.on("click", App.Map.openMarkerPopup);
-          }
-        });
-      }
-    },
-    isEditable: function(element) {
-      return $(element).data("marker-editable");
-    },
     buildMap: function(element, center, zoom) {
       var map, mapTilesProvider, mapAttribution;
       map = L.map(element.id).setView(center, zoom);
@@ -77,6 +23,14 @@
         iconAnchor: [15, 40],
         html: '<div class="map-icon"></div>'
       });
+    },
+    cleanInvestmentCoordinates: function(element) {
+      var clean_markers, markers;
+      markers = $(element).attr("data-marker-investments-coordinates");
+      if (markers != null) {
+        clean_markers = markers.replace(/-?(\*+)/g, null);
+        $(element).attr("data-marker-investments-coordinates", clean_markers);
+      }
     },
     clearFormfields: function(map) {
       var inputSelectors = App.Map.getInputSelectors(map.getContainer());
@@ -100,6 +54,28 @@
       marker.addTo(map);
       map.marker = marker;
       return marker;
+    },
+    destroy: function() {
+      App.Map.maps.forEach(function(map) {
+        map.off();
+        map.remove();
+      });
+      App.Map.maps = [];
+    },
+    editableMap: function(map) {
+      var removeMarkerSelector = $(map.getContainer()).data("marker-remove-selector");
+      $(removeMarkerSelector).on("click", function(e) {
+        e.preventDefault();
+        App.Map.removeMarker(map);
+      });
+      map.on("zoomend", function() {
+        if (map.marker) {
+          App.Map.updateFormfields(map);
+        }
+      });
+      map.on("click", function(e) {
+        App.Map.moveOrPlaceMarker(map, e);
+      });
     },
     getInputSelectors: function(element) {
       return {
@@ -158,6 +134,41 @@
       var url = "/budgets/" + data.budget_id + "/investments/" + data.investment_id;
       return "<a href='" + url + "'>" + data.investment_title + "</a>";
     },
+    initialize: function() {
+      $("*[data-map]:visible").each(function() {
+        App.Map.initializeMap(this);
+      });
+    },
+    initializeMap: function(element) {
+      var addMarkerInvestments, center, map, markerCoordinates, zoom;
+      App.Map.cleanInvestmentCoordinates(element);
+      markerCoordinates = App.Map.getMarkerCoordinates(element);
+      center = App.Map.getMapCenter(element);
+      zoom = App.Map.getMapZoom(element);
+      addMarkerInvestments = $(element).data("marker-investments-coordinates");
+      map = App.Map.buildMap(element, center, zoom);
+      if (App.Map.validCoordinates(markerCoordinates) && !addMarkerInvestments) {
+        map.marker = App.Map.createMarker(map, markerCoordinates.lat, markerCoordinates.long);
+      }
+      if (App.Map.isEditable(element)) {
+        App.Map.editableMap(map);
+      }
+      if (addMarkerInvestments) {
+        addMarkerInvestments.forEach(function(coordinates) {
+          if (App.Map.validCoordinates(coordinates)) {
+            map.marker = App.Map.createMarker(map, coordinates.lat, coordinates.long);
+            map.marker.options.id = coordinates.investment_id;
+            map.marker.on("click", App.Map.openMarkerPopup);
+          }
+        });
+      }
+    },
+    isEditable: function(element) {
+      return $(element).data("marker-editable");
+    },
+    isNumeric: function(n) {
+      return !isNaN(parseFloat(n)) && isFinite(n);
+    },
     moveOrPlaceMarker: function(map, event) {
       if (map.marker) {
         map.marker.setLatLng(event.latlng);
@@ -183,14 +194,6 @@
       }
       App.Map.clearFormfields(map);
     },
-    cleanInvestmentCoordinates: function(element) {
-      var clean_markers, markers;
-      markers = $(element).attr("data-marker-investments-coordinates");
-      if (markers != null) {
-        clean_markers = markers.replace(/-?(\*+)/g, null);
-        $(element).attr("data-marker-investments-coordinates", clean_markers);
-      }
-    },
     updateFormfields: function(map) {
       var inputSelectors = App.Map.getInputSelectors(map.getContainer());
       $(inputSelectors.lat).val(map.marker.getLatLng().lat);
@@ -202,9 +205,6 @@
     },
     validCoordinates: function(coordinates) {
       return App.Map.isNumeric(coordinates.lat) && App.Map.isNumeric(coordinates.long);
-    },
-    isNumeric: function(n) {
-      return !isNaN(parseFloat(n)) && isFinite(n);
     }
   };
 }).call(this);
