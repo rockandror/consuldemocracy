@@ -80,6 +80,10 @@
         zoom: $(element).data("zoom-input-selector")
       };
     },
+    getInvestmentCoordinates: function(element) {
+      App.Map.cleanInvestmentCoordinates(element);
+      return $(element).data("marker-investments-coordinates");
+    },
     getCurrentMarkerLocation: function(element) {
       var inputSelectors = App.Map.getInputSelectors(element);
       return {
@@ -137,11 +141,10 @@
     },
     initializeMap: function(element) {
       var addMarkerInvestments, center, map, markerCoordinates, zoom;
-      App.Map.cleanInvestmentCoordinates(element);
       markerCoordinates = App.Map.getMarkerCoordinates(element);
       center = App.Map.getMapCenter(element);
       zoom = App.Map.getMapZoom(element);
-      addMarkerInvestments = $(element).data("marker-investments-coordinates");
+      addMarkerInvestments = App.Map.getInvestmentCoordinates(element);
       map = App.Map.buildMap(element, center, zoom);
       if (App.Map.validCoordinates(markerCoordinates) && !addMarkerInvestments) {
         map.marker = App.Map.createMarker(map, markerCoordinates.lat, markerCoordinates.long);
