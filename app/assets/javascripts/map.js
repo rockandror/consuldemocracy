@@ -154,11 +154,12 @@
         App.Map.editableMap(map);
       }
       if (addMarkerInvestments) {
+        var marker;
         addMarkerInvestments.forEach(function(coordinates) {
           if (App.Map.validCoordinates(coordinates)) {
-            map.marker = App.Map.createMarker(map, coordinates.lat, coordinates.long);
-            map.marker.options.id = coordinates.investment_id;
-            map.marker.on("click", App.Map.openMarkerPopup);
+            marker = App.Map.createMarker(map, coordinates.lat, coordinates.long);
+            marker.options.id = coordinates.investment_id;
+            marker.on("click", App.Map.openMarkerPopup);
           }
         });
       }
