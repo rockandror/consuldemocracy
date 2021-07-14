@@ -6,12 +6,9 @@
   App.Map = {
     maps: [],
     buildMap: function(element, center, zoom) {
-      var map, mapTilesProvider, mapAttribution;
-      map = L.map(element.id).setView(center, zoom);
-      mapTilesProvider = $(element).data("map-tiles-provider");
-      mapAttribution = $(element).data("map-tiles-provider-attribution");
-      L.tileLayer(mapTilesProvider, {
-        attribution: mapAttribution
+      var map = L.map(element.id).setView(center, zoom);
+      L.tileLayer($(element).data("map-tiles-provider"), {
+        attribution: $(element).data("map-tiles-provider-attribution")
       }).addTo(map);
       App.Map.maps.push(map);
       return map;
@@ -39,10 +36,9 @@
       $(inputSelectors.zoom).val("");
     },
     createMarker: function(map, latitude, longitude) {
-      var element, marker, markerLatLng;
+      var element, marker;
       element = map.getContainer();
-      markerLatLng = new L.LatLng(latitude, longitude);
-      marker = L.marker(markerLatLng, {
+      marker = L.marker(new L.LatLng(latitude, longitude), {
         icon: App.Map.buildMarkerIcon(),
         draggable: App.Map.isEditable(element)
       });
