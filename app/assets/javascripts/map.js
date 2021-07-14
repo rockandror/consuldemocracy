@@ -157,7 +157,8 @@
       }
     },
     getPopupContent: function(data) {
-      return "<a href='/budgets/" + data.budget_id + "/investments/" + data.investment_id + "'>" + data.investment_title + "</a>";
+      var url = "/budgets/" + data.budget_id + "/investments/" + data.investment_id;
+      return "<a href='" + url + "'>" + data.investment_title + "</a>";
     },
     moveOrPlaceMarker: function(map, event) {
       if (map.marker) {
