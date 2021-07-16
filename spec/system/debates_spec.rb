@@ -1,6 +1,8 @@
 require "rails_helper"
 
 describe "Debates" do
+  before { login_as(create(:user)) }
+
   scenario "Disabled with a feature flag" do
     Setting["process.debates"] = nil
     expect { visit debates_path }.to raise_exception(FeatureFlags::FeatureDisabled)

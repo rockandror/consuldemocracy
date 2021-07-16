@@ -24,6 +24,7 @@ describe "Legislation" do
 
   context "processes home page" do
     scenario "No processes to be listed" do
+      login_as(create(:user))
       visit legislation_processes_path
       expect(page).to have_text "There aren't open processes"
 
@@ -32,6 +33,7 @@ describe "Legislation" do
     end
 
     scenario "Processes can be listed" do
+      login_as(create(:user))
       processes = create_list(:legislation_process, 3)
 
       visit legislation_processes_path
@@ -42,6 +44,7 @@ describe "Legislation" do
     end
 
     scenario "Processes are sorted by descending start date", :js do
+      login_as(create(:user))
       create(:legislation_process, title: "Process 1", start_date: 3.days.ago)
       create(:legislation_process, title: "Process 2", start_date: 2.days.ago)
       create(:legislation_process, title: "Process 3", start_date: Date.yesterday)
@@ -53,6 +56,7 @@ describe "Legislation" do
     end
 
     scenario "Participation phases are displayed only if there is a phase enabled" do
+      login_as(create(:user))
       process = create(:legislation_process, :empty)
       process_debate = create(:legislation_process)
 
@@ -66,6 +70,7 @@ describe "Legislation" do
     end
 
     scenario "Participation phases are displayed on current locale" do
+      login_as(create(:user))
       process = create(:legislation_process, proposals_phase_start_date: Date.new(2018, 01, 01),
                                              proposals_phase_end_date: Date.new(2018, 12, 01))
 
@@ -83,6 +88,7 @@ describe "Legislation" do
     end
 
     scenario "Filtering processes" do
+      login_as(create(:user))
       create(:legislation_process, title: "Process open")
       create(:legislation_process, :past, title: "Process past")
       create(:legislation_process, :in_draft_phase, title: "Process in draft phase")
@@ -106,6 +112,7 @@ describe "Legislation" do
       end
 
       it "aren't listed" do
+        login_as(create(:user))
         visit legislation_processes_path
         expect(page).not_to have_content("not published")
         expect(page).to have_content("published")
@@ -117,6 +124,7 @@ describe "Legislation" do
       end
 
       it "aren't listed with past filter" do
+        login_as(create(:user))
         visit legislation_processes_path(filter: "past")
         expect(page).not_to have_content("not published")
         expect(page).to have_content("past published")
@@ -134,6 +142,7 @@ describe "Legislation" do
       include_examples "not published permissions", :legislation_process_path
 
       scenario "show view has document present on all phases" do
+        login_as(create(:user))
         process = create(:legislation_process)
         document = create(:document, documentable: process)
         phases = ["Debate", "Proposals", "Comments"]
@@ -150,6 +159,7 @@ describe "Legislation" do
       end
 
       scenario "show draft publication and final result publication dates" do
+        login_as(create(:user))
         process = create(:legislation_process, draft_publication_date: Date.new(2019, 01, 10),
                                                result_publication_date: Date.new(2019, 01, 20))
 
@@ -164,6 +174,7 @@ describe "Legislation" do
       end
 
       scenario "do not show draft publication and final result publication dates if are empty" do
+        login_as(create(:user))
         process = create(:legislation_process, :empty)
 
         visit legislation_process_path(process)
@@ -175,6 +186,7 @@ describe "Legislation" do
       end
 
       scenario "show additional info button" do
+        login_as(create(:user))
         process = create(:legislation_process, additional_info: "Text for additional info of the process")
 
         visit legislation_process_path(process)
@@ -184,6 +196,7 @@ describe "Legislation" do
       end
 
       scenario "do not show additional info button if it is empty" do
+        login_as(create(:user))
         process = create(:legislation_process)
 
         visit legislation_process_path(process)
@@ -192,6 +205,7 @@ describe "Legislation" do
       end
 
       scenario "Shows another translation when the default locale isn't available" do
+        login_as(create(:user))
         process = create(:legislation_process, title_fr: "Français")
         process.translations.find_by(locale: :en).destroy!
 
@@ -200,6 +214,7 @@ describe "Legislation" do
       end
 
       scenario "Shows Create a Proposal button when process is in draft phase" do
+        login_as(create(:user))
         process = create(:legislation_process,
                          :in_draft_phase,
                          proposals_phase_start_date: Date.tomorrow)
@@ -214,6 +229,7 @@ describe "Legislation" do
 
     context "homepage" do
       scenario "enabled" do
+        login_as(create(:user))
         process = create(:legislation_process, homepage_enabled: true,
                                                homepage: "This is the process homepage",
                                                debate_start_date: Date.current + 1.day,
@@ -230,6 +246,7 @@ describe "Legislation" do
       end
 
       scenario "disabled", :with_frozen_time do
+        login_as(create(:user))
         process = create(:legislation_process, homepage_enabled: false,
                                                homepage: "This is the process homepage",
                                                debate_start_date: Date.current + 1.day,
@@ -248,6 +265,7 @@ describe "Legislation" do
 
     context "debate phase" do
       scenario "not open", :with_frozen_time do
+        login_as(create(:user))
         process = create(:legislation_process, debate_start_date: Date.current + 1.day, debate_end_date: Date.current + 2.days)
 
         visit legislation_process_path(process)
@@ -257,6 +275,7 @@ describe "Legislation" do
       end
 
       scenario "open without questions" do
+        login_as(create(:user))
         process = create(:legislation_process, debate_start_date: Date.current - 1.day, debate_end_date: Date.current + 2.days)
 
         visit legislation_process_path(process)
@@ -266,6 +285,7 @@ describe "Legislation" do
       end
 
       scenario "open with questions" do
+        login_as(create(:user))
         process = create(:legislation_process, debate_start_date: Date.current - 1.day, debate_end_date: Date.current + 2.days)
         create(:legislation_question, process: process, title: "Question 1")
         create(:legislation_question, process: process, title: "Question 2")
@@ -283,6 +303,7 @@ describe "Legislation" do
 
     context "draft publication phase" do
       scenario "not open", :with_frozen_time do
+        login_as(create(:user))
         process = create(:legislation_process, draft_publication_date: Date.current + 1.day)
 
         visit draft_publication_legislation_process_path(process)
@@ -291,6 +312,7 @@ describe "Legislation" do
       end
 
       scenario "open" do
+        login_as(create(:user))
         process = create(:legislation_process, draft_publication_date: Date.current)
 
         visit draft_publication_legislation_process_path(process)
@@ -303,6 +325,7 @@ describe "Legislation" do
 
     context "allegations phase" do
       scenario "not open", :with_frozen_time do
+        login_as(create(:user))
         process = create(:legislation_process, allegations_start_date: Date.current + 1.day, allegations_end_date: Date.current + 2.days)
 
         visit allegations_legislation_process_path(process)
@@ -311,6 +334,7 @@ describe "Legislation" do
       end
 
       scenario "open" do
+        login_as(create(:user))
         process = create(:legislation_process, allegations_start_date: Date.current - 1.day, allegations_end_date: Date.current + 2.days)
 
         visit allegations_legislation_process_path(process)
@@ -323,6 +347,7 @@ describe "Legislation" do
 
     context "final version publication phase" do
       scenario "not open", :with_frozen_time do
+        login_as(create(:user))
         process = create(:legislation_process, result_publication_date: Date.current + 1.day)
 
         visit result_publication_legislation_process_path(process)
@@ -331,6 +356,7 @@ describe "Legislation" do
       end
 
       scenario "open" do
+        login_as(create(:user))
         process = create(:legislation_process, result_publication_date: Date.current)
 
         visit result_publication_legislation_process_path(process)
@@ -343,6 +369,7 @@ describe "Legislation" do
 
     context "proposals phase" do
       scenario "not open", :with_frozen_time do
+        login_as(create(:user))
         process = create(:legislation_process, :upcoming_proposals_phase)
 
         visit legislation_process_proposals_path(process)
@@ -351,6 +378,7 @@ describe "Legislation" do
       end
 
       scenario "open" do
+        login_as(create(:user))
         process = create(:legislation_process, :in_proposals_phase)
 
         visit legislation_process_proposals_path(process)
@@ -375,6 +403,7 @@ describe "Legislation" do
       let(:process) { create(:legislation_process, :upcoming_proposals_phase) }
 
       scenario "Without milestones" do
+        login_as(create(:user))
         visit legislation_process_path(process)
 
         within(".legislation-process-list") do
@@ -383,6 +412,7 @@ describe "Legislation" do
       end
 
       scenario "With milestones" do
+        login_as(create(:user))
         create(:milestone,
                milestoneable:    process,
                description:      "Something important happened",
@@ -405,6 +435,7 @@ describe "Legislation" do
       end
 
       scenario "With main progress bar" do
+        login_as(create(:user))
         create(:progress_bar, progressable: process)
 
         visit milestones_legislation_process_path(process)
@@ -415,6 +446,7 @@ describe "Legislation" do
       end
 
       scenario "With main and secondary progress bar" do
+        login_as(create(:user))
         create(:progress_bar, progressable: process)
         create(:progress_bar, :secondary, progressable: process, title: "Build laboratory")
 
@@ -427,6 +459,7 @@ describe "Legislation" do
       end
 
       scenario "No main progress bar" do
+        login_as(create(:user))
         create(:progress_bar, :secondary, progressable: process, title: "Defeat Evil Lords")
 
         visit milestones_legislation_process_path(process)

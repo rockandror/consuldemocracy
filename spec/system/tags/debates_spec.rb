@@ -2,6 +2,7 @@ require "rails_helper"
 
 describe "Tags" do
   scenario "Index" do
+    login_as(create(:user))
     earth = create(:debate, tag_list: "Medio Ambiente")
     money = create(:debate, tag_list: "Economía")
 
@@ -17,6 +18,7 @@ describe "Tags" do
   end
 
   scenario "Index shows up to 5 tags per proposal" do
+    login_as(create(:user))
     tag_list = ["Hacienda", "Economía", "Medio Ambiente", "Corrupción", "Fiestas populares", "Prensa"]
     create :debate, tag_list: tag_list
 
@@ -28,6 +30,7 @@ describe "Tags" do
   end
 
   scenario "Index shows 3 tags with no plus link" do
+    login_as(create(:user))
     tag_list = ["Medio Ambiente", "Corrupción", "Fiestas populares"]
     create :debate, tag_list: tag_list
 
@@ -42,6 +45,7 @@ describe "Tags" do
   end
 
   scenario "Index tag does not show featured debates" do
+    login_as(create(:user))
     create_featured_debates
     create(:debate, tag_list: "123")
 
@@ -52,6 +56,7 @@ describe "Tags" do
   end
 
   scenario "Show" do
+    login_as(create(:user))
     debate = create(:debate, tag_list: "Hacienda, Economía")
 
     visit debate_path(debate)
@@ -150,6 +155,7 @@ describe "Tags" do
 
   context "Filter" do
     scenario "From index" do
+      login_as(create(:user))
       create(:debate, tag_list: "Health", title: "Public hospitals?")
       create(:debate, tag_list: "Education", title: "Status of our schools")
 
@@ -166,6 +172,7 @@ describe "Tags" do
     end
 
     scenario "From show" do
+      login_as(create(:user))
       debate = create(:debate, tag_list: "Education")
       create(:debate, tag_list: "Health")
 
@@ -182,6 +189,7 @@ describe "Tags" do
 
   context "Tag cloud" do
     scenario "Display user tags" do
+      login_as(create(:user))
       create(:debate, tag_list: "Medio Ambiente")
       create(:debate, tag_list: "Economía")
 
@@ -194,6 +202,7 @@ describe "Tags" do
     end
 
     scenario "Filter by user tags" do
+      login_as(create(:user))
       debate1 = create(:debate, tag_list: "Medio Ambiente")
       debate2 = create(:debate, tag_list: "Medio Ambiente")
       debate3 = create(:debate, tag_list: "Economía")

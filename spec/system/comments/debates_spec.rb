@@ -4,6 +4,8 @@ describe "Commenting debates" do
   let(:user)   { create :user }
   let(:debate) { create :debate }
 
+  before { login_as(user) }
+
   it_behaves_like "flaggable", :debate_comment
 
   scenario "Index" do

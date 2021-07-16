@@ -4,6 +4,8 @@ describe "Commenting proposals" do
   let(:user) { create :user }
   let(:proposal) { create :proposal }
 
+  before { login_as(user) }
+
   it_behaves_like "flaggable", :proposal_comment
 
   scenario "Index" do
