@@ -1,6 +1,9 @@
 require "rails_helper"
 
 describe "Polls" do
+
+  before { skip("This module has been disabled") }
+
   context "Public index" do
     scenario "Budget polls should not be listed" do
       poll = create(:poll)

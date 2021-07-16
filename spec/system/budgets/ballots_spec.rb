@@ -7,6 +7,8 @@ describe "Ballots" do
   let!(:california) { create(:budget_heading, group: states, name: "California", price: 1000) }
   let!(:new_york)   { create(:budget_heading, group: states, name: "New York", price: 1000000) }
 
+  before { skip("This module has been disabled") }
+
   context "Load" do
     let(:user) do
       create(:user, :level_two, ballot_lines: [create(:budget_investment, :selected, heading: california)])
@@ -364,6 +366,7 @@ describe "Ballots" do
 
   context "Showing the ballot" do
     scenario "Do not display heading name if there is only one heading in the group (example: group city)" do
+      skip("This module is not used in this project")
       group = create(:budget_group, budget: budget)
       heading = create(:budget_heading, group: group)
       visit budget_path(budget)
@@ -437,6 +440,7 @@ describe "Ballots" do
   end
 
   scenario "Removing investments from ballot (sidebar)", :js do
+    skip("This module is not used in this project")
     investment1 = create(:budget_investment, :selected, price: 10000, heading: new_york)
     investment2 = create(:budget_investment, :selected, price: 20000, heading: new_york)
     user = create(:user, :level_two, ballot_lines: [investment1, investment2])

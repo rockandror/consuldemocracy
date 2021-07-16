@@ -1,6 +1,9 @@
 require "rails_helper"
 
 describe "Polls" do
+
+  before { skip("This module has been disabled") }
+
   context "Concerns" do
     it_behaves_like "notifiable in-app", :poll
   end
