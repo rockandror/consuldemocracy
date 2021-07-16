@@ -468,7 +468,6 @@ describe "Commenting legislation questions", :pvda_access do
 
     scenario "Show" do
       create(:vote, voter: verified, votable: comment, vote_flag: true)
-      create(:vote, voter: unverified, votable: comment, vote_flag: false)
 
       visit legislation_process_question_path(question.process, question)
 
@@ -477,11 +476,8 @@ describe "Commenting legislation questions", :pvda_access do
           expect(page).to have_content "1"
         end
 
-        within(".against") do
-          expect(page).to have_content "1"
-        end
-
-        expect(page).to have_content "2 votes"
+        expect(page).not_to have_css(".against")
+        expect(page).to have_content "1 vote"
       end
     end
 
@@ -495,15 +491,12 @@ describe "Commenting legislation questions", :pvda_access do
           expect(page).to have_content "1"
         end
 
-        within(".against") do
-          expect(page).to have_content "0"
-        end
-
+        expect(page).not_to have_css(".against")
         expect(page).to have_content "1 vote"
       end
     end
 
-    scenario "Update", :js do
+    scenario "Update", :js, skip: "Dislike link has been removed" do
       visit legislation_process_question_path(question.process, question)
 
       within("#comment_#{comment.id}_votes") do
@@ -527,7 +520,7 @@ describe "Commenting legislation questions", :pvda_access do
       end
     end
 
-    scenario "Trying to vote multiple times", :js do
+    scenario "Trying to vote multiple times", :js, skip: "Dislike link has been removed" do
       visit legislation_process_question_path(question.process, question)
 
       within("#comment_#{comment.id}_votes") do
