@@ -3,6 +3,7 @@ require "rails_helper"
 describe "Tracking" do
   context "Custom variable" do
     scenario "Usertype anonymous" do
+      skip("Since a user needs to be logged in to enter this page, this test is no longer meaningful.")
       visit proposals_path
 
       expect(page.html).to include "anonymous"
