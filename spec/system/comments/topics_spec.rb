@@ -483,7 +483,6 @@ describe "Commenting topics from proposals" do
 
     scenario "Show" do
       create(:vote, voter: verified, votable: comment, vote_flag: true)
-      create(:vote, voter: unverified, votable: comment, vote_flag: false)
 
       visit community_topic_path(proposal.community, topic)
 
@@ -492,11 +491,8 @@ describe "Commenting topics from proposals" do
           expect(page).to have_content "1"
         end
 
-        within(".against") do
-          expect(page).to have_content "1"
-        end
-
-        expect(page).to have_content "2 votes"
+        expect(page).not_to have_css(".against")
+        expect(page).to have_content "1 vote"
       end
     end
 
@@ -510,15 +506,13 @@ describe "Commenting topics from proposals" do
           expect(page).to have_content "1"
         end
 
-        within(".against") do
-          expect(page).to have_content "0"
-        end
-
+        expect(page).not_to have_css(".against")
         expect(page).to have_content "1 vote"
       end
     end
 
     scenario "Update", :js do
+      skip("Dislike link has been removed")
       visit community_topic_path(proposal.community, topic)
 
       within("#comment_#{comment.id}_votes") do
@@ -543,6 +537,7 @@ describe "Commenting topics from proposals" do
     end
 
     scenario "Trying to vote multiple times", :js do
+      skip("Dislike link has been removed")
       visit community_topic_path(proposal.community, topic)
 
       within("#comment_#{comment.id}_votes") do
@@ -991,7 +986,6 @@ describe "Commenting topics from budget investments" do
 
     scenario "Show" do
       create(:vote, voter: verified, votable: comment, vote_flag: true)
-      create(:vote, voter: unverified, votable: comment, vote_flag: false)
 
       visit community_topic_path(investment.community, topic)
 
@@ -1000,11 +994,8 @@ describe "Commenting topics from budget investments" do
           expect(page).to have_content "1"
         end
 
-        within(".against") do
-          expect(page).to have_content "1"
-        end
-
-        expect(page).to have_content "2 votes"
+        expect(page).not_to have_css(".against")
+        expect(page).to have_content "1 vote"
       end
     end
 
@@ -1018,15 +1009,13 @@ describe "Commenting topics from budget investments" do
           expect(page).to have_content "1"
         end
 
-        within(".against") do
-          expect(page).to have_content "0"
-        end
-
+        expect(page).not_to have_css(".against")
         expect(page).to have_content "1 vote"
       end
     end
 
     scenario "Update", :js do
+      skip("Dislike link has been removed")
       visit community_topic_path(investment.community, topic)
 
       within("#comment_#{comment.id}_votes") do
@@ -1051,6 +1040,7 @@ describe "Commenting topics from budget investments" do
     end
 
     scenario "Trying to vote multiple times", :js do
+      skip("Dislike link has been removed")
       visit community_topic_path(investment.community, topic)
 
       within("#comment_#{comment.id}_votes") do
