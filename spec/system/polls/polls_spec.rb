@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Polls" do
+describe "Polls", :pvda_access do
   context "Concerns" do
     it_behaves_like "notifiable in-app", :poll
   end

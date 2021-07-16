@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Budgets" do
+describe "Budgets", :pvda_access do
   let(:budget)             { create(:budget) }
   let(:level_two_user)     { create(:user, :level_two) }
   let(:allowed_phase_list) { ["balloting", "reviewing_ballots", "finished"] }

@@ -108,6 +108,10 @@ RSpec.configure do |config|
     allow(Time).to receive(:zone).and_return(application_zone)
   end
 
+  config.before(:each, :pvda_access) do
+    login_as(create(:user))
+  end
+
   # Allows RSpec to persist some state between runs in order to support
   # the `--only-failures` and `--next-failure` CLI options.
   config.example_status_persistence_file_path = "spec/examples.txt"

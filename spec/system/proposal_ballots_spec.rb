@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Proposal ballots" do
+describe "Proposal ballots", :pvda_access do
   scenario "Successful proposals do not show support buttons in index" do
     successful_proposals = create_successful_proposals
 

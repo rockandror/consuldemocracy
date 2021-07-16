@@ -363,7 +363,7 @@ describe "Ballots" do
   end
 
   context "Showing the ballot" do
-    scenario "Do not display heading name if there is only one heading in the group (example: group city)" do
+    scenario "Do not display heading name if there is only one heading in the group (example: group city)", :pvda_access do
       group = create(:budget_group, budget: budget)
       heading = create(:budget_heading, group: group)
       visit budget_path(budget)

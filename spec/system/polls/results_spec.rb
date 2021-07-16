@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Poll Results" do
+describe "Poll Results", :pvda_access do
   scenario "List each Poll question", :js do
     user1 = create(:user, :level_two)
     user2 = create(:user, :level_two)
@@ -32,7 +32,6 @@ describe "Poll Results" do
     vote_for_poll_via_web(poll, question1, "No")
     vote_for_poll_via_web(poll, question2, "Yellow")
     expect(Poll::Voter.count).to eq(3)
-    logout
 
     poll.update!(ends_at: 1.day.ago)
 

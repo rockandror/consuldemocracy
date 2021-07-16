@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Debates" do
+describe "Debates", :pvda_access do
   scenario "Disabled with a feature flag" do
     Setting["process.debates"] = nil
     expect { visit debates_path }.to raise_exception(FeatureFlags::FeatureDisabled)

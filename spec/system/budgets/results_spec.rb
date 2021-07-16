@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Results" do
+describe "Results", :pvda_access do
   let(:budget)  { create(:budget, :finished) }
   let(:group)   { create(:budget_group, budget: budget) }
   let(:heading) { create(:budget_heading, group: group, price: 1000) }

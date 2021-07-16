@@ -1,7 +1,7 @@
 require "rails_helper"
 require "sessions_helper"
 
-describe "Budget Investments" do
+describe "Budget Investments", :pvda_access do
   let(:author)  { create(:user, :level_two, username: "Isabel") }
   let(:budget)  { create(:budget, name: "Big Budget") }
   let(:other_budget) { create(:budget, name: "What a Budget!") }

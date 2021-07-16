@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Commenting proposals" do
+describe "Commenting proposals", :pvda_access do
   let(:user) { create :user }
   let(:proposal) { create :proposal }
 

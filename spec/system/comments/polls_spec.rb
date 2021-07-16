@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Commenting polls" do
+describe "Commenting polls", :pvda_access do
   let(:user) { create :user }
   let(:poll) { create(:poll, author: create(:user)) }
 
@@ -180,7 +180,7 @@ describe "Commenting polls" do
     expect(page).to have_css(".comment", count: 2)
   end
 
-  describe "Not logged user" do
+  describe "Not logged user", skip: "mandatory sign in for pvda" do
     scenario "can not see comments forms" do
       create(:comment, commentable: poll)
       visit poll_path(poll)

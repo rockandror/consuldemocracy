@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Proposals" do
+describe "Proposals", :pvda_access do
   it_behaves_like "milestoneable", :proposal
 
   scenario "Disabled with a feature flag" do
@@ -1847,7 +1847,7 @@ describe "Proposals" do
   end
 end
 
-describe "Successful proposals" do
+describe "Successful proposals", :pvda_access do
   scenario "Successful proposals do not show support buttons in index" do
     successful_proposals = create_successful_proposals
 

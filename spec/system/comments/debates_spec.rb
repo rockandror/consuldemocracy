@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Commenting debates" do
+describe "Commenting debates", :pvda_access do
   let(:user)   { create :user }
   let(:debate) { create :debate }
 

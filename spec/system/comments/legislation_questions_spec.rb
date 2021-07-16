@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Commenting legislation questions" do
+describe "Commenting legislation questions", :pvda_access do
   let(:user) { create :user, :level_two }
   let(:process) { create :legislation_process, :in_debate_phase }
   let(:legislation_question) { create :legislation_question, process: process }

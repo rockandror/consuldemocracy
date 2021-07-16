@@ -75,7 +75,7 @@ describe "Proposal Notifications" do
     expect(Notification.count).to eq(0)
   end
 
-  scenario "Show notifications" do
+  scenario "Show notifications", :pvda_access do
     proposal = create(:proposal)
     _notification1 = create(:proposal_notification,
                              proposal: proposal, title: "Hey guys",

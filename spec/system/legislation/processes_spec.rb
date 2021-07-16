@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Legislation" do
+describe "Legislation", :pvda_access do
   let!(:administrator) { create(:administrator).user }
 
   shared_examples "not published permissions" do |path|
