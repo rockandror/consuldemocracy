@@ -7,6 +7,7 @@ describe "Admin booths" do
   end
 
   scenario "Index empty" do
+    skip("This section has been removed from admin side menu")
     visit admin_root_path
 
     within("#side_menu") do
@@ -17,6 +18,7 @@ describe "Admin booths" do
   end
 
   scenario "Index" do
+    skip("This section has been removed from admin side menu")
     3.times { create(:poll_booth) }
 
     visit admin_root_path
@@ -36,6 +38,7 @@ describe "Admin booths" do
   end
 
   scenario "Available" do
+    skip("This section has been removed from admin side menu")
     booth_for_current_poll = create(:poll_booth, polls: [create(:poll, :current)])
     booth_for_expired_poll = create(:poll_booth, polls: [create(:poll, :expired)])
 

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Executions" do
+describe "Executions", skip: "Budget process is disabled" do
   let(:budget)  { create(:budget, :finished) }
   let(:group)   { create(:budget_group, budget: budget) }
   let(:heading) { create(:budget_heading, group: group) }

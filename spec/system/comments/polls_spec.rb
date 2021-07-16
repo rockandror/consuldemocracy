@@ -4,6 +4,8 @@ describe "Commenting polls" do
   let(:user) { create :user }
   let(:poll) { create(:poll, author: create(:user)) }
 
+  before { skip("This module has been disabled") }
+
   scenario "Index" do
     3.times { create(:comment, commentable: poll) }
 

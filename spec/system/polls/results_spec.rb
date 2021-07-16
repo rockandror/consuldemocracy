@@ -1,6 +1,9 @@
 require "rails_helper"
 
 describe "Poll Results" do
+
+  before { skip("This module has been disabled") }
+
   scenario "List each Poll question", :js do
     user1 = create(:user, :level_two)
     user2 = create(:user, :level_two)
