@@ -172,10 +172,8 @@ describe "Legislation Draft Versions" do
 
       visit legislation_process_draft_version_path(draft_version.process, draft_version)
 
-      page.find(:css, ".legislation-annotatable").double_click
-      page.find(:css, ".annotator-adder button").click
-      expect(page).not_to have_css("#legislation_annotation_text")
-      expect(page).to have_content "You must sign in or sign up to leave a comment."
+      expect(page).to have_content "You must sign in or register to continue."
+      expect(page).to have_current_path(new_user_session_path)
     end
 
     scenario "Create" do
