@@ -4,6 +4,7 @@ describe "Admin Budgets" do
   before do
     admin = create(:administrator).user
     login_as(admin)
+    skip("This module has been disabled")
   end
 
   context "Index" do

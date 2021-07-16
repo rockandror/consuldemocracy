@@ -31,6 +31,7 @@ describe "Results" do
   end
 
   scenario "Diplays winner investments" do
+    skip("This module is not used in this project")
     create(:budget_heading, group: group)
 
     visit budget_path(budget)
@@ -49,6 +50,7 @@ describe "Results" do
   end
 
   scenario "Show non winner & incomaptible investments", :js do
+    skip("This module is not used in this project")
     visit budget_path(budget)
     click_link "See results"
     click_link "Show all"
@@ -113,6 +115,7 @@ describe "Results" do
   end
 
   scenario "No incompatible investments", :js do
+    skip("This module is not used in this project")
     investment3.incompatible = false
     investment3.save!
 

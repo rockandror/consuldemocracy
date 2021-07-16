@@ -12,7 +12,6 @@ describe "Budget Investments" do
 
   context "Concerns" do
     it_behaves_like "notifiable in-app", :budget_investment
-    it_behaves_like "relationable", Budget::Investment
     it_behaves_like "remotely_translatable",
                     :budget_investment,
                     "budget_investments_path",
@@ -71,6 +70,7 @@ describe "Budget Investments" do
   end
 
   scenario "Index" do
+    skip("This module is not used in this project")
     investments = [create(:budget_investment, heading: heading),
                    create(:budget_investment, heading: heading),
                    create(:budget_investment, :feasible, heading: heading)]
@@ -91,6 +91,7 @@ describe "Budget Investments" do
   end
 
   scenario "Index view mode" do
+    skip("This module is not used in this project")
     investments = [create(:budget_investment, heading: heading),
                    create(:budget_investment, heading: heading),
                    create(:budget_investment, heading: heading)]
@@ -522,6 +523,7 @@ describe "Budget Investments" do
     end
 
     scenario "by unfeasibilty link for group with one heading" do
+      skip("This module is not used in this project")
       budget.update!(phase: :balloting)
       group   = create(:budget_group,   name: "All City", budget: budget)
       heading = create(:budget_heading, name: "Madrid",   group: group)
@@ -536,6 +538,7 @@ describe "Budget Investments" do
     end
 
     scenario "by unfeasibilty link for group with many headings" do
+      skip("This module is not used in this project")
       budget.update!(phase: :balloting)
       group = create(:budget_group, name: "Districts", budget: budget)
 
@@ -566,6 +569,7 @@ describe "Budget Investments" do
       before { budget.update(phase: "finished", results_enabled: true) }
 
       scenario "show winners by default" do
+        skip("This module is not used in this project")
         investment1 = create(:budget_investment, :winner, heading: heading)
         investment2 = create(:budget_investment, :selected, heading: heading)
 
@@ -590,6 +594,7 @@ describe "Budget Investments" do
       end
 
       scenario "unfeasible", :js do
+        skip("This module is not used in this project")
         investment1 = create(:budget_investment, :unfeasible, :finished, heading: heading)
         investment2 = create(:budget_investment, :feasible, heading: heading)
 
@@ -605,6 +610,7 @@ describe "Budget Investments" do
       end
 
       scenario "unselected" do
+        skip("This module is not used in this project")
         investment1 = create(:budget_investment, :unselected, heading: heading)
         investment2 = create(:budget_investment, :selected, heading: heading)
 
@@ -1635,6 +1641,7 @@ describe "Budget Investments" do
     end
 
     scenario "Highlight voted heading except with unfeasible filter", :js do
+      skip("This module is not used in this project")
       budget.update!(phase: "balloting")
       user = create(:user, :level_two)
 
@@ -1701,6 +1708,7 @@ describe "Budget Investments" do
     end
 
     scenario "Shows unselected link for group with one heading" do
+      skip("This module is not used in this project")
       group   = create(:budget_group,   name: "All City", budget: budget)
       heading = create(:budget_heading, name: "Madrid",   group: group)
 
@@ -1714,6 +1722,7 @@ describe "Budget Investments" do
     end
 
     scenario "Shows unselected link for group with many headings" do
+      skip("This module is not used in this project")
       group = create(:budget_group, name: "Districts", budget: budget)
 
       barajas = create(:budget_heading, name: "Barajas", group: group)

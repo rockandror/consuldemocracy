@@ -4,6 +4,7 @@ describe "Images" do
   before do
     admin = create(:administrator)
     login_as(admin.user)
+    skip("This module has been disabled")
   end
 
   it_behaves_like "nested imageable",

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Polls" do
+describe "Polls", skip: "Polss are disabled" do
   let!(:proposal) { create(:proposal, :draft) }
 
   before do

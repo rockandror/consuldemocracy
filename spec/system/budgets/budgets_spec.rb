@@ -5,6 +5,8 @@ describe "Budgets" do
   let(:level_two_user)     { create(:user, :level_two) }
   let(:allowed_phase_list) { ["balloting", "reviewing_ballots", "finished"] }
 
+  before { skip("This module has been disabled") }
+
   context "Load" do
     before { budget.update(slug: "budget_slug") }
 

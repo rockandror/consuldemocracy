@@ -1883,6 +1883,7 @@ describe "Admin budget investments" do
     end
 
     scenario "When restoring the page from browser history renders columns selectors only once", :js do
+      skip("This module is not used in this project")
       visit admin_budget_budget_investments_path(budget)
 
       click_link "Proposals"
