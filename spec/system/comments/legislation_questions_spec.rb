@@ -196,6 +196,7 @@ describe "Commenting legislation questions" do
 
   describe "Not logged user" do
     scenario "can not see comments forms" do
+      skip("Since a user needs to be logged in to enter this page, this test is no longer meaningful.")
       create(:comment, commentable: legislation_question)
       visit legislation_process_question_path(legislation_question.process, legislation_question)
 

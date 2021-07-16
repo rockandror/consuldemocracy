@@ -2,6 +2,7 @@ require "rails_helper"
 
 describe "Proposal Notifications" do
   scenario "Send a notification" do
+    skip("Message to users has been disabled/removed on custom files in dashboard")
     author = create(:user, :with_proposal)
 
     login_as(author)
@@ -27,6 +28,7 @@ describe "Proposal Notifications" do
   end
 
   scenario "Send a notification (Active voter)" do
+    skip("Message to users has been disabled/removed on custom files in dashboard")
     proposal = create(:proposal)
 
     create(:user, :level_two, votables: [proposal], followables: [proposal])
@@ -36,6 +38,7 @@ describe "Proposal Notifications" do
   end
 
   scenario "Send a notification (Follower)" do
+    skip("Message to users has been disabled/removed on custom files in dashboard")
     proposal = create(:proposal)
 
     create(:user, :level_two, followables: [proposal])
@@ -45,6 +48,7 @@ describe "Proposal Notifications" do
   end
 
   scenario "Send a notification (Follower and Voter)" do
+    skip("Message to users has been disabled/removed on custom files in dashboard")
     proposal = create(:proposal)
 
     create(:user, followables: [proposal], votables: [proposal])
@@ -56,6 +60,7 @@ describe "Proposal Notifications" do
   end
 
   scenario "Send a notification (Blocked voter)" do
+    skip("Message to users has been disabled/removed on custom files in dashboard")
     proposal = create(:proposal)
     voter = create(:user, :level_two, votables: [proposal])
 
@@ -66,6 +71,7 @@ describe "Proposal Notifications" do
   end
 
   scenario "Send a notification (Erased voter)" do
+    skip("Message to users has been disabled/removed on custom files in dashboard")
     proposal = create(:proposal)
     voter = create(:user, :level_two, votables: [proposal])
 
@@ -142,6 +148,7 @@ describe "Proposal Notifications" do
 
   context "Permissions" do
     scenario "Link to send the message" do
+      skip("Message to users has been disabled/removed on custom files in dashboard")
       author = create(:user)
       proposal = create(:proposal, author: author)
 

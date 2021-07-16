@@ -145,7 +145,8 @@ describe "Users" do
       expect(page).not_to have_content("activity list private")
     end
 
-    scenario "user can hide public page" do
+    scenario "user can hide public page",
+      skip: "Public activity checkbox was removed from custom view" do
       login_as(user)
       visit account_path
 
@@ -158,7 +159,8 @@ describe "Users" do
       expect(page).to have_content("activity list private")
     end
 
-    scenario "is always visible for the owner" do
+    scenario "is always visible for the owner",
+      skip: "Public activity checkbox was removed from custom view" do
       login_as(user)
       visit account_path
 
@@ -169,7 +171,9 @@ describe "Users" do
       expect(page).not_to have_content("activity list private")
     end
 
-    scenario "is always visible for admins" do
+    scenario "is always visible for admins",
+      skip: "Public activity checkbox was removed from custom view" do
+
       login_as(user)
       visit account_path
 
@@ -183,7 +187,8 @@ describe "Users" do
       expect(page).not_to have_content("activity list private")
     end
 
-    scenario "is always visible for moderators" do
+    scenario "is always visible for moderators",
+      skip: "Public activity checkbox was removed from custom view"  do
       login_as(user)
       visit account_path
 
@@ -228,7 +233,8 @@ describe "Users" do
   describe "Public interests" do
     let(:user) { create(:user) }
 
-    scenario "Display interests" do
+    scenario "Display interests",
+    skip: "Public interests checkbox was removed from custom view" do
       create(:proposal, tag_list: "Sport", followers: [user])
 
       login_as(user)
@@ -243,7 +249,8 @@ describe "Users" do
       expect(page).to have_content("Sport")
     end
 
-    scenario "Not display interests when proposal has been destroyed" do
+    scenario "Not display interests when proposal has been destroyed",
+      skip: "Public interests checkbox was removed from custom view" do
       proposal = create(:proposal, tag_list: "Sport", followers: [user])
       proposal.destroy!
 
@@ -266,7 +273,8 @@ describe "Users" do
       expect(page).not_to have_css("#public_interests")
     end
 
-    scenario "User can display public page" do
+    scenario "User can display public page",
+      skip: "Public interests checkbox was removed from custom view" do
       create(:proposal, tag_list: "Sport", followers: [user])
 
       login_as(user)
@@ -282,7 +290,8 @@ describe "Users" do
       expect(page).to have_css("#public_interests")
     end
 
-    scenario "Is always visible for the owner" do
+    scenario "Is always visible for the owner",
+      skip: "Public interests checkbox was removed from custom view" do
       create(:proposal, tag_list: "Sport", followers: [user])
 
       login_as(user)
@@ -295,7 +304,8 @@ describe "Users" do
       expect(page).to have_css("#public_interests")
     end
 
-    scenario "Is always visible for admins" do
+    scenario "Is always visible for admins",
+      skip: "Public interests checkbox was removed from custom view" do
       create(:proposal, tag_list: "Sport", followers: [user])
 
       login_as(user)
@@ -311,7 +321,8 @@ describe "Users" do
       expect(page).to have_css("#public_interests")
     end
 
-    scenario "Is always visible for moderators" do
+    scenario "Is always visible for moderators",
+      skip: "Public interests checkbox was removed from custom view" do
       create(:proposal, tag_list: "Sport", followers: [user])
 
       login_as(user)

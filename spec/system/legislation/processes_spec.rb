@@ -387,6 +387,7 @@ describe "Legislation" do
       end
 
       scenario "create proposal button redirects to register path if user is not logged in" do
+        skip("Since a user needs to be logged in to enter this page, this test is no longer meaningful.")
         process = create(:legislation_process, :in_proposals_phase)
 
         visit legislation_process_proposals_path(process)

@@ -150,7 +150,8 @@ describe "Proposal's dashboard" do
     expect(page).not_to have_content(action.title)
   end
 
-  scenario "Dashboard progress show available resources for proposal draft" do
+  scenario "Dashboard progress show available resources for proposal draft",
+    skip: "Resources were removed" do
     available = create(:dashboard_action, :resource, :active)
 
     requested = create(:dashboard_action, :resource, :admin_request, :active)
@@ -194,7 +195,8 @@ describe "Proposal's dashboard" do
     end
   end
 
-  scenario "Dashboard progress show available resources for published proposal" do
+  scenario "Dashboard progress show available resources for published proposal",
+    skip: "Resources were removed" do
     proposal.update!(published_at: Date.current)
     available = create(:dashboard_action, :resource, :active)
 
@@ -239,7 +241,8 @@ describe "Proposal's dashboard" do
     end
   end
 
-  scenario "Dashboard progress dont show resources with published_proposal: true" do
+  scenario "Dashboard progress dont show resources with published_proposal: true",
+    skip: "Resources were removed" do
     available = create(:dashboard_action, :resource, :active, published_proposal: true)
     unavailable = create(:dashboard_action, :resource, :active,
                           required_supports: proposal.votes_for.size + 1_000,
@@ -256,26 +259,26 @@ describe "Proposal's dashboard" do
     end
   end
 
-  scenario "Dashboard has a link to polls feature" do
+  scenario "Dashboard has a link to polls feature", skip: "Polls were removed" do
     expect(page).to have_link("Polls")
   end
 
-  scenario "Dashboard has a link to e-mail feature" do
+  scenario "Dashboard has a link to e-mail feature", skip: "E-mails were removed" do
     expect(page).to have_link("E-mail")
   end
 
-  scenario "Dashboard has a link to poster feature" do
+  scenario "Dashboard has a link to poster feature", skip: "Poster was removed" do
     expect(page).to have_link("Poster")
   end
 
-  scenario "Dashboard has a link to resources on main menu" do
+  scenario "Dashboard has a link to resources on main menu", skip: "Resources were removed" do
     feature = create(:dashboard_action, :resource, :active)
 
     visit proposal_dashboard_path(proposal)
     expect(page).to have_link(feature.title)
   end
 
-  scenario "Request resource with admin request", js: true do
+  scenario "Request resource with admin request", js: true, skip: "Resources were removed" do
     feature = create(:dashboard_action, :resource, :active, :admin_request)
 
     visit proposal_dashboard_path(proposal)
@@ -286,7 +289,8 @@ describe "Proposal's dashboard" do
                                  "as soon as possible to inform you about it.")
   end
 
-  scenario "Request already requested resource with admin request", js: true do
+  scenario "Request already requested resource with admin request", js: true,
+    skip: "Resources were removed" do
     feature = create(:dashboard_action, :resource, :active, :admin_request)
 
     visit proposal_dashboard_path(proposal)
@@ -298,7 +302,7 @@ describe "Proposal's dashboard" do
     expect(page).to have_content("Proposal has already been taken")
   end
 
-  scenario "Resource requested show message instead of button" do
+  scenario "Resource requested show message instead of button", skip: "Resources were removed" do
     feature = create(:dashboard_action, :resource, :active, :admin_request)
 
     visit proposal_dashboard_path(proposal)
@@ -311,7 +315,7 @@ describe "Proposal's dashboard" do
                                  "as soon as possible to inform you about it.")
   end
 
-  scenario "Resource without admin request do not have a request link", js: true do
+  scenario "Resource without admin request do not have a request link", js: true, skip: "Resources were removed" do
     feature = create(:dashboard_action, :resource, :active)
 
     visit proposal_dashboard_path(proposal)
@@ -320,7 +324,8 @@ describe "Proposal's dashboard" do
     expect(page).not_to have_button("Request")
   end
 
-  scenario "Resource admin request button do not appear on archived proposals" do
+  scenario "Resource admin request button do not appear on archived proposals",
+    skip: "Resources were removed" do
     feature = create(:dashboard_action, :resource, :active)
     archived = Setting["months_to_archive_proposals"].to_i.months.ago
     archived_proposal = create(:proposal, created_at: archived)
@@ -336,7 +341,7 @@ describe "Proposal's dashboard" do
     expect(page).to have_content("This proposal is archived and can not request resources.")
   end
 
-  scenario "Dashboard has a link to dashboard community", js: true do
+  scenario "Dashboard has a link to dashboard community", js: true, skip: "Community was removed" do
     expect(page).to have_link("Community")
     click_link "Community"
 
@@ -346,7 +351,8 @@ describe "Proposal's dashboard" do
     expect(page).to have_link("Access the community")
   end
 
-  scenario "Dashboard has a link to recommended_actions if there is any", js: true do
+  scenario "Dashboard has a link to recommended_actions if there is any", js: true,
+    skip: "Actions were removed" do
     expect(page).not_to have_link("Recommended actions")
 
     create_list(:dashboard_action, 3, :proposed_action, :active)
@@ -358,7 +364,7 @@ describe "Proposal's dashboard" do
     expect(page).to have_content("Done")
   end
 
-  scenario "Dashboard has a link to messages" do
+  scenario "Dashboard has a link to messages", skip: "Messages were removed" do
     expect(page).to have_link("Message to users")
 
     within("#side_menu") do
@@ -389,7 +395,7 @@ describe "Proposal's dashboard" do
                                                             anchor: "tab-notifications"))
   end
 
-  scenario "Dashboard has a related content section" do
+  scenario "Dashboard has a related content section", skip: "Related content section was removed" do
     related_debate = create(:debate)
     related_proposal = create(:proposal)
 
@@ -491,7 +497,8 @@ describe "Proposal's dashboard" do
       proposal.author.update(last_sign_in_at: Date.yesterday)
     end
 
-    scenario "Display tag 'new' on resouce when it is new for author since last login" do
+    scenario "Display tag 'new' on resouce when it is new for author since last login",
+      skip: "Actions were removed" do
       resource = create(:dashboard_action, :resource, :active, day_offset: 0,
                                                                published_proposal: false)
 
@@ -502,7 +509,8 @@ describe "Proposal's dashboard" do
       end
     end
 
-    scenario "Not display tag 'new' on resouce when there is not new resources since last login" do
+    scenario "Not display tag 'new' on resouce when there is not new resources since last login",
+      skip: "Actions were removed" do
       resource = create(:dashboard_action, :resource, :active, day_offset: 0,
                                                                published_proposal: false)
       proposal.author.update!(last_sign_in_at: Date.current)
@@ -537,7 +545,8 @@ describe "Proposal's dashboard" do
       end
     end
 
-    scenario "Display tag 'new' on sidebar menu when there is a new resouce since last login" do
+    scenario "Display tag 'new' on sidebar menu when there is a new resouce since last login",
+      skip: "Actions were removed" do
       create(:dashboard_action, :resource, :active, day_offset: 0, published_proposal: false)
 
       visit progress_proposal_dashboard_path(proposal)
