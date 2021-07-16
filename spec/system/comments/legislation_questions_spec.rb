@@ -186,7 +186,7 @@ describe "Commenting legislation questions", :pvda_access do
     expect(page).to have_css(".comment", count: 2)
   end
 
-  describe "Not logged user" do
+  describe "Not logged user", skip: "mandatory sign in for pvda" do
     scenario "can not see comments forms" do
       create(:comment, commentable: legislation_question)
       visit legislation_process_question_path(legislation_question.process, legislation_question)

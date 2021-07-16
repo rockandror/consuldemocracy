@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe "Tracking" do
   context "Custom variable" do
-    scenario "Usertype anonymous" do
+    scenario "Usertype anonymous", skip: "mandatory sign in for pvda" do
       visit proposals_path
 
       expect(page.html).to include "anonymous"

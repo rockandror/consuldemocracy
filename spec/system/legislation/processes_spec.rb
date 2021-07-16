@@ -358,7 +358,7 @@ describe "Legislation", :pvda_access do
         expect(page).to have_content("There are no proposals")
       end
 
-      scenario "create proposal button redirects to register path if user is not logged in" do
+      scenario "create proposal button redirects to register path if user is not logged in", skip: "mandatory sign in for pvda" do
         process = create(:legislation_process, :in_proposals_phase)
 
         visit legislation_process_proposals_path(process)

@@ -407,7 +407,7 @@ describe "Debates", :pvda_access do
       let!(:medium_debate) { create(:debate, title: "Medium", cached_votes_total: 5,  tag_list: "Sport") }
       let!(:worst_debate)  { create(:debate, title: "Worst",  cached_votes_total: 1,  tag_list: "Sport") }
 
-      scenario "can't be sorted if there's no logged user" do
+      scenario "can't be sorted if there's no logged user", skip: "mandatory sign in for pvda" do
         visit debates_path
         expect(page).not_to have_selector("a", text: "recommendations")
       end

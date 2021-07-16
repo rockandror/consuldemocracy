@@ -72,7 +72,7 @@ describe "Polls", :pvda_access do
       expect(page).not_to have_link("Expired")
     end
 
-    scenario "Displays icon correctly", :js do
+    scenario "Displays icon correctly", :js, skip: "mandatory sign in for pvda" do
       create_list(:poll, 3)
 
       visit polls_path
@@ -217,7 +217,7 @@ describe "Polls", :pvda_access do
       end
     end
 
-    scenario "Non-logged in users" do
+    scenario "Non-logged in users", skip: "mandatory sign in for pvda" do
       create(:poll_question, :yes_no, poll: poll)
 
       visit poll_path(poll)
