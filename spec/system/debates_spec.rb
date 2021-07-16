@@ -506,7 +506,6 @@ describe "Debates" do
 
         visit account_path
 
-        expect(find("#account_recommended_debates")).not_to be_checked
         expect(user.recommended_debates).to be(false)
       end
     end
