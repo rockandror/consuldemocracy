@@ -33,10 +33,6 @@ describe "Account" do
     visit account_path
 
     fill_in "account_username", with: "Larry Bird"
-    check "account_email_on_comment"
-    check "account_email_on_comment_reply"
-    uncheck "account_email_digest"
-    uncheck "account_email_on_direct_message"
     click_button "Save changes"
 
     expect(page).to have_content "Changes saved"
@@ -44,10 +40,6 @@ describe "Account" do
     visit account_path
 
     expect(page).to have_selector("input[value='Larry Bird']")
-    expect(find("#account_email_on_comment")).to be_checked
-    expect(find("#account_email_on_comment_reply")).to be_checked
-    expect(find("#account_email_digest")).not_to be_checked
-    expect(find("#account_email_on_direct_message")).not_to be_checked
   end
 
   scenario "Edit email address" do
@@ -79,8 +71,6 @@ describe "Account" do
     visit account_path
 
     fill_in "account_organization_attributes_name", with: "Google"
-    check "account_email_on_comment"
-    check "account_email_on_comment_reply"
 
     click_button "Save changes"
 
@@ -89,25 +79,9 @@ describe "Account" do
     visit account_path
 
     expect(page).to have_selector("input[value='Google']")
-    expect(find("#account_email_on_comment")).to be_checked
-    expect(find("#account_email_on_comment_reply")).to be_checked
   end
 
   context "Option to display badge for official position" do
-    scenario "Users with official position of level 1" do
-      official_user = create(:user, official_level: 1)
-
-      login_as(official_user)
-      visit account_path
-
-      check "account_official_position_badge"
-      click_button "Save changes"
-      expect(page).to have_content "Changes saved"
-
-      visit account_path
-      expect(find("#account_official_position_badge")).to be_checked
-    end
-
     scenario "Users with official position of level 2 and above" do
       official_user2 = create(:user, official_level: 2)
       official_user3 = create(:user, official_level: 3)
@@ -161,40 +135,5 @@ describe "Account" do
     login_through_form_as(user)
 
     expect(page).to have_content "Invalid Email or username or password"
-  end
-
-  context "Recommendations" do
-    scenario "are enabled by default" do
-      visit account_path
-
-      expect(page).to have_content("Recommendations")
-      expect(page).to have_content("Show debates recommendations")
-      expect(page).to have_content("Show proposals recommendations")
-      expect(find("#account_recommended_debates")).to be_checked
-      expect(find("#account_recommended_proposals")).to be_checked
-    end
-
-    scenario "can be disabled through 'My account' page" do
-      visit account_path
-
-      expect(page).to have_content("Recommendations")
-      expect(page).to have_content("Show debates recommendations")
-      expect(page).to have_content("Show proposals recommendations")
-      expect(find("#account_recommended_debates")).to be_checked
-      expect(find("#account_recommended_proposals")).to be_checked
-
-      uncheck "account_recommended_debates"
-      uncheck "account_recommended_proposals"
-
-      click_button "Save changes"
-
-      expect(find("#account_recommended_debates")).not_to be_checked
-      expect(find("#account_recommended_proposals")).not_to be_checked
-
-      user.reload
-
-      expect(user.recommended_debates).to be(false)
-      expect(user.recommended_proposals).to be(false)
-    end
   end
 end

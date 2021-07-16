@@ -927,7 +927,6 @@ describe "Proposals" do
 
         visit account_path
 
-        expect(find("#account_recommended_proposals")).not_to be_checked
         expect(user.recommended_proposals).to be(false)
       end
     end
