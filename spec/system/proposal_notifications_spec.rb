@@ -76,6 +76,7 @@ describe "Proposal Notifications" do
   end
 
   scenario "Show notifications" do
+    login_as(create(:user))
     proposal = create(:proposal)
     _notification1 = create(:proposal_notification,
                              proposal: proposal, title: "Hey guys",

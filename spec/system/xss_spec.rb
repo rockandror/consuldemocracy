@@ -165,6 +165,7 @@ describe "Cross-Site Scripting protection", :js do
   end
 
   scenario "legislation version body filters script tags but not header IDs nor tags like images" do
+    login_as(create(:user))
     markdown = "# Title 1\n<a href='https://domain.com/url'>link</a><img src='/image.png'>"
     version = create(:legislation_draft_version, :published, body: "#{markdown}#{attack_code}")
 

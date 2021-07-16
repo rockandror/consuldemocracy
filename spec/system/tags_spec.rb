@@ -2,6 +2,7 @@ require "rails_helper"
 
 describe "Tags" do
   scenario "Index" do
+    login_as(create(:user))
     earth = create(:debate, tag_list: "Medio Ambiente")
     money = create(:debate, tag_list: "Economía")
 
@@ -17,6 +18,7 @@ describe "Tags" do
   end
 
   scenario "Filtered" do
+    login_as(create(:user))
     debate1 = create(:debate, tag_list: "Salud")
     debate2 = create(:debate, tag_list: "salud")
     debate3 = create(:debate, tag_list: "Hacienda")
@@ -45,6 +47,7 @@ describe "Tags" do
   end
 
   scenario "Show" do
+    login_as(create(:user))
     debate = create(:debate, tag_list: "Hacienda, Economía")
 
     visit debate_path(debate)
@@ -122,6 +125,7 @@ describe "Tags" do
 
   context "Tag cloud" do
     scenario "Proposals" do
+      login_as(create(:user))
       create(:proposal, tag_list: "Medio Ambiente")
       create(:proposal, tag_list: "Economía")
 
@@ -134,6 +138,7 @@ describe "Tags" do
     end
 
     scenario "Debates" do
+      login_as(create(:user))
       create(:debate, tag_list: "Medio Ambiente")
       create(:debate, tag_list: "Economía")
 
@@ -146,6 +151,7 @@ describe "Tags" do
     end
 
     scenario "scoped by category" do
+      login_as(create(:user))
       create(:tag, :category, name: "Medio Ambiente")
       create(:tag, :category, name: "Economía")
 
@@ -162,6 +168,7 @@ describe "Tags" do
     end
 
     scenario "scoped by district" do
+      login_as(create(:user))
       create(:geozone, name: "Madrid")
       create(:geozone, name: "Barcelona")
 
@@ -178,6 +185,7 @@ describe "Tags" do
     end
 
     scenario "tag links" do
+      login_as(create(:user))
       proposal1 = create(:proposal, tag_list: "Medio Ambiente")
       proposal2 = create(:proposal, tag_list: "Medio Ambiente")
       proposal3 = create(:proposal, tag_list: "Economía")

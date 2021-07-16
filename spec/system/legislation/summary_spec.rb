@@ -3,6 +3,7 @@ require "rails_helper"
 describe "Legislation" do
   context "process summary page" do
     scenario "summary tab is not shown for open processes" do
+      login_as(create(:user))
       process = create(:legislation_process, :open)
 
       visit legislation_process_path(process)
@@ -11,6 +12,7 @@ describe "Legislation" do
     end
 
     scenario "summary tab is shown por past processes" do
+      login_as(create(:user))
       process = create(:legislation_process, :past)
 
       visit legislation_process_path(process)
@@ -20,6 +22,7 @@ describe "Legislation" do
   end
 
   scenario "empty process" do
+    login_as(create(:user))
     process = create(:legislation_process, :empty,
       result_publication_enabled: true,
       end_date: Date.current - 1.day
@@ -31,6 +34,7 @@ describe "Legislation" do
   end
 
   scenario "empty phases" do
+    login_as(create(:user))
     process = create(:legislation_process, end_date: Date.current - 1.day)
     visit summary_legislation_process_path(process)
 
@@ -64,6 +68,7 @@ describe "Legislation" do
     end
 
     scenario "shows debates list" do
+      login_as(create(:user))
       visit summary_legislation_process_path(process)
 
       expect(page).to have_content "Debate phase"
@@ -100,6 +105,7 @@ describe "Legislation" do
     end
 
     scenario "shows proposals list" do
+      login_as(create(:user))
       visit summary_legislation_process_path(process)
 
       expect(page).to have_content "Debate phase"
@@ -147,6 +153,7 @@ describe "Legislation" do
     end
 
     scenario "shows coments list" do
+      login_as(create(:user))
       visit summary_legislation_process_path(process)
 
       expect(page).to have_content "Debate phase"
@@ -166,6 +173,7 @@ describe "Legislation" do
     end
 
     scenario "excel download" do
+      login_as(create(:user))
       visit summary_legislation_process_path(process)
       click_link "Download summary"
 

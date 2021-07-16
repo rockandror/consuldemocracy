@@ -11,6 +11,7 @@ describe "Commenting legislation questions" do
   end
 
   scenario "Index" do
+    login_as(create(:user))
     3.times { create(:comment, commentable: legislation_question) }
 
     visit legislation_process_question_path(legislation_question.process, legislation_question)
@@ -46,6 +47,7 @@ describe "Commenting legislation questions" do
   end
 
   scenario "Link to comment show" do
+    login_as(create(:user))
     comment = create(:comment, commentable: legislation_question, user: user)
 
     visit legislation_process_question_path(legislation_question.process, legislation_question)
@@ -61,6 +63,7 @@ describe "Commenting legislation questions" do
   end
 
   scenario "Collapsable comments", :js do
+    login_as(create(:user))
     parent_comment = create(:comment, body: "Main comment", commentable: legislation_question)
     child_comment  = create(:comment, body: "First subcomment", commentable: legislation_question, parent: parent_comment)
     grandchild_comment = create(:comment, body: "Last subcomment", commentable: legislation_question, parent: child_comment)
@@ -98,6 +101,7 @@ describe "Commenting legislation questions" do
   end
 
   scenario "Comment order" do
+    login_as(create(:user))
     c1 = create(:comment, :with_confidence_score, commentable: legislation_question, cached_votes_up: 100,
                                                   cached_votes_total: 120, created_at: Time.current - 2)
     c2 = create(:comment, :with_confidence_score, commentable: legislation_question, cached_votes_up: 10,
@@ -122,6 +126,7 @@ describe "Commenting legislation questions" do
   end
 
   scenario "Creation date works differently in roots and in child comments, even when sorting by confidence_score" do
+    login_as(create(:user))
     old_root = create(:comment, commentable: legislation_question, created_at: Time.current - 10)
     new_root = create(:comment, commentable: legislation_question, created_at: Time.current)
     old_child = create(:comment, commentable: legislation_question, parent_id: new_root.id, created_at: Time.current - 10)
@@ -144,6 +149,7 @@ describe "Commenting legislation questions" do
   end
 
   scenario "Turns links into html links" do
+    login_as(create(:user))
     create :comment, commentable: legislation_question, body: "Built with http://rubyonrails.org/"
 
     visit legislation_process_question_path(legislation_question.process, legislation_question)
@@ -157,6 +163,7 @@ describe "Commenting legislation questions" do
   end
 
   scenario "Sanitizes comment body for security" do
+    login_as(create(:user))
     create :comment, commentable: legislation_question,
                      body: "<script>alert('hola')</script> <a href=\"javascript:alert('sorpresa!')\">click me<a/> http://www.url.com"
 
@@ -170,6 +177,7 @@ describe "Commenting legislation questions" do
   end
 
   scenario "Paginated comments" do
+    login_as(create(:user))
     per_page = 10
     (per_page + 2).times { create(:comment, commentable: legislation_question) }
 
@@ -310,6 +318,7 @@ describe "Commenting legislation questions" do
   end
 
   scenario "N replies", :js do
+    login_as(create(:user))
     parent = create(:comment, commentable: legislation_question)
 
     7.times do
@@ -322,6 +331,7 @@ describe "Commenting legislation questions" do
   end
 
   scenario "Erasing a comment's author" do
+    login_as(create(:user))
     comment = create(:comment, commentable: legislation_question, body: "this should be visible")
     comment.user.erase
 

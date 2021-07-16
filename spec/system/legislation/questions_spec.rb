@@ -12,6 +12,7 @@ describe "Legislation" do
       create(:legislation_question, process: process, title: "Question 1")
       create(:legislation_question, process: process, title: "Question 2")
       create(:legislation_question, process: process, title: "Question 3")
+      login_as(create(:user))
     end
 
     scenario "shows question list" do
