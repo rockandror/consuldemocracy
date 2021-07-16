@@ -272,54 +272,6 @@ describe "Votes" do
     end
   end
 
-  scenario "Not logged user trying to vote debates", :js do
-    debate = create(:debate)
-
-    visit debates_path
-    within("#debate_#{debate.id}") do
-      find("div.votes").hover
-      expect_message_you_need_to_sign_in
-    end
-  end
-
-  scenario "Not logged user trying to vote proposals", :js do
-    proposal = create(:proposal)
-
-    visit proposals_path
-    within("#proposal_#{proposal.id}") do
-      find("div.supports").hover
-      expect_message_you_need_to_sign_in
-    end
-
-    visit proposal_path(proposal)
-    within("#proposal_#{proposal.id}") do
-      find("div.supports").hover
-      expect_message_you_need_to_sign_in
-    end
-  end
-
-  scenario "Not logged user trying to vote comments in debates", :js do
-    debate = create(:debate)
-    comment = create(:comment, commentable: debate)
-
-    visit comment_path(comment)
-    within("#comment_#{comment.id}") do
-      find("div.votes").hover
-      expect_message_you_need_to_sign_in_to_vote_comments
-    end
-  end
-
-  scenario "Not logged user trying to vote comments in proposals", :js do
-    proposal = create(:proposal)
-    comment = create(:comment, commentable: proposal)
-
-    visit comment_path(comment)
-    within("#comment_#{comment.id}_reply") do
-      find("div.votes").hover
-      expect_message_you_need_to_sign_in_to_vote_comments
-    end
-  end
-
   scenario "Anonymous user trying to vote debates", :js do
     user = create(:user)
     debate = create(:debate)

@@ -182,19 +182,6 @@ describe "Commenting proposals" do
     expect(page).to have_css(".comment", count: 2)
   end
 
-  describe "Not logged user" do
-    scenario "can not see comments forms" do
-      create(:comment, commentable: proposal)
-      visit proposal_path(proposal)
-
-      expect(page).to have_content "You must sign in or sign up to leave a comment"
-      within("#comments") do
-        expect(page).not_to have_content "Write a comment"
-        expect(page).not_to have_content "Reply"
-      end
-    end
-  end
-
   scenario "Create", :js do
     login_as(user)
     visit proposal_path(proposal)
