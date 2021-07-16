@@ -3,21 +3,20 @@ require "rails_helper"
 describe "Sessions" do
   scenario "Staying in the same page after doing login/logout" do
     user = create(:user, sign_in_count: 10)
-    debate = create(:debate)
 
-    visit debate_path(debate)
+    visit root_path
     visit new_user_session_path(sign_in_form: "1")
     fill_in "user_login", with: user.email
     fill_in "user_password", with: user.password
     click_button "Enter"
 
     expect(page).to have_content("You have been signed in successfully")
-    expect(page).to have_current_path(debate_path(debate))
+    expect(page).to have_current_path(root_path)
 
     click_link "Sign out"
 
     expect(page).to have_content("You have been signed out successfully")
-    expect(page).to have_current_path(debate_path(debate))
+    expect(page).to have_current_path(root_path)
   end
 
   scenario "Sign in redirects keeping GET parameters" do
