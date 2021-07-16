@@ -1,6 +1,8 @@
 require "rails_helper"
 
 describe "Proposal ballots" do
+  before { login_as(create(:user)) }
+
   scenario "Successful proposals do not show support buttons in index" do
     successful_proposals = create_successful_proposals
 

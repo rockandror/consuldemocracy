@@ -1,6 +1,8 @@
 require "rails_helper"
 
 describe "Proposals" do
+  before { login_as(create(:user)) }
+
   it_behaves_like "milestoneable", :proposal
 
   scenario "Disabled with a feature flag" do
@@ -1849,6 +1851,7 @@ end
 
 describe "Successful proposals" do
   scenario "Successful proposals do not show support buttons in index" do
+    login_as(create(:user))
     successful_proposals = create_successful_proposals
 
     visit proposals_path
@@ -1862,6 +1865,7 @@ describe "Successful proposals" do
   end
 
   scenario "Successful proposals do not show support buttons in show" do
+    login_as(create(:user))
     successful_proposals = create_successful_proposals
 
     successful_proposals.each do |proposal|

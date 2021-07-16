@@ -26,6 +26,7 @@ describe "Legislation Draft Versions" do
     end
 
     it "shows the text body for this version" do
+      login_as(create(:user))
       visit legislation_process_draft_version_path(process, original)
 
       expect(page).to have_content("Original version")
@@ -52,6 +53,7 @@ describe "Legislation Draft Versions" do
     end
 
     it "switches to another version without js" do
+      login_as(create(:user))
       visit legislation_process_draft_version_path(process, original)
       expect(page).to have_content("Original version")
 
@@ -63,6 +65,7 @@ describe "Legislation Draft Versions" do
     end
 
     it "switches to another version with js", :js do
+      login_as(create(:user))
       visit legislation_process_draft_version_path(process, original)
       expect(page).to have_content("Original version")
 
@@ -74,6 +77,7 @@ describe "Legislation Draft Versions" do
 
     context "for final versions" do
       it "does not show the comments panel" do
+        login_as(create(:user))
         final_version = create(:legislation_draft_version, process: process, title: "Final version",
                                                            body: "Final body", status: "published", final_version: true)
 
@@ -107,6 +111,7 @@ describe "Legislation Draft Versions" do
     end
 
     it "shows the changes for this version" do
+      login_as(create(:user))
       visit legislation_process_draft_version_changes_path(process, original)
 
       expect(page).to have_content("Changes for first version")
@@ -133,6 +138,7 @@ describe "Legislation Draft Versions" do
     end
 
     it "switches to another version without js" do
+      login_as(create(:user))
       visit legislation_process_draft_version_changes_path(process, original)
       expect(page).to have_content("Changes for first version")
 
@@ -144,6 +150,7 @@ describe "Legislation Draft Versions" do
     end
 
     it "switches to another version with js", :js do
+      login_as(create(:user))
       visit legislation_process_draft_version_changes_path(process, original)
       expect(page).to have_content("Changes for first version")
 
@@ -199,6 +206,7 @@ describe "Legislation Draft Versions" do
       create(:legislation_annotation, draft_version: draft_version, text: "my other annotation",
                                       ranges: [{ "start" => "/p[1]", "startOffset" => 12, "end" => "/p[1]", "endOffset" => 19 }])
       comment = create(:comment, commentable: annotation1)
+      login_as(create(:user))
 
       visit legislation_process_draft_version_path(draft_version.process, draft_version)
 
@@ -239,6 +247,7 @@ describe "Legislation Draft Versions" do
     end
 
     scenario "When page is restored from browser cache do not duplicate annotation handlers" do
+      login_as(create(:user))
       create(:legislation_annotation, draft_version: draft_version, text: "my annotation")
 
       visit legislation_process_draft_version_path(draft_version.process, draft_version)
@@ -258,6 +267,7 @@ describe "Legislation Draft Versions" do
     scenario "When page is restored from browser cache publish comment button keeps working" do
       create(:legislation_annotation, draft_version: draft_version, text: "my annotation")
 
+      login_as(create(:user))
       visit legislation_process_draft_version_path(draft_version.process, draft_version)
 
       find(:css, ".annotator-hl").click
@@ -333,6 +343,7 @@ describe "Legislation Draft Versions" do
       end
 
       scenario "without js" do
+        login_as(create(:user))
         visit legislation_process_draft_version_annotations_path(process, original)
         expect(page).to have_content("quote for version 1")
 
@@ -344,6 +355,7 @@ describe "Legislation Draft Versions" do
       end
 
       scenario "with js", :js do
+        login_as(create(:user))
         visit legislation_process_draft_version_annotations_path(process, original)
         expect(page).to have_content("quote for version 1")
 

@@ -41,6 +41,7 @@ describe "Localization" do
   end
 
   scenario "Keeps query parameters while using protected redirects", :js do
+    login_as(create(:user))
     visit "/debates?order=created_at&host=evil.dev"
 
     select("Español", from: "locale-switcher")

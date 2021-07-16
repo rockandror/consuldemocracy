@@ -1,11 +1,12 @@
 require "rails_helper"
 
-describe "Official positions" do
+describe "Official positions", :js do
   context "Badge" do
     let(:user1) { create(:user, official_level: 1, official_position: "Employee", official_position_badge: true) }
     let(:user2) { create(:user, official_level: 0, official_position: "") }
 
     scenario "Comments" do
+      login_as(create(:user))
       proposal = create(:proposal)
       comment1 = create(:comment, commentable: proposal, user: user1)
       comment2 = create(:comment, commentable: proposal, user: user2)
@@ -21,6 +22,7 @@ describe "Official positions" do
       let!(:debate2) { create(:debate, author: user2) }
 
       scenario "Index" do
+        login_as(create(:user))
         visit debates_path
 
         expect_badge_for("debate", debate1)
@@ -28,6 +30,7 @@ describe "Official positions" do
       end
 
       scenario "Show" do
+        login_as(create(:user))
         visit debate_path(debate1)
         expect_badge_for("debate", debate1)
 
@@ -41,6 +44,7 @@ describe "Official positions" do
       let!(:proposal2) { create(:proposal, author: user2) }
 
       scenario "Index" do
+        login_as(create(:user))
         visit proposals_path
 
         expect_badge_for("proposal", proposal1)
@@ -48,6 +52,7 @@ describe "Official positions" do
       end
 
       scenario "Show" do
+        login_as(create(:user))
         visit proposal_path(proposal1)
         expect_badge_for("proposal", proposal1)
 
