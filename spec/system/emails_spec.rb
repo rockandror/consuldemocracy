@@ -249,53 +249,6 @@ describe "Emails" do
   end
 
   context "Proposal notification digest" do
-    scenario "notifications for proposals that I'm following" do
-      user = create(:user, email_digest: true)
-
-      proposal1 = create(:proposal, followers: [user])
-      proposal2 = create(:proposal, followers: [user])
-      proposal3 = create(:proposal)
-
-      reset_mailer
-
-      notification1 = create_proposal_notification(proposal1)
-      notification2 = create_proposal_notification(proposal2)
-
-      email_digest = EmailDigest.new(user)
-      email_digest.deliver(Time.current)
-      email_digest.mark_as_emailed
-
-      email = open_last_email
-      expect(email).to have_subject("Proposal notifications in CONSUL")
-      expect(email).to deliver_to(user.email)
-
-      expect(email).to have_body_text(proposal1.title)
-      expect(email).to have_body_text(notification1.notifiable.title)
-      expect(email).to have_body_text(notification1.notifiable.body)
-      expect(email).to have_body_text(proposal1.author.name)
-
-      expect(email).to have_body_text(/#{proposal_path(proposal1, anchor: "tab-notifications")}/)
-      expect(email).to have_body_text(/#{proposal_path(proposal1, anchor: "comments")}/)
-      expect(email).to have_body_text(/#{proposal_path(proposal1, anchor: "social-share")}/)
-
-      expect(email).to have_body_text(proposal2.title)
-      expect(email).to have_body_text(notification2.notifiable.title)
-      expect(email).to have_body_text(notification2.notifiable.body)
-      expect(email).to have_body_text(/#{proposal_path(proposal2, anchor: "tab-notifications")}/)
-      expect(email).to have_body_text(/#{proposal_path(proposal2, anchor: "comments")}/)
-      expect(email).to have_body_text(/#{proposal_path(proposal2, anchor: "social-share")}/)
-      expect(email).to have_body_text(proposal2.author.name)
-
-      expect(email).not_to have_body_text(proposal3.title)
-      expect(email).to have_body_text(/#{account_path}/)
-      expect(email).to have_body_text("Visit this proposal and unfollow it to stop receiving notifications.")
-
-      notification1.reload
-      notification2.reload
-      expect(notification1.emailed_at).to be
-      expect(notification2.emailed_at).to be
-    end
-
     scenario "notifications moderated are not sent" do
       user = create(:user, email_digest: true)
       notification = create(:notification, :for_proposal_notification)
