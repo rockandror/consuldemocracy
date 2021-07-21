@@ -22,6 +22,21 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     Rails.application.load_seed
+    Setting["org_name"] = "CONSUL"
+    Setting["url"] = "http://example.com"
+    Setting["proposal_code_prefix"] = "CONSUL"
+    Setting["max_votes_for_proposal_edit"] = 1000
+    Setting["feature.wordpress_login"] = false
+    Setting["feature.facebook_login"] = true
+    Setting["feature.google_login"] = true
+    Setting["feature.twitter_login"] = true
+    Setting["feature.signature_sheets"] = true
+    Setting["feature.community"] = true
+    Setting["votes_for_proposal_success"] = 10000
+    Setting["months_to_archive_proposals"] = 12
+    Setting["mailer_from_address"] = "noreply@consul.dev"
+    Setting["process.polls"] = true
+    Setting["process.budgets"] = true
   end
 
   config.before do |example|
