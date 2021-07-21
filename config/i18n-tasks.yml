@@ -216,6 +216,18 @@ ignore_unused:
   - landings.cambia_tu_ciudad.*
   - "seeds.settings.*"
   - "dashboard.polls.*.submit"
+  - "devise.*"
+  - "errors.messages.already_confirmed"
+  - "errors.messages.confirmation_period_expired"
+  - "errors.messages.equal_to_current_password"
+  - "errors.messages.expired"
+  - "errors.messages.not_found"
+  - "errors.messages.not_locked"
+  - "errors.messages.not_saved.*"
+  - "guides.*"
+  - "seeds.*"
+  - "settings.*"
+
 ####
 ## Exclude these keys from the `i18n-tasks eq-base" report:
 # ignore_eq_base:
