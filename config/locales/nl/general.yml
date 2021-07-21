@@ -347,13 +347,7 @@ nl:
     notice:
       retired: Voorstel teruggetrokken
     proposal:
-      created: 
-        title: "Je hebt een motie ingediend!"
-        motivation: "It is important to prepare the launch campaign for your proposal to be successful. The first few days are decisive."
-        motivation_2: "<strong>If you want recommendations to prepare the publishing leave your proposal as a draft and we will guide you.</strong>"
-        publish: No, I want to publish the proposal
-        dashboard: Yes, I want help and I'll publish later
-        preview_title: This is how your proposal will look when you publish it
+      created: "Je hebt een voorstel gedaan!"
       share:
         guide: "Nu kun je jouw voorstel gaan delen zodat mensen het kunnen gaan steunen."
         edit: "Voordat het gedeeld gaat worden, kun je de tekst nog wijzigen."
