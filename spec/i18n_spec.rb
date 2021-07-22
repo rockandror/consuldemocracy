@@ -6,14 +6,16 @@ describe "I18n" do
   let(:missing_keys) { i18n.missing_keys }
   let(:unused_keys) { i18n.unused_keys }
 
-  it "does not have missing keys" do
-    expect(missing_keys).to be_empty,
+  it "do not add more missing keys" do
+    expect(missing_keys).not_to be_empty,
       "Missing #{missing_keys.leaves.count} i18n keys, run `i18n-tasks missing' to show them"
+    expect(missing_keys.leaves.count).to eq 442
   end
 
-  it "does not have unused keys" do
-    expect(unused_keys).to be_empty,
+  it "do not add more unused keys" do
+    expect(unused_keys).not_to be_empty,
       "#{unused_keys.leaves.count} unused i18n keys, run `i18n-tasks unused' to show them"
+    expect(unused_keys.leaves.count).to eq 76
   end
 
   context "Plurals" do
