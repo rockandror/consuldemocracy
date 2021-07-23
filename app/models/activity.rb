@@ -2,7 +2,8 @@ class Activity < ApplicationRecord
   belongs_to :actionable, -> { with_hidden }, polymorphic: true
   belongs_to :user, -> { with_hidden }, inverse_of: :activities
 
-  VALID_ACTIONS = %w[hide block restore valuate email].freeze
+  VALID_ACTIONS = %w[hide block restore valuate email disable_voting enable_voting
+    remove_voting_review].freeze
 
   validates :action, inclusion: { in: VALID_ACTIONS }
 
