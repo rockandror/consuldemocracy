@@ -21,7 +21,7 @@ class Moderation::Voting::ProposalsController < Moderation::BaseController
     elsif params[:allow_voting_proposals].present?
       @proposals.each { |proposal| enable_voting(proposal) }
     end
-    redirect_with_query_params_to(action: :index)
+    redirect_with_query_params_to({ action: :index }, { notice: I18n.t("moderation.voting.proposals.notice_review") })
   end
 
   private

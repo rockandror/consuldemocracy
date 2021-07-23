@@ -107,6 +107,7 @@ describe "Voting proposals", :js do
           click_button "Allow vote proposals"
         end
 
+        expect(page).to have_content "Proposals have been reviewed"
         expect(page).not_to have_content "New proposal title"
 
         click_link "Marked as voting reviewed"
@@ -123,6 +124,7 @@ describe "Voting proposals", :js do
           click_button "Avoid vote proposals"
         end
 
+        expect(page).to have_content "Proposals have been reviewed"
         expect(page).not_to have_content "New proposal title"
 
         click_link "Marked as voting reviewed"
