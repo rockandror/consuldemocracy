@@ -40,4 +40,10 @@ namespace :moderation do
     put :hide, on: :member
     put :moderate, on: :collection
   end
+
+  namespace :voting do
+    resources :proposals, only: :index do
+      put :review, on: :collection
+    end
+  end
 end

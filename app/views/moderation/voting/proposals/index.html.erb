@@ -1,0 +1,45 @@
+<h2><%= t("moderation.voting.proposals.index.title") %></h2>
+
+<h3 class="inline-block"><%= page_entries_info @proposals %></h3>
+
+<%= form_tag review_moderation_voting_proposals_path(request.query_parameters), method: :put do %>
+  <p class="float-left js-check">
+    <%= t("shared.check") %>:
+    <%= link_to t("shared.check_all"), "#", data: { check_all: "proposal_ids[]" } %>
+    |
+    <%= link_to t("shared.check_none"), "#", data: { check_none: "proposal_ids[]" } %>
+  </p>
+
+  <table class="clear">
+    <thead>
+      <tr>
+        <th><%= t("moderation.voting.proposals.index.headers.proposal") %></th>
+        <th><%= t("moderation.voting.proposals.index.headers.review") %></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @proposals.each do |proposal| %>
+        <tr id="proposal_<%= proposal.id %>">
+          <td>
+            <%= link_to proposal.title, proposal, target: "_blank" %>
+            <br>
+            <span class="date"><%= l proposal.updated_at.to_date %></span>
+            <span class="bullet">&nbsp;&bull;&nbsp;</span>
+            <%= proposal.author.username %>
+            <br>
+            <div class="moderation-description">
+              <%= wysiwyg(proposal.description) %>
+            </div>
+          </td>
+          <td class="text-center">
+            <%= check_box_tag "proposal_ids[]", proposal.id, nil, id: "#{dom_id(proposal)}_check" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @proposals %>
+
+<% end %>

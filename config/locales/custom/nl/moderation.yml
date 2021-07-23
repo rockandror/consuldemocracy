@@ -50,6 +50,7 @@ nl:
       proposals: Voorstellen
       proposal_notifications: Notificaties
       users: Block users
+      voting_proposals: "Pending translation"
     proposals:
       index:
         block_authors: Auteurs blokkeren
@@ -115,3 +116,10 @@ nl:
         search_placeholder: email or name of user
         title: Blokkeer deelnemers
       notice_hide: De gebruiker is geblokkeerd. Debatten en reacties van deze gebruiker zijn verborgen.
+    voting:
+      proposals:
+        index:
+          headers:
+            proposal: "Pending translation"
+            review: "Pending translation"
+          title: "Pending translation"

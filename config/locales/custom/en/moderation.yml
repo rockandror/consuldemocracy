@@ -1,0 +1,11 @@
+en:
+  moderation:
+    menu:
+      voting_proposals: Moties review
+    voting:
+      proposals:
+        index:
+          headers:
+            proposal: Moties
+            review: Review
+          title: Moties review
