@@ -14,6 +14,9 @@ describe Activity do
     expect(build(:activity, action: "block")).to be_valid
     expect(build(:activity, action: "restore")).to be_valid
     expect(build(:activity, action: "email")).to be_valid
+    expect(build(:activity, action: "disable_voting")).to be_valid
+    expect(build(:activity, action: "enable_voting")).to be_valid
+    expect(build(:activity, action: "remove_voting_review")).to be_valid
     expect(build(:activity, action: "dissapear")).not_to be_valid
   end
 

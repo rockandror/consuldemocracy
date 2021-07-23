@@ -37,13 +37,16 @@ class Moderation::Voting::ProposalsController < Moderation::BaseController
 
     def disable_voting(proposal)
       proposal.update!(voting_enabled: false)
+      Activity.log(current_user, :disable_voting, proposal)
     end
 
     def enable_voting(proposal)
       proposal.update!(voting_enabled: true)
+      Activity.log(current_user, :enable_voting, proposal)
     end
 
     def remove_review(proposal)
       proposal.update!(voting_enabled: nil)
+      Activity.log(current_user, :remove_voting_review, proposal)
     end
 end
