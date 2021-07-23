@@ -10,6 +10,7 @@ FactoryBot.define do
     terms_of_service     { "1" }
     skip_map             { "1" }
     published_at         { Time.current }
+    enabled_voting       { true }
 
     association :author, factory: :user
 
