@@ -1,5 +1,7 @@
 <h2><%= t("moderation.voting.proposals.index.title") %></h2>
 
+<%= render "shared/filter_subnav", i18n_namespace: "moderation.voting.proposals.index" %>
+
 <h3 class="inline-block"><%= page_entries_info @proposals %></h3>
 
 <%= form_tag review_moderation_voting_proposals_path(request.query_parameters), method: :put do %>
@@ -39,6 +41,18 @@
       <% end %>
     </tbody>
   </table>
+
+  <div class="float-right">
+    <%= submit_tag t("moderation.voting.proposals.index.avoid_vote_proposals"),
+                   name: "avoid_voting_proposals",
+                   class: "button hollow alert",
+                   data: { confirm: t("moderation.voting.proposals.index.confirm") } %>
+
+    <%= submit_tag t("moderation.voting.proposals.index.allow_voting_proposals"),
+                   name: "allow_voting_proposals",
+                   class: "button hollow",
+                   data: { confirm: t("moderation.voting.proposals.index.confirm") } %>
+  </div>
 
   <%= paginate @proposals %>
 

@@ -1,6 +1,7 @@
 class Proposal < ApplicationRecord
   include Rails.application.routes.url_helpers
   include Flaggable
+  include Vottable
   include Taggable
   include Conflictable
   include Measurable

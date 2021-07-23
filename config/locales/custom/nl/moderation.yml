@@ -119,6 +119,14 @@ nl:
     voting:
       proposals:
         index:
+          allow_voting_proposals: "Pending translation"
+          avoid_vote_proposals: "Pending translation"
+          confirm: "Pending translation"
+          filter: "Pending translation"
+          filters:
+            all: "Pending translation"
+            pending_voting_review: "Pending translation"
+            with_voting_reviewed: "Pending translation"
           headers:
             proposal: "Pending translation"
             review: "Pending translation"

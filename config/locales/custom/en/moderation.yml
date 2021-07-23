@@ -5,6 +5,14 @@ en:
     voting:
       proposals:
         index:
+          allow_voting_proposals: Allow vote proposals
+          avoid_vote_proposals: Avoid vote proposals
+          confirm: Are you sure?
+          filter: Filter
+          filters:
+            all: All
+            pending_voting_review: Pending voting review
+            with_voting_reviewed: Marked as voting reviewed
           headers:
             proposal: Moties
             review: Review

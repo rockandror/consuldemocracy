@@ -35,6 +35,9 @@ module Abilities
       cannot :ignore_flag, Proposal, author_id: user.id
 
       can :review, Proposal
+      can :allow_voting, Proposal
+      can :avoid_voting, Proposal
+
       can :moderate, Proposal
 
       can :hide, Legislation::Proposal, hidden_at: nil
