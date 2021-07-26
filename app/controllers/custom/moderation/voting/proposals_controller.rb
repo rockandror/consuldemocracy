@@ -12,6 +12,17 @@ class Moderation::Voting::ProposalsController < Moderation::BaseController
     @proposals = @proposals.send(@current_filter).page(params[:page]).per(PER_PAGE).order(current_order)
   end
 
+  def review
+    @proposals = @proposals.where(id: params[:proposal_ids])
+    if params[:disable_voting].present?
+      @proposals.each { |proposal| disable_voting(proposal) }
+    elsif params[:enable_voting].present?
+      @proposals.each { |proposal| enable_voting(proposal) }
+    end
+    redirect_with_query_params_to({ action: :index },
+      { notice: I18n.t("moderation.voting.proposals.update_notice") })
+  end
+
   private
 
     def current_order
@@ -20,5 +31,13 @@ class Moderation::Voting::ProposalsController < Moderation::BaseController
       else
         { created_at: :asc }
       end
+    end
+
+    def disable_voting(proposal)
+      proposal.update!(voting_enabled: false)
+    end
+
+    def enable_voting(proposal)
+      proposal.update!(voting_enabled: true)
     end
 end

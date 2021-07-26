@@ -5,6 +5,8 @@ en:
     voting:
       proposals:
         index:
+          enable_voting: Enable voting
+          disable_voting: Disable voting
           filter: Filter
           filters:
             all: All
@@ -13,4 +15,6 @@ en:
             voting_pending: To review
           headers:
             proposal: Proposal
+            review: Moderate
           title: Proposals voting
+        update_notice: Proposals have been reviewed
