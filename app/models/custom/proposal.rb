@@ -5,4 +5,8 @@ class Proposal < ApplicationRecord
   translates :request, touch: true
 
   globalize_accessors
+
+  def in_review?
+    enabled_voting.nil?
+  end
 end

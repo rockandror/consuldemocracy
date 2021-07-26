@@ -8,3 +8,6 @@ en:
       request: "Proposal request:"
       description: "Proposal text:"
       summary: "Proposal summary:"
+  users:
+    proposals:
+      in_review: "In review"

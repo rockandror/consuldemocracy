@@ -677,6 +677,7 @@ nl:
       send_private_message: "Stuur privé bericht"
       delete_alert: "Weet je zeker dat je jouw investeringsproject wilt verwijderen? Dit kan niet ongedaan gemaakt worden."
     proposals:
+      in_review: "Pending translation"
       retired: "Teruggetrokken"
       draft: Concept
       published: Gepubliceerd 
