@@ -1,0 +1,32 @@
+<h2><%= t("moderation.voting.proposals.index.title") %></h2>
+
+<%= render "shared/filter_subnav", i18n_namespace: "moderation.voting.proposals.index" %>
+
+<h3 class="inline-block"><%= page_entries_info @proposals %></h3>
+
+  <table class="clear proposals">
+    <thead>
+      <tr>
+        <th><%= t("moderation.voting.proposals.index.headers.proposal") %></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @proposals.each do |proposal| %>
+        <tr id="proposal_<%= proposal.id %>">
+          <td>
+            <%= link_to proposal.title, proposal, target: "_blank" %>
+            <br>
+            <span class="date"><%= l proposal.updated_at.to_date %></span>
+            <span class="bullet">&nbsp;&bull;&nbsp;</span>
+            <%= proposal.author.username %>
+            <br>
+            <div class="moderation-description">
+              <%= wysiwyg(proposal.description) %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @proposals %>
