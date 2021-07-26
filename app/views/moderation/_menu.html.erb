@@ -4,7 +4,14 @@
   </li>
 
   <% if feature?(:proposals) %>
-    <li <%= "class=is-active" if controller_name == "proposals" %>>
+    <li <%= "class=is-active" if controller.class.parent == Moderation::Voting %>>
+      <%= link_to moderation_voting_proposals_path do %>
+        <span class="icon-proposals"></span>
+        <%= t("moderation.menu.voting_proposals") %>
+      <% end %>
+    </li>
+
+    <li <%= "class=is-active" if controller.class.parent == Moderation && controller_name == "proposals" %>>
       <%= link_to moderation_proposals_path do %>
         <span class="icon-proposals"></span>
         <%= t("moderation.menu.proposals") %>

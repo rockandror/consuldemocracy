@@ -1,0 +1,16 @@
+en:
+  moderation:
+    menu:
+      voting_proposals: Proposals voting
+    voting:
+      proposals:
+        index:
+          filter: Filter
+          filters:
+            all: All
+            voting_enabled: In voting
+            voting_disabled: Blocked
+            voting_pending: To review
+          headers:
+            proposal: Proposal
+          title: Proposals voting
