@@ -42,6 +42,8 @@ namespace :moderation do
   end
 
   namespace :voting do
-    resources :proposals, only: :index
+    resources :proposals, only: :index do
+      put :review, on: :collection
+    end
   end
 end

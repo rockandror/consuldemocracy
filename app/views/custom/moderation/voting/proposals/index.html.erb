@@ -4,10 +4,19 @@
 
 <h3 class="inline-block"><%= page_entries_info @proposals %></h3>
 
+<%= form_tag review_moderation_voting_proposals_path(request.query_parameters), method: :put do %>
+  <p class="js-check">
+    <%= t("shared.check") %>:
+    <%= link_to t("shared.check_all"), "#", data: { check_all: "proposal_ids[]" } %>
+    |
+    <%= link_to t("shared.check_none"), "#", data: { check_none: "proposal_ids[]" } %>
+  </p>
+
   <table class="clear proposals">
     <thead>
       <tr>
         <th><%= t("moderation.voting.proposals.index.headers.proposal") %></th>
+        <th class="text-center"><%= t("moderation.voting.proposals.index.headers.review") %></th>
       </tr>
     </thead>
 
@@ -25,8 +34,24 @@
               <%= wysiwyg(proposal.description) %>
             </div>
           </td>
+          <td class="text-center">
+            <%= check_box_tag "proposal_ids[]", proposal.id, nil, id: "#{dom_id(proposal)}_check" %>
+          </td>
         </tr>
       <% end %>
     </tbody>
   </table>
+
+  <div class="float-right">
+    <%= submit_tag t("moderation.voting.proposals.index.disable_voting"),
+                   name: "disable_voting",
+                   class: "button hollow alert",
+                   data: { confirm: t("admin.actions.confirm") } %>
+    <%= submit_tag t("moderation.voting.proposals.index.enable_voting"),
+                   name: "enable_voting",
+                   class: "button hollow",
+                   data: { confirm: t("admin.actions.confirm") } %>
+  </div>
+
   <%= paginate @proposals %>
+<% end %>

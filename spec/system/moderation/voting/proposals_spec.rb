@@ -121,5 +121,59 @@ describe "Proposals voting", :js do
         expect("Recent proposal").to appear_before("Old proposal")
       end
     end
+
+    describe "review voting in bulk" do
+      scenario "allows to select all/none proposals" do
+        create_list(:proposal, 2)
+
+        visit moderation_voting_proposals_path
+
+        within(".js-check") { click_on "All" }
+
+        expect(all("input[type=checkbox]")).to all(be_checked)
+
+        within(".js-check") { click_on "None" }
+
+        all("input[type=checkbox]").each do |checkbox|
+          expect(checkbox).not_to be_checked
+        end
+      end
+
+      scenario "allow to enable proposal voting" do
+        proposal = create(:proposal, voting_enabled: nil, title: "New proposal title")
+        visit moderation_voting_proposals_path
+
+        expect(page).to have_content "New proposal title"
+        check "proposal_#{proposal.id}_check"
+        accept_confirm "Are you sure?" do
+          click_button "Enable voting"
+        end
+
+        expect(page).to have_content "Proposals have been reviewed"
+        expect(page).not_to have_content "New proposal title"
+
+        click_link "In voting"
+
+        expect(page).to have_content "New proposal title"
+      end
+
+      scenario "allows to disable proposal voting" do
+        proposal = create(:proposal, voting_enabled: nil, title: "New proposal title")
+        visit moderation_voting_proposals_path
+
+        expect(page).to have_content "New proposal title"
+        check "proposal_#{proposal.id}_check"
+        accept_confirm "Are you sure?" do
+          click_button "Disable voting"
+        end
+
+        expect(page).to have_content "Proposals have been reviewed"
+        expect(page).not_to have_content "New proposal title"
+
+        click_link "Blocked"
+
+        expect(page).to have_content "New proposal title"
+      end
+    end
   end
 end
