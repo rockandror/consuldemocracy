@@ -135,6 +135,54 @@ describe "Users" do
     end
   end
 
+  describe "Render status in the proposal section of the user show page" do
+    let(:user) { create(:user) }
+
+    scenario "when a proposal is retired" do
+      retired = create(:proposal, :retired, author: user)
+
+      visit user_path(user)
+
+      within "#proposal_#{retired.id}" do
+        expect(page).to have_css(".label.alert")
+        expect(page).to have_content("Retired proposal")
+      end
+    end
+
+    scenario "when a proposal is in draft" do
+      draft = create(:proposal, :draft, author: user)
+
+      visit user_path(user)
+
+      within "#proposal_#{draft.id}" do
+        expect(page).to have_css(".label.info")
+        expect(page).to have_content("Draft")
+      end
+    end
+
+    scenario "when a proposal is published" do
+      published = create(:proposal, :published, author: user)
+
+      visit user_path(user)
+
+      within "#proposal_#{published.id}" do
+        expect(page).to have_css(".label.success")
+        expect(page).to have_content("Published")
+      end
+    end
+
+    scenario "when a proposal is voting in review" do
+      in_review = create(:proposal, author: user, voting_enabled: nil)
+
+      visit user_path(user)
+
+      within "#proposal_#{in_review.id}" do
+        expect(page).to have_css(".label.warning")
+        expect(page).to have_content("Voting in review")
+      end
+    end
+  end
+
   describe "Public activity" do
     let(:user) { create(:user) }
 
