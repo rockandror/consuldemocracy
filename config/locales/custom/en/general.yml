@@ -12,3 +12,7 @@ en:
     proposals:
       voting_disabled: "Voting disabled"
       voting_in_review: "Voting in review"
+  votes:
+    proposals:
+      voting_disabled: "Voting was disabled for this proposal by moderators."
+      voting_review_pending: "Voting is disabled until the moderators review this proposal."
