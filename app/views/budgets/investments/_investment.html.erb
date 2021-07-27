@@ -6,7 +6,7 @@
 
       <div class="small-12 medium-3 large-2 column text-center">
         <div data-equalizer-watch>
-          <%= image_tag investment.image_url(:thumb),
+          <%= image_tag investment.image.variant(:thumb),
                         alt: investment.image.title.unicode_normalize %>
         </div>
       </div>
