@@ -18,6 +18,8 @@ class Moderation::Voting::ProposalsController < Moderation::BaseController
       @proposals.each { |proposal| disable_voting(proposal) }
     elsif params[:enable_voting].present?
       @proposals.each { |proposal| enable_voting(proposal) }
+    elsif params[:remove_review].present?
+      @proposals.each { |proposal| remove_review(proposal) }
     end
     redirect_with_query_params_to({ action: :index },
       { notice: I18n.t("moderation.voting.proposals.update_notice") })
@@ -39,5 +41,9 @@ class Moderation::Voting::ProposalsController < Moderation::BaseController
 
     def enable_voting(proposal)
       proposal.update!(voting_enabled: true)
+    end
+
+    def remove_review(proposal)
+      proposal.update!(voting_enabled: nil)
     end
 end

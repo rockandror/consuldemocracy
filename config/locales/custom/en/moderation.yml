@@ -16,5 +16,6 @@ en:
           headers:
             proposal: Proposal
             review: Moderate
+          remove_review: Remove review
           title: Proposals voting
         update_notice: Proposals have been reviewed
