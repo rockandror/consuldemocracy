@@ -678,6 +678,7 @@ nl:
       delete_alert: "Weet je zeker dat je jouw investeringsproject wilt verwijderen? Dit kan niet ongedaan gemaakt worden."
     proposals:
       voting_disabled: "Steunen gedeactiveerd"
+      voting_in_review: "Pending translation: voting_in_review"
       retired: "Teruggetrokken"
       draft: Concept
       published: Gepubliceerd
