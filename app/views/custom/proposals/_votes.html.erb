@@ -33,6 +33,18 @@
         </p>
       </div>
     </div>
+  <% elsif user_signed_in? && proposal.voting_in_review? %>
+    <div class="participation-not-allowed" style="display:none" aria-hidden="false">
+      <p>
+        <%= t("votes.proposals.voting_review_pending") %>
+      </p>
+    </div>
+  <% elsif user_signed_in? && proposal.voting_disabled? %>
+    <div class="participation-not-allowed" style="display:none" aria-hidden="false">
+      <p>
+        <%= t("votes.proposals.voting_disabled") %>
+      </p>
+    </div>
   <% elsif !user_signed_in? %>
     <div tabindex="0">
       <%= render "shared/login_to_vote" %>

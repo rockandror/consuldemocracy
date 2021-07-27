@@ -769,3 +769,7 @@ nl:
       alt: "Selecteer de tekst waarop u wilt reageren en klik de knop met het potlood. * Wijzigen: exacte zin en/of woordgroep of schrappen exacte zin/woordgroep of aanvullen exact aanvullen vanaf waar. * Toelichting: zeer korte toelichting op reden van voorstel tot amenderen"
       text: Om te reageren moet je %{sign_in} of %{sign_up}. Selecteer daarna de tekst waarop u wilt reageren en druk op de knop met het potlood.
       title: Hoe kan ik dit document amenderen?
+  votes:
+    proposals:
+      voting_disabled: "Pending translation"
+      voting_review_pending: "Pending translation"
