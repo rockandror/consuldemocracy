@@ -174,6 +174,25 @@ describe "Proposals voting", :js do
 
         expect(page).to have_content "New proposal title"
       end
+
+      scenario "allows to remove proposals reviews" do
+        proposal = create(:proposal, voting_enabled: true, title: "New proposal title")
+        visit moderation_voting_proposals_path(filter: "voting_enabled")
+
+        expect(page).to have_content "New proposal title"
+
+        check "proposal_#{proposal.id}_check"
+        accept_confirm "Are you sure?" do
+          click_button "Remove review"
+        end
+
+        expect(page).to have_content "Proposals have been reviewed"
+        expect(page).not_to have_content "New proposal title"
+
+        click_link "To review"
+
+        expect(page).to have_content "New proposal title"
+      end
     end
   end
 end

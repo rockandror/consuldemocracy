@@ -130,5 +130,6 @@ nl:
           headers:
             proposal: "Pending translation"
             review: "Pending translation"
+          remove_review: "Pending translation"
           title: "Pending translation"
         update_notice: "Pending translation"
