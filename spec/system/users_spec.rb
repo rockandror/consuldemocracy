@@ -182,6 +182,17 @@ describe "Users" do
         expect(page).to have_content("In review")
       end
     end
+
+    scenario "when a proposal is disabled for voting" do
+      in_review = create(:proposal, author: user, enabled_voting: false)
+
+      visit user_path(user)
+
+      within "#proposal_#{in_review.id}" do
+        expect(page).to have_css(".label.alert")
+        expect(page).to have_content("Voting disabled")
+      end
+    end
   end
 
   describe "Public activity" do

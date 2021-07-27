@@ -11,3 +11,4 @@ en:
   users:
     proposals:
       in_review: "In review"
+      voting_disabled: "Voting disabled"
