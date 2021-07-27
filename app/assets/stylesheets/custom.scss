@@ -143,7 +143,11 @@
 
 .bluebox-container {
   margin: 30px auto;
+  a {
+    text-decoration: none !important;
+  }
   .bluebox {
+    text-decoration: none;
     background-color: $secondary;
     font-size: rem-calc(22);
     font-weight: 700;
@@ -152,8 +156,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    span > a {
-      text-decoration: none;
+    span {
       color: white;
     }
   }
