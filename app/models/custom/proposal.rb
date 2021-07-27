@@ -13,4 +13,8 @@ class Proposal < ApplicationRecord
   def voting_in_review?
     voting_enabled.nil?
   end
+
+  def voting_disabled?
+    voting_enabled == false
+  end
 end

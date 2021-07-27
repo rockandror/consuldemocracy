@@ -10,4 +10,5 @@ en:
       summary: "Proposal summary:"
   users:
     proposals:
+      voting_disabled: "Voting disabled"
       voting_in_review: "Voting in review"
