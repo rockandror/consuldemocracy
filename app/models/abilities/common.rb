@@ -85,7 +85,9 @@ module Abilities
       end
 
       if user.level_two_or_three_verified?
-        can :vote, Proposal, &:published?
+        can :vote, Proposal do |proposal|
+          proposal.published? && proposal.voting_enabled?
+        end
         can :vote_featured, Proposal
 
         can :vote, Legislation::Proposal

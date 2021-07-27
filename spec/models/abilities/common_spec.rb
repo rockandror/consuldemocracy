@@ -14,6 +14,8 @@ describe Abilities::Common do
   let(:own_debate)   { create(:debate,   author: user) }
   let(:own_comment)  { create(:comment,  author: user) }
   let(:own_proposal) { create(:proposal, author: user) }
+  let(:voting_disabled_proposal) { create(:proposal, voting_enabled: false) }
+  let(:voting_review_pending_proposal) { create(:proposal, voting_enabled: nil) }
 
   let(:annotation)         { create(:legislation_annotation) }
   let(:annotation_comment) { create(:comment, commentable: annotation) }
@@ -200,6 +202,8 @@ describe Abilities::Common do
     describe "Proposal" do
       it { should be_able_to(:vote, Proposal) }
       it { should be_able_to(:vote_featured, Proposal) }
+      it { should_not be_able_to(:vote, voting_disabled_proposal) }
+      it { should_not be_able_to(:vote, voting_review_pending_proposal) }
     end
 
     describe "Direct Message" do
