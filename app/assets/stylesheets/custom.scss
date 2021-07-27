@@ -636,3 +636,7 @@ table {
 [type="submit"][name="enable_voting"] {
   @include button-hollow-style($color-success);
 }
+
+[type="submit"][name="remove_review"] {
+  @include button-hollow-style($color-warning);
+}

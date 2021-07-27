@@ -43,6 +43,12 @@
   </table>
 
   <div class="float-right">
+    <% if @current_filter != "voting_pending" %>
+      <%= submit_tag t("moderation.voting.proposals.index.remove_review"),
+                     name: "remove_review",
+                     class: "button hollow",
+                     data: { confirm: t("admin.actions.confirm") } %>
+    <% end %>
     <%= submit_tag t("moderation.voting.proposals.index.disable_voting"),
                    name: "disable_voting",
                    class: "button hollow alert",

@@ -174,6 +174,35 @@ describe "Proposals voting", :js do
 
         expect(page).to have_content "New proposal title"
       end
+
+      scenario "allows to remove proposals reviews" do
+        proposal = create(:proposal, voting_enabled: true, title: "New proposal title")
+        visit moderation_voting_proposals_path(filter: "voting_enabled")
+
+        expect(page).to have_content "New proposal title"
+
+        check "proposal_#{proposal.id}_check"
+        accept_confirm "Are you sure?" do
+          click_button "Remove review"
+        end
+
+        expect(page).to have_content "Proposals have been reviewed"
+        expect(page).not_to have_content "New proposal title"
+
+        click_link "To review"
+
+        expect(page).to have_content "New proposal title"
+      end
+
+      scenario "Do not render remove review button when filter is voting_pending" do
+        visit moderation_voting_proposals_path(filter: "voting_pending")
+
+        expect(page).not_to have_button "Remove review"
+
+        click_link "In voting"
+
+        expect(page).to have_button "Remove review"
+      end
     end
   end
 end
