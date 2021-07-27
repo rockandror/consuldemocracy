@@ -360,4 +360,52 @@ describe "Votes" do
       expect_message_only_verified_can_vote_proposals
     end
   end
+
+  scenario "Anonymous user trying to vote pending to review proposals", :js do
+    Setting["feature.user.skip_verification"] = true
+    user = create(:user)
+    proposal = create(:proposal, voting_enabled: nil)
+
+    login_as(user)
+    visit proposals_path
+
+    within("#proposal_#{proposal.id}") do
+      find("div.supports").hover
+
+      expect(page).to have_content "Voting is disabled until the moderators review."
+      expect(page).to have_selector(".in-favor", visible: false)
+    end
+
+    visit proposal_path(proposal)
+    within("#proposal_#{proposal.id}") do
+      find("div.supports").hover
+
+      expect(page).to have_content "Voting is disabled until the moderators review."
+      expect(page).to have_selector(".in-favor", visible: false)
+    end
+  end
+
+  scenario "Anonymous user trying to vote disabled proposals", :js do
+    Setting["feature.user.skip_verification"] = true
+    user = create(:user)
+    proposal = create(:proposal, voting_enabled: false)
+
+    login_as(user)
+    visit proposals_path
+
+    within("#proposal_#{proposal.id}") do
+      find("div.supports").hover
+
+      expect(page).to have_content "Voting was disabled for this proposal by moderators."
+      expect(page).to have_selector(".in-favor", visible: false)
+    end
+
+    visit proposal_path(proposal)
+    within("#proposal_#{proposal.id}") do
+      find("div.supports").hover
+
+      expect(page).to have_content "Voting was disabled for this proposal by moderators."
+      expect(page).to have_selector(".in-favor", visible: false)
+    end
+  end
 end
