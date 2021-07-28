@@ -1,6 +1,8 @@
 <li id="<%= list_item_id %>">
   <%= investment_title %>
-  <%= investment_price %>
+  <% if budget.show_money? %>
+    <%= investment_price %>
+  <% end %>
 
   <% if budget.balloting? %>
     <%= link_to delete_path,
