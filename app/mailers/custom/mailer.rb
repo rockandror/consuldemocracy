@@ -21,4 +21,14 @@ class Mailer < ApplicationMailer
       mail(to: @email_to, subject: t("mailers.proposal.voting_enabled.subject"))
     end
   end
+
+  def voting_disabled(proposal)
+    @proposal = proposal
+    @email_to = @proposal.author.email
+    @author = @proposal.author
+
+    with_user(@author) do
+      mail(to: @email_to, subject: t("mailers.proposal.voting_disabled.subject"))
+    end
+  end
 end

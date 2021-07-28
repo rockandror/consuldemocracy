@@ -1,6 +1,12 @@
 en:
   mailers:
     proposal:
+      voting_disabled:
+        subject: "Your proposal has been reviewed without success."
+        title: "Your proposal has been reviewed without success."
+        intro: "Hi <strong>%{author}</strong>,"
+        information: "We would like to inform you that your proposal has been reviewed and has not passed the moderators' approval. The proposal has been marked as 'Disabled voting'."
+        sincerely: "Sincerely,"
       voting_enabled:
         subject: "Your proposal has been successfully reviewed!"
         title: "Your proposal has been successfully reviewed!"
