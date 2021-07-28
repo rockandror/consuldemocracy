@@ -13,7 +13,7 @@ describe "System Emails" do
       %w[proposal_notification_digest budget_investment_created budget_investment_selected
          budget_investment_unfeasible budget_investment_unselected comment reply
          direct_message_for_receiver direct_message_for_sender email_verification user_invite
-         evaluation_comment]
+         evaluation_comment voting_review voting_enabled voting_disabled remove_voting_review]
     end
 
     context "System emails" do
@@ -257,6 +257,42 @@ describe "System Emails" do
 
       expect(page).to have_link "Cleaner city",
         href: admin_budget_budget_investment_url(investment.budget, investment, anchor: "comments")
+    end
+
+    scenario "#remove_voting_review" do
+      create(:proposal, author: user)
+
+      visit admin_system_email_view_path("remove_voting_review")
+
+      expect(page).to have_content "Your proposal has been marked again as pending review."
+      expect(page).to have_content "John Doe"
+    end
+
+    scenario "#voting_disabled" do
+      create(:proposal, author: user)
+
+      visit admin_system_email_view_path("voting_disabled")
+
+      expect(page).to have_content "Your proposal has been reviewed without success."
+      expect(page).to have_content "John Doe"
+    end
+
+    scenario "#voting_enabled" do
+      create(:proposal, author: user)
+
+      visit admin_system_email_view_path("voting_enabled")
+
+      expect(page).to have_content "Your proposal has been successfully reviewed!"
+      expect(page).to have_content "John Doe"
+    end
+
+    scenario "#voting_review" do
+      create(:proposal, author: user)
+
+      visit admin_system_email_view_path("voting_review")
+
+      expect(page).to have_content "Thank you for creating a proposal!"
+      expect(page).to have_content "John Doe"
     end
   end
 
