@@ -74,7 +74,6 @@ describe "Tags", :pvda_access do
     click_button "Create proposal"
 
     expect(page).to have_content "Proposal created successfully."
-    click_link "No, I want to publish the proposal"
     click_link "Not now, go to my proposal"
 
     expect(page).to have_content "Economía"
@@ -99,7 +98,6 @@ describe "Tags", :pvda_access do
     click_button "Create proposal"
 
     expect(page).to have_content "Proposal created successfully."
-    click_link "No, I want to publish the proposal"
     click_link "Not now, go to my proposal"
 
     within "#tags_proposal_#{Proposal.last.id}" do
@@ -142,7 +140,6 @@ describe "Tags", :pvda_access do
     click_button "Create proposal"
 
     expect(page).to have_content "Proposal created successfully."
-    click_link "No, I want to publish the proposal"
     click_link "Not now, go to my proposal"
 
     expect(page).to have_content "user_id1"
