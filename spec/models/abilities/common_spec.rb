@@ -75,6 +75,8 @@ describe Abilities::Common do
   it { should be_able_to(:vote, comment) }
   it { should be_able_to(:vote, annotation_comment) }
   it { should_not be_able_to(:vote, annotation_reply) }
+  it { should_not be_able_to(:create, Comment.new(commentable: voting_disabled_proposal)) }
+  it { should_not be_able_to(:create, Comment.new(commentable: voting_review_pending_proposal)) }
 
   it { should     be_able_to(:index, Proposal) }
   it { should     be_able_to(:show, proposal) }

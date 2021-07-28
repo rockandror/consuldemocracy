@@ -6,6 +6,8 @@ class Abilities::Common
   def initialize(user)
     consul_initialize(user)
 
+    cannot :create, Comment, commentable_type: "Proposal", commentable: { voting_enabled: [nil, false] }
+
     cannot :vote, Comment do |comment|
       comment.commentable.is_a?(Legislation::Annotation) && comment.parent.present?
     end
