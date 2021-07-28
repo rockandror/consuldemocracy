@@ -6,8 +6,9 @@ class ProposalsController
   def create
     @proposal = Proposal.new(proposal_params.merge(author: current_user))
     if @proposal.save
+      @proposal.publish
       Mailer.voting_review(@proposal).deliver_later
-      redirect_to created_proposal_path(@proposal), notice: I18n.t("flash.actions.create.proposal")
+      redirect_to share_proposal_path(@proposal), notice: I18n.t("flash.actions.create.proposal")
     else
       render :new
     end
