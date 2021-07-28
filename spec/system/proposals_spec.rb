@@ -363,10 +363,8 @@ describe "Proposals", :pvda_access do
     expect(page).to have_content "Proposal created successfully."
     expect(page).to have_content "Help refugees"
     expect(page).not_to have_content "You can also see more information about improving your campaign"
-
-    click_link "No, I want to publish the proposal"
-
     expect(page).to have_content "Improve your campaign and get more support"
+
     click_link "Not now, go to my proposal"
 
     expect(page).to have_content "Help refugees"
@@ -435,7 +433,7 @@ describe "Proposals", :pvda_access do
     click_button "Create proposal"
 
     expect(page).to have_content "Proposal created successfully."
-    click_link "No, I want to publish the proposal"
+
     click_link "Not now, go to my proposal"
 
     expect(Proposal.last.responsible_name).to eq("Isabel Garcia")
@@ -455,7 +453,6 @@ describe "Proposals", :pvda_access do
 
     click_button "Create proposal"
     expect(page).to have_content "Proposal created successfully."
-    click_link "No, I want to publish the proposal"
     click_link "Not now, go to my proposal"
 
     expect(Proposal.last.responsible_name).to eq(author.document_number)
@@ -485,7 +482,6 @@ describe "Proposals", :pvda_access do
     click_button "Create proposal"
 
     expect(page).to have_content "Proposal created successfully."
-    click_link "No, I want to publish the proposal"
     click_link "Not now, go to my proposal"
 
     expect(page).to have_content "Testing an attack"
@@ -508,7 +504,6 @@ describe "Proposals", :pvda_access do
     click_button "Create proposal"
 
     expect(page).to have_content "Proposal created successfully."
-    click_link "No, I want to publish the proposal"
     click_link "Not now, go to my proposal"
 
     expect(page).to have_content "Testing auto link"
@@ -530,7 +525,6 @@ describe "Proposals", :pvda_access do
     click_button "Create proposal"
 
     expect(page).to have_content "Proposal created successfully."
-    click_link "No, I want to publish the proposal"
     click_link "Not now, go to my proposal"
 
     expect(page).to have_content "Testing auto link"
@@ -562,7 +556,6 @@ describe "Proposals", :pvda_access do
       click_button "Create proposal"
 
       expect(page).to have_content "Proposal created successfully."
-      click_link "No, I want to publish the proposal"
       click_link "Not now, go to my proposal"
 
       within "#geozone" do
@@ -588,7 +581,6 @@ describe "Proposals", :pvda_access do
       click_button "Create proposal"
 
       expect(page).to have_content "Proposal created successfully."
-      click_link "No, I want to publish the proposal"
       click_link "Not now, go to my proposal"
 
       within "#geozone" do
