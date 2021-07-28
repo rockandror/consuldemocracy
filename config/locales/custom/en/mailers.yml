@@ -1,6 +1,12 @@
 en:
   mailers:
     proposal:
+      voting_enabled:
+        subject: "Your proposal has been successfully reviewed!"
+        title: "Your proposal has been successfully reviewed!"
+        intro: "Hi <strong>%{author}</strong>,"
+        information: "We would like to inform you that your proposal has been reviewed and you can now start collecting votes."
+        sincerely: "Sincerely,"
       voting_review:
         subject: "Thank you for creating a proposal!"
         title: "Thank you for creating a proposal!"

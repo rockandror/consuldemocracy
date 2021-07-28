@@ -219,5 +219,20 @@ describe "Proposals voting", :js do
       expect(ActionMailer::Base.deliveries.first.to).to eq(["new_email@user.com"])
       expect(ActionMailer::Base.deliveries.first.subject).to eq("Thank you for creating a proposal!")
     end
+
+    scenario "send 'voting enabled' email when voting enabled for proposal" do
+      proposal = create(:proposal, voting_enabled: nil)
+      visit moderation_voting_proposals_path
+
+      check "proposal_#{proposal.id}_check"
+      accept_confirm "Are you sure?" do
+        click_button "Enable voting"
+      end
+      expect(page).to have_content "Proposals have been reviewed"
+
+      expect(ActionMailer::Base.deliveries.count).to eq(1)
+      expect(ActionMailer::Base.deliveries.first.to).to eq([proposal.author.email])
+      expect(ActionMailer::Base.deliveries.first.subject).to eq("Your proposal has been successfully reviewed!")
+    end
   end
 end

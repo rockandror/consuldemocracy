@@ -42,5 +42,15 @@ describe Mailer do
       expect(email).to have_body_text("We would like to inform you that your proposal is pending review")
       expect(email).to have_body_text("New proposal title")
     end
+
+    it "#voting_enabled" do
+      Mailer.voting_enabled(proposal).deliver_now
+
+      email = open_last_email
+
+      expect(email).to deliver_to(author)
+      expect(email).to have_subject("Your proposal has been successfully reviewed!")
+      expect(email).to have_body_text("proposal has been reviewed and you can now start collecting votes")
+    end
   end
 end

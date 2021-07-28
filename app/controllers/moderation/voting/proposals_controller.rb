@@ -42,6 +42,7 @@ class Moderation::Voting::ProposalsController < Moderation::BaseController
 
     def enable_voting(proposal)
       proposal.update!(voting_enabled: true)
+      Mailer.voting_enabled(proposal).deliver_later
       Activity.log(current_user, :enable_voting, proposal)
     end
 
