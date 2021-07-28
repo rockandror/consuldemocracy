@@ -14,7 +14,11 @@ class Admin::SystemEmailsController < Admin::BaseController
       direct_message_for_sender:    %w[view edit_info],
       email_verification:           %w[view edit_info],
       user_invite:                  %w[view edit_info],
-      evaluation_comment:           %w[view edit_info]
+      evaluation_comment:           %w[view edit_info],
+      remove_voting_review:         %w[view edit_info],
+      voting_disabled:              %w[view edit_info],
+      voting_enabled:               %w[view edit_info],
+      voting_review:                %w[view edit_info]
     }
   end
 
@@ -36,6 +40,14 @@ class Admin::SystemEmailsController < Admin::BaseController
       @subject = t("mailers.user_invite.subject", org_name: Setting["org_name"])
     when "evaluation_comment"
       load_sample_valuation_comment
+    when "remove_voting_review"
+      load_sample_remove_voting_review
+    when "voting_disabled"
+      load_sample_voting_disabled
+    when "voting_enabled"
+      load_sample_voting_enabled
+    when "voting_review"
+      load_sample_voting_review
     end
   end
 
@@ -130,5 +142,45 @@ class Admin::SystemEmailsController < Admin::BaseController
     def unsent_proposal_notifications_ids
       Notification.where(notifiable_type: "ProposalNotification", emailed_at: nil)
                   .group(:notifiable_id).count.keys
+    end
+
+    def load_sample_remove_voting_review
+      if Proposal.any?
+        @proposal = Proposal.last
+        @subject = t("mailers.proposal.#{@system_email}.subject")
+        @author = @proposal.author
+      else
+        redirect_to admin_system_emails_path, alert: t("admin.system_emails.alert.no_proposals")
+      end
+    end
+
+    def load_sample_voting_disabled
+      if Proposal.any?
+        @proposal = Proposal.last
+        @subject = t("mailers.proposal.#{@system_email}.subject")
+        @author = @proposal.author
+      else
+        redirect_to admin_system_emails_path, alert: t("admin.system_emails.alert.no_proposals")
+      end
+    end
+
+    def load_sample_voting_enabled
+      if Proposal.any?
+        @proposal = Proposal.last
+        @subject = t("mailers.proposal.#{@system_email}.subject")
+        @author = @proposal.author
+      else
+        redirect_to admin_system_emails_path, alert: t("admin.system_emails.alert.no_proposals")
+      end
+    end
+
+    def load_sample_voting_review
+      if Proposal.any?
+        @proposal = Proposal.last
+        @subject = t("mailers.proposal.#{@system_email}.subject")
+        @author = @proposal.author
+      else
+        redirect_to admin_system_emails_path, alert: t("admin.system_emails.alert.no_proposals")
+      end
     end
 end

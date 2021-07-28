@@ -1,0 +1,17 @@
+en:
+  admin:
+    system_emails:
+      remove_voting_review:
+        title: "Restore default proposal voting value"
+        description: "Sent when a moderator mark as pending review a proposal"
+      voting_disabled:
+        title: "Proposal voting value is marked as disabled"
+        description: "Sent when a moderator mark as disabled voting a proposal"
+      voting_enabled:
+        title: "Proposal voting value is marked as enabled"
+        description: "Sent when a moderator mark as enabled voting a proposal"
+      voting_review:
+        title: "Proposal created with pending review as default"
+        description: "Sent when a user creates a proposal."
+      alert:
+        no_proposals: "There aren't any proposal created. Some example data is needed in order to preview the email."
