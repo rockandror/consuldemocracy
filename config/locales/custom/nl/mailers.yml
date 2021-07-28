@@ -19,6 +19,12 @@ nl:
       subject: Iemand heeft gereageerd op je reactie
       title: Nieuwe reactie op je reactie
     proposal:
+      voting_enabled:
+        subject: "Pending translation"
+        title: "Pending translation"
+        intro: "Pending translation"
+        information: "Pending translation"
+        sincerely: "Pending translation"
       voting_review:
         subject: "Pending translation"
         title: "Pending translation"
