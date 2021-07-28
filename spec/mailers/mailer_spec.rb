@@ -52,5 +52,15 @@ describe Mailer do
       expect(email).to have_subject("Your proposal has been successfully reviewed!")
       expect(email).to have_body_text("proposal has been reviewed and you can now start collecting votes")
     end
+
+    it "#voting_disabled" do
+      Mailer.voting_disabled(proposal).deliver_now
+
+      email = open_last_email
+
+      expect(email).to deliver_to(author)
+      expect(email).to have_subject("Your proposal has been reviewed without success.")
+      expect(email).to have_body_text("has been reviewed and has not passed the moderators' approval")
+    end
   end
 end

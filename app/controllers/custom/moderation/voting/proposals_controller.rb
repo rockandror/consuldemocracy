@@ -37,6 +37,7 @@ class Moderation::Voting::ProposalsController < Moderation::BaseController
 
     def disable_voting(proposal)
       proposal.update!(voting_enabled: false)
+      Mailer.voting_disabled(proposal).deliver_later
       Activity.log(current_user, :disable_voting, proposal)
     end
 
