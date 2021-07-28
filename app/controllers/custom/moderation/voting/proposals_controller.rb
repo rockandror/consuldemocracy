@@ -49,6 +49,7 @@ class Moderation::Voting::ProposalsController < Moderation::BaseController
 
     def remove_review(proposal)
       proposal.update!(voting_enabled: nil)
+      Mailer.remove_voting_review(proposal).deliver_later
       Activity.log(current_user, :remove_voting_review, proposal)
     end
 end
