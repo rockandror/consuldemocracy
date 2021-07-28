@@ -249,5 +249,21 @@ describe "Proposals voting", :js do
       expect(ActionMailer::Base.deliveries.first.to).to eq([proposal.author.email])
       expect(ActionMailer::Base.deliveries.first.subject).to eq("Your proposal has been reviewed without success.")
     end
+
+    scenario "send 'remove voting review' email when restore default proposal voting status" do
+      proposal = create(:proposal, voting_enabled: true)
+      visit moderation_voting_proposals_path
+      click_link "In voting"
+
+      check "proposal_#{proposal.id}_check"
+      accept_confirm "Are you sure?" do
+        click_button "Remove review"
+      end
+      expect(page).to have_content "Proposals have been reviewed"
+
+      expect(ActionMailer::Base.deliveries.count).to eq(1)
+      expect(ActionMailer::Base.deliveries.first.to).to eq([proposal.author.email])
+      expect(ActionMailer::Base.deliveries.first.subject).to eq("Your proposal has been marked again as pending review.")
+    end
   end
 end

@@ -1,6 +1,12 @@
 en:
   mailers:
     proposal:
+      remove_voting_review:
+        subject: "Your proposal has been marked again as pending review."
+        title: "Your proposal has been marked again as pending review."
+        intro: "Hi <strong>%{author}</strong>,"
+        information: "We would like to inform you that your proposal is again pending review.  As soon as it is reviewed you will receive an email to start collecting votes."
+        sincerely: "Sincerely,"
       voting_disabled:
         subject: "Your proposal has been reviewed without success."
         title: "Your proposal has been reviewed without success."
