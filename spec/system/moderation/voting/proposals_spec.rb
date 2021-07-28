@@ -205,4 +205,29 @@ describe "Proposals voting", :js do
       end
     end
   end
+
+  describe "voting review mailers" do
+    before do
+      ActionMailer::Base.deliveries.clear
+    end
+
+    scenario "send 'voting review' email after create proposal" do
+      login_as(create(:user, email: "new_email@user.com"))
+      visit new_proposal_path
+
+      fill_in "Proposal title", with: "Help refugees"
+      fill_in "Proposal details", with: "Madrid (Spain) - 12/12/2022"
+      fill_in_ckeditor "Proposal summary", with: "In summary, what we want is..."
+      fill_in_ckeditor "Proposal text", with: "This is very important because..."
+      fill_in "proposal_responsible_name", with: "Isabel Garcia"
+      check "proposal_terms_of_service"
+
+      click_button "Create proposal"
+      expect(page).to have_content "Proposal created successfully."
+
+      expect(ActionMailer::Base.deliveries.count).to eq(1)
+      expect(ActionMailer::Base.deliveries.first.to).to eq(["new_email@user.com"])
+      expect(ActionMailer::Base.deliveries.first.subject).to eq("Thank you for creating a proposal!")
+    end
+  end
 end

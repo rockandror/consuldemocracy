@@ -23,4 +23,24 @@ describe Mailer do
       expect(email).to deliver_from "New organization <new@consul.dev>"
     end
   end
+
+  describe "moderation voting proposal" do
+    let(:author) { create(:user) }
+    let(:proposal) { create(:proposal, author: author, title: "New proposal title") }
+
+    before do
+      ActionMailer::Base.deliveries.clear
+    end
+
+    it "#voting_review" do
+      Mailer.voting_review(proposal).deliver_now
+
+      email = open_last_email
+
+      expect(email).to deliver_to(author)
+      expect(email).to have_subject("Thank you for creating a proposal!")
+      expect(email).to have_body_text("We would like to inform you that your proposal is pending review")
+      expect(email).to have_body_text("New proposal title")
+    end
+  end
 end
