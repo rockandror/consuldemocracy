@@ -62,5 +62,15 @@ describe Mailer do
       expect(email).to have_subject("Your proposal has been reviewed without success.")
       expect(email).to have_body_text("has been reviewed and has not passed the moderators' approval")
     end
+
+    it "#remove_voting_review" do
+      Mailer.remove_voting_review(proposal).deliver_now
+
+      email = open_last_email
+
+      expect(email).to deliver_to(author)
+      expect(email).to have_subject("Your proposal has been marked again as pending review.")
+      expect(email).to have_body_text("to inform you that your proposal is again pending review")
+    end
   end
 end

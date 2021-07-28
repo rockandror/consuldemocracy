@@ -30,4 +30,14 @@ class Mailer
       mail(to: @email_to, subject: t("mailers.proposal.voting_disabled.subject"))
     end
   end
+
+  def remove_voting_review(proposal)
+    @proposal = proposal
+    @email_to = @proposal.author.email
+    @author = @proposal.author
+
+    with_user(@author) do
+      mail(to: @email_to, subject: t("mailers.proposal.remove_voting_review.subject"))
+    end
+  end
 end
