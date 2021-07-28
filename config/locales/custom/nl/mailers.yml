@@ -18,6 +18,14 @@ nl:
       new_reply_by_html: Er is een reactie van <b>%{commenter}</b> op je reactie op
       subject: Iemand heeft gereageerd op je reactie
       title: Nieuwe reactie op je reactie
+    proposal:
+      voting_review:
+        subject: "Pending translation"
+        title: "Pending translation"
+        intro: "Pending translation"
+        text: "Pending translation"
+        information: "Pending translation"
+        sincerely: "Pending translation"
     proposal_notification_digest:
       info: "Dit zijn de nieuwe meldingen die zijn gepubliceerd door auteurs van de voorstellen die u hebt ondersteund in %{org_name}."
       title: "Voorstelmeldingen in %{org_name}"
