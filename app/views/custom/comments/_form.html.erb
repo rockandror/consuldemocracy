@@ -19,14 +19,16 @@
         <div class="float-right">
           <%= f.check_box :as_moderator,
             label: t("comments.form.comment_as_moderator"),
-            id: "comment-as-moderator-#{css_id}" %>
+            id: "comment-as-moderator-#{css_id}",
+            checked: cannot?(:create, Comment.new(commentable: commentable)) && can?(:comment_as_moderator, Comment.new(commentable: commentable)) %>
         </div>
       <% end %>
       <% if can? :comment_as_administrator, commentable %>
         <div class="float-right">
           <%= f.check_box :as_administrator,
             label: t("comments.form.comment_as_admin"),
-            id: "comment-as-administrator-#{css_id}" %>
+            id: "comment-as-administrator-#{css_id}",
+            checked: cannot?(:create, Comment.new(commentable: commentable)) && can?(:comment_as_administrator, Comment.new(commentable: commentable)) %>
         </div>
       <% end %>
 

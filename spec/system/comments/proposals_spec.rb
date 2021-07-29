@@ -444,6 +444,12 @@ describe "Commenting proposals", :pvda_access do
           expect(page).to have_css "img.moderator-avatar"
         end
       end
+
+      scenario "comment_as_moderator is checked by default" do
+        visit proposal_path(proposal)
+
+        expect(find("#comment-as-moderator-proposal_#{proposal.id}")).to be_checked
+      end
     end
 
     describe "when the proposal voting is disabled", :js do
@@ -478,6 +484,12 @@ describe "Commenting proposals", :pvda_access do
           expect(page).to have_css "div.is-moderator"
           expect(page).to have_css "img.moderator-avatar"
         end
+      end
+
+      scenario "comment_as_moderator is checked by default" do
+        visit proposal_path(proposal)
+
+        expect(find("#comment-as-moderator-proposal_#{proposal.id}")).to be_checked
       end
     end
   end
@@ -570,6 +582,12 @@ describe "Commenting proposals", :pvda_access do
           expect(page).to have_css "img.admin-avatar"
         end
       end
+
+      scenario "comment_as_administrator is checked by default" do
+        visit proposal_path(proposal)
+
+        expect(find("#comment-as-administrator-proposal_#{proposal.id}")).to be_checked
+      end
     end
 
     describe "when the proposal voting is disabled", :js do
@@ -604,6 +622,12 @@ describe "Commenting proposals", :pvda_access do
           expect(page).to have_css "div.is-admin"
           expect(page).to have_css "img.admin-avatar"
         end
+      end
+
+      scenario "comment_as_administrator is checked by default" do
+        visit proposal_path(proposal)
+
+        expect(find("#comment-as-administrator-proposal_#{proposal.id}")).to be_checked
       end
     end
   end
