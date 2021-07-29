@@ -3,8 +3,18 @@
     <div id="comments" class="small-12 column">
       <%= render "shared/wide_order_selector", i18n_namespace: "comments" %>
 
-      <% if user_signed_in? %>
+      <% if user_signed_in? && can_add_comments?(@proposal) %>
         <%= render "comments/form", { commentable: @proposal, parent_id: nil } %>
+      <% elsif user_signed_in? && @proposal.voting_enabled.nil? %>
+        <br>
+        <div data-alert class="callout primary">
+          <%= sanitize(t("proposals.comments.pending_to_review_proposal")) %>
+        </div>
+      <% elsif user_signed_in? && @proposal.voting_enabled == false %>
+        <br>
+        <div data-alert class="callout primary">
+          <%= sanitize(t("proposals.comments.disabled_proposal")) %>
+        </div>
       <% else %>
         <br>
         <%= render "shared/login_to_comment" %>

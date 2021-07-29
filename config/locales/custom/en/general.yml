@@ -3,6 +3,9 @@ en:
     finish_signup:
       username_warning: "Please fill in your first name and/or your last name"
   proposals:
+    comments:
+      pending_to_review_proposal: "Comments are blocked until voting the proposal is approved."
+      disabled_proposal: "Comments are blocked because the proposal was disabled for voting."
     show:
       details: "Proposal details:"
       request: "Proposal request:"

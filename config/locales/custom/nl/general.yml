@@ -290,6 +290,9 @@ nl:
       publish: Nu publiceren
       dashboard: Concept bewerken
       preview_title: Zo ziet je motie eruit als je hem publiceerd
+    comments:
+      pending_to_review_proposal: "Pending translation"
+      disabled_proposal: "Pending translation"
     share:
       message: "Ik heb de motie %{title} in %{handle} gesteund. Steun ook!"
     edit:

@@ -209,6 +209,21 @@ describe "Commenting proposals", :pvda_access do
     end
   end
 
+  scenario "Is not possible when the proposal voting is disabled or pending", :js do
+    login_as(user)
+    proposal.update!(voting_enabled: nil)
+    visit proposal_path(proposal)
+
+    expect(page).to have_content "Comments are blocked until voting the proposal is approved."
+    expect(page).not_to have_content "Leave your comment"
+
+    proposal.update!(voting_enabled: false)
+    visit proposal_path(proposal)
+
+    expect(page).to have_content "Comments are blocked because the proposal was disabled for voting."
+    expect(page).not_to have_content "Leave your comment"
+  end
+
   scenario "Errors on create", :js do
     login_as(user)
     visit proposal_path(proposal)
@@ -238,6 +253,34 @@ describe "Commenting proposals", :pvda_access do
     end
 
     expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}", visible: true)
+  end
+
+  scenario "can not reply to a comment when the proposal voting is disabled", :js do
+    citizen = create(:user, username: "Ana")
+    manuela = create(:user, username: "Manuela")
+    comment = create(:comment, commentable: proposal, user: citizen)
+    proposal.update!(voting_enabled: false)
+
+    login_as(manuela)
+    visit proposal_path(proposal)
+
+    within "#comment_#{comment.id}" do
+      expect(page).not_to have_link "Reply"
+    end
+  end
+
+  scenario "can not reply to a comment when the proposal voting review is pending", :js do
+    citizen = create(:user, username: "Ana")
+    manuela = create(:user, username: "Manuela")
+    comment = create(:comment, commentable: proposal, user: citizen)
+    proposal.update!(voting_enabled: nil)
+
+    login_as(manuela)
+    visit proposal_path(proposal)
+
+    within "#comment_#{comment.id}" do
+      expect(page).not_to have_link "Reply"
+    end
   end
 
   scenario "Reply update parent comment responses count", :js do
@@ -364,6 +407,32 @@ describe "Commenting proposals", :pvda_access do
 
       expect(page).not_to have_content "Comment as administrator"
     end
+
+    describe "when the proposal voting is disabled or pending to review", :js do
+      scenario "can not create comment" do
+        moderator = create(:moderator)
+        login_as(moderator.user)
+        proposal.update!(voting_enabled: nil)
+        visit proposal_path(proposal)
+
+        fill_in "Leave your comment", with: "I am moderating!"
+        uncheck "comment-as-moderator-proposal_#{proposal.id}"
+        click_button "Publish comment"
+
+        expect(page).to have_current_path(root_path)
+        expect(page).to have_content "You do not have permission to carry out the action 'create' on comment"
+
+        proposal.update!(voting_enabled: false)
+        visit proposal_path(proposal)
+
+        fill_in "Leave your comment", with: "I am moderating!"
+        uncheck "comment-as-moderator-proposal_#{proposal.id}"
+        click_button "Publish comment"
+
+        expect(page).to have_current_path(root_path)
+        expect(page).to have_content "You do not have permission to carry out the action 'create' on comment"
+      end
+    end
   end
 
   describe "Administrators" do
@@ -419,6 +488,32 @@ describe "Commenting proposals", :pvda_access do
       visit proposal_path(proposal)
 
       expect(page).not_to have_content "Comment as moderator"
+    end
+
+    describe "when the proposal voting is disabled or pending to review", :js do
+      scenario "can not create comment" do
+        administrator = create(:administrator)
+        login_as(administrator.user)
+        proposal.update!(voting_enabled: nil)
+        visit proposal_path(proposal)
+
+        fill_in "Leave your comment", with: "I am administrating!"
+        uncheck "comment-as-administrator-proposal_#{proposal.id}"
+        click_button "Publish comment"
+
+        expect(page).to have_current_path(root_path)
+        expect(page).to have_content "You do not have permission to carry out the action 'create' on comment"
+
+        proposal.update!(voting_enabled: false)
+        visit proposal_path(proposal)
+
+        fill_in "Leave your comment", with: "I am moderating!"
+        uncheck "comment-as-administrator-proposal_#{proposal.id}"
+        click_button "Publish comment"
+
+        expect(page).to have_current_path(root_path)
+        expect(page).to have_content "You do not have permission to carry out the action 'create' on comment"
+      end
     end
   end
 
