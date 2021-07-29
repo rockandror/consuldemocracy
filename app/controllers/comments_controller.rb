@@ -5,10 +5,13 @@ class CommentsController < ApplicationController
   before_action :verify_comments_open!, only: [:create, :vote]
   before_action :build_comment, only: :create
 
-  load_and_authorize_resource
+  load_and_authorize_resource except: :create
+  load_resource only: :create
+
   respond_to :html, :js
 
   def create
+    authorize_comment_creation!
     if @comment.save
       CommentNotifier.new(comment: @comment).process
       add_notification @comment
@@ -48,6 +51,16 @@ class CommentsController < ApplicationController
 
   private
 
+    def authorize_comment_creation!
+      if commenting_as_moderator?
+        authorize! :comment_as_moderator, @commentable
+      elsif commenting_as_administrator?
+        authorize! :comment_as_administrator, @commentable
+      else
+        authorize! :create, Comment.new(commentable: @commentable)
+      end
+    end
+
     def comment_params
       params.require(:comment).permit(:commentable_type, :commentable_id, :parent_id,
                                       :body, :as_moderator, :as_administrator, :valuation)
@@ -74,13 +87,19 @@ class CommentsController < ApplicationController
     end
 
     def administrator_comment?
-      ["1", true].include?(comment_params[:as_administrator]) &&
-        can?(:comment_as_administrator, @commentable)
+      commenting_as_administrator? && can?(:comment_as_administrator, @commentable)
     end
 
     def moderator_comment?
-      ["1", true].include?(comment_params[:as_moderator]) &&
-        can?(:comment_as_moderator, @commentable)
+      commenting_as_moderator? && can?(:comment_as_moderator, @commentable)
+    end
+
+    def commenting_as_administrator?
+      ["1", true].include?(comment_params[:as_administrator])
+    end
+
+    def commenting_as_moderator?
+      ["1", true].include?(comment_params[:as_moderator])
     end
 
     def add_notification(comment)
