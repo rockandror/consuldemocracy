@@ -364,6 +364,25 @@ describe "Commenting proposals", :pvda_access do
 
       expect(page).not_to have_content "Comment as administrator"
     end
+
+    scenario "can comment as moderator on proposals pending review", :js do
+      proposal = create(:proposal, voting_enabled: nil)
+      moderator = create(:moderator)
+
+      login_as(moderator.user)
+      visit proposal_path(proposal)
+
+      fill_in "Leave your comment", with: "I am moderating!"
+      check "comment-as-moderator-proposal_#{proposal.id}"
+      click_button "Publish comment"
+
+      within "#comments" do
+        expect(page).to have_content "I am moderating!"
+        expect(page).to have_content "Moderator ##{moderator.id}"
+        expect(page).to have_css "div.is-moderator"
+        expect(page).to have_css "img.moderator-avatar"
+      end
+    end
   end
 
   describe "Administrators" do
@@ -419,6 +438,25 @@ describe "Commenting proposals", :pvda_access do
       visit proposal_path(proposal)
 
       expect(page).not_to have_content "Comment as moderator"
+    end
+
+    scenario "can comment as administrator on proposals pending review", :js do
+      proposal = create(:proposal, voting_enabled: nil)
+      admin = create(:administrator)
+
+      login_as(admin.user)
+      visit proposal_path(proposal)
+
+      fill_in "Leave your comment", with: "I am your Admin!"
+      check "comment-as-administrator-proposal_#{proposal.id}"
+      click_button "Publish comment"
+
+      within "#comments" do
+        expect(page).to have_content "I am your Admin!"
+        expect(page).to have_content "Administrator ##{admin.id}"
+        expect(page).to have_css "div.is-admin"
+        expect(page).to have_css "img.admin-avatar"
+      end
     end
   end
 
