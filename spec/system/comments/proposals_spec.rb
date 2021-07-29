@@ -432,6 +432,24 @@ describe "Commenting proposals", :pvda_access do
         expect(page).to have_current_path(root_path)
         expect(page).to have_content "You do not have permission to carry out the action 'create' on comment"
       end
+
+      scenario "comment_as_moderator is checked by default" do
+        moderator = create(:moderator)
+        login_as(moderator.user)
+        visit proposal_path(proposal)
+
+        expect(find("#comment-as-moderator-proposal_#{proposal.id}")).not_to be_checked
+
+        proposal.update!(voting_enabled: nil)
+        visit proposal_path(proposal)
+
+        expect(find("#comment-as-moderator-proposal_#{proposal.id}")).to be_checked
+
+        proposal.update!(voting_enabled: false)
+        visit proposal_path(proposal)
+
+        expect(find("#comment-as-moderator-proposal_#{proposal.id}")).to be_checked
+      end
     end
   end
 
@@ -513,6 +531,24 @@ describe "Commenting proposals", :pvda_access do
 
         expect(page).to have_current_path(root_path)
         expect(page).to have_content "You do not have permission to carry out the action 'create' on comment"
+      end
+
+      scenario "comment_as_administrator is checked by default" do
+        administrator = create(:administrator)
+        login_as(administrator.user)
+        visit proposal_path(proposal)
+
+        expect(find("#comment-as-administrator-proposal_#{proposal.id}")).not_to be_checked
+
+        proposal.update!(voting_enabled: nil)
+        visit proposal_path(proposal)
+
+        expect(find("#comment-as-administrator-proposal_#{proposal.id}")).to be_checked
+
+        proposal.update!(voting_enabled: false)
+        visit proposal_path(proposal)
+
+        expect(find("#comment-as-administrator-proposal_#{proposal.id}")).to be_checked
       end
     end
   end
