@@ -22,6 +22,9 @@ describe Abilities::Moderator do
   let(:hidden_comment) { create(:comment, :hidden) }
   let(:hidden_proposal) { create(:proposal, :hidden) }
 
+  let(:voting_disabled_proposal) { create(:proposal, voting_enabled: false) }
+  let(:voting_review_pending_proposal) { create(:proposal, voting_enabled: nil) }
+
   it { should be_able_to(:index, Debate) }
   it { should be_able_to(:show, debate) }
   it { should be_able_to(:vote, debate) }
@@ -104,6 +107,8 @@ describe Abilities::Moderator do
 
     it { should be_able_to(:comment_as_moderator, debate) }
     it { should be_able_to(:comment_as_moderator, proposal) }
+    it { should be_able_to(:comment_as_moderator, voting_review_pending_proposal) }
+    it { should be_able_to(:comment_as_moderator, voting_disabled_proposal) }
     it { should be_able_to(:comment_as_moderator, legislation_question) }
     it { should_not be_able_to(:comment_as_administrator, debate) }
     it { should_not be_able_to(:comment_as_administrator, proposal) }
