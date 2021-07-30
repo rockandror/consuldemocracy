@@ -50,7 +50,7 @@ nl:
       proposals: Voorstellen
       proposal_notifications: Notificaties
       users: Block users
-      voting_proposals: "Steunen"
+      voting_proposals: "Moties instemming"
     proposals:
       index:
         block_authors: Auteurs blokkeren
@@ -58,7 +58,7 @@ nl:
         filter: Filter
         filters:
           all: All
-          pending_flag_review: Pending review
+          pending_flag_review: In review
           with_ignored_flag: Markeer als gelezen
         headers:
           moderate: Modereer
@@ -119,17 +119,17 @@ nl:
     voting:
       proposals:
         index:
-          enable_voting: "steun activeren"
-          disable_voting: "steun deactiveren"
+          enable_voting: "Activeer steunen"
+          disable_voting: "Deactiveer steunen"
           filter: "Filter"
-          filters: Filters
-            all: "Ter beoordeling"
-            voting_enabled: "steun geactiveerd"
-            voting_disabled: "steun gedeactiveerd"
-            voting_pending: "in afwachting"
+          filters:
+            all: "Alle"
+            voting_enabled: "Steunen geactiveerd"
+            voting_disabled: "Steunen gedeactiveerd"
+            voting_pending: "In afwachting van evaluatie"
           headers:
             proposal: "Motie"
-            review: "Ter beoordeling"
-          remove_review: "Beoordeeld"
-          title: "Titel"
-        update_notice: "Update notificatie"
+            review: "In afwachting van evaluatie"
+          remove_review: "Evaluatie status opheffen"
+          title: "Review"
+        update_notice: "Update"
