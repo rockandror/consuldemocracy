@@ -50,7 +50,7 @@ nl:
       proposals: Voorstellen
       proposal_notifications: Notificaties
       users: Block users
-      voting_proposals: "Pending translation"
+      voting_proposals: "Steunen"
     proposals:
       index:
         block_authors: Auteurs blokkeren
@@ -119,17 +119,17 @@ nl:
     voting:
       proposals:
         index:
-          enable_voting: "Pending translation"
-          disable_voting: "Pending translation"
-          filter: "Pending translation"
+          enable_voting: "steun activeren"
+          disable_voting: "steun deactiveren"
+          filter: "Filter"
           filters:
-            all: "Pending translation"
-            voting_enabled: "Pending translation"
-            voting_disabled: "Pending translation"
-            voting_pending: "Pending translation"
+            all: "Ter beoordeling"
+            voting_enabled: "steun geactiveerd"
+            voting_disabled: "steun gedeactiveerd"
+            voting_pending: "in afwachting"
           headers:
-            proposal: "Pending translation"
-            review: "Pending translation"
-          remove_review: "Pending translation"
-          title: "Pending translation"
-        update_notice: "Pending translation"
+            proposal: "Motie"
+            review: "Ter beoordeling"
+          remove_review: "Beoordeeld"
+          title: "Titel"
+        update_notice: "Update notificatie"
