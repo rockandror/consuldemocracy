@@ -1,11 +1,5 @@
-class Legislation::BaseController < ApplicationController
-  include FeatureFlags
+require_dependency Rails.root.join("app", "controllers", "legislation", "base_controller").to_s
 
+class Legislation::BaseController
   before_action :authenticate_user!
-
-  feature_flag :legislation
-
-  def legislation_proposal_votes(proposals)
-    @legislation_proposal_votes = current_user ? current_user.legislation_proposal_votes(proposals) : {}
-  end
 end
