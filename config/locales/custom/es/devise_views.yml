@@ -1,0 +1,15 @@
+es:
+  devise_views:
+    users:
+      registrations:
+        new:
+          terms: >
+            Al registrarte aceptas las %{terms}
+            <br>
+            Responsable del tratamiento: Excelentísimo Cabildo Insular de Tenerife (ECIT)
+            <br>
+            Finalidad: Gestionar el registro en la plataforma web de participación ciudadana.
+            <br>
+            Derechos: Puede ejercitar los derechos de Acceso, Rectificación, Portabilidad, Limitación del tratamiento, Supresión o, en su caso, Oposición, conforme se indica en la Política de Privacidad.
+          terms_link: condiciones de uso
+          terms_title: Al registrarte aceptas las condiciones de uso
