@@ -74,6 +74,7 @@
       text-align: center;
       border-left: 2px solid white;
       border-right: 2px solid white;
+      text-decoration: none !important;
 
       h1 {
         height: 100%;
@@ -83,6 +84,8 @@
         align-items: center;
         text-align: center;
         font-size: medium;
+        color: white !important;
+
       }
     }
     &-number {
@@ -257,6 +260,27 @@
     :hover {
       background-color: $brand;
       color: white;
+    }
+  }
+}
+.boxlist {
+  ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    list-style: none;
+    margin-left: 0px !important;
+    li {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      margin: 1%;
+      width: 33.3%-2%;
+      border: 3px solid $secondary;
+      padding: 30px 10px;
+      font-size: rem-calc(18);
+      text-overflow: ellipsis;
     }
   }
 }

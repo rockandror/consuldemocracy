@@ -3,10 +3,10 @@
     <%= render "shared/remote_translations_button", remote_translations: @remote_translations %>
   <% end %>
 
-  <div class="top-links">
+  <div class="top-links hide-for-small-only">
     <div class="row">
       <%= render "shared/locale_switcher" %>
-      <div class="hide-for-small-only">
+      <div>
         <%= render "shared/top_links" %>
       </div>
     </div>
@@ -22,14 +22,14 @@
 
 
       <div class="left-section">
-        <%= link_to root_path, accesskey: "0" do %>
+        <%= link_to "https://www.tenerife.es/", target: "_blank", accesskey: "0" do %>
           <%= image_tag(image_path_for("logo-cabildo-tenerife.png"), class: "float-left", alt: setting["org_name"]) %>
         <% end %>
-        <div class="hide-for-small-only top-bar-title">
+        <%= link_to root_path, accesskey: "0", class: "hide-for-small-only top-bar-title" do %>
           <h1>
             <%= setting["org_name"] %>
           </h1>
-        </div>
+        <% end %>
 
         <div class="hide-for-small-only left-section-number">
           <%= t("application.support_title") %><br>
@@ -52,11 +52,11 @@
 
 
       <div class="hide-for-small-only middle-section">
-        <%= link_to "https://www.tenerife.es/", accesskey: "0" do %>
+        <%= link_to "https://www.tenerife.es/", target: "_blank", accesskey: "0" do %>
          <%= t("application.subtitle1") %>
         <% end %>
         |
-        <%= link_to "https://sede.tenerife.es/es/", accesskey: "0" do %>
+        <%= link_to "https://sede.tenerife.es/es/", target: "_blank", accesskey: "0" do %>
           <%= t("application.subtitle2") %>
          <% end %>
       </div>
@@ -64,26 +64,26 @@
         <div class="top-bar-right">
           <ul class="menu">
             <li>
-            <%= link_to "https://www.facebook.com/CabildoTenerife", accesskey: "0" do %>
+            <%= link_to "https://www.facebook.com/CabildoTenerife", target: "_blank", accesskey: "0" do %>
               <span>
               <%= icon('fab', 'facebook-f') %>
               </span>
               <% end %>
             </li>
             <li>
-            <%= link_to "https://twitter.com/CabildoTenerife", accesskey: "0" do %>
+            <%= link_to "https://twitter.com/CabildoTenerife", target: "_blank", accesskey: "0" do %>
             <span>
               <%= icon('fab', 'twitter') %>
               </span>
               <% end %>
             </li>
             <li>
-            <%= link_to "https://www.youtube.com/channel/UCSnQFzldpaeR5D7zTOp3pRA?view_as=subscriber", accesskey: "0" do %>
+            <%= link_to "https://www.youtube.com/channel/UCSnQFzldpaeR5D7zTOp3pRA?view_as=subscriber", target: "_blank", accesskey: "0" do %>
               <span><%= icon('fab', 'youtube') %></span>
               <% end %>
             </li>
             <li>
-            <%= link_to "https://www.instagram.com/cabildotenerife/?hl=es", accesskey: "0" do %>
+            <%= link_to "https://www.instagram.com/cabildotenerife/?hl=es", target: "_blank", accesskey: "0" do %>
               <span><%= icon('fab', 'instagram') %></span>
               <% end %>
             </li>

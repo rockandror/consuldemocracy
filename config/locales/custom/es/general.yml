@@ -28,6 +28,7 @@ es:
   application:
     close: Cerrar
     menu: Menú
+    home: Inicio
     subtitle1: "wwww.tenerife.es"
     subtitle2: Sede Electrónica
     support_title: Atención Ciudadana
