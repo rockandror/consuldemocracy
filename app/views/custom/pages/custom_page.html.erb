@@ -8,13 +8,59 @@
       <h1><%= @custom_page.title %></h1>
       <% if @custom_page.is_news %>
         <small>
+        <%= link_to root_path do %>
+          <span><%= t("pages.breadcrumbs.root") %></span>
+        <% end %>
+        >
+        <%= link_to "#" do %>
+          <span><%= t("pages.breadcrumbs.entity") %></span>
+        <% end %>
+        >
         <%= link_to news_path do %>
-          <span><%= t("news.title") %></span>
+          <span><%= t("pages.breadcrumbs.news") %></span>
         <% end %>
          >
         <%= link_to @custom_page.slug do %>
           <span><%= @custom_page.title %></span>
         <% end %>
+        </small>
+      <% elsif @custom_page.slug.start_with?('_cabildo_') %>
+        <small>
+          <%= link_to root_path do %>
+            <span><%= t("pages.breadcrumbs.root") %></span>
+          <% end %>
+          >
+          <%= link_to "#" do %>
+            <span><%= t("pages.breadcrumbs.entity") %></span>
+          <% end %>
+          >
+          <%= link_to @custom_page.slug do %>
+            <span><%= @custom_page.title %></span>
+          <% end %>
+        </small>
+      <% elsif @custom_page.slug.start_with?('_participacion_') %>
+        <small>
+          <%= link_to root_path do %>
+            <span><%= t("pages.breadcrumbs.root") %></span>
+          <% end %>
+          >
+          <%= link_to "#" do %>
+            <span><%= t("pages.breadcrumbs.participation") %></span>
+          <% end %>
+          >
+          <%= link_to @custom_page.slug do %>
+            <span><%= @custom_page.title %></span>
+          <% end %>
+        </small>
+      <% else %>
+        <small>
+          <%= link_to root_path do %>
+            <span><%= t("pages.breadcrumbs.root") %></span>
+          <% end %>
+          >
+          <%= link_to @custom_page.slug do %>
+            <span><%= @custom_page.title %></span>
+          <% end %>
         </small>
       <% end %>
       <br><br>

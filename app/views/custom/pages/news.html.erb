@@ -4,6 +4,20 @@
   <div class="row margin-top">
     <div class="small-12 medium-9 column">
         <h1><%= t("news.title") %></h1>
+        <small>
+          <%= link_to root_path do %>
+            <span><%= t("pages.breadcrumbs.root") %></span>
+          <% end %>
+          >
+          <%= link_to "#" do %>
+            <span><%= t("pages.breadcrumbs.entity") %></span>
+          <% end %>
+          >
+          <%= link_to "#" do %>
+            <span><%= t("pages.breadcrumbs.news") %></span>
+          <% end %>
+        </small>
+        <br><br>
     </div>
   </div>
 </div>
