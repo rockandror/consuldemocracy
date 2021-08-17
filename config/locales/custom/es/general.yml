@@ -28,7 +28,8 @@ es:
   application:
     close: Cerrar
     menu: Menú
-    subtitle: "wwww.tenerife.es | Sede Electrónica"
+    subtitle1: "wwww.tenerife.es"
+    subtitle2: Sede Electrónica
     support_title: Atención Ciudadana
     support_number: 922 239 500
     search: Buscar
