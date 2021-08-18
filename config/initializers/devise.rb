@@ -261,9 +261,9 @@ Devise.setup do |config|
                     first_name: ["first_name", "firstname", "firstName"],
                     last_name: ["last_name", "lastname", "lastName"]
                   },
-                  issuer: Rails.application.secrets.saml_issuer,
+                  sp_entity_id: Rails.application.secrets.saml_sp_entity_id,
                   idp_cert: Rails.application.secrets.saml_idp_cert,
-                  idp_sso_target_url: Rails.application.secrets.saml_idp_sso_target_url,
+                  idp_sso_service_url: Rails.application.secrets.saml_idp_sso_service_url,
                   name_identifier_format: Rails.application.secrets.saml_name_identifier_format
 
   # ==> Warden configuration
