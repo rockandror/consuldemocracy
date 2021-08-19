@@ -1,0 +1,4 @@
+es:
+  mailers:
+    contact:
+      intro: "El usuario %{name} con dirección de correo %{email} ha enviado el siguiente mensaje:"

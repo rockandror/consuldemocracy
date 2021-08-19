@@ -8,12 +8,16 @@ class ContactController < ApplicationController
   end
 
   def create
-    Mailer.contact(contact_params[:username], contact_params[:email], contact_params[:subject], contact_params[:email_body]).deliver_later
+    Mailer.contact(contact_params[:subject], build_intro, contact_params[:email_body]).deliver_later
     redirect_to root_path, notice: t("contact.success")
   end
 
   private
   def contact_params
     params.permit(:username, :email, :subject, :email_body)
+  end
+
+  def build_intro
+    intro = t("mailers.contact.intro", name: contact_params[:username], email: contact_params[:email], message: contact_params[:email_body])
   end
 end
