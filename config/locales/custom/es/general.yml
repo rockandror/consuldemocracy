@@ -1015,3 +1015,12 @@ es:
         other: "%{count} etiquetas más"
   news:
     title: "Noticias"
+  contact:
+    title: "Contacto"
+    username: Nombre *
+    email: Email *
+    subject: Asunto *
+    subject_hint: Máx. 30 caracteres
+    email_body: Mensaje *
+    submit: Enviar
+    success: Mensaje enviado correctamente

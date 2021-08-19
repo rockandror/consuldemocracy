@@ -127,6 +127,15 @@ class Mailer < ApplicationMailer
     mail(to: @email_to.email, subject: @email.subject) if @email.can_be_sent?
   end
 
+  def contact(name, from, subject, body)
+    subject_with_name = name + ' | ' + subject
+    mail(
+        to: Rails.application.secrets.contact_email,
+        from: from,
+        body: body,
+        content_type: "text/html",
+        subject: subject_with_name)
+  end
   private
 
     def with_user(user)

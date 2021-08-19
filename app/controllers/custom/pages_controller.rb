@@ -5,7 +5,6 @@ class PagesController < ApplicationController
   feature_flag :help_page, if: lambda { params[:id] == "help/index" }
 
   def show
-    puts params[:id]
     @custom_page = SiteCustomization::Page.published.find_by(slug: params[:id])
     string_array = params[:id].split('_')
     family = string_array[1]
