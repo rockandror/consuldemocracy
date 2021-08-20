@@ -30,6 +30,8 @@ describe "Public area translatable records" do
       click_button "Create proposal"
 
       expect(page).to have_content "Proposal created successfully"
+      click_link "Not now, go to my proposal"
+
       expect(page).to have_content "Olympic Games in Melbourne"
       expect(page).to have_content "Full proposal for our candidature"
       expect(page).to have_content "2032 will make Australia famous again"
