@@ -8,3 +8,7 @@ en:
       request: "Proposal request:"
       description: "Proposal text:"
       summary: "Proposal summary:"
+  users:
+    proposals:
+      voting_disabled: "Voting disabled"
+      voting_in_review: "Voting in review"

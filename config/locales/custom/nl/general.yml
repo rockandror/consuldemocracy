@@ -181,7 +181,7 @@ nl:
       proposal_header:
         published: Gepubliceerd
         draft: Concept
-        retired: Teruggetrokken  
+        retired: Teruggetrokken
       proposal_totals:
         active_resources: Middelen
         community: Deelnemers aan je motie
@@ -191,13 +191,13 @@ nl:
         supports:
           zero: Geen steun
           one: 1 Steun
-          other: "Steunverklaringen"  
+          other: "Steunverklaringen"
     footer:
       accessibility: Toegankelijkheid
       conditions: Gebruiksvoorwaarden
       consul: Consul
       consul_url: https://github.com/consul/consul
-      contact_us: "Ondersteuning nodig?" 
+      contact_us: "Ondersteuning nodig?"
       copyright: Consul, %{year}
       description: Dit platform gebruikt %{consul}, een %{open_source} applicatie voor participatie.
       open_source: open-source software
@@ -289,7 +289,7 @@ nl:
       motivation_2: "<strong>Je kan de motie als concept oplaan en er later nog aan werken of te laten toetsen door het team: ledendemocratie@pvda.nl</strong>"
       publish: Nu publiceren
       dashboard: Concept bewerken
-      preview_title: Zo ziet je motie eruit als je hem publiceerd   
+      preview_title: Zo ziet je motie eruit als je hem publiceerd
     share:
       message: "Ik heb de motie %{title} in %{handle} gesteund. Steun ook!"
     edit:
@@ -306,7 +306,7 @@ nl:
     retire_options:
       duplicated: Er is al een vergelijkbare motie
       started: Onderwerp word al behandeld
-      unfeasible: Voldoet niet aan de richtlijnen 
+      unfeasible: Voldoet niet aan de richtlijnen
       done: Al gerealiseerd
       other: Anders
     form:
@@ -407,7 +407,7 @@ nl:
       archived: "Deze motie is gearchiveerd en kan niet worden gesteund."
       successful: "Deze motie heeft de vereiste ondersteuning bereikt."
     show:
-      title: "Motie Titel"      
+      title: "Motie Titel"
       details: "De Partij van de Arbeid, in congres bijeen op:"
       summary: "Overwegende dat:"
       description: "Constaterende dat:"
@@ -504,21 +504,21 @@ nl:
       poster: Poster
       recommended_actions: Recommended actions
       messages: Message to users
-      related_content: Related content 
+      related_content: Related content
     progress:
       title: Statistieken
       group_by_month: Maandelijks
       group_by_week: Wekelijks
       group_by_date: Dagelijks
-      progress: Geaccumuleerde voortgang 
+      progress: Geaccumuleerde voortgang
       supports: Steun
       success: Ideale voortgang
-      new_action: Nieuw  
+      new_action: Nieuw
     index:
       title: Motie concept aanpassen
       edit_proposal_link: Motie bewerken
       publish: Motie publiceren
-      retire: Motie terugtrekken           
+      retire: Motie terugtrekken
   poll_questions:
     show:
       vote_answer: "Stem %{answer}"
@@ -677,12 +677,14 @@ nl:
       send_private_message: "Stuur privé bericht"
       delete_alert: "Weet je zeker dat je jouw investeringsproject wilt verwijderen? Dit kan niet ongedaan gemaakt worden."
     proposals:
+      voting_disabled: "Steunen gedeactiveerd"
+      voting_in_review: "Pending translation"
       retired: "Teruggetrokken"
       draft: Concept
-      published: Gepubliceerd 
+      published: Gepubliceerd
       see: "Bekijk moties"
       actions: Acties
-      retired_help_text: Dashboard niet beschikbaar voor teruggetrokken moties 
+      retired_help_text: Dashboard niet beschikbaar voor teruggetrokken moties
   votes:
     agree: Ik ben het eens
     anonymous: Er zijn al te veel anonieme stemmen; %{verify_account}.
