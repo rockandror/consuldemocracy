@@ -205,4 +205,75 @@ describe "Proposals voting", :js do
       end
     end
   end
+
+  describe "voting review mailers" do
+    before do
+      ActionMailer::Base.deliveries.clear
+    end
+
+    scenario "send 'voting review' email after create proposal" do
+      login_as(create(:user, email: "new_email@user.com"))
+      visit new_proposal_path
+
+      fill_in "Proposal title", with: "Help refugees"
+      fill_in "Proposal details", with: "Madrid (Spain) - 12/12/2022"
+      fill_in_ckeditor "Proposal summary", with: "In summary, what we want is..."
+      fill_in_ckeditor "Proposal text", with: "This is very important because..."
+      fill_in "proposal_responsible_name", with: "Isabel Garcia"
+      check "proposal_terms_of_service"
+
+      click_button "Create proposal"
+      expect(page).to have_content "Proposal created successfully."
+
+      expect(ActionMailer::Base.deliveries.count).to eq(1)
+      expect(ActionMailer::Base.deliveries.first.to).to eq(["new_email@user.com"])
+      expect(ActionMailer::Base.deliveries.first.subject).to eq("Thank you for creating a proposal!")
+    end
+
+    scenario "send 'voting enabled' email when voting enabled for proposal" do
+      proposal = create(:proposal, voting_enabled: nil)
+      visit moderation_voting_proposals_path
+
+      check "proposal_#{proposal.id}_check"
+      accept_confirm "Are you sure?" do
+        click_button "Enable voting"
+      end
+      expect(page).to have_content "Proposals have been reviewed"
+
+      expect(ActionMailer::Base.deliveries.count).to eq(1)
+      expect(ActionMailer::Base.deliveries.first.to).to eq([proposal.author.email])
+      expect(ActionMailer::Base.deliveries.first.subject).to eq("Your proposal has been successfully reviewed!")
+    end
+
+    scenario "send 'voting disabled' email when voting disabled for proposal" do
+      proposal = create(:proposal, voting_enabled: nil)
+      visit moderation_voting_proposals_path
+
+      check "proposal_#{proposal.id}_check"
+      accept_confirm "Are you sure?" do
+        click_button "Disable voting"
+      end
+      expect(page).to have_content "Proposals have been reviewed"
+
+      expect(ActionMailer::Base.deliveries.count).to eq(1)
+      expect(ActionMailer::Base.deliveries.first.to).to eq([proposal.author.email])
+      expect(ActionMailer::Base.deliveries.first.subject).to eq("Your proposal has been reviewed without success.")
+    end
+
+    scenario "send 'remove voting review' email when restore default proposal voting status" do
+      proposal = create(:proposal, voting_enabled: true)
+      visit moderation_voting_proposals_path
+      click_link "In voting"
+
+      check "proposal_#{proposal.id}_check"
+      accept_confirm "Are you sure?" do
+        click_button "Remove review"
+      end
+      expect(page).to have_content "Proposals have been reviewed"
+
+      expect(ActionMailer::Base.deliveries.count).to eq(1)
+      expect(ActionMailer::Base.deliveries.first.to).to eq([proposal.author.email])
+      expect(ActionMailer::Base.deliveries.first.subject).to eq("Your proposal has been marked again as pending review.")
+    end
+  end
 end

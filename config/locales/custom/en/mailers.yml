@@ -1,0 +1,28 @@
+en:
+  mailers:
+    proposal:
+      remove_voting_review:
+        subject: "Your proposal has been marked again as pending review."
+        title: "Your proposal has been marked again as pending review."
+        intro: "Hi <strong>%{author}</strong>,"
+        information: "We would like to inform you that your proposal is again pending review.  As soon as it is reviewed you will receive an email to start collecting votes."
+        sincerely: "Sincerely,"
+      voting_disabled:
+        subject: "Your proposal has been reviewed without success."
+        title: "Your proposal has been reviewed without success."
+        intro: "Hi <strong>%{author}</strong>,"
+        information: "We would like to inform you that your proposal has been reviewed and has not passed the moderators' approval. The proposal has been marked as 'Disabled voting'."
+        sincerely: "Sincerely,"
+      voting_enabled:
+        subject: "Your proposal has been successfully reviewed!"
+        title: "Your proposal has been successfully reviewed!"
+        intro: "Hi <strong>%{author}</strong>,"
+        information: "We would like to inform you that your proposal has been reviewed and you can now start collecting votes."
+        sincerely: "Sincerely,"
+      voting_review:
+        subject: "Thank you for creating a proposal!"
+        title: "Thank you for creating a proposal!"
+        intro: "Hi <strong>%{author}</strong>,"
+        text: "Thank you for creating your proposal <strong>%{proposal}</strong>."
+        information: "We would like to inform you that your proposal is pending review. As soon as it is reviewed you will receive an email to start collecting votes."
+        sincerely: "Sincerely,"

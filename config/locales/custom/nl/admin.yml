@@ -705,6 +705,18 @@ nl:
       user_invite:
         title: "Uitnodiging"
         description: "Verzonden naar de persoon die is uitgenodigd om zich te registreren."
+      remove_voting_review:
+        title: "Review status verwijderd"
+        description: "De evaluatie is afgerond het steunen kan worden geactiveerd of de motie kan worden geblokeerd"
+      voting_disabled:
+        title: "Steunen gedeactieveerd"
+        description: "De motie wordt geevalueerd en kan nog niet gesteund worden"
+      voting_enabled:
+        title: "Steunen geactieveerd"
+        description: "De motie kan gesteund worden"
+      voting_review:
+        title: "De motie wordt geevalueerd"
+        description: "De motie wordt geevalueerd of deze voldoet aan het juiste format en de statuten van de PvdA"
       edit_info: "Je kunt deze email bewerken in"
       message_title: "Berichttitel"
       message_body: "Dit is een voorbeeld van de inhoud van een bericht."
@@ -712,6 +724,7 @@ nl:
         no_investments: "Er zijn geen budget investeringen aangemaakt. Er kan geen voorbeeld email worden getoond."
         no_comments: "Er zijn nog geen reacties. Er kan geen voorbeeld email worden getoond."
         no_replies: "Er zijn nog geen antwoorden. Er kan geen voorbeeld email worden getoond."
+        no_proposals: "Er zijn geen moties. Er kan geen voorbeeld email worden getoond."
     emails_download:
       index:
         title: E-mails download
