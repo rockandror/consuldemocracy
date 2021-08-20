@@ -1049,4 +1049,34 @@ describe Proposal do
       end
     end
   end
+
+  describe ".voting_enabled" do
+    it "returns voting_pending proposals" do
+      create(:proposal, voting_enabled: nil)
+      create(:proposal, voting_enabled: false)
+      proposal = create(:proposal, voting_enabled: true)
+
+      expect(Proposal.voting_enabled).to eq([proposal])
+    end
+  end
+
+  describe ".voting_disabled" do
+    it "returns voting_pending proposals" do
+      create(:proposal, voting_enabled: nil)
+      proposal = create(:proposal, voting_enabled: false)
+      create(:proposal, voting_enabled: true)
+
+      expect(Proposal.voting_disabled).to eq([proposal])
+    end
+  end
+
+  describe ".voting_pending" do
+    it "returns voting_pending proposals" do
+      proposal = create(:proposal, voting_enabled: nil)
+      create(:proposal, voting_enabled: false)
+      create(:proposal, voting_enabled: true)
+
+      expect(Proposal.voting_pending).to eq([proposal])
+    end
+  end
 end

@@ -1,0 +1,21 @@
+en:
+  moderation:
+    menu:
+      voting_proposals: Proposals voting
+    voting:
+      proposals:
+        index:
+          enable_voting: Enable voting
+          disable_voting: Disable voting
+          filter: Filter
+          filters:
+            all: All
+            voting_enabled: In voting
+            voting_disabled: Blocked
+            voting_pending: To review
+          headers:
+            proposal: Proposal
+            review: Moderate
+          remove_review: Remove review
+          title: Proposals voting
+        update_notice: Proposals have been reviewed
