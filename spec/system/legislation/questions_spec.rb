@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "Legislation" do
-  context "process debate page" do
+  context "process debate page", :pvda_access do
     let(:process) do
       create(:legislation_process,
              debate_start_date: Date.current - 3.days,

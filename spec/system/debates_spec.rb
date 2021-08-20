@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Debates" do
+describe "Debates", :pvda_access do
   scenario "Disabled with a feature flag" do
     Setting["process.debates"] = nil
     expect { visit debates_path }.to raise_exception(FeatureFlags::FeatureDisabled)
@@ -407,7 +407,7 @@ describe "Debates" do
       let!(:medium_debate) { create(:debate, title: "Medium", cached_votes_total: 5,  tag_list: "Sport") }
       let!(:worst_debate)  { create(:debate, title: "Worst",  cached_votes_total: 1,  tag_list: "Sport") }
 
-      scenario "can't be sorted if there's no logged user" do
+      scenario "can't be sorted if there's no logged user", skip: "mandatory sign in for pvda" do
         visit debates_path
         expect(page).not_to have_selector("a", text: "recommendations")
       end
@@ -504,7 +504,6 @@ describe "Debates" do
 
         visit account_path
 
-        expect(find("#account_recommended_debates")).not_to be_checked
         expect(user.recommended_debates).to be(false)
       end
     end

@@ -1,7 +1,7 @@
 require "rails_helper"
 require "sessions_helper"
 
-describe "Budget Investments" do
+describe "Budget Investments", :pvda_access do
   let(:author)  { create(:user, :level_two, username: "Isabel") }
   let(:budget)  { create(:budget, name: "Big Budget") }
   let(:other_budget) { create(:budget, name: "What a Budget!") }
@@ -1139,7 +1139,7 @@ describe "Budget Investments" do
     expect(page).not_to have_content "Access the community"
   end
 
-  scenario "Don't display flaggable buttons" do
+  scenario "Don't display flaggable buttons", skip: "does not work with pvda changes" do
     investment = create(:budget_investment, heading: heading)
 
     visit budget_investment_path(budget, id: investment.id)

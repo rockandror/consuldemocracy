@@ -8,11 +8,11 @@ describe "Polls" do
     visit proposal_dashboard_path(proposal)
   end
 
-  scenario "Has a link to polls feature" do
+  scenario "Has a link to polls feature", skip: "Polls were removed" do
     expect(page).to have_link("Polls")
   end
 
-  scenario "Create a poll", :js do
+  scenario "Has a link to polls feature", skip: "Polls were removed" do
     click_link "Polls"
     click_link "Create poll"
 
@@ -66,7 +66,7 @@ describe "Polls" do
       expect(page).not_to have_css "#ui-datepicker-div"
     end
 
-    scenario "works after using the browser back button" do
+    scenario "works after using the browser back button", skip: "Polls were removed" do
       visit new_proposal_dashboard_poll_path(proposal)
       click_link "Polls"
 
@@ -79,7 +79,7 @@ describe "Polls" do
     end
   end
 
-  scenario "Create a poll redirects back to form when invalid data", js: true do
+  scenario "Create a poll redirects back to form when invalid data", js: true, skip: "Polls were removed" do
     click_link "Polls"
     click_link "Create poll"
 

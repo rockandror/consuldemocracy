@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Commenting polls" do
+describe "Commenting polls", :pvda_access do
   let(:user) { create :user }
   let(:poll) { create(:poll, author: create(:user)) }
 
@@ -180,7 +180,7 @@ describe "Commenting polls" do
     expect(page).to have_css(".comment", count: 2)
   end
 
-  describe "Not logged user" do
+  describe "Not logged user", skip: "mandatory sign in for pvda" do
     scenario "can not see comments forms" do
       create(:comment, commentable: poll)
       visit poll_path(poll)
@@ -446,7 +446,6 @@ describe "Commenting polls" do
 
     scenario "Show" do
       create(:vote, voter: verified, votable: comment, vote_flag: true)
-      create(:vote, voter: unverified, votable: comment, vote_flag: false)
 
       visit poll_path(poll)
 
@@ -455,11 +454,7 @@ describe "Commenting polls" do
           expect(page).to have_content "1"
         end
 
-        within(".against") do
-          expect(page).to have_content "1"
-        end
-
-        expect(page).to have_content "2 votes"
+        expect(page).to have_content "1 vote"
       end
     end
 
@@ -473,15 +468,11 @@ describe "Commenting polls" do
           expect(page).to have_content "1"
         end
 
-        within(".against") do
-          expect(page).to have_content "0"
-        end
-
         expect(page).to have_content "1 vote"
       end
     end
 
-    scenario "Update", :js do
+    scenario "Update", :js, skip: "Dislike link has been removed" do
       visit poll_path(poll)
 
       within("#comment_#{comment.id}_votes") do
@@ -505,7 +496,7 @@ describe "Commenting polls" do
       end
     end
 
-    scenario "Trying to vote multiple times", :js do
+    scenario "Trying to vote multiple times", :js, skip: "Dislike link has been removed" do
       visit poll_path(poll)
 
       within("#comment_#{comment.id}_votes") do

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Tags" do
+describe "Tags", :pvda_access do
   scenario "Index" do
     earth = create(:debate, tag_list: "Medio Ambiente")
     money = create(:debate, tag_list: "Economía")

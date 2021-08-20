@@ -272,7 +272,7 @@ describe "Votes" do
     end
   end
 
-  scenario "Not logged user trying to vote debates", :js do
+  scenario "Not logged user trying to vote debates", :js, skip: "mandatory sign in for pvda" do
     debate = create(:debate)
 
     visit debates_path
@@ -282,7 +282,7 @@ describe "Votes" do
     end
   end
 
-  scenario "Not logged user trying to vote proposals", :js do
+  scenario "Not logged user trying to vote proposals", :js, skip: "mandatory sign in for pvda" do
     proposal = create(:proposal)
 
     visit proposals_path
@@ -298,7 +298,7 @@ describe "Votes" do
     end
   end
 
-  scenario "Not logged user trying to vote comments in debates", :js do
+  scenario "Not logged user trying to vote comments in debates", :js, skip: "mandatory sign in for pvda" do
     debate = create(:debate)
     comment = create(:comment, commentable: debate)
 
@@ -309,7 +309,7 @@ describe "Votes" do
     end
   end
 
-  scenario "Not logged user trying to vote comments in proposals", :js do
+  scenario "Not logged user trying to vote comments in proposals", :js, skip: "mandatory sign in for pvda" do
     proposal = create(:proposal)
     comment = create(:comment, commentable: proposal)
 

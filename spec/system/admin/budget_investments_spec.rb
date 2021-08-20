@@ -1885,9 +1885,9 @@ describe "Admin budget investments" do
     scenario "When restoring the page from browser history renders columns selectors only once", :js do
       visit admin_budget_budget_investments_path(budget)
 
-      click_link "Proposals"
+      click_link "Debates"
 
-      expect(page).to have_content("There are no proposals.")
+      expect(page).to have_content("There are no debates.")
 
       go_back
 

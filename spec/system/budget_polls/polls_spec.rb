@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "Polls" do
-  context "Public index" do
+  context "Public index", :pvda_access do
     scenario "Budget polls should not be listed" do
       poll = create(:poll)
       budget_poll = create(:poll, :for_budget)

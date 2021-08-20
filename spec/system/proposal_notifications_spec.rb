@@ -1,7 +1,8 @@
 require "rails_helper"
 
 describe "Proposal Notifications" do
-  scenario "Send a notification" do
+  scenario "Send a notification",
+    skip: "Message to users has been disabled/removed on custom files in dashboard" do
     author = create(:user, :with_proposal)
 
     login_as(author)
@@ -26,7 +27,8 @@ describe "Proposal Notifications" do
     expect(page).to have_content "Please share it with others so we can make it happen!"
   end
 
-  scenario "Send a notification (Active voter)" do
+  scenario "Send a notification (Active voter)",
+    skip: "Message to users has been disabled/removed on custom files in dashboard" do
     proposal = create(:proposal)
 
     create(:user, :level_two, votables: [proposal], followables: [proposal])
@@ -35,7 +37,8 @@ describe "Proposal Notifications" do
     expect(Notification.count).to eq(1)
   end
 
-  scenario "Send a notification (Follower)" do
+  scenario "Send a notification (Follower)",
+    skip: "Message to users has been disabled/removed on custom files in dashboard" do
     proposal = create(:proposal)
 
     create(:user, :level_two, followables: [proposal])
@@ -44,7 +47,8 @@ describe "Proposal Notifications" do
     expect(Notification.count).to eq(1)
   end
 
-  scenario "Send a notification (Follower and Voter)" do
+  scenario "Send a notification (Follower and Voter)",
+    skip: "Message to users has been disabled/removed on custom files in dashboard" do
     proposal = create(:proposal)
 
     create(:user, followables: [proposal], votables: [proposal])
@@ -55,7 +59,8 @@ describe "Proposal Notifications" do
     expect(Notification.count).to eq(2)
   end
 
-  scenario "Send a notification (Blocked voter)" do
+  scenario "Send a notification (Blocked voter)",
+    skip: "Message to users has been disabled/removed on custom files in dashboard" do
     proposal = create(:proposal)
     voter = create(:user, :level_two, votables: [proposal])
 
@@ -65,7 +70,8 @@ describe "Proposal Notifications" do
     expect(Notification.count).to eq(0)
   end
 
-  scenario "Send a notification (Erased voter)" do
+  scenario "Send a notification (Erased voter)",
+    skip: "Message to users has been disabled/removed on custom files in dashboard" do
     proposal = create(:proposal)
     voter = create(:user, :level_two, votables: [proposal])
 
@@ -75,7 +81,7 @@ describe "Proposal Notifications" do
     expect(Notification.count).to eq(0)
   end
 
-  scenario "Show notifications" do
+  scenario "Show notifications", :pvda_access do
     proposal = create(:proposal)
     _notification1 = create(:proposal_notification,
                              proposal: proposal, title: "Hey guys",
@@ -140,7 +146,8 @@ describe "Proposal Notifications" do
   end
 
   context "Permissions" do
-    scenario "Link to send the message" do
+    scenario "Link to send the message",
+      skip: "Message to users has been disabled/removed on custom files in dashboard" do
       author = create(:user)
       proposal = create(:proposal, author: author)
 

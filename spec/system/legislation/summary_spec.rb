@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Legislation" do
+describe "Legislation", :pvda_access do
   context "process summary page" do
     scenario "summary tab is not shown for open processes" do
       process = create(:legislation_process, :open)

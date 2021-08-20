@@ -33,10 +33,6 @@ describe "Account" do
     visit account_path
 
     fill_in "account_username", with: "Larry Bird"
-    check "account_email_on_comment"
-    check "account_email_on_comment_reply"
-    uncheck "account_email_digest"
-    uncheck "account_email_on_direct_message"
     click_button "Save changes"
 
     expect(page).to have_content "Changes saved"
@@ -44,10 +40,6 @@ describe "Account" do
     visit account_path
 
     expect(page).to have_selector("input[value='Larry Bird']")
-    expect(find("#account_email_on_comment")).to be_checked
-    expect(find("#account_email_on_comment_reply")).to be_checked
-    expect(find("#account_email_digest")).not_to be_checked
-    expect(find("#account_email_on_direct_message")).not_to be_checked
   end
 
   scenario "Edit email address" do
@@ -79,8 +71,6 @@ describe "Account" do
     visit account_path
 
     fill_in "account_organization_attributes_name", with: "Google"
-    check "account_email_on_comment"
-    check "account_email_on_comment_reply"
 
     click_button "Save changes"
 
@@ -89,12 +79,10 @@ describe "Account" do
     visit account_path
 
     expect(page).to have_selector("input[value='Google']")
-    expect(find("#account_email_on_comment")).to be_checked
-    expect(find("#account_email_on_comment_reply")).to be_checked
   end
 
   context "Option to display badge for official position" do
-    scenario "Users with official position of level 1" do
+    scenario "Users with official position of level 1", skip: "checkbox was removed in custom views" do
       official_user = create(:user, official_level: 1)
 
       login_as(official_user)
@@ -163,7 +151,7 @@ describe "Account" do
     expect(page).to have_content "Invalid Email or username or password"
   end
 
-  context "Recommendations" do
+  context "Recommendations", skip: "does not work with pvda changes" do
     scenario "are enabled by default" do
       visit account_path
 

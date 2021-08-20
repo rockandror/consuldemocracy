@@ -40,7 +40,7 @@ describe "Localization" do
     expect(page).to have_select("locale-switcher", selected: "Español")
   end
 
-  scenario "Keeps query parameters while using protected redirects", :js do
+  scenario "Keeps query parameters while using protected redirects", :js, :pvda_access do
     visit "/debates?order=created_at&host=evil.dev"
 
     select("Español", from: "locale-switcher")

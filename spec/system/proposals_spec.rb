@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Proposals" do
+describe "Proposals", :pvda_access do
   it_behaves_like "milestoneable", :proposal
 
   scenario "Disabled with a feature flag" do
@@ -138,8 +138,8 @@ describe "Proposals" do
     expect(page).to have_content I18n.l(proposal.created_at.to_date)
     expect(page).to have_selector(avatar(proposal.author.name))
     expect(page.html).to include "<title>#{proposal.title}</title>"
-    expect(page).not_to have_selector ".js-flag-actions"
-    expect(page).not_to have_selector ".js-follow"
+    expect(page).to have_selector ".js-flag-actions"
+    expect(page).to have_selector ".js-follow"
 
     within(".social-share-button") do
       expect(page.all("a").count).to be(3) # Twitter, Facebook, Telegram
@@ -828,7 +828,7 @@ describe "Proposals" do
       let!(:medium_proposal) { create(:proposal, title: "Medium", cached_votes_up: 5,  tag_list: "Sport") }
       let!(:worst_proposal)  { create(:proposal, title: "Worst",  cached_votes_up: 1,  tag_list: "Sport") }
 
-      scenario "can't be sorted if there's no logged user" do
+      scenario "can't be sorted if there's no logged user", skip: "mandatory sign in for pvda" do
         visit proposals_path
         expect(page).not_to have_selector("a", text: "recommendations")
       end
@@ -925,7 +925,6 @@ describe "Proposals" do
 
         visit account_path
 
-        expect(find("#account_recommended_proposals")).not_to be_checked
         expect(user.recommended_proposals).to be(false)
       end
     end
@@ -1847,7 +1846,7 @@ describe "Proposals" do
   end
 end
 
-describe "Successful proposals" do
+describe "Successful proposals", :pvda_access do
   scenario "Successful proposals do not show support buttons in index" do
     successful_proposals = create_successful_proposals
 

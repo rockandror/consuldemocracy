@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Official positions" do
+describe "Official positions", :js, :pvda_access do
   context "Badge" do
     let(:user1) { create(:user, official_level: 1, official_position: "Employee", official_position_badge: true) }
     let(:user2) { create(:user, official_level: 0, official_position: "") }

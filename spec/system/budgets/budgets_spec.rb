@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Budgets" do
+describe "Budgets", :pvda_access do
   let(:budget)             { create(:budget) }
   let(:level_two_user)     { create(:user, :level_two) }
   let(:allowed_phase_list) { ["balloting", "reviewing_ballots", "finished"] }
@@ -491,7 +491,7 @@ describe "Budgets" do
     end
 
     context "Shown" do
-      scenario "Not accesible to guest users" do
+      scenario "Not accesible to guest users", skip: "mandatory sign in for pvda" do
         expect { visit budget_path(budget) }.to raise_error(ActionController::RoutingError)
       end
 
@@ -532,7 +532,7 @@ describe "Budgets" do
         expect(page).to have_content "To create a new budget investment verify your account."
       end
 
-      scenario "user not logged in" do
+      scenario "user not logged in", skip: "mandatory sign in for pvda" do
         visit budget_path(budget)
 
         expect(page).to have_content "To create a new budget investment you must sign in or sign up"
