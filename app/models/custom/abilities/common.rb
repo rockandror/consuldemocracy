@@ -9,5 +9,12 @@ class Abilities::Common
     cannot :vote, Comment do |comment|
       comment.commentable.is_a?(Legislation::Annotation) && comment.parent.present?
     end
+
+    if user.level_two_or_three_verified?
+      cannot :vote, Proposal
+      can :vote, Proposal do |proposal|
+        proposal.published? && proposal.voting_enabled?
+      end
+    end
   end
 end
