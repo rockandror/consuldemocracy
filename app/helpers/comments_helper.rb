@@ -82,4 +82,10 @@ module CommentsHelper
       t("comments.comments_closed")
     end
   end
+
+  def can_add_comments?(commentable)
+    can?(:create, Comment.new(commentable: commentable)) ||
+    can?(:comment_as_moderator, Comment.new(commentable: commentable)) ||
+    can?(:comment_as_administrator, Comment.new(commentable: commentable))
+  end
 end

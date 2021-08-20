@@ -181,7 +181,7 @@ describe "Commenting proposals", :pvda_access do
   end
 
   describe "Not logged user", skip: "mandatory sign in for pvda" do
-    scenario "can not see comments forms" do
+    scenario "cannot see comments forms" do
       create(:comment, commentable: proposal)
       visit proposal_path(proposal)
 
@@ -207,6 +207,24 @@ describe "Commenting proposals", :pvda_access do
     within "#tab-comments-label" do
       expect(page).to have_content "Comments (1)"
     end
+  end
+
+  scenario "Is not possible when the proposal voting is disabled", :js do
+    login_as(user)
+    proposal.update!(voting_enabled: false)
+    visit proposal_path(proposal)
+
+    expect(page).to have_content "Comments are blocked because the proposal was disabled for voting."
+    expect(page).not_to have_content "Leave your comment"
+  end
+
+  scenario "Is not possible when the proposal voting is pending", :js do
+    login_as(user)
+    proposal.update!(voting_enabled: nil)
+    visit proposal_path(proposal)
+
+    expect(page).to have_content "Comments are blocked until voting the proposal is approved."
+    expect(page).not_to have_content "Leave your comment"
   end
 
   scenario "Errors on create", :js do
@@ -238,6 +256,34 @@ describe "Commenting proposals", :pvda_access do
     end
 
     expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}", visible: true)
+  end
+
+  scenario "cannot reply to a comment when the proposal voting is disabled", :js do
+    citizen = create(:user, username: "Ana")
+    manuela = create(:user, username: "Manuela")
+    comment = create(:comment, commentable: proposal, user: citizen)
+    proposal.update!(voting_enabled: false)
+
+    login_as(manuela)
+    visit proposal_path(proposal)
+
+    within "#comment_#{comment.id}" do
+      expect(page).not_to have_link "Reply"
+    end
+  end
+
+  scenario "cannot reply to a comment when the proposal voting review is pending", :js do
+    citizen = create(:user, username: "Ana")
+    manuela = create(:user, username: "Manuela")
+    comment = create(:comment, commentable: proposal, user: citizen)
+    proposal.update!(voting_enabled: nil)
+
+    login_as(manuela)
+    visit proposal_path(proposal)
+
+    within "#comment_#{comment.id}" do
+      expect(page).not_to have_link "Reply"
+    end
   end
 
   scenario "Reply update parent comment responses count", :js do
@@ -356,13 +402,95 @@ describe "Commenting proposals", :pvda_access do
       expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}", visible: true)
     end
 
-    scenario "can not comment as an administrator" do
+    scenario "cannot comment as an administrator" do
       moderator = create(:moderator)
 
       login_as(moderator.user)
       visit proposal_path(proposal)
 
       expect(page).not_to have_content "Comment as administrator"
+    end
+
+    describe "when the proposal voting is pending to review", :js do
+      let(:moderator) { create(:moderator) }
+
+      before do
+        proposal.update!(voting_enabled: nil)
+        login_as(moderator.user)
+      end
+
+      scenario "cannot create comment" do
+        visit proposal_path(proposal)
+
+        fill_in "Leave your comment", with: "I am moderating!"
+        uncheck "comment-as-moderator-proposal_#{proposal.id}"
+        click_button "Publish comment"
+
+        expect(page).to have_current_path(root_path)
+        expect(page).to have_content "You do not have permission to carry out the action 'create' on comment"
+      end
+
+      scenario "can comment as moderator" do
+        visit proposal_path(proposal)
+
+        fill_in "Leave your comment", with: "I am moderating!"
+        check "comment-as-moderator-proposal_#{proposal.id}"
+        click_button "Publish comment"
+
+        within "#comments" do
+          expect(page).to have_content "I am moderating!"
+          expect(page).to have_content "Moderator ##{moderator.id}"
+          expect(page).to have_css "div.is-moderator"
+          expect(page).to have_css "img.moderator-avatar"
+        end
+      end
+
+      scenario "comment_as_moderator is checked by default" do
+        visit proposal_path(proposal)
+
+        expect(find("#comment-as-moderator-proposal_#{proposal.id}")).to be_checked
+      end
+    end
+
+    describe "when the proposal voting is disabled", :js do
+      let(:moderator) { create(:moderator) }
+
+      before do
+        proposal.update!(voting_enabled: false)
+        login_as(moderator.user)
+      end
+
+      scenario "cannot create comment" do
+        visit proposal_path(proposal)
+
+        fill_in "Leave your comment", with: "I am moderating!"
+        uncheck "comment-as-moderator-proposal_#{proposal.id}"
+        click_button "Publish comment"
+
+        expect(page).to have_current_path(root_path)
+        expect(page).to have_content "You do not have permission to carry out the action 'create' on comment"
+      end
+
+      scenario "can comment as moderator" do
+        visit proposal_path(proposal)
+
+        fill_in "Leave your comment", with: "I am moderating!"
+        check "comment-as-moderator-proposal_#{proposal.id}"
+        click_button "Publish comment"
+
+        within "#comments" do
+          expect(page).to have_content "I am moderating!"
+          expect(page).to have_content "Moderator ##{moderator.id}"
+          expect(page).to have_css "div.is-moderator"
+          expect(page).to have_css "img.moderator-avatar"
+        end
+      end
+
+      scenario "comment_as_moderator is checked by default" do
+        visit proposal_path(proposal)
+
+        expect(find("#comment-as-moderator-proposal_#{proposal.id}")).to be_checked
+      end
     end
   end
 
@@ -412,13 +540,95 @@ describe "Commenting proposals", :pvda_access do
       expect(page).not_to have_selector("#js-comment-form-comment_#{comment.id}", visible: true)
     end
 
-    scenario "can not comment as a moderator" do
+    scenario "cannot comment as a moderator" do
       admin = create(:administrator)
 
       login_as(admin.user)
       visit proposal_path(proposal)
 
       expect(page).not_to have_content "Comment as moderator"
+    end
+
+    describe "when the proposal voting is pending to review", :js do
+      let(:admin) { create(:administrator) }
+
+      before do
+        proposal.update!(voting_enabled: nil)
+        login_as(admin.user)
+      end
+
+      scenario "cannot create comment" do
+        visit proposal_path(proposal)
+
+        fill_in "Leave your comment", with: "I am administrating!"
+        uncheck "comment-as-administrator-proposal_#{proposal.id}"
+        click_button "Publish comment"
+
+        expect(page).to have_current_path(root_path)
+        expect(page).to have_content "You do not have permission to carry out the action 'create' on comment"
+      end
+
+      scenario "can comment as administrator" do
+        visit proposal_path(proposal)
+
+        fill_in "Leave your comment", with: "I am your Admin!"
+        check "comment-as-administrator-proposal_#{proposal.id}"
+        click_button "Publish comment"
+
+        within "#comments" do
+          expect(page).to have_content "I am your Admin!"
+          expect(page).to have_content "Administrator ##{admin.id}"
+          expect(page).to have_css "div.is-admin"
+          expect(page).to have_css "img.admin-avatar"
+        end
+      end
+
+      scenario "comment_as_administrator is checked by default" do
+        visit proposal_path(proposal)
+
+        expect(find("#comment-as-administrator-proposal_#{proposal.id}")).to be_checked
+      end
+    end
+
+    describe "when the proposal voting is disabled", :js do
+      let(:admin) { create(:administrator) }
+
+      before do
+        proposal.update!(voting_enabled: false)
+        login_as(admin.user)
+      end
+
+      scenario "cannot create comment" do
+        visit proposal_path(proposal)
+
+        fill_in "Leave your comment", with: "I am moderating!"
+        uncheck "comment-as-administrator-proposal_#{proposal.id}"
+        click_button "Publish comment"
+
+        expect(page).to have_current_path(root_path)
+        expect(page).to have_content "You do not have permission to carry out the action 'create' on comment"
+      end
+
+      scenario "can comment as administrator" do
+        visit proposal_path(proposal)
+
+        fill_in "Leave your comment", with: "I am your Admin!"
+        check "comment-as-administrator-proposal_#{proposal.id}"
+        click_button "Publish comment"
+
+        within "#comments" do
+          expect(page).to have_content "I am your Admin!"
+          expect(page).to have_content "Administrator ##{admin.id}"
+          expect(page).to have_css "div.is-admin"
+          expect(page).to have_css "img.admin-avatar"
+        end
+      end
+
+      scenario "comment_as_administrator is checked by default" do
+        visit proposal_path(proposal)
+
+        expect(find("#comment-as-administrator-proposal_#{proposal.id}")).to be_checked
+      end
     end
   end
 
