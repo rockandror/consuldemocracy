@@ -36,19 +36,20 @@ class Moderation::Voting::ProposalsController < Moderation::BaseController
     end
 
     def disable_voting(proposal)
-      proposal.update!(voting_enabled: false)
+      proposal.update!(voting_enabled: false, published_at: Time.current)
       Mailer.voting_disabled(proposal).deliver_later
       Activity.log(current_user, :disable_voting, proposal)
     end
 
     def enable_voting(proposal)
-      proposal.update!(voting_enabled: true)
+      proposal.update!(voting_enabled: true, published_at: Time.current)
+
       Mailer.voting_enabled(proposal).deliver_later
       Activity.log(current_user, :enable_voting, proposal)
     end
 
     def remove_review(proposal)
-      proposal.update!(voting_enabled: nil)
+      proposal.update!(voting_enabled: nil, published_at: nil)
       Mailer.remove_voting_review(proposal).deliver_later
       Activity.log(current_user, :remove_voting_review, proposal)
     end

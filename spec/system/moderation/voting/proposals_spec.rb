@@ -140,7 +140,7 @@ describe "Proposals voting", :js do
       end
 
       scenario "allow to enable proposal voting" do
-        proposal = create(:proposal, voting_enabled: nil, title: "New proposal title")
+        proposal = create(:proposal, voting_enabled: nil, title: "New proposal title", published_at: nil)
         visit moderation_voting_proposals_path
 
         expect(page).to have_content "New proposal title"
@@ -155,10 +155,14 @@ describe "Proposals voting", :js do
         click_link "In voting"
 
         expect(page).to have_content "New proposal title"
+
+        visit proposals_path
+
+        expect(page).to have_content "New proposal title"
       end
 
       scenario "allows to disable proposal voting" do
-        proposal = create(:proposal, voting_enabled: nil, title: "New proposal title")
+        proposal = create(:proposal, voting_enabled: nil, title: "New proposal title", published_at: nil)
         visit moderation_voting_proposals_path
 
         expect(page).to have_content "New proposal title"
@@ -171,6 +175,10 @@ describe "Proposals voting", :js do
         expect(page).not_to have_content "New proposal title"
 
         click_link "Blocked"
+
+        expect(page).to have_content "New proposal title"
+
+        visit proposals_path
 
         expect(page).to have_content "New proposal title"
       end
@@ -192,6 +200,10 @@ describe "Proposals voting", :js do
         click_link "To review"
 
         expect(page).to have_content "New proposal title"
+
+        visit proposals_path
+
+        expect(page).not_to have_content "New proposal title"
       end
 
       scenario "Do not render remove review button when filter is voting_pending" do

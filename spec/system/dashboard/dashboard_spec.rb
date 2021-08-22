@@ -20,12 +20,18 @@ describe "Proposal's dashboard" do
     expect(page).to have_link("Retire proposal")
   end
 
-  scenario "My proposal has a link to publish the proposal" do
+  scenario "My proposal has a link to publish the proposal",
+           skip: "Users cannot publish their proposals anymore" do
     expect(page).to have_link("Publish proposal")
   end
 
-  scenario "Publish link dissapears after proposal's publication" do
+  scenario "Publish link dissapears after proposal's publication",
+           skip: "Users cannot publish their proposals anymore" do
     click_link "Publish proposal"
+    expect(page).not_to have_link("Publish proposal")
+  end
+
+  scenario "My proposal does not have a link to publish the proposal" do
     expect(page).not_to have_link("Publish proposal")
   end
 

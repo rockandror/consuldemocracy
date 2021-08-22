@@ -18,5 +18,7 @@ class Abilities::Common
         proposal.published? && proposal.voting_enabled?
       end
     end
+
+    cannot :publish, Proposal
   end
 end

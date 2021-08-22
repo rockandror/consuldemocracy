@@ -190,10 +190,11 @@ describe Abilities::Common do
     let(:draft_own_proposal) { create(:proposal, :draft, author: user) }
     let(:retired_proposal) { create(:proposal, :draft, :retired, author: user) }
 
-    it { should be_able_to(:publish, draft_own_proposal) }
+    skip { should be_able_to(:publish, draft_own_proposal) }
     it { should_not be_able_to(:publish, own_proposal) }
     it { should_not be_able_to(:publish, proposal) }
     it { should_not be_able_to(:publish, retired_proposal) }
+    it { should_not be_able_to(:publish, draft_own_proposal) }
   end
 
   describe "when level 2 verified" do
