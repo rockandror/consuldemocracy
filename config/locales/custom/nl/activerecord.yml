@@ -183,11 +183,11 @@ nl:
         video_url: "Video URL"
         terms_of_service: "Gebruiksvoorwaarden"
       proposal/translation:
-        title: "Motie Titel"      
-        details: "De Partij van de Arbeid, in congres bijeen op dag/maand/jaar:"
-        summary: "Overwegende dat:------(beschrijf je overweging)"
-        description: "Constaterende dat:------(beschrijf je constatering)"
-        request: "Verzoekt het Partijbestuur / Tweede Kamerfractie / Eerste Kamerfractie / Delegatie EP --om:"
+        title: "Motie Titel*"      
+        details: "De Partij van de Arbeid, in congres bijeen op dag/maand/jaar:*"
+        summary: "Overwegende dat:------(beschrijf je overweging)*"
+        description: "Constaterende dat:------(beschrijf je constatering)*"
+        request: "Verzoekt het Partijbestuur / Tweede Kamerfractie / Eerste Kamerfractie / Delegatie EP --om:*"
         retired_explanation: "Uitleg"
       user:
         login: "Email of gebruikersnaam"
