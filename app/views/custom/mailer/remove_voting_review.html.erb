@@ -1,7 +1,8 @@
 <td style="padding-bottom: 20px; padding-left: 10px;">
 
   <h1 style="font-family: 'Open Sans','Helvetica Neue',arial,sans-serif;">
-    <%= t("mailers.proposal.remove_voting_review.title") %>
+    <%= sanitize(t("mailers.proposal.remove_voting_review.title",
+          link: link_to(@proposal.title, proposal_url(@proposal)))) %>
   </h1>
 
   <p style="font-family: 'Open Sans','Helvetica Neue',arial,sans-serif;font-size: 14px;font-weight: normal;line-height: 24px;">
@@ -10,15 +11,15 @@
   </p>
 
   <p style="font-family: 'Open Sans','Helvetica Neue',arial,sans-serif;font-size: 14px;font-weight: normal;line-height: 24px;">
-    <%= sanitize(t("mailers.proposal.voting_review.text",
-           proposal: @proposal.title)) %>
+    <%= sanitize(t("mailers.proposal.remove_voting_review.text",
+           link: link_to(@proposal.title, proposal_url(@proposal)), user_url: user_url(@author))) %>
   </p>
 
   <p style="font-family: 'Open Sans','Helvetica Neue',arial,sans-serif;font-size: 14px;font-weight: normal;line-height: 24px;">
     <%= t("mailers.proposal.remove_voting_review.sincerely") %>
   </p>
- 
+
   <p style="font-family: 'Open Sans','Helvetica Neue',arial,sans-serif;font-size: 14px;font-weight: normal;line-height: 24px;">
     <%= sanitize(t("mailers.proposal.remove_voting_review.information")) %>
-  </p> 
+  </p>
 </td>

@@ -20,11 +20,12 @@ nl:
       title: Nieuwe reactie op je reactie
     proposal:
       remove_voting_review:
-        subject: "Motie zonder steun mogelijkheid"
-        title: "Motie zonder steun mogelijkheid"
-        intro: "Beste lid"
-        information: "Neem contact op met ledendemocratie@pvda.nl"
-        sincerely: "Met vriendelijke groet, Presidium"
+        subject: "Motie wordt gechecked"
+        title: "We checken (opnieuw) of jouw motie %{link} voldoet aan de richtlijnen."
+        intro: "Beste <strong>%{author}</strong>,"
+        text: "Om de kwaliteit van de Ledenkamer te waarborgen, controleert het presidium jouw motie %{link} of deze voldoet aan de gestelde richtlijnen. Zo ja, dan ontvang je zo snel mogelijk bericht dat er op jouw motie gestemd kan worden. Wanneer onderdelen missen of de motie onduidelijk is. Dan ontvang je zo snel mogelijk een mail om de motie aan te passen. In het menu kan je bij <a href='%{user_url}'>Mijn bijdragen</a> de status van jouw motie volgen. <br><br> Heb je vragen? Neem dan contact op met <a href='mailto:ledendemocratie@pvda.nl'>ledendemocratie@pvda.nl</a>. <br><br>Heel veel dank jouw bijdragen aan een sterke en democratische PvdA."
+        information: "Team Ondersteuning"
+        sincerely: "Met vriendelijke groet,"
       voting_disabled:
         subject: Motie is afgekeurd
         title: "Jouw motie %{link} voldoet niet aan de richtlijnen en is afgekeurd."
