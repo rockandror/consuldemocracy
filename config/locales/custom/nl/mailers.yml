@@ -33,12 +33,12 @@ nl:
         information: "P.S. Lees hier meer over hoe de interne ledendemocratie van onze partij werkt."
         sincerely: "Met vriendelijke groet, Presidium"
       voting_enabled:
-        subject: Jouw motie staat nu in de Ledenkamer
-        title: "Jouw motie staat nu in de Ledenkamer"
-        intro: "Beste lid"
-        text: Jouw  motie staat in de  Ledenkamer. Je kan nu starten  met het verzamelen van  stemmen. Hiervoor kan je deze  link met andere PvdA-leden delen. Op deze pagina kunnen zij  direct op jouw motie stemmen of eventueel  een reactie achterlaten. Hier  lees je  meer over de vervolgstappen.Heel veel dank voor deze  motie en daarmee jouw bijdragen aan een sterke en democratische PvdA!
-        sincerely: "Met vriendelijke groet, Presidium"
-        information: P.S. Lees <a href="https://www.pvda.nl/partij/ledendemocratie/">hier</a>' hier meer over hoe de interne ledendemocratie van onze partij werkt.
+        subject: Motie is goedgekeurd
+        title: "Jouw motie %{link} is door het presidium goedgekeurd!."
+        intro: "Beste <strong>%{author}</strong>,"
+        text: "Je kan nu starten met het verzamelen van steun. Hiervoor kan je deze %{link} met andere PvdA-leden delen. Op deze pagina kunnen zij direct jouw motie steunen of een reactie achterlaten. Je kan <a href='%{dashboard_url}'>de voortgang van je motie hier volgen</a>. Hier lees je meer over de vervolgstappen. <br><br>Heel veel dank voor deze motie en daarmee jouw bijdragen aan een sterke en democratische PvdA!"
+        sincerely: "Met vriendelijke groet,"
+        information: "Team Ondersteuning"
       voting_review:
         subject: Jouw motie ingediend Ledenkamer
         title: "Dank voor het indienen van jouw motie %{link}."
