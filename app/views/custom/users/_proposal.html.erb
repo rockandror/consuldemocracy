@@ -4,7 +4,7 @@
       <%= link_to proposal.title, proposal, proposal.retired? ? { class: "retired" } : {} %>
     </strong>
     <br>
-    <%= proposal.summary %>
+    <%= proposal.code %>
   </td>
   <td class="small-2 text-center">
     <%= render "proposals/status_label", proposal: proposal %>
