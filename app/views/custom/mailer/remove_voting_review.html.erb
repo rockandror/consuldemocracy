@@ -10,10 +10,15 @@
   </p>
 
   <p style="font-family: 'Open Sans','Helvetica Neue',arial,sans-serif;font-size: 14px;font-weight: normal;line-height: 24px;">
-    <%= sanitize(t("mailers.proposal.remove_voting_review.information")) %>
+    <%= sanitize(t("mailers.proposal.voting_review.text",
+           proposal: @proposal.title)) %>
   </p>
 
   <p style="font-family: 'Open Sans','Helvetica Neue',arial,sans-serif;font-size: 14px;font-weight: normal;line-height: 24px;">
     <%= t("mailers.proposal.remove_voting_review.sincerely") %>
   </p>
+ 
+  <p style="font-family: 'Open Sans','Helvetica Neue',arial,sans-serif;font-size: 14px;font-weight: normal;line-height: 24px;">
+    <%= sanitize(t("mailers.proposal.remove_voting_review.information")) %>
+  </p> 
 </td>
