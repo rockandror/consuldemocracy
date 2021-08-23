@@ -379,8 +379,8 @@ nl:
       recommendation_one: De Partij van de Arbeid, in congres bijeen op 19 januari 2019,
       recommendation_two: Overwegende dat:------(beschrijf je overweging)
       recommendation_three: Constaterende dat:------(beschrijf je constatering)
-      recommendation_four: Verzoekt het Partijbestuur / Tweede Kamerfractie / Eerste Kamerfractie / Delegatie EP (kies een van de vier) om:---
       recommendations_title: Gebruik deze vier punten bij je motie
+      required_fields: Alle velden met een * zijn verplicht om in te vullen
       start_new: Nieuwe motie maken
     notice:
       retired: Motie teruggetrokken

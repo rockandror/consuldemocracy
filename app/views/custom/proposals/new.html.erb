@@ -7,17 +7,7 @@
     <div data-alert class="callout primary">
      <%= link_to "Zo schrijf je een goede motie!", "https://ledenkamer.pvda.nl/schrijf-goede-motie", target: "_blank" %> &nbsp;</a>
     </div>
+    <p><%= t("proposals.new.required_fields") %></p>
     <%= render "proposals/form", form_url: proposals_url %>
-  </div>
-
-  <div class="small-12 medium-3 column">
-    <span class="icon-proposals float-right"></span>
-    <h2><%= t("proposals.new.recommendations_title") %></h2>
-    <ul class="recommendations">
-      <li><%= t("proposals.new.recommendation_one") %></li>
-      <li><%= t("proposals.new.recommendation_two") %></li>
-      <li><%= t("proposals.new.recommendation_three") %></li>
-      <li><%= t("proposals.new.recommendation_four") %></li>
-    </ul>
   </div>
 </div>
