@@ -47,10 +47,10 @@ nl:
       flagged_comments: Comments
       flagged_debates: Debatten
       flagged_investments: Begrotingsvoorstellen
-      proposals: Voorstellen
+      proposals: Moties modereren
       proposal_notifications: Notificaties
       users: Block users
-      voting_proposals: "Moties instemming"
+      voting_proposals: "Moties checken"
     proposals:
       index:
         block_authors: Auteurs blokkeren
@@ -119,17 +119,17 @@ nl:
     voting:
       proposals:
         index:
-          enable_voting: "Activeer steunen"
-          disable_voting: "Deactiveer steunen"
+          enable_voting: "Goedkeuren"
+          disable_voting: "Afkeuren"
           filter: "Filter"
           filters:
             all: "Alle"
-            voting_enabled: "Steunen geactiveerd"
-            voting_disabled: "Steunen gedeactiveerd"
-            voting_pending: "In afwachting van evaluatie"
+            voting_enabled: "Goedgekeurd"
+            voting_disabled: "Afgekeurd"
+            voting_pending: "In afwachting van check"
           headers:
             proposal: "Motie"
-            review: "In afwachting van evaluatie"
-          remove_review: "Evaluatie status opheffen"
-          title: "Review"
+            review: "Selecteer"
+          remove_review: "Checken"
+          title: "Moties checken"
         update_notice: "Update"

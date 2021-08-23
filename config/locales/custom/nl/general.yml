@@ -294,6 +294,8 @@ nl:
       pending_to_review_proposal: "Pending translation"
       disabled_proposal: "Pending translation"
     share:
+      improve_it: Bekijk de status van je motie
+      dashboard: Motie overzicht
       message: "Ik heb de motie %{title} in %{handle} gesteund. Steun ook!"
     edit:
       editing: Bewerk motie
@@ -368,9 +370,9 @@ nl:
       section_header:
         icon_alt: Motie pictogrammen
         title: Moties
-        help: Hulp met moties
+        help: Moties
       section_footer:
-        title: Hulp met moties
+        title: Moties
         description: Moties van leden zijn een kans om de koers van de partij te bepalen. De moties die meer dan 100 steunbetuigingen halen komen in het Stemlokaal. De moties die genoeg draagkracht hebben en voldoen volgens de statuten worden ingediend voor het congres.
     new:
       form:
@@ -385,11 +387,11 @@ nl:
     notice:
       retired: Motie teruggetrokken
     proposal:
-      created: "Je hebt een motie ingediend!"
+      created: "Je hebt je motie ingediend!"
       share:
-        guide: "Nu kun je jouw motie delen zodat mensen het kunnen steunen."
-        edit: "Voordat die gedeeld gaat worden, kun je de tekst nog wijzigen."
-        view_proposal: Niet nu, door naar mijn motie
+        guide: "Het presidium gaat nu checken of jouw motie compleet en duidelijk is."
+        edit: "Zo ja, dan ontvang je binnen 24 uur een bericht dat de motie in de Ledenkamer staat. Er kan dan op jouw motie gestemd worden. Wanneer onderdelen missen of de motie onduidelijk is. Dan ontvang je binnen 24u een mail om de motie aan te passen. In het 'Motie Dashboard' of bij 'Mijn bijdragen' in het menu kan je de status van jouw motie volgen."
+        view_proposal: Bekijk mijn motie
       already_supported: Je steunt deze motie al. Deel het!
       comments:
         zero: Geen opmerkingen
@@ -568,6 +570,12 @@ nl:
     follow: "Volg"
     following: "Gevolgd"
     follow_entity: "Volg %{entity}"
+    followable:
+      proposal:
+          create:
+            notice: "Je volgt deze motie! <br> Nu ontvangt je notificaties zodat je up-to-date blijft"
+          destroy:
+            notice: "Je hebt deze motie ontvolgd! <br> Nu ontvangt je geen notificaties meer gerelateerd aan deze motie."
     print:
       print_button: Print
     search: Zoek
@@ -680,11 +688,11 @@ nl:
       send_private_message: "Stuur privé bericht"
       delete_alert: "Weet je zeker dat je jouw investeringsproject wilt verwijderen? Dit kan niet ongedaan gemaakt worden."
     proposals:
-      voting_disabled: "Steunen gedeactiveerd"
-      voting_in_review: "Pending translation"
+      voting_disabled: "Afgekeurd"
+      voting_in_review: "Wordt gecheckt"
       retired: "Teruggetrokken"
       draft: Concept
-      published: Gepubliceerd
+      published: Goedgekeurd
       see: "Bekijk moties"
       actions: Acties
       retired_help_text: Dashboard niet beschikbaar voor teruggetrokken moties
@@ -703,8 +711,8 @@ nl:
       unfeasible: Onhaalbare voorstellen kunnen niet gesteund worden.
       not_voting_allowed: Stemronde is gesloten.
     proposals:
-      voting_disabled: "Steunen gedeactiveerd"
-      voting_review_pending: "Wordt gereviewd"
+      voting_disabled: "Deze motie is afgekeurd, je kan deze niet steunen."
+      voting_review_pending: "Deze motie wordt gecheckt, je kan deze nog niet steunen. Probeer het later nogmaals!"
   welcome:
     feed:
       most_active:

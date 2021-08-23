@@ -9,7 +9,7 @@ describe "I18n" do
   it "do not add more missing keys" do
     expect(missing_keys).not_to be_empty,
       "Missing #{missing_keys.leaves.count} i18n keys, run `i18n-tasks missing' to show them"
-    expect(missing_keys.leaves.count).to eq 442
+    expect(missing_keys.leaves.count).to eq 440
   end
 
   it "do not add more unused keys" do
