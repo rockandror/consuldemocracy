@@ -40,12 +40,12 @@ nl:
         sincerely: "Met vriendelijke groet, Presidium"
         information: P.S. Lees <a href="https://www.pvda.nl/partij/ledendemocratie/">hier</a>' hier meer over hoe de interne ledendemocratie van onze partij werkt.
       voting_review:
-        subject: Jouw motie ingediend voor de Ledenkamer
-        title: Je motie is ingediend en wordt gecheckt.
-        intro: "Beste lid"
-        text: "Het presidium gaat nu checken of jouw motie compleet en duidelijk is. Zo ja, dan ontvang je binnen 24 uur een bericht dat de motie in de Ledenkamer staat. Er kan dan op jouw motie gestemd worden. Wanneer onderdelen missen of de motie onduidelijk is. Dan ontvang je binnen 24u een mail om de motie aan te passen.  In het menu kan je  bij 'Mijn bijdragen' de status van jouw motie  volgen. Heel veel dank voor deze  motie en daarmee jouw bijdragen aan een sterke en democratische PvdA!"
-        information: "P.S. Lees  hier  meer over hoe de interne ledendemocratie van onze partij werkt."
-        sincerely: "Met vriendelijke groet, Presidium"
+        subject: Jouw motie ingediend Ledenkamer
+        title: "Dank voor het indienen van jouw motie %{link}."
+        intro: "Beste <strong>%{author}</strong>,"
+        text: "Wij hebben de motie doorgestuurd naar het presidium. Zij gaat nu checken of de motie voldoet aan de richtlijnen. Zo ja, dan ontvang je zo snel mogelijk bericht dat er op jouw motie gestemd kan worden. Wanneer onderdelen missen of de motie onduidelijk is. Dan ontvang je zo snel mogelijk een mail om de motie aan te passen. In het menu kan je bij <a href='%{url}'>Mijn bijdragen</a> de status van jouw motie volgen.<br><br>Heel veel dank voor deze motie en daarmee jouw bijdragen aan een sterke en democratische PvdA!"
+        information: "Team Ondersteuning"
+        sincerely: "Met vriendelijke groet,"
     proposal_notification_digest:
       info: "Dit zijn de nieuwe meldingen die zijn gepubliceerd door auteurs van de voorstellen die u hebt ondersteund in %{org_name}."
       title: "Voorstelmeldingen in %{org_name}"
@@ -91,4 +91,3 @@ nl:
       hi: "Beste deelnemer,"
       thanks: "Dank u nogmaals voor uw deelname."
       sincerely: "Hoogachtend"
-

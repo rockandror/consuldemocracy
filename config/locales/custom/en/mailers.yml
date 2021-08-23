@@ -21,7 +21,7 @@ en:
         sincerely: "Sincerely,"
       voting_review:
         subject: "Thank you for creating a proposal!"
-        title: "Thank you for creating a proposal!"
+        title: "Thank you for creating the proposal %{proposal}!"
         intro: "Hi <strong>%{author}</strong>,"
         text: "Thank you for creating your proposal <strong>%{proposal}</strong>."
         information: "We would like to inform you that your proposal is pending review. As soon as it is reviewed you will receive an email to start collecting votes."
