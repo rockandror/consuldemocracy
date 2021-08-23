@@ -21,13 +21,6 @@
           <%= t("proposals.proposal.share.edit") %>
         </p>
 
-        <%= render "shared/social_share",
-          title: @proposal.title,
-          url: proposal_url(@proposal),
-          description: @proposal.summary,
-          mobile: @proposal.title
-        %>
-
         <% if can?(:dashboard, @proposal) %>
           <div class="callout light margin">
             <p class="text-center">
