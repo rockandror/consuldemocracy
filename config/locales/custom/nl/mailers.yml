@@ -26,12 +26,12 @@ nl:
         information: "Neem contact op met ledendemocratie@pvda.nl"
         sincerely: "Met vriendelijke groet, Presidium"
       voting_disabled:
-        subject: Jouw motie is afgekeurd
-        title: "Jouw motie is afgekeurd"
-        intro: "Beste lid"
-        text: "Om de kwaliteit van de Ledenkamer te waarborgen, hebben we helaas jouw ingediende motie afgekeurd. We kunnen ons voorstellen dat dit een teleurstelling is. We lichten daarom graag toe waarom we deze keuze hebben gemaakt. Onze reactie vind je onderaan jouw motie. Heb je vragen? Neem dan contact op met ledendemocratie@pvda.nl. We hopen natuurlijk dat je gebruik blijft maken van de mogelijkheid om een motie in te dienen. En zo je stem te laten horen binnen onze partij. We zien graag een nieuwe motie tegemoet! Heel veel dank jouw bijdragen aan een sterke en democratische PvdA."
-        information: "P.S. Lees hier meer over hoe de interne ledendemocratie van onze partij werkt."
-        sincerely: "Met vriendelijke groet, Presidium"
+        subject: Motie is afgekeurd
+        title: "Jouw motie %{link} voldoet niet aan de richtlijnen en is afgekeurd."
+        intro: "Beste <strong>%{author}</strong>,"
+        text: "Om de kwaliteit van de Ledenkamer te waarborgen, heeft het presidium helaas jouw motie afgekeurd. We kunnen ons voorstellen dat dit een teleurstelling is. Het presidium licht deze keuze daarom graag toe. De toelichting vind je onderaan de motie %{link}. <br><br> Heb je vragen? Neem dan contact op met <a href='mailto:ledendemocratie@pvda.nl'>ledendemocratie@pvda.nl</a>. <br><br> We hopen natuurlijk dat je gebruik blijft maken van de mogelijkheid om een motie in te dienen. En zo je stem te laten horen binnen onze partij. We zien graag een nieuwe motie tegemoet! <br><br> Heel veel dank jouw bijdragen aan een sterke en democratische PvdA."
+        information: "Team Ondersteuning"
+        sincerely: "Met vriendelijke groet,"
       voting_enabled:
         subject: Motie is goedgekeurd
         title: "Jouw motie %{link} is door het presidium goedgekeurd!."

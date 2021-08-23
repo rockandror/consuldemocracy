@@ -1,24 +1,25 @@
 <td style="padding-bottom: 20px; padding-left: 10px;">
 
-  <h1 style="font-family: 'Open Sans','Helvetica Neue',arial,sans-serif;">
-    <%= t("mailers.proposal.voting_disabled.title") %>
-  </h1>
+  <p style="font-family: 'Open Sans','Helvetica Neue',arial,sans-serif;font-size: 16px;font-weight: normal;line-height: 24px;">
+    <%= sanitize(t("mailers.proposal.voting_disabled.title",
+          link: link_to(@proposal.title, proposal_url(@proposal)))) %>
+  </p>
 
   <p style="font-family: 'Open Sans','Helvetica Neue',arial,sans-serif;font-size: 14px;font-weight: normal;line-height: 24px;">
     <%= sanitize(t("mailers.proposal.voting_disabled.intro",
-           author: @author.name)) %>
+          author: @author.name)) %>
   </p>
 
   <p style="font-family: 'Open Sans','Helvetica Neue',arial,sans-serif;font-size: 14px;font-weight: normal;line-height: 24px;">
     <%= sanitize(t("mailers.proposal.voting_disabled.text",
-           proposal: @proposal.title)) %>
+          link: link_to(@proposal.title, proposal_url(@proposal)))) %>
   </p>
 
   <p style="font-family: 'Open Sans','Helvetica Neue',arial,sans-serif;font-size: 14px;font-weight: normal;line-height: 24px;">
     <%= t("mailers.proposal.voting_disabled.sincerely") %>
-  </p> 
+  </p>
 
   <p style="font-family: 'Open Sans','Helvetica Neue',arial,sans-serif;font-size: 14px;font-weight: normal;line-height: 24px;">
-    <%= sanitize(t("mailers.proposal.voting_disabled.information")) %>   
+    <%= sanitize(t("mailers.proposal.voting_disabled.information")) %>
   </p>
 </td>
