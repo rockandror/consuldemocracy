@@ -28,6 +28,15 @@ describe Widget::Feed do
 
         expect(feed.proposals).to eq([best_proposal, medium_proposal, worst_proposal])
       end
+
+      it "does not return unpublished proposals" do
+        published_proposal = create(:proposal, title: "Best proposal")
+        create(:proposal, :draft, title: "Draft proposal")
+
+        feed = build(:widget_feed, kind: "proposals")
+
+        expect(feed.proposals).to eq([published_proposal])
+      end
     end
 
     describe "#debates" do
