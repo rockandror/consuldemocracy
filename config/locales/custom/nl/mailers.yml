@@ -1,6 +1,6 @@
 nl:
   mailers:
-    no_reply: "Dit bericht is verzonden vanaf een e-mailadres dat geen reacties accepteert."
+    no_reply: "Dit bericht is verzonden vanaf een e-mailadres dat geen reacties accepteert"
     comment:
       hi: Hoi
       new_comment_by_html: Er is een reactie van <b>%{commenter}</b>
@@ -20,30 +20,32 @@ nl:
       title: Nieuwe reactie op je reactie
     proposal:
       remove_voting_review:
-        subject: "Pending translation"
-        title: "Pending translation"
-        intro: "Pending translation"
-        information: "Pending translation"
-        sincerely: "Pending translation"
+        subject: "Motie zonder steun mogelijkheid"
+        title: "Motie zonder steun mogelijkheid"
+        intro: "Beste lid"
+        information: "Neem contact op met ledendemocratie@pvda.nl"
+        sincerely: "Met vriendelijke groet, Presidium"
       voting_disabled:
-        subject: "Pending translation"
-        title: "Pending translation"
-        intro: "Pending translation"
-        information: "Pending translation"
-        sincerely: "Pending translation"
+        subject: Jouw motie is afgekeurd
+        title: "Jouw motie is afgekeurd"
+        intro: "Beste lid"
+        text: "Om de kwaliteit van de Ledenkamer te waarborgen, hebben we helaas jouw ingediende motie afgekeurd. We kunnen ons voorstellen dat dit een teleurstelling is. We lichten daarom graag toe waarom we deze keuze hebben gemaakt. Onze reactie vind je onderaan jouw motie. Heb je vragen? Neem dan contact op met ledendemocratie@pvda.nl. We hopen natuurlijk dat je gebruik blijft maken van de mogelijkheid om een motie in te dienen. En zo je stem te laten horen binnen onze partij. We zien graag een nieuwe motie tegemoet! Heel veel dank jouw bijdragen aan een sterke en democratische PvdA."
+        information: "P.S. Lees hier meer over hoe de interne ledendemocratie van onze partij werkt."
+        sincerely: "Met vriendelijke groet, Presidium"
       voting_enabled:
-        subject: "Pending translation"
-        title: "Pending translation"
-        intro: "Pending translation"
-        information: "Pending translation"
-        sincerely: "Pending translation"
+        subject: Jouw motie staat nu in de Ledenkamer
+        title: "Jouw motie staat nu in de Ledenkamer"
+        intro: "Beste lid"
+        text: Jouw  motie staat in de  Ledenkamer. Je kan nu starten  met het verzamelen van  stemmen. Hiervoor kan je deze  link met andere PvdA-leden delen. Op deze pagina kunnen zij  direct op jouw motie stemmen of eventueel  een reactie achterlaten. Hier  lees je  meer over de vervolgstappen.Heel veel dank voor deze  motie en daarmee jouw bijdragen aan een sterke en democratische PvdA!
+        sincerely: "Met vriendelijke groet, Presidium"
+        information: P.S. Lees <a href="https://www.pvda.nl/partij/ledendemocratie/">hier</a>' hier meer over hoe de interne ledendemocratie van onze partij werkt.
       voting_review:
-        subject: "Pending translation"
-        title: "Pending translation"
-        intro: "Pending translation"
-        text: "Pending translation"
-        information: "Pending translation"
-        sincerely: "Pending translation"
+        subject: Jouw motie ingediend voor de Ledenkamer
+        title: Je motie is ingediend en wordt gecheckt.
+        intro: "Beste lid"
+        text: "Het presidium gaat nu checken of jouw motie compleet en duidelijk is. Zo ja, dan ontvang je binnen 24 uur een bericht dat de motie in de Ledenkamer staat. Er kan dan op jouw motie gestemd worden. Wanneer onderdelen missen of de motie onduidelijk is. Dan ontvang je binnen 24u een mail om de motie aan te passen.  In het menu kan je  bij 'Mijn bijdragen' de status van jouw motie  volgen. Heel veel dank voor deze  motie en daarmee jouw bijdragen aan een sterke en democratische PvdA!"
+        information: "P.S. Lees  hier  meer over hoe de interne ledendemocratie van onze partij werkt."
+        sincerely: "Met vriendelijke groet, Presidium"
     proposal_notification_digest:
       info: "Dit zijn de nieuwe meldingen die zijn gepubliceerd door auteurs van de voorstellen die u hebt ondersteund in %{org_name}."
       title: "Voorstelmeldingen in %{org_name}"
@@ -89,3 +91,4 @@ nl:
       hi: "Beste deelnemer,"
       thanks: "Dank u nogmaals voor uw deelname."
       sincerely: "Hoogachtend"
+
