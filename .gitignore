@@ -41,3 +41,8 @@ public/system/
 
 # Ignore env related
 .env
+
+# Ignore Docker dev related
+/scripts
+/Dockerfile
+/docker-compose.yml
