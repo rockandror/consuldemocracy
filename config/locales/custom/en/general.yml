@@ -6,6 +6,8 @@ en:
     comments:
       pending_to_review_proposal: "Comments are blocked until voting the proposal is approved."
       disabled_proposal: "Comments are blocked because the proposal was disabled for voting."
+    new:
+      required_fields: All fields marked with an * are required
     show:
       details: "Proposal details:"
       request: "Proposal request:"
