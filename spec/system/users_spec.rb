@@ -32,6 +32,7 @@ describe "Users" do
     scenario "default filter is proposals" do
       user.proposals.each do |proposal|
         expect(page).to have_content(proposal.title)
+        expect(page).to have_content(proposal.code)
       end
 
       user.debates.each do |debate|
