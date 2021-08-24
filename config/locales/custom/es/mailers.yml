@@ -2,6 +2,3 @@ es:
   mailers:
     contact:
       intro: "El usuario %{name} con dirección de correo %{email} ha enviado el siguiente mensaje:"
-    confirmation_instructions:
-      rrss_text: |
-        Has solicitado darte de alta en la plataforma <a href="https://cabildoabierto.tenerife.es/">cabildoabierto.tenerife.es</a> mediante tu usuario de redes sociales (cuenta de correo electrónico), para completar el proceso de alta necesitamos que confirmes esta acción (validar tu dirección de correo electrónico) pulsando en el siguiente enlace"
