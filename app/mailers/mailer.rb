@@ -131,9 +131,10 @@ class Mailer < ApplicationMailer
     @message = message
     @subject = subject
     @intro = intro
-    @mail_to = Rails.application.secrets.contact_email
+    @email_to = Rails.application.secrets.contact_email
+
     I18n.with_locale(I18n.default_locale) do
-      mail(to: @mail_to, subject: @subject)
+      mail(to: @email_to, subject: @subject)
     end
   end
 
