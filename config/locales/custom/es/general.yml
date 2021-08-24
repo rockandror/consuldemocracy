@@ -1017,6 +1017,8 @@ es:
     title: "Noticias"
   contact:
     title: "Contacto"
+    intro: Puedes contactar con el personal de Participación Ciudadana a través de <a href="mailto:participacionydiversidad@tenerife.es">participacionydiversidad@tenerife.es</a> o llamando al 901 501 901.
+    form_title: Formulario de contacto
     username: Nombre *
     email: Email *
     subject: Asunto *

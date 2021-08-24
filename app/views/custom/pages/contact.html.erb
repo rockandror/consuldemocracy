@@ -22,8 +22,9 @@
 <%= form_with url: "/contact" do |f| %>
 <div class="row margin-top">
   <div class="small-12 medium-9 column">
+  <p><%= sanitize t("contact.intro") %></p>
     <div class="subtitle">
-      <h2><%= t("contact.title") %></h2>
+      <h2><%= t("contact.form_title") %></h2>
     </div>
     <div>
       <%= f.hidden_field :locale, value: I18n.locale %>
