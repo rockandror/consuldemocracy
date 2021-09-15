@@ -36,7 +36,7 @@ module Attachable
     self.attachment = if Paperclip::Attachment.default_options[:storage] == :filesystem
                         File.open(cached_attachment)
                       else
-                        URI.parse(cached_attachment)
+                        URI.open(cached_attachment)
                       end
   end
 
