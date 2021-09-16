@@ -8,9 +8,6 @@ if Rails.env.production? || Rails.env.staging? || Rails.env.preproduction?
     s3_region: Rails.application.secrets.aws_s3_region
   }
   Paperclip::Attachment.default_options[:bucket] = Rails.application.secrets.aws_s3_bucket
-  Paperclip::Attachment.default_options[:url] = ":s3_domain_url"
-  Paperclip::Attachment.default_options[:use_timestamp] = false
-  Paperclip::Attachment.default_options[:hash_secret] = Rails.application.secrets.secret_key_base
 end
 
 class Paperclip::UrlGenerator
