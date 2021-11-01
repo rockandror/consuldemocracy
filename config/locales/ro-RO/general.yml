@@ -232,7 +232,7 @@ ro:
       consul: Cerere CONSUL
       consul_url: https://github.com/consul/consul
       contact_us: Pentru ajutor tehnic mergeți la
-      copyright: Primăria Municipiului Brașov, %{year}
+      copyright: Code for Romania, %{year}
       description: Acest portal folosește %{consul} care este %{open_source}. Codul sursă al aplicației poate fi consultat %{c4ro_repo}.
       open_source: software open-source
       open_source_url: http://www.gnu.org/licenses/agpl-3.0.html

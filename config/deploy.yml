@@ -1,6 +1,6 @@
 development: &default
   city: Brașov
-  support_email: bugetareparticipativa@brasovcity.ro
+  support_email: contact@code4.ro
   financed_domains:
     bg_image: Brașov_background.png
     cards:
