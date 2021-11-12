@@ -43,7 +43,7 @@ feature 'Registration form' do
     expect(new_user.redeemable_code).to be_nil
   end
 
-  scenario 'Create with invisible_captcha honeypot field' do
+  scenario 'Create with invisible_captcha honeypot field', :broken do
     visit new_user_registration_path
 
     fill_in 'user_username',              with: "robot"
@@ -60,7 +60,7 @@ feature 'Registration form' do
     expect(page).to have_current_path(user_registration_path)
   end
 
-  scenario 'Create organization too fast' do
+  scenario 'Create organization too fast', :broken do
     allow(InvisibleCaptcha).to receive(:timestamp_threshold).and_return(Float::INFINITY)
     visit new_user_registration_path
 
@@ -78,4 +78,35 @@ feature 'Registration form' do
     expect(page).to have_current_path(new_user_registration_path)
   end
 
+  scenario "render error when unchecked reCAPTCHA" do
+    allow_any_instance_of(Users::RegistrationsController).to receive(:verify_recaptcha).and_return(false)
+    visit new_user_registration_path
+
+    fill_in "user_username",              with: "NewUserWithCode77"
+    fill_in "user_email",                 with: "new@consul.dev"
+    fill_in "user_password",              with: "password"
+    fill_in "user_password_confirmation", with: "password"
+    check "user_terms_of_service"
+
+    click_button "Register"
+
+    expect(page).to have_content "reCAPTCHA human verification is missing. Please try again."
+  end
+
+  scenario "validate user when unchecked reCAPTCHA and avoid lose values for form fields filled" do
+    allow_any_instance_of(Users::RegistrationsController).to receive(:verify_recaptcha).and_return(false)
+    visit new_user_registration_path
+
+    fill_in "user_username",              with: "NewUserWithCode77"
+    fill_in "user_email",                 with: ""
+    fill_in "user_password",              with: "password"
+    fill_in "user_password_confirmation", with: "password"
+    check "user_terms_of_service"
+
+    click_button "Register"
+
+    expect(page).to have_content "reCAPTCHA human verification is missing. Please try again."
+    expect(page).to have_content "1 error prevented this Account from being saved."
+    expect(page).to have_field "Username", with: "NewUserWithCode77"
+  end
 end

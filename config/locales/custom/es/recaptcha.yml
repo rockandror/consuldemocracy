@@ -1,0 +1,5 @@
+es:
+  recaptcha:
+    errors:
+      recaptcha_unreachable: "Error del servidor durante la verificación del reCAPTCHA. Por favor, inténtalo de nuevo."
+      verification_failed: "No se ha realizado la verificación humana reCAPTCHA. Por favor, inténtalo de nuevo."
