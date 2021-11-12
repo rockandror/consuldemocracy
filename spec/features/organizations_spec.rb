@@ -23,7 +23,7 @@ feature 'Organizations' do
     expect(user.organization).not_to be_verified
   end
 
-  scenario 'Create with invisible_captcha honeypot field' do
+  scenario 'Create with invisible_captcha honeypot field', :broken do
     visit new_organization_registration_path
 
     fill_in 'user_organization_attributes_name',  with: 'robot'
@@ -42,7 +42,7 @@ feature 'Organizations' do
     expect(page).to have_current_path(organization_registration_path)
   end
 
-  scenario 'Create organization too fast' do
+  scenario 'Create organization too fast', :broken do
     allow(InvisibleCaptcha).to receive(:timestamp_threshold).and_return(Float::INFINITY)
     visit new_organization_registration_path
     fill_in 'user_organization_attributes_name', with: 'robot'
@@ -78,4 +78,38 @@ feature 'Organizations' do
     expect(page).to have_link "Sign up"
     expect(page).not_to have_link "Sign up as an organization"
   end
+
+  scenario "when create organization render error when unchecked reCAPTCHA" do
+    allow_any_instance_of(Organizations::RegistrationsController).to receive(:verify_recaptcha).and_return(false)
+    visit new_organization_registration_path
+
+    fill_in "Name of organisation", with: "Greenpeace"
+    fill_in "Person responsible for the group", with: "Dorothy Stowe"
+    fill_in "Email", with: "green@peace.com"
+    fill_in "Password", with: "greenpeace"
+    fill_in "Confirm password", with: "greenpeace"
+    check "By registering you accept the terms and conditions of use"
+
+    click_button "Register"
+
+    expect(page).to have_content "reCAPTCHA human verification is missing. Please try again."
+  end
+
+  scenario "validate organization when unchecked reCAPTCHA and avoid lose values for form fields filled" do
+    allow_any_instance_of(Organizations::RegistrationsController).to receive(:verify_recaptcha).and_return(false)
+    visit new_organization_registration_path
+
+    fill_in "Name of organisation", with: ""
+    fill_in "Person responsible for the group", with: "Dorothy Stowe"
+    fill_in "Email", with: "green@peace.com"
+    fill_in "Password", with: "greenpeace"
+    fill_in "Confirm password", with: "greenpeace"
+    check "By registering you accept the terms and conditions of use"
+
+    click_button "Register"
+
+    expect(page).to have_content "reCAPTCHA human verification is missing. Please try again."
+    expect(page).to have_content "1 error prevented this Account from being saved."
+    expect(page).to have_field "Email", with: "green@peace.com"
+   end
 end
