@@ -386,6 +386,8 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (3.0.0)
     rake (12.3.2)
+    recaptcha (5.8.1)
+      json
     redcarpet (3.4.0)
     referer-parser (0.3.0)
     request_store (1.4.1)
@@ -607,6 +609,7 @@ DEPENDENCIES
   rails-assets-leaflet!
   rails-assets-markdown-it (~> 8.2.1)!
   rails-erd
+  recaptcha (~> 5.8.1)
   redcarpet (~> 3.4.0)
   responders (~> 2.4.0)
   rest-client (~> 2.0, >= 2.0.2)

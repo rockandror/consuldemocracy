@@ -35,6 +35,8 @@ services:
       - RAILS_RELATIVE_URL_ROOT=/aplicaciones/participaciongeneral
       - RAILS_SCOPE
       - RAILS_SERVE_STATIC_FILES=true
+      - RECAPTCHA_SECRET_KEY
+      - RECAPTCHA_SITE_KEY
       - SAML_IDP_CERT
       - SAML_IDP_URL
       - SAML_ISSUER
