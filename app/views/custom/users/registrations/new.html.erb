@@ -24,8 +24,6 @@
                                    label: false,
                                    aria: {describedby: "username-help-text"} %>
 
-      <%= f.invisible_captcha :address %>
-
       <%= f.email_field :email,     placeholder: t("devise_views.users.registrations.new.email_label") %>
 
 
@@ -49,6 +47,9 @@
               target: "_blank")).html_safe %>
         </span>
       <% end %>
+
+      <%= recaptcha_tags %>
+
       <div class="small-12 medium-6 small-centered">
         <%= f.submit t("devise_views.users.registrations.new.submit"), class: "button expanded" %>
       </div>
