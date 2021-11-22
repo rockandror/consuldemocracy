@@ -15,7 +15,7 @@ feature "Admin custom images" do
     end
 
     within("tr#image_logo_header") do
-      attach_file "site_customization_image_image", "spec/fixtures/files/logo_header.png"
+      attach_file "site_customization_image_image", "spec/fixtures/files/custom/logo_header.png"
       click_button "Update"
     end
 
