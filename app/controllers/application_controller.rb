@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   include HasFilters
   include HasOrders
 
-  rescue_from StandardError, with: :audit_error
   after_action :audit
 
   before_action :authenticate_http_basic, if: :http_basic_auth_site?
@@ -47,15 +46,6 @@ class ApplicationController < ActionController::Base
   end
 
   def audit_error(exception)
-    if Rails.env.production?
-      if exception.to_s == "404"
-        redirect_to "http://www.gobiernodecanarias.org/errors/errorctrl404.html"
-      else
-        redirect_to "http://www.gobiernodecanarias.org/errors/errorctrl500.html"
-      end
-      logger.add(Logger::ERROR, exception, "AUDIT")
-      return
-    end
     logger.add(Logger::ERROR, exception, "AUDIT")
     raise exception
   end
