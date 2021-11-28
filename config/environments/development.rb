@@ -67,8 +67,6 @@ Rails.application.configure do
 
   config.cache_store = :dalli_store
 
-  config.relative_url_root = ENV['CONSUL_RELATIVE_URL'].nil? || ENV['CONSUL_RELATIVE_URL'].empty? ? '/' : ENV['CONSUL_RELATIVE_URL']
-
   config.after_initialize do
     Bullet.enable = true
     Bullet.bullet_logger = true

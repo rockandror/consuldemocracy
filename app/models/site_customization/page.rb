@@ -21,10 +21,6 @@ class SiteCustomization::Page < ActiveRecord::Base
   scope :locale, ->  { where("site_customization_page_translations.locale": I18n.locale) }
 
   def url
-    if not ENV['CONSUL_RELATIVE_URL'].nil?
-      return ENV['CONSUL_RELATIVE_URL'].to_s + "/#{slug}"
-    else
-      return "/#{slug}"
-    end
+    "#{Rails.configuration.relative_url_root}/#{slug}"
   end
 end
