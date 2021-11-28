@@ -43,9 +43,9 @@
             <% if milestone.documents.present? %>
               <% milestone.documents.each do |document| %>
                 <%= link_to document.title,
-                            (Rails.configuration.relative_url_root || "") + document.attachment.url,
-                              target: "_blank",
-                              rel: "nofollow" %><br>
+                            "#{Rails.configuration.relative_url_root}#{document.attachment.url}",
+                            target: "_blank",
+                            rel: "nofollow" %><br>
               <% end %>
             <% end %>
           </td>

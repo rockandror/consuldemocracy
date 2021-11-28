@@ -12,7 +12,6 @@ services:
     image: gobcan-consul:20210302
     environment:
       - CALLBACK_URL
-      - CONSUL_RELATIVE_URL
       - COOKIES_NAME
       - DATABASE
       - DATABASE_ADAPTER
@@ -33,6 +32,7 @@ services:
       - RAILS_ENV
       - RAILS_LOG_LEVEL
       - RAILS_LOG_TO_STDOUT=true
+      - RAILS_RELATIVE_URL_ROOT=/aplicaciones/participaciongeneral
       - RAILS_SCOPE
       - RAILS_SERVE_STATIC_FILES=true
       - SAML_IDP_CERT

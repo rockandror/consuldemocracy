@@ -1,6 +1,7 @@
 <li id="<%= dom_id(document)%>">
   <%= link_to t("documents.buttons.download_document"),
-              (Rails.configuration.relative_url_root || "") + document.attachment.url, target: "_blank",
+              "#{Rails.configuration.relative_url_root}#{document.attachment.url}",
+              target: "_blank",
               rel: "nofollow", class: "button hollow medium float-right" %>
 
   <strong><%= document.title %></strong>

@@ -33,11 +33,11 @@
       <% @answer.documents.each do |document| %>
         <tr>
           <td>
-            <%= link_to document.title, (Rails.configuration.relative_url_root || "") + document.attachment.url %>
+            <%= link_to document.title, "#{Rails.configuration.relative_url_root}#{document.attachment.url}" %>
           </td>
           <td class="text-right">
             <%= link_to t("documents.buttons.download_document"),
-                        (Rails.configuration.relative_url_root || "") + document.attachment.url,
+                        "#{Rails.configuration.relative_url_root}#{document.attachment.url}",
                         target: "_blank",
                         rel: "nofollow",
                         class: "button hollow" %>
