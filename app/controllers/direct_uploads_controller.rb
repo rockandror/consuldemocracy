@@ -18,7 +18,6 @@ class DirectUploadsController < ApplicationController
       render json: { cached_attachment: @direct_upload.relation.cached_attachment,
                      filename: @direct_upload.relation.attachment.original_filename,
                      destroy_link: render_destroy_upload_link(@direct_upload).html_safe,
-                     #attachment_url: @direct_upload.relation.attachment.url}
                      attachment_url: "#{Rails.configuration.relative_url_root}#{@direct_upload.relation.attachment.url}" }
     else
       @direct_upload.destroy_attachment

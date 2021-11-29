@@ -75,17 +75,4 @@ module ImagesHelper
                         "direct_upload[resource_id]": imageable.id,
                         "direct_upload[resource_relation]": "image")
   end
-
-=begin
-  def image_url_relative(image, version="")
-    return "" unless image
-
-    image = image.attachment.url(version)
-
-    #url = Rails.configuration.relative_url_root + image
-    url = image
-
-    url.gsub("//", "/")
-  end
-=end
 end
