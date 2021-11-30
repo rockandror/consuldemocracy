@@ -703,4 +703,17 @@ describe User do
     end
   end
 
+  describe "#exceeded_failed_login_attempts?" do
+
+    it "returns true if the failed login attempts reached the setting max value" do
+      user = create(:user, failed_attempts: 1)
+      expect(user.exceeded_failed_login_attempts?).to be true
+    end
+
+    it "returns false if the failed login attempts didn't reach the setting max value" do
+      user = create(:user, failed_attempts: 0)
+      expect(user.exceeded_failed_login_attempts?).to be false
+    end
+  end
+
 end

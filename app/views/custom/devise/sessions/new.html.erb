@@ -28,6 +28,10 @@
       </div>
     <% end -%>
 
+    <div class="small-12 column recaptcha">
+      <%= recaptcha_tags %>
+    </div>
+
     <div class="small-12 medium-6 small-centered">
       <%= f.submit(t("devise_views.sessions.new.submit"), class: "button expanded") %>
     </div>
