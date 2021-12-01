@@ -14,7 +14,9 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  config.relative_url_root = ENV['CONSUL_RELATIVE_URL'].nil? || ENV['CONSUL_RELATIVE_URL'].empty? ? '/' : ENV['CONSUL_RELATIVE_URL']
+  if ENV["CONSUL_RELATIVE_URL"]
+    config.relative_url_root = ENV["CONSUL_RELATIVE_URL"]
+  end
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
   # Add `rack-cache` to your Gemfile before enabling this.
