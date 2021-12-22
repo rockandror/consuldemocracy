@@ -32,7 +32,7 @@ class PagesController < ApplicationController
 
   def news
     @menu_title = 'Cabildo Abierto'
-    @news = SiteCustomization::Page.where(is_news: true)
+    @news = SiteCustomization::Page.where(is_news: true).page(params[:page]).per(5)
     @related_pages = SiteCustomization::Page.where("slug LIKE :family", family: "\_cabildo\_%")
     render action: :news
   end
