@@ -4,6 +4,6 @@ class AdminWYSIWYGSanitizer < WYSIWYGSanitizer
   end
 
   def allowed_attributes
-    super + %w[alt src align border cellpadding cellspacing dir style class summary scope id]
+    super + %w[alt src target rel align border cellpadding cellspacing dir style class summary scope id]
   end
 end
