@@ -290,6 +290,39 @@ shared_examples "mappable" do |mappable_factory_name, mappable_association_name,
 
       expect(page).not_to have_css(".map_location")
     end
+
+    describe "When scrolling the page" do
+      scenario "with one finger on touch devices it shows touchable devices instructions", :small_window do
+        arguments[:id] = mappable.id
+
+        do_login_for(user) if management
+        visit send(mappable_show_path, arguments)
+
+        instructions = page.execute_script <<-SCRIPT
+          map_container = App.Map.maps[0]._container;
+          L.DomUtil.addClass(map_container, "leaflet-gesture-handling-touch-warning");
+          return window.getComputedStyle(map_container, ":after").getPropertyValue("content");
+        SCRIPT
+
+        expect(instructions).to have_content "Use two fingers to move the map"
+      end
+
+      scenario "with mouse wheel on desktop it shows desktop instructions" do
+        arguments[:id] = mappable.id
+
+        do_login_for(user) if management
+        visit send(mappable_show_path, arguments)
+
+        instructions = page.execute_script <<-SCRIPT
+          map_container = App.Map.maps[0]._container;
+          L.DomUtil.addClass(map_container, "leaflet-gesture-handling-scroll-warning");
+          return window.getComputedStyle(map_container, ":after").getPropertyValue("content");
+        SCRIPT
+
+        expect(["Use ⌘ + scroll to zoom the map",
+                "Use ctrl + scroll to zoom the map"]).to include instructions.gsub("\"", "")
+      end
+    end
   end
 end
 

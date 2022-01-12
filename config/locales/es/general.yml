@@ -266,6 +266,11 @@ es:
       mark_as_unread: Marcar como no leída
       notifiable_hidden: Este elemento ya no está disponible.
   map:
+    gesture:
+      handling:
+        scroll: "Mantén pulsada la tecla Ctrl mientras te desplazas para acercar o alejar el mapa"
+        scrollmac: "Mantén pulsada la tecla \u2318 mientras te desplazas para acercar o alejar el mapa"
+        touch: "Para mover el mapa, utiliza dos dedos"
     title: "Distritos"
     proposal_for_district: "Crea una propuesta para tu distrito"
     start_proposal: Crea una propuesta

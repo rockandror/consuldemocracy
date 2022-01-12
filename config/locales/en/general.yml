@@ -266,6 +266,11 @@ en:
       mark_as_unread: Mark as unread
       notifiable_hidden: This resource is not available anymore.
   map:
+    gesture:
+      handling:
+        scroll: "Use ctrl + scroll to zoom the map"
+        scrollmac: "Use \u2318 + scroll to zoom the map"
+        touch: "Use two fingers to move the map"
     title: "Districts"
     proposal_for_district: "Start a proposal for your district"
     start_proposal: Create a proposal
