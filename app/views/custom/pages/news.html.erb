@@ -46,7 +46,7 @@
 <% @news.each do |article| %>
   <%= link_to article.slug do %>
     <div>
-      <small><%= l(article.created_at, format: "%a %d %B %Y, %l:%M %P") %></small>
+      <small><%= l(article.news_date, format: "%a %d %B %Y") %></small>
       <h3><%= article.title %></h3>
     </div>
     <hr>

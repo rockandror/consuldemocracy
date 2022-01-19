@@ -98,6 +98,10 @@
     <% end %>
     </div>
     <%= auto_link_already_sanitized_html AdminWYSIWYGSanitizer.new.sanitize(@custom_page.content) %>
+    <br>
+    <% if @custom_page.is_news %>
+      <small><%= l(@custom_page.news_date, format: "%a %d %B %Y") %></small>
+  <% end %>
   </div>
 
   <% if @custom_page.print_content_flag %>

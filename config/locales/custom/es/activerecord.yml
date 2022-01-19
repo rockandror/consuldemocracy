@@ -357,6 +357,7 @@ es:
         more_info_flag: Mostrar en la página de ayuda
         print_content_flag: Botón de imprimir contenido
         is_news: Es noticia
+        news_date: Fecha de la noticia
         locale: Idioma
       site_customization/page/translation:
         title: Título

@@ -35,7 +35,7 @@ class Admin::SiteCustomization::PagesController < Admin::SiteCustomization::Base
   private
 
     def page_params
-      attributes = [:slug, :more_info_flag, :print_content_flag, :is_news, :status]
+      attributes = [:slug, :more_info_flag, :print_content_flag, :is_news, :news_date, :updated_at, :status]
 
       params.require(:site_customization_page).permit(*attributes,
         translation_params(SiteCustomization::Page)
