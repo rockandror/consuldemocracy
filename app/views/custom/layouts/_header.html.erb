@@ -16,7 +16,7 @@
     <div class="top-bar">
 
       <span data-responsive-toggle="responsive-menu" data-hide-for="medium" class="float-right">
-        <button type="button" class="menu-icon dark" data-toggle></button>
+        <button type="button" class="menu-icon" style="color: #FFF;" data-toggle></button>
         <%= t("application.menu") %>
       </span>
 
@@ -45,6 +45,12 @@
           <%= render "shared/top_links" %>
           </div>
           <%= render "shared/subnavigation" %>
+          <div class="small-12 column">
+            <div data-open="googleSearch" style="margin: 15px 0;" class="search">
+              <span><%= icon('fas', 'search') %></span>
+              <span><%= t("application.search") %></span>
+            </div>
+          </div>
           </div>
         </div>
       </div>
@@ -89,12 +95,11 @@
             </li>
           </ul>
         </div>
-        <% if false %>
-        <div class="hide-for-medium-only search">
-          <span><%= icon('fas', 'search') %></span>
-          <span><%= t("application.search") %></span>
-        </div>
-        <% end %>
+
+          <div data-open="googleSearch" class="search">
+            <span><%= icon('fas', 'search') %></span>
+            <span><%= t("application.search") %></span>
+          </div>
       </div>
     </div>
   </div>
