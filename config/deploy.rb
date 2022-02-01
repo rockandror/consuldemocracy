@@ -14,8 +14,9 @@ set :application, 'consul'
 set :full_app_name, deploysecret(:full_app_name)
 
 set :server_name, deploysecret(:server_name)
-set :repo_url, 'https://github.com/consul/consul.git'
-
+set :repo_url, "https://www.gobiernodecanarias.net/aplicaciones/git/gobierno-abierto/ecociv/consul.git"
+set :git_http_username, deploysecret(:git_http_username)
+set :git_http_password, deploysecret(:git_http_password)
 set :revision, `git rev-parse --short #{fetch(:branch)}`.strip
 
 set :log_level, :info
