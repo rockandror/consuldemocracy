@@ -8,6 +8,8 @@ class Budgets::GroupsAndHeadingsComponent < ApplicationComponent
   private
 
     def price(heading)
-      tag.span(budget.formatted_heading_price(heading))
+      if budget.show_money?
+        tag.span(budget.formatted_heading_price(heading))
+      end
     end
 end
