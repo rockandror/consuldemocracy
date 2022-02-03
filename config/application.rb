@@ -50,6 +50,7 @@ module Consul
     # * Spanish: https://github.com/consul/consul/blob/master/CUSTOMIZE_ES.md
     #
     config.autoload_paths << "#{Rails.root}/app/controllers/custom"
+    config.autoload_paths << "#{Rails.root}/app/controllers/custom/concerns"
     config.autoload_paths << "#{Rails.root}/app/models/custom"
     config.paths['app/views'].unshift(Rails.root.join('app', 'views', 'custom'))
 
