@@ -1,7 +1,2 @@
-<%
-  base_path = ""
-  base_path << (Rails.configuration.relative_url_root || "")
-  base_path << (Rails.application.config.assets.prefix || "")
-  base_path << '/ckeditor/'
-%>
+<% base_path = "#{Rails.application.config.relative_url_root}#{Rails.application.config.assets.prefix}/ckeditor/" %>
 var CKEDITOR_BASEPATH = '<%= base_path.gsub("//", "/") %>';
