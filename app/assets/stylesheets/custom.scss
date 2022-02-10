@@ -163,21 +163,58 @@
 
 .sectionbox-container {
   background-color: white;
-  padding: 30px 60px;
-  margin: 0;
+  margin: auto;
   width: 100%;
-  max-width: none !important;
+  max-width: 75rem;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+  .box {
+    width: 100%;
+    margin: 0 15px;
+  }
+
+  a {
+    text-decoration: none !important;
+  }
 
   .sectionbox {
     border: 1px solid black;
-    img {
-      padding: 30px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    img,
+    i {
+      height: 70px;
+      width: auto;
+      margin: 30px auto;
+    }
+    .balance:before {
+      content: "\f24e";
     }
     &-title {
       background-color: $brand;
       color: white;
       font-weight: 800;
-      padding: 20px;
+      padding: 20px 0;
+      height: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+@media (max-width: 639px) {
+  .sectionbox-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    padding: 0 10px;
+    .box {
+      margin: 15px 0;
     }
   }
 }
