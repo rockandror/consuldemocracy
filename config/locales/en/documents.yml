@@ -8,7 +8,7 @@ en:
       title_placeholder: Add a descriptive title for the document
       delete_button: Remove document
       cancel_button: Cancel
-      note: "Upload any relevant document for your proposal, such as a budget broken down into categories, a relevant report or other materials. You can upload up to a maximum of %{max_documents_allowed} documents of following content types: %{accepted_content_types}, up to %{max_file_size} MB per file."
+      note: "You can upload up to a maximum of %{max_documents_allowed} documents of following content types: %{accepted_content_types}, up to %{max_file_size} MB per file."
       add_new_document: Add new document
     actions:
       destroy:

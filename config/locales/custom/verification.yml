@@ -1,0 +1,47 @@
+en:
+  verification:
+    residence:
+      new:
+        accept_terms_adult: I hereby declare on my own responsability that I am at least 18 years old.
+        accept_terms_resident: I hereby declare on my own responsability that I reside permanently or temporarily in %{residence}.
+        accept_terms_terms: I accept %{terms_url} and %{privacy_url}.
+        terms: the Terms and Conditions
+        privacy: the Privacy Policy
+        help_needed: |
+          If you run into any issues with the verification process, contact us: %{email}
+        explanation: We are using your CNP only to validate that you are a citizen of Brasov, as stated in %{rules_url}.
+        rules: the Regulation
+
+ro:
+  verification:
+    user_permission_proposal: Creează noi propuneri
+    user_permission_support_proposal: Sprijiniți propunerile
+    user_permission_info_budgets: Verificându-vă informațiile veți avea acces la procesul de bugetare participativă
+    sms:
+      update:
+        flash.level_three:
+          success: Contul dumneavoastră este acum verificat
+      new:
+        phone_note: Introduceți numărul dumneavoastră de telefon
+        phone: Număr de telefon
+        phone_error: Număr de telefon invalid
+
+    residence:
+      new:
+        form_errors: Unele date introduse nu sunt valide
+        title: Verificare cont
+        verify_residence: Verifică
+        help_needed: |
+          Dacă întâmpini probleme cu procesul de verificare, contactează-ne: %{email}
+        document_number_help_text: "<strong>Exemplu CNP: 2900411192534</strong>"
+        accept_terms_residence: "Declar pe proprie răspundere că am reședinta temporară sau permanentă în "
+        accept_terms_age: "Declar pe proprie răspundere că am împlinit 18 ani"
+        document_number: Cod Numeric Personal (CNP)
+        accept_terms_all: |
+          Sunt de acord cu toate afirmațiile de mai jos
+        accept_terms_adult: Declar pe proprie răspundere că am împlinit 18 ani
+        accept_terms_resident: Declar pe proprie răspundere că am reședinta temporară sau permanentă în %{residence}
+        accept_terms_terms: Accept %{terms_url} și %{privacy_url}
+        privacy: politica de coonfidențialitate
+        explanation: Folosim CNP-ul dumneavoastră doar pentru a valida faptul că sunteți rezident în municipiul Brașov, conform %{rules_url}.
+        rules: Regulamentului

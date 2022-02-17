@@ -1,0 +1,9 @@
+ro:
+  sdg_management:
+    homepage:
+      header:
+        create: "Creează antet"
+      create_card: "Creează un card %{phase}"
+  local_targets:
+    index:
+      new: "Creează o țintă locală"

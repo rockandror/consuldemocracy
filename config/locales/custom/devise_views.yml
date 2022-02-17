@@ -6,3 +6,8 @@ ro:
       links:
         login: Conectare
         signup_link: Înregistrați-vă
+
+  devise_views:
+    shared:
+      links:
+        signup_link: Creați un cont.

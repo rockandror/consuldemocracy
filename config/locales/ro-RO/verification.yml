@@ -46,17 +46,10 @@ ro:
           success: Adresă verificată
       new:
         accept_terms_text: Accept %{terms_url}
-        accept_terms_all: |
-          Sunt de acord cu toate afirmațiile de mai jos
-        accept_terms_adult: Declar pe proprie răspundere că am împlinit 18 ani
-        accept_terms_resident: Declar pe proprie răspundere că am reședinta temporară sau permanentă în %{residence}
-        accept_terms_terms: Accept %{terms_url} și %{privacy_url}
         accept_terms_text_title: Accept termenii și condițiile de acces al Recensământ-ului
-        accept_terms_residence: "Declar pe proprie răspundere că am reședinta temporară sau permanentă în "
-        accept_terms_age: "Declar pe proprie răspundere că am împlinit 18 ani"
-        document_number: Cod Numeric Personal (CNP)
+        document_number: Numărul documentului
         document_number_help_title: Ajutor
-        document_number_help_text: "<strong>Exemplu CNP: 2900411192534</strong>"
+        document_number_help_text: "<strong>DNI</strong>: 12345678A<br> <strong>Pașaport</strong>: AAA000001<br> <strong>Card de reședință</strong>: X1234567P"
         document_type:
           passport: Pașaport
           residence_card: Card de reședință
@@ -64,16 +57,11 @@ ro:
         error_not_allowed_age: Nu aveți vârsta necesară pentru a participa
         error_not_allowed_postal_code: Pentru a putea fi verificat, trebuie să aveți cont.
         error_verifying_census: Nu am reușit să verificăm informațiile. Rugăm să luați legătura cu un administrator.
-        form_errors: Unele date introduse nu sunt valide
+        form_errors: a împiedicat verificarea reședinței dumneavoastră
         postal_code_note: Pentru a vă verifica contul trebuie să vă înregistrați
         terms: termenii și condițiile de acces
-        privacy: politica de coonfidențialitate
-        title: Verificare cont
-        verify_residence: Verifică
-        help_needed: |
-          Dacă întâmpini probleme cu procesul de verificare, contactează-ne: %{email}
-        explanation: Folosim CNP-ul dumneavoastră doar pentru a valida faptul că sunteți rezident în municipiul Brașov, conform %{rules_url}.
-        rules: Regulamentului
+        title: Verificați reședința
+        verify_residence: Verificați reședința
     sms:
       create:
         flash:
@@ -84,10 +72,9 @@ ro:
         submit_button: Trimite
         title: Confirmare cod de securitate
       new:
-        phone: Număr de telefon
-        phone_error: Număr de telefon invalid
+        phone: Introduceți numărul de telefon pentru a primi codul
         phone_format: "<strong><em>(Exemplu: 612345678 sau +34612345678)</em></strong>"
-        phone_note: Introduceți numărul dumneavoastră de telefon
+        phone_note: Folosim numărul dvs. de telefon doar pentru a vă trimite un cod, nu vă vom contacta niciodată.
         phone_placeholder: "Exemplu: 612345678 sau +34612345678"
         submit_button: Trimite
         title: Trimite codul de confirmare
@@ -95,7 +82,7 @@ ro:
         error: Cod de confirmare incorect
         flash:
           level_three:
-            success: Contul dumneavoastră este acum verificat
+            success: Cod corect. Contul dumneavoastră este acum verificat
           level_two:
             success: Cod corect
     step_1: Reședință
@@ -103,9 +90,8 @@ ro:
     step_3: Verificare finală
     user_permission_debates: Participați la dezbateri
     user_permission_info: Verificându-vă informațiile veți putea să...
-    user_permission_info_budgets: Verificându-vă informațiile veți avea acces la procesul de bugetare participativă
-    user_permission_proposal: Creează noi propuneri
-    user_permission_support_proposal: Sprijiniți propunerile
+    user_permission_proposal: Crează noi propuneri
+    user_permission_support_proposal: Sprijină propunerile*
     user_permission_votes: Participă la votarea finală*
     verified_user:
       form:

@@ -1,0 +1,9 @@
+en:
+  images:
+    form:
+      note: "Upload a representative image for your project. You can upload one image of following content types: %{accepted_content_types}, up to %{max_file_size} MB. The recommended dimensions are 1200x800px."
+
+ro:
+  images:
+    form:
+      note: "Încarcă o imagine reprezentativă pentru proiectul tău. Puteți încărca o imagine cu următoarele tipuri de conținut: %{accepted_content_types}, până la %{max_file_size} MB. Dimensiunile recomandate sunt 1200x800px."

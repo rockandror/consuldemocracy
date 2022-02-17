@@ -1,0 +1,12 @@
+ro:
+  community:
+    show:
+      sidebar:
+        new_topic: Creează subiect
+    topic:
+      create: Creează un subiect
+      form:
+        new:
+          submit_button: Creează subiect
+        create:
+          submit_button: Creează subiect

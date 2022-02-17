@@ -1,4 +1,18 @@
 ro:
   management:
+    menu:
+      create_proposal: Creează propunere
+      create_budget_investment: Creează buget de investiții
+    permissions:
+      create_proposals: Creează propuneri
+    print:
+      proposals_info: Creează-ți propunerea pe http://url.consul
+    proposals:
+      create_proposal: Creează propunere
+    budgets:
+      create_new_investment: Creează buget de investiții
     budget_investments:
       create: Creați o investiție de buget
+    users:
+      create_user: Creează cont nou
+      create_user_submit: Creează utilizator

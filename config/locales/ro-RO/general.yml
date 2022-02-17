@@ -16,7 +16,7 @@ ro:
       title: Contul meu
       user_permission_debates: Participă la dezbateri
       user_permission_info: Cu contul dumneavoastră puteți...
-      user_permission_proposal: Creează noi propuneri
+      user_permission_proposal: Crează noi propuneri
       user_permission_support_proposal: Sprijină propuneri
       user_permission_title: Participare
       user_permission_verify: Pentru a efectua toate acțiunile, verificați contul.
@@ -142,7 +142,7 @@ ro:
       form:
         submit_button: Începe o dezbatere
       info: Dacă doriți să faceți o propunere, aceasta este secțiunea greșită, introduceți %{info_link}.
-      info_link: creează o propunere nouă
+      info_link: crează o propunere nouă
       more_info: Mai multe informații
       recommendation_four: Bucurați-vă de acest spațiu, de vocile care îl umplu, este și al vostru.
       recommendation_one: Nu folosiți majuscule pentru titlul dezbaterii sau pentru propoziții întregi. Pe internet, acest lucru este considerat strigăt. Și nimănui nu-i place să-i fie strigat în față.
@@ -232,16 +232,13 @@ ro:
       consul: Cerere CONSUL
       consul_url: https://github.com/consul/consul
       contact_us: Pentru ajutor tehnic mergeți la
-      copyright: Primăria Municipiului Brașov, %{year}
-      description: Acest portal folosește %{consul} care este %{open_source}. Codul sursă al aplicației poate fi consultat %{c4ro_repo}.
+      copyright: CONSUL, %{year}
+      description: Acest portal folosește %{consul} care este %{open_source}.
       open_source: software open-source
       open_source_url: http://www.gnu.org/licenses/agpl-3.0.html
-      here: aici
-      c4ro_repo_url: https://github.com/code4romania/consul
       participation_text: Decide cum vrei să arate orașul în care locuiești.
       participation_title: Participare
       privacy: Politica de Confidențialitate
-      faq: Întrebări frecvente
     header:
       administration_menu: Meniu
       administration: Administrare
@@ -259,7 +256,7 @@ ro:
       open_gov: Transparență
       proposals: Propuneri
       poll_questions: Votare
-      budgets: Rezultate
+      budgets: Bugetare participativă
       notification_item:
         new_notifications:
           zero: "Nu aveți notificări noi"
@@ -268,14 +265,6 @@ ro:
           other: Aveți %{count} notificări noi
         notifications: Notificări
       sdg: "ODD"
-      c4ro_text:  O soluție Code for Romania pusă la dispoziție gratuit administrației publice. %{find_out_more}
-      c4ro_find_out_more: Află mai multe
-      about: Despre
-      faq: Întrebări frecvente
-      contact: Contact
-      calendar: Calendar
-      evaluation: Evaluarea proiectelor
-      news: Noutăți
   notifications:
     index:
       empty_notifications: Nu aveți notificări noi.
@@ -303,7 +292,7 @@ ro:
   map:
     title: "Districte"
     proposal_for_district: "Începeți o propunere pentru districtul dumneavoastră"
-    start_proposal: Creează propunere
+    start_proposal: Crează propunere
   omniauth:
     facebook:
       sign_in: Conectează-te cu Facebook
@@ -331,7 +320,7 @@ ro:
   proposals:
     create:
       form:
-        submit_button: Creează propunere
+        submit_button: Crează propunere
     created:
       title: Felicitări! Ați făcut primul pas.
       motivation: "Este important să pregătiți campania de lansare pentru ca propunerea dvs. să aibă succes. Primele zile sunt decisive."
@@ -412,7 +401,7 @@ ro:
         other: " conține termenii <strong>'%{search_term}'</strong>"
       select_order: Ordonează după
       select_order_long: "Vizionați propuneri conform:"
-      start_proposal: Creează propunere
+      start_proposal: Crează propunere
       title: Propuneri
       top: Top săptămânal
       top_link_proposals: Cea mai susținută propunere după categorie
@@ -425,13 +414,13 @@ ro:
         description: Propunerile cetățenilor sunt o oportunitate pentru vecini și grupuri de a decide direct cum vor să fie societatea lor, după ce au primit suficient sprijin și s-au prezentat la votul cetățenilor.
     new:
       form:
-        submit_button: Creează propunere
+        submit_button: Crează propunere
       more_info: Cum funcționează propunerile cetățenilor?
       recommendation_one: Nu scrieți titlul subiectului sau propozițiile întregi cu majuscule. Pe internet acest lucru este considerat strigat. Și nimănui nu îi place să i se țipe în față.
       recommendation_three: Bucurați-vă de acest spațiu, de vocile care îl umplu, este și al vostru.
       recommendation_two: Orice dezbatere sau comentariu care sugerează acțiuni ilegale vor fi șterse, precum și cele care intenționează să saboteze spațiile de dezbatere. Orice altceva este permis.
       recommendations_title: Recomandări pentru crearea o propunere
-      start_new: Creează propunere nouă
+      start_new: Crează propunere nouă
     notice:
       retired: Propunere retrasă
       published: Propunerea a fost publicată
@@ -570,7 +559,7 @@ ro:
     polls:
       index:
         title: Sondaje
-        create: Creează sondaj
+        create: Crează sondaj
         count:
           one: Ați creat %{count} sondaj.
           few: Ați creat %{count} sondaje.
@@ -579,7 +568,7 @@ ro:
         additiontal_information: Informații suplimentare
       new:
         title: Sondaj nou
-        submit: Creează sondaj
+        submit: Crează sondaj
       edit:
         submit: Actualizează sondaj
       poll:
@@ -786,7 +775,7 @@ ro:
         message: "Vedeți %{limit} din %{count} propuneri care conțin termenul „%{query}”"
         see_all: "Vezi tot"
     tags_cloud:
-      tags: Cele mai populare
+      tags: În tendință
       districts: "Districte"
       districts_list: "Lista de districte"
       categories: "Categorii"
@@ -819,7 +808,6 @@ ro:
         one: "1 limbă utilizată"
         few: "%{count} limbi utilizate"
         other: "%{count} limbi utilizate"
-    required: "Completează formularul"
   social:
     facebook: "%{org} Facebook"
     twitter: "%{org} Twitter"
@@ -845,8 +833,8 @@ ro:
   users:
     login_to_comment: "Trebuie %{signin} sau %{signup} pentru a lăsa un comentariu."
     login_to_continue: "Trebuie %{signin} sau %{signup} pentru a continua."
-    signin: "intrați în cont"
-    signup: "vă creați un cont"
+    signin: "conectare"
+    signup: "înregistrare"
     verify_account: "verifică-ți contul"
     direct_messages:
       new:
@@ -893,12 +881,6 @@ ro:
       private_activity: Acest utilizator a decis să își mențină activitatea privată.
       send_private_message: "Trimite mesaj privat"
       delete_alert: "Sigur doriți să ștergeți proiectul de investiții? Această acțiune nu poate fi anulată"
-      user_information: "Informații despre utilizator (vizibile doar pentru administratori)"
-      field: Câmp
-      value: Valoare
-      email: Email
-      document_number: CNP
-      phone_number: Număr de telefon
     proposals:
       retired: "Propunere retrasă"
       draft: Schiță
@@ -941,7 +923,7 @@ ro:
       process_label: Proces
       see_process: Vezi proces
     cards:
-      title: Cum funcționează
+      title: Recomandări
     recommended:
       title: Recomandări care v-ar putea interesa
       help: "Aceste recomandări sunt generate de etichetele dezbaterilor și propunerilor pe care le urmăriți."
@@ -965,7 +947,7 @@ ro:
       title: Participă
       user_permission_debates: Participă la dezbateri
       user_permission_info: Cu contul dumneavoastră puteți...
-      user_permission_proposal: Creează noi propuneri
+      user_permission_proposal: Crează noi propuneri
       user_permission_support_proposal: Sprijină propunerile*
       user_permission_verify: "Pentru a efectua toate acțiunile, verificați-vă contul."
       user_permission_verify_info: "* Numai pentru utilizatorii aflați pe recensământ."

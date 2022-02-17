@@ -1,8 +1,12 @@
 ro:
   activerecord:
     models:
-      budget:        
+      budget:
         other: "Bugete"
+      budget/investment:
+        one: "Propunere"
+        few: "Propuneri"
+        other: "%{count} Propuneri"
     attributes:
       budget:
         main_link_url: "Linkul vă duce la (adăugați un link)"
@@ -12,4 +16,14 @@ ro:
         main_link_url: "Linkul vă duce la (adăugați un link)"
       budget/phase/translation:
         main_link_text: "Textul de pe link"
-        
+
+en:
+  activerecord:
+    models:
+      budget/investment:
+        one: "Project"
+        other: "Projects"
+
+    attributes:
+      budget/investment:
+        heading_id: "Category"

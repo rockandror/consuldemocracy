@@ -17,8 +17,8 @@ en:
         one: "Budget"
         other: "Budgets"
       budget/investment:
-        one: "Project"
-        other: "Projects"
+        one: "Investment"
+        other: "Investments"
       milestone:
         one: "milestone"
         other: "milestones"
@@ -165,7 +165,7 @@ en:
         main_link_text: "Text on the link"
         name: "Name"
       budget/investment:
-        heading_id: "Category"
+        heading_id: "Heading"
         title: "Title"
         description: "Description"
         external_url: "Link to additional documentation"

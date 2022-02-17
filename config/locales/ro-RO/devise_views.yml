@@ -80,7 +80,7 @@ ro:
         new_unlock: Nu ați primit instrucțiunile de deblocare?
         signin_with_provider: Conectare cu %{provider}
         signup: Nu aveți un cont? %{signup_link}
-        signup_link: Creați un cont.
+        signup_link: Deconectare
     unlocks:
       new:
         email_label: Email

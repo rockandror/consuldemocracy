@@ -21,7 +21,7 @@ ro:
         participants: Participanți
       sidebar:
         participate: Participă
-        new_topic: Creează subiect
+        new_topic: Crează subiect
       topic:
         edit: Editează subiect
         destroy: Șterge subiect
@@ -33,15 +33,15 @@ ro:
       author: Autor
       back: Înapoi la %{community}%{proposal}
     topic:
-      create: Creează un subiect
+      create: Crează un subiect
       edit: Editează subiect
       form:
         new:
-          submit_button: Creează subiect
+          submit_button: Crează subiect
         edit:
           submit_button: Editează subiect
         create:
-          submit_button: Creează subiect
+          submit_button: Crează subiect
         update:
           submit_button: Actualizează subiect
       show:

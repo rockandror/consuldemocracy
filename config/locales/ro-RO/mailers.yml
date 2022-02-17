@@ -45,10 +45,10 @@ ro:
       button: Înregistrare completă
       subject: "Invitație la %{org_name}"
     budget_investment_created:
-      subject: "Mulțumim pentru propunerea de proiect!"
-      title: "Mulțumim pentru propunerea de proiect!"
+      subject: "Mulțumim că ați creat o investiție!"
+      title: "Mulțumim că ați creat o investiție!"
       intro: "Buna ziua <strong>%{author}</strong>,"
-      text: "Vă mulțumim că ați creat propunerea de proiect <strong>%{investment}</strong> pentru Bugetele Participative <strong>%{budget}</strong>."
+      text: "Vă mulțumim că ați creat investiția <strong>%{investment}</strong> pentru Bugetele Participative <strong>%{budget}</strong>."
       follow: "Vă vom informa despre cum progresează procesul, pe care îl puteți urmări și pe <strong>%{link}</strong>."
       follow_link: "Bugete participative"
       sincerely: "Cu sinceritate,"

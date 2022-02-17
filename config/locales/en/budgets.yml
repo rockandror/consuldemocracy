@@ -1,9 +1,5 @@
 en:
   budgets:
-    footer:
-      rules: Regulation
-      about: About Participatory Budgeting
-      faq: Frequently Asked Questions
     ballots:
       show:
         title: Your ballot
@@ -73,7 +69,7 @@ en:
       next_phase: Next phase
       prev_phase: Previous phase
       current_phase: Current phase
-      map: The geographical location of budget proposals
+      map: Budget investments' proposals located geographically
       finished_budgets: Finished participatory budgets
       see_results: See results
       section_footer:
@@ -82,20 +78,20 @@ en:
       milestones: Milestones
     investments:
       form:
-        title: "Submit a project proposal"
+        title: "Create a budget investment"
         subtitle: "%{heading} (%{price})"
         tag_category_label: "Categories"
         tags_instructions: "Tag this proposal. You can choose from proposed categories or add your own"
         tags_label: Tags
         tags_placeholder: "Enter the tags you would like to use, separated by commas (',')"
         map_location: "Map location"
-        map_location_instructions: "Tell us where your project idea would be implemented."
+        map_location_instructions: "Navigate the map to the location and place the marker."
         map_remove_marker: "Remove map marker"
       index:
         title: Participatory budgeting
         unfeasible: Unfeasible investment projects
         unfeasible_text: "The investments must meet a number of criteria (legality, concreteness, not exceed the limit of the budget) to be declared viable and reach the stage of final vote. All investments don't meet these criteria are marked as unfeasible and published in the following list, along with its report of infeasibility."
-        by_heading: "%{heading}"
+        by_heading: "Investment projects with scope: %{heading}"
         search_form:
           button: Search
           placeholder: Search investment projects...
@@ -121,8 +117,8 @@ en:
           check_ballot_link: "submit my ballot"
           zero: You have not voted any investment project in this group.
           verified_only: "To create a new budget investment %{verify}."
-          create: "Submit a project proposal"
-          not_logged_in: "To create a new project proposition you must %{sign_in} or %{sign_up}."
+          create: "Create a budget investment"
+          not_logged_in: "To create a new budget investment you must %{sign_in} or %{sign_up}."
         filter: "Filtering projects by"
         filters:
           not_unfeasible: "Not unfeasible"

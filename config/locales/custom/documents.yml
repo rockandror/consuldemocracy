@@ -1,0 +1,9 @@
+en:
+  documents:
+    form:
+      note: "Upload any relevant document for your proposal, such as a budget broken down into categories, a relevant report or other materials. You can upload up to a maximum of %{max_documents_allowed} documents of following content types: %{accepted_content_types}, up to %{max_file_size} MB per file."
+
+ro:
+  documents:
+    form:
+      note: "Încarcă aici orice document relevant pentru propunerea ta, un buget detaliat pe categorii de buget, un raport relevant sau alte materiale. Puteți încărca până la un maxim de %{max_documents_allowed} documente pentru următoarele tipuri de conținut: %{accepted_content_types}, până la %{max_file_size} MB per fișier."

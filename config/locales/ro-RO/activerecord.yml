@@ -19,9 +19,9 @@ ro:
         few: "Bugete"
         other: "%{count} Bugete"
       budget/investment:
-        one: "Propunere"
-        few: "Propuneri"
-        other: "%{count} Propuneri"
+        one: "Investiție"
+        few: "Investiții"
+        other: "%{count} Investiții"
       milestone:
         one: "reper"
         few: "repere"
@@ -208,7 +208,7 @@ ro:
       budget/translation:
         name: "Nume"
       budget/investment:
-        heading_id: "Categorie"
+        heading_id: "Rubrică"
         title: "Titlu"
         description: "Descriere"
         external_url: "Link către documentație suplimentară"

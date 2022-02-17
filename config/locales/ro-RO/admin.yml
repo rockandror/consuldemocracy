@@ -19,7 +19,7 @@ ro:
     banners:
       index:
         title: Bannere
-        create: Creează banner
+        create: Crează banner
         edit: Editează banner
         delete: Șterge banner
         filters:
@@ -71,7 +71,7 @@ ro:
         preview: "Previzualizați bugetul"
       index:
         title: Bugetele participative
-        new_link: Creează buget nou
+        new_link: Crează buget nou
         filter: Filtru
         filters:
           all: Tot
@@ -152,7 +152,7 @@ ro:
         success_notice: "Grup șters cu succes"
         unable_notice: "Nu puteți șterge un grup care are rubrici asociate"
       form:
-        create: "Creează grup nou"
+        create: "Crează grup nou"
         edit: "Editează grup"
         max_votable_headings_info: "Se aplică numai fazei de selectare a proiectelor. În timpul fazei de votare a proiectelor, utilizatorii pot vota doar într-o singură rubrică per grup."
         submit: "Salvează grup"
@@ -177,7 +177,7 @@ ro:
         population_info: "Rubrica de buget al populației este utilizată în scopuri statistice la sfârșitul bugetului pentru a arăta pentru fiecare rubrică care reprezintă o zonă cu populație ce procent votat. Acest câmp este opțional, așa că îl puteți lăsa gol dacă nu se aplică."
         coordinates_info: "Dacă latitudinea și longitudinea sunt precizate, pagina de investiții pentru această rubrică va include o hartă. Această hartă va fi centrată folosind acele coordonate."
         content_blocks_info: "Dacă este selectată opțiunea permite blocarea conținutului, veți putea crea conținut personalizat aferent acestei rubrici din secțiunea Setări> Blocuri de conținut personalizat. Acest conținut va apărea în pagina de investiții pentru această rubrică."
-        create: "Creează rubrică nouă"
+        create: "Crează rubrică nouă"
         edit: "Editează rubrică"
         submit: "Salvează rubrică"
       index:
@@ -302,13 +302,13 @@ ro:
         show_image: "Arată imagine"
         documents: "Documente"
         milestone: Reper
-        new_milestone: Creează reper nou
+        new_milestone: Crează reper nou
         milestone_tags: Etichete reper
       form:
         admin_statuses: Gestionează stările
         no_statuses_defined: Nu există încă stări definite
       new:
-        creating: Creează reper
+        creating: Crează reper
       edit:
         title: Editează reper
       create:
@@ -321,7 +321,7 @@ ro:
       index:
         title: Status repere
         empty_statuses: Nu sunt create stări de reper
-        new_status: Creează un nou status de reper
+        new_status: Crează un nou status de reper
         table_name: Nume
         table_description: Descriere
         table_actions: Acțiune
@@ -330,7 +330,7 @@ ro:
       update:
         notice: Status de reper actualizat cu succes
       new:
-        title: Creează status de reper
+        title: Crează status de reper
       create:
         notice: Status de reper creat cu succes
       delete:
@@ -347,7 +347,7 @@ ro:
         table_title: "Titlu"
         table_percentage: "Progresul actual"
       new:
-        creating: "Creează bară de progres"
+        creating: "Crează bară de progres"
       edit:
         title:
           primary: "Editați bara de progres primară"
@@ -386,7 +386,7 @@ ro:
       actions:
         index:
           description: "Când utilizatorii creează propuneri, pot accesa un tablou de bord al propunerii lor, unde se pot propune resurse și recomandări pentru a obține sprijin pentru ideea lor."
-          create: Creează resursă sau acțiune
+          create: Crează resursă sau acțiune
           active: 'Da'
           inactive: 'Nu'
           title: Resurse și acțiuni
@@ -527,8 +527,8 @@ ro:
             all: Toate
         new:
           back: Înapoi
-          title: Creează unui nou proces legislativ de colaborare
-          submit_button: Creează proces
+          title: Crează unui nou proces legislativ de colaborare
+          submit_button: Crează proces
         proposals:
           select_order: Sortează după
           orders:
@@ -593,13 +593,13 @@ ro:
           body_placeholder: Scrie textul pentru schiță
         index:
           title: Versiuni schiță
-          create: Creează versiune
+          create: Crează versiune
           delete: Șterge
           preview: Previzualizare
         new:
           back: Înapoi
-          title: Creează versiune nouă
-          submit_button: Creează versiune
+          title: Crează versiune nouă
+          submit_button: Crează versiune
         table:
           title: Titlu
           created_at: Creat la
@@ -627,12 +627,12 @@ ro:
         index:
           back: Înapoi
           title: Întrebări asociate acestui proces
-          create: Creează întrebare
+          create: Crează întrebare
           delete: Șterge
         new:
           back: Înapoi
-          title: Creează întrebare nouă
-          submit_button: Creează întrebare
+          title: Crează întrebare nouă
+          submit_button: Crează întrebare
         table:
           title: Titlu
           question_options: Opțiuni de întrebări
@@ -811,7 +811,7 @@ ro:
         empty_notifications: Nu există notificări
       new:
         section_title: Notificare nouă
-        submit_button: Creează notificare
+        submit_button: Crează notificare
       edit:
         section_title: Editează notificare
         submit_button: Actualizează notificare
@@ -919,7 +919,7 @@ ro:
     valuator_groups:
       index:
         title: "Grupuri de evaluare"
-        new: "Creează grup de evaluatori"
+        new: "Crează grup de evaluatori"
         name: "Nume"
         members: "Membri"
         no_groups: "Nu există grupuri evaluatori"
@@ -927,7 +927,7 @@ ro:
         title: "Grup de evaluatori: %{group}"
         no_valuators: "Nu sunt evaluatori atribuiți acestui grup"
       form:
-        new: "Creează grup de evaluatori"
+        new: "Crează grup de evaluatori"
         edit: "Salvează grup de evaluatori"
     poll_officers:
       index:
@@ -1021,7 +1021,7 @@ ro:
       index:
         title: "Lista de sondaje"
         no_polls: "Nu există sondaje."
-        create: "Creează sondaj"
+        create: "Crează sondaj"
         name: "Nume"
         dates: "Date"
         start_date: "Data de început"
@@ -1029,7 +1029,7 @@ ro:
         geozone_restricted: "Limitat la districte"
       new:
         title: "Sondaj nou"
-        submit_button: "Creează sondaj"
+        submit_button: "Crează sondaj"
       edit:
         title: "Editează sondaj"
         submit_button: "Actualizează sondaj"
@@ -1054,13 +1054,13 @@ ro:
     questions:
       index:
         title: "Întrebări"
-        create: "Creează întrebare"
+        create: "Crează întrebare"
         no_questions: "Nu există întrebări."
         filter_poll: Filtrează după Chestionar
         select_poll: Selectează chestionar
         questions_tab: "Întrebări"
         successful_proposals_tab: "Propunere de succes"
-        create_question: "Creează întrebare"
+        create_question: "Crează întrebare"
         table_proposal: "Propunere"
         table_question: "Întrebare"
         table_poll: "Sondaj"
@@ -1069,7 +1069,7 @@ ro:
         title: "Editează Întrebare"
       new:
         title: "Creați întrebare pentru a sonda%{poll}"
-        title_proposal: "Creează întrebare"
+        title_proposal: "Crează întrebare"
       answers:
         images:
           add_image: "Adaugă imagine"
@@ -1149,7 +1149,7 @@ ro:
         no_location: "Fără locație"
       new:
         title: "Cabină de vot nouă"
-        submit_button: "Creează cabină de vot"
+        submit_button: "Crează cabină de vot"
       edit:
         title: "Editează cabină de vot"
         submit_button: "Actualizează cabină de vot"
@@ -1180,7 +1180,7 @@ ro:
       level_5: Nivel 5
       search:
         edit_official: Editează funcționar public
-        make_official: Creează funcționar public
+        make_official: Crează funcționar public
         title: "Poziții oficiale: Căutare utilizator"
         no_results: Pozițiile oficiale nu au fost găsite.
     organizations:
@@ -1327,7 +1327,7 @@ ro:
     geozones:
       index:
         title: Geozonă
-        create: Creează geozonă
+        create: Crează geozonă
       geozone:
         name: Nume
         external_code: Cod extern
@@ -1342,7 +1342,7 @@ ro:
         back: Mergi înapoi
       new:
         back: Mergi înapoi
-        creating: Creează district
+        creating: Crează district
       delete:
         success: Geozonă ștearsă cu succes
         error: Această geozonă nu poate fi ștearsă, deoarece există elemente atașate la ea
@@ -1357,7 +1357,7 @@ ro:
       new:
         title: Foaie nouă de semnături
         document_numbers_note: "Scrieți numerele separate prin punct și virgulă (;)"
-        submit: Creează foaie cu semnături
+        submit: Crează foaie cu semnături
         text_help:
           required_fields_note: "Pentru a verifica un utilizator, cererea dvs. are nevoie de: Numărul documentului"
           date_of_birth_note: ", Ziua nașterii (dd / mm / aaaa)"
@@ -1463,13 +1463,13 @@ ro:
         proposals: "Propuneri"
         title: "Obiective de dezvoltare durabilă - Statistici"
     tags:
-      create: Creează subiect
+      create: Crează subiect
       destroy: Șterge subiect
       index:
         add_tag: Adaugă o nouă propunere de subiect
         title: Subiecte de propunere
         topic: Subiect
-        help: "Când un utilizator creează o propunere, următoarele subiecte sunt sugerate ca etichete implicite."
+        help: "Când un utilizator crează o propunere, următoarele subiecte sunt sugerate ca etichete implicite."
     users:
       columns:
         id: ID
@@ -1514,7 +1514,7 @@ ro:
           delete: Șterge bloc
           title: Bloc de conținut
         new:
-          title: Creează un nou bloc de conținut
+          title: Crează un nou bloc de conținut
         content_block:
           body: Corp
           name: Nume
@@ -1549,7 +1549,7 @@ ro:
         form:
           options: Opțiuni
         index:
-          create: Creează o pagină nouă
+          create: Crează o pagină nouă
           delete: Șterge pagină
           title: Pagini personalizate
           see_page: Vezi pagina
@@ -1565,7 +1565,7 @@ ro:
           see_cards: Vedeți cărți
         cards:
           cards_title: carduri
-          create_card: Creează card
+          create_card: Crează card
           no_cards: Nu există carduri.
           columns_help: "Lățimea cărții în număr de coloane. Pe ecranele mobile este întotdeauna o lățime de 100%."
           create:
@@ -1581,7 +1581,7 @@ ro:
       no_header: Nu există antete.
       create_header: Creați antet
       cards_title: Carduri
-      create_card: Creează card
+      create_card: Crează card
       no_cards: Nu există carduri.
       feeds:
         proposals: Propuneri
@@ -1591,7 +1591,7 @@ ro:
         header_title: Antet nou
         submit_header: Creați antet
         card_title: Card nou
-        submit_card: Creează card
+        submit_card: Crează card
       edit:
         header_title: Editați antet
         submit_header: Salvați antet
@@ -1611,7 +1611,7 @@ ro:
     local_census_records:
       index:
         title: Administrează datele locale
-        create: Creează o nouă înregistrare de date locale
+        create: Crează o nouă înregistrare de date locale
         no_local_census_records: Nu există înregistrări de date locale.
         document_type: Tipul documentului
         document_number: Numărul documentului
@@ -1619,7 +1619,7 @@ ro:
         postal_code: Cod poștal
         import: Importă CSV
       new:
-        creating: Creează o nouă înregistrare de date locale
+        creating: Crează o nouă înregistrare de date locale
       create:
         notice: Registru nou de recensământ local creat cu succes!
       edit:

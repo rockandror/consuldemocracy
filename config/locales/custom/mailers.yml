@@ -1,0 +1,6 @@
+ro:
+  mailers:
+    budget_investment_created:
+      text: "Vă mulțumim că ați creat propunerea de proiect <strong>%{investment}</strong> pentru Bugetele Participative <strong>%{budget}</strong>."
+      subject: "Mulțumim pentru propunerea de proiect!"
+      title: "Mulțumim pentru propunerea de proiect!"

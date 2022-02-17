@@ -1,10 +1,28 @@
+
 ro:
+  users:
+    signin: "intrați în cont"
+    signup: "vă creați un cont"
   layouts:
     header:
+      news: Noutăți
       management: Administrare utilizatori
+      c4ro_text:  O soluție Code for Romania pusă la dispoziție gratuit administrației publice. %{find_out_more}
+      c4ro_find_out_more: Află mai multe
+      about: Despre
+      faq: Întrebări frecvente
+      contact: Contact
+      calendar: Calendar
+      evaluation: Evaluarea proiectelor
+      budgets: Rezultate
     footer:
+      copyright: Primăria Municipiului Brașov, %{year}
+      description: Acest portal folosește %{consul} care este %{open_source}. Codul sursă al aplicației poate fi consultat %{c4ro_repo}.
+      faq: Întrebări frecvente
       consul: CONSUL
       contact_us: Pentru ajutor tehnic contactați-ne la adresa de email contact@code4.ro.
+      here: aici
+      c4ro_repo_url: https://github.com/code4romania/consul
   shared:
     advanced_search:
       search: "Filtrează"
@@ -12,10 +30,14 @@ ro:
     required: "Completează formularul"
     view_mode:
       title: Mod de vizualizare
+    tags_cloud:
+      tags: Cele mai populare
   form:
     not_saved: "a/au prevenit acest/această %{resource} din a fi salvat/ă. <br>Vă rugăm să verificați câmpurile marcate pentru a ști cum să le corectați:"
 
   welcome:
+    cards:
+      title: Cum funcționează
     financed_domains:
       Brașov:
         header: Domeniile finanțate prin programul de Bugetare Participativă
@@ -28,6 +50,8 @@ ro:
 
 en:
   welcome:
+    cards:
+      title: How it works
     financed_domains:
       Brașov:
         header: The domains financed through the Participatory Budgeting project
@@ -37,3 +61,24 @@ en:
         orasul_comunitatilor: Communities' City
 
   investment_help_text: Specifică obiectivele proiectului formulate SMART (Specific, Măsurabil, Abordabil, Relevant, încadrat în Timp), publicul țintă căruia i se adresează, descriere calitativă și cantitativă, impactul pe care preconizezi că il va avea proiectul (câți oameni și în ce fel vor beneficia de acest proiect) și bugetul estimat. Dacă ai un buget detaliat, te rugăm să îl încarci în secțiunea de Documente.
+  shared:
+    translations:
+      required: "Fill in the form"
+
+  layouts:
+    footer:
+      faq: Frequently Asked Questions
+      copyright: Brașov City Hall, %{year}
+      description: This portal uses the %{consul} which is %{open_source}. The source code is available %{c4ro_repo}.
+      here: here
+      c4ro_repo_url: https://github.com/code4romania/consul
+    header:
+      about: About
+      faq: Frequently Asked Questions
+      contact: Contact
+      c4ro_text: A Code for Romania app, offered pro-bono to the public administration. %{find_out_more}
+      c4ro_find_out_more: Find out more.
+      calendar: Calendar
+      evaluation: Projects Evaluation
+      news: News
+      budgets: Vote

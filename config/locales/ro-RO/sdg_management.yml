@@ -7,10 +7,10 @@ ro:
     homepage:
       title: "Configurarea paginii de pornire"
       header:
-        create: "Creează antet"
+        create: "Crează antet"
         no_cards: "Nu există antet"
         title: "Antet"
-      create_card: "Creează un card %{phase}"
+      create_card: "Crează un card %{phase}"
       no_cards: "Nu există carduri în această etapă"
     menu:
       budget_investments: "Bugete participative"
@@ -32,7 +32,7 @@ ro:
         code: "Codul trebuie să înceapă cu codul țintă selectat, urmat de un punct"
         description: "Această descriere va fi afișată ca ajutor pentru utilizatori."
       index:
-        new: "Creează o țintă locală"
+        new: "Crează o țintă locală"
       new:
         title: "Țintă locală nouă"
       update:

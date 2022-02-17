@@ -1,0 +1,14 @@
+ro:
+  helpers:
+    submit:
+        create: Creează %{model}
+  number:
+    currency:
+      format:
+        delimiter: "."
+        format: "%n %u"
+        separator: ","
+        unit: "RON"
+  time:
+    formats:
+        short_datetime: "%Y-%m-%d %H:%M"

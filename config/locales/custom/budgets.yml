@@ -1,14 +1,52 @@
 ro:
   budgets:
+    ballots:
+      reasons_for_not_balloting:
+        not_enough_available_votes: "Ați atins numărul maxim de voturi permise"
+      show:
+        zero: Nu ați votat nicio propunere de proiect.
+    footer:
+      rules: Regulament
+      about: Despre bugetarea participativă
+      faq: Întrebări frecvente
+    index:
+      all_phases: Etapele proiectului de bugetare participativă
+      map: Vezi pe hartă unde au fost propuse proiecte până acum
     investments:
+      show:
+        project_unfeasible: "Acestă propunere de proiect <strong>a fost marcat ca ne fiind posibil</strong> și nu va trece la faza de votare."
+        project_selected: "Acestă propunere de proiect <strong>a fost selectat</strong> pentru faza de votare."
+        project_winner: "Propunerea de proiect câștigătoare"
+        project_not_selected: "Acestă propunere de proiect <strong>nu a fost selectat</strong> pentru faza de votare."
+        title: Propunere de proiect
       form:
         title: "Propune un proiect"
+        map_location_instructions: "Spune-ne unde s-ar implementa ideea ta de proiect."
       index:
+        by_heading: "%{heading}"
         sidebar:
+          zero: Nu ați votat niciun nicio propunere de proiect în acest grup.
           change_vote_link: "schimba votul"
           create: "Propune un proiect"
+          not_logged_in: "Pentru a crea o propunere de proiect trebuie să %{sign_in} sau %{sign_up}."
       investment:
         add: Votează
     investments_list:
       see_all: "Vedeți toate propunerile"
 
+en:
+  budgets:
+    index:
+      map: The geographical location of budget proposals
+    investments:
+      form:
+        map_location_instructions: "Tell us where your project idea would be implemented."
+        title: "Submit a project proposal"
+      index:
+        sidebar:
+          create: "Submit a project proposal"
+        by_heading: "%{heading}"
+    footer:
+      rules: Regulation
+      about: About Participatory Budgeting
+      faq: Frequently Asked Questions
