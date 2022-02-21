@@ -60,6 +60,8 @@ es:
     meta_keywords_description: 'Palabras clave <meta name="keywords">, utilizadas para mejorar el SEO'
     min_age_to_participate: Edad mínima para participar
     min_age_to_participate_description: "Los usuarios mayores de esta edad podrán participar en todos los procesos donde se necesite una cuenta verificada"
+    login_attempts_before_lock: Número de intentos de login antes de ser bloqueado
+    time_to_unlock: Minutos hasta el desbloqueo
     proposals:
       successful_proposal_id: Propuesta exitosa
       successful_proposal_id_description: Esta propuesta se utiliza como referencia de una propuesta exitosa en número de apoyos y se mostrará en el gráfico del panel de control
