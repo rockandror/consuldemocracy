@@ -3,6 +3,8 @@ class Poll::BallotSheet < ApplicationRecord
   belongs_to :officer_assignment
   has_many :ballots
 
+  audited on: [:create, :update, :destroy]
+
   validates :data, presence: true
   validates :poll_id, presence: true
   validates :officer_assignment_id, presence: true

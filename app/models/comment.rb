@@ -4,6 +4,8 @@ class Comment < ApplicationRecord
   include Graphqlable
   include Notifiable
 
+  audited on: [:create, :update, :destroy]
+
   COMMENTABLE_TYPES = %w[Debate Proposal Budget::Investment Poll Topic
                         Legislation::Question Legislation::Annotation
                         Legislation::Proposal].freeze

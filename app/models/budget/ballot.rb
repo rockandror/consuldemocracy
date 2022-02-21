@@ -4,6 +4,8 @@ class Budget
     belongs_to :budget
     belongs_to :poll_ballot, class_name: "Poll::Ballot"
 
+    audited on: [:create, :update, :destroy]
+
     has_many :lines, dependent: :destroy
     has_many :investments, through: :lines
     has_many :groups, -> { distinct }, through: :lines

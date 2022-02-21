@@ -5,6 +5,8 @@ class SDG::LocalTarget < ApplicationRecord
   translates :description, touch: true
   include Globalizable
 
+  audited on: [:create, :update, :destroy]
+
   validates_translation :title, presence: true
   validates_translation :description, presence: true
 

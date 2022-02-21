@@ -3,6 +3,8 @@ class Community < ApplicationRecord
   has_one :investment, class_name: "Budget::Investment"
   has_many :topics
 
+  audited on: [:create, :update, :destroy]
+
   def participants
     users_participants = users_who_commented +
                          users_who_topics_author +

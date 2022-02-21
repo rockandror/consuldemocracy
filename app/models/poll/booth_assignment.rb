@@ -5,6 +5,8 @@ class Poll
 
     before_destroy :destroy_poll_shifts, only: :destroy
 
+    audited on: [:create, :update, :destroy]
+
     has_many :officer_assignments, dependent: :destroy
     has_many :officers, through: :officer_assignments
     has_many :voters

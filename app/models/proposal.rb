@@ -21,6 +21,8 @@ class Proposal < ApplicationRecord
   include Randomizable
   include SDG::Relatable
 
+  audited on: [:create, :update, :destroy]
+
   acts_as_votable
   acts_as_paranoid column: :hidden_at
   include ActsAsParanoidAliases

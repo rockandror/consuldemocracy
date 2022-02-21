@@ -2,5 +2,7 @@ class Manager < ApplicationRecord
   belongs_to :user, touch: true
   delegate :name, :email, :name_and_email, to: :user
 
+  audited on: [:create, :update, :destroy]
+
   validates :user_id, presence: true, uniqueness: true
 end

@@ -1,6 +1,8 @@
 class Widget::Feed < ApplicationRecord
   KINDS = %w[proposals debates processes].freeze
 
+  audited on: [:create, :update, :destroy]
+
   def active?
     setting.value.present?
   end

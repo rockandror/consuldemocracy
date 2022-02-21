@@ -15,6 +15,8 @@ class Legislation::Proposal < ApplicationRecord
   include Randomizable
   include SDG::Relatable
 
+  audited on: [:create, :update, :destroy]
+
   accepts_nested_attributes_for :documents, allow_destroy: true
 
   acts_as_votable

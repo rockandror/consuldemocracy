@@ -1,6 +1,8 @@
 class I18nContent < ApplicationRecord
   validates :key, uniqueness: true
 
+  audited on: [:create, :update, :destroy]
+
   translates :value, touch: true
   globalize_accessors
 

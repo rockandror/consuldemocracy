@@ -4,6 +4,8 @@ class Poll
     has_many :polls, through: :booth_assignments
     has_many :shifts
 
+    audited on: [:create, :update, :destroy]
+
     validates :name, presence: true, uniqueness: true
 
     def self.search(terms)

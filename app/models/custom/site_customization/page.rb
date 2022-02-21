@@ -6,6 +6,8 @@ class SiteCustomization::Page < ApplicationRecord
   translates :content,     touch: true
   include Globalizable
 
+  audited on: [:create, :update, :destroy]
+
   validates_translation :title, presence: true
   validates :slug, presence: true,
                    uniqueness: { case_sensitive: false },

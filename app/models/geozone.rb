@@ -6,6 +6,8 @@ class Geozone < ApplicationRecord
   has_many :users
   validates :name, presence: true
 
+  audited on: [:create, :update, :destroy]
+
   scope :public_for_api, -> { all }
 
   def self.names

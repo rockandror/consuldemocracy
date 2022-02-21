@@ -6,6 +6,8 @@ class Poll::Question::Answer < ApplicationRecord
   translates :description, touch: true
   include Globalizable
 
+  audited on: [:create, :update, :destroy]
+
   accepts_nested_attributes_for :documents, allow_destroy: true
 
   belongs_to :question, class_name: "Poll::Question"

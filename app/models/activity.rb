@@ -1,6 +1,7 @@
 class Activity < ApplicationRecord
   belongs_to :actionable, -> { with_hidden }, polymorphic: true
   belongs_to :user, -> { with_hidden }, inverse_of: :activities
+  audited on: [:create, :update, :destroy]
 
   VALID_ACTIONS = %w[hide block restore valuate email].freeze
 

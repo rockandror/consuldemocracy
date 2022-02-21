@@ -6,6 +6,8 @@ class Poll::PartialResult < ApplicationRecord
   belongs_to :booth_assignment
   belongs_to :officer_assignment
 
+  audited on: [:create, :update, :destroy]
+
   validates :question, presence: true
   validates :author, presence: true
   validates :answer, presence: true

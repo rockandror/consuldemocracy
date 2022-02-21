@@ -2,6 +2,8 @@ class Valuator < ApplicationRecord
   belongs_to :user, touch: true
   belongs_to :valuator_group
 
+  audited on: [:create, :update, :destroy]
+
   delegate :name, :email, :name_and_email, to: :user
 
   has_many :valuator_assignments, dependent: :destroy, class_name: "Budget::ValuatorAssignment"

@@ -3,6 +3,8 @@ class SDG::Goal < ApplicationRecord
 
   validates :code, presence: true, uniqueness: true, inclusion: { in: 1..17 }
 
+  audited on: [:create, :update, :destroy]
+
   has_many :targets, dependent: :destroy
   has_many :local_targets, dependent: :destroy
 

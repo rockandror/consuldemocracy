@@ -3,6 +3,8 @@ class Budget
     validates :locale, presence: true, inclusion: { in: I18n.available_locales.map(&:to_s) }
     validates :heading, presence: true, uniqueness: { scope: :locale }
 
+    audited on: [:create, :update, :destroy]
+
     belongs_to :heading
     delegate :name, to: :heading, allow_nil: true
   end

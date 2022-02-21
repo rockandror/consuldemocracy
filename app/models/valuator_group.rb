@@ -3,5 +3,7 @@ class ValuatorGroup < ApplicationRecord
   has_many :valuator_group_assignments, dependent: :destroy, class_name: "Budget::ValuatorGroupAssignment"
   has_many :investments, through: :valuator_group_assignments, class_name: "Budget::Investment"
 
+  audited on: [:create, :update, :destroy]
+
   validates :name, presence: true, uniqueness: true
 end

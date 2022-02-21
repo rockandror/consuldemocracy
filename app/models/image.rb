@@ -2,6 +2,8 @@ class Image < ApplicationRecord
   include ImagesHelper
   include ImageablesHelper
 
+  audited on: [:create, :update, :destroy]
+
   has_attached_file :attachment, styles: {
                                    large: "x#{Setting["uploads.images.min_height"]}",
                                    medium: "300x300#",

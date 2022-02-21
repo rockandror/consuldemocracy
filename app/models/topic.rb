@@ -3,6 +3,8 @@ class Topic < ApplicationRecord
   include ActsAsParanoidAliases
   include Notifiable
 
+  audited on: [:create, :update, :destroy]
+
   belongs_to :community
   belongs_to :author, -> { with_hidden }, class_name: "User", inverse_of: :topics
 

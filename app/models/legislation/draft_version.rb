@@ -4,6 +4,8 @@ class Legislation::DraftVersion < ApplicationRecord
   acts_as_paranoid column: :hidden_at
   include ActsAsParanoidAliases
 
+  audited on: [:create, :update, :destroy]
+
   translates :title,     touch: true
   translates :changelog, touch: true
   translates :body,      touch: true

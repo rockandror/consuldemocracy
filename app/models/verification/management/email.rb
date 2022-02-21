@@ -1,6 +1,8 @@
 class Verification::Management::Email
   include ActiveModel::Model
 
+  audited on: [:create, :update, :destroy]
+
   attr_accessor :document_type, :document_number, :email
 
   validates :document_type, :document_number, :email, presence: true

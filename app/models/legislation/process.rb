@@ -7,6 +7,8 @@ class Legislation::Process < ApplicationRecord
   include SDG::Relatable
   include Searchable
 
+  audited on: [:create, :update, :destroy]
+
   acts_as_paranoid column: :hidden_at
   acts_as_taggable_on :customs
 

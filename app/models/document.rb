@@ -7,6 +7,8 @@ class Document < ApplicationRecord
                                  hash_secret: Rails.application.secrets.secret_key_base
   attr_accessor :cached_attachment, :remove, :original_filename
 
+  audited on: [:create, :update, :destroy]
+
   belongs_to :user
   belongs_to :documentable, polymorphic: true
 

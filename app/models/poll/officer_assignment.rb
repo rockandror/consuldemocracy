@@ -7,6 +7,8 @@ class Poll
     has_many :recounts
     has_many :voters
 
+    audited on: [:create, :update, :destroy]
+
     validates :officer_id, presence: true
     validates :booth_assignment_id, presence: true
     validates :date, presence: true

@@ -5,6 +5,8 @@ class Poll::Recount < ApplicationRecord
   belongs_to :booth_assignment
   belongs_to :officer_assignment
 
+  audited on: [:create, :update, :destroy]
+
   validates :author, presence: true
   validates :origin, inclusion: { in: VALID_ORIGINS }
 
