@@ -318,6 +318,14 @@ class User < ApplicationRecord
     where("email = ? OR username ILIKE ?", search, "%#{search}%")
   end
 
+  def self.maximum_attempts
+    (Setting["login_attempts_before_lock"].to_i || 2)
+  end
+
+  def self.unlock_in
+    (Setting["time_to_unlock"].to_i || 2).minutes
+  end
+
   def self.username_max_length
     @username_max_length ||= columns.find { |c| c.name == "username" }.limit || 60
   end
