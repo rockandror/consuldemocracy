@@ -1301,6 +1301,8 @@ es:
           polls: "Buscar votaciones por nombre o descripción"
           proposals: "Buscar propuestas por título, código, descripción o pregunta"
           users: "Buscar usuario por nombre o email"
+          audited_records: Busca registros por fecha o email
+          access_logs: Busca registros por fecha o email
         search: "Buscar"
       search_results: "Resultados de la búsqueda"
       no_search_results: "No se han encontrado resultados."
@@ -1402,6 +1404,8 @@ es:
         incomplete_verifications: Verificaciones incompletas
         polls: Votaciones
         sdg: ODS
+        audited_records: Registro de actividad
+        access_logs: Registro de accesos
       graph:
         debate_created: Debates
         visit: Visitas
@@ -1453,6 +1457,22 @@ es:
         polls: "Votaciones"
         proposals: "Propuestas"
         title: "Objetivos de Desarrollo Sostenible - Estadísticas"
+      audited_records:
+        title: Registro de actividad
+        datetime: Fecha y hora
+        user: Usuario
+        role: Rol
+        activity: Actividad
+        model: Tipo
+        object: ID
+        no_records: No hay registro de actividad
+      access_logs:
+        title: Registro de accesos
+        datetime: Fecha y hora
+        email: Email
+        activity: Actividad
+        result: Resultado
+        no_logs: No hay registro de accesos
     tags:
       create: Crear tema
       destroy: Eliminar tema

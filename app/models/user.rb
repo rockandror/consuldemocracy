@@ -5,7 +5,14 @@ class User < ApplicationRecord
          :trackable, :lockable, :validatable, :omniauthable, :password_expirable, :secure_validatable,
          authentication_keys: [:login]
 
-  audited on: [:create, :update, :destroy]
+  audited on: [:create, :update, :destroy], except: [
+    :sign_in_count,
+    :last_sign_in_at,
+    :current_sign_in_at,
+    :locked_at,
+    :unlock_token,
+    :failed_attempts
+  ]
 
   acts_as_voter
   acts_as_paranoid column: :hidden_at
