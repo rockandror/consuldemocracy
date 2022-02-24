@@ -1,5 +1,4 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  include OpenAmHelper
   prepend_before_action :authenticate_scope!, only: [:edit, :update, :destroy, :finish_signup, :do_finish_signup]
   before_filter :configure_permitted_parameters
 
@@ -14,16 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     build_resource(sign_up_params)
     if resource.valid?
-      response = register_user(resource)
-
-      if response == :ok
-        redirect_to root_path, notice: "Se ha registrado correctamente"
-      else
-        if response == :duplicated
-          resource.errors.add(:username, "Ya se está usando")
-        end
-        render :new
-      end
+      super
     else
       render :new
     end
@@ -68,23 +58,23 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
 
-  def sign_up_params
-    params[:user].delete(:redeemable_code) if params[:user].present? && params[:user][:redeemable_code].blank?
-    params.require(:user).permit(:username, :email, :password,
-                                 :password_confirmation, :terms_of_service, :locale,
-                                 :redeemable_code)
-  end
+    def sign_up_params
+      params[:user].delete(:redeemable_code) if params[:user].present? && params[:user][:redeemable_code].blank?
+      params.require(:user).permit(:username, :email, :password,
+                                   :password_confirmation, :terms_of_service, :locale,
+                                   :redeemable_code)
+    end
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:account_update).push(:email)
-  end
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.for(:account_update).push(:email)
+    end
 
-  def erase_params
-    params.require(:user).permit(:erase_reason)
-  end
+    def erase_params
+      params.require(:user).permit(:erase_reason)
+    end
 
-  def after_inactive_sign_up_path_for(resource_or_scope)
-    users_sign_up_success_path
-  end
+    def after_inactive_sign_up_path_for(resource_or_scope)
+      users_sign_up_success_path
+    end
 
 end
