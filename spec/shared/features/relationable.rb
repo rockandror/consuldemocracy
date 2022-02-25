@@ -38,7 +38,7 @@ shared_examples "relationable" do |relationable_model_name|
     end
 
     within("#related-content-list") do
-      expect(page).to have_content(related1.title)
+      expect(page).to have_link related1.title, href: polymorphic_hierarchy_path(related1)
     end
 
     visit polymorphic_hierarchy_path(related1)
