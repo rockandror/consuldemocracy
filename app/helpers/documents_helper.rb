@@ -57,7 +57,7 @@ module DocumentsHelper
   def document_item_link(document)
     link_to "#{document.title} <small>(#{document.humanized_content_type} | \
              #{number_to_human_size(document.attachment_file_size)}</small>)".html_safe,
-             "#{Rails.configuration.relative_url_root}#{document.attachment.url}",
+             document.attachment.url,
              target: "_blank",
              title: t("shared.target_blank_html")
   end

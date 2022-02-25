@@ -11,7 +11,9 @@ class SiteCustomization::Image < ActiveRecord::Base
     "map" => [420, 500]
   }
 
-  has_attached_file :image
+  has_attached_file :image,
+                    url: ":relative_url_root#{Paperclip::Attachment.default_options[:url]}",
+                    path: ":rails_root/public#{Paperclip::Attachment.default_options[:url]}"
 
   validates :name, presence: true, uniqueness: true, inclusion: { in: VALID_IMAGES.keys }
   validates_attachment_content_type :image, content_type: ["image/png", "image/jpeg"]

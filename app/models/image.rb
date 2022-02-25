@@ -8,7 +8,8 @@ class Image < ActiveRecord::Base
   ACCEPTED_CONTENT_TYPE = %w(image/jpeg image/jpg).freeze
 
   has_attached_file :attachment, styles: { large: "x#{MIN_SIZE}", medium: "300x300#", thumb: "140x245#" },
-                                 url: "/system/:class/:prefix/:style/:hash.:extension",
+                                 url: ":relative_url_root/system/:class/:prefix/:style/:hash.:extension",
+                                 path: ":rails_root/public/system/:class/:prefix/:style/:hash.:extension",
                                  hash_data: ":class/:style",
                                  use_timestamp: false,
                                  hash_secret: Rails.application.secrets.secret_key_base
