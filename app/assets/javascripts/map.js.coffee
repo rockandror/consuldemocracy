@@ -74,14 +74,14 @@ App.Map =
     openMarkerPopup = (e) ->
       marker = e.target
 
-      $.ajax '/investments/' + marker.options['id'] + '/json_data',
+      $.ajax '/aplicaciones/participaciongeneral/investments/' + marker.options['id'] + '/json_data',
         type: 'GET'
         dataType: 'json'
         success: (data) ->
           e.target.bindPopup(getPopupContent(data)).openPopup()
 
     getPopupContent = (data) ->
-      content = "<a href='/budgets/#{data['budget_id']}/investments/#{data['investment_id']}'>#{data['investment_title']}</a>"
+      content = "<a href='/aplicaciones/participaciongeneral/budgets/#{data['budget_id']}/investments/#{data['investment_id']}'>#{data['investment_title']}</a>"
       return content
 
     mapCenterLatLng  = new (L.LatLng)(mapCenterLatitude, mapCenterLongitude)
