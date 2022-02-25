@@ -1,2 +1,5 @@
 <% base_path = "#{Rails.application.config.relative_url_root}#{Rails.application.config.assets.prefix}/ckeditor/" %>
+<% attachments_path = "#{Rails.application.config.relative_url_root}/ckeditor" %>
+
 var CKEDITOR_BASEPATH = '<%= base_path.gsub("//", "/") %>';
+var CKEDITOR_ATTACHMENTS_PATH = "<%= attachments_path %>";
