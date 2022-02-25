@@ -24,7 +24,7 @@ section "Creating Settings" do
   Setting.create(key: 'telegram_handle', value: 'CONSUL')
   Setting.create(key: 'instagram_handle', value: 'CONSUL')
   Setting.create(key: 'blog_url', value: '/blog')
-  Setting.create(key: 'url', value: 'http://localhost:3000')
+  Setting.create(key: "url", value: "http://localhost:3000#{Rails.application.config.relative_url_root}")
   Setting.create(key: 'org_name', value: 'CONSUL')
   Setting.create(key: 'place_name', value: 'City')
 
