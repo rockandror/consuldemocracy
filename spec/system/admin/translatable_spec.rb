@@ -383,7 +383,8 @@ describe "Admin edit translatable records", :admin do
   end
 
   context "Remove a translation with invalid data" do
-    let(:translatable) { create(:poll_question) }
+    let(:future_poll) { create(:poll, starts_at: 1.day.from_now) }
+    let(:translatable) { create(:poll_question, poll: future_poll) }
     let(:path) { edit_admin_question_path(translatable) }
 
     scenario "Doesn't remove the translation" do

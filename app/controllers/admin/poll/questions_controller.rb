@@ -3,7 +3,12 @@ class Admin::Poll::QuestionsController < Admin::Poll::BaseController
   include Translatable
 
   load_and_authorize_resource :poll
-  load_and_authorize_resource :question, class: "Poll::Question"
+  # load_and_authorize_resource :question, class: "Poll::Question"
+  load_resource :question, class: "Poll::Question"
+
+  before_action :authorize_create_question, only: :create
+  before_action :authorize_update_question, only: :edit
+  before_action :authorize_destroy_question, only: :destroy
 
   def index
     @polls = Poll.not_budget
@@ -69,5 +74,23 @@ class Admin::Poll::QuestionsController < Admin::Poll::BaseController
 
     def resource
       @poll_question ||= Poll::Question.find(params[:id])
+    end
+
+    def authorize_create_question
+      if cannot? :create, @question
+        redirect_to admin_poll_path(@question.poll), alert: t("unauthorized.create.poll/question")
+      end
+    end
+
+    def authorize_update_question
+      if cannot? :edit, @question
+        redirect_to admin_poll_path(@question.poll), alert: t("unauthorized.update.poll/question")
+      end
+    end
+
+    def authorize_destroy_question
+      if cannot? :destroy, @question
+        redirect_to admin_poll_path(@question.poll), alert: t("unauthorized.destroy.poll/question")
+      end
     end
 end

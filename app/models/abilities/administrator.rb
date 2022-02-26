@@ -88,8 +88,10 @@ module Abilities
       can [:search, :create, :index, :destroy], ::Poll::Officer
       can [:create, :destroy, :manage], ::Poll::BoothAssignment
       can [:create, :destroy], ::Poll::OfficerAssignment
-      can [:read, :create, :update], Poll::Question
-      can :destroy, Poll::Question
+      can [:read], Poll::Question
+      can [:create, :update, :destroy], Poll::Question do |question|
+        question.poll.not_started?
+      end
 
       can :manage, SiteCustomization::Page
       can :manage, SiteCustomization::Image
