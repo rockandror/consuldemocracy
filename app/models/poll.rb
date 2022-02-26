@@ -71,6 +71,14 @@ class Poll < ApplicationRecord
     name
   end
 
+  def avoid_update?(timestamp = Date.current.beginning_of_day)
+    starts_at.present? && starts_at < timestamp
+  end
+
+  def allow_update?
+    !avoid_update?
+  end
+
   def current?(timestamp = Time.current)
     starts_at <= timestamp && timestamp <= ends_at
   end
