@@ -17,7 +17,11 @@ describe Abilities::Administrator do
   let(:finished_investment) { create(:budget_investment, budget: create(:budget, :finished)) }
   let(:legislation_question) { create(:legislation_question) }
   let(:poll) { create(:poll) }
+  let(:future_poll) { create(:poll, starts_at: 5.days.from_now) }
+  let(:current_poll) { create(:poll, :current) }
   let(:poll_question) { create(:poll_question) }
+  let(:current_poll_question) { create(:poll_question, poll: current_poll) }
+  let(:future_poll_question) { create(:poll_question, poll: future_poll) }
 
   let(:past_process) { create(:legislation_process, :past) }
   let(:past_draft_process) { create(:legislation_process, :past, :not_published) }
@@ -112,7 +116,10 @@ describe Abilities::Administrator do
 
   it { should be_able_to(:read, Poll::Question) }
   it { should be_able_to(:create, Poll::Question) }
-  it { should be_able_to(:update, Poll::Question) }
+  it { should be_able_to(:update, future_poll_question) }
+  it { should be_able_to(:destroy, future_poll_question) }
+  it { should_not be_able_to(:update, current_poll_question) }
+  it { should_not be_able_to(:destroy, current_poll_question) }
 
   it { is_expected.to be_able_to :manage, Dashboard::AdministratorTask }
   it { is_expected.to be_able_to :manage, dashboard_administrator_task }
