@@ -5,6 +5,11 @@ class Admin::Poll::Questions::AnswersController < Admin::Poll::BaseController
   before_action :load_answer, only: [:show, :edit, :update, :documents]
 
   load_and_authorize_resource :question, class: "::Poll::Question"
+  load_resource :answer, class: "::Poll::Question::Answer"
+
+  before_action :authorize_create_answer, only: :create
+  before_action :authorize_edit_answer, only: :edit
+  before_action :authorize_destroy_answer, only: :destroy
 
   def new
     @answer = ::Poll::Question::Answer.new
@@ -22,9 +27,6 @@ class Admin::Poll::Questions::AnswersController < Admin::Poll::BaseController
     end
   end
 
-  def show
-  end
-
   def edit
   end
 
@@ -35,6 +37,15 @@ class Admin::Poll::Questions::AnswersController < Admin::Poll::BaseController
     else
       render :edit
     end
+  end
+
+  def destroy
+    if @answer.destroy
+      notice = t("admin.answers.destroy.success_notice")
+    else
+      notice = t("flash.actions.destroy.error")
+    end
+    redirect_to admin_question_path(@answer.question), notice: notice
   end
 
   def documents
@@ -68,5 +79,23 @@ class Admin::Poll::Questions::AnswersController < Admin::Poll::BaseController
     def resource
       load_answer unless @answer
       @answer
+    end
+
+    def authorize_create_answer
+      if cannot? :create, @answer
+        redirect_to admin_question_path(@answer.question), alert: t("unauthorized.create.poll/question/answer")
+      end
+    end
+
+    def authorize_edit_answer
+      if cannot? :edit, @answer
+        redirect_to admin_question_path(@answer.question), alert: t("unauthorized.update.poll/question/answer")
+      end
+    end
+
+    def authorize_destroy_answer
+      if cannot? :destroy, @answer
+        redirect_to admin_question_path(@answer.question), alert: t("unauthorized.destroy.poll/question/answer")
+      end
     end
 end
