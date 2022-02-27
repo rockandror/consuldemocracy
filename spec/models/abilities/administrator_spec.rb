@@ -22,8 +22,18 @@ describe Abilities::Administrator do
   let(:poll_question) { create(:poll_question) }
   let(:current_poll_question) { create(:poll_question, poll: current_poll) }
   let(:future_poll_question) { create(:poll_question, poll: future_poll) }
-  let(:current_poll_question_answer) { create(:poll_question_answer, poll: current_poll) }
-  let(:future_poll_question_answer) { create(:poll_question_answer, poll: future_poll) }
+  let(:current_poll_question_answer) { create(:poll_question_answer, question: current_poll_question) }
+  let(:future_poll_question_answer) { create(:poll_question_answer,  question: future_poll_question) }
+
+  let(:current_poll_answer_video) { create(:poll_answer_video, answer: current_poll_question_answer) }
+  let(:future_poll_answer_video) { create(:poll_answer_video, answer: future_poll_question_answer) }
+
+  let(:current_poll_answer_image) { build(:image, imageable: current_poll_question_answer) }
+  let(:future_poll_answer_image) { build(:image, imageable: future_poll_question_answer) }
+
+  let(:current_poll_answer_document) { build(:document, documentable: current_poll_question_answer) }
+  let(:future_poll_answer_document) { build(:document, documentable: future_poll_question_answer) }
+
 
   let(:past_process) { create(:legislation_process, :past) }
   let(:past_draft_process) { create(:legislation_process, :past, :not_published) }
@@ -131,6 +141,32 @@ describe Abilities::Administrator do
   it { should be_able_to(:destroy, future_poll_question_answer) }
   it { should_not be_able_to(:update, current_poll_question_answer) }
   it { should_not be_able_to(:destroy, current_poll_question_answer) }
+
+  describe "video" do
+    it { should be_able_to(:create, future_poll_answer_video) }
+    it { should be_able_to(:update, future_poll_answer_video) }
+    it { should be_able_to(:destroy, future_poll_answer_video) }
+
+    it { should_not be_able_to(:create, current_poll_answer_video) }
+    it { should_not be_able_to(:update, current_poll_answer_video) }
+    it { should_not be_able_to(:destroy, current_poll_answer_video) }
+  end
+
+  describe "image" do
+    it { should be_able_to(:create, future_poll_answer_image) }
+    it { should be_able_to(:destroy, future_poll_answer_image) }
+
+    it { should_not be_able_to(:create, current_poll_answer_image) }
+    it { should_not be_able_to(:destroy, current_poll_answer_image) }
+  end
+
+  describe "document" do
+    it { should be_able_to(:create, future_poll_answer_document) }
+    it { should be_able_to(:destroy, future_poll_answer_document) }
+
+    it { should_not be_able_to(:create, current_poll_answer_document) }
+    it { should_not be_able_to(:destroy, current_poll_answer_document) }
+  end
 
   it { is_expected.to be_able_to :manage, Dashboard::AdministratorTask }
   it { is_expected.to be_able_to :manage, dashboard_administrator_task }

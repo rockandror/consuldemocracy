@@ -97,6 +97,18 @@ module Abilities
         answer.question.poll.not_started?
       end
 
+      can [:create, :update, :destroy], Poll::Question::Answer::Video do |video|
+        video.answer.question.poll.not_started?
+      end
+
+      can [:create, :destroy], Image do |image|
+        image.imageable_type == "Poll::Question::Answer" && image.imageable.question.poll.not_started?
+      end
+
+      can [:create, :destroy], Document do |document|
+        document.documentable_type == "Poll::Question::Answer" && document.documentable.question.poll.not_started?
+      end
+
       can :manage, SiteCustomization::Page
       can :manage, SiteCustomization::Image
       can :manage, SiteCustomization::ContentBlock
@@ -113,8 +125,6 @@ module Abilities
       can [:manage], ::Legislation::Proposal
       cannot :comment_as_moderator, [::Legislation::Question, Legislation::Annotation, ::Legislation::Proposal]
 
-      can [:create], Document
-      can [:destroy], Document, documentable_type: "Poll::Question::Answer"
       can [:create, :destroy], DirectUpload
 
       can [:deliver], Newsletter, hidden_at: nil
