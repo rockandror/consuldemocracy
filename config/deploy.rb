@@ -7,15 +7,15 @@ def deploysecret(key)
 end
 
 set :rails_env, fetch(:stage)
-set :rvm1_ruby_version, '2.3.2'
 set :rvm1_map_bins, -> { fetch(:rvm_map_bins).to_a.concat(%w[rake gem bundle ruby]).uniq }
 
 set :application, 'consul'
 set :full_app_name, deploysecret(:full_app_name)
 
 set :server_name, deploysecret(:server_name)
-set :repo_url, 'https://github.com/consul/consul.git'
-
+set :repo_url, "https://www.gobiernodecanarias.net/aplicaciones/git/gobierno-abierto/ecociv/consul.git"
+set :git_http_username, deploysecret(:git_http_username)
+set :git_http_password, deploysecret(:git_http_password)
 set :revision, `git rev-parse --short #{fetch(:branch)}`.strip
 
 set :log_level, :info
@@ -23,7 +23,7 @@ set :pty, true
 set :use_sudo, false
 
 set :linked_files, %w{config/database.yml config/secrets.yml config/environments/production.rb}
-set :linked_dirs, %w{log tmp public/system public/assets}
+set :linked_dirs, %w[log tmp public/system public/assets public/ckeditor_assets]
 
 set :keep_releases, 5
 
@@ -43,23 +43,28 @@ set(:config_files, %w(
 set :whenever_roles, -> { :app }
 
 namespace :deploy do
-  #before :starting, 'rvm1:install:rvm'  # install/update RVM
-  #before :starting, 'rvm1:install:ruby' # install Ruby and create gemset
-  #before :starting, 'install_bundler_gem' # install bundler gem
+  Rake::Task["delayed_job:default"].clear_actions
+  Rake::Task["puma:smart_restart"].clear_actions
+
+  after :updating, "rvm1:install:rvm"
+  after :updating, "rvm1:install:ruby"
+  after :updating, "install_bundler_gem"
 
   after :publishing, "setup_puma"
 
   after :published, "deploy:restart"
-  before "deploy:restart", "puma:smart_restart"
+  before "deploy:restart", "puma:restart"
   before "deploy:restart", "delayed_job:restart"
+  before "deploy:restart", "puma:start"
 
-  after :finishing, 'deploy:cleanup'
   after :finished, "refresh_sitemap"
 end
 
 task :install_bundler_gem do
   on roles(:app) do
-    execute "rvm use #{fetch(:rvm1_ruby_version)}; gem install bundler"
+    within release_path do
+      execute :rvm, fetch(:rvm1_ruby_version), "do", "gem install bundler"
+    end
   end
 end
 
