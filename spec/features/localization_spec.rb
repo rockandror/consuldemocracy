@@ -18,7 +18,7 @@ feature 'Localization' do
   end
 
   scenario 'Available locales appear in the locale switcher' do
-    visit '/'
+    visit root_path
 
     within('.locale-form .js-location-changer') do
       expect(page).to have_content 'Español'
@@ -27,12 +27,12 @@ feature 'Localization' do
   end
 
   scenario 'The current locale is selected' do
-    visit '/'
+    visit root_path
     expect(page).to have_select('locale-switcher', selected: 'English')
   end
 
   scenario 'Changing the locale', :js do
-    visit '/'
+    visit root_path
     expect(page).to have_content('Language')
 
     select('Español', from: 'locale-switcher')
@@ -50,7 +50,7 @@ feature 'Localization' do
     after { I18n.reload! }
 
     scenario "Locale switcher not present" do
-      visit '/'
+      visit root_path
       expect(page).not_to have_content('Language')
       expect(page).not_to have_css('div.locale')
     end
@@ -74,7 +74,7 @@ feature 'Localization' do
     end
 
     scenario 'Available locales without language translation display locale key' do
-      visit '/'
+      visit root_path
 
       within('.locale-form .js-location-changer') do
         expect(page).to have_content 'wl'

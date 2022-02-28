@@ -50,7 +50,7 @@ feature "Admin custom information texts" do
     visit admin_site_customization_information_texts_path
 
     within("#information-texts-tabs") { click_link "Proposals" }
-    expect(find("a[href=\"/admin/site_customization/information_texts?tab=proposals\"].is-active"))
+    expect(find("a[href=\"#{Rails.application.config.relative_url_root}/admin/site_customization/information_texts?tab=proposals\"].is-active"))
           .to have_content "Proposals"
   end
 

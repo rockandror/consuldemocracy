@@ -7,7 +7,7 @@ feature 'Users' do
 
       scenario 'Success' do
         message = "You have been sent a message containing a verification link. Please click on this link to activate your account."
-        visit '/'
+        visit root_path
         click_link 'Register'
 
         fill_in 'user_username',              with: 'Manuela Carmena'
@@ -26,7 +26,7 @@ feature 'Users' do
       end
 
       scenario 'Errors on sign up' do
-        visit '/'
+        visit root_path
         click_link 'Register'
         click_button 'Register'
 
@@ -40,7 +40,7 @@ feature 'Users' do
       scenario 'sign in with email' do
         create(:user, email: 'manuela@consul.dev', password: 'judgementday')
 
-        visit '/'
+        visit root_path
         click_link 'Sign in'
         fill_in 'user_login',    with: 'manuela@consul.dev'
         fill_in 'user_password', with: 'judgementday'
@@ -52,7 +52,7 @@ feature 'Users' do
       scenario 'Sign in with username' do
         create(:user, username: '👻👽👾🤖', email: 'ash@nostromo.dev', password: 'xenomorph')
 
-        visit '/'
+        visit root_path
         click_link 'Sign in'
         fill_in 'user_login',    with: '👻👽👾🤖'
         fill_in 'user_password', with: 'xenomorph'
@@ -65,7 +65,7 @@ feature 'Users' do
         u1 = create(:user, username: 'Spidey', email: 'peter@nyc.dev', password: 'greatpower')
         u2 = create(:user, username: 'peter@nyc.dev', email: 'venom@nyc.dev', password: 'symbiote')
 
-        visit '/'
+        visit root_path
         click_link 'Sign in'
         fill_in 'user_login',    with: 'peter@nyc.dev'
         fill_in 'user_password', with: 'greatpower'
@@ -77,7 +77,7 @@ feature 'Users' do
 
         expect(page).to have_link 'My activity', href: user_path(u1)
 
-        visit '/'
+        visit root_path
         click_link 'Sign out'
 
         expect(page).to have_content 'You have been signed out successfully.'
@@ -123,7 +123,7 @@ feature 'Users' do
       scenario 'Sign up when Oauth provider has a verified email' do
         OmniAuth.config.add_mock(:twitter, twitter_hash_with_verified_email)
 
-        visit '/'
+        visit root_path
         click_link 'Register'
 
         click_link 'Sign up with Twitter'
@@ -140,7 +140,7 @@ feature 'Users' do
       scenario 'Sign up when Oauth provider has an unverified email' do
         OmniAuth.config.add_mock(:twitter, twitter_hash_with_email)
 
-        visit '/'
+        visit root_path
         click_link 'Register'
 
         click_link 'Sign up with Twitter'
@@ -151,7 +151,7 @@ feature 'Users' do
         confirm_email
         expect(page).to have_content "Your account has been confirmed"
 
-        visit '/'
+        visit root_path
         click_link 'Sign in'
         click_link 'Sign in with Twitter'
         expect_to_be_signed_in
@@ -166,7 +166,7 @@ feature 'Users' do
       scenario 'Sign up, when no email was provided by OAuth provider' do
         OmniAuth.config.add_mock(:twitter, twitter_hash)
 
-        visit '/'
+        visit root_path
         click_link 'Register'
         click_link 'Sign up with Twitter'
 
@@ -179,7 +179,7 @@ feature 'Users' do
         confirm_email
         expect(page).to have_content "Your account has been confirmed"
 
-        visit '/'
+        visit root_path
         click_link 'Sign in'
         click_link 'Sign in with Twitter'
         expect_to_be_signed_in
@@ -194,14 +194,14 @@ feature 'Users' do
       scenario 'Cancelling signup' do
         OmniAuth.config.add_mock(:twitter, twitter_hash)
 
-        visit '/'
+        visit root_path
         click_link 'Register'
         click_link 'Sign up with Twitter'
 
         expect(page).to have_current_path(finish_signup_path)
         click_link 'Cancel login'
 
-        visit '/'
+        visit root_path
         expect_not_to_be_signed_in
       end
 
@@ -210,7 +210,7 @@ feature 'Users' do
         create(:identity, uid: '12345', provider: 'twitter', user: user)
         OmniAuth.config.add_mock(:twitter, twitter_hash)
 
-        visit '/'
+        visit root_path
         click_link 'Sign in'
         click_link 'Sign in with Twitter'
 
@@ -228,7 +228,7 @@ feature 'Users' do
         create(:user, username: 'manuela', email: 'manuela@consul.dev', password: 'judgementday')
         OmniAuth.config.add_mock(:twitter, twitter_hash_with_verified_email)
 
-        visit '/'
+        visit root_path
         click_link 'Register'
         click_link 'Sign up with Twitter'
 
@@ -256,7 +256,7 @@ feature 'Users' do
         create(:user, username: 'peter', email: 'manuela@example.com')
         OmniAuth.config.add_mock(:twitter, twitter_hash)
 
-        visit '/'
+        visit root_path
         click_link 'Register'
         click_link 'Sign up with Twitter'
 
@@ -275,7 +275,7 @@ feature 'Users' do
         confirm_email
         expect(page).to have_content "Your account has been confirmed"
 
-        visit '/'
+        visit root_path
         click_link 'Sign in'
         click_link 'Sign in with Twitter'
         expect_to_be_signed_in
@@ -291,7 +291,7 @@ feature 'Users' do
         create(:user, username: 'peter', email: 'manuelacarmena@example.com')
         OmniAuth.config.add_mock(:twitter, twitter_hash_with_email)
 
-        visit '/'
+        visit root_path
         click_link 'Register'
         click_link 'Sign up with Twitter'
 
@@ -306,7 +306,7 @@ feature 'Users' do
         confirm_email
         expect(page).to have_content "Your account has been confirmed"
 
-        visit '/'
+        visit root_path
         click_link 'Sign in'
         click_link 'Sign in with Twitter'
         expect_to_be_signed_in
@@ -324,7 +324,7 @@ feature 'Users' do
     user = create(:user)
     login_as(user)
 
-    visit "/"
+    visit root_path
     click_link 'Sign out'
 
     expect(page).to have_content 'You have been signed out successfully.'
@@ -333,7 +333,7 @@ feature 'Users' do
   scenario 'Reset password' do
     create(:user, email: 'manuela@consul.dev')
 
-    visit '/'
+    visit root_path
     click_link 'Sign in'
     click_link 'Forgotten your password?'
 

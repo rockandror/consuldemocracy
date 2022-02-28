@@ -59,3 +59,7 @@ Capybara.javascript_driver = :headless_chrome
 Capybara.exact = true
 
 OmniAuth.config.test_mode = true
+
+Capybara.app = Rack::Builder.new do
+  eval File.read(Rails.root.join("config.ru"))
+end
