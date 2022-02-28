@@ -2,4 +2,4 @@
 
 Rails.application.config.session_store :cookie_store,
                                         key: ENV["COOKIES_NAME"] || "_consul_session",
-                                        path: ENV["CONSUL_RELATIVE_URL"] || "/"
+                                        path: ENV["RAILS_RELATIVE_URL_ROOT"] || "/"

@@ -5,13 +5,13 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 
 CKEDITOR.editorConfig = function( config )
 {
-  config.filebrowserBrowseUrl = "/ckeditor/attachment_files";
-  config.filebrowserFlashBrowseUrl = "/ckeditor/attachment_files";
-  config.filebrowserFlashUploadUrl = "/ckeditor/attachment_files";
-  config.filebrowserImageBrowseLinkUrl = "/ckeditor/pictures";
-  config.filebrowserImageBrowseUrl = "/ckeditor/pictures";
-  config.filebrowserImageUploadUrl = "/ckeditor/pictures";
-  config.filebrowserUploadUrl = "/ckeditor/attachment_files";
+  config.filebrowserBrowseUrl = CKEDITOR_ATTACHMENTS_PATH + "/attachment_files";
+  config.filebrowserFlashBrowseUrl = CKEDITOR_ATTACHMENTS_PATH + "/attachment_files";
+  config.filebrowserFlashUploadUrl = CKEDITOR_ATTACHMENTS_PATH + "/attachment_files";
+  config.filebrowserImageBrowseLinkUrl = CKEDITOR_ATTACHMENTS_PATH + "/pictures";
+  config.filebrowserImageBrowseUrl = CKEDITOR_ATTACHMENTS_PATH + "/pictures";
+  config.filebrowserImageUploadUrl = CKEDITOR_ATTACHMENTS_PATH + "/pictures";
+  config.filebrowserUploadUrl = CKEDITOR_ATTACHMENTS_PATH + "/attachment_files";
 
   config.allowedContent = true;
   config.format_tags = "p;h2;h3";

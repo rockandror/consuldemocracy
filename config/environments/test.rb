@@ -47,8 +47,6 @@ Rails.application.configure do
   }
   config.action_mailer.asset_host = 'http://consul.test'
 
-  #config.relative_url_root = ENV["RAILS_RELATIVE_URL_ROOT"].to_s || "/"
-
   # Randomize the order test cases are executed.
   config.active_support.test_order = :random
 

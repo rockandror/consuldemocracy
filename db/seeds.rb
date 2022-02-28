@@ -56,7 +56,7 @@ Setting["transparency_url"] = nil
 Setting["opendata_url"] = "/opendata"
 
 # Public-facing URL of the app.
-Setting["url"] = "http://example.com"
+Setting["url"] = "http://example.com#{Rails.application.config.relative_url_root}"
 
 # CONSUL installation's organization name
 Setting["org_name"] = "CONSUL"

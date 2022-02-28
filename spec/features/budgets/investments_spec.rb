@@ -1732,6 +1732,21 @@ feature 'Budget Investments' do
       end
     end
 
+    scenario "Display popup with investment title when clicking on a marker", :js do
+      investment = create(:budget_investment, heading: heading)
+      create(:map_location, longitude: heading.longitude, latitude: heading.latitude, investment: investment)
+
+      visit budget_investments_path(budget, heading_id: heading.id)
+
+      within ".map_location" do
+        expect(page).not_to have_link investment.title
+
+        find(".map-icon").click
+
+        expect(page).to have_link investment.title
+      end
+    end
+
     scenario "Display only investment's related to the current heading", :js do
       heading_2 = create(:budget_heading, name: "Madrid",   group: group)
 

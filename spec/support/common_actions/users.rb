@@ -1,6 +1,6 @@
 module Users
   def sign_up(email = 'manuela@consul.dev', password = 'judgementday')
-    visit '/'
+    visit root_path
 
     click_link 'Register'
 
@@ -67,7 +67,7 @@ module Users
   def reset_password
     create(:user, email: 'manuela@consul.dev')
 
-    visit '/'
+    visit root_path
     click_link 'Sign in'
     click_link 'Forgotten your password?'
 
