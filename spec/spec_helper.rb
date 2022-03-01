@@ -104,11 +104,6 @@ RSpec.configure do |config|
   end
 
   config.before(:each, :sara) do
-    ENV["IDENTIFICADOR_SOLICITANTE"] = ""
-    ENV["NOMBRE_SOLICITANTE"] = ""
-    ENV["COD_PROCEDIMIENTO"] = ""
-    ENV["ID_EXPEDIENTE"] = ""
-    ENV["FINALIDAD"] = ""
     ENV["SOAP_PLATINO_PKCS12_PASSWORD"] = ""
     ENV["SOAP_PLATINO_USUARIO"] = ""
     ENV["SARA_WSDL_URL"] = ""
