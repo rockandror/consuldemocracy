@@ -108,8 +108,8 @@
           <li><%= link_to t("layouts.footer.accessibility"), page_path("accessibility") %></li>
           <li><%= link_to t("layouts.footer.conditions"), page_path("conditions") %></li>
           <li><%= link_to t("layouts.footer.privacy"), page_path("privacy") %></li>
-          <li><%= link_to t("layouts.footer.contact"), ENV["CONTACT_URL"] || "https://www.gobiernodecanarias.org/participacionciudadana/contacto/" %></li>
-          <li><%= link_to t("layouts.footer.legal_advice"), ENV["LEGAL_URL"] || "http://www.gobiernodecanarias.org/principal/avisolegal.html" %></li>
+          <li><%= link_to t("layouts.footer.contact"), Rails.application.secrets.contact_url || "https://www.gobiernodecanarias.org/participacionciudadana/contacto/" %></li>
+          <li><%= link_to t("layouts.footer.legal_advice"), Rails.application.secrets.legal_url || "http://www.gobiernodecanarias.org/principal/avisolegal.html" %></li>
         </ul>
       </div>
     </div>

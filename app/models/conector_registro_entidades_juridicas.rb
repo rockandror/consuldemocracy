@@ -47,14 +47,14 @@ class ConectorRegistroEntidadesJuridicas
 
   def self.build_message_asociacionesWS(user)
     {
-      uidUsuario: ENV["USUARIO_WS_ASOCIACIONES"],
+      uidUsuario: Rails.application.secrets.usuario_ws_asociaciones,
       docPresidente: user[:document_number]
     }
   end
 
   def self.build_message_fundacionesWS(user)
     {
-      uidUsuario: ENV["USUARIO_WS_FUNDACIONES"],
+      uidUsuario: Rails.application.secrets.usuario_ws_fundaciones,
       docPresidente: user[:document_number]
     }
   end
