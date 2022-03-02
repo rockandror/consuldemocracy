@@ -57,7 +57,7 @@ section "Creating Settings" do
   Setting.create(key: 'per_page_code_body', value: '<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">')
   Setting.create(key: 'comments_body_max_length', value: '1000')
   Setting.create(key: 'mailer_from_name', value: 'CONSUL')
-  Setting.create(key: 'mailer_from_address', value: "(#{ENV["MAIL_USER"] || "noreply"}@#{ENV["MAIL_DOMAIN"] || "consul.dev"})")
+  Setting.create(key: 'mailer_from_address', value: "(#{Rails.application.secrets.smtp_settings&.user_name || "noreply"}@#{Rails.application.secrets.smtp_settings&.domain || "consul.dev"})")
   Setting.create(key: 'meta_title', value: 'CONSUL')
   Setting.create(key: 'meta_description', value: 'Citizen participation tool for an open, '\
                                                  'transparent and democratic government')
