@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe InstallationController, type: :request do
 
-  describe "consul.json" do
+  describe "consul.json", :broken do
     let(:test_feature_settings) do
       {
         'disabled_feature' => nil,
