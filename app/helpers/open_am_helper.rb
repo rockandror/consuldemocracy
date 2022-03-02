@@ -89,6 +89,6 @@ module OpenAmHelper
   private
 
   def build_url(endpoint)
-    (ENV['OPENAM_HOST'] || "localhost:8081/openam") + endpoint
+    (Rails.application.secrets.openam_host || "localhost:8081/openam") + endpoint
   end
 end

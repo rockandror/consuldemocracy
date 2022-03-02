@@ -247,7 +247,7 @@ Devise.setup do |config|
   config.omniauth :facebook, Rails.application.secrets.facebook_key, Rails.application.secrets.facebook_secret, scope: 'email', info_fields: 'email,name,verified'
   config.omniauth :google_oauth2, Rails.application.secrets.google_oauth2_key, Rails.application.secrets.google_oauth2_secret
   config.omniauth :saml,
-                  :assertion_consumer_service_url     => (ENV['CALLBACK_URL'] || 'http://localhost:3000') + '/users/auth/saml/callback',
+                  :assertion_consumer_service_url     => (Rails.application.secrets.saml_callback_url || 'http://localhost:3000') + '/users/auth/saml/callback',
                   request_attributes: [
                     { :name => 'email', :name_format => 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic', :friendly_name => 'Email address' },
                     { :name => 'name', :name_format => 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic', :friendly_name => 'Full name' },

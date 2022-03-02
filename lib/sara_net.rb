@@ -3,63 +3,63 @@ require 'openssl'
 
 class SaraNet
   def initialize
-    if ENV['SOAP_VERIFICAR_IDENTIDAD_NIF_FUNCIONARIO'].nil?
+    if Rails.application.secrets.soap_verificar_identidad_nif_funcionario.nil?
       raise "SOAP_VERIFICAR_IDENTIDAD_NIF_FUNCIONARIO not found as environment variable. Needed for Sara Network"
     end
 
-    if ENV['SOAP_VERIFICAR_IDENTIDAD_IDENTIFICADOR_SOLICITANTE'].nil?
+    if Rails.application.secrets.soap_verificar_identidad_identificador_solicitante.nil?
       raise "SOAP_VERIFICAR_IDENTIDAD_IDENTIFICADOR_SOLICITANTE not found as environment variable. Needed for Sara Network"
     end
 
-    if ENV['SOAP_VERIFICAR_IDENTIDAD_NOMBRE_SOLICITANTE'].nil?
+    if Rails.application.secrets.soap_verificar_identidad_nombre_solicitante.nil?
       raise "SOAP_VERIFICAR_IDENTIDAD_NOMBRE_SOLICITANTE not found as environment variable. Needed for Sara Network"
     end
 
-    if ENV['SOAP_VERIFICAR_IDENTIDAD_COD_PROCEDIMIENTO'].nil?
+    if Rails.application.secrets.soap_verificar_identidad_cod_procedimiento.nil?
       raise "SOAP_VERIFICAR_IDENTIDAD_COD_PROCEDIMIENTO not found as environment variable. Needed for Sara Network"
     end
 
-    if ENV['SOAP_VERIFICAR_IDENTIDAD_NOMBRE_PROCEDIMIENTO'].nil?
+    if Rails.application.secrets.soap_verificar_identidad_nombre_procedimiento.nil?
       raise "SOAP_VERIFICAR_IDENTIDAD_NOMBRE_PROCEDIMIENTO not found as environment variable. Needed for Sara Network"
     end
 
-    if ENV['SOAP_VERIFICAR_IDENTIDAD_ID_EXPEDIENTE'].nil?
-      ENV['SOAP_VERIFICAR_IDENTIDAD_ID_EXPEDIENTE'] = ""
+    if Rails.application.secrets.soap_verificar_identidad_id_expediente.nil?
+      Rails.application.secrets.soap_verificar_identidad_id_expediente = ""
     end
 
-    if ENV['SOAP_VERIFICAR_IDENTIDAD_FINALIDAD'].nil?
+    if Rails.application.secrets.soap_verificar_identidad_finalidad.nil?
       raise "SOAP_VERIFICAR_IDENTIDAD_FINALIDAD not found as environment variable. Needed for Sara Network"
     end
 
-    if ENV['SOAP_VERIFICAR_RESIDENCIA_NIF_FUNCIONARIO'].nil?
+    if Rails.application.secrets.soap_verificar_residencia_nif_funcionario.nil?
       raise "SOAP_VERIFICAR_RESIDENCIA_NIF_FUNCIONARIO not found as environment variable. Needed for Sara Network"
     end
 
-    if ENV['SOAP_VERIFICAR_RESIDENCIA_IDENTIFICADOR_SOLICITANTE'].nil?
+    if Rails.application.secrets.soap_verificar_residencia_identificador_solicitante.nil?
       raise "SOAP_VERIFICAR_RESIDENCIA_IDENTIFICADOR_SOLICITANTE not found as environment variable. Needed for Sara Network"
     end
 
-    if ENV['SOAP_VERIFICAR_RESIDENCIA_NOMBRE_SOLICITANTE'].nil?
+    if Rails.application.secrets.soap_verificar_residencia_nombre_solicitante.nil?
       raise "SOAP_VERIFICAR_RESIDENCIA_NOMBRE_SOLICITANTE not found as environment variable. Needed for Sara Network"
     end
 
-    if ENV['SOAP_VERIFICAR_RESIDENCIA_COD_PROCEDIMIENTO'].nil?
+    if Rails.application.secrets.soap_verificar_residencia_cod_procedimiento.nil?
       raise "SOAP_VERIFICAR_RESIDENCIA_COD_PROCEDIMIENTO not found as environment variable. Needed for Sara Network"
     end
 
-    if ENV['SOAP_VERIFICAR_RESIDENCIA_NOMBRE_PROCEDIMIENTO'].nil?
+    if Rails.application.secrets.soap_verificar_residencia_nombre_procedimiento.nil?
       raise "SOAP_VERIFICAR_RESIDENCIA_NOMBRE_PROCEDIMIENTO not found as environment variable. Needed for Sara Network"
     end
 
-    if ENV['SOAP_VERIFICAR_RESIDENCIA_ID_EXPEDIENTE'].nil?
-      ENV['SOAP_VERIFICAR_RESIDENCIA_ID_EXPEDIENTE'] = ""
+    if Rails.application.secrets.soap_verificar_residencia_id_expediente.nil?
+      Rails.application.secrets.soap_verificar_residencia_id_expediente = ""
     end
 
-    if ENV['SOAP_VERIFICAR_RESIDENCIA_FINALIDAD'].nil?
+    if Rails.application.secrets.soap_verificar_residencia_finalidad.nil?
       raise "SOAP_VERIFICAR_RESIDENCIA_FINALIDAD not found as environment variable. Needed for Sara Network"
     end
 
-    if ENV['SOAP_PLATINO_PKCS12_PASSWORD'].nil?
+    if Rails.application.secrets.soap_platino_pkcs12_password.nil?
       raise "SOAP_PLATINO_PKCS12_PASSWORD not found as environment variable. Needed for Sara Network"
     end
 
@@ -68,20 +68,20 @@ class SaraNet
     end
 
     nspaces = {
-      "xmlns:svd"  => ENV["SOAP_URL_SVD"],
-      "xmlns:pet"  => ENV["SOAP_URL_PET"],
-      "xmlns:ver"  => ENV["SOAP_URL_VER"],
-      "xmlns:ver1" => ENV["SOAP_URL_VER1"],
-      "xmlns:amb"  => ENV["SOAP_URL_AMB"],
-      "xmlns:ns8"  => ENV["SOAP_URL_NS8"]
+      "xmlns:svd"  => Rails.application.secrets.soap_url_svd,
+      "xmlns:pet"  => Rails.application.secrets.soap_url_pet,
+      "xmlns:ver"  => Rails.application.secrets.soap_url_ver,
+      "xmlns:ver1" => Rails.application.secrets.soap_url_ver1,
+      "xmlns:amb"  => Rails.application.secrets.soap_url_amb,
+      "xmlns:ns8"  => Rails.application.secrets.soap_url_ns8
     }
 
     if not Rails.env.test?
-      pkcs = OpenSSL::PKCS12.new(File.read(Rails.root + "ssl/platino.p12"), ENV['SOAP_PLATINO_PKCS12_PASSWORD'])
+      pkcs = OpenSSL::PKCS12.new(File.read(Rails.root + "ssl/platino.p12"), Rails.application.secrets.soap_platino_pkcs12_password)
 
       @client = Savon.client do
-        wsdl ENV["SARA_WSDL_URL"]
-        wsse_auth(ENV["SOAP_PLATINO_USUARIO"], ENV["SOAP_PLATINO_PKCS12_PASSWORD"])
+        wsdl Rails.application.secrets.sara_wsdl_url
+        wsse_auth(Rails.application.secrets.soap_platino_usuario, Rails.application.secrets.soap_platino_pkcs12_password)
         wsse_signature Akami::WSSE::Signature.new(
             Akami::WSSE::Certs.new(
                 cert_string:            pkcs.certificate.to_pem.to_s,
@@ -139,7 +139,7 @@ class SaraNet
   def build_message_verify_indentity(document_number, document_type, date_of_birth)
     {
       "pet:PeticionSincrona": {
-        "pet:NifFuncionario": ENV['SOAP_VERIFICAR_IDENTIDAD_NIF_FUNCIONARIO'],
+        "pet:NifFuncionario": Rails.application.secrets.soap_verificar_identidad_nif_funcionario,
         "pet:Atributos": {
           "pet:CodigoCertificado": "SVDDGPVIWS02"
         },
@@ -147,13 +147,13 @@ class SaraNet
           "pet:SolicitudTransmision": {
             "pet:DatosGenericos": {
               "pet:Solicitante": {
-                "pet:IdentificadorSolicitante": ENV['SOAP_VERIFICAR_IDENTIDAD_IDENTIFICADOR_SOLICITANTE'],
-                "pet:NombreSolicitante": ENV['SOAP_VERIFICAR_IDENTIDAD_NOMBRE_SOLICITANTE'],
+                "pet:IdentificadorSolicitante": Rails.application.secrets.soap_verificar_identidad_identificador_solicitante,
+                "pet:NombreSolicitante": Rails.application.secrets.soap_verificar_identidad_nombre_solicitante,
                 "pet:Procedimiento": {
-                  "pet:CodProcedimiento": ENV['SOAP_VERIFICAR_IDENTIDAD_COD_PROCEDIMIENTO'],
-                  "pet:NombreProcedimiento": ENV['SOAP_VERIFICAR_IDENTIDAD_NOMBRE_PROCEDIMIENTO'],
+                  "pet:CodProcedimiento": Rails.application.secrets.soap_verificar_identidad_cod_procedimiento,
+                  "pet:NombreProcedimiento": Rails.application.secrets.soap_verificar_identidad_nombre_procedimiento,
                 },
-                "pet:Finalidad": ENV['SOAP_VERIFICAR_IDENTIDAD_FINALIDAD'],
+                "pet:Finalidad": Rails.application.secrets.soap_verificar_identidad_finalidad,
                 "pet:Consentimiento": "Si"
               },
               "pet:Titular": {
@@ -178,7 +178,7 @@ class SaraNet
   def build_message_VERIFICAR_RESIDENCIA(document_number, document_type, postal_code)
     {
       "pet:PeticionSincrona": {
-        "pet:NifFuncionario": ENV['SOAP_VERIFICAR_RESIDENCIA_NIF_FUNCIONARIO'],
+        "pet:NifFuncionario": Rails.application.secrets.soap_verificar_residencia_nif_funcionario,
         "pet:Atributos": {
           "pet:CodigoCertificado": "SVDREXTFECHAWS01"
         },
@@ -186,15 +186,15 @@ class SaraNet
           "pet:SolicitudTransmision": {
             "pet:DatosGenericos": {
               "pet:Solicitante": {
-                "pet:IdentificadorSolicitante":  ENV['SOAP_VERIFICAR_RESIDENCIA_IDENTIFICADOR_SOLICITANTE'],
-                "pet:NombreSolicitante": ENV['SOAP_VERIFICAR_RESIDENCIA_NOMBRE_SOLICITANTE'],
+                "pet:IdentificadorSolicitante":  Rails.application.secrets.soap_verificar_residencia_identificador_solicitante,
+                "pet:NombreSolicitante": Rails.application.secrets.soap_verificar_residencia_nombre_solicitante,
                 "pet:Procedimiento": {
-                  "pet:CodProcedimiento": ENV['SOAP_VERIFICAR_RESIDENCIA_COD_PROCEDIMIENTO'],
-                  "pet:NombreProcedimiento": ENV['SOAP_VERIFICAR_RESIDENCIA_NOMBRE_PROCEDIMIENTO']
+                  "pet:CodProcedimiento": Rails.application.secrets.soap_verificar_residencia_cod_procedimiento,
+                  "pet:NombreProcedimiento": Rails.application.secrets.soap_verificar_residencia_nombre_procedimiento
                 },
-                "pet:Finalidad": ENV['SOAP_VERIFICAR_RESIDENCIA_FINALIDAD'],
+                "pet:Finalidad": Rails.application.secrets.soap_verificar_residencia_finalidad,
                 "pet:Consentimiento": "Si",
-                "pet:IdExpediente": ENV['SOAP_VERIFICAR_RESIDENCIA_ID_EXPEDIENTE']
+                "pet:IdExpediente": Rails.application.secrets.soap_verificar_residencia_id_expediente
               },
               "pet:Titular": {
                 "pet:TipoDocumentacion": get_document_type(document_type),
