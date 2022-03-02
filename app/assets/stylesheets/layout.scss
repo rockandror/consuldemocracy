@@ -952,6 +952,19 @@ footer {
   }
 }
 
+.recaptcha {
+  display: none;
+}
+
+.g-recaptcha {
+  padding-bottom: $line-height / 2;
+
+  @include breakpoint(medium) {
+    display: flex;
+    justify-content: center;
+  }
+}
+
 // 06. Forms
 // ---------
 

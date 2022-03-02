@@ -100,6 +100,86 @@ feature 'Users' do
 
         expect(page).to have_link 'My activity', href: user_path(u2)
       end
+
+      scenario "resets failed attempts after successful login", :js do
+        user = create(:user, email: "manuela@consul.dev",
+                             password: "judgementday",
+                             failed_attempts: 3)
+        visit user_session_path
+
+        fill_in "Email or username", with: "manuela@consul.dev"
+        fill_in "Password", with: "judgementday"
+
+        expect(page).to have_css ".recaptcha"
+
+        click_button "Enter"
+
+        expect(page).to have_content "You have been signed in successfully."
+
+        logout
+        visit user_session_path
+        fill_in "Email or username", with: "manuela@consul.dev"
+        fill_in "Password", with: "judgementday"
+
+        expect(page).not_to have_css ".recaptcha"
+      end
+
+      scenario "shows recaptcha only after consecutive failed attempts", :js do
+        create(:user, email: "manuela@consul.dev", password: "judgementday", failed_attempts: 0)
+
+        visit new_user_session_path
+
+        fill_in "Email or username", with: "manuela@consul.dev"
+        fill_in "Password", with: "wrong_password"
+
+        expect(page).not_to have_css ".recaptcha"
+
+        click_button "Enter"
+        expect(page).to have_content "Invalid login or password."
+
+        fill_in "Email or username", with: "manuela@consul.dev"
+        fill_in "Password", with: "wrong_password"
+
+        expect(page).to have_css ".recaptcha"
+      end
+
+      scenario "unchecked recaptcha with correct login details", :js do
+        allow_any_instance_of(Users::SessionsController).to receive(:verify_recaptcha).and_return false
+        create(:user, email: "manuela@consul.dev", password: "judgementday", failed_attempts: 1)
+
+        visit new_user_session_path
+
+        fill_in "Email or username", with: "manuela@consul.dev"
+        fill_in "Password", with: "judgementday"
+
+        click_button "Enter"
+        expect(page).to have_content "reCAPTCHA human verification is missing. Please try again."
+      end
+
+      scenario "checked recaptcha with incorrect login details", :js do
+        create(:user, email: "manuela@consul.dev", password: "judgementday", failed_attempts: 1)
+
+        visit new_user_session_path
+
+        fill_in "Email or username", with: "manuela@consul.dev"
+        fill_in "Password", with: "wrong_password"
+
+        click_button "Enter"
+        expect(page).to have_content "Invalid login or password."
+      end
+
+      scenario "checked recaptcha with correct login details", :js do
+        allow_any_instance_of(Users::SessionsController).to receive(:verify_recaptcha).and_return true
+        create(:user, email: "manuela@consul.dev", password: "judgementday", failed_attempts: 1)
+
+        visit new_user_session_path
+
+        fill_in "Email or username", with: "manuela@consul.dev"
+        fill_in "Password", with: "judgementday"
+
+        click_button "Enter"
+        expect(page).to have_content "You have been signed in successfully."
+      end
     end
   end
 

@@ -1,5 +1,5 @@
 # Overrides and adds customized gems in this file
-# Read more on documentation: 
+# Read more on documentation:
 # * English: https://github.com/consul/consul/blob/master/CUSTOMIZE_EN.md#gemfile
 # * Spanish: https://github.com/consul/consul/blob/master/CUSTOMIZE_ES.md#gemfile
 #
@@ -7,6 +7,7 @@ gem "activerecord-nulldb-adapter", "~> 0.3.7"
 gem "execjs"
 gem "logstash-logger"
 gem "omniauth-saml"
+gem "recaptcha", '~> 5.8.1'
 gem "rest-client", "~> 2.0", ">= 2.0.2"
 gem "selenium-webdriver", "~> 3.10"
 gem "signer", "~> 1.9"
