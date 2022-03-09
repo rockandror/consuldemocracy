@@ -24,6 +24,10 @@ class Setting
       else
         consul_defaults.merge({
           # Overwrite default CONSUL settings or add new settings here
+          "process.debates": false,
+          "process.proposals": false,
+          "process.budgets": false,
+          "process.legislation": false
         })
       end
     end
