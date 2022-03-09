@@ -24,6 +24,14 @@ class Setting
       else
         consul_defaults.merge({
           # Overwrite default CONSUL settings or add new settings here
+          "feature.facebook_login": false,
+          "feature.google_login": false,
+          "feature.twitter_login": false,
+          "feature.wordpress_login": false,
+          "feature.signature_sheets": false,
+          "feature.user.recommendations": false,
+          "feature.graphql_api": false,
+          "feature.sdg": false,
           "process.debates": false,
           "process.proposals": false,
           "process.budgets": false,
