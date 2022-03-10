@@ -110,6 +110,13 @@ FactoryBot.define do
     user
   end
 
+  factory :guest, class: "User" do
+    sequence(:email)    { Faker::Internet.email }
+    sequence(:username) { Faker::Internet.username }
+    guest               { true }
+    to_create           { |instance| instance.save(validate: false) }
+  end
+
   factory :poll_officer, class: "Poll::Officer" do
     user { association(:user, username: name) }
 

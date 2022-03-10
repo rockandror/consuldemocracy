@@ -17,6 +17,8 @@ class Ability
         merge Abilities::Manager.new(user)
       elsif user.sdg_manager?
         merge Abilities::SDG::Manager.new(user)
+      elsif user.guest?
+        merge Abilities::Guest.new(user)
       else
         merge Abilities::Common.new(user)
       end
