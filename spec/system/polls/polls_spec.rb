@@ -69,12 +69,6 @@ describe "Polls" do
 
     scenario "Displays icon correctly" do
       create_list(:poll, 3)
-
-      visit polls_path
-
-      expect(page).to have_css(".not-logged-in", count: 3)
-      expect(page).to have_content("You must sign in or sign up to participate")
-
       user = create(:user)
       login_as(user)
 

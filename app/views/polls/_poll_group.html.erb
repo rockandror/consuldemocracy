@@ -1,10 +1,10 @@
 <% poll_group.each do |poll| %>
   <div class="poll with-image">
-    <% if !user_signed_in? %>
+    <% if !user_signed_in? && cannot?(:answer, poll) %>
       <div class="icon-poll-answer not-logged-in" title="<%= t("polls.index.not_logged_in") %>">
         <span class="show-for-sr"><%= t("polls.index.not_logged_in") %></span>
       </div>
-    <% elsif user_signed_in? %>
+    <% elsif (user_signed_in? || can?(:answer, poll)) %>
       <% if current_user.unverified? %>
         <div class="icon-poll-answer unverified" title="<%= t("polls.index.unverified") %>">
           <span class="show-for-sr"><%= t("polls.index.unverified") %></span>
