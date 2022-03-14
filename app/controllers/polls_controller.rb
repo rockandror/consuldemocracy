@@ -1,6 +1,7 @@
 class PollsController < ApplicationController
   include FeatureFlags
   include PollsHelper
+  include GuestUsers
 
   feature_flag :polls
 

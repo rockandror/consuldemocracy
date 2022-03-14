@@ -242,14 +242,23 @@ describe "Polls" do
       end
     end
 
-    scenario "Non-logged in users" do
-      create(:poll_question, :yes_no, poll: poll)
+    scenario "Guest users can answer the poll questions" do
+      Setting["feature.user.skip_verification"] = true
+      question = create(:poll_question, :yes_no, poll: poll)
 
       visit poll_path(poll)
 
-      expect(page).to have_content("You must sign in or sign up to participate")
-      expect(page).to have_link("Yes", href: new_user_session_path)
-      expect(page).to have_link("No", href: new_user_session_path)
+      within("#poll_question_#{question.id}_answers") do
+        click_link "Yes"
+
+        expect(page).not_to have_link("Yes")
+        expect(page).to have_link("No")
+
+        click_link "No"
+
+        expect(page).not_to have_link("No")
+        expect(page).to have_link("Yes")
+      end
     end
 
     scenario "Level 1 users" do
