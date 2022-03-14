@@ -8,6 +8,8 @@ describe "Commenting polls" do
     3.times { create(:comment, commentable: poll) }
     comment = Comment.includes(:user).last
 
+    login_as(user)
+
     visit poll_path(poll)
 
     expect(page).to have_css(".comment", count: 3)
@@ -42,6 +44,7 @@ describe "Commenting polls" do
   scenario "Link to comment show" do
     comment = create(:comment, commentable: poll, user: user)
 
+    login_as(user)
     visit poll_path(poll)
 
     within "#comment_#{comment.id}" do
@@ -59,6 +62,7 @@ describe "Commenting polls" do
     child_comment  = create(:comment, body: "First subcomment", commentable: poll, parent: parent_comment)
     grandchild_comment = create(:comment, body: "Last subcomment", commentable: poll, parent: child_comment)
 
+    login_as(user)
     visit poll_path(poll)
 
     expect(page).to have_css(".comment", count: 3)
@@ -99,6 +103,7 @@ describe "Commenting polls" do
     c3 = create(:comment, :with_confidence_score, commentable: poll, cached_votes_up: 1,
                                                   cached_votes_total: 2, created_at: Time.current)
 
+    login_as(user)
     visit poll_path(poll, order: :most_voted)
 
     expect(c1.body).to appear_before(c2.body)
@@ -125,6 +130,7 @@ describe "Commenting polls" do
     old_child = create(:comment, commentable: poll, parent_id: new_root.id, created_at: Time.current - 10)
     new_child = create(:comment, commentable: poll, parent_id: new_root.id, created_at: Time.current)
 
+    login_as(user)
     visit poll_path(poll, order: :most_voted)
 
     expect(new_root.body).to appear_before(old_root.body)
@@ -144,6 +150,7 @@ describe "Commenting polls" do
   scenario "Turns links into html links" do
     create :comment, commentable: poll, body: "Built with http://rubyonrails.org/"
 
+    login_as(user)
     visit poll_path(poll)
 
     within first(".comment") do
@@ -158,6 +165,7 @@ describe "Commenting polls" do
     create :comment, commentable: poll,
                      body: "<script>alert('hola')</script> <a href=\"javascript:alert('sorpresa!')\">click me<a/> http://www.url.com"
 
+    login_as(user)
     visit poll_path(poll)
 
     within first(".comment") do
@@ -171,6 +179,7 @@ describe "Commenting polls" do
     per_page = 10
     (per_page + 2).times { create(:comment, commentable: poll) }
 
+    login_as(user)
     visit poll_path(poll)
 
     expect(page).to have_css(".comment", count: per_page)
@@ -185,16 +194,15 @@ describe "Commenting polls" do
     expect(page).to have_current_path(/#comments/, url: true)
   end
 
-  describe "Not logged user" do
-    scenario "can not see comments forms" do
-      create(:comment, commentable: poll)
+  describe "Guest user" do
+    scenario "can not see comments section" do
+      create(:comment, commentable: poll, body: "Awesome comment")
       visit poll_path(poll)
 
-      expect(page).to have_content "You must sign in or sign up to leave a comment"
-      within("#comments") do
-        expect(page).not_to have_content "Write a comment"
-        expect(page).not_to have_content "Reply"
-      end
+      save_screenshot
+      expect(page).not_to have_content "Comments (1)"
+      expect(page).not_to have_content "Awesome comment"
+      expect(page).not_to have_content "Publish comment"
     end
   end
 
@@ -299,6 +307,7 @@ describe "Commenting polls" do
       parent = parent.children.first
     end
 
+    login_as(user)
     visit poll_path(poll)
     expect(page).to have_css(".comment.comment.comment.comment.comment.comment.comment.comment")
   end
@@ -308,6 +317,7 @@ describe "Commenting polls" do
     comment = create(:comment, commentable: poll, body: "this should be visible")
     comment.user.erase
 
+    login_as(user)
     visit poll_path(poll)
     within "#comment_#{comment.id}" do
       expect(page).to have_content("User deleted")
