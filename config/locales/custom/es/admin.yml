@@ -1566,7 +1566,7 @@ es:
           see_page: Ver página
         new:
           title: Página nueva
-          slug_help: "Texto que identifica esta página en la URL, por ejemplo <code>https://consulproject.org/slug-de-pagina</code><br>Si la página corresponde a una entrada del menú del Cabildo Abierto, el slug deberá empezar por <code>_cabildo_</code><br>Si la página corresponde a una entrada del menú de Participación, el slug deberá empezar por <code>_participacion_</code><br>Si es una noticia, el slug no necesita prefijo."
+          slug_help: "Texto que identifica esta página en la URL, por ejemplo <code>https://consulproject.org/slug-de-pagina</code><br>Si la página corresponde a una entrada del menú del Cabildo Abierto, el slug deberá empezar por <code>_cabildo_</code><br>Si la página corresponde a una entrada del menú de Participación, el slug deberá empezar por <code>_participacion_</code><br>Si la página corresponde a una entrada del menú de Ética Pública, el slug deberá empezar por <code>_etica_</code><br>Si es una noticia, el slug no necesita prefijo."
         page:
           created_at: Creada
           status: Estado

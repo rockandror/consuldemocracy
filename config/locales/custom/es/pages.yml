@@ -20,6 +20,7 @@ es:
       root: Inicio
       entity: Cabildo Abierto
       participation: Participación y colaboración ciudadana
+      ethics: Ética Pública
       news: Noticias
     accessibility:
       title: Accesibilidad
@@ -40,21 +41,15 @@ es:
           key_header: Tecla
           page_header: Página
           rows:
-            -
-              key_column: 0
+            - key_column: 0
               page_column: Inicio
-            -
-              key_column: 1
+            - key_column: 1
               page_column: Debates
-            -
-              key_column: 2
+            - key_column: 2
               page_column: Propuestas
-            -
-              key_column: 3
+            - key_column: 3
               page_column: Votaciones
-            -
-              key_column: 4
+            - key_column: 4
               page_column: Presupuestos participativos
-            -
-              key_column: 5
+            - key_column: 5
               page_column: Propuestas del Cabildo

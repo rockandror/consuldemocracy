@@ -52,6 +52,20 @@
             <span><%= @custom_page.title %></span>
           <% end %>
         </small>
+      <% elsif @custom_page.slug.start_with?('_etica_') %>
+        <small>
+          <%= link_to root_path do %>
+            <span><%= t("pages.breadcrumbs.root") %></span>
+          <% end %>
+          >
+          <%= link_to "#" do %>
+            <span><%= t("pages.breadcrumbs.ethics") %></span>
+          <% end %>
+          >
+          <%= link_to @custom_page.slug do %>
+            <span><%= @custom_page.title %></span>
+          <% end %>
+        </small>
       <% else %>
         <small>
           <%= link_to root_path do %>

@@ -8,16 +8,17 @@ class PagesController < ApplicationController
     @custom_page = SiteCustomization::Page.published.find_by(slug: params[:id])
     string_array = params[:id].split('_')
     family = string_array[1]
-    @related_pages = SiteCustomization::Page.where("slug LIKE :family", family: "\_#{family}\_%")
+    @related_pages = SiteCustomization::Page.published.where("slug LIKE :family", family: "\_#{family}\_%")
+    @has_news = false
     if family == 'cabildo'
       @menu_title = 'Cabildo Abierto'
       @has_news = true
     elsif family == 'participacion'
-      @menu_title = 'Participación y colaboración ciudadana'
-      @has_news = false
+      @menu_title = 'Participación y Colaboración Ciudadana'
+    elsif family == 'etica'
+      @menu_title = 'Ética Pública'
     else
       @menu_title = false
-      @has_news = false
     end
 
     if @custom_page.present?
