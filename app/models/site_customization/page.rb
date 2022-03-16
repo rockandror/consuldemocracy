@@ -10,7 +10,7 @@ class SiteCustomization::Page < ApplicationRecord
   validates :slug, presence: true,
                    uniqueness: { case_sensitive: false },
                    format: { with: /\A[0-9a-zA-Z\-_]*\Z/, message: :slug_format }
-  validates :status, presence: true, inclusion: { in: VALID_STATUSES }
+  validates :status, presence: true, inclusion: { in: ->(*) { valid_statuses }}
 
   scope :published, -> { where(status: "published").sort_desc }
   scope :sort_asc, -> { order("id ASC") }
@@ -18,6 +18,10 @@ class SiteCustomization::Page < ApplicationRecord
   scope :with_more_info_flag, -> { where(status: "published", more_info_flag: true).sort_asc }
   scope :with_same_locale, -> { joins(:translations).locale }
   scope :locale, -> { where("site_customization_page_translations.locale": I18n.locale) }
+
+  def self.valid_statuses
+    VALID_STATUSES
+  end
 
   def url
     "/#{slug}"
