@@ -17,9 +17,13 @@ class Legislation::DraftVersion < ApplicationRecord
 
   validates_translation :title, presence: true
   validates_translation :body, presence: true
-  validates :status, presence: true, inclusion: { in: VALID_STATUSES }
+  validates :status, presence: true, inclusion: { in: ->(*) { valid_statuses }}
 
   scope :published, -> { where(status: "published").order("id DESC") }
+
+  def self.valid_statuses
+    VALID_STATUSES
+  end
 
   def body_html
     renderer = Redcarpet::Render::HTML.new(with_toc_data: true)
