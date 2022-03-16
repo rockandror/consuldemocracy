@@ -9,8 +9,12 @@ class Widget::Feed < ApplicationRecord
     Setting.find_by(key: "homepage.widgets.feeds.#{kind}")
   end
 
+  def self.kinds
+    KINDS
+  end
+
   def self.active
-    KINDS.map do |kind|
+    kinds.map do |kind|
       feed = find_or_create_by!(kind: kind)
       feed if feed.active?
     end.compact
