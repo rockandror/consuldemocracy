@@ -124,7 +124,7 @@ class ProposalsController < ApplicationController
     def load_retired
       if params[:retired].present?
         @resources = @resources.retired
-        @resources = @resources.where(retired_reason: params[:retired]) if Proposal::RETIRE_OPTIONS.include?(params[:retired])
+        @resources = @resources.where(retired_reason: params[:retired]) if Proposal.retire_options.include?(params[:retired])
       else
         @resources = @resources.not_retired
       end

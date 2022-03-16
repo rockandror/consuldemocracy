@@ -51,7 +51,7 @@ class Proposal < ApplicationRecord
   validates :responsible_name, presence: true, unless: :skip_user_verification?
 
   validates :responsible_name, length: { in: 6..Proposal.responsible_name_max_length }, unless: :skip_user_verification?
-  validates :retired_reason, presence: true, inclusion: { in: RETIRE_OPTIONS }, unless: -> { retired_at.blank? }
+  validates :retired_reason, presence: true, inclusion: { in: ->(*) { retire_options }}, unless: -> { retired_at.blank? }
 
   validates :terms_of_service, acceptance: { allow_nil: false }, on: :create
 
@@ -111,6 +111,10 @@ class Proposal < ApplicationRecord
 
   def self.not_followed_by_user(user)
     where.not(id: followed_by_user(user).ids)
+  end
+
+  def self.retire_options
+    RETIRE_OPTIONS
   end
 
   def to_param
