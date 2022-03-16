@@ -2,7 +2,7 @@ class Poll::Stats
   include Statisticable
   alias_method :poll, :resource
 
-  CHANNELS = Poll::Voter::VALID_ORIGINS
+  CHANNELS = Poll::Voter.valid_origins
 
   def self.stats_methods
     super +

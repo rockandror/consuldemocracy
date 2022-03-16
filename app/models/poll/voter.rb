@@ -16,13 +16,17 @@ class Poll
 
     validates :document_number, presence: true, unless: :skip_user_verification?
     validates :user_id, uniqueness: { scope: [:poll_id], message: :has_voted }
-    validates :origin, inclusion: { in: VALID_ORIGINS }
+    validates :origin, inclusion: { in: ->(*) { valid_origins }}
 
     before_validation :set_demographic_info, :set_document_info, :set_denormalized_booth_assignment_id
 
     scope :web,    -> { where(origin: "web") }
     scope :booth,  -> { where(origin: "booth") }
     scope :letter, -> { where(origin: "letter") }
+
+    def self.valid_origins
+      VALID_ORIGINS
+    end
 
     def set_demographic_info
       return if user.blank?
