@@ -12,13 +12,13 @@ class Admin::Budgets::FormComponent < ApplicationComponent
   end
 
   def voting_styles_select_options
-    Budget::VOTING_STYLES.map do |style|
+    Budget.voting_styles.map do |style|
       [Budget.human_attribute_name("voting_style_#{style}"), style]
     end
   end
 
   def currency_symbol_select_options
-    Budget::CURRENCY_SYMBOLS.map { |cs| [cs, cs] }
+    Budget.currency_symbols.map { |cs| [cs, cs] }
   end
 
   def phases_select_options

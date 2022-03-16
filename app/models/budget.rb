@@ -28,7 +28,7 @@ class Budget < ApplicationRecord
   validates :phase, inclusion: { in: Budget::Phase::PHASE_KINDS }
   validates :currency_symbol, presence: true
   validates :slug, presence: true, format: /\A[a-z0-9\-_]+\z/
-  validates :voting_style, inclusion: { in: VOTING_STYLES }
+  validates :voting_style, inclusion: { in: ->(*) {voting_styles}}
 
   has_many :investments, dependent: :destroy
   has_many :ballots, dependent: :destroy
@@ -64,6 +64,14 @@ class Budget < ApplicationRecord
 
   def self.current
     published.order(:created_at).last
+  end
+
+  def self.currency_symbols
+    CURRENCY_SYMBOLS
+  end
+
+  def self.voting_styles
+    VOTING_STYLES
   end
 
   def current_phase
