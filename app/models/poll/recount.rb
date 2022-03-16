@@ -6,7 +6,7 @@ class Poll::Recount < ApplicationRecord
   belongs_to :officer_assignment
 
   validates :author, presence: true
-  validates :origin, inclusion: { in: VALID_ORIGINS }
+  validates :origin, inclusion: { in: ->(*) { valid_origins }}
 
   scope :web,    -> { where(origin: "web") }
   scope :booth,  -> { where(origin: "booth") }
@@ -15,6 +15,10 @@ class Poll::Recount < ApplicationRecord
   scope :by_author, ->(author_id) { where(author_id: author_id) }
 
   before_save :update_logs
+
+  def self.valid_origins
+    VALID_ORIGINS
+  end
 
   def update_logs
     amounts_changed = false
