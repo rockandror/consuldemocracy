@@ -21,7 +21,7 @@ class Comment < ApplicationRecord
   validates_translation :body, presence: true
   validates :user, presence: true
 
-  validates :commentable_type, inclusion: { in: COMMENTABLE_TYPES }
+  validates :commentable_type, inclusion: { in: ->(*) { commentable_types }}
 
   validate :validate_body_length
   validate :comment_valuation, if: -> { valuation }
@@ -69,6 +69,10 @@ class Comment < ApplicationRecord
 
   def self.find_commentable(c_type, c_id)
     c_type.constantize.find(c_id)
+  end
+
+  def self.commentable_types
+    COMMENTABLE_TYPES
   end
 
   def author_id

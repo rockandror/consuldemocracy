@@ -231,7 +231,7 @@ def show_path?(path)
 end
 
 def commentable?(resource)
-  Comment::COMMENTABLE_TYPES.include?(resource.class.to_s)
+  Comment.commentable_types.include?(resource.class.to_s)
 end
 
 def generate_response(resource)
