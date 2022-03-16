@@ -4,6 +4,6 @@ module ReportAttributes
   private
 
     def report_attributes
-      Report::KINDS.map { |kind| :"#{kind}_enabled" }
+      Report.kinds.map { |kind| :"#{kind}_enabled" }
     end
 end
