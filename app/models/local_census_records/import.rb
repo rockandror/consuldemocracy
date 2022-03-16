@@ -22,6 +22,10 @@ class LocalCensusRecords::Import
     @invalid_records = []
   end
 
+  def self.allowed_file_extensions
+    ALLOWED_FILE_EXTENSIONS
+  end
+
   def save
     return false if invalid?
 
@@ -63,7 +67,9 @@ class LocalCensusRecords::Import
     def file_extension
       return if valid_extension?
 
-      errors.add :file, :extension, valid_extensions: ALLOWED_FILE_EXTENSIONS.join(", ")
+      errors.add :file,
+                 :extension,
+                 valid_extensions: LocalCensusRecords::Import.allowed_file_extensions.join(", ")
     end
 
     def fetch_file_headers
@@ -79,7 +85,7 @@ class LocalCensusRecords::Import
     end
 
     def valid_extension?
-      ALLOWED_FILE_EXTENSIONS.include? extension
+      LocalCensusRecords::Import.allowed_file_extensions.include? extension
     end
 
     def extension
