@@ -27,6 +27,10 @@ class RelatedContent < ApplicationRecord
     where(parent_relationable_type: "Budget::Investment", child_relationable_type: "Budget::Investment")
   end
 
+  def self.relationable_models
+    RELATIONABLE_MODELS
+  end
+
   def score_positive(user)
     score(RelatedContentScore::SCORES[:POSITIVE], user)
   end

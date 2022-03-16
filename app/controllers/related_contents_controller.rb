@@ -49,7 +49,7 @@ class RelatedContentsController < ApplicationController
         if valid_url?
           related_params = Rails.application.routes.recognize_path(params[:url])
 
-          if RelatedContent::RELATIONABLE_MODELS.include?(related_params[:controller].split("/").last)
+          if RelatedContent.relationable_models.include?(related_params[:controller].split("/").last)
             {
               id: related_params[:id],
               type: related_params[:controller].split("/").map(&:singularize).join("/").classify
