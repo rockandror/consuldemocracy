@@ -223,7 +223,7 @@ describe "Tags" do
     let!(:investment1) { create(:budget_investment, heading: heading, tag_list: new_tag) }
     let!(:investment2) { create(:budget_investment, heading: heading, tag_list: new_tag) }
     let!(:investment3) { create(:budget_investment, heading: heading, tag_list: newer_tag) }
-    let(:phase) { Budget::Phase::PHASE_KINDS.sample }
+    let(:phase) { Budget::Phase.phase_kinds.sample }
 
     scenario "Display user tags" do
       budget.update!(phase: phase)
@@ -266,7 +266,7 @@ describe "Tags" do
     let!(:investment1) { create(:budget_investment, heading: heading, tag_list: tag_medio_ambiente.name) }
     let!(:investment2) { create(:budget_investment, heading: heading, tag_list: tag_medio_ambiente.name) }
     let!(:investment3) { create(:budget_investment, heading: heading, tag_list: tag_economia.name) }
-    let(:phase) { Budget::Phase::PHASE_KINDS.sample }
+    let(:phase) { Budget::Phase.phase_kinds.sample }
 
     scenario "Display category tags" do
       budget.update!(phase: phase)

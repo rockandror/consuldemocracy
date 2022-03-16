@@ -24,7 +24,7 @@ describe Budgets::SupportsInfoComponent do
   end
 
   it "does not render anything when the budget is not selecting" do
-    budget.update!(phase: (Budget::Phase::PHASE_KINDS - ["selecting"]).sample)
+    budget.update!(phase: (Budget::Phase.phase_kinds - ["selecting"]).sample)
 
     render_inline component
 

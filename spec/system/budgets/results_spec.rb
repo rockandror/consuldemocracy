@@ -104,7 +104,7 @@ describe "Results" do
   end
 
   scenario "If budget is in a phase different from finished results can't be accessed" do
-    budget.update!(phase: (Budget::Phase::PHASE_KINDS - ["drafting", "finished"]).sample)
+    budget.update!(phase: (Budget::Phase.phase_kinds - ["drafting", "finished"]).sample)
     visit budget_path(budget)
     expect(page).not_to have_link "See results"
 

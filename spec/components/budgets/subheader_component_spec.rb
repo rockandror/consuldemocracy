@@ -23,7 +23,7 @@ describe Budgets::SubheaderComponent do
 
       expect(page).to have_link "Create a budget investment"
 
-      (Budget::Phase::PHASE_KINDS - ["accepting"]).each do |phase|
+      (Budget::Phase.phase_kinds - ["accepting"]).each do |phase|
         budget.update!(phase: phase)
         budget.reload
 
@@ -41,7 +41,7 @@ describe Budgets::SubheaderComponent do
       expect(page).to have_content "To create a new budget investment"
       expect(page).to have_link "verify your account"
 
-      (Budget::Phase::PHASE_KINDS - ["accepting"]).each do |phase|
+      (Budget::Phase.phase_kinds - ["accepting"]).each do |phase|
         budget.update!(phase: phase)
         budget.reload
 
@@ -59,7 +59,7 @@ describe Budgets::SubheaderComponent do
       expect(page).to have_link "sign in"
       expect(page).to have_link "sign up"
 
-      (Budget::Phase::PHASE_KINDS - ["accepting"]).each do |phase|
+      (Budget::Phase.phase_kinds - ["accepting"]).each do |phase|
         budget.update!(phase: phase)
         budget.reload
 

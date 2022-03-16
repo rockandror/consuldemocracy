@@ -22,7 +22,7 @@ class Budget
     validates_translation :description, length: { maximum: DESCRIPTION_MAX_LENGTH }
     validates_translation :main_link_url, presence: true, unless: -> { main_link_text.blank? }
     validates :budget, presence: true
-    validates :kind, presence: true, uniqueness: { scope: :budget }, inclusion: { in: ->(*) { PHASE_KINDS }}
+    validates :kind, presence: true, uniqueness: { scope: :budget }, inclusion: { in: ->(*) { phase_kinds }}
     validate :invalid_dates_range?
     validate :prev_phase_dates_valid?
     validate :next_phase_dates_valid?
@@ -32,12 +32,20 @@ class Budget
     scope :enabled,           -> { where(enabled: true) }
     scope :published,         -> { enabled.where.not(kind: "drafting") }
 
-    PHASE_KINDS.each do |phase|
+    def self.phase_kinds
+      PHASE_KINDS
+    end
+
+    def self.published_prices_phases
+      PUBLISHED_PRICES_PHASES
+    end
+
+    phase_kinds.each do |phase|
       define_singleton_method(phase) { find_by(kind: phase) }
     end
 
     def self.kind_or_later(phase)
-      PHASE_KINDS[PHASE_KINDS.index(phase)..-1]
+      phase_kinds[phase_kinds.index(phase)..-1]
     end
 
     def next_enabled_phase

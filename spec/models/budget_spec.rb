@@ -10,7 +10,7 @@ describe Budget do
   describe "scopes" do
     describe ".open" do
       it "returns all budgets that are not in the finished phase" do
-        (Budget::Phase::PHASE_KINDS - ["finished"]).each do |phase|
+        (Budget::Phase.phase_kinds - ["finished"]).each do |phase|
           budget = create(:budget, phase: phase)
           expect(Budget.open).to include(budget)
         end
@@ -90,7 +90,7 @@ describe Budget do
       end
 
       it "changes depending on the phase, falling back to budget description attributes" do
-        Budget::Phase::PHASE_KINDS.each do |phase_kind|
+        Budget::Phase.phase_kinds.each do |phase_kind|
           budget.phase = phase_kind
           expect(budget.description).to eq(budget.send("description_#{phase_kind}"))
         end
@@ -106,7 +106,7 @@ describe Budget do
       end
 
       it "changes depending on the phase" do
-        Budget::Phase::PHASE_KINDS.each do |phase_kind|
+        Budget::Phase.phase_kinds.each do |phase_kind|
           budget.phase = phase_kind
           expect(budget.description).to eq(phase_kind.humanize)
         end
@@ -139,7 +139,7 @@ describe Budget do
 
   describe "phase" do
     it "is validated" do
-      Budget::Phase::PHASE_KINDS.each do |phase|
+      Budget::Phase.phase_kinds.each do |phase|
         budget.phase = phase
         expect(budget).to be_valid
       end
@@ -339,7 +339,7 @@ describe Budget do
     let(:finished_phase)          { budget.phases.finished }
 
     it "generates all phases linked in correct order" do
-      expect(budget.phases.count).to eq(Budget::Phase::PHASE_KINDS.count)
+      expect(budget.phases.count).to eq(Budget::Phase.phase_kinds.count)
 
       expect(informing_phase.next_phase).to eq(accepting_phase)
       expect(accepting_phase.next_phase).to eq(reviewing_phase)

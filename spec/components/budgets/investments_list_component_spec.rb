@@ -116,7 +116,7 @@ describe Budgets::InvestmentsListComponent do
     it "is rendered for budgets with multiple headings" do
       create(:budget_heading, budget: budget)
 
-      (Budget::Phase::PHASE_KINDS - %w[informing finished]).each do |phase_name|
+      (Budget::Phase.phase_kinds - %w[informing finished]).each do |phase_name|
         budget.phase = phase_name
 
         render_inline Budgets::InvestmentsListComponent.new(budget)
@@ -138,7 +138,7 @@ describe Budgets::InvestmentsListComponent do
     end
 
     it "is shown in all other phases" do
-      (Budget::Phase::PHASE_KINDS - ["informing"]).each do |phase_name|
+      (Budget::Phase.phase_kinds - ["informing"]).each do |phase_name|
         budget.phase = phase_name
 
         render_inline Budgets::InvestmentsListComponent.new(budget)
@@ -162,7 +162,7 @@ describe Budgets::InvestmentsListComponent do
       end
 
       it "is shown in all other phases" do
-        (Budget::Phase::PHASE_KINDS - %w[informing finished]).each do |phase_name|
+        (Budget::Phase.phase_kinds - %w[informing finished]).each do |phase_name|
           budget.phase = phase_name
 
           render_inline Budgets::InvestmentsListComponent.new(budget)

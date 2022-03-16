@@ -160,7 +160,7 @@ describe Budget::Investment do
     end
 
     it "returns false in any other phase" do
-      Budget::Phase::PHASE_KINDS.reject { |phase| phase == "selecting" }.each do |phase|
+      Budget::Phase.phase_kinds.reject { |phase| phase == "selecting" }.each do |phase|
         budget = create(:budget, phase: phase)
         investment = create(:budget_investment, budget: budget)
 
@@ -178,7 +178,7 @@ describe Budget::Investment do
     end
 
     it "returns false in any other phase" do
-      Budget::Phase::PHASE_KINDS.reject { |phase| phase == "valuating" }.each do |phase|
+      Budget::Phase.phase_kinds.reject { |phase| phase == "valuating" }.each do |phase|
         budget = create(:budget, phase: phase)
         investment = create(:budget_investment, budget: budget)
 
@@ -203,7 +203,7 @@ describe Budget::Investment do
     end
 
     it "returns false in any other phase" do
-      Budget::Phase::PHASE_KINDS.reject { |phase| phase == "balloting" }.each do |phase|
+      Budget::Phase.phase_kinds.reject { |phase| phase == "balloting" }.each do |phase|
         budget = create(:budget, phase: phase)
         investment = create(:budget_investment, :selected, budget: budget)
 
@@ -219,7 +219,7 @@ describe Budget::Investment do
     end
 
     it "returns true for selected investments which budget's phase is publishing_prices or later" do
-      Budget::Phase::PUBLISHED_PRICES_PHASES.each do |phase|
+      Budget::Phase.published_prices_phases.each do |phase|
         budget.update!(phase: phase)
 
         expect(investment.should_show_price?).to eq(true)
@@ -227,7 +227,7 @@ describe Budget::Investment do
     end
 
     it "returns false in any other phase" do
-      (Budget::Phase::PHASE_KINDS - Budget::Phase::PUBLISHED_PRICES_PHASES).each do |phase|
+      (Budget::Phase.phase_kinds - Budget::Phase.published_prices_phases).each do |phase|
         budget.update!(phase: phase)
 
         expect(investment.should_show_price?).to eq(false)
@@ -254,7 +254,7 @@ describe Budget::Investment do
     end
 
     it "returns true for selected with price_explanation & budget in publishing_prices or later" do
-      Budget::Phase::PUBLISHED_PRICES_PHASES.each do |phase|
+      Budget::Phase.published_prices_phases.each do |phase|
         budget.update!(phase: phase)
 
         expect(investment.should_show_price_explanation?).to eq(true)
@@ -262,7 +262,7 @@ describe Budget::Investment do
     end
 
     it "returns false in any other phase" do
-      (Budget::Phase::PHASE_KINDS - Budget::Phase::PUBLISHED_PRICES_PHASES).each do |phase|
+      (Budget::Phase.phase_kinds - Budget::Phase.published_prices_phases).each do |phase|
         budget.update!(phase: phase)
 
         expect(investment.should_show_price_explanation?).to eq(false)
@@ -289,7 +289,7 @@ describe Budget::Investment do
     end
 
     it "returns true for unfeasible investments with unfeasibility explanation and valuation finished" do
-      Budget::Phase::PUBLISHED_PRICES_PHASES.each do |phase|
+      Budget::Phase.published_prices_phases.each do |phase|
         budget.update!(phase: phase)
 
         expect(investment.should_show_unfeasibility_explanation?).to eq(true)
@@ -298,7 +298,7 @@ describe Budget::Investment do
 
     it "returns false in valuation has not finished" do
       investment.update!(valuation_finished: false)
-      Budget::Phase::PUBLISHED_PRICES_PHASES.each do |phase|
+      Budget::Phase.published_prices_phases.each do |phase|
         budget.update!(phase: phase)
 
         expect(investment.should_show_unfeasibility_explanation?).to eq(false)
@@ -307,7 +307,7 @@ describe Budget::Investment do
 
     it "returns false if not unfeasible" do
       investment.update!(feasibility: "undecided")
-      Budget::Phase::PUBLISHED_PRICES_PHASES.each do |phase|
+      Budget::Phase.published_prices_phases.each do |phase|
         budget.update!(phase: phase)
 
         expect(investment.should_show_unfeasibility_explanation?).to eq(false)
@@ -316,7 +316,7 @@ describe Budget::Investment do
 
     it "returns false if unfeasibility explanation blank" do
       investment.unfeasibility_explanation = ""
-      Budget::Phase::PUBLISHED_PRICES_PHASES.each do |phase|
+      Budget::Phase.published_prices_phases.each do |phase|
         budget.update!(phase: phase)
 
         expect(investment.should_show_unfeasibility_explanation?).to eq(false)
@@ -1192,7 +1192,7 @@ describe Budget::Investment do
       end
 
       it "returns false if budget is not balloting phase" do
-        Budget::Phase::PHASE_KINDS.reject { |phase| phase == "balloting" }.each do |phase|
+        Budget::Phase.phase_kinds.reject { |phase| phase == "balloting" }.each do |phase|
           budget.update!(phase: phase)
           investment = create(:budget_investment, heading: heading1)
 

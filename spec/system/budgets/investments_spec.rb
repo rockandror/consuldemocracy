@@ -826,7 +826,7 @@ describe "Budget Investments" do
 
     context "When investment with price is selected" do
       scenario "Price & explanation is shown when Budget is on published prices phase" do
-        Budget::Phase::PUBLISHED_PRICES_PHASES.each do |phase|
+        Budget::Phase.published_prices_phases.each do |phase|
           budget.update!(phase: phase)
 
           if budget.finished?
@@ -846,7 +846,7 @@ describe "Budget Investments" do
       end
 
       scenario "Price & explanation isn't shown when Budget is not on published prices phase" do
-        (Budget::Phase::PHASE_KINDS - Budget::Phase::PUBLISHED_PRICES_PHASES).each do |phase|
+        (Budget::Phase.phase_kinds - Budget::Phase.published_prices_phases).each do |phase|
           budget.update!(phase: phase)
           visit budget_investment_path(budget, id: investment.id)
 
@@ -867,7 +867,7 @@ describe "Budget Investments" do
       end
 
       scenario "Price & explanation isn't shown for any Budget's phase" do
-        Budget::Phase::PHASE_KINDS.each do |phase|
+        Budget::Phase.phase_kinds.each do |phase|
           budget.update!(phase: phase)
           visit budget_investment_path(budget, id: investment.id)
 

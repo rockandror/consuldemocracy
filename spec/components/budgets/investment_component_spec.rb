@@ -25,7 +25,7 @@ describe Budgets::InvestmentComponent do
 
     expect(page).to have_content "Supports"
 
-    budget.update!(phase: (Budget::Phase::PHASE_KINDS - ["valuating"]).sample)
+    budget.update!(phase: (Budget::Phase.phase_kinds - ["valuating"]).sample)
     render_inline Budgets::InvestmentComponent.new(investment)
 
     expect(page).not_to have_content "Supports"
@@ -38,7 +38,7 @@ describe Budgets::InvestmentComponent do
 
     expect(page).to have_content "Price"
 
-    budget.update!(phase: (Budget::Phase::PHASE_KINDS - Budget::Phase::PUBLISHED_PRICES_PHASES).sample)
+    budget.update!(phase: (Budget::Phase.phase_kinds - Budget::Phase.published_prices_phases).sample)
     render_inline Budgets::InvestmentComponent.new(investment)
 
     expect(page).not_to have_content "Price"
