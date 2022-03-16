@@ -7,6 +7,10 @@ class Budget
 
     validates :user, presence: true
     validates :investment, presence: true
-    validates :reason, inclusion: { in: REASONS, allow_nil: false }
+    validates :reason, inclusion: { in: ->(*) { reasons }, allow_nil: false }
+
+    def self.reasons
+      REASONS
+    end
   end
 end
