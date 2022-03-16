@@ -1,6 +1,6 @@
 module ContentBlocksHelper
   def valid_blocks
-    options = SiteCustomization::ContentBlock::VALID_BLOCKS.map do |key|
+    options = SiteCustomization::ContentBlock.valid_blocks.map do |key|
       [t("admin.site_customization.content_blocks.content_block.names.#{key}"), key]
     end
     Budget::Heading.allow_custom_content.each do |heading|
