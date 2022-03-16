@@ -71,6 +71,10 @@ class Legislation::Process < ApplicationRecord
            draft_end_date < ?))", Date.current, Date.current)
   end
 
+  def self.phases_and_publications
+    PHASES_AND_PUBLICATIONS
+  end
+
   def homepage_phase
     Legislation::Process::Phase.new(start_date, end_date, homepage_enabled)
   end
@@ -102,11 +106,11 @@ class Legislation::Process < ApplicationRecord
   end
 
   def enabled_phases?
-    PHASES_AND_PUBLICATIONS.any? { |process| send(process).enabled? }
+    Legislation::Process.phases_and_publications.any? { |process| send(process).enabled? }
   end
 
   def enabled_phases_and_publications_count
-    PHASES_AND_PUBLICATIONS.count { |process| send(process).enabled? }
+    Legislation::Process.phases_and_publications.count { |process| send(process).enabled? }
   end
 
   def total_comments
