@@ -7,6 +7,13 @@ module ProposalsHelper
     end
   end
 
+  def csv_params
+    csv_params = params.clone.merge(format: :csv)
+    csv_params = csv_params.to_unsafe_h.map { |k, v| [k.to_sym, v] }.to_h
+    csv_params.delete(:page)
+    csv_params
+  end
+
   def supports_percentage(proposal)
     percentage = (proposal.total_votes.to_f * 100 / Proposal.votes_needed_for_success)
     case percentage

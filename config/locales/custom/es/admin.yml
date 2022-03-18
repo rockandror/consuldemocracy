@@ -1213,6 +1213,21 @@ es:
         select: Seleccionar
         selected: Seleccionada
         no_proposals: No hay propuestas.
+        export: Exportar todas las propuestas
+        export_list:
+          id: ID
+          title: Título
+          author: Autor
+          date: Fecha
+          comments: Comentarios
+          votes: Votos
+          summary: Resumen
+          description: Descripción
+          url: URL
+          geozone: Geozona
+          categories: Categoría
+          tags: Tags
+          ods: ODS
       show:
         create_question: Añadir esta propuesta a una votación para ser votada
       form:
