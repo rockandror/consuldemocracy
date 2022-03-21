@@ -136,8 +136,8 @@ module Budgets
         if params[:heading_id].present?
           @heading = @budget.headings.find_by_slug_or_id! params[:heading_id]
           @assigned_heading = @ballot&.heading_for_group(@heading.group)
-        elsif @budget.single_heading?
-          @heading = @budget.headings.first
+        else
+          @heading = investments_with_filters&.first&.heading
         end
       end
 
