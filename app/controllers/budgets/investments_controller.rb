@@ -20,7 +20,7 @@ module Budgets
 
     before_action :load_ballot, only: [:index, :show]
     before_action :load_heading, only: [:index, :show]
-    before_action :load_assigned_heading, only: [:show]
+    before_action :load_assigned_heading, only: [:index, :show]
     before_action :load_map, only: [:index, :show]
     before_action :set_random_seed, only: :index
     before_action :load_categories, only: :index
@@ -135,14 +135,13 @@ module Budgets
       def load_heading
         if params[:heading_id].present?
           @heading = @budget.headings.find_by_slug_or_id! params[:heading_id]
-          @assigned_heading = @ballot&.heading_for_group(@heading.group)
         else
           @heading = investments_with_filters&.first&.heading
         end
       end
 
       def load_assigned_heading
-        @assigned_heading = @ballot&.heading_for_group(@investment.heading.group)
+        @assigned_heading = @ballot&.heading_for_group(@heading&.group) unless @budget.single_heading?
       end
 
       def load_categories
