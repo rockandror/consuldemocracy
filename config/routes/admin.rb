@@ -215,6 +215,10 @@ namespace :admin do
 
   namespace :legislation do
     resources :processes do
+      get :download, on: :member
+      member do
+        patch :toggle_selection
+      end
       resources :questions
       resources :proposals do
         member { patch :toggle_selection }

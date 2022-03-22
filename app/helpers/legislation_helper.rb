@@ -3,6 +3,14 @@ module LegislationHelper
     l(date, format: "%d %b %Y") if date
   end
 
+  def csv_params
+    csv_params = params.clone.merge(format: :csv)
+    csv_params = csv_params.to_unsafe_h.map { |k, v| [k.to_sym, v] }.to_h
+    csv_params.delete(:page)
+    csv_params
+  end
+
+
   def new_legislation_proposal_link_text(process)
     t("proposals.index.start_proposal")
   end

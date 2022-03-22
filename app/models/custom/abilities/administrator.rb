@@ -96,7 +96,7 @@ module Abilities
 
       can [:read, :debate, :draft_publication, :allegations, :result_publication,
            :milestones], Legislation::Process
-      can [:create, :update, :destroy], Legislation::Process
+      can [:create, :update, :destroy, :download], Legislation::Process
       can [:manage], ::Legislation::DraftVersion
       can [:manage], ::Legislation::Question
       can [:manage], ::Legislation::Proposal
