@@ -135,13 +135,17 @@ module Budgets
       def load_heading
         if params[:heading_id].present?
           @heading = @budget.headings.find_by_slug_or_id! params[:heading_id]
-        else
-          @heading = investments_with_filters&.first&.heading
+        elsif @budget.single_heading?
+          @heading = @budget.headings.first
         end
       end
 
       def load_assigned_heading
-        @assigned_heading = @ballot&.heading_for_group(@heading&.group) unless @budget.single_heading?
+        if @investment
+          @assigned_heading = @ballot&.heading_for_group(@investment.heading.group)
+        else
+          @assigned_heading = @ballot.heading_for_group(@heading.group)
+        end
       end
 
       def load_categories
