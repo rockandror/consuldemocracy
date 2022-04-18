@@ -2,8 +2,8 @@
 <html lang="<%= I18n.locale %>" data-current-user-id="<%= current_user&.id %>">
   <head>
     <% if Rails.env.production? %>
-      <script async src="https://www.googletagmanager.com/gtag/js?id=<%= Rails.application.secrets.google_analytics %>"></script>
-      <script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=<%= Rails.application.secrets.google_analytics %>" data-turbolinks-track="reload"></script>
+      <script data-turbolinks-track="reload">
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
