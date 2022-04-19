@@ -1,26 +1,6 @@
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>" data-current-user-id="<%= current_user&.id %>">
   <head>
-    <% if Rails.env.production? %>
-      <script async src="https://www.googletagmanager.com/gtag/js?id=<%= Rails.application.secrets.google_analytics %>"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', '<%= Rails.application.secrets.google_analytics %>');
-      </script>
-
-      <script type="module">
-        let isInitialLoad = true;
-        document.addEventListener('turbolinks:load', () => {
-          if (isInitialLoad){isInitialLoad = false; return;}
-          gtag('config', '<%= Rails.application.secrets.google_analytics %>', {
-            page_path: window.location.pathname,
-          });
-        });
-      </script>
-    <% end %>
     <%= render "layouts/common_head", default_title: setting["org_name"] %>
     <%= render "layouts/tracking_data" %>
     <%= render "layouts/meta_tags" %>
