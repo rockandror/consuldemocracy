@@ -11,6 +11,15 @@
       <% end %>
       </span>
     </div>
+    <script>
+    document.addEventListener('cookies-eu-acknowledged', function() {
+      $.ajax({
+        url: "https://www.googletagmanager.com/gtag/js?id=G-9F2YV9XEJC",
+        dataType: "script",
+        success: () => console.log("OK!"),
+      });
+    });
+    </script>
   <% end %>
 <% else %>
   <% raise Exception.new "'cookies' is a reserved Rails class, please rename your method" %>

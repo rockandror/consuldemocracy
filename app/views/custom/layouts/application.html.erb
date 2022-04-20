@@ -12,14 +12,7 @@
     <%= content_for :social_media_meta_tags %>
 
     <%= raw setting["html.per_page_code_head"] %>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=<%= Rails.application.secrets.google_analytics %>"></script>
 
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '<%= Rails.application.secrets.google_analytics %>');
-    </script>
 
   </head>
   <body class="<%= yield (:body_class) %>">
@@ -62,7 +55,6 @@
       <button class="close-button" data-close aria-label="Close modal" type="button">
         <span aria-hidden="true">&times;</span>
       </button>
-      <script async src="https://cse.google.com/cse.js?cx=1267aa4dbd8c37804"></script>
       <div class="gcse-search"></div>
     </div>
   </body>
