@@ -16,7 +16,13 @@
       $.ajax({
         url: "https://www.googletagmanager.com/gtag/js?id=G-9F2YV9XEJC",
         dataType: "script",
-        success: () => console.log("OK!"),
+        success: () => {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('consent', {'analytics_storage': 'allowed'});
+          gtag('config', 'G-9F2YV9XEJC');
+        }
       });
     });
     </script>
