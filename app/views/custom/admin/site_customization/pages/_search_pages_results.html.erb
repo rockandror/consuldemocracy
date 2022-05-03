@@ -1,17 +1,15 @@
-<% provide :title do %>
-  <%= t("admin.header.title") %> - <%= t("admin.menu.site_customization.pages") %>
+<% if @pages.blank? %>
+  <div class="callout alert margin-bottom">
+    <%= t("admin.shared.no_search_results") %>
+  </div>
+<% else %>
+  <h3><%= t("admin.shared.search_results") %></h3>
 <% end %>
 
-<%= link_to t("admin.site_customization.pages.index.create"), new_admin_site_customization_page_path, class: "button float-right" %>
-<h2 class="inline-block"><%= t("admin.site_customization.pages.index.title") %></h2>
-
 <% if @pages.any? %>
-  <%= render "search_pages" %>
-  <h3><%= page_entries_info @pages %></h3>
-
-  <table class="cms-page-list">
+  <table>
     <thead>
-      <tr>
+            <tr>
         <th><%= t("admin.site_customization.pages.page.title") %></th>
         <th><%= t("admin.site_customization.pages.page.slug") %></th>
         <th><%= t("admin.site_customization.pages.page.created_at") %></th>
@@ -21,8 +19,8 @@
       </tr>
     </thead>
     <tbody>
-    <% @pages.each do |page| %>
-      <tr id="<%= dom_id(page) %>">
+      <% @pages.each do |page| %>
+      <tr>
         <td><%= page.title %></td>
         <td><%= page.slug %></td>
         <td><%= I18n.l page.created_at, format: :short %></td>
@@ -43,13 +41,7 @@
           <% end %>
         </td>
       </tr>
-    <% end %>
+      <% end %>
     </tbody>
   </table>
-
-  <%= paginate @pages %>
-<% else %>
-  <div class="callout primary">
-    <%= t("admin.proposals.index.no_proposals") %>
-  </div>
 <% end %>

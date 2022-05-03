@@ -1,9 +1,19 @@
 class Admin::SiteCustomization::PagesController < Admin::SiteCustomization::BaseController
   include Translatable
+
+  before_action :load_search, only: [:index]
   load_and_authorize_resource :page, class: "SiteCustomization::Page"
 
   def index
     @pages = SiteCustomization::Page.order("slug").page(params[:page])
+  end
+
+  def search_pages
+    load_search
+    @pages = ::SiteCustomization::Page.quick_search(@search)
+    respond_to do |format|
+      format.js
+    end
   end
 
   def create
@@ -42,7 +52,19 @@ class Admin::SiteCustomization::PagesController < Admin::SiteCustomization::Base
       )
     end
 
+    def search_params
+      params.permit(:slug, :search)
+    end
+
+    def load_search
+      @search = search_params[:search]
+    end
+
     def resource
       SiteCustomization::Page.find(params[:id])
+    end
+
+    def resource_model
+      SiteCustomization::Page
     end
 end

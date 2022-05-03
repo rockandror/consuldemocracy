@@ -22,6 +22,18 @@ class SiteCustomization::Page < ApplicationRecord
   scope :with_same_locale, -> { joins(:translations).locale }
   scope :locale, -> { where("site_customization_page_translations.locale": I18n.locale) }
 
+  def self.search(terms)
+    SiteCustomization::Page.joins(:translations).where("title ILIKE ? OR slug ILIKE ?", "%#{terms}%", "%#{terms}%")
+  end
+
+  def self.quick_search(terms)
+    if terms.blank?
+      SiteCustomization::Page.none
+    else
+      search(terms)
+    end
+  end
+
   def url
     "/#{slug}"
   end
@@ -29,4 +41,17 @@ class SiteCustomization::Page < ApplicationRecord
   def is_news?
     is_news
   end
+
+  def searchable_translations_definitions
+    { title       => "A",
+      description => "C"
+    }
+  end
+
+  def searchable_values
+    {
+      slug       => "B",
+    }.merge!(searchable_globalized_values)
+  end
+
 end

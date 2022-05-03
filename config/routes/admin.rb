@@ -238,6 +238,7 @@ namespace :admin do
 
   namespace :site_customization do
     resources :pages, except: [:show] do
+      get :search_pages, on: :collection
       resources :cards, except: [:show], as: :widget_cards
     end
     resources :images, only: [:index, :update, :destroy]

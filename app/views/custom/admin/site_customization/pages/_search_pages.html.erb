@@ -1,0 +1,15 @@
+<div class="small-12 medium-12 margin-top">
+  <%= form_tag(search_pages_admin_site_customization_pages_path(@page), method: :get, remote: true) do |f| %>
+    <div class="input-group">
+      <%= text_field_tag :search,
+                         @search,
+                         placeholder: t("admin.shared.search.label.pages"), id: "search-pages", style: "max-width: 400px" %>
+      <div class="input-group-button">
+        <%= submit_tag t("admin.shared.search.search"), class: "button" %>
+      </div>
+      <%= link_to t("admin.shared.search.clean"), admin_site_customization_pages_path, style: "margin: 15px", class: "right" %>
+    </div>
+  <% end %>
+</div>
+
+<div id="search-pages-results"></div>

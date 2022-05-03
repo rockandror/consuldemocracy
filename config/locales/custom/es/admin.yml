@@ -1355,10 +1355,12 @@ es:
           poll_questions: "Buscar preguntas"
           polls: "Buscar votaciones por nombre o descripción"
           proposals: "Buscar propuestas por título, código, descripción o pregunta"
+          pages: "Buscar páginas por título o slug"
           users: "Buscar usuario por nombre o email"
           audited_records: Busca registros por fecha o email
           access_logs: Busca registros por fecha o email
         search: "Buscar"
+        clean: "Limpiar búsqueda"
       search_results: "Resultados de la búsqueda"
       no_search_results: "No se han encontrado resultados."
       actions: Acciones
