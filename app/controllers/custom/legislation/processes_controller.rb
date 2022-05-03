@@ -1,5 +1,6 @@
 class Legislation::ProcessesController < Legislation::BaseController
   include RandomSeed
+  include CommentableActions
 
   has_filters %w[open past], only: :index
   has_filters %w[random winners], only: :proposals
@@ -7,6 +8,7 @@ class Legislation::ProcessesController < Legislation::BaseController
   load_and_authorize_resource
 
   before_action :set_random_seed, only: :proposals
+  helper_method :resource_model, :resource_name
 
   def index
     @current_filter ||= "open"
@@ -135,6 +137,10 @@ class Legislation::ProcessesController < Legislation::BaseController
 
     def member_method?
       params[:id].present?
+    end
+
+    def resource_model
+      Legislation::Process
     end
 
     def set_process

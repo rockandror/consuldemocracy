@@ -81,9 +81,10 @@ class Admin::Legislation::ProcessesController < Admin::Legislation::BaseControll
         :background_color,
         :font_color,
         :related_sdg_list,
+        :tag_list,
         translation_params(::Legislation::Process),
         documents_attributes: document_attributes,
-        image_attributes: image_attributes
+        image_attributes: image_attributes,
       ]
     end
 
