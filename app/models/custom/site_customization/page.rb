@@ -23,11 +23,24 @@ class SiteCustomization::Page < ApplicationRecord
   scope :locale, -> { where("site_customization_page_translations.locale": I18n.locale) }
 
   def self.search(terms)
-    SiteCustomization::Page.joins(:translations).where("title ILIKE ? OR slug ILIKE ?", "%#{terms}%", "%#{terms}%")
+    results = SiteCustomization::Page.joins(:translations).locale
+    if terms[:text] != ""
+      results = results.where("title ILIKE ? OR slug ILIKE ?", "%#{terms[:text]}%", "%#{terms[:text]}%")
+    end
+    if terms[:type] != 'Todos'
+      results = results.where("is_news = ?", terms[:type] == "Noticias")
+    end
+    if terms[:start_date] != ''
+      results = results.where("site_customization_pages.created_at >= ? OR news_date >= ?", terms[:start_date], terms[:start_date])
+    end
+    if terms[:end_date] != ''
+      results = results.where("site_customization_pages.created_at <= ? OR news_date <= ?", terms[:end_date], terms[:end_date])
+    end
+    results
   end
 
   def self.quick_search(terms)
-    if terms.blank?
+    if terms[:text] == "" && terms[:type] == nil && terms[:start_date] == '' && terms[:end_date] == ''
       SiteCustomization::Page.none
     else
       search(terms)

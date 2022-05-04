@@ -53,11 +53,12 @@ class Admin::SiteCustomization::PagesController < Admin::SiteCustomization::Base
     end
 
     def search_params
-      params.permit(:slug, :search)
+      params.permit(:text, :type, :start_date, :end_date)
     end
 
     def load_search
-      @search = search_params[:search]
+      @search = search_params
+      @search
     end
 
     def resource
