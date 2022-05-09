@@ -211,6 +211,7 @@ namespace :admin do
     get :sdg, on: :collection
     get :audited_records, on: :collection
     get :access_logs, on: :collection
+    get :tags, on: :collection
   end
 
   namespace :legislation do

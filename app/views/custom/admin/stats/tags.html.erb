@@ -1,0 +1,31 @@
+<%= back_link_to %>
+
+<h2 id="top"><%= t("admin.stats.tags.title") %></h2>
+
+<h2><%= t("admin.stats.tags.all") %></h2>
+<% if @tags.any? %>
+<table id="polls" class="stack table-sortable">
+  <thead>
+    <tr>
+      <th><%= t("admin.stats.tags.table.name") %></th>
+      <th class="name text-right"><%= t("admin.stats.tags.table.count") %></th>
+    </tr>
+  </thead>
+  <% @tags.each do |tag| %>
+    <tr id="<%= dom_id(tag) %>">
+      <td class="name">
+        <a href="#<%= dom_id(tag) %>"><%= tag.name %></a>
+      </td>
+      <td class="name text-right">
+        <%= tag.taggings_count %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= paginate @tags %>
+<% else %>
+  <div class="callout primary margin">
+    <%= t("admin.stats.tags.no_results") %>
+  </div>
+<% end %>

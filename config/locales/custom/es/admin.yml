@@ -1463,6 +1463,7 @@ es:
         sdg: ODS
         audited_records: Registro de actividad
         access_logs: Registro de accesos
+        tags: Tags
       graph:
         debate_created: Debates
         visit: Visitas
@@ -1530,6 +1531,13 @@ es:
         activity: Actividad
         result: Resultado
         no_logs: No hay registro de accesos
+      tags:
+        title: Estadisticas de tags
+        all: Tags
+        table:
+          name: Nombre
+          count: Elementos tagueados
+        no_results: No hay elementos tagueados
     tags:
       create: Crear tema
       destroy: Eliminar tema

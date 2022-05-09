@@ -112,6 +112,10 @@ class Admin::StatsController < Admin::BaseController
     @goals = SDG::Goal.order(:code)
   end
 
+  def tags
+    @tags = Tag.all.order(taggings_count: :desc).page(params[:page])
+  end
+
   private
 
     def voters_in_heading(heading)
