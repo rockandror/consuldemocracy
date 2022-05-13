@@ -5,7 +5,7 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 
 CKEDITOR.editorConfig = function( config )
 {
-
+  config.extraPlugins = "a11ychecker";
   config.filebrowserImageBrowseLinkUrl = "/ckeditor/pictures";
   config.filebrowserImageBrowseUrl = "/ckeditor/pictures";
   config.filebrowserImageUploadUrl = "/ckeditor/pictures?";
@@ -14,7 +14,8 @@ CKEDITOR.editorConfig = function( config )
   config.allowedContent = true;
   config.format_tags = "p;h2;h3";
 
-  config.removePlugins = "balloonpanel,balloontoolbar,copyformatting,scayt,wsc";
+  config.removePlugins = "copyformatting,scayt,wsc";
+
 
   // Rails CSRF token
   config.filebrowserParams = function(){
@@ -91,6 +92,7 @@ CKEDITOR.editorConfig = function( config )
   ];
 
   config.toolbar_mini = [
+    { name: "A11ychecker", groups: [ "doctools" ], items: [ "A11ychecker"] },
     { name: "paragraph", groups: [ "list" ], items: [ "NumberedList", "BulletedList" ] },
     { name: "links", items: [ "Link", "Unlink" ] },
     { name: "styles", items: [ "Format" ] },
