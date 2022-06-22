@@ -262,7 +262,10 @@ Devise.setup do |config|
                     last_name: ["last_name", "lastname", "lastName"]
                   },
                   issuer: Rails.application.secrets.saml_issuer,
-                  idp_cert: Rails.application.secrets.saml_idp_cert,
+                  idp_cert_multi: {
+                    signing: [ Rails.application.secrets.saml_ipdp_cert_signing ],
+                    encryption: [ Rails.application.secrets.saml_ipdp_cert_encryption ]
+                  }, 
                   idp_sso_target_url: Rails.application.secrets.saml_idp_sso_target_url,
                   name_identifier_format: Rails.application.secrets.saml_name_identifier_format
 

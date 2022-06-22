@@ -11,7 +11,7 @@ services:
   consul:
     image: gobcan-consul:20210302
     environment:
-      - CALLBACK_URL
+      - SAML_CALLBACK_URL
       - COOKIES_NAME
       - DATABASE
       - DATABASE_ADAPTER
@@ -38,7 +38,7 @@ services:
       - RECAPTCHA_SECRET_KEY
       - RECAPTCHA_SITE_KEY
       - SAML_IDP_CERT
-      - SAML_IDP_URL
+      - SAML_IDP_SSO_TARGET_URL
       - SAML_ISSUER
       - SAML_NAME_IDENTIFIER_FORMAT
       - SARA_WSDL_URL
