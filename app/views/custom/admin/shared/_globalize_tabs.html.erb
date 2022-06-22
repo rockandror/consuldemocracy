@@ -1,7 +1,7 @@
 <ul class="tabs" data-tabs>
   <% I18n.available_locales.each do |locale| %>
     <li class="tabs-title">
-      <%= link_to name_for_locale(locale), "#",
+      <%= link_to name_for_locale(locale), "#locale_tab_#{locale}",
                   style: display_style.call(locale),
                   class: "js-globalize-locale-link #{highlight_class(resource, locale)}",
                   data: { locale: locale },
