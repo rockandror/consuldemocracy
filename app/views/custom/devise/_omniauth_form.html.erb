@@ -10,7 +10,7 @@
 
       <% if feature? :twitter_login %>
         <div class="small-12 medium-6 large-4 column end">
-          <%= link_to t("omniauth.twitter.name"), user_omniauth_authorize_path(:twitter),
+          <%= link_to t("omniauth.twitter.name"), user_twitter_omniauth_authorize_path,
                       method: :post,
                       title: t("omniauth.twitter.sign_in"),
                       class: "button-twitter button expanded" %>
@@ -19,7 +19,7 @@
 
       <% if feature? :facebook_login %>
         <div class="small-12 medium-6 large-4 column end">
-          <%= link_to t("omniauth.facebook.name"), user_omniauth_authorize_path(:facebook),
+          <%= link_to t("omniauth.facebook.name"), user_facebook_omniauth_authorize_path,
                       method: :post,
                       title: t("omniauth.facebook.sign_in"),
                       class: "button-facebook button expanded" %>
@@ -28,7 +28,7 @@
 
       <% if feature? :google_login %>
         <div class="small-12 medium-6 large-4 column end">
-          <%= link_to t("omniauth.google_oauth2.name"), user_omniauth_authorize_path(:google_oauth2),
+          <%= link_to t("omniauth.google_oauth2.name"), user_google_oauth2_omniauth_authorize_path,
                       method: :post,
                       title: t("omniauth.google_oauth2.sign_in"),
                       class: "button-google button expanded" %>
@@ -37,7 +37,7 @@
 
       <% if feature? :saml_login %>
         <div class="small-12 medium-12 large-12 column end">
-          <%= link_to t("omniauth.saml.name"), user_omniauth_authorize_path(:saml),
+          <%= link_to t("omniauth.saml.name"), user_saml_omniauth_authorize_path,
                       method: :post,
                       title: t("omniauth.saml.sign_in"),
                       class: "button expanded" %>
@@ -59,7 +59,7 @@
 
       <% if feature? :twitter_login %>
         <div class="small-12 medium-6 large-4 column end">
-          <%= link_to t("omniauth.twitter.name"), user_omniauth_authorize_path(:twitter),
+          <%= link_to t("omniauth.twitter.name"), user_twitter_omniauth_authorize_path,
                       method: :post,
                       title: t("omniauth.twitter.sign_up"),
                       class: "button-twitter button expanded" %>
@@ -68,7 +68,7 @@
 
       <% if feature? :facebook_login %>
         <div class="small-12 medium-6 large-4 column end">
-          <%= link_to t("omniauth.facebook.name"), user_omniauth_authorize_path(:facebook),
+          <%= link_to t("omniauth.facebook.name"), user_facebook_omniauth_authorize_path,
                       method: :post,
                       title: t("omniauth.facebook.sign_up"),
                       class: "button-facebook button expanded" %>
@@ -77,7 +77,7 @@
 
       <% if feature? :google_login %>
         <div class="small-12 medium-6 large-4 column end">
-          <%= link_to t("omniauth.google_oauth2.name"), user_omniauth_authorize_path(:google_oauth2),
+          <%= link_to t("omniauth.google_oauth2.name"), user_google_oauth2_omniauth_authorize_path,
                       method: :post,
                       title: t("omniauth.google_oauth2.sign_up"),
                       class: "button-google button expanded" %>
