@@ -7,10 +7,10 @@ Devise.setup do |config|
   config.expire_password_after = 1.year
 
   # Need 1 char of A-Z, a-z and 0-9
-  # config.password_regex = /(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])/
+  # config.password_regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/
 
   # How many passwords to keep in archive
-  #config.password_archiving_count = 5
+  # config.password_archiving_count = 5
 
   # Deny old password (true, false, count)
   # config.deny_old_passwords = true
@@ -18,6 +18,7 @@ Devise.setup do |config|
   # enable email validation for :secure_validatable. (true, false, validation_options)
   # dependency: need an email validator like rails_email_validator
   # config.email_validation = true
+
   # captcha integration for recover form
   # config.captcha_for_recover = true
 
@@ -42,7 +43,7 @@ module Devise
     module PasswordExpirable
       def need_change_password?
         self.administrator? && password_expired?
-      end 
+      end
 
       def password_expired?
         self.password_changed_at < self.expire_password_after.ago
