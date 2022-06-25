@@ -12,6 +12,7 @@ gem "rest-client", "~> 2.0", ">= 2.0.2"
 gem "selenium-webdriver", "~> 3.10"
 gem "signer", "~> 1.9"
 gem "tzinfo-data"
+gem "omniauth-rails_csrf_protection"
 
 group :development, :test do
   gem "debase"
