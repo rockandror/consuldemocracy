@@ -13,6 +13,7 @@ gem "selenium-webdriver", "~> 3.10"
 gem "signer", "~> 1.9"
 gem "tzinfo-data"
 gem "omniauth-rails_csrf_protection"
+gem "test_after_commit", group: :test
 
 group :development, :test do
   gem "debase"
