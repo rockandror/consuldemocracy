@@ -45,7 +45,7 @@ module Devise
       end 
 
       def password_expired?
-        self.password_changed_at < self.expire_password_after.ago
+        self.password_changed_at < Devise.expire_password_after.ago
       end
     end
 
