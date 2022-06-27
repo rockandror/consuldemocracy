@@ -22,3 +22,7 @@ end
 group :development do
   gem "rails-erd"
 end
+
+group :test do
+  gem "test_after_commit"
+end
