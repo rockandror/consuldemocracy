@@ -19,6 +19,7 @@ describe "CKEditor" do
   end
 
   scenario "uploading an image through the upload tab", :admin do
+    allow(ActionMailer::Base).to receive(:default_url_options).and_return({ host: "localhost", port: 3000 })
     visit new_admin_site_customization_page_path
     fill_in_ckeditor "Content", with: "Filling in to make sure CKEditor is loaded"
     find(".cke_button__image").click
@@ -38,7 +39,10 @@ describe "CKEditor" do
 
     click_link "Send it to the Server"
 
-    expect(page).to have_css "img[src$='clippy.jpg']"
+    within ".ImagePreviewBox" do
+      expect(page).to have_css "img[src^='http://localhost:3000']"
+      expect(page).to have_css "img[src$='clippy.jpg']"
+    end
   end
 
   scenario "cannot upload attachments through link tab", :admin do
