@@ -1,6 +1,12 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_action :verify_authenticity_token
 
+  def failure
+    message = request.env["omniauth.error"]&.message || failure_message
+    set_flash_message! :alert, :failure, kind: OmniAuth::Utils.camelize(failed_strategy.name), reason: message
+    redirect_to after_omniauth_failure_path_for(resource_name)
+  end
+  
   def twitter
     sign_in_with :twitter_login, :twitter
   end
