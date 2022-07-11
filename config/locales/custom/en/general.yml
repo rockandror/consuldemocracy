@@ -1,4 +1,5 @@
 en:
   omniauth:
     saml:
-      name: Access to the Citizen Participation Platform
+      name: Access through CAS
+      or_fill: "Only if you are staff of the Government of the Canary Islands:"
