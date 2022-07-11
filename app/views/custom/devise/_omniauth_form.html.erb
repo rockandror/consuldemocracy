@@ -1,4 +1,4 @@
-<% if feature?(:twitter_login) || feature?(:facebook_login) || feature?(:google_login) || feature?(:saml_login) %>
+<% if feature?(:twitter_login) || feature?(:facebook_login) || feature?(:google_login) %>
 
   <% if current_page?(new_user_session_path) %>
     <div class="row">
@@ -31,15 +31,6 @@
           <%= link_to t("omniauth.google_oauth2.name"), user_google_oauth2_omniauth_authorize_path,
                       title: t("omniauth.google_oauth2.sign_in"),
                       class: "button-google button expanded",
-                      method: :post %>
-        </div>
-      <% end %>
-
-      <% if feature? :saml_login %>
-        <div class="small-12 medium-12 large-12 column end">
-          <%= link_to t("omniauth.saml.name"), user_saml_omniauth_authorize_path,
-                      title: t("omniauth.saml.sign_in"),
-                      class: "button expanded",
                       method: :post %>
         </div>
       <% end %>
