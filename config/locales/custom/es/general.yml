@@ -308,7 +308,8 @@ es:
       name: Twitter
     saml:
       sign_in: Entra con Identidad de Plataforma de Participación Ciudadana
-      name: Acceso a la Plataforma de Participación Ciudadana
+      name: Acceso a través del CAS
+      or_fill: "Solo si eres personal del Gobierno de Canarias:"
     info_sign_in: "Para la ciudadanía, entra con:"
     info_sign_up: "Regístrate con:"
   proposals:

@@ -1,0 +1,14 @@
+<% if feature?(:saml_login) %>
+  <div class="row">
+    <div class="small-12 column auth-divider">
+      <span><%= t("omniauth.saml.or_fill") %></span>
+    </div>
+
+    <div class="small-12 medium-12 large-12 column end saml-link">
+      <%= link_to t("omniauth.saml.name"), user_saml_omniauth_authorize_path,
+                  title: t("omniauth.saml.sign_in"),
+                  class: "button-saml button expanded",
+                  method: :post %>
+    </div>
+  </div>
+<% end %>
