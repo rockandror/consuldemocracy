@@ -247,10 +247,13 @@ Devise.setup do |config|
   config.omniauth :facebook, Rails.application.secrets.facebook_key, Rails.application.secrets.facebook_secret, scope: 'email', info_fields: 'email,name,verified'
   config.omniauth :google_oauth2, Rails.application.secrets.google_oauth2_key, Rails.application.secrets.google_oauth2_secret
 
-  saml_settings = OneLogin::RubySaml::IdpMetadataParser.new.parse_remote_to_hash(Rails.application.secrets.saml_idp_metadata_url)
-  saml_settings[:idp_sso_service_url] = Rails.application.secrets.saml_idp_sso_service_url
-  saml_settings[:sp_entity_id] = Rails.application.secrets.saml_sp_entity_id
-  saml_settings[:allowed_clock_drift] = 1.minute
+  saml_settings = {}
+  if Rails.application.secrets.saml_idp_metadata_url.present?
+    saml_settings = OneLogin::RubySaml::IdpMetadataParser.new.parse_remote_to_hash(Rails.application.secrets.saml_idp_metadata_url)
+    saml_settings[:idp_sso_service_url] = Rails.application.secrets.saml_idp_sso_service_url
+    saml_settings[:sp_entity_id] = Rails.application.secrets.saml_sp_entity_id
+    saml_settings[:allowed_clock_drift] = 1.minute
+  end
   config.omniauth :saml, saml_settings
 
 
