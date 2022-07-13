@@ -33,4 +33,66 @@ feature "Users" do
       end
     end
   end
+
+  context "#expire_password_after" do
+    scenario "Sign in, admin with password expired" do
+      user = create(:user)
+      admin = create(:administrator, user: user)
+      travel 1.year + 1.day
+
+      login_as(admin.user)
+      visit root_path
+
+      expect(page).to have_content "Your password is expired"
+    end
+
+    scenario "Sign in, admin without password expired" do
+      user = create(:user)
+      admin = create(:administrator, user: user)
+      travel 1.year - 1.day
+
+      login_as(admin.user)
+      visit root_path
+
+      expect(page).not_to have_content "Your password is expired"
+    end
+
+    scenario "Sign in, user with password expired" do
+      user = create(:user)
+      travel 1.year + 1.day
+
+      login_as(user)
+      visit root_path
+
+      expect(page).to have_content "Your password is expired"
+    end
+
+    scenario "Sign in, user without password expired" do
+      user = create(:user)
+      travel 1.year - 1.day
+
+      login_as(user)
+      visit root_path
+
+      expect(page).not_to have_content "Your password is expired"
+    end
+
+    scenario "Admin with password expired trying to use same password" do
+      user = create(:user, password: "123456789")
+      admin = create(:administrator, user: user)
+      travel 1.year + 1.day
+
+      login_as(admin.user)
+      visit root_path
+
+      expect(page).to have_content "Your password is expired"
+
+      fill_in "user_current_password", with: "judgmentday"
+      fill_in "user_password", with: "123456789"
+      fill_in "user_password_confirmation", with: "123456789"
+      click_button "Change your password"
+
+      expect(page).to have_content "must be different than the current password."
+    end
+  end
 end

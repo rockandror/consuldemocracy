@@ -40,16 +40,6 @@ end
 
 module Devise
   module Models
-    module PasswordExpirable
-      def need_change_password?
-        self.administrator? && password_expired?
-      end
-
-      def password_expired?
-        self.password_changed_at < self.expire_password_after.ago
-      end
-    end
-
     module SecureValidatable
       def self.included(base)
         base.extend ClassMethods
