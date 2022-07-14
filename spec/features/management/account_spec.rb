@@ -28,7 +28,7 @@ feature 'Account' do
 
     expect(page).to have_content "User account deleted."
 
-    expect(user.reload.erase_reason).to eq "Deleted by manager: manager_user_#{Manager.last.user_id}"
+    expect(user.erase_reason).to eq "Deleted by manager: manager_user_#{Manager.last.user_id}"
   end
 
   scenario "Send reset password email to currently managed user session" do
@@ -54,7 +54,7 @@ feature 'Account' do
 
     click_link 'Reset password manually'
 
-    find(:css, "input[id$='user_password']").set("new_password")
+    find(:css, "input[id$='user_password']").set("New_Password22")
 
     click_button 'Save password'
 
@@ -62,7 +62,7 @@ feature 'Account' do
 
     logout
 
-    login_through_form_with_email_and_password(user.email, 'new_password')
+    login_through_form_with_email_and_password(user.email, 'New_Password22')
 
     expect(page).to have_content 'You have been signed in successfully.'
   end
@@ -95,13 +95,13 @@ feature 'Account' do
 
     click_link 'Reset password manually'
 
-    find(:css, "input[id$='user_password']").set("another_new_password")
+    find(:css, "input[id$='user_password']").set("Another_New_Password22")
 
     click_button 'Save password'
 
     expect(page).to have_content 'Password reseted successfully'
     expect(page).to have_css("a[href='javascript:window.print();']", text: 'Print password')
-    expect(page).to have_css("div.for-print-only", text: 'another_new_password', visible: false)
+    expect(page).to have_css("div.for-print-only", text: 'Another_New_Password22', visible: false)
   end
 
 end

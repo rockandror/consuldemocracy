@@ -78,7 +78,7 @@ feature "Users" do
     end
 
     scenario "Admin with password expired trying to use same password" do
-      user = create(:user, password: "123456789")
+      user = create(:user, password: "Admin123456789")
       admin = create(:administrator, user: user)
       travel 1.year + 1.day
 
@@ -87,9 +87,9 @@ feature "Users" do
 
       expect(page).to have_content "Your password is expired"
 
-      fill_in "user_current_password", with: "judgmentday"
-      fill_in "user_password", with: "123456789"
-      fill_in "user_password_confirmation", with: "123456789"
+      fill_in "user_current_password", with: "JudgmentDay1234"
+      fill_in "user_password", with: "Admin123456789"
+      fill_in "user_password_confirmation", with: "Admin123456789"
       click_button "Change your password"
 
       expect(page).to have_content "must be different than the current password."
