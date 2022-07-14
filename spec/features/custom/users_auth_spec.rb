@@ -135,4 +135,20 @@ feature "Users", :js do
       end
     end
   end
+
+  describe "Sign up" do
+    scenario "Reject password without complexity" do
+      visit new_user_registration_path
+
+      fill_in "Username",         with: "Juan Romero"
+      fill_in "Email",            with: "juan@consul.dev"
+      fill_in "Password",         with: "without_uppercase_and_digits"
+      fill_in "Confirm password", with: "without_uppercase_and_digits"
+      check "user_terms_of_service"
+
+      click_button "Register"
+
+      expect(page).to have_content "must contain big, small letters and digits"
+    end
+  end
 end

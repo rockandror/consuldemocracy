@@ -29,8 +29,8 @@ feature 'Registration form' do
 
     fill_in 'user_username',              with: "NewUserWithCode77"
     fill_in 'user_email',                 with: "new@consul.dev"
-    fill_in 'user_password',              with: "password"
-    fill_in 'user_password_confirmation', with: "password"
+    fill_in "user_password",              with: "Password22"
+    fill_in "user_password_confirmation", with: "Password22"
     fill_in 'user_redeemable_code',       with: "            "
     check 'user_terms_of_service'
 
@@ -49,8 +49,8 @@ feature 'Registration form' do
     fill_in 'user_username',              with: "robot"
     fill_in 'user_address',               with: 'This is the honeypot field'
     fill_in 'user_email',                 with: 'robot@robot.com'
-    fill_in 'user_password',              with: 'destroyallhumans'
-    fill_in 'user_password_confirmation', with: 'destroyallhumans'
+    fill_in "user_password",              with: "DestroyHumans1234"
+    fill_in "user_password_confirmation", with: "DestroyHumans1234"
     check 'user_terms_of_service'
 
     click_button 'Register'
@@ -67,8 +67,8 @@ feature 'Registration form' do
     fill_in 'user_username',              with: "robot"
     fill_in 'user_address',               with: 'This is the honeypot field'
     fill_in 'user_email',                 with: 'robot@robot.com'
-    fill_in 'user_password',              with: 'destroyallhumans'
-    fill_in 'user_password_confirmation', with: 'destroyallhumans'
+    fill_in "user_password",              with: "DestroyHumans1234"
+    fill_in "user_password_confirmation", with: "DestroyHumans1234"
     check 'user_terms_of_service'
 
     click_button 'Register'
@@ -99,8 +99,8 @@ feature 'Registration form' do
 
     fill_in "Username", with: "NewUserWithCode77"
     fill_in "Email", with: ""
-    fill_in "Password", with: "password"
-    fill_in "Confirm password", with: "password"
+    fill_in "Password", with: "Password22"
+    fill_in "Confirm password", with: "Password22"
     check "By registering you accept the terms and conditions of use"
 
     click_button "Register"

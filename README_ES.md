@@ -57,12 +57,12 @@ bin/rspec
 Puedes usar el usuario administrador por defecto del fichero seeds:
 
  **user:** admin@consul.dev
- **pass:** 12345678
+ **pass:** Admin1234
 
 Pero para ciertas acciones, como apoyar, necesitarás un usuario verificado, el fichero seeds proporciona uno:
 
  **user:** verified@consul.dev
- **pass:** 12345678
+ **pass:** Admin1234
 
 ## Documentación
 

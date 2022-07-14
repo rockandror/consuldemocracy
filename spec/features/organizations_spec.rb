@@ -11,8 +11,8 @@ feature 'Organizations' do
     fill_in 'user_organization_attributes_name', with: 'Greenpeace'
     fill_in 'user_organization_attributes_responsible_name', with: 'Dorothy Stowe'
     fill_in 'user_email',                         with: 'green@peace.com'
-    fill_in 'user_password',                      with: 'greenpeace'
-    fill_in 'user_password_confirmation',         with: 'greenpeace'
+    fill_in "user_password",                      with: "Greenpeace1234"
+    fill_in "user_password_confirmation",         with: "Greenpeace1234"
     check 'user_terms_of_service'
 
     click_button 'Register'
@@ -30,8 +30,8 @@ feature 'Organizations' do
     fill_in 'user_address',                       with: 'This is the honeypot field'
     fill_in 'user_organization_attributes_responsible_name', with: 'Robots are more responsible than humans'
     fill_in 'user_email',                         with: 'robot@robot.com'
-    fill_in 'user_password',                      with: 'destroyallhumans'
-    fill_in 'user_password_confirmation',         with: 'destroyallhumans'
+    fill_in "user_password",                      with: "DestroyHumans1234"
+    fill_in "user_password_confirmation",         with: "DestroyHumans1234"
 
     check 'user_terms_of_service'
 
@@ -48,8 +48,8 @@ feature 'Organizations' do
     fill_in 'user_organization_attributes_name', with: 'robot'
     fill_in 'user_organization_attributes_responsible_name', with: 'Robots are more responsible than humans'
     fill_in 'user_email',                         with: 'robot@robot.com'
-    fill_in 'user_password',                      with: 'destroyallhumans'
-    fill_in 'user_password_confirmation',         with: 'destroyallhumans'
+    fill_in "user_password",                      with: "DestroyHumans1234"
+    fill_in "user_password_confirmation",         with: "DestroyHumans1234"
 
     click_button 'Register'
 
@@ -102,8 +102,8 @@ feature 'Organizations' do
     fill_in "Name of organisation", with: ""
     fill_in "Person responsible for the group", with: "Dorothy Stowe"
     fill_in "Email", with: "green@peace.com"
-    fill_in "Password", with: "greenpeace"
-    fill_in "Confirm password", with: "greenpeace"
+    fill_in "Password", with: "Greenpeace1234"
+    fill_in "Confirm password", with: "Greenpeace1234"
     check "By registering you accept the terms and conditions of use"
 
     click_button "Register"

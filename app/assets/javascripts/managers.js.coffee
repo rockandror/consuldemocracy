@@ -1,13 +1,16 @@
 App.Managers =
 
   generatePassword: ->
-    chars = 'aAbcdeEfghiJkmnpqrstuUvwxyz23456789'
-    pass = ''
+    chars = "abcdefghijklmnopqrstuvwxyz"
+    numbers = "123456789"
+    pass = ""
     x = 0
-    while x < 12
+    while x < 10
       i = Math.floor(Math.random() * chars.length)
       pass += chars.charAt(i)
       x++
+    pass += chars.charAt(Math.floor(Math.random() * chars.length)).toUpperCase()
+    pass += numbers.charAt(Math.floor(Math.random() * numbers.length))
     return pass
 
   togglePassword: (type) ->
