@@ -1,4 +1,5 @@
 require "rails_helper"
+require "sessions_helper"
 
 feature "Users", :js do
   context "OAuth authentication" do
@@ -149,6 +150,36 @@ feature "Users", :js do
       click_button "Register"
 
       expect(page).to have_content "must contain at least one digit, must contain at least one upper-case letter"
+    end
+  end
+
+  describe "Sign in" do
+    scenario "Avoid two open sessions simultaneously" do
+      user = create(:user)
+
+      in_browser(:one) do
+        login_as(user)
+
+        visit root_path
+
+        expect_to_be_signed_in
+      end
+
+      in_browser(:two) do
+        login_as(user)
+
+        visit root_path
+
+        expect_to_be_signed_in
+      end
+
+      in_browser(:one) do
+        visit root_path
+
+        expect(page).to have_current_path new_user_session_path
+        expect(page).to have_content "Your login credentials were used in another browser. "\
+                                     "Please sign in again to continue in this browser."
+      end
     end
   end
 end
