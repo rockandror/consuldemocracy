@@ -5,6 +5,12 @@ class Users::SessionsController
 
   prepend_before_action :check_captcha, only: [:create],
                                         if: -> { show_recaptcha_for?(params[:user][:login]) }
+  alias_method :consul_create, :create
+
+  def create
+    sleep rand(0.0..0.5)
+    consul_create
+  end
 
   def show_recaptcha
     render json: { recaptcha: show_recaptcha_for?(params[:login]) }
