@@ -15,8 +15,8 @@ gem 'coffee-rails', '~> 4.2.2'
 gem 'daemons', '~> 1.2.4'
 gem 'dalli', '~> 2.7.6'
 gem 'delayed_job_active_record', '~> 4.1.3'
-gem 'devise', '~> 3.5.7'
-gem 'devise_security_extension', '~> 0.10.0'
+gem "devise", "~> 4.8.0"
+gem "devise-security", "~> 0.11.1"
 gem 'foundation-rails', '~> 6.4.3.0'
 gem 'foundation_rails_helper', '~> 2.0.0'
 gem 'graphiql-rails', '~> 1.4.1'
@@ -29,9 +29,10 @@ gem "jquery-rails", "~> 4.4.0"
 gem 'jquery-ui-rails', '~> 6.0.1'
 gem 'kaminari', '~> 1.1.1'
 gem 'newrelic_rpm', '~> 4.1.0.333'
-gem 'omniauth', '~> 1.8.1'
-gem 'omniauth-facebook', '~> 4.0.0'
-gem 'omniauth-google-oauth2', '~> 0.4.0'
+gem "omniauth", "~> 2.0.4"
+gem "omniauth-facebook", "~> 8.0.0"
+gem "omniauth-google-oauth2", "~> 1.0.0"
+gem "omniauth-rails_csrf_protection", "~> 1.0.0"
 gem 'omniauth-twitter', '~> 1.4.0'
 gem 'paperclip', '~> 5.2.1'
 gem 'paranoia', '~> 2.4.1'

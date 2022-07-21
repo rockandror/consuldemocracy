@@ -6,7 +6,7 @@
 gem "activerecord-nulldb-adapter", "~> 0.3.7"
 gem "execjs"
 gem "logstash-logger"
-gem "omniauth-saml"
+gem "omniauth-saml", "~> 2.1.0"
 gem "recaptcha", '~> 5.8.1'
 gem "rest-client", "~> 2.0", ">= 2.0.2"
 gem "selenium-webdriver", "~> 3.10"
@@ -21,4 +21,8 @@ end
 
 group :development do
   gem "rails-erd"
+end
+
+group :test do
+  gem "test_after_commit"
 end

@@ -246,25 +246,15 @@ Devise.setup do |config|
   config.omniauth :twitter, Rails.application.secrets.twitter_key, Rails.application.secrets.twitter_secret
   config.omniauth :facebook, Rails.application.secrets.facebook_key, Rails.application.secrets.facebook_secret, scope: 'email', info_fields: 'email,name,verified'
   config.omniauth :google_oauth2, Rails.application.secrets.google_oauth2_key, Rails.application.secrets.google_oauth2_secret
-  config.omniauth :saml,
-                  :assertion_consumer_service_url     => (Rails.application.secrets.saml_callback_url || 'http://localhost:3000') + '/users/auth/saml/callback',
-                  request_attributes: [
-                    { :name => 'email', :name_format => 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic', :friendly_name => 'Email address' },
-                    { :name => 'name', :name_format => 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic', :friendly_name => 'Full name' },
-                    { :name => 'first_name', :name_format => 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic', :friendly_name => 'Given name' },
-                    { :name => 'last_name', :name_format => 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic', :friendly_name => 'Family name', :is_required => true },
-                  ],
-                  attribute_statements: {
-                    name: ["name"],
-                    role: ["role"],
-                    email: ["email", "mail"],
-                    first_name: ["first_name", "firstname", "firstName"],
-                    last_name: ["last_name", "lastname", "lastName"]
-                  },
-                  issuer: Rails.application.secrets.saml_issuer,
-                  idp_cert: Rails.application.secrets.saml_idp_cert,
-                  idp_sso_target_url: Rails.application.secrets.saml_idp_sso_target_url,
-                  name_identifier_format: Rails.application.secrets.saml_name_identifier_format
+
+  saml_settings = {}
+  if Rails.application.secrets.saml_idp_metadata_url.present?
+    saml_settings = OneLogin::RubySaml::IdpMetadataParser.new.parse_remote_to_hash(Rails.application.secrets.saml_idp_metadata_url)
+    saml_settings[:idp_sso_service_url] = Rails.application.secrets.saml_idp_sso_service_url
+    saml_settings[:sp_entity_id] = Rails.application.secrets.saml_sp_entity_id
+    saml_settings[:allowed_clock_drift] = 1.minute
+  end
+  config.omniauth :saml, saml_settings
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

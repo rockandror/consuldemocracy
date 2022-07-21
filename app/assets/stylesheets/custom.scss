@@ -572,8 +572,19 @@ footer .logo a {
   }
 }
 
-.auth-divider {
-  border: 0;
-  cursor: pointer;
-  height: auto;
+.button.button-saml {
+  align-items: center;
+  background: #ecf7fc;
+  border-left: 3px solid #45b0e3;
+  display: inline-flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+
+  &::before {
+    background: image-url("gobcan-logo-simple.png") top center no-repeat;
+    background-size: contain;
+    content: "";
+    height: 2em;
+    width: 2em;
+  }
 }
