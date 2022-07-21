@@ -148,7 +148,7 @@ feature "Users", :js do
 
       click_button "Register"
 
-      expect(page).to have_content "must contain big, small letters and digits"
+      expect(page).to have_content "must contain at least one digit, must contain at least one upper-case letter"
     end
   end
 end
