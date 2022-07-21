@@ -6,7 +6,8 @@ describe User do
       user = build(:user, password: "just_lowercase")
 
       expect(user).to be_invalid
-      expect(user.errors.messages[:password]).to include("must contain big, small letters and digits")
+      expect(user.errors.messages[:password]).to include("must contain at least one digit")
+      expect(user.errors.messages[:password]).to include("must contain at least one upper-case letter")
     end
 
     it "is not valid with just lowercase and uppercase" do

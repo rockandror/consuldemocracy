@@ -145,9 +145,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-security (0.11.1)
-      devise (>= 4.2.0, < 5.0)
-      railties (>= 3.2.6, < 6.0)
+    devise-security (0.16.0)
+      devise (>= 4.3.0, < 5.0)
     diff-lcs (1.3)
     docile (1.3.1)
     domain_name (0.5.20180417)
@@ -578,7 +577,7 @@ DEPENDENCIES
   debase
   delayed_job_active_record (~> 4.1.3)
   devise (~> 4.8.0)
-  devise-security (~> 0.11.1)
+  devise-security (~> 0.16.0)
   email_spec (~> 2.1.0)
   execjs
   factory_bot_rails (~> 4.8.2)

@@ -16,7 +16,7 @@ gem 'daemons', '~> 1.2.4'
 gem 'dalli', '~> 2.7.6'
 gem 'delayed_job_active_record', '~> 4.1.3'
 gem "devise", "~> 4.8.0"
-gem "devise-security", "~> 0.11.1"
+gem "devise-security", "~> 0.16.0"
 gem 'foundation-rails', '~> 6.4.3.0'
 gem 'foundation_rails_helper', '~> 2.0.0'
 gem 'graphiql-rails', '~> 1.4.1'
