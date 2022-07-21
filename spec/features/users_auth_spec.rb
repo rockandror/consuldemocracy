@@ -12,8 +12,8 @@ feature 'Users' do
 
         fill_in 'user_username',              with: 'Manuela Carmena'
         fill_in 'user_email',                 with: 'manuela@consul.dev'
-        fill_in 'user_password',              with: 'judgementday'
-        fill_in 'user_password_confirmation', with: 'judgementday'
+        fill_in "user_password",              with: "Judgement1234"
+        fill_in "user_password_confirmation", with: "Judgement1234"
         check 'user_terms_of_service'
 
         click_button 'Register'
@@ -38,37 +38,37 @@ feature 'Users' do
     context 'Sign in' do
 
       scenario 'sign in with email' do
-        create(:user, email: 'manuela@consul.dev', password: 'judgementday')
+        create(:user, email: "manuela@consul.dev", password: "Judgement1234")
 
         visit root_path
         click_link 'Sign in'
         fill_in 'user_login',    with: 'manuela@consul.dev'
-        fill_in 'user_password', with: 'judgementday'
+        fill_in "user_password", with: "Judgement1234"
         click_button 'Enter'
 
         expect(page).to have_content 'You have been signed in successfully.'
       end
 
       scenario 'Sign in with username' do
-        create(:user, username: '👻👽👾🤖', email: 'ash@nostromo.dev', password: 'xenomorph')
+        create(:user, username: "👻👽👾🤖", email: "ash@nostromo.dev", password: "Xenomorph1234")
 
         visit root_path
         click_link 'Sign in'
         fill_in 'user_login',    with: '👻👽👾🤖'
-        fill_in 'user_password', with: 'xenomorph'
+        fill_in "user_password", with: "Xenomorph1234"
         click_button 'Enter'
 
         expect(page).to have_content 'You have been signed in successfully.'
       end
 
       scenario 'Avoid username-email collisions' do
-        u1 = create(:user, username: 'Spidey', email: 'peter@nyc.dev', password: 'greatpower')
-        u2 = create(:user, username: 'peter@nyc.dev', email: 'venom@nyc.dev', password: 'symbiote')
+        u1 = create(:user, username: "Spidey", email: "peter@nyc.dev", password: "Power1234")
+        u2 = create(:user, username: "peter@nyc.dev", email: "venom@nyc.dev", password: "Symbiote1234")
 
         visit root_path
         click_link 'Sign in'
         fill_in 'user_login',    with: 'peter@nyc.dev'
-        fill_in 'user_password', with: 'greatpower'
+        fill_in "user_password", with: "Power1234"
         click_button 'Enter'
 
         expect(page).to have_content 'You have been signed in successfully.'
@@ -84,14 +84,14 @@ feature 'Users' do
 
         click_link 'Sign in'
         fill_in 'user_login',    with: 'peter@nyc.dev'
-        fill_in 'user_password', with: 'symbiote'
+        fill_in "user_password", with: "Symbiote1234"
         click_button 'Enter'
 
         expect(page).not_to have_content 'You have been signed in successfully.'
         expect(page).to have_content "Invalid Email or username or password."
 
         fill_in 'user_login',    with: 'venom@nyc.dev'
-        fill_in 'user_password', with: 'symbiote'
+        fill_in "user_password", with: "Symbiote1234"
         click_button 'Enter'
 
         expect(page).to have_content 'You have been signed in successfully.'
@@ -103,12 +103,12 @@ feature 'Users' do
 
       scenario "resets failed attempts after successful login", :js do
         user = create(:user, email: "manuela@consul.dev",
-                             password: "judgementday",
+                             password: "Judgement1234",
                              failed_attempts: 3)
         visit user_session_path
 
         fill_in "Email or username", with: "manuela@consul.dev"
-        fill_in "Password", with: "judgementday"
+        fill_in "Password", with: "Judgement1234"
 
         expect(page).to have_css ".recaptcha"
 
@@ -119,13 +119,13 @@ feature 'Users' do
         logout
         visit user_session_path
         fill_in "Email or username", with: "manuela@consul.dev"
-        fill_in "Password", with: "judgementday"
+        fill_in "Password", with: "Judgement1234"
 
         expect(page).not_to have_css ".recaptcha"
       end
 
       scenario "shows recaptcha only after consecutive failed attempts", :js do
-        create(:user, email: "manuela@consul.dev", password: "judgementday", failed_attempts: 0)
+        create(:user, email: "manuela@consul.dev", password: "Judgement1234", failed_attempts: 0)
 
         visit new_user_session_path
 
@@ -145,19 +145,19 @@ feature 'Users' do
 
       scenario "unchecked recaptcha with correct login details", :js do
         allow_any_instance_of(Users::SessionsController).to receive(:verify_recaptcha).and_return false
-        create(:user, email: "manuela@consul.dev", password: "judgementday", failed_attempts: 1)
+        create(:user, email: "manuela@consul.dev", password: "Judgement1234", failed_attempts: 1)
 
         visit new_user_session_path
 
         fill_in "Email or username", with: "manuela@consul.dev"
-        fill_in "Password", with: "judgementday"
+        fill_in "Password", with: "Judgement1234"
 
         click_button "Enter"
         expect(page).to have_content "reCAPTCHA human verification is missing. Please try again."
       end
 
       scenario "checked recaptcha with incorrect login details", :js do
-        create(:user, email: "manuela@consul.dev", password: "judgementday", failed_attempts: 1)
+        create(:user, email: "manuela@consul.dev", password: "Judgement1234", failed_attempts: 1)
 
         visit new_user_session_path
 
@@ -170,12 +170,12 @@ feature 'Users' do
 
       scenario "checked recaptcha with correct login details", :js do
         allow_any_instance_of(Users::SessionsController).to receive(:verify_recaptcha).and_return true
-        create(:user, email: "manuela@consul.dev", password: "judgementday", failed_attempts: 1)
+        create(:user, email: "manuela@consul.dev", password: "Judgement1234", failed_attempts: 1)
 
         visit new_user_session_path
 
         fill_in "Email or username", with: "manuela@consul.dev"
-        fill_in "Password", with: "judgementday"
+        fill_in "Password", with: "Judgement1234"
 
         click_button "Enter"
         expect(page).to have_content "You have been signed in successfully."
@@ -286,7 +286,7 @@ feature 'Users' do
       end
 
       scenario 'Sign in, user was already signed up with OAuth' do
-        user = create(:user, email: 'manuela@consul.dev', password: 'judgementday')
+        user = create(:user, email: "manuela@consul.dev", password: "Judgement1234")
         create(:identity, uid: '12345', provider: 'twitter', user: user)
         OmniAuth.config.add_mock(:twitter, twitter_hash)
 
@@ -305,7 +305,7 @@ feature 'Users' do
       end
 
       scenario 'Try to register with the username of an already existing user' do
-        create(:user, username: 'manuela', email: 'manuela@consul.dev', password: 'judgementday')
+        create(:user, username: "manuela", email: "manuela@consul.dev", password: "Judgement1234")
         OmniAuth.config.add_mock(:twitter, twitter_hash_with_verified_email)
 
         visit root_path
@@ -425,8 +425,8 @@ feature 'Users' do
     sent_token = /.*reset_password_token=(.*)".*/.match(ActionMailer::Base.deliveries.last.body.to_s)[1]
     visit edit_user_password_path(reset_password_token: sent_token)
 
-    fill_in 'user_password', with: 'new password'
-    fill_in 'user_password_confirmation', with: 'new password'
+    fill_in "user_password", with: "New Password1234"
+    fill_in "user_password_confirmation", with: "New Password1234"
     click_button 'Change my password'
 
     expect(page).to have_content "Your password has been changed successfully."
@@ -441,9 +441,9 @@ feature 'Users' do
 
     expect(page).to have_content "Your password is expired"
 
-    fill_in 'user_current_password', with: 'judgmentday'
-    fill_in 'user_password', with: '123456789'
-    fill_in 'user_password_confirmation', with: '123456789'
+    fill_in "user_current_password", with: "Judgement1234"
+    fill_in "user_password", with: "Admin1234"
+    fill_in "user_password_confirmation", with: "Admin1234"
 
     click_button 'Change your password'
 
@@ -470,7 +470,7 @@ feature 'Users' do
   end
 
   scenario 'Admin with password expired trying to use same password' do
-    user = create(:user, password_changed_at: Time.current - 1.year, password: '123456789')
+    user = create(:user, password_changed_at: Time.current - 1.year, password: "Admin1234")
     admin = create(:administrator, user: user)
 
     login_as(admin.user)
@@ -478,9 +478,9 @@ feature 'Users' do
 
     expect(page).to have_content "Your password is expired"
 
-    fill_in 'user_current_password', with: 'judgmentday'
-    fill_in 'user_password', with: '123456789'
-    fill_in 'user_password_confirmation', with: '123456789'
+    fill_in "user_current_password", with: "Judgement1234"
+    fill_in "user_password", with: "Admin1234"
+    fill_in "user_password_confirmation", with: "Admin1234"
     click_button 'Change your password'
 
     expect(page).to have_content "must be different than the current password."

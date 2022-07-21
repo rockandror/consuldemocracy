@@ -58,12 +58,12 @@ bin/rspec
 You can use the default admin user from the seeds file:
 
  **user:** admin@consul.dev
- **pass:** 12345678
+ **pass:** Admin1234
 
 But for some actions like voting, you will need a verified user, the seeds file also includes one:
 
  **user:** verified@consul.dev
- **pass:** 12345678
+ **pass:** Admin1234
 
 ## Configuration for production environments
 

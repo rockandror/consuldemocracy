@@ -55,9 +55,9 @@ feature 'Account' do
 
     click_link "Change my credentials"
     fill_in "user_email", with: "new_user_email@example.com"
-    fill_in "user_password", with: "new_password"
-    fill_in "user_password_confirmation", with: "new_password"
-    fill_in "user_current_password", with: "judgmentday"
+    fill_in "user_password", with: "New_password1234"
+    fill_in "user_password_confirmation", with: "New_password1234"
+    fill_in "user_current_password", with: "Judgement1234"
 
     click_button "Update"
 
@@ -74,7 +74,7 @@ feature 'Account' do
     visit root_path
     click_link "Sign in"
     fill_in "user_login", with: "new_user_email@example.com"
-    fill_in "user_password", with: "new_password"
+    fill_in "user_password", with: "New_password1234"
     click_button "Enter"
 
     expect(page).to have_content "You have been signed in successfully."

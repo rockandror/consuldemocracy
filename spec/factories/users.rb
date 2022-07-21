@@ -3,7 +3,7 @@ FactoryBot.define do
     sequence(:username) { |n| "Manuela#{n}" }
     sequence(:email)    { |n| "manuela#{n}@consul.dev" }
 
-    password            'judgmentday'
+    password            "Judgement1234"
     terms_of_service    '1'
     confirmed_at        { Time.current }
     public_activity     true
