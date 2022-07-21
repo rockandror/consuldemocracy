@@ -2063,6 +2063,21 @@ table {
   }
 }
 
+.budget-investment-info,
+.debate-info,
+.investment-project-info,
+.proposal-info,
+.topic-info {
+
+  .comments-count {
+    @include has-fa-icon(comments, regular);
+
+    &::before {
+      margin-right: 0.3rem;
+    }
+  }
+}
+
 // 16. Flags
 // ---------
 
