@@ -796,30 +796,27 @@
   .comment {
     margin-bottom: rem-calc(48);
 
-    a {
-      span {
-        text-decoration: underline;
-      }
+    .expand-context {
+      a {
+        span {
+          text-decoration: underline;
+        }
 
-      .icon-expand,
-      .icon-comments {
-        text-decoration: none;
-        color: #999;
-        line-height: 0;
-      }
+        .icon-expand {
+          text-decoration: none;
+          color: #999;
+          line-height: 0;
+        }
 
-      .icon-expand {
-        margin-left: rem-calc(4);
-      }
+        .icon-expand {
+          margin-left: rem-calc(4);
+        }
 
-      .icon-comments {
-        margin-right: rem-calc(4);
-      }
-
-      &:active,
-      &:focus,
-      &:hover {
-        text-decoration: none;
+        &:active,
+        &:focus,
+        &:hover {
+          text-decoration: none;
+        }
       }
     }
   }
