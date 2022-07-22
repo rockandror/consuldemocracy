@@ -2051,6 +2051,18 @@ table {
   width: 100%;
 }
 
+.comment-header {
+
+  .comment-number {
+    @include has-fa-icon(comment, solid);
+
+    &::before {
+      margin-right: 0.3rem;
+      color: #838383;
+    }
+  }
+}
+
 // 16. Flags
 // ---------
 
