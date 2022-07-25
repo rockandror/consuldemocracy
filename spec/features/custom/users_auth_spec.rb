@@ -115,6 +115,56 @@ feature "Users", :js do
         expect(page).to have_field "Email", with: "tester@consul.dev"
       end
 
+      scenario "Assign roles after signing up" do
+        saml_hash = {
+          provider: "saml",
+          uid: "ext-tester",
+          info: {
+            name: "samltester",
+            email: "tester@consul.dev",
+            verified: "1"
+          },
+          extra: { raw_info: { attributes: { isMemberOf: ["cn=gaut_admin_ecociv_consul,ou=Grupos,c=es"] }}}
+        }
+        OmniAuth.config.add_mock(:saml, saml_hash)
+
+        visit new_user_registration_path
+        click_link "Access through CAS"
+
+        expect(page).to have_content "Successfully identified as Saml"
+
+        within("#notice") { find("button").click }
+        click_link "Admin"
+        click_link "Administration"
+
+        expect(page).to have_current_path admin_root_path
+      end
+
+      scenario "Assign roles after signing in" do
+        create(:user, username: "admin", email: "admin@consul.dev", administrator: create(:administrator))
+
+        saml_hash = {
+          provider: "saml",
+          uid: "ext-tester",
+          info: {
+            name: "admin",
+            email: "admin@consul.dev",
+            verified: "1"
+          },
+          extra: { raw_info: { attributes: { isMemberOf: [] }}}
+        }
+        OmniAuth.config.add_mock(:saml, saml_hash)
+
+        visit new_user_session_path
+        click_link "Access through CAS"
+
+        expect(page).to have_content "Successfully identified as Saml"
+
+        within("#notice") { find("button").click }
+
+        expect(page).not_to have_link "Admin"
+      end
+
       describe "Include SAML section" do
         scenario "on sign in page" do
           visit root_path
