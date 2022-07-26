@@ -1,6 +1,4 @@
-<span class="comment-number">
-  <%= t("legislation.annotations.comments.comments_count", count: annotation.comments.roots.count) %>
-</span>
+<%= render Shared::CommentsInfoComponent.new(annotation.comments.roots.count, span_class: "comment-number") %>
 
 <span id="annotation-link" data-sub-annotation-ids="8">
   <%= render "annotation_link", annotation: annotation %>
