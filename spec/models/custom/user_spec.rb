@@ -183,5 +183,13 @@ describe User do
 
       expect(user.reload).to be_administrator
     end
+
+    it "ignores other roles" do
+      user = create(:administrator).user
+
+      user.update_roles(["unrelated_admin_role"])
+
+      expect(user.reload).not_to be_administrator
+    end
   end
 end
