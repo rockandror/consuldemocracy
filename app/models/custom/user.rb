@@ -22,7 +22,7 @@ class User
   def update_roles(roles_info)
     return if roles_info.nil?
 
-    roles = roles_info.map { |role_info| role_info.match(/gaut_(.+)_ecociv/)[1] }
+    roles = roles_info.map { |role_info| role_info.match(/gaut_(.+)_ecociv/)&.captures&.first }
 
     if roles.include?("admin")
       create_administrator! unless administrator?
