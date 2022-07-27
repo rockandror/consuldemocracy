@@ -82,7 +82,6 @@
 //= require managers
 //= require globalize
 //= require send_admin_notification_alert
-//= require login_form
 
 var initialize_modules = function() {
   App.Comments.initialize();
@@ -129,7 +128,6 @@ var initialize_modules = function() {
   App.Managers.initialize();
   App.Globalize.initialize();
   App.SendAdminNotificationAlert.initialize();
-  App.LoginForm.initialize();
 };
 
 $(function(){
