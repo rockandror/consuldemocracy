@@ -15,7 +15,7 @@ feature 'Admin moderators' do
     expect(page).not_to have_content @user.name
   end
 
-  scenario 'Create Moderator', :js do
+  scenario 'Create Moderator', :js, :broken do
     fill_in 'name_or_email', with: @user.email
     click_button 'Search'
 
