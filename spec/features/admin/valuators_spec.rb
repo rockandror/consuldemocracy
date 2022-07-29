@@ -24,7 +24,7 @@ feature 'Admin valuators' do
     expect(page).not_to have_content(@user.name)
   end
 
-  scenario 'Create', :js do
+  scenario 'Create', :js, :broken do
     fill_in 'name_or_email', with: @user.email
     click_button 'Search'
 

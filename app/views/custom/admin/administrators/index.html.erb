@@ -31,12 +31,6 @@
                           method: :delete,
                           class: "button hollow alert expanded"
               %>
-            <% else %>
-              <%= link_to t('admin.administrators.administrator.add'),
-                          { controller: "admin/administrators", action: :create,
-                            user_id: administrator.user_id },
-                            method: :post,
-                            class: "button success expanded" %>
             <% end %>
           </td>
         </tr>
