@@ -101,53 +101,13 @@ feature 'Users' do
         expect(page).to have_link 'My activity', href: user_path(u2)
       end
 
-      scenario "resets failed attempts after successful login", :js do
-        user = create(:user, email: "manuela@consul.dev",
-                             password: "Judgement1234",
-                             failed_attempts: 3)
-        visit user_session_path
-
-        fill_in "Email or username", with: "manuela@consul.dev"
-        fill_in "Password", with: "Judgement1234"
-
-        expect(page).to have_css ".recaptcha"
-
-        click_button "Enter"
-
-        expect(page).to have_content "You have been signed in successfully."
-
-        logout
-        visit user_session_path
-        fill_in "Email or username", with: "manuela@consul.dev"
-        fill_in "Password", with: "Judgement1234"
-
-        expect(page).not_to have_css ".recaptcha"
-      end
-
-      scenario "shows recaptcha only after consecutive failed attempts", :js do
-        create(:user, email: "manuela@consul.dev", password: "Judgement1234", failed_attempts: 0)
-
-        visit new_user_session_path
-
-        fill_in "Email or username", with: "manuela@consul.dev"
-        fill_in "Password", with: "wrong_password"
-
-        expect(page).not_to have_css ".recaptcha"
-
-        click_button "Enter"
-        expect(page).to have_content "Invalid Email or username or password."
-
-        fill_in "Email or username", with: "manuela@consul.dev"
-        fill_in "Password", with: "wrong_password"
-
-        expect(page).to have_css ".recaptcha"
-      end
-
       scenario "unchecked recaptcha with correct login details", :js do
         allow_any_instance_of(Users::SessionsController).to receive(:verify_recaptcha).and_return false
-        create(:user, email: "manuela@consul.dev", password: "Judgement1234", failed_attempts: 1)
+        create(:user, email: "manuela@consul.dev", password: "Judgement1234")
 
         visit new_user_session_path
+
+        expect(page).to have_css ".recaptcha"
 
         fill_in "Email or username", with: "manuela@consul.dev"
         fill_in "Password", with: "Judgement1234"
@@ -157,7 +117,7 @@ feature 'Users' do
       end
 
       scenario "checked recaptcha with incorrect login details", :js do
-        create(:user, email: "manuela@consul.dev", password: "Judgement1234", failed_attempts: 1)
+        create(:user, email: "manuela@consul.dev", password: "Judgement1234")
 
         visit new_user_session_path
 
@@ -170,7 +130,7 @@ feature 'Users' do
 
       scenario "checked recaptcha with correct login details", :js do
         allow_any_instance_of(Users::SessionsController).to receive(:verify_recaptcha).and_return true
-        create(:user, email: "manuela@consul.dev", password: "Judgement1234", failed_attempts: 1)
+        create(:user, email: "manuela@consul.dev", password: "Judgement1234")
 
         visit new_user_session_path
 

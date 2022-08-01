@@ -1,7 +1,7 @@
 require_dependency Rails.root.join('app', 'models', 'user').to_s
 
 class User
-  devise :lockable, :session_limitable
+  devise :session_limitable
 
   class << self
     alias_method :consul_first_or_initialize_for_oauth, :first_or_initialize_for_oauth
@@ -13,10 +13,6 @@ class User
         end
       end
     end
-  end
-
-  def exceeded_failed_login_attempts?
-    failed_attempts >= 1
   end
 
   def update_roles(roles_info)
