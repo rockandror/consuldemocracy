@@ -254,6 +254,15 @@ Devise.setup do |config|
     saml_settings[:sp_entity_id] = Rails.application.secrets.saml_sp_entity_id
     saml_settings[:allowed_clock_drift] = 1.minute
   end
+
+  if Rails.application.secrets.saml_idp_slo_service_url.present?
+    saml_settings[:idp_slo_service_url] = Rails.application.secrets.saml_idp_slo_service_url
+  end
+
+  if Rails.application.secrets.saml_idp_slo_service_binding.present?
+    saml_settings[:idp_slo_service_binding] = Rails.application.secrets.saml_idp_slo_service_binding
+  end
+
   config.omniauth :saml, saml_settings
 
   # ==> Warden configuration
