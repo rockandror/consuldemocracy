@@ -257,6 +257,12 @@ Devise.setup do |config|
 
   if Rails.application.secrets.saml_idp_slo_service_url.present?
     saml_settings[:idp_slo_service_url] = Rails.application.secrets.saml_idp_slo_service_url
+    saml_settings[:certificate] = File.read(Rails.application.secrets.saml_certificate_path)
+    saml_settings[:private_key] = File.read(Rails.application.secrets.saml_private_key_path)
+    saml_settings[:security] = {
+      logout_requests_signed: true,
+      signature_method: XMLSecurity::Document::RSA_SHA256
+    }
   end
 
   if Rails.application.secrets.saml_idp_slo_service_binding.present?
