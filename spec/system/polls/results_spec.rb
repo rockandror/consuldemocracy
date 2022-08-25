@@ -6,7 +6,7 @@ describe "Poll Results" do
     user2 = create(:user, :level_two)
     user3 = create(:user, :level_two)
 
-    poll = create(:poll, results_enabled: true)
+    poll = create(:poll, ends_at: 1.day.from_now, results_enabled: true)
     question1 = create(:poll_question, poll: poll)
     answer1 = create(:poll_question_answer, question: question1, title: "Yes")
     answer2 = create(:poll_question_answer, question: question1, title: "No")
@@ -34,9 +34,7 @@ describe "Poll Results" do
     expect(Poll::Voter.count).to eq(3)
     logout
 
-    poll.update!(ends_at: 1.day.ago)
-
-    visit results_poll_path(poll)
+    travel_to(poll.ends_at + 1.day) { visit results_poll_path(poll) }
 
     expect(page).to have_content(question1.title)
     expect(page).to have_content(question2.title)

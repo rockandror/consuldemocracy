@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe Poll do
-  let(:poll) { build(:poll) }
+  let(:poll) { build(:poll, starts_at: Time.current) }
 
   describe "Concerns" do
     it_behaves_like "notifiable"
@@ -35,11 +35,26 @@ describe Poll do
       poll.ends_at = 2.months.ago
       expect(poll).not_to be_valid
     end
+
+    it "is valid if start date is greater than today" do
+      poll.starts_at = 1.day.from_now
+      expect(poll).to be_valid
+    end
+
+    it "is valid if start date is equal to today" do
+      poll.starts_at = Date.current.beginning_of_day
+      expect(poll).to be_valid
+    end
+
+    it "is not valid if start date is past date" do
+      poll.starts_at = 1.day.ago
+      expect(poll).not_to be_valid
+    end
   end
 
   describe "proposal polls specific validations" do
     let(:proposal) { create(:proposal) }
-    let(:poll) { build(:poll, related: proposal) }
+    let(:poll) { build(:poll, related: proposal, starts_at: 1.month.from_now, ends_at: 2.month.from_now) }
 
     it "is valid when overlapping but different proposals" do
       other_proposal = create(:proposal)
@@ -370,11 +385,11 @@ describe Poll do
 
     it "returns polls for the user's geozone first" do
       geozone = create(:geozone)
-      poll1 = create(:poll, geozone_restricted: true)
-      poll2 = create(:poll, geozone_restricted: true)
-      poll3 = create(:poll)
-      poll_geozone_1 = create(:poll, geozone_restricted: true, geozones: [geozone])
-      poll_geozone_2 = create(:poll, geozone_restricted: true, geozones: [geozone])
+      poll1 = create(:poll, geozone_restricted: true, starts_at: 1.month.ago)
+      poll2 = create(:poll, geozone_restricted: true, starts_at: 1.month.ago)
+      poll3 = create(:poll, starts_at: 1.month.ago)
+      poll_geozone_1 = create(:poll, geozone_restricted: true, geozones: [geozone], starts_at: 1.month.ago)
+      poll_geozone_2 = create(:poll, geozone_restricted: true, geozones: [geozone], starts_at: 1.month.ago)
       geozone_user = create(:user, :level_two, geozone: geozone)
 
       expect(Poll.sort_for_list).to eq [poll3, poll1, poll2, poll_geozone_1, poll_geozone_2]

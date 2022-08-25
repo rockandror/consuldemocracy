@@ -10,9 +10,9 @@ describe "Admin polls", :admin do
   end
 
   scenario "Index show polls list order by starts at date" do
-    poll_1 = create(:poll, name: "Poll first",  starts_at: 15.days.ago)
-    poll_2 = create(:poll, name: "Poll second", starts_at: 1.month.ago)
-    poll_3 = create(:poll, name: "Poll third",  starts_at: 2.days.ago)
+    poll_1 = create(:poll, name: "Poll first",  starts_at: 10.days.from_now)
+    poll_2 = create(:poll, name: "Poll second", starts_at: 1.day.from_now)
+    poll_3 = create(:poll, name: "Poll third",  starts_at: 20.days.from_now)
 
     visit admin_root_path
 
@@ -72,6 +72,21 @@ describe "Admin polls", :admin do
     visit poll_path(id: "upcoming-poll")
 
     expect(page).to have_content "Upcoming poll"
+  end
+
+  scenario "Can not create with start date is in the past" do
+    visit admin_polls_path
+    click_link "Create poll"
+
+    fill_in "Name", with: "Upcoming poll"
+    fill_in "Start Date", with: 1.week.ago
+    fill_in "Closing Date", with: 2.weeks.from_now
+    fill_in "Summary", with: "Upcoming poll's summary. This poll..."
+    fill_in "Description", with: "Upcomming poll's description. This poll..."
+
+    click_button "Create poll"
+
+    expect(page).to have_content "Must not be past date"
   end
 
   scenario "Edit" do

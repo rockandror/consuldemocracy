@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "Poll budget ballot sheets" do
-  let(:poll) { create(:poll, :for_budget, ends_at: 1.day.ago) }
+  let(:poll) { create(:poll, :recounting, :for_budget) }
   let(:booth) { create(:poll_booth, polls: [poll]) }
   let(:poll_officer) { create(:poll_officer) }
 
