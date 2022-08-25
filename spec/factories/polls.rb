@@ -6,20 +6,24 @@ FactoryBot.define do
 
     starts_at { 1.month.ago }
     ends_at { 1.month.from_now }
+    to_create { |poll| poll.save(validate: false) }
 
     trait :expired do
       starts_at { 1.month.ago }
       ends_at { 15.days.ago }
+      to_create { |expired| expired.save(validate: false) }
     end
 
     trait :old do
       starts_at { 3.months.ago }
       ends_at { 2.months.ago }
+      to_create { |old| old.save(validate: false) }
     end
 
     trait :recounting do
       starts_at { 1.month.ago }
-      ends_at { Date.current }
+      ends_at { Date.current.beginning_of_day }
+      to_create { |recounting| recounting.save(validate: false) }
     end
 
     trait :published do

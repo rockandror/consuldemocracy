@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe Poll do
-  let(:poll) { build(:poll) }
+  let(:poll) { build(:poll, starts_at: Time.current) }
 
   describe "Concerns" do
     it_behaves_like "notifiable"
@@ -35,11 +35,26 @@ describe Poll do
       poll.ends_at = 2.months.ago
       expect(poll).not_to be_valid
     end
+
+    it "is valid if start date is greater than today" do
+      poll.starts_at = 1.day.from_now
+      expect(poll).to be_valid
+    end
+
+    it "is valid if start date is equal to today" do
+      poll.starts_at = Date.current.beginning_of_day
+      expect(poll).to be_valid
+    end
+
+    it "is not valid if start date is past date" do
+      poll.starts_at = 1.day.ago
+      expect(poll).not_to be_valid
+    end
   end
 
   describe "proposal polls specific validations" do
     let(:proposal) { create(:proposal) }
-    let(:poll) { build(:poll, related: proposal) }
+    let(:poll) { build(:poll, related: proposal, starts_at: 1.month.from_now, ends_at: 2.month.from_now) }
 
     it "is valid when overlapping but different proposals" do
       other_proposal = create(:proposal)
@@ -431,13 +446,15 @@ describe Poll do
     end
 
     it "is false for polls which finished less than a month ago" do
-      poll = create(:poll, starts_at: 3.months.ago, ends_at: 27.days.ago)
+      poll = create(:poll)
+      poll.update_columns starts_at: 3.months.ago, ends_at: 27.days.ago
 
       expect(poll.recounts_confirmed?).to be false
     end
 
     it "is true for polls which finished more than a month ago" do
-      poll = create(:poll, starts_at: 3.months.ago, ends_at: 1.month.ago - 1.day)
+      poll = create(:poll)
+      poll.update_columns starts_at: 3.months.ago, ends_at: 1.month.ago - 1.day
 
       expect(poll.recounts_confirmed?).to be true
     end
