@@ -3,7 +3,7 @@ require "rails_helper"
 describe "Officing ballot sheets" do
   let(:budget) { create(:budget, :reviewing_ballots) }
   let(:heading) { create(:budget_heading, budget: budget, price: 300) }
-  let(:poll) { create(:poll, name: "Latest budget poll", budget: budget, ends_at: Date.current) }
+  let(:poll) { create(:poll, :recounting, name: "Latest budget poll", budget: budget) }
   let(:booth) { create(:poll_booth, name: "The only booth") }
   let(:officer) { create(:poll_officer) }
   let!(:admin) { create(:administrator).user }
