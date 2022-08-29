@@ -80,6 +80,14 @@ describe Poll do
       poll.ends_at = 1.day.ago
       expect(poll).not_to be_valid
     end
+
+    it "is not valid if changing the end date for an expired poll" do
+      poll = create(:poll, :expired)
+      expect(poll).to be_valid
+
+      poll.ends_at = 1.day.from_now
+      expect(poll).not_to be_valid
+    end
   end
 
   describe "proposal polls specific validations" do
