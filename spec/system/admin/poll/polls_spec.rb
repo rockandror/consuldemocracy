@@ -75,7 +75,7 @@ describe "Admin polls", :admin do
   end
 
   scenario "Edit" do
-    poll = create(:poll, :with_image)
+    poll = create(:poll, :with_image, starts_at: Date.current)
 
     visit admin_poll_path(poll)
     click_link "Edit poll"
@@ -553,7 +553,7 @@ describe "Admin polls", :admin do
     end
 
     scenario "edit poll with sdg related list" do
-      poll = create(:poll, name: "Upcoming poll with SDG related content")
+      poll = create(:poll, name: "Upcoming poll with SDG related content", starts_at: Date.current)
       poll.sdg_goals = [SDG::Goal[1], SDG::Goal[17]]
       visit edit_admin_poll_path(poll)
 
