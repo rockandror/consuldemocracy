@@ -46,4 +46,22 @@ RSpec.describe Poll::Question, type: :model do
       end
     end
   end
+
+  describe "#destroy" do
+    it "removes questions with dependent partial results" do
+      poll_partial_result = create(:poll_partial_result)
+      poll_question = poll_partial_result.question
+
+      expect { poll_question.destroy }.to change { Poll::Question.count }.by(-1)
+                                     .and change { Poll::PartialResult.count }.by(-1)
+    end
+
+    it "removes questions with dependent answers" do
+      poll_question = create(:poll_question, :yes_no)
+      create(:poll_answer, question: poll_question)
+
+      expect { poll_question.destroy }.to change { Poll::Question.count }.by(-1)
+                                     .and change { Poll::Answer.count }.by(-1)
+    end
+  end
 end

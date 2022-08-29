@@ -12,12 +12,12 @@ class Poll::Question < ApplicationRecord
   belongs_to :author, -> { with_hidden }, class_name: "User", inverse_of: :poll_questions
 
   has_many :comments, as: :commentable, inverse_of: :commentable
-  has_many :answers, class_name: "Poll::Answer"
+  has_many :answers, class_name: "Poll::Answer", dependent: :destroy
   has_many :question_answers, -> { order "given_order asc" },
     class_name: "Poll::Question::Answer",
     inverse_of: :question,
     dependent:  :destroy
-  has_many :partial_results
+  has_many :partial_results, dependent: :destroy
   belongs_to :proposal
 
   validates_translation :title, presence: true, length: { minimum: 4 }
