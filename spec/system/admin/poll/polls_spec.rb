@@ -109,6 +109,20 @@ describe "Admin polls", :admin do
     expect(page).to have_content I18n.l(end_date.to_date)
   end
 
+  scenario "Can not edit start date for current poll" do
+    poll = create(:poll)
+
+    visit admin_poll_path(poll)
+    click_link "Edit poll"
+
+    fill_in "Name", with: "Next Poll"
+    fill_in "Start Date", with: Date.current
+
+    click_button "Update poll"
+
+    expect(page).to have_content "Cannot be changed if voting has already started"
+  end
+
   scenario "Edit from index" do
     poll = create(:poll)
     visit admin_polls_path
