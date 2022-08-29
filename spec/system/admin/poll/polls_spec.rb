@@ -75,7 +75,7 @@ describe "Admin polls", :admin do
   end
 
   scenario "Edit" do
-    poll = create(:poll, :with_image)
+    poll = create(:poll, :with_image, starts_at: 1.day.from_now)
 
     visit admin_poll_path(poll)
     click_link "Edit poll"

@@ -50,6 +50,31 @@ describe Poll do
       poll.starts_at = 1.day.ago
       expect(poll).not_to be_valid
     end
+
+    it "is not valid if changing the start date for an already started poll" do
+      poll.starts_at = 1.day.from_now
+      poll.save!
+
+      travel_to(2.day.from_now) {
+        poll.starts_at = 10.day.from_now
+        expect(poll).not_to be_valid
+      }
+    end
+
+    it "is valid if changing the start date for an already started poll in current day" do
+      poll.save!
+
+      poll.starts_at = 1.day.from_now
+      expect(poll).to be_valid
+    end
+
+    it "is valid if changing the start date for a poll that did not started yet" do
+      poll.starts_at = 2.day.from_now
+      poll.save!
+
+      poll.starts_at = 1.day.from_now
+      expect(poll).to be_valid
+    end
   end
 
   describe "proposal polls specific validations" do
