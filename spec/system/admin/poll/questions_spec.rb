@@ -30,17 +30,19 @@ describe "Admin poll questions", :admin do
     end
   end
 
-  scenario "Show" do
-    geozone = create(:geozone)
-    poll = create(:poll, geozone_restricted: true, geozone_ids: [geozone.id])
-    question = create(:poll_question, poll: poll)
+  context "Show" do
+    scenario "question without votation type displays question and answers information" do
+      geozone = create(:geozone)
+      poll = create(:poll, geozone_restricted: true, geozone_ids: [geozone.id])
+      question = create(:poll_question, poll: poll)
 
-    visit admin_poll_path(poll)
-    click_link "Edit answers"
+      visit admin_poll_path(poll)
+      click_link "Edit answers"
 
-    expect(page).to have_link "Go back", href: admin_poll_path(poll)
-    expect(page).to have_content question.title
-    expect(page).to have_content question.author.name
+      expect(page).to have_link "Go back", href: admin_poll_path(poll)
+      expect(page).to have_content question.title
+      expect(page).to have_content question.author.name
+    end
   end
 
   describe "Create" do
