@@ -109,7 +109,7 @@ describe Poll do
 
   describe "#recounting" do
     it "returns polls in recount & scrutiny phase" do
-      current = create(:poll, :current)
+      current = create(:poll)
       expired = create(:poll, :expired)
       recounting = create(:poll, :recounting)
 
@@ -123,7 +123,7 @@ describe Poll do
 
   describe "#current_or_recounting" do
     it "returns current or recounting polls" do
-      current = create(:poll, :current)
+      current = create(:poll)
       expired = create(:poll, :expired)
       recounting = create(:poll, :recounting)
 
@@ -419,7 +419,7 @@ describe Poll do
 
   describe "#recounts_confirmed" do
     it "is false for current polls" do
-      poll = create(:poll, :current)
+      poll = create(:poll)
 
       expect(poll.recounts_confirmed?).to be false
     end
