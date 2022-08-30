@@ -1,0 +1,25 @@
+<%= form.fields_for :votation_type do |votation_f| %>
+  <div class="small-12 medium-6 column">
+    <%= votation_f.select :vote_type, votation_types_options, {}, class: "votation-type-vote-type" %>
+  </div>
+
+  <div class="small-12 column">
+    <div class="callout primary">
+      <span class="description-unique">
+        <%= t("admin.polls.votation_type.unique_description") %>
+      </span>
+      <span class="description-multiple hidden">
+        <%= t("admin.polls.votation_type.multiple_description") %>
+      </span>
+      <span class="description-prioritized hidden">
+        <%= t("admin.polls.votation_type.prioritized_description") %>
+      </span>
+    </div>
+  </div>
+
+  <div class="small-12 medium-6 column end">
+    <div class="max-votes hidden">
+      <%= votation_f.number_field :max_votes, min: 1, max: 999, class: "votation-type-max-votes" %>
+    </div>
+  </div>
+<% end %>

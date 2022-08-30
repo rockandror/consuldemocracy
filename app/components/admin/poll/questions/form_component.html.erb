@@ -29,6 +29,18 @@
     <% end %>
   </div>
 
+  <% unless question.persisted? %>
+    <div class="row">
+      <div class="small-12 column">
+        <div class="callout warning">
+          <strong><%= t("admin.polls.votation_type.uneditable") %></strong>
+        </div>
+      </div>
+
+      <%= render VotationTypes::FieldsComponent.new(form: f) %>
+    </div>
+  <% end %>
+
   <div class="row">
     <div class="small-12 medium-4 large-2 margin-top column">
       <%= f.submit(class: "button success expanded", value: t("shared.save")) %>
