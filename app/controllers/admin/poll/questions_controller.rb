@@ -14,10 +14,10 @@ class Admin::Poll::QuestionsController < Admin::Poll::BaseController
   end
 
   def new
-    @polls = Poll.all
     proposal = Proposal.find(params[:proposal_id]) if params[:proposal_id].present?
     @question.copy_attributes_from_proposal(proposal)
     @question.poll = @poll
+    @question.votation_type = VotationType.new
 
     authorize! :create, @question
   end
@@ -54,13 +54,8 @@ class Admin::Poll::QuestionsController < Admin::Poll::BaseController
   private
 
     def question_params
-      params.require(:poll_question).permit(allowed_params)
-    end
-
-    def allowed_params
-      attributes = [:poll_id, :question, :proposal_id]
-
-      [*attributes, translation_params(Poll::Question)]
+      attributes = [:poll_id, :question, :proposal_id, votation_type_attributes: [:vote_type, :max_votes]]
+      params.require(:poll_question).permit(*attributes, translation_params(Poll::Question))
     end
 
     def search_params
