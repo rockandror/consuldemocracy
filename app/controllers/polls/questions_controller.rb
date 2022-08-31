@@ -9,7 +9,5 @@ class Polls::QuestionsController < ApplicationController
 
     answer.answer = params[:answer]
     answer.save_and_record_voter_participation
-
-    @answers_by_question_id = { @question.id => params[:answer] }
   end
 end
