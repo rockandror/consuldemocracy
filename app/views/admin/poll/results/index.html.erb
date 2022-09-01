@@ -11,7 +11,9 @@
     </div>
   <% end %>
 
-  <% if @partial_results.present? %>
+  <% if @poll.questions.any? { |question| question.votation_type.present? } %>
+    <%= render Admin::Poll::ResultsComponent.new(poll: @poll) %>
+  <% elsif @partial_results.present? %>
     <%= render "recount", resource: @poll %>
     <%= render "result" %>
     <%= render "results_by_booth" %>

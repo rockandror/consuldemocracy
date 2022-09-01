@@ -50,6 +50,67 @@ describe "Poll Results" do
     end
   end
 
+  scenario "Poll questions with multiple answers" do
+    poll = create(:poll, results_enabled: true)
+    question = create(:poll_question_multiple, :with_answers, with_answers_count: 6, poll: poll)
+    user1 = create(:user)
+    create(:poll_answer, question: question, author: user1, answer: "Answer A", order: 1)
+    create(:poll_answer, question: question, author: user1, answer: "Answer B", order: 2)
+    create(:poll_answer, question: question, author: user1, answer: "Answer C", order: 3)
+    user2 = create(:user)
+    create(:poll_answer, question: question, author: user2, answer: "Answer C", order: 1)
+    create(:poll_answer, question: question, author: user2, answer: "Answer D", order: 2)
+    create(:poll_answer, question: question, author: user2, answer: "Answer E", order: 3)
+    user3 = create(:user)
+    create(:poll_answer, question: question, author: user3, answer: "Answer C", order: 1)
+    create(:poll_answer, question: question, author: user3, answer: "Answer B", order: 2)
+    answer1, answer2, answer3, answer4, answer5, answer6 = question.question_answers.order(:id)
+    poll.update_columns ends_at: 1.day.ago
+    visit results_poll_path(poll)
+
+    expect(page).to have_content(question.title)
+
+    within("#question_#{question.id}_results_table") do
+      expect(find("#answer_#{answer1.id}_result")).to have_content("1 (12.5%)")
+      expect(find("#answer_#{answer2.id}_result")).to have_content("2 (25.0%)")
+      expect(find("#answer_#{answer3.id}_result")).to have_content("3 (37.5%)")
+      expect(find("#answer_#{answer4.id}_result")).to have_content("1 (12.5%)")
+      expect(find("#answer_#{answer5.id}_result")).to have_content("1 (12.5%)")
+      expect(find("#answer_#{answer6.id}_result")).to have_content("0 (0.0%)")
+    end
+  end
+
+  scenario "Poll questions with prioritized answers" do
+    poll = create(:poll, results_enabled: true)
+    question = create(:poll_question_prioritized, :with_answers, with_answers_count: 6, poll: poll)
+    user1 = create(:user)
+    create(:poll_answer, question: question, author: user1, answer: "Answer A", order: 1)
+    create(:poll_answer, question: question, author: user1, answer: "Answer B", order: 2)
+    create(:poll_answer, question: question, author: user1, answer: "Answer C", order: 3)
+    user2 = create(:user)
+    create(:poll_answer, question: question, author: user2, answer: "Answer C", order: 1)
+    create(:poll_answer, question: question, author: user2, answer: "Answer D", order: 2)
+    create(:poll_answer, question: question, author: user2, answer: "Answer E", order: 3)
+    user3 = create(:user)
+    create(:poll_answer, question: question, author: user3, answer: "Answer C", order: 1)
+    create(:poll_answer, question: question, author: user3, answer: "Answer B", order: 2)
+    answer1, answer2, answer3, answer4, answer5, answer6 = question.question_answers.order(:id)
+    poll.update_columns ends_at: 1.day.ago
+
+    visit results_poll_path(poll)
+
+    expect(page).to have_content(question.title)
+
+    within("#question_#{question.id}_results_table") do
+      expect(find("#answer_#{answer1.id}_result")).to have_content("3 (17.65%)")
+      expect(find("#answer_#{answer2.id}_result")).to have_content("4 (23.53%)")
+      expect(find("#answer_#{answer3.id}_result")).to have_content("7 (41.18%)")
+      expect(find("#answer_#{answer4.id}_result")).to have_content("2 (11.76%)")
+      expect(find("#answer_#{answer5.id}_result")).to have_content("1 (5.88%)")
+      expect(find("#answer_#{answer6.id}_result")).to have_content("0 (0.0%)")
+    end
+  end
+
   scenario "Results for polls with questions but without answers" do
     poll = create(:poll, :expired, results_enabled: true)
     question = create(:poll_question, poll: poll)

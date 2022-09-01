@@ -33,8 +33,12 @@ class Poll::Question::Answer < ApplicationRecord
   end
 
   def total_votes
-    Poll::Answer.where(question_id: question, answer: title).count +
-      ::Poll::PartialResult.where(question: question).where(answer: title).sum(:amount)
+    if question.prioritized?
+      total_votes_prioritized
+    else
+      Poll::Answer.where(question_id: question, answer: title).count +
+        ::Poll::PartialResult.where(question: question).where(answer: title).sum(:amount)
+    end
   end
 
   def total_votes_percentage

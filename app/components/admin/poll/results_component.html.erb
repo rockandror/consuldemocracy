@@ -1,0 +1,16 @@
+<div class="polls-results-stats">
+  <div class="row margin">
+    <div class="small-12 medium-3 column">
+      <p><strong><%= t("polls.show.results.title") %></strong></p>
+      <ul class="menu vertical">
+        <%- poll.questions.each do |question| %>
+          <li><%= link_to question.title, "##{question.title.parameterize}" %></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="small-12 medium-9 column">
+      <%= render Polls::Results::QuestionComponent.with_collection(poll.questions) %>
+    </div>
+  </div>
+</div>
