@@ -6,7 +6,17 @@ describe Polls::Questions::ReadMoreAnswerComponent do
   let(:question) { create(:poll_question, poll: poll, title: "Question title?") }
   let(:answer) { create(:poll_question_answer, question: question) }
 
+  it "does not render when answers does not have more information" do
+    answer.update!(description: nil)
+
+    render_inline Polls::Questions::ReadMoreAnswerComponent.new(question: question)
+
+    expect(page).not_to be_rendered
+  end
+
   it "renders question title" do
+    create(:poll_question_answer, question: question, description: "Question answer description")
+
     render_inline Polls::Questions::ReadMoreAnswerComponent.new(question: question)
 
     expect(page).to have_content "Question title?"
