@@ -3,17 +3,18 @@ require "rails_helper"
 describe Polls::Questions::AnswersComponent do
   include Rails.application.routes.url_helpers
   let(:poll) { create(:poll) }
-  let(:question) { create(:poll_question, poll: poll) }
-
-  before do
-    create(:poll_question_answer, question: question, title: "Answer A", given_order: 2)
-    create(:poll_question_answer, question: question, title: "Answer B", given_order: 1)
-  end
+  let(:question) { create(:poll_question, :with_answers, with_answers_count: 2, poll: poll) }
 
   it "renders answers in given order" do
+    question = create(:poll_question)
+    create(:poll_question_answer, question: question, given_order: 1, title: "Answer C")
+    create(:poll_question_answer, question: question, given_order: 2, title: "Answer A")
+    create(:poll_question_answer, question: question, given_order: 3, title: "Answer B")
+
     render_inline Polls::Questions::AnswersComponent.new(question)
 
-    expect("Answer B").to appear_before("Answer A")
+    expect("Answer C").to appear_before("Answer A")
+    expect("Answer A").to appear_before("Answer B")
   end
 
   it "renders buttons to vote question answers" do
@@ -78,9 +79,7 @@ describe Polls::Questions::AnswersComponent do
   end
 
   it "user cannot vote when poll expired it renders disabled answers" do
-    question = create(:poll_question, poll: create(:poll, :expired))
-    create(:poll_question_answer, question: question, title: "Answer A")
-    create(:poll_question_answer, question: question, title: "Answer B")
+    question = create(:poll_question, :with_answers, with_answers_count: 2, poll: create(:poll, :expired))
     sign_in(create(:user, :level_two))
 
     render_inline Polls::Questions::AnswersComponent.new(question)
@@ -92,7 +91,7 @@ describe Polls::Questions::AnswersComponent do
   describe "geozone" do
     let(:poll) { create(:poll, geozone_restricted: true) }
     let(:geozone) { create(:geozone) }
-    let(:question) { create(:poll_question, poll: poll) }
+    let(:question) { create(:poll_question, :with_answers, with_answers_count: 2, poll: poll) }
 
     it "when geozone which is not theirs it renders disabled answers" do
       poll.geozones << geozone

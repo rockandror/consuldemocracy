@@ -52,10 +52,35 @@ FactoryBot.define do
     association :author, factory: :user
     sequence(:title) { |n| "Question title #{n}" }
 
+    trait :with_answers do
+      transient { with_answers_count { 2 } }
+
+      after(:create) do |question, evaluator|
+        with_answers_count = evaluator.with_answers_count - 1
+        ("A".."Z").to_a[0..with_answers_count].map do |letter|
+          create(:poll_question_answer, question: question, title: "Answer #{letter}")
+        end
+      end
+    end
+
     trait :yes_no do
       after(:create) do |question|
         create(:poll_question_answer, question: question, title: "Yes")
         create(:poll_question_answer, question: question, title: "No")
+      end
+    end
+
+    factory :poll_question_unique do
+      after(:create) do |question|
+        create(:votation_type_unique, questionable: question)
+      end
+    end
+
+    factory :poll_question_multiple do
+      transient { max_votes { 3 } }
+
+      after(:create) do |question, evaluator|
+        create(:votation_type_multiple, questionable: question, max_votes: evaluator.max_votes)
       end
     end
   end
