@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/geothird/touchpunch-rails.git
+  revision: e43d17ca145362479073f31feade819c7733a648
+  branch: master
+  specs:
+    touchpunch-rails (1.0.3)
+      railties (>= 3.1)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -798,6 +806,7 @@ DEPENDENCIES
   spring (~> 2.1.1)
   spring-commands-rspec (~> 1.0.4)
   sprockets (~> 4.1.1)
+  touchpunch-rails!
   translator-text (~> 0.1.0)
   turbolinks (~> 5.2.1)
   turnout (~> 2.5.0)

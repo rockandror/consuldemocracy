@@ -39,6 +39,7 @@
 //= require jquery-ui/i18n/datepicker-en-GB
 //= require jquery-ui/widgets/autocomplete
 //= require jquery-ui/widgets/sortable
+//= require jquery.ui.touch-punch
 //= require jquery-fileupload/basic
 //= require foundation
 //= require turbolinks
