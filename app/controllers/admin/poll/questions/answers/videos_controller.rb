@@ -1,6 +1,10 @@
 class Admin::Poll::Questions::Answers::VideosController < Admin::Poll::BaseController
-  before_action :load_answer, only: [:index, :new, :create]
-  before_action :load_video, only: [:edit, :update, :destroy]
+  load_resource :answer, class: "::Poll::Question::Answer"
+  load_resource :video, class: "::Poll::Question::Answer::Video"
+
+  before_action :authorize_create_video, only: :create
+  before_action :authorize_edit_video, only: [:edit, :update]
+  before_action :authorize_destroy_video, only: :destroy
 
   def index
   end
@@ -51,11 +55,21 @@ class Admin::Poll::Questions::Answers::VideosController < Admin::Poll::BaseContr
       [:title, :url, :answer_id]
     end
 
-    def load_answer
-      @answer = ::Poll::Question::Answer.find(params[:answer_id])
+    def authorize_create_video
+      if cannot? :create, @video
+        redirect_to admin_answer_videos_path(@video.answer), alert: t("unauthorized.create.poll/question/answer/video")
+      end
     end
 
-    def load_video
-      @video = ::Poll::Question::Answer::Video.find(params[:id])
+    def authorize_edit_video
+      if cannot? :edit, @video
+        redirect_to admin_answer_videos_path(@video.answer), alert: t("unauthorized.update.poll/question/answer/video")
+      end
+    end
+
+    def authorize_destroy_video
+      if cannot? :destroy, @video
+        redirect_to admin_answer_videos_path(@video.answer), alert: t("unauthorized.destroy.poll/question/answer/video")
+      end
     end
 end

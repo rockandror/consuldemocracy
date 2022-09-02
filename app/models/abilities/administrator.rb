@@ -97,6 +97,10 @@ module Abilities
         answer.question.poll.not_started?
       end
 
+      can [:create, :update, :destroy], Poll::Question::Answer::Video do |video|
+        video.answer.question.poll.not_started?
+      end
+
       can :manage, SiteCustomization::Page
       can :manage, SiteCustomization::Image
       can :manage, SiteCustomization::ContentBlock
