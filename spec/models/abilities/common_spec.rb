@@ -86,10 +86,14 @@ describe Abilities::Common do
   it { should_not be_able_to(:destroy, budget_investment_document) }
 
   it { should be_able_to(:destroy, own_proposal_image) }
+  it { should be_able_to(:create, own_proposal_image) }
   it { should_not be_able_to(:destroy, proposal_image) }
+  it { should_not be_able_to(:create, proposal_image) }
 
   it { should be_able_to(:destroy, own_budget_investment_image) }
+  it { should be_able_to(:create, own_budget_investment_image) }
   it { should_not be_able_to(:destroy, budget_investment_image) }
+  it { should_not be_able_to(:create, budget_investment_image) }
   it { should_not be_able_to(:manage, Dashboard::Action) }
 
   it { should_not be_able_to(:manage, LocalCensusRecord) }

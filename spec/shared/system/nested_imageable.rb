@@ -14,6 +14,7 @@ shared_examples "nested imageable" do |imageable_factory_name, path, imageable_p
     end
 
     imageable.update(author: user) if imageable.respond_to?(:author)
+    imageable.question.poll.update_column(:starts_at, Date.current) if imageable.class == Poll::Question::Answer
   end
 
   describe "at #{path}" do

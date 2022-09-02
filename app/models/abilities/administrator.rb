@@ -101,6 +101,10 @@ module Abilities
         video.answer.question.poll.not_started?
       end
 
+      can [:create, :destroy], Image do |image|
+        image.imageable_type == "Poll::Question::Answer" && image.imageable.question.poll.not_started?
+      end
+
       can :manage, SiteCustomization::Page
       can :manage, SiteCustomization::Image
       can :manage, SiteCustomization::ContentBlock

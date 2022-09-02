@@ -2,6 +2,12 @@ class Admin::Poll::Questions::Answers::ImagesController < Admin::Poll::BaseContr
   include ImageAttributes
 
   before_action :load_answer, except: :destroy
+  before_action :load_image, only: :destroy
+  # load_resource :answer, class: "::Poll::Question::Answer"
+  # load_resource :image, class: "Image", through: :answer
+
+  before_action :authorize_create_image, only: :create
+  before_action :authorize_destroy_image, only: :destroy
 
   def index
   end
@@ -21,7 +27,6 @@ class Admin::Poll::Questions::Answers::ImagesController < Admin::Poll::BaseContr
   end
 
   def destroy
-    @image = ::Image.find(params[:id])
     @image.destroy!
 
     respond_to do |format|
@@ -41,5 +46,21 @@ class Admin::Poll::Questions::Answers::ImagesController < Admin::Poll::BaseContr
 
     def load_answer
       @answer = ::Poll::Question::Answer.find(params[:answer_id])
+    end
+
+    def load_image
+      @image = ::Image.find(params[:id])
+    end
+
+    def authorize_create_image
+      if cannot? :update, @answer
+        redirect_to admin_answer_images_path(@answer), alert: t("unauthorized.create.poll/question/answer/image")
+      end
+    end
+
+    def authorize_destroy_image
+      if cannot? :update, @image.imageable
+        redirect_to admin_answer_images_path(@image.imageable), alert: t("unauthorized.destroy.poll/question/answer/image")
+      end
     end
 end
