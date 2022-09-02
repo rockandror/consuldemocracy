@@ -40,6 +40,22 @@ describe Polls::Questions::AnswersComponent do
     expect(page).to have_css "button[aria-pressed='true']", text: "Answer A"
   end
 
+  it "renders disabled buttons when max votes is reached" do
+    user = create(:user, :verified)
+    allow(user).to receive(:current_sign_in_at).and_return(user.created_at)
+    question = create(:poll_question_multiple, :with_answers, with_answers_count: 3, max_votes: 2,
+                                                              author: user)
+    create(:poll_answer, author: user, question: question, answer: "Answer A")
+    create(:poll_answer, author: user, question: question, answer: "Answer C")
+    sign_in(user)
+
+    render_inline Polls::Questions::AnswersComponent.new(question)
+
+    expect(page).to have_button "You have voted Answer A"
+    expect(page).to have_button "Vote Answer B", disabled: true
+    expect(page).to have_button "You have voted Answer C"
+  end
+
   it "when user is not signed in, renders answers links pointing to user sign in path" do
     render_inline Polls::Questions::AnswersComponent.new(question)
 
