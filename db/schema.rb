@@ -1021,6 +1021,7 @@ ActiveRecord::Schema.define(version: 2022_09_15_154808) do
     t.string "answer"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer "order"
     t.index ["author_id"], name: "index_poll_answers_on_author_id"
     t.index ["question_id", "answer"], name: "index_poll_answers_on_question_id_and_answer"
     t.index ["question_id"], name: "index_poll_answers_on_question_id"

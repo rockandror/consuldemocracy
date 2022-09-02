@@ -109,4 +109,30 @@ describe Poll::Answer do
       expect(answer).not_to be_persisted
     end
   end
+
+  describe "#prioritized_value" do
+    it "returns prioritized answer value considering user prioritization and question max_votes" do
+      user = create(:user)
+      question = create(:poll_question_prioritized, :with_answers, with_answers_count: 4, max_votes: 4)
+      question.question_answers.reverse.each_with_index do |question_answer, index|
+        create(:poll_answer, question: question,
+                             author: user,
+                             order: index + 1,
+                             answer: question_answer.title)
+      end
+      answer_d, answer_c, answer_b, answer_a = question.answers.order(:order)
+
+      expect(answer_a.order).to eq(4)
+      expect(answer_a.prioritized_value).to eq(1)
+
+      expect(answer_b.order).to eq(3)
+      expect(answer_b.prioritized_value).to eq(2)
+
+      expect(answer_c.order).to eq(2)
+      expect(answer_c.prioritized_value).to eq(3)
+
+      expect(answer_d.order).to eq(1)
+      expect(answer_d.prioritized_value).to eq(4)
+    end
+  end
 end

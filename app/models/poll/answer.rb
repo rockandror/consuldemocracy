@@ -23,11 +23,18 @@ class Poll::Answer < ApplicationRecord
     end
   end
 
+  def prioritized_value
+    position = question.answers.by_author(author.id).order(:order).index(self)
+
+    question.max_votes - position
+  end
+
   private
 
     def max_votes
       return if !question || question&.unique? || persisted?
 
+      author.reload
       author.lock!
 
       if question.answers.by_author(author).count + 1 > question.max_votes

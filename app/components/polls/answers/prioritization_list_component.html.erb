@@ -1,0 +1,9 @@
+<ol>
+  <% user_answers.each do |answer| %>
+    <li>
+      <span class="button answered expanded" title="<%= t("poll_questions.show.voted", answer: answer.answer) %>">
+        <%= answer.answer %>
+      </span>
+    </li>
+  <% end %>
+</ol>

@@ -5,7 +5,10 @@ resources :polls, only: [:show, :index] do
   end
 
   resources :questions, controller: "polls/questions", shallow: true do
-    post :answer, on: :member
+    member do
+      post :answer
+      delete :answer, to: "polls/answers#delete"
+    end
   end
 end
 

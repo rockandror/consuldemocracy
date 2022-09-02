@@ -5,8 +5,13 @@ module Polls
     within("#poll_question_#{question.id}_answers") do
       click_button answer
 
-      expect(page).to have_css("span.answered", text: answer)
-      expect(page).not_to have_button(answer)
+      if question.unique? || question.votation_type.blank?
+        expect(page).to have_css("span.answered", text: answer)
+        expect(page).not_to have_button(answer)
+      else
+        expect(page).to have_button("You have voted #{answer}")
+        expect(page).to have_selector("a.button.answered.expand", text: answer.to_s)
+      end
     end
   end
 

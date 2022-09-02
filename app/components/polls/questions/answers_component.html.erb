@@ -1,11 +1,18 @@
 <div class="poll-question-answers">
   <% if can?(:answer, question) && !question.poll.voted_in_booth?(current_user) %>
     <% question_answers.each do |answer| %>
-      <% if already_answered?(answer) && !voted_before_sign_in? %>
-        <span class="button answered"
-              title="<%= t("poll_questions.show.voted", answer: answer.title) %>">
+      <% if question.unique? && already_answered?(answer) && !voted_before_sign_in? %>
+        <span class="button answered" title="<%= t("poll_questions.show.voted", answer: answer.title) %>">
           <%= answer.title %>
         </span>
+      <% elsif already_answered?(answer) && !question.unique? %>
+        <%= button_to answer_question_path(question, answer: answer.title),
+                      method: :delete,
+                      remote: true,
+                      title: t("poll_questions.show.voted", answer: answer.title),
+                      class: "button answered expand" do %>
+          <%= answer.title %>
+        <% end %>
       <% else %>
         <%= button_to answer_question_path(question, answer: answer.title),
                       remote: true,
@@ -15,6 +22,9 @@
         <% end %>
       <% end %>
     <% end %>
+
+    <%= render Polls::Answers::PrioritizationListComponent.new(question) %>
+
   <% elsif !user_signed_in? %>
     <% question_answers.each do |answer| %>
       <%= link_to answer.title, new_user_session_path, class: "button secondary hollow" %>

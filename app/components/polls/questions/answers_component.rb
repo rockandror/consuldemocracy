@@ -23,6 +23,6 @@ class Polls::Questions::AnswersComponent < ApplicationComponent
   private
 
     def user_answers
-      @user_answers ||= question.answers.by_author(current_user)
+      @user_answers ||= question.answers.by_author(current_user).order(:order)
     end
 end

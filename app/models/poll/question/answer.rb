@@ -44,4 +44,10 @@ class Poll::Question::Answer < ApplicationRecord
   def with_read_more?
     description.present? || images.any? || documents.any? || videos.any?
   end
+
+  private
+
+    def total_votes_prioritized
+      question.answers.where(answer: title).sum(&:prioritized_value)
+    end
 end

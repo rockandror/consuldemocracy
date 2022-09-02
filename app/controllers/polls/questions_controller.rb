@@ -5,8 +5,7 @@ class Polls::QuestionsController < ApplicationController
   has_orders %w[most_voted newest oldest], only: :show
 
   def answer
-    answer = @question.answers.find_or_initialize_by(author: current_user)
-
+    answer = @question.find_or_initialize_user_answer(current_user, params[:answer])
     answer.answer = params[:answer]
     answer.save_and_record_voter_participation
 
@@ -15,7 +14,7 @@ class Polls::QuestionsController < ApplicationController
         redirect_to request.referer
       end
       format.js do
-        render :answer
+        render :answers
       end
     end
   end

@@ -1,1 +1,2 @@
 $("#<%= dom_id(@question) %>_answers").html("<%= j render Polls::Questions::AnswersComponent.new(@question) %>");
+App.Sortable.initialize();
