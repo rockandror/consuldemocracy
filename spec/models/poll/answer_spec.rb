@@ -23,6 +23,33 @@ describe Poll::Answer do
       expect(answer).not_to be_valid
     end
 
+    it "is not valid when user already reached multiple answers question max votes" do
+      user = create(:user)
+      question = create(:poll_question_multiple)
+      question.votation_type.update!(max_votes: 2)
+      question_answers = create_list(:poll_question_answer, 3, question: question)
+      question_answers[0..1].each do |question_answer|
+        create(:poll_answer, author: user, question: question, answer: question_answer.title)
+      end
+      poll_answer = build(:poll_answer, author: user, question: question, answer: question_answers[2].title)
+
+      expect(poll_answer).not_to be_valid
+    end
+
+    it "validates max votes when creating answers at the same time", :race_condition do
+      author = create(:user, :level_two)
+      question = create(:poll_question_multiple, :with_answers, with_answers_count: 3, max_votes: 2)
+      create(:poll_answer, question: question, answer: "Answer A", author: author)
+      answer = build(:poll_answer, question: question, answer: "Answer B", author: author)
+      other_answer = build(:poll_answer, question: question, answer: "Answer C", author: author)
+
+      [answer, other_answer].map do |a|
+        Thread.new { a.save }
+      end.each(&:join)
+
+      expect(Poll::Answer.count).to be 2
+    end
+
     it "is valid for answers included in the Poll::Question's question_answers list" do
       question = create(:poll_question)
       create(:poll_question_answer, title: "One", question: question)
