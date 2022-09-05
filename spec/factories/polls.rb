@@ -4,8 +4,8 @@ FactoryBot.define do
 
     slug { "this-is-a-slug" }
 
-    starts_at { 1.month.ago.to_date }
-    ends_at { 1.month.from_now.to_date }
+    starts_at { 1.month.ago }
+    ends_at { 1.month.from_now}
     to_create { |poll| poll.save(validate: false) }
 
     trait :expired do
