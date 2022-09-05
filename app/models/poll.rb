@@ -162,7 +162,7 @@ class Poll < ApplicationRecord
   end
 
   def start_date_change
-    if starts_at_changed? && Date.current.beginning_of_day > starts_at_was
+    if starts_at_was.to_date != starts_at.to_date && Date.current.beginning_of_day > starts_at_was
       errors.add(:starts_at, I18n.t("errors.messages.cannot_change_date.poll_started"))
     end
   end
