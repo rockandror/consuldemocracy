@@ -67,15 +67,21 @@ FactoryBot.define do
     end
 
     factory :poll_question_multiple do
-      after(:create) do |question|
-        create(:votation_type_multiple, questionable: question)
+      transient do
+        max_votes { 3 }
+      end
+      after(:create) do |question, evaluator|
+        create(:votation_type_multiple, questionable: question, max_votes: evaluator.max_votes)
         question.reload
       end
     end
 
     factory :poll_question_prioritized do
-      after(:create) do |question|
-        create(:votation_type_prioritized, questionable: question)
+      transient do
+        max_votes { 3 }
+      end
+      after(:create) do |question, evaluator|
+        create(:votation_type_prioritized, questionable: question, max_votes: evaluator.max_votes)
         question.reload
       end
     end
