@@ -3,13 +3,11 @@ require "rails_helper"
 describe Polls::Questions::AnswersComponent do
   include Rails.application.routes.url_helpers
   let(:poll) { create(:poll) }
-  let(:question) { create(:poll_question, poll: poll) }
-  let!(:poll_question_answer_1) { create(:poll_question_answer, question: question, title: "Answer A") }
-  let!(:poll_question_answer_2) { create(:poll_question_answer, question: question, title: "Answer B") }
+  let(:question) { create(:poll_question, :with_answers, with_answers_count: 2, poll: poll) }
 
   it "renders answers in given order" do
-    poll_question_answer_1.update!(given_order: 2)
-    poll_question_answer_2.update!(given_order: 1)
+    question.question_answers.first.update!(given_order: 2)
+    question.question_answers.last.update!(given_order: 1)
 
     render_inline Polls::Questions::AnswersComponent.new(question)
 
@@ -77,22 +75,10 @@ describe Polls::Questions::AnswersComponent do
     expect(page).to have_selector "span.disabled", text: "Answer B"
   end
 
-  it "user cannot vote when poll expired it renders disabled answers" do
-    question = create(:poll_question, poll: create(:poll, :expired))
-    create(:poll_question_answer, question: question, title: "Answer A")
-    create(:poll_question_answer, question: question, title: "Answer B")
-    sign_in(create(:user, :level_two))
-
-    render_inline Polls::Questions::AnswersComponent.new(question)
-
-    expect(page).to have_selector "span.disabled", text: "Answer A"
-    expect(page).to have_selector "span.disabled", text: "Answer B"
-  end
-
   describe "geozone" do
     let(:poll) { create(:poll, geozone_restricted: true) }
     let(:geozone) { create(:geozone) }
-    let(:question) { create(:poll_question, poll: poll) }
+    let(:question) { create(:poll_question, :with_answers, with_answers_count: 2, poll: poll) }
 
     it "when geozone which is not theirs it renders disabled answers" do
       poll.geozones << geozone
