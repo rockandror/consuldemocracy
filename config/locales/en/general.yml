@@ -636,6 +636,7 @@ en:
     show:
       vote_answer: "Vote %{answer}"
       voted: "You have voted %{answer}"
+    read_more_about: "Read more about:"
   proposal_notifications:
     new:
       title: "Send notification"
