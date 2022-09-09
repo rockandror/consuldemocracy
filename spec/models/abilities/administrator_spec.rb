@@ -19,6 +19,7 @@ describe Abilities::Administrator do
   let(:poll) { create(:poll) }
   let(:poll_question) { create(:poll_question) }
   let(:poll_question_answer) { create(:poll_question_answer) }
+  let(:poll_answer_video) { create(:poll_answer_video) }
 
   let(:past_process) { create(:legislation_process, :past) }
   let(:past_draft_process) { create(:legislation_process, :past, :not_published) }
@@ -116,6 +117,8 @@ describe Abilities::Administrator do
   it { should be_able_to(:update, Poll::Question) }
 
   it { should be_able_to(:manage, Poll::Question::Answer) }
+
+  it { should be_able_to(:manage, Poll::Question::Answer::Video) }
 
   it { is_expected.to be_able_to :manage, Dashboard::AdministratorTask }
   it { is_expected.to be_able_to :manage, dashboard_administrator_task }
