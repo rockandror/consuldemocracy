@@ -71,7 +71,7 @@ describe "Poll Votation Type" do
     question = create(:poll_question_prioritized, :with_answers, with_answers_count: 4)
     visit poll_path(question.poll)
 
-    question_help = "You can select a maximum of 3 answers. Pick answers in the order you want."
+    question_help = "You can select a maximum of 3 answers. You can drag and drop to reorder the answers."
     expect(page).to have_content(question_help)
     expect(page).to have_content(question.title)
     expect(page).to have_button("Vote Answer A")
@@ -96,7 +96,10 @@ describe "Poll Votation Type" do
     within "ol" do
       expect("Answer D").to appear_before("Answer C")
       expect("Answer C").to appear_before("Answer A")
-      expect(page).not_to have_content("Answer B")
+      expect(page).to have_selector("li[data-answer-id=\"Answer D\"]")
+      expect(page).to have_selector("li[data-answer-id=\"Answer C\"]")
+      expect(page).to have_selector("li[data-answer-id=\"Answer A\"]")
+      expect(page).not_to have_selector("li[data-answer-id=\"Answer B\"]")
     end
 
     within("#poll_question_#{question.id}_answers") do
@@ -119,13 +122,20 @@ describe "Poll Votation Type" do
       click_button "Vote Answer B"
 
       expect(page).to have_button("You have voted Answer B")
+
+      click_button "Vote Answer A"
+
+      expect(page).to have_button("You have voted Answer A")
     end
 
     within "ol" do
-      expect(page).to have_content("Answer B")
-      expect(page).not_to have_content("Answer A")
-      expect(page).not_to have_content("Answer C")
-      expect(page).not_to have_content("Answer D")
+      expect(page).to have_selector("li[data-answer-id=\"Answer B\"]:first-child")
+      expect(page).to have_selector("li[data-answer-id=\"Answer A\"]:last-child")
+
+      find("li", text: "Answer A").drag_to(find("li", text: "Answer B"))
+
+      expect(page).to have_selector("li[data-answer-id=\"Answer A\"]:first-child")
+      expect(page).to have_selector("li[data-answer-id=\"Answer B\"]:last-child")
     end
   end
 end

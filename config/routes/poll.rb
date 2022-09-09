@@ -7,6 +7,7 @@ resources :polls, only: [:show, :index] do
   resources :questions, controller: "polls/questions", shallow: true do
     member do
       post :answer
+      post :prioritize_answers
       delete :answer, to: "polls/answers#delete"
     end
   end

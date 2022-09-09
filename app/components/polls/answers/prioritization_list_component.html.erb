@@ -1,6 +1,6 @@
-<ol>
+<ol class="sortable" data-js-url="<%= prioritize_answers_question_path(question) %>">
   <% user_answers.each do |answer| %>
-    <li>
+    <li data-answer-id="<%= answer.answer %>">
       <span class="button answered expanded" title="<%= t("poll_questions.show.voted", answer: answer.answer) %>">
         <%= answer.answer %>
       </span>

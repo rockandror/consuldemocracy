@@ -639,7 +639,7 @@ en:
     description:
       unique: "You can select a maximum of 1 answer."
       multiple: "You can select a maximum of %{maximum} answers."
-      prioritized: "You can select a maximum of %{maximum} answers. Pick answers in the order you want."
+      prioritized: "You can select a maximum of %{maximum} answers. You can drag and drop to reorder the answers."
     read_more_about: "Read more about:"
   proposal_notifications:
     new:

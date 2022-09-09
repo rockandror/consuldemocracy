@@ -9,13 +9,29 @@ class Polls::QuestionsController < ApplicationController
     answer.answer = params[:answer]
     answer.save_and_record_voter_participation
 
-    respond_to do |format|
-      format.html do
-        redirect_to request.referer
-      end
-      format.js do
-        render :answers
+    respond_by_format
+  end
+
+  def prioritize_answers
+    if params[:ordered_list].present?
+      params[:ordered_list].each_with_index do |title, i|
+        @question.answers.by_author(current_user.id).find_by(answer: title).update(order: i + 1)
       end
     end
+
+    respond_by_format
   end
+
+  private
+
+    def respond_by_format
+      respond_to do |format|
+        format.html do
+          redirect_to request.referer
+        end
+        format.js do
+          render :answers
+        end
+      end
+    end
 end

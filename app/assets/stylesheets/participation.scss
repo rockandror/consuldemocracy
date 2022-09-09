@@ -1685,6 +1685,19 @@
       }
     }
   }
+
+  .ui-sortable-handle {
+    @include has-fa-icon(grip-vertical, solid, after);
+    position: relative;
+
+    &::after {
+      color: $text-medium;
+      font-size: rem-calc(20);
+      position: absolute;
+      right: -24px;
+      top: 24px;
+    }
+  }
 }
 
 // 09. Polls results and stats

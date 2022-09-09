@@ -42,4 +42,17 @@ describe Polls::Answers::PrioritizationListComponent do
     expect("Answer C").to appear_before("Answer A")
     expect("Answer A").to appear_before("Answer B")
   end
+
+  it "renders class and data to work with sortable feature" do
+    create(:poll_answer, author: user, question: question, answer: "Answer C")
+    create(:poll_answer, author: user, question: question, answer: "Answer A")
+    create(:poll_answer, author: user, question: question, answer: "Answer B")
+
+    render_inline Polls::Answers::PrioritizationListComponent.new(question)
+
+    expect(page).to have_selector "ol.sortable"
+    question.question_answers.each do |question_answer|
+      expect(page).to have_selector "li[data-answer-id='#{question_answer.title}']"
+    end
+  end
 end
