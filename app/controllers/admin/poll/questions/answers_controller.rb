@@ -59,9 +59,4 @@ class Admin::Poll::Questions::AnswersController < Admin::Poll::BaseController
 
       [*attributes, translation_params(Poll::Question::Answer)]
     end
-
-    def resource
-      load_answer unless @answer
-      @answer
-    end
 end
