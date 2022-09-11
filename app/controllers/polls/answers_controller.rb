@@ -4,8 +4,17 @@ class Polls::AnswersController < ApplicationController
   before_action :load_question
 
   def delete
-    @question.answers.find_by(author: current_user, answer: params[:answer]).destroy!
-    render "polls/questions/answers"
+    @answer = @question.answers.find_by(author: current_user, answer: params[:answer])
+    @answer.destroy_and_remove_voter_participation
+
+    respond_to do |format|
+      format.html do
+        redirect_to request.referer
+      end
+      format.js do
+        render "polls/questions/answers"
+      end
+    end
   end
 
   private
