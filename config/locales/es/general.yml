@@ -630,6 +630,9 @@ es:
       results:
         title: "Preguntas"
         most_voted_answer: "Respuesta más votada: "
+      prioritized_list:
+        move_up: "Reordenar lista. Mover respuesta \"%{answer}\" arriba."
+        move_down: "Reordenar lista. Mover respuesta \"%{answer}\" abajo."
     poll_header:
       back_to_proposal: Volver a la propuesta
   poll_questions:

@@ -1,9 +1,15 @@
 <ol class="sortable" data-js-url="<%= prioritize_answers_question_path(question) %>">
   <% user_answers.each do |answer| %>
     <li data-answer-id="<%= answer.answer %>">
-      <span class="button answered expanded" title="<%= t("poll_questions.show.voted", answer: answer.answer) %>">
-        <%= answer.answer %>
-      </span>
+      <div class="button answered expanded" title="<%= t("poll_questions.show.voted", answer: answer.answer) %>">
+        <span class="answer">
+          <%= answer.answer %>
+        </span>
+        <span class="reorder">
+          <%= move_up_button(answer) %>
+          <%= move_down_button(answer) %>
+        </span>
+      </div>
     </li>
   <% end %>
 </ol>

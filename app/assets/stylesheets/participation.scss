@@ -1677,11 +1677,42 @@
         content: counter(number)". ";
         left: 6px;
         position: absolute;
-        top: 12px;
+        top: 18px;
       }
 
       &:not(.ui-sortable-placeholder) {
         counter-increment: number;
+      }
+
+      .answered {
+        display: flex;
+      }
+
+      .answer {
+        order: 1;
+        flex-basis: 90%;
+        align-self: center;
+        text-align: left;
+      }
+
+      .reorder {
+        order: 2;
+        flex-grow: 0;
+        flex-basis: 7rem;
+        display: flex;
+        justify-content: flex-end;
+        align-self: center;
+      }
+
+      .reorder button {
+        @include hollow-button($black);
+        padding: 0.35em 0.5em;
+        margin-left: $line-height / 4;
+      }
+
+      .reorder button:hover {
+        background: $black;
+        color: $white;
       }
     }
   }
@@ -1692,10 +1723,10 @@
 
     &::after {
       color: $text-medium;
-      font-size: rem-calc(20);
+      font-size: rem-calc(25);
       position: absolute;
-      right: -24px;
-      top: 24px;
+      right: -22px;
+      top: 18px;
     }
   }
 }

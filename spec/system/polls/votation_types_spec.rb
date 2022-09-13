@@ -137,5 +137,19 @@ describe "Poll Votation Type" do
       expect(page).to have_selector("li[data-answer-id=\"Answer A\"]:first-child")
       expect(page).to have_selector("li[data-answer-id=\"Answer B\"]:last-child")
     end
+
+    click_button "Reorder list. Move answer \"Answer A\" down."
+
+    within "ol" do
+      expect(page).to have_selector("li[data-answer-id=\"Answer B\"]:first-child")
+      expect(page).to have_selector("li[data-answer-id=\"Answer A\"]:last-child")
+    end
+
+    click_button "Reorder list. Move answer \"Answer A\" up."
+
+    within "ol" do
+      expect(page).to have_selector("li[data-answer-id=\"Answer A\"]:first-child")
+      expect(page).to have_selector("li[data-answer-id=\"Answer B\"]:last-child")
+    end
   end
 end

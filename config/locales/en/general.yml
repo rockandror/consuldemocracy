@@ -630,6 +630,9 @@ en:
       results:
         title: "Questions"
         most_voted_answer: "Most voted answer: "
+      prioritized_list:
+        move_up: "Reorder list. Move answer \"%{answer}\" up."
+        move_down: "Reorder list. Move answer \"%{answer}\" down."
     poll_header:
       back_to_proposal: Back to proposal
   poll_questions:
