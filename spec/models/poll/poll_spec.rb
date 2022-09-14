@@ -82,6 +82,27 @@ describe Poll do
         poll.ends_at = 1.day.ago
         expect(poll).not_to be_valid
       end
+
+      it "is valid if changing the end date for a non-expired poll" do
+        poll = create(:poll, starts_at: 1.day.ago, ends_at: 2.days.from_now)
+
+        poll.ends_at = 1.day.from_now
+        expect(poll).to be_valid
+      end
+
+      it "is valid if the past end date is the same as it was" do
+        poll = create(:poll, starts_at: 3.days.ago, ends_at: 2.days.ago)
+        poll.ends_at = poll.ends_at
+
+        expect(poll).to be_valid
+      end
+
+      it "is not valid if changing the end date for an expired poll" do
+        poll = create(:poll, :expired)
+
+        poll.ends_at = 1.day.from_now
+        expect(poll).not_to be_valid
+      end
     end
   end
 
