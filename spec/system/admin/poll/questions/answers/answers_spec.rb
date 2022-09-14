@@ -5,6 +5,9 @@ describe "Answers", :admin do
     question = create(:poll_question)
 
     visit admin_question_path(question)
+
+    expect(page).to have_link "Go back", href: admin_question_path(question)
+
     click_link "Add answer"
 
     fill_in "Answer", with: "The answer is always 42"
