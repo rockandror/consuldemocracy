@@ -14,17 +14,15 @@ describe Polls::Questions::AnswersComponent do
     expect("Answer B").to appear_before("Answer A")
   end
 
-  it "renders links to vote question answers" do
+  it "renders buttons to vote question answers" do
     sign_in(create(:user, :verified))
     create(:poll_question_answer, question: question, title: "Answer A")
     create(:poll_question_answer, question: question, title: "Answer B")
 
     render_inline Polls::Questions::AnswersComponent.new(question)
 
-    href_a = answer_question_path(question, answer: "Answer A")
-    expect(page).to have_link("Answer A", href: href_a)
-    href_b = answer_question_path(question, answer: "Answer B")
-    expect(page).to have_link("Answer B", href: href_b)
+    expect(page).to have_button("Answer A")
+    expect(page).to have_button("Answer B")
   end
 
   it "renders a span instead of a link for existing user answers" do
@@ -38,9 +36,8 @@ describe Polls::Questions::AnswersComponent do
     render_inline Polls::Questions::AnswersComponent.new(question)
 
     expect(page).to have_selector("span", text: "Answer A")
-    expect(page).not_to have_link("Answer A")
-    href_b = answer_question_path(question, answer: "Answer B")
-    expect(page).to have_link("Answer B", href: href_b)
+    expect(page).not_to have_button("Answer A")
+    expect(page).to have_button("Answer B")
   end
 
   it "hides current answer and shows links in successive sessions" do
@@ -53,10 +50,8 @@ describe Polls::Questions::AnswersComponent do
 
     render_inline Polls::Questions::AnswersComponent.new(question)
 
-    href_a = answer_question_path(question, answer: "Answer A")
-    expect(page).to have_link("Answer A", href: href_a)
-    href_b = answer_question_path(question, answer: "Answer B")
-    expect(page).to have_link("Answer B", href: href_b)
+    expect(page).to have_button("Answer A")
+    expect(page).to have_button("Answer B")
   end
 
   it "when user is not signed in, renders answers links pointing to user sign in path" do

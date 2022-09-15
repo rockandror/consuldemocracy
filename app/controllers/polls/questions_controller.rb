@@ -9,5 +9,14 @@ class Polls::QuestionsController < ApplicationController
 
     answer.answer = params[:answer]
     answer.save_and_record_voter_participation
+
+    respond_to do |format|
+      format.html do
+        redirect_to request.referer
+      end
+      format.js do
+        render :answer
+      end
+    end
   end
 end

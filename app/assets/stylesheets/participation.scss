@@ -1634,6 +1634,7 @@
 }
 
 .poll-question-answers {
+  display: flex;
 
   .button {
     margin-right: $line-height / 4;
