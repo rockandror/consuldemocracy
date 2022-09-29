@@ -39,18 +39,6 @@ describe Polls::Questions::AnswersComponent do
     expect(page).to have_button "Answer B"
   end
 
-  it "hides current answer and shows buttons in successive sessions" do
-    user = create(:user, :verified)
-    create(:poll_answer, author: user, question: question, answer: "Answer A")
-    allow(user).to receive(:current_sign_in_at).and_return(Time.current)
-    sign_in(user)
-
-    render_inline Polls::Questions::AnswersComponent.new(question)
-
-    expect(page).to have_button "Answer A"
-    expect(page).to have_button "Answer B"
-  end
-
   it "when user is not signed in, renders answers links pointing to user sign in path" do
     render_inline Polls::Questions::AnswersComponent.new(question)
 
