@@ -14,6 +14,10 @@ class Polls::Questions::AnswersComponent < ApplicationComponent
     question.question_answers
   end
 
+  def user_answer(question_answer)
+    user_answers.find_by(answer: question_answer.title)
+  end
+
   private
 
     def user_answers
