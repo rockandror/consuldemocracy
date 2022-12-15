@@ -1638,6 +1638,7 @@ en:
       index:
         create: Create tenant
       new:
+        admin_information: "When you create a tenant, your current user <strong>\"%{username}\"</strong> with the email <strong>\"%{email}\"</strong> and your password will be copied into the new tenant's database and will be automatically granted administration permissions. Note that these user accounts are stored in completely separate databases, so if you change the password of your user in one tenant, your accounts in other tenants will remain intact."
         title: New tenant
       update:
         notice: Tenant updated successfully

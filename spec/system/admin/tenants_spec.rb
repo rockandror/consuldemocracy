@@ -40,6 +40,34 @@ describe "Tenants", :admin, :seed_tenants do
       expect(page).to have_current_path root_path
       expect(page).to have_link "Sign in"
     end
+
+    scenario "Updates new tenant default user with the main tenant administrator login credentials" do
+      user = create(:user, password: "secret_password")
+      create(:administrator, user: user)
+      login_as(user)
+
+      visit new_admin_tenant_path
+
+      expect(page).to have_content "When you create a tenant, your current user"
+
+      fill_in "Name", with: "Earthlings"
+      fill_in "Subdomain", with: "earth"
+      click_button "Create tenant"
+
+      expect(page).to have_content "Tenant created successfully"
+
+      click_link "earth.lvh.me"
+
+      expect(page).to have_link "Sign in"
+
+      click_link "Sign in"
+      fill_in "Email or username", with: user.username
+      fill_in "Password", with: "secret_password"
+      click_button "Enter"
+
+      expect(page).to have_content "You have been signed in successfully."
+      expect(current_host).to eq "http://earth.lvh.me"
+    end
   end
 
   scenario "Update" do
