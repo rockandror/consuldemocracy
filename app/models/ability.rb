@@ -2,6 +2,8 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    return merge Abilities::TenantAdministrator.new(user) if multitenancy_management_mode?
+
     if user # logged-in users
       merge Abilities::Valuator.new(user) if user.valuator?
 
@@ -20,4 +22,11 @@ class Ability
       merge Abilities::Everyone.new(user)
     end
   end
+
+  private
+
+    def multitenancy_management_mode?
+      Rails.application.config.multitenancy && Rails.application.config.multitenancy_management_mode &&
+        Tenant.default?
+    end
 end
