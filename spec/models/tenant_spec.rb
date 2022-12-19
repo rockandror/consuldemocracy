@@ -117,6 +117,12 @@ describe Tenant do
       expect(Tenant.resolve_host("www.consul.dev")).to eq "www.consul.dev"
     end
 
+    it "raises an exception when accessing a hidden tenant" do
+      insert(:tenant, schema: "saturn", hidden_at: Time.current)
+
+      expect { Tenant.resolve_host("saturn.consul.dev") }.to raise_exception(Apartment::TenantNotFound)
+    end
+
     context "multitenancy disabled" do
       before { allow(Rails.application.config).to receive(:multitenancy).and_return(false) }
 
@@ -318,6 +324,11 @@ describe Tenant do
       expect(build(:tenant, schema: "subdomainx")).not_to be_valid
     end
 
+    it "is not valid with the schema of an already existing hidden record" do
+      insert(:tenant, schema: "subdomainx", hidden_at: Time.current)
+      expect(build(:tenant, schema: "subdomainx")).not_to be_valid
+    end
+
     it "is not valid with an excluded subdomain" do
       %w[mail public shared_extensions www].each do |subdomain|
         tenant.schema = subdomain
@@ -342,6 +353,11 @@ describe Tenant do
 
     it "is not valid with an already existing name" do
       insert(:tenant, name: "Name X")
+      expect(build(:tenant, name: "Name X")).not_to be_valid
+    end
+
+    it "is not valid with the name of an already existing hidden record" do
+      insert(:tenant, name: "Name X", hidden_at: Time.current)
       expect(build(:tenant, name: "Name X")).not_to be_valid
     end
 

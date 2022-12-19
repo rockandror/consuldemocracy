@@ -12,6 +12,8 @@ class Tenant < ApplicationRecord
   after_update :rename_schema
   after_destroy :destroy_schema
 
+  scope :only_hidden, -> { where.not(hidden_at: nil) }
+
   def self.find_by_domain(host)
     domain.find_by(schema: host)
   end
@@ -30,10 +32,12 @@ class Tenant < ApplicationRecord
       host_domain = allowed_domains.find { |domain| host == domain || host.ends_with?(".#{domain}") }
       schema = host_without_www.sub(/\.?#{host_domain}\Z/, "").presence
 
-      if find_by_domain(schema)
-        raise Apartment::TenantNotFound
-      else
-        schema
+      if schema
+        if only_hidden.or(domain).find_by(schema: schema)
+          raise Apartment::TenantNotFound
+        else
+          schema
+        end
       end
     end
   end
@@ -135,6 +139,18 @@ class Tenant < ApplicationRecord
 
   def host
     self.class.host_for(schema)
+  end
+
+  def hide
+    update_attribute(:hidden_at, Time.current)
+  end
+
+  def restore
+    update_attribute(:hidden_at, nil)
+  end
+
+  def hidden?
+    hidden_at.present?
   end
 
   private
