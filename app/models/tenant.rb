@@ -13,6 +13,7 @@ class Tenant < ApplicationRecord
   after_destroy :destroy_schema
 
   scope :only_hidden, -> { where.not(hidden_at: nil) }
+  scope :enabled,     -> { where(hidden_at: nil) }
 
   def self.find_by_domain(host)
     domain.find_by(schema: host)
@@ -24,20 +25,18 @@ class Tenant < ApplicationRecord
 
     host_without_www = host.delete_prefix("www.")
 
-    if find_by_domain(host)
-      host
-    elsif find_by_domain(host_without_www)
-      host_without_www
-    else
-      host_domain = allowed_domains.find { |domain| host == domain || host.ends_with?(".#{domain}") }
-      schema = host_without_www.sub(/\.?#{host_domain}\Z/, "").presence
+    return host if enabled.find_by_domain(host)
 
-      if schema
-        if only_hidden.or(domain).find_by(schema: schema)
-          raise Apartment::TenantNotFound
-        else
-          schema
-        end
+    return host_without_www if enabled.find_by_domain(host_without_www)
+
+    host_domain = allowed_domains.find { |domain| host == domain || host.ends_with?(".#{domain}") }
+    schema = host_without_www.sub(/\.?#{host_domain}\Z/, "").presence
+
+    if schema
+      if only_hidden.or(domain).find_by(schema: schema)
+        raise Apartment::TenantNotFound
+      else
+        schema
       end
     end
   end
