@@ -138,6 +138,16 @@ module Consul
 
     # Set to true to enable managing different tenants using the same application
     config.multitenancy = Rails.application.secrets.multitenancy
+
+    # Allow accessing the application through a domain so subdomains can be used
+    config.hosts = ->(_) {
+      domains = Tenant.domain.enabled.pluck(:schema)
+      if Rails.env.development?
+        domains << "lvh.me"
+        domains << /.*\.lvh\.me/
+      end
+      domains
+    }
   end
 end
 
