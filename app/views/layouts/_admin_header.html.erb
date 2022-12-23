@@ -40,6 +40,7 @@
             <ul class="menu" data-responsive-menu="medium-dropdown">
               <%= render "shared/admin_login_items", current_user: current_user %>
               <%= render "layouts/notification_item", current_user: current_user %>
+              <%= render "shared/user_items", current_user: current_user %>
               <%= render "devise/menu/login_items", current_user: current_user %>
             </ul>
           </div>

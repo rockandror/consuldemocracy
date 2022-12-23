@@ -1,0 +1,4 @@
+<% if user_signed_in? %>
+  <%= render "shared/my_activity_link", current_user: current_user %>
+  <%= render "shared/my_account_link", current_user: current_user %>
+<% end %>
