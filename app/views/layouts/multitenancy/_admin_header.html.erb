@@ -1,0 +1,31 @@
+<header class="header">
+  <div class="top-links">
+    <%= render "shared/locale_switcher" %>
+  </div>
+
+  <div class="expanded row admin-top-bar">
+    <%= render "layouts/responsive_menu_header" %>
+
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <h1>
+          <%= link_to namespaced_root_path do %>
+            <%= setting["org_name"] %>
+            <br><small><%= namespaced_header_title %></small>
+          <% end %>
+        </h1>
+      </div>
+
+      <% if current_administrator? || current_user&.administrator? %>
+        <div id="responsive_menu">
+          <div class="top-bar-right">
+            <ul class="menu" data-responsive-menu="medium-dropdown">
+              <%= render "shared/my_account_link", current_user: current_user %>
+              <%= render "devise/menu/login_items", current_user: current_user %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</header>

@@ -116,4 +116,10 @@ class ApplicationController < ActionController::Base
 
       redirect_to path, response_status
     end
+
+    def multitenancy_management_mode?
+      Rails.application.config.multitenancy &&
+        Tenant.default? &&
+          Rails.application.config.multitenancy_management_mode
+    end
 end
