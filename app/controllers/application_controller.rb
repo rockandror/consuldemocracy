@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
   around_action :switch_locale
   before_action :track_email_campaign
   before_action :set_return_url
+  before_action :redirect_to_admin, if: :multitenancy_management_mode?
 
   check_authorization unless: :devise_controller?
   self.responder = ApplicationResponder
@@ -115,6 +116,10 @@ class ApplicationController < ActionController::Base
       path = url_for(request.query_parameters.merge(path_options))
 
       redirect_to path, response_status
+    end
+
+    def redirect_to_admin
+      redirect_to admin_root_path if request.path == root_path
     end
 
     def multitenancy_management_mode?

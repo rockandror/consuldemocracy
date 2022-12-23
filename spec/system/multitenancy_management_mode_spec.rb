@@ -29,6 +29,22 @@ describe "Multitenancy management mode", :admin do
         expect(page).to have_css "li", count: 1
       end
     end
+
+    scenario "redirects root path requests to the admin root path" do
+      visit root_path
+
+      expect(page).to have_current_path admin_root_path
+    end
+
+    scenario "does not redirect other tenants to the admin root path", :seed_tenants do
+      create(:tenant, schema: "mars")
+
+      with_subdomain("mars") do
+        visit root_path
+
+        expect(page).to have_link "Debates"
+      end
+    end
   end
 
   context "when multitenancy_management_mode is set to false" do
