@@ -1,7 +1,7 @@
 <div class="comment-body">
   <div class="comment-info">
 
-    <%= avatar_image(participant, seed: participant.id, size: 32, class: "author-photo") %>
+    <%= render Users::AvatarComponent.new(user: participant, size: 32, css: "author-photo") %>
 
     <div class="comment-info">
 
