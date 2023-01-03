@@ -12,4 +12,8 @@ class Users::AvatarComponent < ApplicationComponent
   def seed
     user&.id
   end
+
+  def avatar_enabled?
+    feature?(:allow_images) && user&.avatar&.attached? && user&.avatar&.persisted?
+  end
 end

@@ -1,0 +1,10 @@
+.user-avatar-form {
+
+  @include breakpoint(medium) {
+    margin-left: $line-height / 4;
+  }
+
+  [type="file"] {
+    display: none;
+  }
+}

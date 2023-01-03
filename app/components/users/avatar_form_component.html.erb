@@ -1,0 +1,4 @@
+<%= form_for user, as: :account, url: account_path, html: { class: "user-avatar-form" } do |f| %>
+  <%= f.label :avatar, t("users.avatar_form.upload"), class: "button small hollow" %>
+  <%= f.file_field :avatar, label: false, accept: Image.accepted_content_types, onchange: "form.submit()" %>
+<% end %>

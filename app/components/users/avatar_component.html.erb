@@ -1,1 +1,5 @@
-<%= avatar_image(user, seed: seed, size: size, class: css) %>
+<% if avatar_enabled? %>
+  <%= image_tag user.avatar.variant(resize_to_fill: [size, size]), class: "avatar #{css}", alt: user.username %>
+<% else %>
+  <%= avatar_image(user, seed: seed, size: size, class: css) %>
+<% end %>

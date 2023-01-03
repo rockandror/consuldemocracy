@@ -782,6 +782,8 @@ en:
     manage:
       all: "You do not have permission to carry out the action '%{action}' on %{subject}."
   users:
+    avatar_form:
+      upload: "Upload avatar"
     login_to_comment: "You must %{signin} or %{signup} to leave a comment."
     login_to_continue: "You must %{signin} or %{signup} to continue."
     signin: "sign in"

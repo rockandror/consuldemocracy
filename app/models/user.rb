@@ -13,6 +13,7 @@ class User < ApplicationRecord
   include Graphqlable
 
   has_one :administrator
+  has_one_attached :avatar, dependent: :destroy
   has_one :moderator
   has_one :valuator
   has_one :manager
@@ -89,6 +90,16 @@ class User < ApplicationRecord
   validates :terms_of_service, acceptance: { allow_nil: false }, on: :create
 
   validates_associated :organization, message: false
+
+  validates :avatar,
+    file_content_type: {
+      allow: ->(_) { Image.accepted_content_types },
+      if: -> { avatar.attached? }
+    },
+    file_size: {
+      less_than_or_equal_to: ->(_) { Image.max_file_size.megabytes },
+      if: -> { avatar.attached? }
+    }
 
   accepts_nested_attributes_for :organization, update_only: true
 
