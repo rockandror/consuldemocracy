@@ -15,6 +15,11 @@ class AccountController < ApplicationController
     end
   end
 
+  def destroy_avatar
+    @account.avatar.purge
+    redirect_to account_path, notice: t("flash.actions.save_changes.notice")
+  end
+
   private
 
     def set_account

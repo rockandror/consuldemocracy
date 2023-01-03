@@ -783,6 +783,9 @@ es:
       all: "No tienes permiso para realizar la acción '%{action}' sobre %{subject}."
   users:
     avatar_form:
+      destroy:
+        label: "Eliminar avatar"
+        confirm: "¿Estás seguro? Esta acción eliminará tu avatar."
       upload: "Subir avatar"
     login_to_comment: "Necesitas %{signin} o %{signup} para comentar."
     login_to_continue: "Necesitas %{signin} o %{signup} para continuar."

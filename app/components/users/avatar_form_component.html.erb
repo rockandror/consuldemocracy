@@ -1,4 +1,14 @@
-<%= form_for user, as: :account, url: account_path, html: { class: "user-avatar-form" } do |f| %>
-  <%= f.label :avatar, t("users.avatar_form.upload"), class: "button small hollow" %>
-  <%= f.file_field :avatar, label: false, accept: Image.accepted_content_types, onchange: "form.submit()" %>
+<% if user.avatar.attached? && user.avatar.persisted? %>
+  <%= button_to t("users.avatar_form.destroy.label"),
+                  destroy_avatar_account_path,
+                  method: :delete,
+                  class: "button small hollow",
+                  form_class: "user-avatar-form",
+                  data: { confirm: t("users.avatar_form.destroy.confirm") } %>
+
+<% else %>
+  <%= form_for user, as: :account, url: account_path, html: { class: "user-avatar-form" } do |f| %>
+    <%= f.label :avatar, t("users.avatar_form.upload"), class: "button small hollow" %>
+    <%= f.file_field :avatar, label: false, accept: Image.accepted_content_types, onchange: "form.submit()" %>
+  <% end %>
 <% end %>
