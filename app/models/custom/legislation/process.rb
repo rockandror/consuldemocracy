@@ -10,6 +10,7 @@ class Legislation::Process < ApplicationRecord
   audited on: [:create, :update, :destroy]
 
   acts_as_paranoid column: :hidden_at
+  acts_as_taggable_on :customs
 
   attribute :background_color, default: "#e7f2fc"
   attribute :font_color, default: "#222222"
