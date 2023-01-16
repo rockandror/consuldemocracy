@@ -28,7 +28,8 @@ en:
   application:
     close: Close
     menu: Menu
-    subtitle: wwww.tenerife.es | Sede Electrónica
+    subtitle1: "wwww.tenerife.es"
+    subtitle2: Sede Electrónica
   comments:
     actions:
       confirm_delete: "Are you sure? This action will delete this comment. You can't undo this action."
