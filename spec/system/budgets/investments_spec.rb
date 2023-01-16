@@ -173,7 +173,7 @@ describe "Budget Investments" do
     expect(page).to have_content "Winner investment"
   end
 
-  context("Search") do
+  context("Search", :consul) do
     scenario "Search by text" do
       investment1 = create(:budget_investment, heading: heading, title: "Get Schwifty")
       investment2 = create(:budget_investment, heading: heading, title: "Schwifty Hello")
