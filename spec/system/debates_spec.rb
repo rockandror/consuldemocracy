@@ -527,7 +527,7 @@ describe "Debates" do
     end
   end
 
-  context "Search" do
+  context "Search", :consul do
     context "Basic search" do
       scenario "Search by text" do
         debate1 = create(:debate, title: "Get Schwifty")

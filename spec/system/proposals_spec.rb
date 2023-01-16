@@ -1110,7 +1110,7 @@ describe "Proposals" do
     end
   end
 
-  context "Search" do
+  context "Search", :consul do
     context "Basic search" do
       scenario "Search by text" do
         proposal1 = create(:proposal, title: "Get Schwifty")
