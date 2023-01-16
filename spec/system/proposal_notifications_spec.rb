@@ -175,7 +175,7 @@ describe "Proposal Notifications" do
     end
   end
 
-  context "In-app notifications from the proposal's author" do
+  context "In-app notifications from the proposal's author", :consul do
     scenario "Voters who are followed should receive a notification" do
       author = create(:user)
       proposal = create(:proposal, author: author)
