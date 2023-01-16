@@ -4,7 +4,7 @@ shared_examples "notifiable in-app" do |factory_name|
 
   before { create(:notification, :read, notifiable: notifiable, user: author) }
 
-  scenario "Notification message is shown" do
+  scenario "Notification message is shown", :consul do
     create(:notification, notifiable: notifiable, user: author)
 
     login_as author
@@ -13,7 +13,7 @@ shared_examples "notifiable in-app" do |factory_name|
     expect(page).to have_link "You have a new notification"
   end
 
-  scenario "A user commented on my notifiable" do
+  scenario "A user commented on my notifiable", :consul do
     notification = create(:notification, notifiable: notifiable, user: author)
 
     login_as author
@@ -100,7 +100,7 @@ shared_examples "notifiable in-app" do |factory_name|
     expect(page).to have_xpath "//a[@href='#{notification_path(Notification.last)}']"
   end
 
-  scenario "Author commented on his own notifiable" do
+  scenario "Author commented on his own notifiable", :consul do
     login_as(author)
     visit path_for(notifiable)
 
@@ -117,7 +117,7 @@ shared_examples "notifiable in-app" do |factory_name|
     end
   end
 
-  scenario "Author replied to his own comment" do
+  scenario "Author replied to his own comment", :consul do
     comment = create :comment, commentable: notifiable, user: author
 
     login_as author
