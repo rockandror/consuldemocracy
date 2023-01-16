@@ -202,7 +202,7 @@
       <div id="category_tags" class="tags">
         <%= f.label :category_tag_list, t("proposals.form.tag_category_label") %>
         <% @process.tag_list_on(:customs).each do |tag| %>
-          <a class="js-add-tag-link"><%= tag.name %></a>
+          <a class="js-add-tag-link"><%= tag %></a>
         <% end %>
       </div>
 
