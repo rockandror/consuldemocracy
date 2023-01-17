@@ -2,7 +2,6 @@ es:
   admin:
     legislation:
       processes:
-        export: Exportar todos los procesos
         export_list:
           id: ID
           start_date: Fecha de inicio
@@ -21,7 +20,6 @@ es:
         new:
           title: Crear nuevo proceso de propuestas del Cabildo
       answers:
-        export: Exportar todos los procesos
         export_list:
           id: ID
           type: Tipo de respuesta
@@ -63,7 +61,6 @@ es:
           description: Descripción
           url: URL
           geozone: Geozona
-          categories: Categoría
           tags: Tags
           ods: ODS
     shared:
@@ -82,7 +79,6 @@ es:
         title: Registro de actividad
         datetime: Fecha y hora
         user: Usuario
-        role: Rol
         activity: Actividad
         model: Tipo
         object: ID
