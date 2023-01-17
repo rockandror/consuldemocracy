@@ -1,10 +1,5 @@
 es:
   admin:
-    actions:
-      confirm: "¿Estás seguro?"
-    budgets:
-      create:
-        notice: "¡Presupuestos participativos creados con éxito!"
     dashboard:
       actions:
         index:
