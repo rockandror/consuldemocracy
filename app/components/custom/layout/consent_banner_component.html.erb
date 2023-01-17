@@ -12,22 +12,6 @@
       <% end %>
       </span>
     </div>
-    <script>
-    document.addEventListener('cookies-eu-acknowledged', function() {
-      var google_tag_manager_id = $(".cookies-eu").data("");
-      $.ajax({
-        url: "https://www.googletagmanager.com/gtag/js?id=" + google_tag_manager_id,
-        dataType: "script",
-        success: () => {
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('consent', {'analytics_storage': 'allowed'});
-          gtag("config", google_tag_manager_id);
-        }
-      });
-    });
-    </script>
   <% end %>
 <% else %>
   <% raise Exception.new "'cookies' is a reserved Rails class, please rename your method" %>

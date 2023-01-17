@@ -117,6 +117,7 @@
 //= require_tree ./sdg_management
 //= require cookies_eu
 //= require google_search
+//= require custom/consent_banner
 
 var initialize_modules = function () {
   "use strict";
@@ -173,6 +174,7 @@ var initialize_modules = function () {
   App.Datepicker.initialize();
   App.SDGRelatedListSelector.initialize();
   App.SDGManagementRelationSearch.initialize();
+  App.ConsentBanner.initialize();
 };
 
 var destroy_non_idempotent_modules = function () {
