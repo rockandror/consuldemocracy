@@ -127,17 +127,6 @@ class Mailer < ApplicationMailer
     mail(to: @email_to.email, subject: @email.subject) if @email.can_be_sent?
   end
 
-  def contact(subject, intro, message)
-    @message = message
-    @subject = subject
-    @intro = intro
-    @email_to = Rails.application.secrets.contact_email
-
-    I18n.with_locale(I18n.default_locale) do
-      mail(to: @email_to, subject: @subject)
-    end
-  end
-
   private
 
     def with_user(user)
