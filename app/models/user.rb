@@ -2,17 +2,8 @@ class User < ApplicationRecord
   include Verification
 
   devise :database_authenticatable, :registerable, :confirmable, :recoverable, :rememberable,
-         :trackable, :lockable, :validatable, :omniauthable, :password_expirable, :secure_validatable,
+         :trackable, :validatable, :omniauthable, :password_expirable, :secure_validatable,
          authentication_keys: [:login]
-
-  audited on: [:create, :update, :destroy], except: [
-    :sign_in_count,
-    :last_sign_in_at,
-    :current_sign_in_at,
-    :locked_at,
-    :unlock_token,
-    :failed_attempts
-  ]
 
   acts_as_voter
   acts_as_paranoid column: :hidden_at
@@ -323,14 +314,6 @@ class User < ApplicationRecord
 
     search = term.strip
     where("email = ? OR username ILIKE ?", search, "%#{search}%")
-  end
-
-  def self.maximum_attempts
-    (Setting["login_attempts_before_lock"].to_i || 2)
-  end
-
-  def self.unlock_in
-    (Setting["time_to_unlock"].to_i || 2).minutes
   end
 
   def self.username_max_length

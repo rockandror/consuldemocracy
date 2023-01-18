@@ -174,8 +174,6 @@ class Setting < ApplicationRecord
         "related_content_score_threshold": -0.3,
         "featured_proposals_number": 3,
         "feature.dashboard.notification_emails": nil,
-        "login_attempts_before_lock": 4,
-        "time_to_unlock": 30,
         "remote_census.general.endpoint": "",
         "remote_census.request.method_name": "",
         "remote_census.request.structure": "",

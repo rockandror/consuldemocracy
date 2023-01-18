@@ -2,8 +2,6 @@ class Budget
   class Investment < ApplicationRecord
     SORTING_OPTIONS = { id: "id", supports: "cached_votes_up" }.freeze
 
-    audited on: [:create, :update, :destroy]
-
     include Rails.application.routes.url_helpers
     include Measurable
     include Sanitizable

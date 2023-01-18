@@ -23,7 +23,8 @@ class Setting
         consul_defaults
       else
         consul_defaults.merge({
-          # Overwrite default CONSUL settings or add new settings here
+          "login_attempts_before_lock": 4,
+          "time_to_unlock": 30
         })
       end
     end
