@@ -8,8 +8,6 @@ class DirectMessage < ApplicationRecord
   validates :receiver, presence: true
   validate  :max_per_day
 
-  audited on: [:create, :update, :destroy]
-
   scope :today, lambda { where(created_at: Date.current.all_day) }
 
   def max_per_day

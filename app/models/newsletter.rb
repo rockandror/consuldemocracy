@@ -1,8 +1,6 @@
 class Newsletter < ApplicationRecord
   has_many :activities, as: :actionable, inverse_of: :actionable
 
-  audited on: [:create, :update, :destroy]
-
   validates :subject, presence: true
   validates :segment_recipient, presence: true
   validates :from, presence: true, format: { with: /\A.+@.+\Z/ }

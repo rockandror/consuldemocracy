@@ -4,8 +4,6 @@ class Budget < ApplicationRecord
   include StatsVersionable
   include Reportable
 
-  audited on: [:create, :update, :destroy]
-
   translates :name, touch: true
   include Globalizable
 

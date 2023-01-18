@@ -1,8 +1,6 @@
 class Poll::Ballot < ApplicationRecord
   belongs_to :ballot_sheet
 
-  audited on: [:create, :update, :destroy]
-
   validates :ballot_sheet_id, presence: true
 
   def verify

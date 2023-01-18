@@ -3,6 +3,4 @@ class SDG::Relation < ApplicationRecord
 
   belongs_to :relatable, polymorphic: true, optional: false, touch: true
   belongs_to :related_sdg, polymorphic: true, optional: false
-
-  audited on: [:create, :update, :destroy]
 end

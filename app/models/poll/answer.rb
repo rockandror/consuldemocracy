@@ -4,8 +4,6 @@ class Poll::Answer < ApplicationRecord
 
   delegate :poll, :poll_id, to: :question
 
-  audited on: [:create, :update, :destroy]
-
   validates :question, presence: true
   validates :author, presence: true
   validates :answer, presence: true

@@ -9,8 +9,6 @@ class SiteCustomization::Image < ApplicationRecord
     "logo_email" => [400, 80]
   }.freeze
 
-  audited on: [:create, :update, :destroy]
-
   has_attached_file :image
 
   validates :name, presence: true, uniqueness: true, inclusion: { in: VALID_IMAGES.keys }

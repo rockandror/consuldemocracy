@@ -2,8 +2,6 @@ class Legislation::QuestionOption < ApplicationRecord
   acts_as_paranoid column: :hidden_at
   include ActsAsParanoidAliases
 
-  audited on: [:create, :update, :destroy]
-
   translates :value, touch: true
   include Globalizable
 
