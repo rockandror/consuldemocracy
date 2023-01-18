@@ -3,15 +3,13 @@ require_dependency Rails.root.join("app", "controllers", "concerns", "polymorphi
 module Polymorphic
   private
 
+    alias_method :consul_resource, :resource
+
     def resource
-      if resource_model.to_s == "Budget::Investment"
-        @resource ||= instance_variable_get("@investment")
-      elsif resource_model.to_s == "Legislation::Proposal"
-        @resource ||= instance_variable_get("@proposal")
-      elsif resource_model.to_s == "Legislation::Process"
+      if resource_model.to_s == "Legislation::Process"
         @resource ||= instance_variable_get("@process")
       else
-        @resource ||= instance_variable_get("@#{resource_name}")
+        consul_resource
       end
     end
 end
