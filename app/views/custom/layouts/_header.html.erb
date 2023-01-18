@@ -23,7 +23,7 @@
       </span>
 
       <div class="left-section">
-        <%= link_to "https://www.tenerife.es/", target: "_blank", accesskey: "0" do %>
+        <%= link_to "https://www.tenerife.es/", target: "_blank" do %>
           <%= image_tag(image_path_for("logo-cabildo-tenerife.png"), class: "float-left", alt: t("layouts.header.tenerife_logo")) %>
         <% end %>
         <%= link_to root_path, accesskey: "0", class: "hide-for-small-only top-bar-title" do %>
@@ -58,11 +58,11 @@
       </div>
 
       <div class="hide-for-small-only middle-section">
-        <%= link_to "https://www.tenerife.es/", target: "_blank", accesskey: "0" do %>
+        <%= link_to "https://www.tenerife.es/", target: "_blank" do %>
           <%= t("application.subtitle1") %>
         <% end %>
         |
-        <%= link_to "https://sede.tenerife.es/es/", target: "_blank", accesskey: "0" do %>
+        <%= link_to "https://sede.tenerife.es/es/", target: "_blank" do %>
           <%= t("application.subtitle2") %>
         <% end %>
       </div>
