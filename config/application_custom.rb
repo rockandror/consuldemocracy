@@ -6,5 +6,6 @@ module Consul
     config.i18n.available_locales = ['es']
 
     config.autoload_paths << "#{Rails.root}/app/controllers/custom/concerns"
+    config.autoload_paths << "#{Rails.root}/app/mailers/custom"
   end
 end
