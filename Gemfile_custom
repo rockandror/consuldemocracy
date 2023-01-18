@@ -4,5 +4,5 @@
 # * Spanish: https://github.com/consul/consul/blob/master/CUSTOMIZE_ES.md#gemfile
 #
 
-gem 'ruby-ntlm'
-gem 'cookies_eu'
+gem "ruby-ntlm"
+gem "cookies_eu"

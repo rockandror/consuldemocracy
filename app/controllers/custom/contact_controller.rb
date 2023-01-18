@@ -13,11 +13,12 @@ class ContactController < ApplicationController
   end
 
   private
-  def contact_params
-    params.permit(:username, :email, :subject, :email_body)
-  end
 
-  def build_intro
-    intro = t("mailers.contact.intro", name: contact_params[:username], email: contact_params[:email], message: contact_params[:email_body])
-  end
+    def contact_params
+      params.permit(:username, :email, :subject, :email_body)
+    end
+
+    def build_intro
+      t("mailers.contact.intro", name: contact_params[:username], email: contact_params[:email], message: contact_params[:email_body])
+    end
 end

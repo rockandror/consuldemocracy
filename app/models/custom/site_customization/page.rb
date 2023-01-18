@@ -10,20 +10,20 @@ class SiteCustomization::Page
     if terms[:text] != ""
       results = results.where("title ILIKE ? OR slug ILIKE ?", "%#{terms[:text]}%", "%#{terms[:text]}%")
     end
-    if terms[:type] != 'Todos'
+    if terms[:type] != "Todos"
       results = results.where("is_news = ?", terms[:type] == "Noticias")
     end
-    if terms[:start_date] != ''
+    if terms[:start_date] != ""
       results = results.where("site_customization_pages.created_at >= ? OR news_date >= ?", terms[:start_date], terms[:start_date])
     end
-    if terms[:end_date] != ''
+    if terms[:end_date] != ""
       results = results.where("site_customization_pages.created_at <= ? OR news_date <= ?", terms[:end_date], terms[:end_date])
     end
     results
   end
 
   def self.quick_search(terms)
-    if terms[:text] == "" && terms[:type] == nil && terms[:start_date] == '' && terms[:end_date] == ''
+    if terms[:text] == "" && terms[:type] == nil && terms[:start_date] == "" && terms[:end_date] == ""
       SiteCustomization::Page.none
     else
       search(terms)
@@ -42,8 +42,7 @@ class SiteCustomization::Page
 
   def searchable_values
     {
-      slug       => "B",
+      slug => "B"
     }.merge!(searchable_globalized_values)
   end
-
 end
