@@ -20,7 +20,7 @@
       <%= f.check_box :print_content_flag %>
       <%= f.check_box :is_news, data: { checkbox_toggle: "#news_date" } %>
       <div id="news_date" style="<%= @page.is_news ? "" : "display:none" %>">
-        <%= f.date_field :news_date, max: Time.now %>
+        <%= f.date_field :news_date, max: Time.current %>
       </div>
     </div>
 

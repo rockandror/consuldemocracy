@@ -4,8 +4,8 @@
                          @search[:text],
                          placeholder: t("admin.shared.search.label.pages"), id: "search-pages", style: "max-width: 400px" %>
     <div>
-      <% [ 'Todos', 'Noticias', 'Otros'].each do |type| %>
-        <%= radio_button_tag 'type', type,  @search[:type] == type %>
+      <% ["Todos", "Noticias", "Otros"].each do |type| %>
+        <%= radio_button_tag "type", type, @search[:type] == type %>
         <%= type.humanize %>&nbsp;&nbsp;&nbsp;&nbsp;
       <% end %>
     </div>
