@@ -1,8 +1,6 @@
 require_dependency Rails.root.join("app", "controllers", "admin", "legislation", "processes_controller").to_s
 
 class Admin::Legislation::ProcessesController
-  include LegislationHelper
-
   def download
     respond_to do |format|
       format.zip
