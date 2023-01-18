@@ -1,8 +1,6 @@
 class Identity < ApplicationRecord
   belongs_to :user
 
-  audited on: [:create, :update, :destroy]
-
   validates :provider, presence: true
   validates :uid, presence: true, uniqueness: { scope: :provider }
 

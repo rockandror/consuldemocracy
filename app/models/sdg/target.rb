@@ -7,8 +7,6 @@ class SDG::Target < ApplicationRecord
   belongs_to :goal
   has_many :local_targets, dependent: :destroy
 
-  audited on: [:create, :update, :destroy]
-
   def title
     I18n.t("sdg.goals.goal_#{goal.code}.targets.target_#{code_key}.title")
   end

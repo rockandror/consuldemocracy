@@ -4,8 +4,6 @@ class Budget
 
     include Sluggable
 
-    audited on: [:create, :update, :destroy]
-
     translates :name, touch: true
     include Globalizable
     translation_class_delegate :budget

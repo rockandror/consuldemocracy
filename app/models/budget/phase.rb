@@ -5,8 +5,6 @@ class Budget
     PUBLISHED_PRICES_PHASES = %w[publishing_prices balloting reviewing_ballots finished].freeze
     DESCRIPTION_MAX_LENGTH = 2000
 
-    audited on: [:create, :update, :destroy]
-
     translates :name, touch: true
     translates :summary, touch: true
     translates :description, touch: true

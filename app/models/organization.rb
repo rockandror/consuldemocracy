@@ -1,8 +1,6 @@
 class Organization < ApplicationRecord
   include Graphqlable
 
-  audited on: [:create, :update, :destroy]
-
   belongs_to :user, touch: true
 
   validates :name, presence: true

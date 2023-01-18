@@ -3,8 +3,6 @@ class Setting < ApplicationRecord
 
   default_scope { order(id: :asc) }
 
-  audited on: [:create, :update, :destroy]
-
   def prefix
     key.split(".").first
   end

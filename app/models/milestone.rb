@@ -2,8 +2,6 @@ class Milestone < ApplicationRecord
   include Imageable
   include Documentable
 
-  audited on: [:create, :update, :destroy]
-
   translates :title, :description, touch: true
   include Globalizable
   translation_class_delegate :status_id
