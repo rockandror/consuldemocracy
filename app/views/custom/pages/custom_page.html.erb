@@ -90,14 +90,14 @@
         <ul class="menu-sections">
         <% @related_pages.each do |related| %>
           <%= link_to related.slug do %>
-            <li class = "<% if @custom_page.id == related.id %>current-page<% end %> section">
+            <li class="<% if @custom_page.id == related.id %>current-page<% end %> section">
               <span><%= related.title %></span>
             </li>
           <% end %>
         <% end %>
         <% if @has_news %>
         <%= link_to news_path do %>
-          <li class = "<% if @custom_page.id == "news" %>current-page<% end %> section">
+          <li class="<% if @custom_page.id == "news" %>current-page<% end %> section">
             <span><%= t("news.title") %></span>
           </li>
         <% end %>

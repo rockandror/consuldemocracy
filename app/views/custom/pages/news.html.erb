@@ -29,13 +29,13 @@
         <ul class="menu-sections">
         <% @related_pages.each do |related| %>
           <%= link_to related.slug do %>
-            <li class = "section">
+            <li class="section">
               <span><%= related.title %></span>
             </li>
           <% end %>
         <% end %>
         <%= link_to news_path do %>
-          <li class = "current-page section">
+          <li class="current-page section">
             <span><%= t("news.title") %></span>
           </li>
         <% end %>

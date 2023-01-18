@@ -11,7 +11,7 @@
           <span><%= t("pages.breadcrumbs.root") %></span>
         <% end %>
         >
-        <%= link_to '#' do %>
+        <%= link_to "#" do %>
           <span><%= t("contact.title") %></span>
         <% end %>
       </small>
@@ -29,7 +29,7 @@
     <div>
       <%= f.hidden_field :locale, value: I18n.locale %>
 
-      <%= f.text_field :username, required: true,  autofocus: true, maxlength: User.username_max_length,
+      <%= f.text_field :username, required: true, autofocus: true, maxlength: User.username_max_length,
                                   label: t("contact.username") %>
 
       <%= f.invisible_captcha :address %>
