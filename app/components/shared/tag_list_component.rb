@@ -30,8 +30,6 @@ class Shared::TagListComponent < ApplicationComponent
       case taggable.class.name
       when "Legislation::Proposal"
         legislation_process_proposals_path(taggable.process, search: tag_name)
-      when "Legislation::Process"
-        legislation_processes_path(search: tag_name)
       else
         polymorphic_path(taggable.class, search: tag_name)
       end
