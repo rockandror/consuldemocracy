@@ -1,7 +1,6 @@
 class Legislation::Answer < ApplicationRecord
   acts_as_paranoid column: :hidden_at
   include ActsAsParanoidAliases
-  audited on: [:create, :update, :destroy]
 
   belongs_to :question, foreign_key: "legislation_question_id", inverse_of: :answers, counter_cache: true
   belongs_to :question_option, foreign_key: "legislation_question_option_id",

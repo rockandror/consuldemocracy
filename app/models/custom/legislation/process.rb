@@ -1,6 +1,7 @@
 require_dependency Rails.root.join("app", "models", "legislation", "process").to_s
 
 class Legislation::Process
+  audited on: [:create, :update, :destroy]
   scope :for_render, -> { includes(:tags) }
 
   def after_hide

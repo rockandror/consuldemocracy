@@ -1,6 +1,8 @@
 require_dependency Rails.root.join("app", "models", "setting").to_s
 
 class Setting
+  audited on: [:create, :update, :destroy]
+
   class << self
     alias_method :consul_defaults, :defaults
 
