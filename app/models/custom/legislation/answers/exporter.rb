@@ -19,7 +19,7 @@ class Legislation::Answers::Exporter
   private
 
     def get_answers(question)
-        Legislation::Answer.where(question: question)
+      Legislation::Answer.where(question: question)
     end
 
     def headers
