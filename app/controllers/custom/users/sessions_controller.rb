@@ -1,4 +1,6 @@
-class Users::SessionsController < Devise::SessionsController
+require_dependency Rails.root.join("app", "controllers", "users", "sessions_controller").to_s
+
+class Users::SessionsController
   after_action :log_failed_login, :only => :new
 
   # POST /resource/sign_in
@@ -7,10 +9,7 @@ class Users::SessionsController < Devise::SessionsController
     @activity = ActivityLog.new(:activity => 'login', :result => 'ok', :payload => sign_in_params[:login])
     @activity.save
   end
-  def destroy
-    @stored_location = stored_location_for(:user)
-    super
-  end
+
   private
     def log_failed_login
       user = User.find_by(email: sign_in_params[:login])
@@ -26,23 +25,5 @@ class Users::SessionsController < Devise::SessionsController
 
     def failed_login?
       (options = request.env["warden.options"]) && options[:action] == "unauthenticated"
-    end
-    def after_sign_in_path_for(resource)
-      if !verifying_via_email? && resource.show_welcome_screen?
-        welcome_path
-      else
-        super
-      end
-    end
-
-    def after_sign_out_path_for(resource)
-      @stored_location.present? && !@stored_location.match("management") ? @stored_location : super
-    end
-
-    def verifying_via_email?
-      return false if resource.blank?
-
-      stored_path = session[stored_location_key_for(resource)] || ""
-      stored_path[0..5] == "/email"
     end
 end
