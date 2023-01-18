@@ -4,4 +4,4 @@
 // * Spanish: https://github.com/consul/consul/blob/master/CUSTOMIZE_ES.md#javascript
 //
 //
-
+//= require cookies_eu
