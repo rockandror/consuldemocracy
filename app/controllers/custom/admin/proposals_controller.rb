@@ -1,8 +1,6 @@
 require_dependency Rails.root.join("app", "controllers", "admin", "proposals_controller").to_s
 
 class Admin::ProposalsController
-  include ProposalsHelper
-
   before_action :load_proposal, except: [:index, :download]
 
   def download
