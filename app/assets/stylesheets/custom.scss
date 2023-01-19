@@ -382,6 +382,10 @@
   }
 }
 
+.notice-container {
+  z-index: 1;
+}
+
 // /* This controls how many elements will be on each row of the block grid. */
 // /* Set this to whatever number you need, up to the max allowed in the variable */
 // $per-row: false;

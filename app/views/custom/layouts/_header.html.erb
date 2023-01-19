@@ -4,77 +4,70 @@
   <% end %>
 
   <div class="top-links hide-for-small-only">
-    <div class="row">
-      <%= render "shared/locale_switcher" %>
-      <div>
-        <%= render "shared/top_links" %>
-      </div>
+    <%= render "shared/locale_switcher" %>
+    <div>
+      <%= render "shared/top_links" %>
     </div>
   </div>
 
-  <div class="row">
-    <div class="top-bar">
+  <div class="top-bar">
+    <span data-responsive-toggle="responsive-menu" data-hide-for="medium">
+      <button type="button" class="menu-button" data-toggle>
+        <span class="menu-icon"></span>
+        <%= t("application.menu") %>
+      </button>
+    </span>
 
-      <span data-responsive-toggle="responsive-menu" data-hide-for="medium" class="float-right">
-        <button type="button" class="menu-button" data-toggle>
-          <span class="menu-icon"></span>
-          <%= t("application.menu") %>
-        </button>
-      </span>
+    <div class="left-section">
+      <%= link_to "https://www.tenerife.es/", target: "_blank" do %>
+        <%= image_tag(image_path_for("logo-cabildo-tenerife.png"), alt: t("layouts.header.tenerife_logo")) %>
+      <% end %>
+      <%= link_to root_path, accesskey: "0", class: "hide-for-small-only top-bar-title" do %>
+        <h1>
+          <%= setting["org_name"] %>
+        </h1>
+      <% end %>
 
-      <div class="left-section">
-        <%= link_to "https://www.tenerife.es/", target: "_blank" do %>
-          <%= image_tag(image_path_for("logo-cabildo-tenerife.png"), class: "float-left", alt: t("layouts.header.tenerife_logo")) %>
-        <% end %>
-        <%= link_to root_path, accesskey: "0", class: "hide-for-small-only top-bar-title" do %>
-          <h1>
-            <%= setting["org_name"] %>
-          </h1>
-        <% end %>
-
-        <div class="hide-for-small-only left-section-number">
-          <%= t("application.support_title") %><br>
-          <%= t("application.support_number") %>
-        </div>
+      <div class="hide-for-small-only left-section-number">
+        <%= t("application.support_title") %><br>
+        <%= t("application.support_number") %>
       </div>
+    </div>
 
-      <div id="responsive-menu" class="show-for-small-only">
-        <div class="top-bar-right">
-          <div class="show-for-small-only">
-            <div class="subnavigation row">
-              <div class="small-12 column">
-                <%= render "shared/top_links" %>
-              </div>
-              <%= render "shared/subnavigation" %>
-              <div class="small-12 column">
-                <div data-open="googleSearch" style="margin: 15px 0;" class="search">
-                  <span><%= icon("fas", "search") %></span>
-                  <span><%= t("application.search") %></span>
-                </div>
+    <div id="responsive-menu" class="show-for-small-only">
+      <div class="top-bar-right">
+        <div class="show-for-small-only">
+          <div class="subnavigation subnavigation-with-top-links">
+            <%= render "shared/top_links" %>
+            <%= render "shared/subnavigation" %>
+            <div class="small-12 column">
+              <div data-open="googleSearch" style="margin: 15px 0;" class="search">
+                <span><%= icon("fas", "search") %></span>
+                <span><%= t("application.search") %></span>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="hide-for-small-only middle-section">
-        <%= link_to "https://www.tenerife.es/", target: "_blank" do %>
-          <%= t("application.subtitle1") %>
-        <% end %>
-        |
-        <%= link_to "https://sede.tenerife.es/es/", target: "_blank" do %>
-          <%= t("application.subtitle2") %>
-        <% end %>
+    <div class="hide-for-small-only middle-section">
+      <%= link_to "https://www.tenerife.es/", target: "_blank" do %>
+        <%= t("application.subtitle1") %>
+      <% end %>
+      |
+      <%= link_to "https://sede.tenerife.es/es/", target: "_blank" do %>
+        <%= t("application.subtitle2") %>
+      <% end %>
+    </div>
+    <div class="hide-for-small-only right-section">
+      <div class="top-bar-right">
+        <%= render Layout::SocialComponent.new(class: "menu") %>
       </div>
-      <div class="hide-for-small-only right-section">
-        <div class="top-bar-right">
-          <%= render Layout::SocialComponent.new(class: "menu") %>
-        </div>
 
-        <div data-open="googleSearch" class="search">
-          <span><%= icon("fas", "search") %></span>
-          <span><%= t("application.search") %></span>
-        </div>
+      <div data-open="googleSearch" class="search">
+        <span><%= icon("fas", "search") %></span>
+        <span><%= t("application.search") %></span>
       </div>
     </div>
   </div>

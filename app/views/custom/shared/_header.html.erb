@@ -1,5 +1,5 @@
 <% if header.present? %>
-  <div class="jumbo highlight">
+  <div class="header-card jumbo highlight">
     <div class="bluebox-container row">
       <div class="small-12 medium-12 large-6 column">
         <%= link_to "/que-contiene-y-para-que-sirve-esta-web" do %>
@@ -22,9 +22,12 @@
         <span><%= header.label %></span>
         <h1><%= header.title %></h1>
         <p class="lead"><%= header.description %></p>
-        <div class="small-12 medium-6 large-4 <%= "small-centered" unless header.image.present? %>">
-          <%= link_to header.link_text, header.link_url, class: "button expanded large" %>
-        </div>
+
+        <% if header.link_text.present? && header.link_url.present? %>
+          <div class="small-12 medium-6 large-4 <%= "small-centered" unless header.image.present? %>">
+            <%= link_to header.link_text, header.link_url, class: "button expanded large" %>
+          </div>
+        <% end %>
       </div>
 
       <% if header.image.present? %>
