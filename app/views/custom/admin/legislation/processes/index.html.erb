@@ -37,7 +37,7 @@
           <td class="text-center"><%= process.sdg_goal_list %></td>
           <td class="text-center"><%= process.sdg_target_list %></td>
           <td>
-            <%= render Admin::TableActionsComponent.new(process, actions: [:edit, :destroy]) do |actions| %>
+            <%= render Admin::TableActionsComponent.new(process) do |actions| %>
               <%= actions.link_to "Descargar CSV",
                                   download_admin_legislation_process_path(process, csv_params),
                                   target: "_blank",
