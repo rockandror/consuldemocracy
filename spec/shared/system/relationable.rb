@@ -133,7 +133,6 @@ shared_examples "relationable" do |relationable_model_name|
   end
 
   scenario "related content can be scored positively" do
-    allow_any_instance_of(Layout::ConsentBannerComponent).to receive(:render?).and_return(false)
     related_content = create(:related_content, parent_relationable: relationable, child_relationable: related1, author: build(:user))
 
     login_as(user)
@@ -151,7 +150,6 @@ shared_examples "relationable" do |relationable_model_name|
   end
 
   scenario "related content can be scored negatively" do
-    allow_any_instance_of(Layout::ConsentBannerComponent).to receive(:render?).and_return(false)
     related_content = create(:related_content, parent_relationable: relationable, child_relationable: related1, author: build(:user))
 
     login_as(user)
