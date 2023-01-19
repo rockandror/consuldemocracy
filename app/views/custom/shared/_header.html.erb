@@ -2,18 +2,18 @@
   <div class="jumbo highlight">
     <div class="bluebox-container row">
       <div class="small-12 medium-12 large-6 column">
-      <%= link_to "/que-contiene-y-para-que-sirve-esta-web", accesskey: "0" do %>
-        <div class="bluebox">
-          <span><%= t("layouts.header.content_question") %></span>
-        </div>
-      <% end %>
+        <%= link_to "/que-contiene-y-para-que-sirve-esta-web", accesskey: "0" do %>
+          <div class="bluebox">
+            <span><%= t("layouts.header.content_question") %></span>
+          </div>
+        <% end %>
       </div>
       <div class="small-12 medium-12 large-6 column">
-      <%= link_to "/a-quien-va-dirigida-esta-web", accesskey: "0" do %>
-        <div class="bluebox">
-          <span><%= t("layouts.header.addressed_question") %></span>
-        </div>
-      <% end %>
+        <%= link_to "/a-quien-va-dirigida-esta-web", accesskey: "0" do %>
+          <div class="bluebox">
+            <span><%= t("layouts.header.addressed_question") %></span>
+          </div>
+        <% end %>
       </div>
     </div>
 
@@ -38,7 +38,7 @@
   </div>
   <div class="background-header"></div>
   <div class="action-container row">
-  <div class="action">
+    <div class="action">
       <%= link_to "https://cabildoabierto.tenerife.es/contact" do %>
         <div class="text-center">
           <%= image_tag(image_path_for("icono-participa.png"), class: "") %>
@@ -47,8 +47,8 @@
           </div>
         </div>
       <% end %>
-      </div>
-      <div class="action">
+    </div>
+    <div class="action">
       <%= link_to legislation_processes_path do %>
         <div class="text-center">
           <%= image_tag(image_path_for("icono-prop-cabildo.png"), class: "") %>
@@ -57,36 +57,36 @@
           </div>
         </div>
       <% end %>
-      </div>
-      <div class="action">
+    </div>
+    <div class="action">
       <%= link_to "https://sede.tenerife.es/es/tramites-y-servicios/item/7384-derecho-de-acceso-a-la-informacion-publica", target: "_blank" do %>
-      <div class="text-center">
+        <div class="text-center">
           <%= image_tag(image_path_for("icono-solicita.png"), class: "") %>
           <div class="action-title">
             <span><%= t("layouts.header.links.information") %></span>
           </div>
         </div>
-        <% end %>
-      </div>
-      <div class="action">
+      <% end %>
+    </div>
+    <div class="action">
       <%= link_to "https://sede.tenerife.es/es/tramites-y-servicios/item/2890-quejas-y-sugerencias", target: "_blank" do %>
-      <div class="text-center">
+        <div class="text-center">
           <%= image_tag(image_path_for("icono-queja.png"), class: "") %>
           <div class="action-title">
             <span><%= t("layouts.header.links.complains") %></span>
           </div>
         </div>
-        <% end %>
-      </div>
-      <div class="action">
+      <% end %>
+    </div>
+    <div class="action">
       <%= link_to "https://sede.tenerife.es/es/", target: "_blank" do %>
-      <div class="text-center">
+        <div class="text-center">
           <%= image_tag(image_path_for("icono-sede.png"), class: "") %>
           <div class="action-title">
             <span><%= t("layouts.header.links.sede") %></span>
           </div>
         </div>
-        <% end %>
-      </div>
+      <% end %>
     </div>
+  </div>
 <% end %>

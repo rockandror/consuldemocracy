@@ -44,7 +44,12 @@
                                 target: "_blank")
                 ) %>
       <div class="small-12 medium-12">
-        <%= sanitize(t("devise_views.users.registrations.new.terms_description", terms: link_to(t("devise_views.users.registrations.new.terms_link"), "/privacy"), terms_registry: link_to(t("devise_views.users.registrations.new.terms_registry"), "https://www.tenerife.es/documentos/ECIT_RegistroTratamientos.pdf"))) %>
+        <%= sanitize(
+              t("devise_views.users.registrations.new.terms_description",
+                terms: link_to(t("devise_views.users.registrations.new.terms_link"), "/privacy"),
+                terms_registry: link_to(t("devise_views.users.registrations.new.terms_registry"),
+                "https://www.tenerife.es/documentos/ECIT_RegistroTratamientos.pdf"))
+        ) %>
       </div>
       <div class="small-12 medium-6 small-centered margin-top">
         <%= f.submit t("devise_views.users.registrations.new.submit"), class: "button expanded" %>

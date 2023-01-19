@@ -9,7 +9,7 @@
 <% if @pages.any? %>
   <table>
     <thead>
-            <tr>
+      <tr>
         <th><%= t("admin.site_customization.pages.page.title") %></th>
         <th><%= t("admin.site_customization.pages.page.slug") %></th>
         <th><%= t("admin.site_customization.pages.page.created_at") %></th>
@@ -20,28 +20,29 @@
     </thead>
     <tbody>
       <% @pages.each do |page| %>
-      <tr>
-        <td><%= page.title %></td>
-        <td><%= page.slug %></td>
-        <td><%= I18n.l page.created_at, format: :long %></td>
-        <td><%= I18n.l page.updated_at, format: :long %></td>
-        <td><%= t("admin.site_customization.pages.page.status_#{page.status}") %></td>
-        <td>
-          <%= render Admin::TableActionsComponent.new(page) do |actions| %>
-            <%= actions.link_to t("admin.site_customization.pages.page.see_cards"),
-                                admin_site_customization_page_widget_cards_path(page),
-                                class: "cards-link" %>
+        <tr>
+          <td><%= page.title %></td>
+          <td><%= page.slug %></td>
+          <td><%= I18n.l page.created_at, format: :long %></td>
+          <td><%= I18n.l page.updated_at, format: :long %></td>
+          <td><%= t("admin.site_customization.pages.page.status_#{page.status}") %></td>
+          <td>
+            <%= render Admin::TableActionsComponent.new(page) do |actions| %>
+              <%= actions.link_to t("admin.site_customization.pages.page.see_cards"),
+                                  admin_site_customization_page_widget_cards_path(page),
+                                  class: "cards-link" %>
 
-            <% if page.status == "published" %>
-              <%= actions.link_to t("admin.site_customization.pages.index.see_page"),
-                                  page.url,
-                                  target: "_blank",
-                                  class: "show-link" %>
+              <% if page.status == "published" %>
+                <%= actions.link_to t("admin.site_customization.pages.index.see_page"),
+                                    page.url,
+                                    target: "_blank",
+                                    class: "show-link" %>
+              <% end %>
             <% end %>
-          <% end %>
-        </td>
-      </tr>
+          </td>
+        </tr>
       <% end %>
     </tbody>
   </table>
 <% end %>
+hola

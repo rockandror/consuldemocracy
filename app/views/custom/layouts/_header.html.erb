@@ -39,27 +39,27 @@
       </div>
 
       <div id="responsive-menu" class="show-for-small-only">
-      <div class="top-bar-right">
-        <div class="show-for-small-only">
-          <div class="subnavigation row">
-          <div class="small-12 column">
-          <%= render "shared/top_links" %>
-          </div>
-          <%= render "shared/subnavigation" %>
-          <div class="small-12 column">
-            <div data-open="googleSearch" style="margin: 15px 0;" class="search">
-              <span><%= icon("fas", "search") %></span>
-              <span><%= t("application.search") %></span>
+        <div class="top-bar-right">
+          <div class="show-for-small-only">
+            <div class="subnavigation row">
+              <div class="small-12 column">
+                <%= render "shared/top_links" %>
+              </div>
+              <%= render "shared/subnavigation" %>
+              <div class="small-12 column">
+                <div data-open="googleSearch" style="margin: 15px 0;" class="search">
+                  <span><%= icon("fas", "search") %></span>
+                  <span><%= t("application.search") %></span>
+                </div>
+              </div>
             </div>
-          </div>
           </div>
         </div>
       </div>
-    </div>
 
       <div class="hide-for-small-only middle-section">
         <%= link_to "https://www.tenerife.es/", target: "_blank", accesskey: "0" do %>
-         <%= t("application.subtitle1") %>
+          <%= t("application.subtitle1") %>
         <% end %>
         |
         <%= link_to "https://sede.tenerife.es/es/", target: "_blank", accesskey: "0" do %>
@@ -70,36 +70,32 @@
         <div class="top-bar-right">
           <ul class="menu">
             <li>
-            <%= link_to "https://www.facebook.com/CabildoTenerife", target: "_blank", accesskey: "0" do %>
-              <span>
-              <%= icon("fab", "facebook-f") %>
-              </span>
+              <%= link_to "https://www.facebook.com/CabildoTenerife", target: "_blank", accesskey: "0" do %>
+                <span><%= icon("fab", "facebook-f") %></span>
               <% end %>
             </li>
             <li>
-            <%= link_to "https://twitter.com/CabildoTenerife", target: "_blank", accesskey: "0" do %>
-            <span>
-              <%= icon("fab", "twitter") %>
-              </span>
+              <%= link_to "https://twitter.com/CabildoTenerife", target: "_blank", accesskey: "0" do %>
+                <span><%= icon("fab", "twitter") %></span>
               <% end %>
             </li>
             <li>
-            <%= link_to "https://www.youtube.com/channel/UCSnQFzldpaeR5D7zTOp3pRA?view_as=subscriber", target: "_blank", accesskey: "0" do %>
-              <span><%= icon("fab", "youtube") %></span>
+              <%= link_to "https://www.youtube.com/channel/UCSnQFzldpaeR5D7zTOp3pRA?view_as=subscriber", target: "_blank", accesskey: "0" do %>
+                <span><%= icon("fab", "youtube") %></span>
               <% end %>
             </li>
             <li>
-            <%= link_to "https://www.instagram.com/cabildotenerife/?hl=es", target: "_blank", accesskey: "0" do %>
-              <span><%= icon("fab", "instagram") %></span>
+              <%= link_to "https://www.instagram.com/cabildotenerife/?hl=es", target: "_blank", accesskey: "0" do %>
+                <span><%= icon("fab", "instagram") %></span>
               <% end %>
             </li>
           </ul>
         </div>
 
-          <div data-open="googleSearch" class="search">
-            <span><%= icon("fas", "search") %></span>
-            <span><%= t("application.search") %></span>
-          </div>
+        <div data-open="googleSearch" class="search">
+          <span><%= icon("fas", "search") %></span>
+          <span><%= t("application.search") %></span>
+        </div>
       </div>
     </div>
   </div>

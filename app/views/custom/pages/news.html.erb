@@ -3,57 +3,56 @@
 <div class="page-title">
   <div class="row margin-top">
     <div class="small-12 medium-9 column">
-        <h1><%= t("news.title") %></h1>
-        <small>
-          <%= link_to root_path do %>
-            <span><%= t("pages.breadcrumbs.root") %></span>
-          <% end %>
-          >
-          <%= link_to "#" do %>
-            <span><%= t("pages.breadcrumbs.entity") %></span>
-          <% end %>
-          >
-          <%= link_to "#" do %>
-            <span><%= t("pages.breadcrumbs.news") %></span>
-          <% end %>
-        </small>
-        <br><br>
+      <h1><%= t("news.title") %></h1>
+      <small>
+        <%= link_to root_path do %>
+          <span><%= t("pages.breadcrumbs.root") %></span>
+        <% end %>
+        >
+        <%= link_to "#" do %>
+          <span><%= t("pages.breadcrumbs.entity") %></span>
+        <% end %>
+        >
+        <%= link_to "#" do %>
+          <span><%= t("pages.breadcrumbs.news") %></span>
+        <% end %>
+      </small>
+      <br><br>
     </div>
   </div>
 </div>
 <div class="row margin-top">
-<div class="small-12 medium-3 column">
-        <div class="menu-title">
-          <span><%= @menu_title %></span>
-        </div>
-        <ul class="menu-sections">
-        <% @related_pages.each do |related| %>
-          <%= link_to related.slug do %>
-            <li class="section">
-              <span><%= related.title %></span>
-            </li>
-          <% end %>
-        <% end %>
-        <%= link_to news_path do %>
-          <li class="current-page section">
-            <span><%= t("news.title") %></span>
+  <div class="small-12 medium-3 column">
+    <div class="menu-title">
+      <span><%= @menu_title %></span>
+    </div>
+    <ul class="menu-sections">
+      <% @related_pages.each do |related| %>
+        <%= link_to related.slug do %>
+          <li class="section">
+            <span><%= related.title %></span>
           </li>
         <% end %>
-        </ul>
-    </div>
-    <div class="small-12 medium-9 column">
-<ul>
-<% @news.each do |article| %>
-  <%= link_to article.slug do %>
-    <div>
-      <small><%= l(article.news_date, format: "%a %d %B %Y") %></small>
-      <h3><%= article.title %></h3>
-    </div>
-    <hr>
-  <% end %>
-<% end %>
-</ul>
-<%= paginate @news %>
-</div>
-
+      <% end %>
+      <%= link_to news_path do %>
+        <li class="current-page section">
+          <span><%= t("news.title") %></span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="small-12 medium-9 column">
+    <ul>
+      <% @news.each do |article| %>
+        <%= link_to article.slug do %>
+          <div>
+            <small><%= l(article.news_date, format: "%a %d %B %Y") %></small>
+            <h3><%= article.title %></h3>
+          </div>
+          <hr>
+        <% end %>
+      <% end %>
+    </ul>
+    <%= paginate @news %>
+  </div>
 </div>
