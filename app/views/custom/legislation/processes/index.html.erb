@@ -5,17 +5,15 @@
 <%= render "shared/section_header", i18n_namespace: "legislation.processes.index.section_header", image: "legislation_processes" %>
 
 <div class="row">
-<div id="legislation" class="legislation-list small-12 medium-9 column">
-
+  <div id="legislation" class="legislation-list small-12 medium-9 column">
     <% if @tag %>
-
-    <ul class="no-bullet tag-cloud">
+      <ul class="no-bullet tag-cloud">
         <li class="inline-block">
           <%= link_to legislation_processes_path do %>
             <span class="tag"><%= @tag %>&emsp; &times;</span>
           <% end %>
         </li>
-    </ul>
+      </ul>
     <% end %>
 
     <%= render "shared/filter_subnav", i18n_namespace: "legislation.processes.index" %>
