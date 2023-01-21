@@ -13,10 +13,10 @@ class User
   ]
 
   def self.maximum_attempts
-    (Setting["login_attempts_before_lock"].to_i || 2)
+    (Setting["login_attempts_before_lock"] || 2).to_i
   end
 
   def self.unlock_in
-    (Setting["time_to_unlock"].to_i || 2).minutes
+    (Setting["time_to_unlock"] || 2).to_i.minutes
   end
 end
