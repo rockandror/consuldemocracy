@@ -1,10 +1,9 @@
 require_dependency Rails.root.join("app", "controllers", "admin", "site_customization", "pages_controller").to_s
 
 class Admin::SiteCustomization::PagesController
-  before_action :load_search, only: [:index]
+  before_action :load_search, only: [:index, :search_pages]
 
   def search_pages
-    load_search
     @pages = ::SiteCustomization::Page.quick_search(@search)
     respond_to do |format|
       format.js
