@@ -27,7 +27,6 @@ class Admin::SiteCustomization::PagesController
 
     def load_search
       @search = search_params
-      @search
     end
 
     def resource_model
