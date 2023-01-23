@@ -1,0 +1,8 @@
+<p><%= t("admin.users.columns.username") %>: <%= user.username %></p>
+<p><%= t("admin.users.columns.email") %>: <%= user.email %></p>
+<p><%= t("admin.users.columns.document_number") %>: <%= user.document_number %></p>
+<p><%= t("admin.users.columns.document_type") %>: <%= user.document_type %></p>
+<p><%= t("admin.users.columns.date_of_birth") %>: <%= user.date_of_birth %></p>
+<p><%= t("admin.users.show.roles") %>: <%= display_user_roles(user) %></p>
+<p><%= t("admin.users.show.verification_status") %>: <%= verified?(user) %></p>
+<p>Document ID: Render the document uploaded by the user here, so the manager can check and validate it</p>

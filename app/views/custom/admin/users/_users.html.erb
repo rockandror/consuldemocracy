@@ -15,6 +15,7 @@
           <th scope="col"><%= t("admin.users.columns.document_number") %></th>
           <th scope="col"><%= t("admin.users.columns.roles") %></th>
           <th scope="col"><%= t("admin.users.columns.verification_level") %></th>
+          <th scope="col"><%= t("admin.actions.actions") %></th>
         <% end %>
       </tr>
     </thead>
@@ -30,6 +31,7 @@
             <td><%= user.document_number %></td>
             <td><%= display_user_roles(user) %></td>
             <td><%= user.user_type %></td>
+            <td><%= link_to t("admin.users.show_user_link"), admin_user_path(user) %></td>
           <% end %>
         </tr>
       <% end %>
