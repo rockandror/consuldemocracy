@@ -142,7 +142,9 @@ namespace :admin do
     get :search, on: :collection
   end
 
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show] do
+    patch :verify, on: :member
+  end
 
   scope module: :poll do
     resources :polls do

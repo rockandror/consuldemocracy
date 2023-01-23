@@ -6,3 +6,6 @@
 <p><%= t("admin.users.show.roles") %>: <%= display_user_roles(user) %></p>
 <p><%= t("admin.users.show.verification_status") %>: <%= verified?(user) %></p>
 <p>Document ID: Render the document uploaded by the user here, so the manager can check and validate it</p>
+<% unless verified?(user) %>
+  <p><%= button_to t("admin.users.show.verify"), verify_admin_user_path(user), method: :patch, class: "button" %></p>
+<% end %>
