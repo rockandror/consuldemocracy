@@ -189,7 +189,7 @@ describe "Home" do
 
       visit root_path
 
-      within(".header-card") { expect(page).not_to have_link }
+      within(".header-card .header-content") { expect(page).not_to have_link }
     end
 
     scenario "if there is header card without link and with text, the link content is not rendered" do
@@ -197,7 +197,7 @@ describe "Home" do
 
       visit root_path(locale: :es)
 
-      within(".header-card") { expect(page).not_to have_link }
+      within(".header-card .header-content") { expect(page).not_to have_link }
     end
   end
 end
