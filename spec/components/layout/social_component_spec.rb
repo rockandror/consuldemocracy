@@ -10,7 +10,7 @@ describe Layout::SocialComponent do
       expect(page).to have_css "ul"
     end
 
-    it "renders when a content block is present" do
+    it "renders when a content block is present", :consul do
       Setting["twitter_handle"] = ""
       Setting["facebook_handle"] = ""
       Setting["youtube_handle"] = ""

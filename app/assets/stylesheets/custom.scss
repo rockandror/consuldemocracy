@@ -133,12 +133,18 @@
     justify-content: center;
     height: 100%;
 
-    .menu {
+    .social {
+      @include breakpoint(medium) {
+        width: 100%;
+      }
+
       li {
         padding: 0 rem-calc(8);
       }
 
       a {
+        font-size: $small-font-size;
+        margin: 0;
         padding: 0;
       }
     }

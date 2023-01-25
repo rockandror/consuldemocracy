@@ -1,7 +1,9 @@
-class Layout::SocialComponent < ApplicationComponent
-  attr_reader :list_options
+require_dependency Rails.root.join("app", "components", "layout", "social_component").to_s
 
-  def initialize(**list_options)
-    @list_options = list_options
-  end
+class Layout::SocialComponent
+  private
+
+    def footer_content_block
+      nil
+    end
 end
