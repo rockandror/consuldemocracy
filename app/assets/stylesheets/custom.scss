@@ -8,12 +8,11 @@
   background: $dark;
   color: #fff;
   font-size: $small-font-size;
-  padding-right: $line-height / 2;
   border-bottom: 2px solid #fff;
 
   a {
-    color: #fff;
-    margin: 0 rem-calc(6);
+    margin-left: rem-calc(12);
+    margin-right: 0;
 
     &:hover {
       text-decoration: underline;
@@ -41,18 +40,31 @@
   }
 }
 
+.wrapper > header .external-links {
+  text-align: right;
+
+  .submenu {
+    text-align: center;
+  }
+}
+
 // Menu
 .top-bar {
   height: 60px;
 
   @include breakpoint(small down) {
     height: fit-content;
-    margin: rem-calc(8);
+    padding: rem-calc(8);
+
+    .social {
+      padding: 0;
+    }
   }
 
   .social {
     display: inline;
     margin: auto;
+    text-align: $global-left;
 
     li:first-child {
       a {
@@ -102,8 +114,10 @@
   }
 
   .middle-section {
+    flex-grow: 1;
     font-size: small;
     font-weight: 600;
+    text-align: center;
 
     a {
       color: #fff;
