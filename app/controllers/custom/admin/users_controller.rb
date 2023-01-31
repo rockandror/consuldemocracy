@@ -7,6 +7,7 @@ class Admin::UsersController
   def verify
     now = Time.current
     @user.update!(residence_verified_at: now, verified_at: now, level_two_verified_at: now)
+    Mailer.send_verification_email(@user).deliver_now
     redirect_to admin_users_path, notice: t("admin.users.verify.notice")
   end
 end
