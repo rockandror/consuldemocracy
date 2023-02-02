@@ -6,7 +6,6 @@
         <h2><%= t("contact.form_title") %></h2>
       </div>
       <div>
-        <%= f.hidden_field :locale, value: I18n.locale %>
         <%= f.text_field :name, autofocus: true, maxlength: User.username_max_length %>
         <%= f.invisible_captcha :address %>
         <%= f.email_field :email %>
