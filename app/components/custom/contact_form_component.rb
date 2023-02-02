@@ -1,0 +1,2 @@
+class ContactFormComponent < ApplicationComponent
+end
