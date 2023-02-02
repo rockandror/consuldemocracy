@@ -1,4 +1,4 @@
-<%= form_with url: "/contact" do |f| %>
+<%= form_for form, url: contact_path, method: :post do |f| %>
   <div class="row margin-top">
     <div class="small-12 medium-9 column">
       <p><%= sanitize t("contact.intro") %></p>
@@ -7,17 +7,12 @@
       </div>
       <div>
         <%= f.hidden_field :locale, value: I18n.locale %>
-        <%= f.text_field :username, required: true, autofocus: true, maxlength: User.username_max_length,
-                                    label: t("contact.username") %>
+        <%= f.text_field :name, autofocus: true, maxlength: User.username_max_length %>
         <%= f.invisible_captcha :address %>
-        <%= f.email_field :email, required: true, label: t("contact.email") %>
-        <%= f.text_field :subject, required: true, maxlength: 30,
-                                    label: t("contact.subject"),
-                                    hint: t("contact.subject_hint") %>
-        <%= f.text_area :email_body, rows: 7, required: true,
-                                    label: t("contact.email_body") %>
+        <%= f.email_field :email %>
+        <%= f.text_field :subject, maxlength: 30, hint: t("contact.subject_hint") %>
+        <%= f.text_area :message, rows: 7 %>
         <%= f.check_box :terms_of_service,
-          required: true,
           title: t("devise_views.users.registrations.new.terms_title"),
           label: t("devise_views.users.registrations.new.terms",
                    terms: link_to(t("devise_views.users.registrations.new.terms_link"), "/privacy",
