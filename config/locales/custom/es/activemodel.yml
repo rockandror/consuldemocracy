@@ -1,0 +1,8 @@
+es:
+  activemodel:
+    attributes:
+      contact_form:
+        name: Nombre
+        email: Email
+        subject: Asunto
+        message: Mensaje

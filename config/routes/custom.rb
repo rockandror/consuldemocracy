@@ -1,2 +1,3 @@
 # Add here routes for custom features
-post "contact", to: "contact#create", id: "contact", as: "contact"
+get "contact", to: "contact#new", as: "new_contact"
+post "contact", to: "contact#create", as: "contact"

@@ -1,4 +1,5 @@
 class ContactForm
+  include ActiveModel::Conversion
   include ActiveModel::Validations
 
   attr_accessor :name, :email, :subject, :message, :terms_of_service
