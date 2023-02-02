@@ -1,8 +1,8 @@
 require "rails_helper"
 
-describe "Home" do
-  scenario "Render main links section" do
-    visit root_path(locale: :es)
+describe Layout::MainLinksComponent, type: :component do
+  it "renders main links" do
+    I18n.with_locale(:es) { render_inline Layout::MainLinksComponent.new }
 
     expect(page).to have_link "Cabildo Abierto", href: "/_cabildo_que-es-el-cabildo-abierto"
     expect(page).to have_link "Transparencia", href: "https://transparencia.tenerife.es/"
