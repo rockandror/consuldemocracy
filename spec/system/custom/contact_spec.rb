@@ -55,4 +55,17 @@ describe "Contact form" do
     expect(page).to have_content("no puede estar en blanco", count: 4)
     expect(page).to have_content("debe ser aceptado", count: 1)
   end
+
+  scenario "When a user is logged in, do not ask for the name and the email" do
+    login_as(create(:user))
+    visit contact_path(locale: "es")
+
+    fill_in "Asunto", with: "Petición de soporte"
+    fill_in "Mensaje", with: "Necesito ayuda ..."
+    check "Acepto la Política de Privacidad"
+    click_on "Enviar"
+
+    expect(page).to have_content "Mensaje enviado correctamente"
+    expect(ActionMailer::Base.deliveries.count).to eq 1
+  end
 end
