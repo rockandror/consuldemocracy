@@ -28,6 +28,7 @@ class ContactController < ApplicationController
     end
 
     def build_intro
-      t("mailers.contact.intro", name: contact_params[:name], email: contact_params[:email], message: contact_params[:message])
+      t("mailers.contact.intro", name: contact_params[:name], email: contact_params[:email],
+        message: contact_params[:message])
     end
 end
