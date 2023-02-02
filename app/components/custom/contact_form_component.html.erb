@@ -6,9 +6,11 @@
         <h2><%= t("contact.form_title") %></h2>
       </div>
       <div>
-        <%= f.text_field :name, autofocus: true, maxlength: User.username_max_length %>
         <%= f.invisible_captcha :address %>
-        <%= f.email_field :email %>
+        <% unless current_user %>
+          <%= f.text_field :name, autofocus: true, maxlength: User.username_max_length %>
+          <%= f.email_field :email %>
+        <% end %>
         <%= f.text_field :subject, maxlength: 30, hint: t("contact.subject_hint") %>
         <%= f.text_area :message, rows: 7 %>
         <%= f.check_box :terms_of_service,

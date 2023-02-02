@@ -9,6 +9,10 @@ class ContactController < ApplicationController
 
   def create
     @contact_form = ContactForm.new(contact_params)
+    if current_user
+      @contact_form.name = current_user.username
+      @contact_form.email = current_user.email
+    end
     if @contact_form.valid?
       Mailer.contact(contact_params[:subject], build_intro, contact_params[:message]).deliver_later
       redirect_to root_path, notice: t("contact.success")
