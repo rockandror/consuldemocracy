@@ -45,7 +45,9 @@
 
       <%= yield %>
     </div>
-    <%= render "shared/main_links" %>
+
+    <%= render Layout::MainLinksComponent.new %>
+
     <div class="footer">
       <%= render "layouts/footer" %>
     </div>
