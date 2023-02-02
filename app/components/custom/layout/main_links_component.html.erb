@@ -4,9 +4,9 @@
       <%= link_to options[:path], target: options[:target] do %>
         <div class="sectionbox">
           <% if options[:img].present? %>
-            <%= image_tag(image_path_for("icono-#{options[:img]}"), class: "", alt: "") %>
+            <%= image_tag(image_path_for("icono-#{options[:img]}"), alt: "") %>
           <% else %>
-            <%= icon("fas", options[:icon], style: "font-size: 4em; color: #005079") %>
+            <%= icon("fas", options[:icon]) %>
           <% end %>
           <div class="sectionbox-title">
             <span><%= t("shared.main_links.#{section}") %></span>
