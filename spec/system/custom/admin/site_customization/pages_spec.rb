@@ -20,4 +20,23 @@ describe "Admin custom pages", :admin do
       end
     end
   end
+
+  context "Create" do
+    describe "News" do
+      scenario "Valid custom page" do
+        visit new_admin_site_customization_page_path(locale: :es)
+
+        fill_in "Título", with: "News example"
+        fill_in "Slug", with: "news-example-page"
+        check "Es noticia"
+        fill_in "Fecha de la noticia", with: Date.current
+
+        click_button "Crear Página"
+
+        expect(page).to have_content "News example"
+        expect(page).to have_content "news-example-page"
+        expect(page).to have_content "Página creada correctamente"
+      end
+    end
+  end
 end

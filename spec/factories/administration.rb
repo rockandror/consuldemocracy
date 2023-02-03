@@ -49,6 +49,11 @@ FactoryBot.define do
     trait :display_in_more_info do
       more_info_flag { true }
     end
+
+    trait :news do
+      is_news { true }
+      news_date { Date.current }
+    end
   end
 
   factory :site_customization_content_block, class: "SiteCustomization::ContentBlock" do
