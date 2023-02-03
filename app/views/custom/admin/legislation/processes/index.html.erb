@@ -38,8 +38,8 @@
           <td class="text-center"><%= process.sdg_target_list %></td>
           <td>
             <%= render Admin::TableActionsComponent.new(process) do |actions| %>
-              <%= actions.link_to "Descargar CSV",
-                                  download_admin_legislation_process_path(process, csv_params),
+              <%= actions.link_to t("admin.legislation.processes.index.download"),
+                                  download_admin_legislation_process_path(process, format: :zip),
                                   target: "_blank",
                                   rel: "nofollow",
                                   class: "download-link" %>
