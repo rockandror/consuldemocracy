@@ -17,6 +17,7 @@ es:
           proposals_description: Descripcion de propuestas
         index:
           title: Procesos de propuestas del Cabildo
+          download: Descargar CSV
         new:
           title: Crear nuevo proceso de propuestas del Cabildo
       answers:
