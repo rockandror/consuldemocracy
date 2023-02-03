@@ -1,15 +1,16 @@
 require_dependency Rails.root.join("app", "controllers", "admin", "proposals_controller").to_s
 
 class Admin::ProposalsController
-  before_action :load_proposal, except: [:index, :download]
+  def index
+    super
 
-  def download
-    @proposals = Proposal.all
     respond_to do |format|
       format.csv do
-        send_data Proposal::Exporter.new(@proposals).to_csv,
+        unpaged_proposals = @proposals.except(:limit, :offset)
+        send_data Proposal::Exporter.new(unpaged_proposals).to_csv,
                   filename: "proposals.csv"
       end
+      format.html
     end
   end
 end
