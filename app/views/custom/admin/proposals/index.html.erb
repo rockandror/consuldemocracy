@@ -8,7 +8,7 @@
   <%= render Admin::SearchComponent.new(label: t("admin.shared.search.label.proposals")) %>
 
   <%= link_to(t("admin.proposals.index.export"),
-              download_admin_proposals_path(csv_params),
+              current_path_with_query_params(format: :csv),
               class: "float-right small clear") %>
 
   <h3><%= page_entries_info @proposals %></h3>
