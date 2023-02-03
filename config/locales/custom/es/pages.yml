@@ -29,3 +29,7 @@ es:
               page_column: Presupuestos participativos
             - key_column: 5
               page_column: Propuestas del Cabildo
+    main_links:
+      cabildo_title: "¿Qué es cabildoabierto.tenerife.es?"
+      participation_title: "Conoce lo que hacemos"
+      ethic_title: "Código de Buen Gobierno"
