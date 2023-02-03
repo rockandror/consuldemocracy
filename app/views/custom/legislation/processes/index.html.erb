@@ -7,13 +7,11 @@
 <div class="row">
   <div id="legislation" class="legislation-list small-12 medium-9 column">
     <% if @tag %>
-      <ul class="no-bullet tag-cloud">
-        <li class="inline-block">
-          <%= link_to legislation_processes_path do %>
-            <span class="tag"><%= @tag %>&emsp; &times;</span>
-          <% end %>
-        </li>
-      </ul>
+      <div class="tags">
+        <%= link_to legislation_processes_path, title: t("legislation.processes.index.remove_filter_by_tag") do %>
+          <%= @tag %>&emsp; &times;
+        <% end %>
+      </div>
     <% end %>
 
     <%= render "shared/filter_subnav", i18n_namespace: "legislation.processes.index" %>

@@ -19,4 +19,24 @@ describe "Admin collaborative legislation", :admin do
       expect(page.body).to include "proposals.csv"
     end
   end
+
+  context "Update" do
+    let!(:process) do
+      create(:legislation_process)
+    end
+
+    scenario "Allows administrators to enter a list of tags" do
+      visit edit_admin_legislation_process_path(process, locale: :es)
+
+      fill_in "Etiquetas", with: "deporte, salud"
+      click_button "Guardar cambios"
+
+      expect(page).to have_content "Proceso actualizado correctamente"
+
+      click_link "Haz click para verlo"
+
+      expect(page).to have_content "deporte"
+      expect(page).to have_content "salud"
+    end
+  end
 end

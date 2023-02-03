@@ -8,6 +8,7 @@ es:
           help: Ayuda sobre propuestas del Cabildo
         section_footer:
           title: Ayuda sobre Propuestas del Cabildo
+        remove_filter_by_tag: Eliminar filtro por etiqueta
     questions:
       show:
         title: Proceso de propuestas del Cabildo
