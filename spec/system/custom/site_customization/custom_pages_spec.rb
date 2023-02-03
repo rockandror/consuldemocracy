@@ -75,5 +75,57 @@ describe "Custom Pages" do
         expect(page).not_to have_css ".menu-sections"
       end
     end
+
+    describe "Menu contents" do
+      before do
+        create(:site_customization_page, :published,
+          slug: "_cabildo_any-slug",
+          title: "Cabildo related page"
+        )
+        create(:site_customization_page, :published,
+          slug: "_participacion_any-slug",
+          title: "Participation related page"
+        )
+        create(:site_customization_page, :published,
+          slug: "_etica_any-slug",
+          title: "Ethics related page"
+        )
+        create(:site_customization_page, :published,
+          slug: "_other_any-slug",
+          title: "Other any slug"
+        )
+      end
+
+      scenario "only renders in menu section the slugs that contains '_cabildo_', '_participacion_' or '_etica_'" do
+        visit root_path(locale: :es)
+
+        click_link "Cabildo Abierto"
+
+        within ".menu-sections" do
+          expect(page).to have_link "Cabildo related page"
+          expect(page).not_to have_link "Participation related page"
+          expect(page).not_to have_link "Ethics related page"
+          expect(page).not_to have_link "Other any slug"
+        end
+
+        click_link "Participación y colaboración"
+
+        within ".menu-sections" do
+          expect(page).to have_link "Participation related page"
+          expect(page).not_to have_link "Cabildo related page"
+          expect(page).not_to have_link "Ethics related page"
+          expect(page).not_to have_link "Other any slug"
+        end
+
+        click_link "Ética Pública"
+
+        within ".menu-sections" do
+          expect(page).to have_link "Ethics related page"
+          expect(page).not_to have_link "Cabildo related page"
+          expect(page).not_to have_link "Participation related page"
+          expect(page).not_to have_link "Other any slug"
+        end
+      end
+    end
   end
 end
