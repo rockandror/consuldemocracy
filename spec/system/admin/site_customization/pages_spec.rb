@@ -10,7 +10,7 @@ describe "Admin custom pages", :admin do
       expect(page).to have_content(custom_page.slug)
     end
 
-    scenario "should contain all default custom pages published populated by db:seeds" do
+    scenario "should contain all default custom pages published populated by db:seeds", :consul do
       slugs = %w[accessibility conditions faq privacy welcome_not_verified
                  welcome_level_two_verified welcome_level_three_verified]
 
