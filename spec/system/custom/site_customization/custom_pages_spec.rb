@@ -145,4 +145,77 @@ describe "Custom Pages" do
       expect(page).to have_css "[href='any-news']"
     end
   end
+
+  describe "Breadcrumbs" do
+    context "Main links sections" do
+      scenario "render in Cabildo custom page" do
+        visit root_path(locale: :es)
+
+        click_link "Cabildo Abierto"
+
+        expect(page).to have_content "Inicio > Cabildo Abierto > ¿Qué es cabildoabierto.tenerife.es?"
+        expect(page).to have_link "Inicio", href: root_path
+        expect(page).to have_link "Cabildo Abierto", href: "#"
+        expect(page).to have_link "¿Qué es cabildoabierto.tenerife.es?", href: "_cabildo_que-es-el-cabildo-abierto"
+      end
+
+      scenario "Participation" do
+        visit root_path(locale: :es)
+
+        click_link "Participación y colaboración"
+
+        expect(page).to have_content "Inicio > Participación y colaboración ciudadana > Conoce lo que hacemos"
+        expect(page).to have_link "Inicio", href: root_path
+        expect(page).to have_link "Participación y colaboración ciudadana", href: "#"
+        expect(page).to have_link "Conoce lo que hacemos", href: "_participacion_que-hacemos"
+      end
+
+      scenario "Ethics" do
+        visit root_path(locale: :es)
+
+        click_link "Ética Pública"
+
+        expect(page).to have_content "Inicio > Ética Pública > Código de Buen Gobierno"
+        expect(page).to have_link "Inicio", href: root_path
+        expect(page).to have_link "Ética Pública", href: "#"
+        expect(page).to have_link "Código de Buen Gobierno", href: "_etica_codigo-de-buen-gobierno-y-seguimiento"
+      end
+    end
+
+    context "News" do
+      scenario "News link" do
+        visit root_path(locale: :es)
+
+        click_link "Cabildo Abierto"
+        click_link "Noticias"
+
+        expect(page).to have_content "Inicio > Cabildo Abierto > Noticias"
+        expect(page).to have_link "Inicio", href: root_path
+        expect(page).to have_link "Cabildo Abierto", href: "#"
+        expect(page).to have_link "Noticias", href: "#"
+      end
+
+      scenario "News page" do
+        create(:site_customization_page, :published, :news, slug: "any-news", title: "Sample news")
+
+        visit "any-news?locale=es"
+
+        expect(page).to have_content "Inicio > Cabildo Abierto > Noticias > Sample news"
+        expect(page).to have_link "Inicio", href: root_path
+        expect(page).to have_link "Cabildo Abierto", href: "#"
+        expect(page).to have_link "Noticias", href: news_path
+        expect(page).to have_link "Sample news", href: "any-news"
+      end
+    end
+
+    scenario "Custom pages" do
+      create(:site_customization_page, :published, slug: "new-slug", title: "Custom title")
+
+      visit "new-slug?locale=es"
+
+      expect(page).to have_content "Inicio > Custom title"
+      expect(page).to have_link "Inicio", href: root_path
+      expect(page).to have_link "Custom title", href: "new-slug"
+    end
+  end
 end
