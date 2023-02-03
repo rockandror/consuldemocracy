@@ -19,7 +19,7 @@ describe "Custom Pages" do
 
   describe "Menu" do
     context "Custom pages related to main links" do
-      scenario "always render menu" do
+      scenario "always render menu but news link only present in cabildo custom page" do
         visit root_path(locale: :es)
         click_link "Cabildo Abierto"
 
@@ -29,6 +29,7 @@ describe "Custom Pages" do
 
         within ".menu-sections" do
           expect(page).to have_link "¿Qué es cabildoabierto.tenerife.es?"
+          expect(page).to have_link "Noticias"
         end
 
         click_link "Participación y colaboración"
@@ -39,6 +40,7 @@ describe "Custom Pages" do
 
         within ".menu-sections" do
           expect(page).to have_link "Conoce lo que hacemos"
+          expect(page).not_to have_link "Noticias"
         end
 
         click_link "Ética Pública"
@@ -49,6 +51,7 @@ describe "Custom Pages" do
 
         within ".menu-sections" do
           expect(page).to have_link "Código de Buen Gobierno"
+          expect(page).not_to have_link "Noticias"
         end
       end
     end
@@ -126,6 +129,20 @@ describe "Custom Pages" do
           expect(page).not_to have_link "Other any slug"
         end
       end
+    end
+  end
+
+  describe "News" do
+    scenario "render news pages" do
+      create(:site_customization_page, :published, :news, slug: "any-news", title: "Sample news")
+
+      visit root_path(locale: :es)
+
+      click_link "Cabildo Abierto"
+      click_link "Noticias"
+
+      expect(page).to have_content "Sample news"
+      expect(page).to have_css "[href='any-news']"
     end
   end
 end
