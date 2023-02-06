@@ -1,6 +1,7 @@
 require_dependency Rails.root.join("app", "models", "site_customization", "page").to_s
 
 class SiteCustomization::Page
+  VALID_FILTERS = %w[all news others].freeze
   audited on: [:create, :update, :destroy]
 
   validates :news_date, presence: true, if: :is_news?
@@ -10,8 +11,8 @@ class SiteCustomization::Page
     if terms[:text] != ""
       results = results.where("title ILIKE ? OR slug ILIKE ?", "%#{terms[:text]}%", "%#{terms[:text]}%")
     end
-    if terms[:type] != "Todos"
-      results = results.where("is_news = ?", terms[:type] == "Noticias")
+    if terms[:type] != "all"
+      results = results.where("is_news = ?", terms[:type] == "news")
     end
     if terms[:start_date] != ""
       results = results.where("site_customization_pages.created_at >= ? OR news_date >= ?", terms[:start_date], terms[:start_date])

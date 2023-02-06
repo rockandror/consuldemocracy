@@ -21,27 +21,27 @@ describe SiteCustomization::Page do
         SiteCustomization::Page.delete_all
       end
 
-      it "finds pages searching by 'Todos'" do
+      it "finds pages searching by 'All'" do
         news_page = create(:site_customization_page, :news, title: "Page 1", slug: "page-1")
         custom_page = create(:site_customization_page, title: "Page 2", slug: "page-2")
 
-        search_params = { type: "Todos", text: "", start_date: "", end_date:"" }
+        search_params = { type: "all", text: "", start_date: "", end_date:"" }
         expect(SiteCustomization::Page.search(search_params)).to match_array [news_page, custom_page]
       end
 
-      it "finds pages searching by 'Noticias'" do
+      it "finds pages searching by 'News'" do
         news_page = create(:site_customization_page, :news, title: "Page 1", slug: "page-1")
         custom_page = create(:site_customization_page, title: "Page 2", slug: "page-2")
 
-        search_params = { type: "Noticias", text: "", start_date: "", end_date: "" }
+        search_params = { type: "news", text: "", start_date: "", end_date: "" }
         expect(SiteCustomization::Page.search(search_params)).to eq [news_page]
       end
 
-      it "finds pages searching by 'Otros'" do
+      it "finds pages searching by 'Others'" do
         news_page = create(:site_customization_page, :news, title: "Page 1", slug: "page-1")
         custom_page = create(:site_customization_page, title: "Page 2", slug: "page-2")
 
-        search_params = { type: "Otros", text: "", start_date: "", end_date: "" }
+        search_params = { type: "others", text: "", start_date: "", end_date: "" }
         expect(SiteCustomization::Page.search(search_params)).to eq [custom_page]
       end
     end
@@ -68,7 +68,7 @@ describe SiteCustomization::Page do
                                 news_date: 1.day.from_now, created_at: 1.day.ago
                               )
 
-          search_params = { type: "Todos", text: "", start_date: Date.current, end_date: "" }
+          search_params = { type: "all", text: "", start_date: Date.current, end_date: "" }
           expect(SiteCustomization::Page.search(search_params)).to eq [news_page2]
         end
       end
@@ -88,7 +88,7 @@ describe SiteCustomization::Page do
           news_page2 = create(:site_customization_page, :news, title: "Page 2", slug: "page-2",
                                 news_date: 1.day.from_now)
 
-          search_params = { type: "Todos", text: "", start_date: "", end_date: Date.current }
+          search_params = { type: "all", text: "", start_date: "", end_date: Date.current }
           expect(SiteCustomization::Page.search(search_params)).to eq [news_page1]
         end
       end
