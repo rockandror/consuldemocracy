@@ -14,11 +14,11 @@
 
     <div>
       <div style="display: inline-block; max-width: 200px">
-        <label for="start_date">Desde</label>
+        <label for="start_date"><%= I18n.t("admin.site_customization.pages.search.from") %></label>
         <%= date_field_tag :start_date %>
       </div>
       <div style="display: inline-block; max-width: 200px">
-        <label for="end_date">Hasta</label>
+        <label for="end_date"><%= I18n.t("admin.site_customization.pages.search.to") %></label>
         <%= date_field_tag :end_date %>
       </div>
     </div>

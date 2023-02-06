@@ -106,3 +106,5 @@ es:
             all: "Todos"
             news: "Noticias"
             others: "Otros"
+          from: "Desde"
+          to: "Hasta"
