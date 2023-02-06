@@ -75,7 +75,7 @@ describe "Admin custom pages", :admin do
 
         visit admin_site_customization_pages_path(locale: :es)
 
-        choose "type_Noticias"
+        choose "Noticias"
 
         click_button "Buscar"
 
@@ -99,7 +99,7 @@ describe "Admin custom pages", :admin do
 
         visit admin_site_customization_pages_path(locale: :es)
 
-        choose "type_Noticias"
+        choose "Noticias"
 
         fill_in "Desde", with: 2.days.ago
         fill_in "Hasta", with: 2.days.from_now
