@@ -107,6 +107,8 @@ es:
             all: "Todos"
             news: "Noticias"
             others: "Otros"
+          from: "Desde"
+          to: "Hasta"
     system_emails:
       contact:
         title: "Contacto"
