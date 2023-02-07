@@ -85,7 +85,7 @@ es:
         no_records: No hay registro de actividad
       access_logs:
         title: Registro de accesos
-        datetime: Fecha y hora
+        datetime: Fecha y hora (UTC)
         email: Email
         activity: Actividad
         result: Resultado
