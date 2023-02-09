@@ -28,17 +28,17 @@
     </div>
     <ul class="menu-sections">
       <% @related_pages.each do |related| %>
-        <%= link_to related.slug do %>
-          <li class="section">
+        <li class="section">
+          <%= link_to related.slug do %>
             <span><%= related.title %></span>
-          </li>
-        <% end %>
-      <% end %>
-      <%= link_to news_path do %>
-        <li class="current-page section">
-          <span><%= t("news.title") %></span>
+          <% end %>
         </li>
       <% end %>
+      <li class="current-page section">
+        <%= link_to news_path do %>
+          <span><%= t("news.title") %></span>
+        <% end %>
+      </li>
     </ul>
   </div>
   <div class="small-12 medium-9 column">
