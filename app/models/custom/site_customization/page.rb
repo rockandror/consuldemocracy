@@ -8,16 +8,16 @@ class SiteCustomization::Page
 
   def self.search(terms)
     results = SiteCustomization::Page.joins(:translations).locale
-    if terms[:text] != ""
+    if terms[:text].present?
       results = results.where("title ILIKE ? OR slug ILIKE ?", "%#{terms[:text]}%", "%#{terms[:text]}%")
     end
     if terms[:type] != "all"
       results = results.where("is_news = ?", terms[:type] == "news")
     end
-    if terms[:start_date] != ""
+    if terms[:start_date].present?
       results = results.where("site_customization_pages.created_at >= ? OR news_date >= ?", terms[:start_date], terms[:start_date])
     end
-    if terms[:end_date] != ""
+    if terms[:end_date].present?
       results = results.where("site_customization_pages.created_at <= ? OR news_date <= ?", terms[:end_date], terms[:end_date])
     end
     results
