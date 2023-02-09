@@ -6,9 +6,11 @@
         $.ajax({
           url: "https://www.googletagmanager.com/gtag/js?id=" + google_tag_manager_id,
           dataType: "script",
-          success: () => {
+          success: function() {
             window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
+            function gtag() {
+              window.dataLayer.push(arguments);
+            }
             gtag("js", new Date());
             gtag("consent", { "analytics_storage": "allowed" });
             gtag("config", google_tag_manager_id);
