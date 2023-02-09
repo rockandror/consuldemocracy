@@ -17,7 +17,7 @@
     </thead>
     <% @records.each do |record| %>
       <tr id="<%= dom_id(record) %>">
-        <td><%= record.created_at %></td>
+        <td><%= I18n.l record.created_at.utc, format: "%Y-%m-%d %H:%M:%S" %></td>
         <td><%= record.user&.email %></td>
         <td><%= record.action %></td>
         <td><%= record.auditable_type %></td>
