@@ -2,6 +2,6 @@ require_dependency Rails.root.join("app", "models", "budget", "content_block").t
 
 class Budget
   class ContentBlock
-    audited on: [:create, :update, :destroy]
+    audited
   end
 end

@@ -1,7 +1,7 @@
 require_dependency Rails.root.join("app", "models", "site_customization", "page").to_s
 
 class SiteCustomization::Page
-  audited on: [:create, :update, :destroy]
+  audited
 
   validates :news_date, presence: true, if: :is_news?
 
