@@ -2,6 +2,6 @@ require_dependency Rails.root.join("app", "models", "poll", "booth_assignment").
 
 class Poll
   class BoothAssignment
-    audited on: [:create, :update, :destroy]
+    audited
   end
 end
