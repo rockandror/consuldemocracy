@@ -101,3 +101,7 @@ es:
       pages:
         new:
           slug_help: "Texto que identifica esta página en la URL, por ejemplo <code>https://consulproject.org/slug-de-pagina</code><br>Si la página corresponde a una entrada del menú del Cabildo Abierto, el slug deberá empezar por <code>_cabildo_</code><br>Si la página corresponde a una entrada del menú de Participación, el slug deberá empezar por <code>_participacion_</code><br>Si la página corresponde a una entrada del menú de Ética Pública, el slug deberá empezar por <code>_etica_</code><br>Si es una noticia, el slug no necesita prefijo."
+    system_emails:
+      contact:
+        title: "Contacto"
+        description: "Enviado al correo de contacto del Cabildo cuando un usuario envía el formulario de contacto."
