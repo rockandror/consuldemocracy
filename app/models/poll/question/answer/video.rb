@@ -7,8 +7,6 @@ class Poll::Question::Answer::Video < ApplicationRecord
   validates :title, presence: true
   validate :valid_url?
 
-  audited on: [:create, :update, :destroy]
-
   def valid_url?
     return if url.blank?
     return if url.match(VIMEO_REGEX)

@@ -115,13 +115,10 @@
 //= require datepicker
 //= require_tree ./sdg
 //= require_tree ./sdg_management
-//= require cookies_eu
-//= require google_search
 
-var initialize_modules = function () {
+var initialize_modules = function() {
   "use strict";
 
-  App.GoogleSearch.initialize();
   App.Answers.initialize();
   App.Questions.initialize();
   App.Comments.initialize();
@@ -175,7 +172,7 @@ var initialize_modules = function () {
   App.SDGManagementRelationSearch.initialize();
 };
 
-var destroy_non_idempotent_modules = function () {
+var destroy_non_idempotent_modules = function() {
   "use strict";
 
   App.ColumnsSelector.destroy();

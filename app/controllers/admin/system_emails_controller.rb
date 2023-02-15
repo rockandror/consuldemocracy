@@ -1,4 +1,4 @@
-  class Admin::SystemEmailsController < Admin::BaseController
+class Admin::SystemEmailsController < Admin::BaseController
   before_action :load_system_email, only: [:view, :preview_pending, :moderate_pending]
 
   def index
@@ -14,8 +14,7 @@
       direct_message_for_sender:    %w[view edit_info],
       email_verification:           %w[view edit_info],
       user_invite:                  %w[view edit_info],
-      evaluation_comment:           %w[view edit_info],
-      contact:                      %w[view edit_info] 
+      evaluation_comment:           %w[view edit_info]
     }
   end
 

@@ -2,8 +2,6 @@ class Budget
   class ReclassifiedVote < ApplicationRecord
     REASONS = %w[heading_changed unfeasible].freeze
 
-    audited on: [:create, :update, :destroy]
-
     belongs_to :user
     belongs_to :investment
 

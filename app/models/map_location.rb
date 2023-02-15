@@ -2,8 +2,6 @@ class MapLocation < ApplicationRecord
   belongs_to :proposal, touch: true
   belongs_to :investment, class_name: "Budget::Investment", touch: true
 
-  audited on: [:create, :update, :destroy]
-
   validates :longitude, :latitude, :zoom, presence: true, numericality: true
 
   def available?

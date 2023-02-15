@@ -6,8 +6,6 @@ class Budget
     include Globalizable
     translation_class_delegate :budget
 
-    audited on: [:create, :update, :destroy]
-
     class Translation
       validate :name_uniqueness_by_budget
 

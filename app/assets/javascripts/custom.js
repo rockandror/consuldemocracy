@@ -4,4 +4,13 @@
 // * Spanish: https://github.com/consul/consul/blob/master/CUSTOMIZE_ES.md#javascript
 //
 //
+//= require cookies_eu
+//= require google_search
 
+var initialize_modules = function() {
+  "use strict";
+
+  App.GoogleSearch.initialize();
+};
+
+$(document).on("turbolinks:load", initialize_modules);

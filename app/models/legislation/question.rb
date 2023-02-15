@@ -6,8 +6,6 @@ class Legislation::Question < ApplicationRecord
   translates :title, touch: true
   include Globalizable
 
-  audited on: [:create, :update, :destroy]
-
   belongs_to :author, -> { with_hidden }, class_name: "User", inverse_of: :legislation_questions
   belongs_to :process, foreign_key: "legislation_process_id", inverse_of: :questions
 
