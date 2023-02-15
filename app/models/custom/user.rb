@@ -3,7 +3,7 @@ require_dependency Rails.root.join("app", "models", "user").to_s
 class User
   devise :lockable
 
-  audited on: [:create, :update, :destroy], except: [
+  audited except: [
     :sign_in_count,
     :last_sign_in_at,
     :current_sign_in_at,
