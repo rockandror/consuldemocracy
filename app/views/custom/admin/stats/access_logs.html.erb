@@ -16,7 +16,7 @@
     </thead>
     <% @logs.each do |log| %>
       <tr id="<%= dom_id(log) %>">
-        <td><%= log.created_at %></td>
+        <td><%= I18n.l log.created_at.utc, format: "%Y-%m-%d %H:%M:%S" %></td>
         <td><%= log.payload %></td>
         <td><%= log.activity %></td>
         <td><%= log.result %></td>
