@@ -1,28 +1,27 @@
 <%= content_for :body_class, "custom-page" %>
-
 <% provide :title do %><%= @custom_page.title %><% end %>
-<div class="page-title">
-<div class="row margin-top">
-  <div class="small-12 medium-9 column">
 
+<div class="page-title">
+  <div class="row margin-top">
+    <div class="small-12 medium-9 column">
       <h1><%= @custom_page.title %></h1>
       <% if @custom_page.is_news %>
         <small>
-        <%= link_to root_path do %>
-          <span><%= t("pages.breadcrumbs.root") %></span>
-        <% end %>
-        >
-        <%= link_to "#" do %>
-          <span><%= t("pages.breadcrumbs.entity") %></span>
-        <% end %>
-        >
-        <%= link_to news_path do %>
-          <span><%= t("pages.breadcrumbs.news") %></span>
-        <% end %>
-         >
-        <%= link_to @custom_page.slug do %>
-          <span><%= @custom_page.title %></span>
-        <% end %>
+          <%= link_to root_path do %>
+            <span><%= t("pages.breadcrumbs.root") %></span>
+          <% end %>
+          >
+          <%= link_to "#" do %>
+            <span><%= t("pages.breadcrumbs.entity") %></span>
+          <% end %>
+          >
+          <%= link_to news_path do %>
+            <span><%= t("pages.breadcrumbs.news") %></span>
+          <% end %>
+           >
+          <%= link_to @custom_page.slug do %>
+            <span><%= @custom_page.title %></span>
+          <% end %>
         </small>
       <% elsif @custom_page.slug.start_with?('_cabildo_') %>
         <small>
@@ -78,44 +77,44 @@
         </small>
       <% end %>
       <br><br>
+    </div>
   </div>
-</div>
 </div>
 <div class="row margin-top">
   <% if @menu_title %>
     <div class="small-12 medium-3 column margin-bottom">
-        <div class="menu-title">
-          <span><%= @menu_title %></span>
-        </div>
-        <ul class="menu-sections">
+      <div class="menu-title">
+        <span><%= @menu_title %></span>
+      </div>
+      <ul class="menu-sections">
         <% @related_pages.each do |related| %>
           <%= link_to related.slug do %>
-            <li class = "<% if @custom_page.id == related.id %>current-page<% end %> section">
+            <li class="<% if @custom_page.id == related.id %>current-page<% end %> section">
               <span><%= related.title %></span>
             </li>
           <% end %>
         <% end %>
         <% if @has_news %>
-        <%= link_to news_path do %>
-          <li class = "<% if @custom_page.id == "news" %>current-page<% end %> section">
-            <span><%= t("news.title") %></span>
-          </li>
+          <%= link_to news_path do %>
+            <li class="<% if @custom_page.id == "news" %>current-page<% end %> section">
+              <span><%= t("news.title") %></span>
+            </li>
+          <% end %>
         <% end %>
-        <% end %>
-        </ul>
+      </ul>
     </div>
   <% end %>
   <div class="small-12 medium-9 column <% if @custom_page.slug == "_participacion_que-hacemos" %>boxlist<% end %>">
     <div class="subtitle">
-    <% if @custom_page.subtitle.present? %>
-      <h2><%= @custom_page.subtitle %></h2>
-    <% end %>
+      <% if @custom_page.subtitle.present? %>
+        <h2><%= @custom_page.subtitle %></h2>
+      <% end %>
     </div>
     <%= auto_link_already_sanitized_html AdminWYSIWYGSanitizer.new.sanitize(@custom_page.content) %>
     <br>
     <% if @custom_page.is_news %>
       <small><%= l(@custom_page.news_date, format: "%a %d %B %Y") %></small>
-  <% end %>
+    <% end %>
   </div>
 
   <% if @custom_page.print_content_flag %>

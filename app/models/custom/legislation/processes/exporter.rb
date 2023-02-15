@@ -14,7 +14,7 @@ class Legislation::Processes::Exporter
   end
 
   def to_zip
-    filename = 'process.zip'
+    filename = "process.zip"
     temp_file = Tempfile.new(filename)
 
     begin
@@ -27,7 +27,7 @@ class Legislation::Processes::Exporter
         zip.get_output_stream("proposals.csv") { |f| f.puts(Legislation::Proposals::Exporter.new(@process).to_csv) }
       end
 
-      zip_data = File.read(temp_file.path)
+      File.read(temp_file.path)
     ensure # important steps below
       temp_file.close
       temp_file.unlink
@@ -67,7 +67,7 @@ class Legislation::Processes::Exporter
         process.result_publication_date,
         process.proposals_phase_start_date,
         process.proposals_phase_end_date,
-        ActionView::Base.full_sanitizer.sanitize(process.proposals_description),
+        ActionView::Base.full_sanitizer.sanitize(process.proposals_description)
       ]
     end
 end

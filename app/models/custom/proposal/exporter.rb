@@ -42,9 +42,9 @@ class Proposal::Exporter
         proposal.summary,
         ActionView::Base.full_sanitizer.sanitize(proposal.description),
         proposal.url,
-        proposal.geozone.try(:name) || '',
+        proposal.geozone&.name || "",
         proposal.tag_list.to_s,
-        proposal.sdg_goals.to_a.map { |sdg| sdg.code }
+        proposal.sdg_goals.to_a.map(&:code)
       ]
     end
 

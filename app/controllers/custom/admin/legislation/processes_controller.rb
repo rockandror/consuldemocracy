@@ -5,7 +5,7 @@ class Admin::Legislation::ProcessesController
     respond_to do |format|
       format.zip
       format.csv do
-        send_data ::Legislation::Processes::Exporter.new(@process).to_zip, type: 'application/zip', disposition: 'attachment', filename: "process.zip"
+        send_data ::Legislation::Processes::Exporter.new(@process).to_zip, type: "application/zip", disposition: "attachment", filename: "process.zip"
       end
     end
   end

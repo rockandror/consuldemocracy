@@ -2,62 +2,64 @@
 
 <% provide :title do %><%= t("contact.title") %><% end %>
 <div class="page-title">
-<div class="row margin-top">
-  <div class="small-12 medium-9 column">
-
+  <div class="row margin-top">
+    <div class="small-12 medium-9 column">
       <h1><%= t("contact.title") %></h1>
       <small>
         <%= link_to root_path do %>
           <span><%= t("pages.breadcrumbs.root") %></span>
         <% end %>
         >
-        <%= link_to '#' do %>
+        <%= link_to "#" do %>
           <span><%= t("contact.title") %></span>
         <% end %>
       </small>
       <br><br>
+    </div>
   </div>
-</div>
 </div>
 <%= form_with url: "/contact" do |f| %>
-<div class="row margin-top">
-  <div class="small-12 medium-9 column">
-  <p><%= sanitize t("contact.intro") %></p>
-    <div class="subtitle">
-      <h2><%= t("contact.form_title") %></h2>
-    </div>
-    <div>
-      <%= f.hidden_field :locale, value: I18n.locale %>
-
-      <%= f.text_field :username, required: true,  autofocus: true, maxlength: User.username_max_length,
-                                  label: t("contact.username") %>
-
-      <%= f.invisible_captcha :address %>
-
-      <%= f.email_field :email, required: true, label: t("contact.email") %>
-
-      <%= f.text_field :subject, required: true, maxlength: 30,
-                                  label: t("contact.subject"),
-                                  hint: t("contact.subject_hint") %>
-
-      <%= f.text_area :email_body, rows: 7, required: true,
-                                  label: t("contact.email_body") %>
-
-      <%= f.check_box :terms_of_service,
-        required: true,
-        title: t("devise_views.users.registrations.new.terms_title"),
-        label: t("devise_views.users.registrations.new.terms",
-                 terms: link_to(t("devise_views.users.registrations.new.terms_link"), "/privacy",
-                                title: t("shared.target_blank"),
-                                target: "_blank")
-                ) %>
-      <div class="small-12 medium-12">
-        <%= sanitize(t("devise_views.users.registrations.new.terms_description", terms: link_to(t("devise_views.users.registrations.new.terms_link"), "/privacy"), terms_registry: link_to(t("devise_views.users.registrations.new.terms_registry"), "https://www.tenerife.es/documentos/ECIT_RegistroTratamientos.pdf"))) %>
+  <div class="row margin-top">
+    <div class="small-12 medium-9 column">
+      <p><%= sanitize t("contact.intro") %></p>
+      <div class="subtitle">
+        <h2><%= t("contact.form_title") %></h2>
       </div>
-      <div class="small-12 medium-6 small-centered">
-        <%= f.submit t("contact.submit"), class: "button expanded" %>
+      <div>
+        <%= f.hidden_field :locale, value: I18n.locale %>
+        <%= f.text_field :username, required: true, autofocus: true, maxlength: User.username_max_length,
+                                    label: t("contact.username") %>
+        <%= f.invisible_captcha :address %>
+        <%= f.email_field :email, required: true, label: t("contact.email") %>
+        <%= f.text_field :subject, required: true, maxlength: 30,
+                                    label: t("contact.subject"),
+                                    hint: t("contact.subject_hint") %>
+        <%= f.text_area :email_body, rows: 7, required: true,
+                                    label: t("contact.email_body") %>
+        <%= f.check_box :terms_of_service,
+          required: true,
+          title: t("devise_views.users.registrations.new.terms_title"),
+          label: t("devise_views.users.registrations.new.terms",
+                   terms: link_to(t("devise_views.users.registrations.new.terms_link"), "/privacy",
+                                  title: t("shared.target_blank"),
+                                  target: "_blank")
+                  ) %>
+        <div class="small-12 medium-12">
+          <%= sanitize(
+            t(
+              "devise_views.users.registrations.new.terms_description",
+              terms: link_to(t("devise_views.users.registrations.new.terms_link"), "/privacy"),
+              terms_registry: link_to(
+                t("devise_views.users.registrations.new.terms_registry"),
+                "https://www.tenerife.es/documentos/ECIT_RegistroTratamientos.pdf"
+              )
+            )
+          ) %>
+        </div>
+        <div class="small-12 medium-6 small-centered">
+          <%= f.submit t("contact.submit"), class: "button expanded" %>
+        </div>
       </div>
     </div>
   </div>
-</div>
 <% end %>

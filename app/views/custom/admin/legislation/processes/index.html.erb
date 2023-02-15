@@ -36,17 +36,15 @@
           <td class="text-center"><%= process.total_comments %></td>
           <td class="text-center"><%= process.sdg_goal_list %></td>
           <td class="text-center"><%= process.sdg_target_list %></td>
-          <td><%= render Admin::TableActionsComponent.new(
-            process,
-            :actions => [:edit, :destroy]
-            ) do |actions| %>
+          <td>
+            <%= render Admin::TableActionsComponent.new(process, actions: [:edit, :destroy]) do |actions| %>
               <%= actions.link_to "Descargar CSV",
                                   download_admin_legislation_process_path(process, csv_params),
                                   target: "_blank",
                                   rel: "nofollow",
                                   class: "download-link" %>
-
-            <% end %></td>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>

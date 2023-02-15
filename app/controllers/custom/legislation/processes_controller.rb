@@ -6,7 +6,7 @@ class Legislation::ProcessesController
   helper_method :resource_model, :resource_name
 
   def index
-    puts 'PARAMS!'
+    puts "PARAMS!"
     puts params[:search]
     @tag = nil
 
