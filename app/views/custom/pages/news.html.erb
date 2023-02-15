@@ -28,31 +28,29 @@
     </div>
     <ul class="menu-sections">
       <% @related_pages.each do |related| %>
-        <%= link_to related.slug do %>
-          <li class="section">
+        <li class="section">
+          <%= link_to related.slug do %>
             <span><%= related.title %></span>
-          </li>
-        <% end %>
-      <% end %>
-      <%= link_to news_path do %>
-        <li class="current-page section">
-          <span><%= t("news.title") %></span>
+          <% end %>
         </li>
       <% end %>
+      <li class="current-page section">
+        <%= link_to news_path do %>
+          <span><%= t("news.title") %></span>
+        <% end %>
+      </li>
     </ul>
   </div>
   <div class="small-12 medium-9 column">
-    <ul>
-      <% @news.each do |article| %>
-        <%= link_to article.slug do %>
-          <div>
-            <small><%= l(article.news_date, format: "%a %d %B %Y") %></small>
-            <h3><%= article.title %></h3>
-          </div>
-          <hr>
-        <% end %>
+    <% @news.each do |article| %>
+      <%= link_to article.slug do %>
+        <div>
+          <small><%= l(article.news_date, format: "%a %d %B %Y") %></small>
+          <h3><%= article.title %></h3>
+        </div>
+        <hr>
       <% end %>
-    </ul>
+    <% end %>
     <%= paginate @news %>
   </div>
 </div>

@@ -6,19 +6,19 @@
                        id: "search-pages",
                        style: "max-width: 400px" %>
     <div>
-      <% ["Todos", "Noticias", "Otros"].each do |type| %>
+      <% ::SiteCustomization::Page::VALID_FILTERS.each do |type| %>
         <%= radio_button_tag "type", type, @search[:type] == type %>
-        <%= type.humanize %>&nbsp;&nbsp;&nbsp;&nbsp;
+        <%= label_tag "type_#{type}", I18n.t("admin.site_customization.pages.search.types.#{type}") %>&nbsp;&nbsp;&nbsp;&nbsp;
       <% end %>
     </div>
 
     <div>
       <div style="display: inline-block; max-width: 200px">
-        <label for="start_date">Desde</label>
+        <label for="start_date"><%= I18n.t("admin.site_customization.pages.search.from") %></label>
         <%= date_field_tag :start_date %>
       </div>
       <div style="display: inline-block; max-width: 200px">
-        <label for="end_date">Hasta</label>
+        <label for="end_date"><%= I18n.t("admin.site_customization.pages.search.to") %></label>
         <%= date_field_tag :end_date %>
       </div>
     </div>

@@ -1,0 +1,18 @@
+<div class="sectionbox-container">
+  <% sections.each do |section, options| %>
+    <div class="box text-center">
+      <%= link_to options[:path], target: options[:target] do %>
+        <div class="sectionbox">
+          <% if options[:img].present? %>
+            <%= image_tag(image_path_for("icono-#{options[:img]}"), alt: "") %>
+          <% else %>
+            <%= icon("fas", options[:icon]) %>
+          <% end %>
+          <div class="sectionbox-title">
+            <span><%= t("shared.main_links.#{section}") %></span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

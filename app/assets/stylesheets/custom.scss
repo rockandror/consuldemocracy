@@ -206,8 +206,9 @@
       margin: 30px auto;
     }
 
-    .balance::before {
-      content: "\f24e";
+    .fa-balance-scale {
+      font-size: 4em;
+      color: #005079;
     }
 
     &-title {
@@ -322,17 +323,18 @@
   width: 100%;
   margin: 0;
 
-  a {
-    text-decoration: none;
+  li {
+    color: #000;
 
-    li {
+    a {
+      display: block;
       padding: 10px 34px 10px 20px;
-      color: #000;
-    }
+      text-decoration: none;
 
-    :hover {
-      background-color: $brand;
-      color: #fff;
+      &:hover {
+        background-color: $brand;
+        color: #fff;
+      }
     }
   }
 }
