@@ -49,7 +49,7 @@ es:
       legislation: Propuestas del Cabildo
     proposals:
       index:
-        export: Exportar todas las propuestas
+        export: Descargar selección actual
         export_list:
           id: ID
           title: Título
