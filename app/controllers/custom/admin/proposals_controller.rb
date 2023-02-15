@@ -6,8 +6,6 @@ class Admin::ProposalsController
   def download
     @proposals = Proposal.all
     respond_to do |format|
-      format.html
-      format.js
       format.csv do
         send_data Proposal::Exporter.new(@proposals).to_csv,
                   filename: "proposals.csv"
