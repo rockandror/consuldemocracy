@@ -177,10 +177,10 @@ Devise.setup do |config|
 
   # Number of authentication tries before locking an account if lock_strategy
   # is failed attempts.
-  config.maximum_attempts = Setting["login_attempts_before_lock"].to_i || 2
+  config.maximum_attempts = 2 # Overwritten in User model
 
   # Time interval to unlock the account if :time is enabled as unlock_strategy.
-  config.unlock_in = (Setting["time_to_unlock"].to_i || 2).minutes
+  config.unlock_in = 2.minutes # Overwritten in User model
 
   # Warn on the last attempt before the account is locked.
   config.last_attempt_warning = true

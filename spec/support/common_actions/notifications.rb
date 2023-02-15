@@ -29,7 +29,7 @@ module Notifications
     login_as(proposal.author)
     visit root_path
 
-    click_link "My content"
+    within(".top-links") { click_link "My content" }
 
     within("#proposal_#{proposal.id}") do
       click_link "Dashboard"

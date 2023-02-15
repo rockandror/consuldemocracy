@@ -16,7 +16,6 @@ es:
               <b>Más información:</b> Reflejadas en el %{terms_registry}.</p>
           terms_link: Política de Privacidad
           terms_registry: Registro de Actividades de Tratamiento
-          terms_title: Al registrarte aceptas las condiciones de uso
     mailer:
       confirmation_instructions:
         rrss_text: |

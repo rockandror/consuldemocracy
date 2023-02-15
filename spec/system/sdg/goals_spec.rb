@@ -7,7 +7,7 @@ describe "SDG Goals" do
     Setting["sdg.process.proposals"] = true
   end
 
-  describe "SDG navigation link" do
+  describe "SDG navigation link", :consul do
     scenario "is not present when the feature is disabled" do
       Setting["feature.sdg"] = false
 

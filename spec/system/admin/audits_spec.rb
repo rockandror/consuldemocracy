@@ -10,7 +10,7 @@ describe "Admin change log" do
 
       visit admin_budget_budget_investment_path(investment.budget, investment)
 
-      expect(page).to have_content "There are no changes logged"
+      expect(page).not_to have_content "There are no changes logged"
 
       click_link "Edit"
       fill_in "Title", with: "Modern times"

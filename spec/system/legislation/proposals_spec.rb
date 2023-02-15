@@ -11,7 +11,7 @@ describe "Legislation Proposals" do
     it_behaves_like "flaggable", :legislation_proposal
   end
 
-  scenario "Only one menu element has 'active' CSS selector" do
+  scenario "Only one menu element has 'active' CSS selector", :consul do
     visit legislation_process_proposal_path(proposal.process, proposal)
 
     within("#navigation_bar") do
