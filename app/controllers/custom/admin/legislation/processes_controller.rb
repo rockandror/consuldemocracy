@@ -3,9 +3,11 @@ require_dependency Rails.root.join("app", "controllers", "admin", "legislation",
 class Admin::Legislation::ProcessesController
   def download
     respond_to do |format|
-      format.zip
-      format.csv do
-        send_data ::Legislation::Processes::Exporter.new(@process).to_zip, type: "application/zip", disposition: "attachment", filename: "process.zip"
+      format.zip do
+        filename = "process_#{@process.id}.zip"
+        send_data ::Legislation::Processes::Exporter.new(@process).to_zip, type: "application/zip",
+                                                                           disposition: "attachment",
+                                                                           filename: filename
       end
     end
   end
