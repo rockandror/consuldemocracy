@@ -43,7 +43,7 @@ class Proposal::Exporter
         proposal.total_votes,
         proposal.summary,
         ActionView::Base.full_sanitizer.sanitize(proposal.description),
-        proposal.url,
+        Rails.application.routes.url_helpers.proposal_path(proposal),
         proposal.geozone&.name || "",
         proposal.tag_list.to_s,
         proposal.sdg_goals.to_a.map(&:code)
