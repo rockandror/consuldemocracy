@@ -25,8 +25,12 @@ class Setting
         consul_defaults
       else
         consul_defaults.merge({
+          "facebook_handle": "CabildoTenerife",
+          "instagram_handle": "cabildotenerife/?hl=es",
           "login_attempts_before_lock": 4,
-          "time_to_unlock": 30
+          "time_to_unlock": 30,
+          "twitter_handle": "CabildoTenerife",
+          "youtube_handle": "channel/UCSnQFzldpaeR5D7zTOp3pRA?view_as=subscriber"
         })
       end
     end

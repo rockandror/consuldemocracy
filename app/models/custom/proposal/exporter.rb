@@ -1,7 +1,9 @@
+require_dependency Rails.root.join("app", "models", "proposal", "exporter").to_s
+
 class Proposal::Exporter
   require "csv"
 
-  def initialize(proposals)
+  def initialize(proposals = [])
     @proposals = proposals
   end
 
