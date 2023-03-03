@@ -3,6 +3,8 @@ require_dependency Rails.root.join("app", "controllers", "admin", "site_customiz
 class Admin::SiteCustomization::PagesController
   before_action :load_search, only: [:index, :search_pages]
 
+  alias_method :consul_allowed_params, :allowed_params
+
   def search_pages
     @pages = ::SiteCustomization::Page.quick_search(@search)
     respond_to do |format|
@@ -12,12 +14,8 @@ class Admin::SiteCustomization::PagesController
 
   private
 
-    def page_params
-      attributes = [:slug, :more_info_flag, :print_content_flag, :is_news, :news_date, :updated_at, :status]
-
-      params.require(:site_customization_page).permit(*attributes,
-        translation_params(SiteCustomization::Page)
-      )
+    def allowed_params
+      consul_allowed_params.push(:is_news, :news_date, :updated_at)
     end
 
     def search_params
