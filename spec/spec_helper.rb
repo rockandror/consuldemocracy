@@ -13,7 +13,7 @@ RSpec.configure do |config|
   config.fixture_path = "spec/fixtures/files"
 
   config.filter_run_when_matching :focus
-  config.include RequestSpecHelper, type: :request
+  #config.include RequestSpecHelper, type: :request
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :view
   config.include FactoryBot::Syntax::Methods
