@@ -5,7 +5,10 @@ module CommonActions
   include Budgets
   include Comments
   include Debates
+  include Documents
   include Emails
+  include Images
+  include Maps
   include Notifications
   include Polls
   include Proposals
@@ -14,7 +17,6 @@ module CommonActions
   include Translations
   include Users
   include Verifications
-  include Votes
 
   def app_host
     "#{Capybara.app_host}:#{Capybara::Server.ports.values.last}"

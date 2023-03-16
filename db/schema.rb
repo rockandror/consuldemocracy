@@ -404,6 +404,7 @@ ActiveRecord::Schema.define(version: 2022_02_18_133841) do
     t.text "description_informing"
     t.string "voting_style", default: "knapsack"
     t.boolean "published"
+    t.boolean "hide_money", default: false
   end
 
   create_table "campaigns", id: :serial, force: :cascade do |t|
@@ -1637,6 +1638,7 @@ ActiveRecord::Schema.define(version: 2022_02_18_133841) do
     t.boolean "public_interests", default: false
     t.boolean "recommended_debates", default: true
     t.boolean "recommended_proposals", default: true
+    t.string "subscriptions_token"
     t.integer "failed_attempts", default: 0, null: false
     t.datetime "locked_at"
     t.string "unlock_token"

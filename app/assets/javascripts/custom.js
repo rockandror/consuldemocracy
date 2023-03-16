@@ -5,8 +5,6 @@
 //
 //
 //= require cookies_eu
-//= require google_search
-//= require consent_banner
 
 var initialize_modules = function() {
   "use strict";
