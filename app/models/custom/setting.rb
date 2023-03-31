@@ -1,6 +1,13 @@
 require_dependency Rails.root.join("app", "models", "setting").to_s
 
 class Setting
+  alias_method :consul_type, :type
+
+  def type
+    return prefix if %w[security_options].include? prefix
+    consul_type
+  end
+
   class << self
     alias_method :consul_defaults, :defaults
 
