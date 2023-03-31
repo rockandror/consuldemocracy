@@ -1,0 +1,6 @@
+en:
+  admin:
+    settings:
+      index:
+        security_options:
+          title: Security options
