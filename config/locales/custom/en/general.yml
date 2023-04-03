@@ -1,0 +1,5 @@
+en:
+  account:
+    show:
+      last_sign_in: "Last login: %{last_sign_in_at}"
+      last_sign_in_ip: "from ip %{last_sign_in_ip}"

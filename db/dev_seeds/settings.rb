@@ -12,6 +12,7 @@ section "Creating Settings" do
     "meta_title": "CONSUL",
     "proposal_code_prefix": "MAD",
     "proposal_notification_minimum_interval_in_days": 0,
+    "security_options.last_sign_in_at": "true",
     "telegram_handle": "CONSUL",
     "twitter_handle": "@consul_dev",
     "twitter_hashtag": "#consul_dev",

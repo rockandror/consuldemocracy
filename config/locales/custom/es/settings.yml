@@ -1,0 +1,5 @@
+es:
+  settings:
+    security_options:
+      last_sign_in_at: Último acceso
+      last_sign_in_at_description: Se informará al usuario del último acceso efectuado con su identidad, en la página de "Mi cuenta".

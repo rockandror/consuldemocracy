@@ -10,6 +10,15 @@
 
     <h1 class="inline-block"><%= t("account.show.title") %></h1>
 
+    <% if Setting["security_options.last_sign_in_at"] %>
+      <div class="callout primary">
+        <%= t("account.show.last_sign_in", last_sign_in_at: I18n.l(@account.last_sign_in_at, format: :long)) %>
+        <% if @account.last_sign_in_ip %>
+          <%= t("account.show.last_sign_in_ip", last_sign_in_ip: @account.last_sign_in_ip) %>
+        <% end %>
+      </div>
+    <% end %>
+
     <%= form_for @account, as: :account, url: account_path do |f| %>
       <%= render "shared/errors", resource: @account %>
 

@@ -27,10 +27,12 @@ class Setting
     # environment.
     def defaults
       if Rails.env.test?
-        consul_defaults
+        consul_defaults.merge({
+          "security_options.last_sign_in_at": false
+        })
       else
         consul_defaults.merge({
-          # Overwrite default CONSUL settings or add new settings here
+          "security_options.last_sign_in_at": false
         })
       end
     end
