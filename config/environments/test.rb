@@ -64,6 +64,8 @@ Rails.application.configure do
 
   # Allow managing different tenants using the same application
   config.multitenancy = true
+
+  config.devise_lockable = true
 end
 
 require Rails.root.join("config", "environments", "custom", "test")
