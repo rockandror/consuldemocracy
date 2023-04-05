@@ -12,6 +12,7 @@ module Globalize
 
     class Translation
       include SkipValidation
+      include Auditable
     end
   end
 end

@@ -13,7 +13,8 @@ class Geozone < ApplicationRecord
   end
 
   def safe_to_destroy?
-    Geozone.reflect_on_all_associations(:has_many).all? do |association|
+    Geozone.reflect_on_all_associations(:has_many).
+            reject { |association| association.name.to_s.include?("audit") }.all? do |association|
       association.klass.where(geozone: self).empty?
     end
   end
