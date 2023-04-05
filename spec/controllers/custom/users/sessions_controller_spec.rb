@@ -9,7 +9,7 @@ describe Users::SessionsController do
     describe "Devise lock" do
       context "when devise sign in maximum_attempts reached", :with_frozen_time do
         it "locks the user account and sends an email to the account with an unlock link" do
-          user.update(failed_attempts: 19)
+          allow(Tenant.current_secrets).to receive(:security).and_return({ lockable: { maximum_attempts: 1}})
           expect do
             post :create, params: { user: { login: "citizen@consul.org", password: "wrongpassword" }}
           end.to change { user.reload.failed_attempts }.by(1)

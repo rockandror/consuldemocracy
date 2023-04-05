@@ -81,7 +81,7 @@ describe "Users" do
         expect(page).to have_content "You have been signed in successfully."
       end
 
-      scenario "Avoid username-email collisions" do
+      scenario "Avoid username-email collisions", :consul do
         u1 = create(:user, username: "Spidey", email: "peter@nyc.dev", password: "greatpower")
         u2 = create(:user, username: "peter@nyc.dev", email: "venom@nyc.dev", password: "symbiote")
 
