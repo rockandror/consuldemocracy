@@ -1,6 +1,6 @@
 <h2><%= t("admin.audits.title") %></h2>
 
-<% if resource.audits.empty? %>
+<% if resource.own_and_associated_audits.empty? %>
   <p><%= t("admin.audits.empty") %></p>
 <% else %>
   <table id="audits">
