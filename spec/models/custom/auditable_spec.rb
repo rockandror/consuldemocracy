@@ -1,32 +1,46 @@
 require "rails_helper"
 
 describe "Auditable" do
+  before { allow(Rails.application.config).to receive(:auditing_enabled).and_return(true) }
+
   describe ".auditing_enabled" do
-    it "responds true to classes we want to keep track of changes" do
-      ApplicationRecord.audited_class_names.sample do |model|
-        expect(model.constantize.auditing_enabled).to be(true)
+    context "when audited is disabled through secrets" do
+      it "responds false to all classes" do
+        allow(Rails.application.config).to receive(:auditing_enabled).and_return(false)
+
+        ApplicationRecord.audited_class_names.each do |model|
+          expect(model.constantize.auditing_enabled).to be(false)
+        end
       end
     end
 
-    it "responds false to classes we do not want to keep track of changes" do
-      expect(ApplicationRecord.auditing_enabled).to be(false)
-      expect(Administrator.auditing_enabled).to be(false)
-      expect(Globalize::ActiveRecord::Translation.auditing_enabled).to be(false)
-      expect(Visit.auditing_enabled).to be(false)
-    end
+    context "when audited is enabled through secrets" do
+      it "responds true to classes we want to keep track of changes" do
+        ApplicationRecord.audited_class_names.sample do |model|
+          expect(model.constantize.auditing_enabled).to be(true)
+        end
+      end
 
-    it "responds true to translation classes when globalized_model has enabled auditing" do
-      expect(Proposal::Translation.auditing_enabled).to be(true)
-      expect(Budget::Translation.auditing_enabled).to be(true)
-      expect(Debate::Translation.auditing_enabled).to be(true)
-    end
+      it "responds false to classes we do not want to keep track of changes" do
+        expect(ApplicationRecord.auditing_enabled).to be(false)
+        expect(Administrator.auditing_enabled).to be(false)
+        expect(Globalize::ActiveRecord::Translation.auditing_enabled).to be(false)
+        expect(Visit.auditing_enabled).to be(false)
+      end
 
-    it "responds false to translation classes when globalized_model has disabled auditing" do
-      expect(Proposal::Translation.auditing_enabled).to be(true)
+      it "responds true to translation classes when globalized_model has enabled auditing" do
+        expect(Proposal::Translation.auditing_enabled).to be(true)
+        expect(Budget::Translation.auditing_enabled).to be(true)
+        expect(Debate::Translation.auditing_enabled).to be(true)
+      end
 
-      allow(Proposal).to receive(:audited_class_names).and_return([])
+      it "responds false to translation classes when globalized_model has disabled auditing" do
+        expect(Proposal::Translation.auditing_enabled).to be(true)
 
-      expect(Proposal::Translation.auditing_enabled).to be(false)
+        allow(Proposal).to receive(:audited_class_names).and_return([])
+
+        expect(Proposal::Translation.auditing_enabled).to be(false)
+      end
     end
   end
 
