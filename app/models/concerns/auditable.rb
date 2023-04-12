@@ -9,7 +9,7 @@ module Auditable
       alias_method :original_auditing_enabled, :auditing_enabled
 
       def auditing_enabled
-        original_auditing_enabled &&
+        Rails.application.config.auditing_enabled && original_auditing_enabled &&
           (audited_class_names.include?(name) ||
           (translation_class? && module_parent.auditing_enabled))
       end
