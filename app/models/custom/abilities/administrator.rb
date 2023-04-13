@@ -8,5 +8,6 @@ class Abilities::Administrator
 
     can :download, ::Administrator
     can :download, Legislation::Process
+    can :read, Audit
   end
 end
