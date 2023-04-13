@@ -1,0 +1,6 @@
+es:
+  activerecord:
+    models:
+      audit:
+        one: "Registro de cambio"
+        other: "Registros de cambio"

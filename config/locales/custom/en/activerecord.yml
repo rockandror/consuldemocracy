@@ -1,0 +1,6 @@
+en:
+  activerecord:
+    models:
+      audit:
+        one: "Changelog entry"
+        other: "Changelog entries"

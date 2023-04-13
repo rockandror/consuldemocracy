@@ -1,0 +1,38 @@
+<% if audits.empty? %>
+  <div class="callout alert margin">
+    <p><%= t("admin.audits.empty") %></p>
+  </div>
+<% else %>
+  <table id="audits">
+    <thead>
+      <tr>
+        <th><%= t("admin.audits.id") %></th>
+        <th><%= t("admin.audits.auditable") %></th>
+        <th><%= t("admin.audits.field") %></th>
+        <th><%= t("admin.audits.old_value") %></th>
+        <th><%= t("admin.audits.new_value") %></th>
+        <th><%= t("admin.audits.edited_at") %></th>
+        <th><%= t("admin.audits.edited_by") %></th>
+        <th><%= t("admin.audits.associated") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% audits.each do |audit| %>
+        <% audit.audited_changes.each do |field, (old_value, new_value)| %>
+          <tr>
+            <td><%= audit.id %></td>
+            <td><%= audit.auditable_type %>#<%= audit.auditable_id %></td>
+            <td><%= sanitize(audit.auditable.class.human_attribute_name(field)) %></td>
+            <td><%= truncate_audit_value(audit.auditable, field, old_value) %></td>
+            <td><%= truncate_audit_value(audit.auditable, field, new_value) %></td>
+            <td><%= l audit.created_at, format: :datetime %></td>
+            <td><%= audit.user&.name %></td>
+            <td><%= audit.associated_type %>#<%= audit.associated_id %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate audits %>
+<% end %>

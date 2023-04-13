@@ -1,0 +1,3 @@
+<h3><%= t("admin.audits.index.title") %>: <%= page_entries_info @audits %></h3>
+
+<%= render Admin::Audits::IndexComponent.new(audits: @audits) %>

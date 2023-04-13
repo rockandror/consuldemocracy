@@ -1,5 +1,11 @@
 es:
   admin:
+    audits:
+      auditable: Registro auditado
+      associated: Registro asociado
+      disabled_feature: La función de registro de cambios está desactivada. Pida al administrador del sistema que la active a través del archivo de secretos.
+      index:
+        title: Registro de cambios
     legislation:
       processes:
         index:

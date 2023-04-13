@@ -292,6 +292,8 @@ namespace :admin do
       post :execute, on: :collection
       delete :cancel, on: :collection
     end
+
+    resources :audits, only: :index
   end
 end
 
