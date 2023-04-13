@@ -4,7 +4,7 @@ describe "Admin change log" do
   let(:administrator) { create(:administrator, user: create(:user, username: "Ana")) }
   before do
     login_as(administrator.user)
-    allow(Rails.application.config).to receive(:auditing_enabled).and_return("true")
+    allow(Rails.application.config).to receive(:auditing_enabled).and_return(true)
   end
 
   context "Investments Participatory Budgets" do

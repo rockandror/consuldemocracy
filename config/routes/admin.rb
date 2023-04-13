@@ -295,6 +295,8 @@ namespace :admin do
       put :restore
     end
   end
+
+  resources :audits, only: [:index, :show]
 end
 
 resolve "Milestone" do |milestone|
