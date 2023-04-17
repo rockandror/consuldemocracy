@@ -66,6 +66,39 @@ describe "Auditable" do
     end
   end
 
+  describe ".audit_associated_with" do
+    it "returns the globalized_model for any translation class" do
+      expect(Budget::Investment::Translation.audit_associated_with).to eq(:globalized_model)
+      expect(Debate::Translation.audit_associated_with).to eq(:globalized_model)
+      expect(Legislation::Process::Translation.audit_associated_with).to eq(:globalized_model)
+      expect(Poll::Translation.audit_associated_with).to eq(:globalized_model)
+      expect(Proposal::Translation.audit_associated_with).to eq(:globalized_model)
+    end
+
+    it "returns the method for the current class name" do
+      expect(Comment.audit_associated_with).to eq(:commentable)
+      expect(Document.audit_associated_with).to eq(:documentable)
+      expect(Dashboard::AdministratorTask.audit_associated_with).to eq(:source)
+      expect(Flag.audit_associated_with).to eq(:flaggable)
+      expect(Follow.audit_associated_with).to eq(:followable)
+      expect(Image.audit_associated_with).to eq(:imageable)
+      expect(Link.audit_associated_with).to eq(:linkable)
+      expect(Milestone.audit_associated_with).to eq(:milestonable)
+      expect(MlSummaryComment.audit_associated_with).to eq(:commentable)
+      expect(Notification.audit_associated_with).to eq(:notifiable)
+      expect(ProgressBar.audit_associated_with).to eq(:progressable)
+      expect(RelatedContent.audit_associated_with).to eq(:parent_relationable)
+      expect(Report.audit_associated_with).to eq(:process)
+      expect(SDG::Relation.audit_associated_with).to eq(:relatable)
+      expect(SDG::Review.audit_associated_with).to eq(:relatable)
+      expect(SignatureSheet.audit_associated_with).to eq(:signable)
+      expect(StatsVersion.audit_associated_with).to eq(:process)
+      expect(Tagging.audit_associated_with).to eq(:taggable)
+      expect(VotationType.audit_associated_with).to eq(:questionable)
+      expect(Widget::Card.audit_associated_with).to eq(:cardable)
+    end
+  end
+
   describe "on auditable destroy" do
     context "when auditable has translations" do
       it "keeps track of model and translation" do

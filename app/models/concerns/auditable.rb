@@ -116,7 +116,11 @@ module Auditable
       end
 
       def audit_associated_with
-        :globalized_model if translation_class?
+        if translation_class?
+          :globalized_model
+        else
+          associated_with_by_class[key]
+        end
       end
 
       protected
@@ -142,6 +146,31 @@ module Auditable
           {
             user: %w[sign_in_count last_sign_in_at current_sign_in_at],
             translation: %w[locale hidden_at]
+          }
+        end
+
+        def associated_with_by_class
+          {
+            comment: :commentable,
+            document: :documentable,
+            dashboard_administrator_task: :source,
+            flag: :flaggable,
+            follow: :followable,
+            image: :imageable,
+            link: :linkable,
+            milestone: :milestonable,
+            ml_summary_comment: :commentable,
+            notification: :notifiable,
+            progress_bar: :progressable,
+            related_content: :parent_relationable,
+            report: :process,
+            sdg_relation: :relatable,
+            sdg_review: :relatable,
+            signature_sheet: :signable,
+            stats_version: :process,
+            tagging: :taggable,
+            votation_type: :questionable,
+            widget_card: :cardable
           }
         end
 
