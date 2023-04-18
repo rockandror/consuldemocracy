@@ -6,6 +6,8 @@ es:
       disabled_feature: La función de registro de cambios está desactivada. Pida al administrador del sistema que la active a través del archivo de secretos.
       index:
         title: Registro de cambios
+      search:
+        placeholder: "Buscar por el nombre de la clase y el identificador. Por ejemplo: Budget#2"
     legislation:
       processes:
         index:
