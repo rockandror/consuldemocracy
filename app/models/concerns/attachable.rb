@@ -27,6 +27,7 @@ module Attachable
       }
 
     before_validation :set_attachment_from_cached_attachment, if: -> { cached_attachment.present? }
+    before_save :strip_metadata
   end
 
   def association_class
@@ -61,5 +62,21 @@ module Attachable
 
   def file_path
     ActiveStorage::Blob.service.path_for(attachment.blob.key)
+  end
+
+  def strip_metadata
+    return unless attachment&.attached?
+
+    filename = attachment.filename.to_s
+    attachment_path = "#{Dir.tmpdir}/#{attachment.filename}"
+
+    File.open(attachment_path, "wb") do |file|
+      file.write(attachment.download)
+      file.close
+    end
+    mm_image = MiniMagick::Image.open(attachment_path)
+    mm_image.strip
+    mm_image.write attachment_path
+    attachment.attach(io: File.open(attachment_path), filename: filename)
   end
 end
