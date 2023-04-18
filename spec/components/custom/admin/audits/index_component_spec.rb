@@ -11,6 +11,14 @@ describe Admin::Audits::IndexComponent do
     proposal.update!(title: "Updated proposal title")
   end
 
+  it "shows a message when the database is empty" do
+    Audit.delete_all
+
+    render_inline Admin::Audits::IndexComponent.new(audits: Audit.none.page(1))
+
+    expect(page).to have_content("There are no changes logged")
+  end
+
   it "shows attributes previous and current values" do
     render_inline Admin::Audits::IndexComponent.new(audits: Audit.page(1))
 
@@ -24,5 +32,13 @@ describe Admin::Audits::IndexComponent do
     render_inline Admin::Audits::IndexComponent.new(audits: audits)
 
     expect(page).to have_link("Show", href: admin_audit_path(audits.first))
+  end
+
+  it "shows a message when there are no search results" do
+    allow(controller).to receive(:params).and_return({ search: "Budget#1" })
+
+    render_inline Admin::Audits::IndexComponent.new(audits: Audit.none.page(1))
+
+    expect(page).to have_content("No results found.")
   end
 end

@@ -1,0 +1,10 @@
+<div class="small-12 medium-6 margin-top">
+  <%= form_tag admin_audits_path, method: :get do |f| %>
+    <div class="input-group">
+      <%= text_field_tag :search, params[:search], placeholder: t("admin.audits.search.placeholder") %>
+      <div class="input-group-button">
+        <%= submit_tag t("admin.shared.search.search"), class: "button" %>
+      </div>
+    </div>
+  <% end %>
+</div>

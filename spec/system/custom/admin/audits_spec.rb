@@ -38,5 +38,27 @@ describe "Audits" do
         expect(page).to have_link("2", href: admin_audits_path(page: 2))
       end
     end
+
+    scenario "filters records by given associated or auditable class name and ID pair" do
+      proposal = create(:proposal)
+      proposal.update!(title: "New proposal title")
+      debate = create(:debate)
+      debate.update!(title: "New debate title")
+
+      visit admin_audits_path
+
+      expect(page).to have_content("New proposal title")
+      expect(page).to have_content("New debate title")
+
+      visit admin_audits_path(search: "Debate##{debate.id}")
+
+      expect(page).not_to have_content("New proposal title")
+      expect(page).to have_content("New debate title")
+
+      visit admin_audits_path(search: "Debate::Translation##{debate.translation.id}")
+
+      expect(page).not_to have_content("New proposal title")
+      expect(page).to have_content("New debate title")
+    end
   end
 end
