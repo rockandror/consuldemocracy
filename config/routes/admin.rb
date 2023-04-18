@@ -307,10 +307,6 @@ resolve "ProgressBar" do |progress_bar|
   [*resource_hierarchy_for(progress_bar.progressable), progress_bar]
 end
 
-resolve "Audit" do |audit|
-  [*resource_hierarchy_for(audit.associated || audit.auditable), audit]
-end
-
 resolve "Widget::Card" do |card, options|
   [*resource_hierarchy_for(card.cardable), card]
 end

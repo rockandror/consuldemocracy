@@ -7,6 +7,8 @@ class Admin::AuditsController < Admin::BaseController
     @audits = @audits.order(created_at: :desc).page(params[:page])
   end
 
+  def show; end
+
   private
 
     def is_audit_enabled?

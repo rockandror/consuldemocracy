@@ -1,6 +1,8 @@
 require "rails_helper"
 
 describe Admin::Audits::IndexComponent do
+  include Rails.application.routes.url_helpers
+
   let(:proposal) { create(:proposal, title: "Initial proposal title") }
 
   before do
@@ -14,5 +16,13 @@ describe Admin::Audits::IndexComponent do
 
     expect(page).to have_content("Initial proposal title")
     expect(page).to have_content("Updated proposal title")
+  end
+
+  it "shows links to show page" do
+    audits = Audit.page(1)
+
+    render_inline Admin::Audits::IndexComponent.new(audits: audits)
+
+    expect(page).to have_link("Show", href: admin_audit_path(audits.first))
   end
 end
