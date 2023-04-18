@@ -14,6 +14,7 @@
         <th><%= t("admin.audits.edited_at") %></th>
         <th><%= t("admin.audits.edited_by") %></th>
         <th><%= t("admin.audits.associated") %></th>
+        <th><%= t("admin.audits.actions") %></th>
       </tr>
     </thead>
     <tbody>
@@ -28,6 +29,11 @@
             <td><%= l audit.created_at, format: :datetime %></td>
             <td><%= audit.user&.name %></td>
             <td><%= audit.associated_type %>#<%= audit.associated_id %></td>
+            <td>
+              <%= render Admin::TableActionsComponent.new(audit, actions: []) do |actions| %>
+                <%= actions.action(:show, text: t("shared.show"), path: admin_audit_path(audit)) %>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       <% end %>

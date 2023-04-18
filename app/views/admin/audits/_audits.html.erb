@@ -35,7 +35,7 @@
             </td>
             <td>
               <%= render Admin::TableActionsComponent.new(audit, actions: []) do |actions| %>
-                <%= actions.action(:show, text: t("shared.show")) %>
+                <%= actions.action(:show, text: t("shared.show"), path: admin_audit_path(audit)) %>
               <% end %>
             </td>
           </tr>

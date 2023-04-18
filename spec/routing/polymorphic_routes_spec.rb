@@ -138,7 +138,7 @@ describe "Polymorphic routes" do
       )
     end
 
-    it "routes audits" do
+    it "routes audits", :consul do
       budget = create(:budget)
       investment = create(:budget_investment, budget: budget)
       audit = investment.audits.create!
