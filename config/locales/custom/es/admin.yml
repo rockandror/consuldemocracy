@@ -53,6 +53,7 @@ es:
           votes_count: Votos totales
           comments_count: Número de comentarios
     menu:
+      audits: Registro de cambios
       legislation: Propuestas del Cabildo
     proposals:
       index:
