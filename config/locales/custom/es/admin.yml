@@ -13,4 +13,5 @@ es:
         new:
           title: Crear nuevo proceso de propuestas municipales
     menu:
+      audits: Registro de cambios
       legislation: Propuestas municipales

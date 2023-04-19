@@ -6,3 +6,5 @@ en:
       disabled_feature: The change log feature is disabled. Ask your system administrator to enable it via the secrets file.
       index:
         title: Changelog
+    menu:
+      audits: Changelog
