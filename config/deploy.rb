@@ -27,16 +27,16 @@ set :linked_dirs, %w[.bundle log tmp public/system public/assets public/ckeditor
 set :keep_releases, 5
 
 set :local_user, ENV["USER"]
+set :user, deploysecret(:user)
 
 set :puma_conf, "#{release_path}/config/puma/#{fetch(:rails_env)}.rb"
 
-set :delayed_job_workers, 2
-set :delayed_job_roles, :background
-
 set :whenever_roles, -> { :app }
 
+set :"systemd_delayed_job@_instances", -> { 2.times.to_a }
+set :"systemd_delayed_job@_role", :background
+
 namespace :deploy do
-  Rake::Task["delayed_job:default"].clear_actions
   Rake::Task["puma:smart_restart"].clear_actions
 
   after :updating, "install_ruby"
@@ -47,7 +47,7 @@ namespace :deploy do
 
   after :published, "deploy:restart"
   before "deploy:restart", "puma:restart"
-  before "deploy:restart", "delayed_job:restart"
+  before "deploy:restart", "systemd:delayed_job@:restart"
   before "deploy:restart", "puma:start"
 
   after :finished, "refresh_sitemap"
