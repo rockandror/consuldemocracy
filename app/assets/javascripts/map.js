@@ -21,7 +21,7 @@
       removeMarkerSelector = $(element).data("marker-remove-selector");
       investmentsMarkers = $(element).data("marker-investments-coordinates");
       editable = $(element).data("marker-editable");
-      markers = L.markerClusterGroup();
+      markers = L.markerClusterGroup({ chunkedLoading: true });
       marker = null;
       markerIcon = L.divIcon({
         className: "map-marker",
