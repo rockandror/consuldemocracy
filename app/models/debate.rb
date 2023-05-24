@@ -108,8 +108,31 @@ class Debate < ApplicationRecord
   def register_vote(user, vote_value)
     if votable_by?(user)
       Debate.increment_counter(:cached_anonymous_votes_total, id) if user.unverified? && !user.voted_for?(self)
-      vote_by(voter: user, vote: vote_value)
+      if first_time_vote_from?(user) || change_vote?(user, vote_value)
+        vote_by(voter: user, vote: vote_value)
+      else
+        undo_vote(user, vote_value)
+      end
     end
+  end
+
+  def first_time_vote_from?(user)
+    user.voted_as_when_voted_for(self).blank?
+  end
+
+  def change_vote?(user, vote_value)
+    old_vote_value = user.voted_as_when_voted_for(self)
+    new_vote_value = parse_vote_value(vote_value)
+
+    old_vote_value != new_vote_value
+  end
+
+  def undo_vote(user, vote_value)
+    parse_vote_value(vote_value) ? self.unliked_by(user) : self.undisliked_by(user)
+  end
+
+  def parse_vote_value(vote_value)
+    vote_value == "yes" ? true : false
   end
 
   def votable_by?(user)
