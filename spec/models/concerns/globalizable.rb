@@ -15,10 +15,7 @@ shared_examples_for "globalizable" do |factory_name|
   before do
     record.update!(attribute => "In English")
 
-    I18n.with_locale(:es) do
-      record.update!(required_fields.index_with("En español"))
-      record.update!(attribute => "En español")
-    end
+    add_translation(record, :es, "En español")
 
     record.reload
   end
@@ -98,7 +95,7 @@ shared_examples_for "globalizable" do |factory_name|
     end
 
     it "Does not automatically add a translation for the current locale" do
-      record.translations.find_by(locale: :en).destroy!
+      destroy_translation(record, :en)
       record.reload
 
       record.update!(translations_attributes: [
@@ -188,4 +185,78 @@ shared_examples_for "globalizable" do |factory_name|
       expect(record.send(attribute)).to eq "Deutsche Sprache"
     end
   end
+
+  describe ".with_fallback_translation" do
+    before do
+      destroy_translation(record, :en)
+      allow(I18n).to receive(:default_locale).and_return(:es)
+      allow(I18n).to receive(:available_locales).and_return(%i[ca es val])
+      fallbacks = { ca: %i[ca val es], es: %i[es ca val], val: %i[val es ca] }
+      allow(I18n).to receive(:fallbacks).and_return(fallbacks)
+      Globalize.set_fallbacks_to_all_available_locales
+    end
+
+    it "returns records with the best fallback translation available for the current locale" do
+      default_enforce = I18n.enforce_available_locales
+      begin
+        I18n.enforce_available_locales = false
+        add_translation(record, :es, "Contenido en español")
+        add_translation(record, :ca, "Contingut en català")
+        add_translation(record, :val, "Contingut en valencià")
+
+        I18n.with_locale(:es) do
+          matching_record = fetch_records_and_return_the_one_with_given_id(record)
+
+          expect(matching_record.send(attribute)).to eq("Contenido en español")
+
+          destroy_translation(record, :es)
+          matching_record = fetch_records_and_return_the_one_with_given_id(record)
+
+          expect(matching_record.send(attribute)).to eq("Contingut en català")
+
+          destroy_translation(record, :ca)
+          matching_record = fetch_records_and_return_the_one_with_given_id(record)
+
+          expect(matching_record.send(attribute)).to eq("Contingut en valencià")
+        end
+
+        record.reload
+
+        add_translation(record, :es, "Contenido en español")
+        add_translation(record, :ca, "Contingut en català")
+
+        I18n.with_locale(:ca) do
+          matching_record = fetch_records_and_return_the_one_with_given_id(record)
+          expect(matching_record.send(attribute)).to eq("Contingut en català")
+
+          destroy_translation(record, :ca)
+          matching_record = fetch_records_and_return_the_one_with_given_id(record)
+
+          expect(matching_record.send(attribute)).to eq("Contingut en valencià")
+
+          destroy_translation(record, :val)
+          matching_record = fetch_records_and_return_the_one_with_given_id(record)
+
+          expect(matching_record.send(attribute)).to eq("Contenido en español")
+        end
+      ensure
+        I18n.enforce_available_locales = default_enforce
+      end
+    end
+  end
+end
+
+def add_translation(record, locale, text)
+  I18n.with_locale(locale) do
+    record.update!(required_fields.index_with(text))
+    record.update!(attribute => text)
+  end
+end
+
+def destroy_translation(record, locale)
+  record.translations.find_by(locale: locale).destroy!
+end
+
+def fetch_records_and_return_the_one_with_given_id(record)
+  record.class.with_fallback_translation.select { |r| r.id == record.id }.first
 end
