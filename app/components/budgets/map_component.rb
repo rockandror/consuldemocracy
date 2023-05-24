@@ -21,6 +21,6 @@ class Budgets::MapComponent < ApplicationComponent
         investments = budget.investments
       end
 
-      MapLocation.where(investment_id: investments).map(&:json_data)
+      MapLocation.investments_json_data(investments)
     end
 end
