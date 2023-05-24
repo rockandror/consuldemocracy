@@ -100,20 +100,27 @@ describe "Votes" do
         expect(page).to have_content "1 vote"
       end
 
-      scenario "Trying to vote multiple times" do
+      scenario "Allow undo vote" do
         visit debate_path(create(:debate))
 
         click_button "I agree"
+
         expect(page).to have_content "1 vote"
+        expect(page).not_to have_content "No votes"
+
         click_button "I agree"
-        expect(page).not_to have_content "2 votes"
+
+        expect(page).to have_content "No votes"
+        expect(page).not_to have_content "2 vote"
 
         within(".in-favor") do
-          expect(page).to have_content "100%"
+          expect(page).to have_content "0%"
+          expect(page).to have_css "button[aria-pressed='false']"
         end
 
         within(".against") do
           expect(page).to have_content "0%"
+          expect(page).to have_css "button[aria-pressed='false']"
         end
       end
 
