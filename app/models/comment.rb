@@ -143,6 +143,29 @@ class Comment < ApplicationRecord
     pg_search(terms)
   end
 
+  def register_vote(user, vote_value)
+    if undo_vote?(user, vote_value)
+      undo_vote(user, vote_value)
+    else
+      vote_by(voter: user, vote: vote_value)
+    end
+  end
+
+  def undo_vote?(user, vote_value)
+    old_vote_value = user.voted_as_when_voted_for(self)
+    new_vote_value = parse_vote_value(vote_value)
+
+    old_vote_value == new_vote_value
+  end
+
+  def undo_vote(user, vote_value)
+    parse_vote_value(vote_value) ? self.unliked_by(user) : self.undisliked_by(user)
+  end
+
+  def parse_vote_value(vote_value)
+    vote_value == "yes" ? true : false
+  end
+
   private
 
     def validate_body_length

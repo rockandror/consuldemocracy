@@ -214,4 +214,54 @@ describe Comment do
       expect(Comment.search("disagree")).to be_empty
     end
   end
+
+  describe "#undo_vote" do
+    let(:comment) { create(:comment) }
+    let(:user) { create(:user) }
+
+    it "apply unliked vote when user had voted 'yes'" do
+      comment.register_vote(user, "yes")
+
+      expect(user.voted_up_on?(comment)).to eq true
+      expect(user.voted_down_on?(comment)).to eq false
+
+      expect { comment.undo_vote(user, "yes") }.to change { comment.votes_for.size }.by(-1)
+
+      expect(user.voted_up_on?(comment)).to eq false
+      expect(user.voted_down_on?(comment)).to eq false
+    end
+
+    it "apply undisliked vote when user had voted 'no'" do
+      comment.register_vote(user, "no")
+
+      expect(user.voted_up_on?(comment)).to eq false
+      expect(user.voted_down_on?(comment)).to eq true
+
+      expect { comment.undo_vote(user, "no") }.to change { comment.votes_for.size }.by(-1)
+
+      expect(user.voted_up_on?(comment)).to eq false
+      expect(user.voted_down_on?(comment)).to eq false
+    end
+  end
+
+  describe "#undo_vote?" do
+    let(:comment) { create(:comment) }
+    let(:user) { create(:user) }
+
+    it "is true when the user votes the same value he has already voted" do
+      comment.register_vote(user, "yes")
+
+      expect(comment.undo_vote?(user, "yes")).to eq true
+    end
+
+    it "is false when the user change his vote" do
+      comment.register_vote(user, "yes")
+
+      expect(comment.undo_vote?(user, "no")).to eq false
+    end
+
+    it "is false when the user votes for the first time" do
+      expect(comment.undo_vote?(user, "yes")).to eq false
+    end
+  end
 end
