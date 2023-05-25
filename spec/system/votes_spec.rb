@@ -344,4 +344,31 @@ describe "Votes" do
       expect(page).not_to have_button "Support", disabled: :all
     end
   end
+
+  describe "Legislation Proposals" do
+    let(:proposal) { create(:legislation_proposal) }
+
+    scenario "Allow undo vote" do
+      login_as verified
+      visit legislation_process_proposal_path(proposal.process, proposal)
+
+      click_button "I agree"
+
+      expect(page).to have_content "1 vote"
+      expect(page).not_to have_content "No votes"
+
+      click_button "I agree"
+
+      expect(page).to have_content "No votes"
+      expect(page).not_to have_content "2 vote"
+
+      within(".in-favor") do
+        expect(page).to have_content "0%"
+      end
+
+      within(".against") do
+        expect(page).to have_content "0%"
+      end
+    end
+  end
 end
