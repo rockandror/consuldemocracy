@@ -4,6 +4,7 @@ class Comment < ApplicationRecord
   include Graphqlable
   include Notifiable
   include Searchable
+  include Votable
 
   COMMENTABLE_TYPES = %w[Debate Proposal Budget::Investment Poll Topic
                         Legislation::Question Legislation::Annotation
@@ -144,26 +145,7 @@ class Comment < ApplicationRecord
   end
 
   def register_vote(user, vote_value)
-    if undo_vote?(user, vote_value)
-      undo_vote(user, vote_value)
-    else
-      vote_by(voter: user, vote: vote_value)
-    end
-  end
-
-  def undo_vote?(user, vote_value)
-    old_vote_value = user.voted_as_when_voted_for(self)
-    new_vote_value = parse_vote_value(vote_value)
-
-    old_vote_value == new_vote_value
-  end
-
-  def undo_vote(user, vote_value)
-    parse_vote_value(vote_value) ? self.unliked_by(user) : self.undisliked_by(user)
-  end
-
-  def parse_vote_value(vote_value)
-    vote_value == "yes" ? true : false
+    vote(user, vote_value)
   end
 
   private

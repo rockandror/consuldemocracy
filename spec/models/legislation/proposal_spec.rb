@@ -3,6 +3,10 @@ require "rails_helper"
 describe Legislation::Proposal do
   let(:proposal) { build(:legislation_proposal) }
 
+  describe "Concerns" do
+    it_behaves_like "votable"
+  end
+
   it "is valid" do
     expect(proposal).to be_valid
   end
@@ -102,56 +106,6 @@ describe Legislation::Proposal do
         3.times { proposal.vote_by(voter: create(:user), vote: "no") }
         expect(previous).to be > proposal.hot_score
       end
-    end
-  end
-
-  describe "#undo_vote" do
-    let(:proposal) { create(:legislation_proposal) }
-    let(:user) { create(:user, verified_at: Time.current) }
-
-    it "apply unliked vote when user had voted 'yes'" do
-      proposal.register_vote(user, "yes")
-
-      expect(user.voted_up_on?(proposal)).to eq true
-      expect(user.voted_down_on?(proposal)).to eq false
-
-      expect { proposal.undo_vote(user, "yes") }.to change { proposal.votes_for.size }.by(-1)
-
-      expect(user.voted_up_on?(proposal)).to eq false
-      expect(user.voted_down_on?(proposal)).to eq false
-    end
-
-    it "apply undisliked vote when user had voted 'no'" do
-      proposal.register_vote(user, "no")
-
-      expect(user.voted_up_on?(proposal)).to eq false
-      expect(user.voted_down_on?(proposal)).to eq true
-
-      expect { proposal.undo_vote(user, "no") }.to change { proposal.votes_for.size }.by(-1)
-
-      expect(user.voted_up_on?(proposal)).to eq false
-      expect(user.voted_down_on?(proposal)).to eq false
-    end
-  end
-
-  describe "#undo_vote?" do
-    let(:proposal) { create(:legislation_proposal) }
-    let(:user) { create(:user, verified_at: Time.current) }
-
-    it "is true when the user votes the same value he has already voted" do
-      proposal.register_vote(user, "yes")
-
-      expect(proposal.undo_vote?(user, "yes")).to eq true
-    end
-
-    it "is false when the user change his vote" do
-      proposal.register_vote(user, "yes")
-
-      expect(proposal.undo_vote?(user, "no")).to eq false
-    end
-
-    it "is false when the user votes for the first time" do
-      expect(proposal.undo_vote?(user, "yes")).to eq false
     end
   end
 end

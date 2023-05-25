@@ -10,6 +10,7 @@ describe Debate do
     it_behaves_like "notifiable"
     it_behaves_like "sanitizable"
     it_behaves_like "acts as paranoid", :debate
+    it_behaves_like "votable"
   end
 
   it "is valid" do
@@ -212,56 +213,6 @@ describe Debate do
         user = create(:user)
         expect { debate.register_vote(user, "yes") }.not_to change { debate.reload.cached_anonymous_votes_total }
       end
-    end
-  end
-
-  describe "#undo_vote" do
-    let(:debate) { create(:debate) }
-    let(:user) { create(:user) }
-
-    it "apply unliked vote when user had voted 'yes'" do
-      debate.register_vote(user, "yes")
-
-      expect(user.voted_up_on?(debate)).to eq true
-      expect(user.voted_down_on?(debate)).to eq false
-
-      expect { debate.undo_vote(user, "yes") }.to change { debate.votes_for.size }.by(-1)
-
-      expect(user.voted_up_on?(debate)).to eq false
-      expect(user.voted_down_on?(debate)).to eq false
-    end
-
-    it "apply undisliked vote when user had voted 'no'" do
-      debate.register_vote(user, "no")
-
-      expect(user.voted_up_on?(debate)).to eq false
-      expect(user.voted_down_on?(debate)).to eq true
-
-      expect { debate.undo_vote(user, "no") }.to change { debate.votes_for.size }.by(-1)
-
-      expect(user.voted_up_on?(debate)).to eq false
-      expect(user.voted_down_on?(debate)).to eq false
-    end
-  end
-
-  describe "#undo_vote?" do
-    let(:debate) { create(:debate) }
-    let(:user) { create(:user) }
-
-    it "is true when the user votes the same value he has already voted" do
-      debate.register_vote(user, "yes")
-
-      expect(debate.undo_vote?(user, "yes")).to eq true
-    end
-
-    it "is false when the user change his vote" do
-      debate.register_vote(user, "yes")
-
-      expect(debate.undo_vote?(user, "no")).to eq false
-    end
-
-    it "is false when the user votes for the first time" do
-      expect(debate.undo_vote?(user, "yes")).to eq false
     end
   end
 
