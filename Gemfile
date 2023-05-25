@@ -67,7 +67,7 @@ gem "wicked_pdf", "~> 2.6.3"
 gem "wkhtmltopdf-binary", "~> 0.12.6"
 
 source "https://rails-assets.org" do
-  gem "rails-assets-leaflet.markercluster", "~> 1.4.1"
+  gem "rails-assets-leaflet.markercluster", "~> 1.5.3"
   gem "rails-assets-markdown-it", "~> 9.0.1"
 end
 
