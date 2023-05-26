@@ -1,0 +1,24 @@
+# Keep delayed job workers running using systemd on ubuntu
+# Usage
+# Start "systemctl --user start delayed_job@{0..3}" to start 4 worker instances
+# Enable "systemctl --user enable delayed_job@{0..3}" to enable 4 worker instances
+# Restart "systemctl --user restart delayed_job@{0..3}" to restart 4 worker instances
+# Disable "systemctl --user disable delayed_job@{0..3}" to disable 4 worker instances
+# Stop "systemctl --user stop delayed_job@{0..3}" to stop 4 worker instances
+[Unit]
+Description = <%= fetch(:application) %> delayed_job (instance %i)
+AssertPathExists = <%= current_path %>
+
+[Service]
+Type = forking
+WorkingDirectory = <%= current_path %>
+ExecStart=/bin/bash -lc 'RAILS_ENV=<%= fetch(:rails_env) %> bin/delayed_job -i %i start'
+ExecStop=/bin/bash -lc 'RAILS_ENV=<%= fetch(:rails_env) %> bin/delayed_job -i %i stop'
+ExecReload = /bin/kill -HUP $MAINPID
+PIDFile = <%= shared_path %>/tmp/pids/delayed_job.%i.pid
+# Restart after 1 minute delay
+Restart=on-failure
+RestartSec=60
+
+[Install]
+WantedBy = default.target

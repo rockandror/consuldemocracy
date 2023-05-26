@@ -8,13 +8,15 @@ require "capistrano/bundler"
 require "capistrano/rails/assets"
 require "capistrano/rails/migrations"
 #require "capistrano/passenger"
-require "capistrano/delayed_job"
 require "whenever/capistrano"
 require "rvm1/capistrano3"
 
 require "capistrano/puma"
 install_plugin Capistrano::Puma, load_hooks: false
 install_plugin Capistrano::Puma::Daemon
+
+require "capistrano/systemd/multiservice"
+install_plugin Capistrano::Systemd::MultiService.new_service("delayed_job@", service_type: "user")
 
 #SCM: Git
 require "capistrano/scm/git"
