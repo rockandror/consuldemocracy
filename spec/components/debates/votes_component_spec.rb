@@ -39,5 +39,53 @@ describe Debates::VotesComponent do
       expect(page).not_to have_button text: "100"
       expect(page).not_to have_button text: "0"
     end
+
+    describe "aria-pressed attribute" do
+      let(:user) { create(:user) }
+
+      it "is true when the in-favor button is pressed" do
+        debate.register_vote(user, "yes")
+        sign_in(user)
+
+        render_inline component
+
+        page.find(".in-favor") do |in_favor_block|
+          expect(in_favor_block).to have_css "button[aria-pressed='true']"
+        end
+
+        page.find(".against") do |against_block|
+          expect(against_block).to have_css "button[aria-pressed='false']"
+        end
+      end
+
+      it "is true when the against button is pressed" do
+        debate.register_vote(user, "no")
+        sign_in(user)
+
+        render_inline component
+
+        page.find(".in-favor") do |in_favor_block|
+          expect(in_favor_block).to have_css "button[aria-pressed='false']"
+        end
+
+        page.find(".against") do |against_block|
+          expect(against_block).to have_css "button[aria-pressed='true']"
+        end
+      end
+
+      it "is false when neither the 'in-favor' button nor the 'against' button are pressed" do
+        sign_in(user)
+
+        render_inline component
+
+        page.find(".in-favor") do |in_favor_block|
+          expect(in_favor_block).to have_css "button[aria-pressed='false']"
+        end
+
+        page.find(".against") do |against_block|
+          expect(against_block).to have_css "button[aria-pressed='false']"
+        end
+      end
+    end
   end
 end
