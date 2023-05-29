@@ -1694,7 +1694,8 @@ table {
   .in-favor button {
     @include has-fa-icon(thumbs-up, solid);
 
-    &:hover {
+    &:hover,
+    &[aria-pressed=true] {
       color: $like;
     }
   }
@@ -1702,7 +1703,8 @@ table {
   .against button {
     @include has-fa-icon(thumbs-down, solid);
 
-    &:hover {
+    &:hover,
+    &[aria-pressed=true] {
       color: $unlike;
     }
   }
