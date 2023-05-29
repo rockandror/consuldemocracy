@@ -22,6 +22,7 @@
     line-height: rem-calc(30);
     padding: rem-calc(3) rem-calc(6) rem-calc(6);
     position: relative;
+    opacity: 0.3;
 
     &:not([disabled]) {
       &:hover,
@@ -38,9 +39,12 @@
 
     &:not([disabled]) {
       &:hover,
-      &:active {
+      &:active,
+      &[aria-pressed=true] {
         background: $like;
         border: 2px solid $like;
+        color: #fff;
+        opacity: 1;
       }
     }
   }
@@ -50,17 +54,14 @@
 
     &:not([disabled]) {
       &:hover,
-      &:active {
+      &:active,
+      &[aria-pressed=true] {
         background: $unlike;
         border: 2px solid $unlike;
+        color: #fff;
+        opacity: 1;
       }
     }
-  }
-
-  .like,
-  .unlike {
-    vertical-align: super;
-    text-decoration: none;
   }
 
   .percentage {
@@ -75,23 +76,5 @@
       line-height: $line-height;
       padding-right: 0;
     }
-  }
-
-  .voted {
-    color: #fff;
-  }
-
-  .in-favor .voted {
-    background: $like;
-    border: 2px solid $like;
-  }
-
-  .against .voted {
-    background: $unlike;
-    border: 2px solid $unlike;
-  }
-
-  .no-voted {
-    opacity: 0.3;
   }
 }
