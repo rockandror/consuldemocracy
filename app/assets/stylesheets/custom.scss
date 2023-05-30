@@ -68,7 +68,7 @@
     text-align: $global-left;
 
     a {
-      color:inherit;
+      color: inherit;
     }
 
     li:first-child {
@@ -270,6 +270,10 @@
   .action {
     flex: 1 0 10%;
     margin: 0 rem-calc(12);
+    img {
+      height: 80px;
+      width: auto;
+    }
   }
 }
 

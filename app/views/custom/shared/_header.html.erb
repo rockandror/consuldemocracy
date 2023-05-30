@@ -91,5 +91,15 @@
         </div>
       <% end %>
     </div>
+     <div class="action">
+      <%= link_to "https://cabildoabierto.tenerife.es/ServiciosDigitales", target: "_blank" do %>
+        <div class="text-center">
+          <%= image_tag(image_path_for("icono-servicios.svg"), class: "", alt: "") %>
+          <div class="action-title">
+            <span><%= t("layouts.header.links.services") %></span>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 <% end %>
