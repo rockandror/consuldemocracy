@@ -40,7 +40,7 @@ module Budgets
       @investments = investments.page(params[:page]).per(PER_PAGE).for_render
 
       @investment_ids = @investments.ids
-      @investments_map_coordinates = MapLocation.investments_json_data(investments)
+      @investments_map_coordinates = MapLocation.investments_json_data(investments.unscope(:order))
 
       @tag_cloud = tag_cloud
       @remote_translations = detect_remote_translations(@investments)
