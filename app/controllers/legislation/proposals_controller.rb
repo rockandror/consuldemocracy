@@ -36,10 +36,6 @@ class Legislation::ProposalsController < Legislation::BaseController
     end
   end
 
-  def vote
-    @proposal.register_vote(current_user, params[:value])
-  end
-
   private
 
     def proposal_params

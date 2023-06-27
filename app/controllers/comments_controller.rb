@@ -28,7 +28,7 @@ class CommentsController < ApplicationController
   end
 
   def vote
-    @comment.vote_by(voter: current_user, vote: params[:value])
+    @comment.register_vote(current_user, params[:value])
     respond_with @comment
   end
 

@@ -4,6 +4,7 @@ class Comment < ApplicationRecord
   include Graphqlable
   include Notifiable
   include Searchable
+  include Votable
 
   COMMENTABLE_TYPES = %w[Debate Proposal Budget::Investment Poll Topic
                         Legislation::Question Legislation::Annotation
@@ -141,6 +142,10 @@ class Comment < ApplicationRecord
 
   def self.search(terms)
     pg_search(terms)
+  end
+
+  def register_vote(user, vote_value)
+    vote(user, vote_value)
   end
 
   private

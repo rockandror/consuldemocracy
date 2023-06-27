@@ -3,6 +3,10 @@ require "rails_helper"
 describe Legislation::Proposal do
   let(:proposal) { build(:legislation_proposal) }
 
+  describe "Concerns" do
+    it_behaves_like "votable"
+  end
+
   it "is valid" do
     expect(proposal).to be_valid
   end

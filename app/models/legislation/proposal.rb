@@ -13,6 +13,7 @@ class Legislation::Proposal < ApplicationRecord
   include Notifiable
   include Imageable
   include Randomizable
+  include Votable
   include SDG::Relatable
 
   accepts_nested_attributes_for :documents, allow_destroy: true
@@ -113,7 +114,9 @@ class Legislation::Proposal < ApplicationRecord
   end
 
   def register_vote(user, vote_value)
-    vote_by(voter: user, vote: vote_value) if votable_by?(user)
+    if votable_by?(user)
+      vote(user, vote_value)
+    end
   end
 
   def code

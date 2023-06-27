@@ -7,13 +7,6 @@ class Comments::VotesComponent < ApplicationComponent
   end
 
   def pressed?(value)
-    case current_user&.voted_as_when_voted_for(comment)
-    when true
-      value == "yes"
-    when false
-      value == "no"
-    else
-      false
-    end
+    comment.is_pressed?(current_user, value)
   end
 end

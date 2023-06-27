@@ -600,7 +600,7 @@ describe "Commenting legislation questions" do
       end
     end
 
-    scenario "Trying to vote multiple times" do
+    scenario "Allow undo vote" do
       visit legislation_process_draft_version_annotation_path(annotation.draft_version.process,
                                                               annotation.draft_version,
                                                               annotation)
@@ -614,14 +614,14 @@ describe "Commenting legislation questions" do
         click_button "I agree"
         within(".in-favor") do
           expect(page).not_to have_content "2"
-          expect(page).to have_content "1"
+          expect(page).to have_content "0"
         end
 
         within(".against") do
           expect(page).to have_content "0"
         end
 
-        expect(page).to have_content "1 vote"
+        expect(page).to have_content "No votes"
       end
     end
   end

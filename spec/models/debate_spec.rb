@@ -10,6 +10,7 @@ describe Debate do
     it_behaves_like "notifiable"
     it_behaves_like "sanitizable"
     it_behaves_like "acts as paranoid", :debate
+    it_behaves_like "votable"
   end
 
   it "is valid" do
