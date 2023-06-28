@@ -1,4 +1,5 @@
 class Shared::InFavorAgainstComponent < ApplicationComponent
+  include VotingButton
   attr_reader :votable
   delegate :current_user, :votes_percentage, to: :helpers
 
@@ -16,19 +17,8 @@ class Shared::InFavorAgainstComponent < ApplicationComponent
       t("votes.disagree_label", title: votable.title)
     end
 
-    def pressed?(value)
-      case current_user&.voted_as_when_voted_for(votable)
-      when true
-        value == "yes"
-      when false
-        value == "no"
-      else
-        false
-      end
-    end
-
     def vote_in_favor_against_path(value)
-      if user_already_voted_with(value)
+      if user_already_voted_with(votable, value)
         remove_vote_path(value)
       else
         if votable.class.name == "Debate"
@@ -39,10 +29,6 @@ class Shared::InFavorAgainstComponent < ApplicationComponent
       end
     end
 
-    def user_already_voted_with(value)
-      current_user&.voted_as_when_voted_for(votable) == parse_vote(value)
-    end
-
     def remove_vote_path(value)
       vote = votable.votes_for.find_by!(voter: current_user)
       if votable.class.name == "Debate"
@@ -50,9 +36,5 @@ class Shared::InFavorAgainstComponent < ApplicationComponent
       else
         legislation_process_proposal_vote_path(votable.process, votable, vote, value: value)
       end
-    end
-
-    def parse_vote(value)
-      value == "yes" ? true : false
     end
 end
