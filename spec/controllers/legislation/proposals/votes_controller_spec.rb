@@ -5,12 +5,14 @@ describe Legislation::Proposals::VotesController do
   let(:proposal) { create(:legislation_proposal, process: legislation_process) }
 
   describe "POST create" do
+    let(:vote_params) { { process_id: legislation_process.id, proposal_id: proposal.id, value: "yes" } }
+
     describe "Vote" do
       it "allows vote if user is level_two_or_three_verified" do
         sign_in create(:user, :level_two)
 
         expect do
-          post :create, xhr: true, params: { process_id: legislation_process.id, proposal_id: proposal.id, value: "yes" }
+          post :create, xhr: true, params: vote_params
         end.to change { proposal.reload.votes_for.size }.by(1)
       end
 
@@ -18,7 +20,7 @@ describe Legislation::Proposals::VotesController do
         sign_in create(:user)
 
         expect do
-          post :create, xhr: true, params: { process_id: legislation_process.id, proposal_id: proposal.id, value: "yes" }
+          post :create, xhr: true, params: vote_params
         end.not_to change { proposal.reload.votes_for.size }
       end
     end
@@ -27,12 +29,15 @@ describe Legislation::Proposals::VotesController do
   describe "DELETE destroy" do
     let(:user) { create(:user, :level_two) }
     let!(:vote) { create(:vote, votable: proposal, voter: user) }
+    let(:vote_params) do
+      { process_id: legislation_process.id, proposal_id: proposal.id, value: "yes", id: vote }
+    end
 
     it "allows undo vote" do
       sign_in user
 
       expect do
-        delete :destroy, xhr: true, params: { process_id: legislation_process.id, proposal_id: proposal.id, value: "yes", id: vote }
+        delete :destroy, xhr: true, params: vote_params
       end.to change { proposal.reload.votes_for.size }.by(-1)
     end
   end
