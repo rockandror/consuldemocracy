@@ -2,7 +2,9 @@ module Legislation
   module Proposals
     class VotesController < ApplicationController
       load_and_authorize_resource :process, class: "Legislation::Process"
-      load_and_authorize_resource :proposal, class: "Legislation::Proposal", through: :process
+      load_and_authorize_resource :proposal, class: "Legislation::Proposal",
+                                             through: :process,
+                                             id_param: "legislation_proposal_id"
       load_and_authorize_resource through: :proposal, through_association: :votes_for, only: :destroy
 
       def create
