@@ -31,10 +31,8 @@ describe Debates::VotesController do
     let!(:vote) { create(:vote, votable: debate, voter: user) }
     before { sign_in user }
 
-    describe "Undo vote with too many anonymous votes" do
-      it "allows vote if user is allowed" do
-        Setting["max_ratio_anon_votes_on_debates"] = 100
-
+    describe "Undo vote" do
+      it "allows undo vote if user is allowed" do
         expect do
           delete :destroy, xhr: true, params: { debate_id: debate.id, value: "yes", id: vote }
         end.to change { debate.reload.votes_for.size }.by(-1)

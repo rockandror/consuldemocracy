@@ -57,7 +57,7 @@ describe Legislation::Proposals::VotesComponent do
       let(:user) { create(:user, verified_at: Time.current) }
 
       it "is true when the in-favor button is pressed" do
-        proposal.register_vote(user, "yes")
+        proposal.vote_by(voter: user, vote: "yes")
         sign_in(user)
 
         render_inline component
@@ -72,7 +72,7 @@ describe Legislation::Proposals::VotesComponent do
       end
 
       it "is true when the against button is pressed" do
-        proposal.register_vote(user, "no")
+        proposal.vote_by(voter: user, vote: "no")
         sign_in(user)
 
         render_inline component

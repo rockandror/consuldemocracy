@@ -5,7 +5,9 @@ describe Legislation::Proposals::VotesController do
   let(:proposal) { create(:legislation_proposal, process: legislation_process) }
 
   describe "POST create" do
-    let(:vote_params) { { process_id: legislation_process.id, proposal_id: proposal.id, value: "yes" } }
+    let(:vote_params) do
+      { process_id: legislation_process.id, legislation_proposal_id: proposal.id, value: "yes" }
+    end
 
     describe "Vote" do
       it "allows vote if user is level_two_or_three_verified" do
@@ -30,7 +32,7 @@ describe Legislation::Proposals::VotesController do
     let(:user) { create(:user, :level_two) }
     let!(:vote) { create(:vote, votable: proposal, voter: user) }
     let(:vote_params) do
-      { process_id: legislation_process.id, proposal_id: proposal.id, value: "yes", id: vote }
+      { process_id: legislation_process.id, legislation_proposal_id: proposal.id, value: "yes", id: vote }
     end
 
     it "allows undo vote" do
