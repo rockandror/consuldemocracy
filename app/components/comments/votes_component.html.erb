@@ -4,9 +4,9 @@
 
   <span class="in-favor">
     <%= button_to vote_in_favor_against_path("yes"),
-                  method: user_already_voted_with("yes") ? "delete" : "post",
+                  method: button_method(comment, "yes"),
                   remote: can?(:vote, comment),
-                  "aria-pressed": pressed?("yes"),
+                  "aria-pressed": is_pressed?(comment, current_user, "yes"),
                   title: t("votes.agree") do %>
       <span class="show-for-sr"><%= t("votes.agree") %></span>
     <% end %>
@@ -15,9 +15,9 @@
 
   <span class="against">
     <%= button_to vote_in_favor_against_path("no"),
-                  method: user_already_voted_with("no") ? "delete" : "post",
+                  method: button_method(comment, "no"),
                   remote: can?(:vote, comment),
-                  "aria-pressed": pressed?("no"),
+                  "aria-pressed": is_pressed?(comment, current_user, "no"),
                   title: t("votes.disagree") do %>
       <span class="show-for-sr"><%= t("votes.disagree") %></span>
     <% end %>
