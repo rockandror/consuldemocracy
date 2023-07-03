@@ -1,4 +1,44 @@
 es:
+  activemodel:
+    models:
+      user:
+        gender:
+          male: "Hombre"
+          female: "Mujer"
+          undefined: "Otro"
+        locations:
+          values:
+            adeje: "Adeje"
+            arafo: "Arafo"
+            arico: "Arico"
+            arona: "Arona"
+            buenavista-del-norte: "Buenavista del Norte"
+            candelaria: "Candelaria"
+            el-rosario: "El Rosario"
+            el-sauzal: "El Sauzal"
+            el-tanque: "El Tanque"
+            fasnia: "Fasnia"
+            garachico: "Garachico"
+            granadilla-de-abona: "Granadilla de Abona"
+            guia-de-isora: "Guía de Isora"
+            guimar: "Güimar"
+            icod-de-los-vinos: "Icod de los Vinos"
+            la-guancha: "La Guancha"
+            la-laguna: "La Laguna"
+            la-matanza-de-acentejo: "La Matanza de Acentejo"
+            la-orotava: "La Orotava"
+            la-victoria-de-acentejo: "La Victoria de Acentejo"
+            los-realejos: "Los Realejos"
+            los-silos: "Los Silos"
+            puerto-de-la-cruz: "Puerto de La Cruz"
+            san-juan-de-la-rambla: "San Juan de La Rambla"
+            san-miguel-de-abona: "San Miguel de Abona"
+            santa-cruz-de-tenerife: "Santa Cruz de Tenerife"
+            santa-ursula: "Santa Úrsula"
+            santiago-del-teide: "Santiago del Teide"
+            tacoronte: "Tacoronte"
+            tegueste: "Tegueste"
+            vilaflor: "Vilaflor"
   activerecord:
     attributes:
       site_customization/page:

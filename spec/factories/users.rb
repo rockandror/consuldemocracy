@@ -9,6 +9,9 @@ FactoryBot.define do
     date_of_birth       { 20.years.ago }
     public_activity     { true }
 
+    gender   { User::GENDER.sample }
+    location { User::LOCATION.sample }
+
     trait :incomplete_verification do
       after :create do |user|
         create(:failed_census_call, user: user)

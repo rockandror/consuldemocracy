@@ -3,8 +3,15 @@
 @import "cookies_eu";
 @import "font-awesome/icons";
 
-// Top menu
+// Registration
+.date-of-birth {
+  select {
+    float: left;
+    width: 33.33%;
+  }
+}
 
+// Top menu
 .top-links {
   font-size: $small-font-size;
   border-bottom: 2px solid #fff;
