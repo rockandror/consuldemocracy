@@ -2,6 +2,8 @@ es:
   admin:
     legislation:
       processes:
+        form:
+          debate_phase: Fase de preguntas
         export_list:
           id: ID
           start_date: Fecha de inicio
@@ -20,6 +22,8 @@ es:
           download: Descargar CSV
         new:
           title: Crear nuevo proceso de propuestas del Cabildo
+        subnav:
+          questions: Preguntas
       answers:
         export_list:
           id: ID
@@ -27,7 +31,10 @@ es:
           legislation_question_id: ID de la pregunta
           legislation_question_text: Texto de la pregunta
           legislation_question_comment_text: Respuesta
-          author: Usuario
+          author_id: ID del usuario
+          author_date_of_birth: Fecha de nacimiento del autor
+          author_location: Localidad del autor
+          author_gender: Género del autor
       annotations:
         comments:
           export_list:
@@ -37,7 +44,10 @@ es:
             annotation_id: ID de la anotación
             annotation_text: Texto de la anotación
             comment_text: Comentario
-            author: Usuario
+            author_id: ID del usuario
+            author_date_of_birth: Fecha de nacimiento del autor
+            author_location: Localidad del autor
+            author_gender: Género del autor
       proposals:
         export_list:
           id: ID
@@ -116,10 +126,3 @@ es:
       contact:
         title: "Contacto"
         description: "Enviado al correo de contacto del Cabildo cuando un usuario envía el formulario de contacto."
-    legislation:
-      processes:
-        form:
-          debate_phase: Fase de preguntas
-
-
-
