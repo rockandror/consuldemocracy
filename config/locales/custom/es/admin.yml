@@ -43,9 +43,12 @@ es:
           id: ID
           title: Título de la propuesta
           description: Descripción de la propuesta
-          author_id: ID del autor
           votes_count: Votos totales
           comments_count: Número de comentarios
+          author_id: ID del autor
+          author_date_of_birth: Fecha de nacimiento del autor
+          author_location: Localidad del autor
+          author_gender: Género del autor
     menu:
       legislation: Propuestas del Cabildo
     proposals:
@@ -113,3 +116,10 @@ es:
       contact:
         title: "Contacto"
         description: "Enviado al correo de contacto del Cabildo cuando un usuario envía el formulario de contacto."
+    legislation:
+      processes:
+        form:
+          debate_phase: Fase de preguntas
+
+
+

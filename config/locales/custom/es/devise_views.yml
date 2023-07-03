@@ -5,17 +5,21 @@ es:
         new:
           terms: Acepto la %{terms}
           terms_description: >
-              <p><b>Información sobre el Tratamiento de Datos</b>
-              <br>
-              <b>Responsable del tratamiento:</b> Excmo. Cabildo Insular de Tenerife (ECIT)
-              <br>
-              <b>Finalidad del tratamiento:</b> Gestionar el registro en la plataforma web de participación ciudadana.
-              <br>
-              <b>Derechos:</b> Puede ejercitar los derechos de Acceso, Rectificación, Portabilidad, Limitación del tratamiento, Supresión o, en su caso, Oposición, conforme se indica en la %{terms}.
-              <br>
-              <b>Más información:</b> Reflejadas en el %{terms_registry}.</p>
+            <p><b>Información sobre el Tratamiento de Datos</b>
+            <br>
+            <b>Responsable del tratamiento:</b> Excmo. Cabildo Insular de Tenerife (ECIT)
+            <br>
+            <b>Finalidad del tratamiento:</b> Gestionar el registro en la plataforma web de participación ciudadana.
+            <br>
+            <b>Derechos:</b> Puede ejercitar los derechos de Acceso, Rectificación, Portabilidad, Limitación del tratamiento, Supresión o, en su caso, Oposición, conforme se indica en la %{terms}.
+            <br>
+            <b>Más información:</b> Reflejadas en el %{terms_registry}.</p>
           terms_link: Política de Privacidad
           terms_registry: Registro de Actividades de Tratamiento
+          gender_label: Género / Sexo
+          gender_blank: Indica tu género / sexo
+          date_of_birth_label: Fecha de nacimiento
+          location_label: Localidad
     mailer:
       confirmation_instructions:
         rrss_text: |

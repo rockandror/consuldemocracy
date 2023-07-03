@@ -20,6 +20,24 @@
       <%= f.text_field :username,  autofocus: true, maxlength: User.username_max_length,
                                    hint: t("devise_views.users.registrations.new.username_note") %>
 
+
+      <% select_options = User::GENDER.map { |g| [t("activemodel.models.user.gender.#{g}"), g] } %>
+      <%= f.select :gender, options_for_select(select_options),
+          label: t("devise_views.users.registrations.new.gender_label"),
+          include_blank: true %>
+
+      <div class="date-of-birth">
+        <%= f.date_select :date_of_birth,
+        label: t("devise_views.users.registrations.new.date_of_birth_label"),
+        prompt: true,
+        start_year: 1900, end_year: minimum_required_age.years.ago.year %>
+      </div>
+
+      <% select_options = User::LOCATION.map { |e| [t("activemodel.models.user.locations.values.#{e}"), e] } %>
+      <%= f.select :location, options_for_select(select_options),
+          label: t("devise_views.users.registrations.new.location_label"),
+          include_blank: true %>
+
       <%= f.invisible_captcha :address %>
 
       <%= f.email_field :email %>
