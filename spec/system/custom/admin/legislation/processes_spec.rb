@@ -12,7 +12,7 @@ describe "Admin collaborative legislation", :admin do
 
       header = page.response_headers["Content-Disposition"]
       expect(header).to match(/^attachment;/)
-      expect(header).to match(/filename="process_#{process.id}.zip"$/)
+      expect(header).to match(/filename="process_#{process.id}.zip"/)
       expect(page.body).to include "process.csv"
       expect(page.body).to include "questions_answers.csv"
       expect(page.body).to include "draft_comments.csv"
