@@ -25,18 +25,14 @@ nl:
       topic:
         edit: Pas onderwerp aan
         destroy: Verwijder Onderwerp
-        comments:
-          zero: Geen reacties
-          one: 1 opmerking
-          other: "%{count} opmerkingen"
-      author: Author
+      author: Auteur
       back: Terug naar %{community} %{proposal}
     topic:
       create: Creeer onderwerp
       edit: Pas onderwerp aan
       form:
         new:
-          submit_button: Creeer onderwerp
+          submit_button: Creëer onderwerp
         edit:
           submit_button: Pas onderwerp aan
         create:
