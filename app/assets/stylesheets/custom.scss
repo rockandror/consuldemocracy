@@ -6,8 +6,6 @@
 // Top menu
 
 .top-links {
-  background: $brand-secondary;
-  color: #fff;
   font-size: $small-font-size;
   border-bottom: 2px solid #fff;
 
@@ -297,10 +295,12 @@
 }
 
 .footer {
-  background-color: $brand;
-
   a {
     text-decoration: none;
+
+    &:hover {
+      color: inherit;
+    }
 
     .footer-link {
       display: flex;
@@ -309,7 +309,6 @@
       justify-content: center;
       font-size: 14px;
       font-weight: 700;
-      color: #fff;
       margin-bottom: rem-calc(12);
 
       span {
