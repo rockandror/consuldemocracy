@@ -42,17 +42,36 @@
 }
 
 .wrapper > header .external-links {
-  text-align: right;
+  text-align: left;
+
+  @include breakpoint(medium) {
+    text-align: right;
+
+    .submenu {
+      text-align: center;
+    }
+  }
 
   .submenu {
-    text-align: center;
+    @include breakpoint(small only) {
+      flex-direction: column;
+
+      a {
+        color: inherit;
+        padding-left: 0;
+      }
+    }
   }
 }
 
 // Menu
-.top-bar {
-  height: 60px;
+.public .top-bar {
+  @include breakpoint(medium) {
+    height: 60px;
+  }
+}
 
+.top-bar {
   @include breakpoint(small down) {
     height: fit-content;
     padding: rem-calc(8);
@@ -92,6 +111,7 @@
 
     .top-bar-title {
       background-color: $secondary;
+      font-size: medium;
       height: 100%;
       margin: 0;
       text-align: center;
@@ -99,14 +119,13 @@
       border-right: 2px solid #fff;
       text-decoration: none !important;
 
-      h1 {
+      a {
         height: 100%;
         margin: 0 15px;
         display: flex;
         justify-content: center;
         align-items: center;
         text-align: center;
-        font-size: medium;
         color: #fff !important;
       }
     }

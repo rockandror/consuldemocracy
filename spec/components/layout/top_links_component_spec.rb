@@ -10,7 +10,7 @@ describe Layout::TopLinksComponent do
       expect(page).to have_css "ul"
     end
 
-    it "does not render when no content block is defined" do
+    it "does not render when no content block is defined", :consul do
       render_inline Layout::TopLinksComponent.new
 
       expect(page).not_to be_rendered

@@ -6,6 +6,6 @@
       </span>
     <% end %>
   </li>
-  <%= render "shared/admin_login_items" %>
-  <%= render "devise/menu/login_items" %>
+  <%= render Layout::AdminLoginItemsComponent.new(current_user) %>
+  <%= render Layout::LoginItemsComponent.new(current_user) %>
 </ul>
