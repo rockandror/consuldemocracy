@@ -19,12 +19,9 @@ class Legislation::Proposals::Exporter
         I18n.t("admin.legislation.proposals.export_list.id"),
         I18n.t("admin.legislation.proposals.export_list.title"),
         I18n.t("admin.legislation.proposals.export_list.description"),
-        I18n.t("admin.legislation.proposals.export_list.votes_count"),
-        I18n.t("admin.legislation.proposals.export_list.comments_count"),
         I18n.t("admin.legislation.proposals.export_list.author_id"),
-        I18n.t("admin.legislation.proposals.export_list.author_date_of_birth"),
-        I18n.t("admin.legislation.proposals.export_list.author_location"),
-        I18n.t("admin.legislation.proposals.export_list.author_gender"),
+        I18n.t("admin.legislation.proposals.export_list.votes_count"),
+        I18n.t("admin.legislation.proposals.export_list.comments_count")
       ]
     end
 
@@ -33,28 +30,9 @@ class Legislation::Proposals::Exporter
         proposal.id.to_s,
         proposal.title,
         proposal.description,
-        proposal.cached_votes_total,
-        proposal.comments_count,
         proposal.author.id,
-        proposal.author.date_of_birth,
-        get_location(proposal.author.location),
-        get_gender(proposal.author.gender)
+        proposal.cached_votes_total,
+        proposal.comments_count
       ]
-    end
-
-    def get_gender(gender_key)
-      if gender_key
-        return I18n.t("activemodel.models.user.gender.#{gender_key}")
-      else
-        return ""
-      end
-    end
-
-    def get_location(location_key)
-      if location_key
-        return I18n.t("activemodel.models.user.locations.values.#{location_key}")
-      else
-        return ""
-      end
     end
 end

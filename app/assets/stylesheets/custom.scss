@@ -3,15 +3,8 @@
 @import "cookies_eu";
 @import "font-awesome/icons";
 
-// Registration
-.date-of-birth {
-  select {
-    float: left;
-    width: 33.33%;
-  }
-}
-
 // Top menu
+
 .top-links {
   background: $dark;
   color: #fff;
@@ -399,14 +392,12 @@
 }
 
 // Sign In
-.auth-page .wrapper {
-  @include breakpoint(medium) {
-    display: flex;
-    align-self: stretch;
-  }
-}
 .auth-image {
   background-image: none !important;
+
+  @include breakpoint(medium up) {
+    height: 100%;
+  }
 
   h1 {
     display: block !important;
