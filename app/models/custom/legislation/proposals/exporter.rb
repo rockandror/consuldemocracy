@@ -37,24 +37,8 @@ class Legislation::Proposals::Exporter
         proposal.comments_count,
         proposal.author.id,
         proposal.author.date_of_birth,
-        get_location(proposal.author.location),
-        get_gender(proposal.author.gender)
+        proposal.author.location,
+        proposal.author.gender,
       ]
-    end
-
-    def get_gender(gender_key)
-      if gender_key
-        return I18n.t("activemodel.models.user.gender.#{gender_key}")
-      else
-        return ""
-      end
-    end
-
-    def get_location(location_key)
-      if location_key
-        return I18n.t("activemodel.models.user.locations.values.#{location_key}")
-      else
-        return ""
-      end
     end
 end
