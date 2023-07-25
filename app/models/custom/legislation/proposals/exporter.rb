@@ -19,12 +19,9 @@ class Legislation::Proposals::Exporter
         I18n.t("admin.legislation.proposals.export_list.id"),
         I18n.t("admin.legislation.proposals.export_list.title"),
         I18n.t("admin.legislation.proposals.export_list.description"),
-        I18n.t("admin.legislation.proposals.export_list.votes_count"),
-        I18n.t("admin.legislation.proposals.export_list.comments_count"),
         I18n.t("admin.legislation.proposals.export_list.author_id"),
-        I18n.t("admin.legislation.proposals.export_list.author_date_of_birth"),
-        I18n.t("admin.legislation.proposals.export_list.author_location"),
-        I18n.t("admin.legislation.proposals.export_list.author_gender"),
+        I18n.t("admin.legislation.proposals.export_list.votes_count"),
+        I18n.t("admin.legislation.proposals.export_list.comments_count")
       ]
     end
 
@@ -33,12 +30,9 @@ class Legislation::Proposals::Exporter
         proposal.id.to_s,
         proposal.title,
         proposal.description,
-        proposal.cached_votes_total,
-        proposal.comments_count,
         proposal.author.id,
-        proposal.author.date_of_birth,
-        proposal.author.location,
-        proposal.author.gender,
+        proposal.cached_votes_total,
+        proposal.comments_count
       ]
     end
 end
