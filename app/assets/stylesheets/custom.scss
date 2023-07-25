@@ -399,14 +399,12 @@
 }
 
 // Sign In
-.auth-page .wrapper {
-  @include breakpoint(medium) {
-    display: flex;
-    align-self: stretch;
-  }
-}
 .auth-image {
   background-image: none !important;
+
+  @include breakpoint(medium up) {
+    height: 100%;
+  }
 
   h1 {
     display: block !important;
