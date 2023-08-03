@@ -1,7 +1,10 @@
 require "rails_helper"
 
 describe Users::SessionsController do
-  before { request.env["devise.mapping"] = Devise.mappings[:user] }
+  before do
+    request.env["devise.mapping"] = Devise.mappings[:user]
+    allow(User).to receive(:maximum_attempts).and_return(1)
+  end
 
   let!(:user) { create(:user, email: "citizen@consul.org", password: "12345678", locale: :es) }
 
@@ -19,6 +22,7 @@ describe Users::SessionsController do
 
     context "when login process returns an error" do
       it "tracks the login error" do
+        allow(User).to receive(:maximum_attempts).and_return(2)
         expect do
           post :create, params: { user: { login: "citizen@consul.org", password: "wrong" }}
         end.to change(ActivityLog, :count).by(1)
@@ -28,7 +32,6 @@ describe Users::SessionsController do
       end
 
       it "tracks the user account lock" do
-        Setting["login_attempts_before_lock"] = 1
         expect do
           post :create, params: { user: { login: "citizen@consul.org", password: "wrong" }}
         end.to change(ActivityLog, :count).by(2)
@@ -43,8 +46,6 @@ describe Users::SessionsController do
   end
 
   describe "Devise lock" do
-    before { Setting["login_attempts_before_lock"] = 1 }
-
     context "when devise sign in maximum_attempts reached", :with_frozen_time do
       it "locks the user account and sends an email to the account with an unlock link" do
         expect do

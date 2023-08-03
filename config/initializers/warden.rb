@@ -9,7 +9,7 @@ Warden::Manager.before_failure do |env, opts|
 
   ActivityLog.create!(activity: "login", result: "error", payload: login)
   user = User.find_by(username: login) || User.find_by(email: login)
-  if user&.failed_attempts == Setting["login_attempts_before_lock"].to_i
+  if user&.failed_attempts == User.maximum_attempts.to_i
     ActivityLog.create!(activity: "login", result: "blocked", payload: login)
   end
 end
