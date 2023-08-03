@@ -1,7 +1,4 @@
 es:
-  account:
-    show:
-      last_sign_in: Último acceso
   application:
     home: Inicio
     subtitle1: "wwww.tenerife.es"
