@@ -1,7 +1,14 @@
 ENV["RAILS_ENV"] ||= "test"
-if ENV["COVERALLS_REPO_TOKEN"]
-  require "coveralls"
-  Coveralls.wear!("rails")
+if ENV["TEST_COVERAGE"] && !ENV["TEST_COVERAGE"].empty?
+  require "simplecov"
+  require "simplecov-lcov"
+  SimpleCov::Formatter::LcovFormatter.config.report_with_single_file = true
+  SimpleCov::Formatter::LcovFormatter.config do |config|
+    config.output_directory = "coverage"
+    config.lcov_file_name = "lcov.info"
+  end
+  SimpleCov.formatter = SimpleCov::Formatter::LcovFormatter
+  SimpleCov.start("rails")
 end
 require File.expand_path("../../config/environment", __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
@@ -56,7 +63,7 @@ Capybara.register_driver :headless_chrome do |app|
   Capybara::Selenium::Driver.new(
     app,
     browser: :chrome,
-    desired_capabilities: capabilities
+    capabilities: capabilities
   )
 end
 
@@ -65,3 +72,14 @@ Capybara.enable_aria_label = true
 Capybara.disable_animation = true
 
 OmniAuth.config.test_mode = true
+
+def with_subdomain(subdomain, &block)
+  app_host = Capybara.app_host
+
+  begin
+    Capybara.app_host = "http://#{subdomain}.lvh.me"
+    block.call
+  ensure
+    Capybara.app_host = app_host
+  end
+end

@@ -24,17 +24,12 @@ every 1.minute do
 end
 
 every 1.day, at: "5:00 am" do
-  rake "-s sitemap:refresh"
+  rake "-s sitemap:refresh:no_ping"
 end
 
 every 2.hours do
   rake "-s stats:generate"
 end
-
-# Temporally not send dashboard's notifications
-# every 1.day, at: "7:00 am" do
-#   rake "dashboards:send_notifications"
-# end
 
 every 1.day, at: "1:00 am", roles: [:cron] do
   rake "files:remove_old_cached_attachments"

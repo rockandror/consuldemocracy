@@ -1,13 +1,13 @@
 <div class="small-12 medium-12 margin-top">
   <%= form_tag(search_pages_admin_site_customization_pages_path(@page), method: :get, remote: true) do |f| %>
     <%= text_field_tag :text,
-                       @search[:text],
+                       search[:text],
                        placeholder: t("admin.shared.search.label.pages"),
                        id: "search-pages",
                        style: "max-width: 400px" %>
     <div>
       <% ::SiteCustomization::Page::VALID_FILTERS.each do |type| %>
-        <%= radio_button_tag "type", type, @search[:type] == type %>
+        <%= radio_button_tag "type", type, search[:type] == type %>
         <%= label_tag "type_#{type}", I18n.t("admin.site_customization.pages.search.types.#{type}") %>&nbsp;&nbsp;&nbsp;&nbsp;
       <% end %>
     </div>

@@ -1,32 +1,21 @@
 <header>
-  <% if display_remote_translation_info?(@remote_translations, I18n.locale) %>
-    <%= render "shared/remote_translations_button", remote_translations: @remote_translations %>
-  <% end %>
+  <%= render Layout::RemoteTranslationsButtonComponent.new(@remote_translations) %>
 
   <div class="top-links hide-for-small-only">
-    <%= render "shared/locale_switcher" %>
+    <%= render Layout::LocaleSwitcherComponent.new %>
     <div>
-      <%= render "shared/top_links" %>
+      <%= render Layout::TopLinksComponent.new %>
     </div>
   </div>
 
   <div class="top-bar">
-    <span data-responsive-toggle="responsive-menu" data-hide-for="medium">
-      <button type="button" class="menu-button" data-toggle>
-        <span class="menu-icon"></span>
-        <%= t("application.menu") %>
-      </button>
-    </span>
-
     <div class="left-section">
       <%= link_to "https://www.tenerife.es/", target: "_blank" do %>
         <%= image_tag(image_path_for("logo-cabildo-tenerife.png"), alt: t("layouts.header.tenerife_logo")) %>
       <% end %>
-      <%= link_to root_path, accesskey: "0", class: "hide-for-small-only top-bar-title" do %>
-        <h1>
-          <%= setting["org_name"] %>
-        </h1>
-      <% end %>
+      <h1 class="hide-for-small-only top-bar-title">
+        <%= link_to setting["org_name"], root_path, accesskey: "0" %>
+      </h1>
 
       <div class="hide-for-small-only left-section-number">
         <%= t("application.support_title") %><br>
@@ -34,20 +23,18 @@
       </div>
     </div>
 
-    <div id="responsive-menu" class="show-for-small-only">
-      <div class="top-bar-right">
-        <div class="show-for-small-only">
-          <div class="subnavigation subnavigation-with-top-links">
-            <%= render "shared/top_links" %>
-            <%= render "shared/subnavigation" %>
-            <div data-open="googleSearch" style="margin: 15px 0;" class="search">
-              <span><%= icon("fas", "search") %></span>
-              <span><%= t("application.search") %></span>
-            </div>
+    <%= render Layout::ResponsiveMenuComponent.new do %>
+      <div class="show-for-small-only">
+        <div class="subnavigation subnavigation-with-top-links">
+          <%= render Layout::TopLinksComponent.new %>
+          <%= render Layout::SubnavigationComponent.new %>
+          <div data-open="googleSearch" style="margin: 15px 0;" class="search">
+            <span><%= icon("fas", "search") %></span>
+            <span><%= t("application.search") %></span>
           </div>
         </div>
       </div>
-    </div>
+    <% end %>
 
     <div class="hide-for-small-only middle-section">
       <%= link_to "https://www.tenerife.es/", target: "_blank" do %>
