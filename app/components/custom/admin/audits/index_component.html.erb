@@ -30,9 +30,9 @@
             <tr>
             <td><%= audit.id %></td>
             <td><%= audit.auditable_type %>#<%= audit.auditable_id %></td>
-            <td><%= sanitize(audit.auditable.class.human_attribute_name(field)) %></td>
-            <td><%= truncate_audit_value(audit.auditable, field, old_value) %></td>
-            <td><%= truncate_audit_value(audit.auditable, field, new_value) %></td>
+            <td><%= sanitize(field_name(audit, field)) %></td>
+            <td><%= truncate(join_value(old_value), length: 50) %></td>
+            <td><%= truncate(join_value(new_value), length: 50) %></td>
             <td><%= l audit.created_at, format: :datetime %></td>
             <td><%= audit.user&.name %></td>
             <td><%= audit.associated_type %>#<%= audit.associated_id %></td>

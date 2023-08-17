@@ -41,4 +41,13 @@ describe Admin::Audits::IndexComponent do
 
     expect(page).to have_content("No results found.")
   end
+
+  it "works with deleted auditable records" do
+    proposal.really_destroy!
+
+    render_inline Admin::Audits::IndexComponent.new(audits: Audit.page(1))
+
+    expect(page).to have_content("Initial proposal title")
+    expect(page).to have_content("Updated proposal title")
+  end
 end
