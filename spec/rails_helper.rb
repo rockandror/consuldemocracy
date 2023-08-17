@@ -53,6 +53,8 @@ end
 
 FactoryBot.use_parent_strategy = false
 
+Webdrivers::Chromedriver.required_version = "114.0.5735.90"
+
 Capybara.register_driver :headless_chrome do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
     "goog:chromeOptions" => {
