@@ -16,8 +16,6 @@
                     admin_verifications_path, class: "button hollow" %>
         <%= link_to t("admin.stats.show.sdg"),
                     sdg_admin_stats_path, class: "button hollow" if feature?(:sdg) %>
-        <%= link_to t("admin.stats.show.audited_records"),
-                    audited_records_admin_stats_path, class: "button hollow" %>
         <%= link_to t("admin.stats.show.access_logs"),
                     access_logs_admin_stats_path, class: "button hollow" %>
         <%= link_to t("admin.stats.show.tags"),

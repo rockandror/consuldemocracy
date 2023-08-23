@@ -2,7 +2,6 @@ require_dependency Rails.root.join("app", "models", "document").to_s
 
 class Document < ApplicationRecord
   before_save :remove_metadata
-  audited
 
   private
 

@@ -226,7 +226,6 @@ namespace :admin do
     get :direct_messages, on: :collection
     get :polls, on: :collection
     get :sdg, on: :collection
-    get :audited_records, on: :collection
     get :access_logs, on: :collection
     get :tags, on: :collection
   end

@@ -77,22 +77,12 @@ es:
       search:
         label:
           pages: "Buscar páginas por título o slug"
-          audited_records: Busca registros por fecha o email
           access_logs: Busca registros por fecha o email
         clean: "Limpiar búsqueda"
     stats:
       show:
-        audited_records: Registro de actividad
         access_logs: Registro de accesos
         tags: Tags
-      audited_records:
-        title: Registro de actividad
-        datetime: Fecha y hora
-        user: Usuario
-        activity: Actividad
-        model: Tipo
-        object: ID
-        no_records: No hay registro de actividad
       access_logs:
         title: Registro de accesos
         datetime: Fecha y hora (UTC)

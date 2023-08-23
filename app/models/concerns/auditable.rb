@@ -16,6 +16,8 @@ module Auditable
 
       def audited_class_names
         %w[
+          ActivePoll
+          Activity
           Banner
           Banner::Section
           Budget
@@ -38,6 +40,7 @@ module Auditable
           Dashboard::AdministratorTask
           Dashboard::ExecutedAction
           Debate
+          DirectMessage
           Document
           FailedCensusCall
           Flag
@@ -57,9 +60,11 @@ module Auditable
           Legislation::QuestionOption
           Link
           LocalCensusRecord
+          Manager
           MapLocation
           Milestone
           Milestone::Status
+          Moderator
           Newsletter
           Notification
           Organization
@@ -100,7 +105,6 @@ module Auditable
           StatsVersion
           Tenant
           Topic
-          User
           Valuator
           ValuatorGroup
           VerifiedUser
