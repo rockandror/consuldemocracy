@@ -1,7 +1,7 @@
 es:
   account:
     show:
-      last_sign_in: Último acceso
+      last_sign_in: "Último acceso efectuado: %{last_sign_in_at} desde la IP %{last_sign_in_ip}"
   application:
     home: Inicio
     subtitle1: "wwww.tenerife.es"

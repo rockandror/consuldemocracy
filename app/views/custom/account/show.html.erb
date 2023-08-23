@@ -10,9 +10,7 @@
 
     <h1 class="inline-block"><%= t("account.show.title") %></h1>
 
-    <div>
-      <p class="text-muted"><%= t("account.show.last_sign_in") %>: <%= l(@account.last_sign_in_at, format: "%a %d %B %Y a las %H:%M") %> <% if @account.last_sign_in_ip %>desde la IP <%= @account.last_sign_in_ip %><% end %></p>
-    </div>
+    <%= render Account::SignInInfoComponent.new(@account) %>
 
     <%= form_for @account, as: :account, url: account_path do |f| %>
       <%= render "shared/errors", resource: @account %>
