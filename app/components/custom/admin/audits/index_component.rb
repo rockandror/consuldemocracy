@@ -1,8 +1,6 @@
 class Admin::Audits::IndexComponent < ApplicationComponent
   attr_reader :audits
 
-  delegate :field_name, :audit_value, to: :helpers
-
   def initialize(audits:)
     @audits = audits
   end
