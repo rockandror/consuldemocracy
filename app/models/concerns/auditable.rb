@@ -2,7 +2,7 @@ module Auditable
   extend ActiveSupport::Concern
 
   included do
-    audited on: [:update, :destroy]
+    audited on: [:create, :update, :destroy]
     has_associated_audits
 
     class << self

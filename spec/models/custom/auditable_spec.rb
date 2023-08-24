@@ -72,11 +72,11 @@ describe "Auditable" do
   end
 
   describe "on auditable create" do
-    it "does not keep track of changes" do
-      expect { create(:proposal) }.not_to change { Audit.count }
-      expect { create(:debate) }.not_to change { Audit.count }
-      expect { create(:poll) }.not_to change { Audit.count }
-      expect { create(:widget_card) }.not_to change { Audit.count }
+    it "keeps track of changes" do
+      expect { create(:proposal) }.to change { Audit.count }
+      expect { create(:debate) }.to change { Audit.count }
+      expect { create(:poll) }.to change { Audit.count }
+      expect { create(:widget_card) }.to change { Audit.count }
     end
   end
 
