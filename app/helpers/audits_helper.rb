@@ -16,4 +16,24 @@ module AuditsHelper
   rescue NameError
     field
   end
+
+  def old_value(audit, changes)
+    if audit.action == "create"
+      ""
+    elsif audit.action == "update"
+      changes&.first
+    else
+      changes
+    end
+  end
+
+  def new_value(audit, changes)
+    if audit.action == "create"
+      changes
+    elsif audit.action == "update"
+      changes&.last
+    else
+      ""
+    end
+  end
 end

@@ -17,15 +17,15 @@
     </thead>
     <tbody>
       <% resource.own_and_associated_audits.order(:created_at).each do |audit| %>
-        <% audit.audited_changes.each do |field, (old_value, new_value)| %>
+        <% audit.audited_changes.each do |field, changes| %>
           <tr>
             <td class="text-center"><%= audit.id %></td>
             <td class="small"><%= sanitize(field_name(audit, field)) %></td>
             <td class="small">
-              <div class="audit-value"><%= truncate_audit_value(old_value) %></div>
+              <div class="audit-value"><%= truncate_audit_value(old_value(audit, changes)) %></div>
             </td>
             <td class="small">
-              <div class="audit-value"><%= truncate_audit_value(new_value) %></div>
+              <div class="audit-value"><%= truncate_audit_value(new_value(audit, changes)) %></div>
             </td>
             <td class="small">
               <%= l audit.created_at.to_date %>
