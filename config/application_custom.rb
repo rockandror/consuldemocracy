@@ -10,5 +10,7 @@ module Consul
     config.autoload_paths << "#{Rails.root}/app/mailers/custom"
 
     config.devise_lockable = Rails.application.secrets.devise_lockable
+    # Set to true to enable user authentication log
+    config.authentication_logs = Rails.application.secrets.dig(:security, :authentication_logs) || false
   end
 end
