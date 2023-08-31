@@ -1,7 +1,5 @@
 es:
   settings:
-    login_attempts_before_lock: Número de intentos de login antes de ser bloqueado
-    time_to_unlock: Minutos hasta el desbloqueo
     process:
       legislation: "Propuestas del Cabildo"
     sdg:
