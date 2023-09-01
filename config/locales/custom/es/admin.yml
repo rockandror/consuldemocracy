@@ -10,6 +10,8 @@ es:
         placeholder: "Buscar por el nombre de la clase y el identificador. Por ejemplo: Budget#2"
     legislation:
       processes:
+        form:
+          debate_phase: Fase de preguntas
         export_list:
           id: ID
           start_date: Fecha de inicio
@@ -28,6 +30,8 @@ es:
           download: Descargar CSV
         new:
           title: Crear nuevo proceso de propuestas del Cabildo
+        subnav:
+          questions: Preguntas
       answers:
         export_list:
           id: ID
