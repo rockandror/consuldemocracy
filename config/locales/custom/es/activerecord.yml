@@ -1,6 +1,15 @@
 es:
+  activemodel:
+    models:
+      user:
+        gender:
+          male: "Hombre"
+          female: "Mujer"
+          other: "Otro"
   activerecord:
     attributes:
       site_customization/page:
         is_news: Es noticia
         news_date: Fecha de la noticia
+      user:
+        geozone_id: Localidad (opcional)

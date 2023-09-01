@@ -16,6 +16,8 @@ es:
               <b>Más información:</b> Reflejadas en el %{terms_registry}.</p>
           terms_link: Política de Privacidad
           terms_registry: Registro de Actividades de Tratamiento
+          gender_label: Género / Sexo (opcional)
+          date_of_birth_label: Fecha de nacimiento (opcional)
     mailer:
       confirmation_instructions:
         rrss_text: |

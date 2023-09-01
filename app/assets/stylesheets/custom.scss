@@ -3,8 +3,24 @@
 @import "cookies_eu";
 @import "font-awesome/icons";
 
-// Top menu
+// Registration and user account page
+.account,
+.new-user {
+  .date-of-birth {
+    select {
+      float: left;
+      width: 33.33%;
+    }
 
+    &.show {
+      select {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+// Top menu
 .top-links {
   font-size: $small-font-size;
   border-bottom: 2px solid #fff;
@@ -410,12 +426,14 @@
 }
 
 // Sign In
+.auth-page .wrapper {
+  @include breakpoint(medium) {
+    display: flex;
+    align-self: stretch;
+  }
+}
 .auth-image {
   background-image: none !important;
-
-  @include breakpoint(medium up) {
-    height: 100%;
-  }
 
   h1 {
     display: block !important;
