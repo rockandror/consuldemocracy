@@ -35,7 +35,10 @@ es:
           legislation_question_id: ID de la pregunta
           legislation_question_text: Texto de la pregunta
           legislation_question_comment_text: Respuesta
-          author: Usuario
+          author_id: ID del usuario
+          author_date_of_birth: Fecha de nacimiento del autor
+          author_geozone: Localidad del autor
+          author_gender: Género del autor
       annotations:
         comments:
           export_list:
@@ -45,15 +48,21 @@ es:
             annotation_id: ID de la anotación
             annotation_text: Texto de la anotación
             comment_text: Comentario
-            author: Usuario
+            author_id: ID del usuario
+            author_date_of_birth: Fecha de nacimiento del autor
+            author_geozone: Localidad del autor
+            author_gender: Género del autor
       proposals:
         export_list:
           id: ID
           title: Título de la propuesta
           description: Descripción de la propuesta
-          author_id: ID del autor
           votes_count: Votos totales
           comments_count: Número de comentarios
+          author_id: ID del autor
+          author_date_of_birth: Fecha de nacimiento del autor
+          author_geozone: Localidad del autor
+          author_gender: Género del autor
     menu:
       audits: Registro de cambios
       legislation: Propuestas del Cabildo
