@@ -3,6 +3,11 @@ require_dependency Rails.root.join("app", "models", "user").to_s
 class User
   devise :lockable if Rails.application.config.devise_lockable
 
+  GENDER = %w[male female other].freeze
+
+  validates :gender, inclusion: { in: GENDER }, allow_blank: true
+
+
   audited except: [
     :sign_in_count,
     :last_sign_in_at,

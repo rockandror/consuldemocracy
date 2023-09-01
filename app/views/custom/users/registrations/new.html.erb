@@ -3,7 +3,7 @@
 
 <%= render "devise/omniauth_form", action: "sign_up" %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "new-user" }) do |f| %>
   <%= render "shared/errors", resource: resource %>
 
   <p>
@@ -19,6 +19,25 @@
 
       <%= f.text_field :username,  autofocus: true, maxlength: User.username_max_length,
                                    hint: t("devise_views.users.registrations.new.username_note") %>
+
+
+      <% select_options = User::GENDER.map { |g| [t("activemodel.models.user.gender.#{g}"), g] } %>
+      <%= f.select :gender,
+                   options_for_select(select_options),
+                   label: t("devise_views.users.registrations.new.gender_label"),
+                   include_blank: true %>
+
+      <div class="date-of-birth">
+        <%= f.date_select :date_of_birth,
+                          label: t("devise_views.users.registrations.new.date_of_birth_label"),
+                          prompt: true,
+                          start_year: 1900,
+                          end_year: minimum_required_age.years.ago.year %>
+      </div>
+
+      <%= f.select :geozone_id,
+                   Geozone.order(:name).map { |geozone| [geozone.name, geozone.id] },
+                   include_blank: true %>
 
       <%= f.invisible_captcha :address %>
 

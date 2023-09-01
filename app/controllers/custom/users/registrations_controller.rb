@@ -12,4 +12,10 @@ class Users::RegistrationsController
         ActivityLog.create!(activity: "register", result: "error", payload: resource.errors.full_messages)
       end
     end
+
+    alias_method :consul_allowed_params, :allowed_params
+
+    def allowed_params
+      consul_allowed_params + [:date_of_birth, :geozone_id, :gender]
+    end
 end
