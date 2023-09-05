@@ -1,5 +1,13 @@
 es:
   admin:
+    audits:
+      auditable: Registro auditado
+      associated: Registro asociado
+      disabled_feature: La función de registro de cambios está desactivada. Pida al administrador del sistema que la active a través del archivo de secretos.
+      index:
+        title: Registro de cambios
+      search:
+        placeholder: "Buscar por el nombre de la clase y el identificador. Por ejemplo: Budget#2"
     legislation:
       processes:
         export_list:
@@ -47,6 +55,7 @@ es:
           votes_count: Votos totales
           comments_count: Número de comentarios
     menu:
+      audits: Registro de cambios
       legislation: Propuestas del Cabildo
     proposals:
       index:
@@ -68,22 +77,12 @@ es:
       search:
         label:
           pages: "Buscar páginas por título o slug"
-          audited_records: Busca registros por fecha o email
           access_logs: Busca registros por fecha o email
         clean: "Limpiar búsqueda"
     stats:
       show:
-        audited_records: Registro de actividad
         access_logs: Registro de accesos
         tags: Tags
-      audited_records:
-        title: Registro de actividad
-        datetime: Fecha y hora
-        user: Usuario
-        activity: Actividad
-        model: Tipo
-        object: ID
-        no_records: No hay registro de actividad
       access_logs:
         title: Registro de accesos
         datetime: Fecha y hora (UTC)

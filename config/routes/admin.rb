@@ -226,7 +226,6 @@ namespace :admin do
     get :direct_messages, on: :collection
     get :polls, on: :collection
     get :sdg, on: :collection
-    get :audited_records, on: :collection
     get :access_logs, on: :collection
     get :tags, on: :collection
   end
@@ -295,6 +294,8 @@ namespace :admin do
       put :restore
     end
   end
+
+  resources :audits, only: [:index, :show]
 end
 
 resolve "Milestone" do |milestone|
@@ -303,10 +304,6 @@ end
 
 resolve "ProgressBar" do |progress_bar|
   [*resource_hierarchy_for(progress_bar.progressable), progress_bar]
-end
-
-resolve "Audit" do |audit|
-  [*resource_hierarchy_for(audit.associated || audit.auditable), audit]
 end
 
 resolve "Widget::Card" do |card, options|

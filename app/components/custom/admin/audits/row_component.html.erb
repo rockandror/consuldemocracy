@@ -1,0 +1,17 @@
+<% audit.audited_changes.each do |field, changes| %>
+  <tr>
+    <td><%= audit.id %></td>
+    <td><%= audit.auditable_type %>#<%= audit.auditable_id %></td>
+    <td><%= sanitize(field_name(audit, field)) %></td>
+    <td><%= truncate(audit_value(old_value(audit, changes)), length: 50) %></td>
+    <td><%= truncate(audit_value(new_value(audit, changes)), length: 50) %></td>
+    <td><%= l audit.created_at, format: :datetime %></td>
+    <td><%= audit.user&.name %></td>
+    <td><%= audit.associated_type %>#<%= audit.associated_id %></td>
+    <td>
+      <%= render Admin::TableActionsComponent.new(audit, actions: []) do |actions| %>
+        <%= actions.action(:show, text: t("shared.show"), path: admin_audit_path(audit)) %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>

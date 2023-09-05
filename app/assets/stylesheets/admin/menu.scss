@@ -109,6 +109,10 @@
     &.ml-link {
       @include icon(brain, solid);
     }
+
+    &.audits-link {
+      @include icon(clipboard-check, solid);
+    }
   }
 
   li {

@@ -1,0 +1,14 @@
+<p><strong><%= t("admin.audits.edited_at") %></strong> <%= l audit.created_at.to_date %></p>
+<p><strong><%= t("admin.audits.edited_by") %></strong> <%= audit.user&.name %></p>
+
+<h3><%= t("admin.audits.changes") %></h3>
+
+<% audit.audited_changes.each do |field, changes| %>
+  <strong><%= t("admin.audits.field") %></strong>
+  <p><%= sanitize(field_name(audit, field)) %></p>
+  <strong><%= t("admin.audits.old_value") %></strong>
+  <p><%= wysiwyg(audit_value(old_value(audit, changes))) %></p>
+  <strong><%= t("admin.audits.new_value") %></strong>
+  <p><%= wysiwyg(audit_value(new_value(audit, changes))) %></p>
+  <hr>
+<% end %>

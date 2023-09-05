@@ -4,3 +4,7 @@ es:
       site_customization/page:
         is_news: Es noticia
         news_date: Fecha de la noticia
+    models:
+      audit:
+        one: "Registro de cambio"
+        other: "Registros de cambio"

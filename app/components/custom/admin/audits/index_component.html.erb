@@ -1,0 +1,34 @@
+<% if empty_database? %>
+  <div class="callout alert margin">
+    <p><%= t("admin.audits.empty") %></p>
+  </div>
+<% else %>
+  <%= render Admin::Audits::SearchComponent.new %>
+
+  <% if empty_search? %>
+    <div class="callout alert margin">
+      <%= t("admin.shared.no_search_results") %>
+    </div>
+  <% else %>
+    <table id="audits">
+      <thead>
+        <tr>
+          <th><%= t("admin.audits.id") %></th>
+          <th><%= t("admin.audits.auditable") %></th>
+          <th><%= t("admin.audits.field") %></th>
+          <th><%= t("admin.audits.old_value") %></th>
+          <th><%= t("admin.audits.new_value") %></th>
+          <th><%= t("admin.audits.edited_at") %></th>
+          <th><%= t("admin.audits.edited_by") %></th>
+          <th><%= t("admin.audits.associated") %></th>
+          <th><%= t("admin.audits.actions") %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render Admin::Audits::RowComponent.with_collection(audits) %>
+      </tbody>
+    </table>
+
+    <%= paginate audits %>
+  <% end %>
+<% end %>

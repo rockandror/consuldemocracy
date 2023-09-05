@@ -2,7 +2,10 @@ require "rails_helper"
 
 describe "Admin change log" do
   let(:administrator) { create(:administrator, user: create(:user, username: "Ana")) }
-  before { login_as(administrator.user) }
+  before do
+    login_as(administrator.user)
+    allow(Rails.application.config).to receive(:auditing_enabled).and_return(true)
+  end
 
   context "Investments Participatory Budgets" do
     scenario "Changes" do
