@@ -7,6 +7,7 @@ class User
 
   validates :gender, inclusion: { in: GENDER }, allow_blank: true
 
+  scope :other_gender,   -> { where(gender: "other") }
 
   audited except: [
     :sign_in_count,
