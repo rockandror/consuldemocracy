@@ -1,4 +1,11 @@
 es:
+  activemodel:
+    models:
+      user:
+        gender:
+          male: "Hombre"
+          female: "Mujer"
+          other: "Otro"
   activerecord:
     attributes:
       site_customization/page:
@@ -8,3 +15,5 @@ es:
       audit:
         one: "Registro de cambio"
         other: "Registros de cambio"
+      user:
+        geozone_id: Localidad (opcional)

@@ -29,7 +29,10 @@ class Legislation::Answers::Exporter
         I18n.t("admin.legislation.answers.export_list.legislation_question_id"),
         I18n.t("admin.legislation.answers.export_list.legislation_question_text"),
         I18n.t("admin.legislation.answers.export_list.legislation_question_comment_text"),
-        I18n.t("admin.legislation.answers.export_list.author")
+        I18n.t("admin.legislation.answers.export_list.author_id"),
+        I18n.t("admin.legislation.answers.export_list.author_date_of_birth"),
+        I18n.t("admin.legislation.answers.export_list.author_geozone"),
+        I18n.t("admin.legislation.answers.export_list.author_gender")
       ]
     end
 
@@ -40,7 +43,10 @@ class Legislation::Answers::Exporter
         answer.question.id,
         answer.question.title,
         answer.question_option.value,
-        answer.user.id
+        answer.user.id,
+        answer.user.date_of_birth,
+        answer.user.geozone&.name,
+        get_gender(answer.user.gender)
       ]
     end
 
@@ -51,7 +57,15 @@ class Legislation::Answers::Exporter
         question.id,
         question.title,
         comment.body,
-        comment.user.id
+        comment.user.id,
+        answer.user.date_of_birth,
+        answer.user.geozone&.name,
+        get_gender(answer.user.gender)
       ]
+    end
+
+    def get_gender(gender_key)
+      return unless gender_key
+      I18n.t("activemodel.models.user.gender.#{gender_key}")
     end
 end

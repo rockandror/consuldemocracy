@@ -65,7 +65,7 @@ describe "Legislation" do
       expect(page).to have_content("Participation phases")
     end
 
-    scenario "Participation phases are displayed on current locale" do
+    scenario "Participation phases are displayed on current locale", :consul do
       process = create(:legislation_process, proposals_phase_start_date: Date.new(2018, 01, 01),
                                              proposals_phase_end_date: Date.new(2018, 12, 01))
 

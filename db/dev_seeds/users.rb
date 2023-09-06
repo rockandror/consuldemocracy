@@ -8,7 +8,7 @@ section "Creating Users" do
       password_confirmation:  password,
       confirmed_at:           Time.current,
       terms_of_service:       "1",
-      gender:                 %w[male female].sample,
+      gender:                 %w[male female other].sample,
       date_of_birth:          rand((80.years.ago)..(16.years.ago)),
       public_activity:        (rand(1..100) > 30)
     )

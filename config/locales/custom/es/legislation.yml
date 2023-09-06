@@ -9,8 +9,13 @@ es:
         section_footer:
           title: Ayuda sobre Propuestas del Cabildo
         remove_filter_by_tag: Eliminar filtro por etiqueta
+      shared:
+        key_dates: Participa
+        debate_dates: Preguntas
     questions:
       show:
         title: Proceso de propuestas del Cabildo
+      participation:
+        debate_phase_not_open: La fase de preguntas ya ha finalizado y en este momento no se aceptan respuestas
     proposals:
       process_title: Proceso de propuestas del Cabildo
