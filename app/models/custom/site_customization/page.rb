@@ -2,7 +2,6 @@ require_dependency Rails.root.join("app", "models", "site_customization", "page"
 
 class SiteCustomization::Page
   VALID_FILTERS = %w[all news others].freeze
-  audited
 
   validates :news_date, presence: true, if: :is_news?
 
