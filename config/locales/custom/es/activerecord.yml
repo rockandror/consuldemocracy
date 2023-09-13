@@ -11,9 +11,9 @@ es:
       site_customization/page:
         is_news: Es noticia
         news_date: Fecha de la noticia
+      user:
+        geozone_id: Localidad (opcional)
     models:
       audit:
         one: "Registro de cambio"
         other: "Registros de cambio"
-      user:
-        geozone_id: Localidad (opcional)
