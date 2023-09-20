@@ -11,5 +11,16 @@ module Comments
       end
     end
 
+    def destroy
+      if params[:value] == "yes"
+        @comment.unliked_by(current_user)
+      else
+        @comment.undisliked_by(current_user)
+      end
+
+      respond_to do |format|
+        format.js { render :show }
+      end
+    end
   end
 end
