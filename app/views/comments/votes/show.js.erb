@@ -1,0 +1,2 @@
+$("#<%= dom_id(@comment) %>_votes")
+  .html("<%= j render Comments::VotesComponent.new(@comment) %>");

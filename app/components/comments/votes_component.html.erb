@@ -3,7 +3,7 @@
   &nbsp;|&nbsp;
 
   <span class="in-favor">
-    <%= button_to vote_comment_path(comment, value: "yes"),
+    <%= button_to vote_in_favor_against_path("yes"),
                   method: "post",
                   remote: can?(:vote, comment),
                   "aria-pressed": pressed?("yes"),
@@ -14,7 +14,7 @@
   </span>
 
   <span class="against">
-    <%= button_to vote_comment_path(comment, value: "no"),
+    <%= button_to vote_in_favor_against_path("no"),
                   method: "post",
                   remote: can?(:vote, comment),
                   "aria-pressed": pressed?("no"),

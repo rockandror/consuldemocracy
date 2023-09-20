@@ -123,7 +123,7 @@ describe Abilities::Common do
 
   describe "Comment" do
     it { should be_able_to(:create, Comment) }
-    it { should be_able_to(:vote, Comment) }
+    it { should be_able_to(:create, user.votes.build(votable: comment)) }
 
     it { should be_able_to(:hide, own_comment) }
     it { should_not be_able_to(:hide, comment) }
