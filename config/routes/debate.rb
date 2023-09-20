@@ -1,11 +1,12 @@
 resources :debates do
   member do
-    post :vote
     put :flag
     put :unflag
     put :mark_featured
     put :unmark_featured
   end
+
+  resources :votes, controller: "debates/votes", only: :create
 
   collection do
     get :suggest
