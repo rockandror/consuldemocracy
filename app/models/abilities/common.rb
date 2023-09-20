@@ -83,14 +83,14 @@ module Abilities
       unless user.organization?
         # TODO: rspec ./spec/models/signature_spec.rb:116 # Signature#verify existing user does not assigns vote
         # to invalid user on budget investment
-        can :create, ActsAsVotable::Vote, voter_id: user.id, votable_type: "Debate"
+        can [:create, :destroy], ActsAsVotable::Vote, voter_id: user.id, votable_type: "Debate"
         can :vote, Comment
       end
 
       if user.level_two_or_three_verified?
         can :vote, Proposal, &:published?
 
-        can :create, ActsAsVotable::Vote, voter_id: user.id, votable_type: "Legislation::Proposal"
+        can [:create, :destroy], ActsAsVotable::Vote, voter_id: user.id, votable_type: "Legislation::Proposal"
 
         can :create, Legislation::Answer
 

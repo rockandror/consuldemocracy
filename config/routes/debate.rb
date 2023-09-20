@@ -6,7 +6,7 @@ resources :debates do
     put :unmark_featured
   end
 
-  resources :votes, controller: "debates/votes", only: :create
+  resources :votes, controller: "debates/votes", only: [:create, :destroy]
 
   collection do
     get :suggest
