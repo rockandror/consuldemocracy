@@ -15,6 +15,7 @@ describe Abilities::Common do
   let(:own_comment)  { create(:comment,  author: user) }
   let(:own_proposal) { create(:proposal, author: user) }
   let(:own_legislation_proposal) { create(:legislation_proposal, author: user) }
+  let(:legislation_proposal) { create(:legislation_proposal) }
 
   let(:accepting_budget) { create(:budget, :accepting) }
   let(:reviewing_budget) { create(:budget, :reviewing) }
@@ -73,7 +74,18 @@ describe Abilities::Common do
 
   it { should be_able_to(:index, Debate) }
   it { should be_able_to(:show, debate)  }
-  it { should be_able_to(:vote, debate)  }
+  it { should be_able_to(:create, user.votes.build(votable: debate)) }
+
+  context "vote legislation proposal" do
+    describe "when user is not level_two_or_three_verified" do
+      it { should_not be_able_to(:create, user.votes.build(votable: legislation_proposal)) }
+    end
+
+    describe "when user is level_two_or_three_verified" do
+      before { user.update(level_two_verified_at: Date.current) }
+      it { should be_able_to(:create, user.votes.build(votable: legislation_proposal)) }
+    end
+  end
 
   it { should be_able_to(:show, user) }
   it { should be_able_to(:edit, user) }
