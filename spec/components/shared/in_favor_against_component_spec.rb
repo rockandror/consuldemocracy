@@ -20,5 +20,23 @@ describe Shared::InFavorAgainstComponent do
         expect(against_block).not_to have_css "input[name='_method']", visible: :hidden
       end
     end
+
+    it "can undo vote when the user has already voted" do
+      user = create(:user)
+      create(:vote, votable: debate, voter: user)
+      sign_in(user)
+
+      render_inline component
+
+      page.find(".in-favor") do |in_favor_block|
+        expect(in_favor_block).to have_css "form[action*='votes'][method='post']"
+        expect(in_favor_block).to have_css "input[name='_method'][value='delete']", visible: :hidden
+      end
+
+      page.find(".against") do |against_block|
+        expect(against_block).to have_css "form[action*='votes'][method='post']"
+        expect(against_block).not_to have_css "input[name='_method']", visible: :hidden
+      end
+    end
   end
 end

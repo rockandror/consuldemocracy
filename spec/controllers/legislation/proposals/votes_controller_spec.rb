@@ -27,4 +27,20 @@ describe Legislation::Proposals::VotesController do
       end
     end
   end
+
+  describe "DELETE destroy" do
+    let(:user) { create(:user, :level_two) }
+    let!(:vote) { create(:vote, votable: proposal, voter: user) }
+    let(:vote_params) do
+      { process_id: legislation_process.id, legislation_proposal_id: proposal.id, value: "yes", id: vote }
+    end
+
+    it "allows undo vote" do
+      sign_in user
+
+      expect do
+        delete :destroy, xhr: true, params: vote_params
+      end.to change { proposal.reload.votes_for.size }.by(-1)
+    end
+  end
 end
