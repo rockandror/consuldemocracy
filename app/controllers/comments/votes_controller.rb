@@ -1,12 +1,25 @@
 module Comments
   class VotesController < ApplicationController
-    before_action :authenticate_user!, only: :create
-    before_action :verify_comments_open!, only: :create
     load_and_authorize_resource :comment
+    before_action :authenticate_user!, only: [:create, :destroy]
+    before_action :verify_comments_open!, only: [:create, :destroy]
 
     def create
       authorize! :create, Vote.new(voter: current_user, votable: @comment)
       @comment.vote_by(voter: current_user, vote: params[:value])
+
+      respond_to do |format|
+        format.js { render :show }
+      end
+    end
+
+    def destroy
+      authorize! :destroy, Vote.new(voter: current_user, votable: @comment)
+      if params[:value] == "yes"
+        @comment.unliked_by(current_user)
+      else
+        @comment.undisliked_by(current_user)
+      end
 
       respond_to do |format|
         format.js { render :show }
