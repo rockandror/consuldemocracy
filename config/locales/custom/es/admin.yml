@@ -90,19 +90,10 @@ es:
       search:
         label:
           pages: "Buscar páginas por título o slug"
-          access_logs: Busca registros por fecha o email
         clean: "Limpiar búsqueda"
     stats:
       show:
-        access_logs: Registro de accesos
         tags: Tags
-      access_logs:
-        title: Registro de accesos
-        datetime: Fecha y hora (UTC)
-        email: Email
-        activity: Actividad
-        result: Resultado
-        no_logs: No hay registro de accesos
       tags:
         title: Estadisticas de tags
         all: Tags
