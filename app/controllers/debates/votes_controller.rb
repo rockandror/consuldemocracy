@@ -1,7 +1,7 @@
 module Debates
   class VotesController < ApplicationController
     load_and_authorize_resource :debate
-    load_and_authorize_resource through: :debate, through_association: :votes_for, only: :destroy
+    #load_and_authorize_resource through: :debate, through_association: :votes_for, only: :destroy
 
     def create
       authorize! :create, Vote.new(voter: current_user, votable: @debate)

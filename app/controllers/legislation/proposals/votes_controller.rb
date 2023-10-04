@@ -5,7 +5,7 @@ module Legislation
       load_and_authorize_resource :proposal, class: "Legislation::Proposal",
                                              through: :process,
                                              id_param: "legislation_proposal_id"
-      load_and_authorize_resource through: :proposal, through_association: :votes_for, only: :destroy
+      #load_and_authorize_resource through: :proposal, through_association: :votes_for, only: :destroy
 
       def create
         authorize! :create, Vote.new(voter: current_user, votable: @proposal)
