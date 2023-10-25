@@ -13,6 +13,8 @@ es:
         news_date: Fecha de la noticia
       user:
         geozone_id: Localidad (opcional)
+      votation_type/vote_type:
+        open: Respuesta abierta
     models:
       audit:
         one: "Registro de cambio"

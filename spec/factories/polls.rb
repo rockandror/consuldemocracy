@@ -80,6 +80,12 @@ FactoryBot.define do
         create(:votation_type_multiple, questionable: question, max_votes: evaluator.max_votes)
       end
     end
+
+    factory :poll_question_open do
+      after(:create) do |question|
+        create(:votation_type_open, questionable: question)
+      end
+    end
   end
 
   factory :poll_question_answer, class: "Poll::Question::Answer" do

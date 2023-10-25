@@ -1,3 +1,5 @@
 <%= render Admin::AllowedTableActionsComponent.new(question) do |actions| %>
-  <%= actions.action(:answers, text: t("admin.polls.show.edit_answers")) %>
+  <% if question.vote_type != "open" %>
+    <%= actions.action(:answers, text: t("admin.polls.show.edit_answers")) %>
+  <% end %>
 <% end %>

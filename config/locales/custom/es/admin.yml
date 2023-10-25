@@ -70,6 +70,9 @@ es:
     menu:
       audits: Registro de cambios
       legislation: Propuestas del Cabildo
+    polls:
+      votation_type:
+        open_description: "Permite que el usuario responda libremente en un cuadro de texto."
     proposals:
       index:
         export: Descargar selección actual
