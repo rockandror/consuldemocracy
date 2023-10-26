@@ -71,6 +71,12 @@ es:
       audits: Registro de cambios
       legislation: Propuestas del Cabildo
     polls:
+      results:
+        export_list:
+          id: ID
+          question_id: ID de la pregunta
+          answer: Respuesta
+          author_id: ID del autor
       votation_type:
         open_description: "Permite que el usuario responda libremente en un cuadro de texto."
     proposals:

@@ -11,6 +11,12 @@
     </div>
   <% end %>
 
+  <% if @poll.expired? %>
+    <%= link_to t("admin.proposals.index.export"),
+                current_path_with_query_params(format: :csv),
+                class: "float-right small clear" %>
+  <% end %>
+
   <% if @partial_results.present? %>
     <%= render "recount", resource: @poll %>
     <%= render "result" %>
