@@ -1,4 +1,25 @@
 <div class="poll-question-answers">
+  <% if question.vote_type == "open" %>
+    <% if can?(:answer, question) && !question.poll.voted_in_booth?(current_user) %>
+      <%= form_tag answer_question_path(question), remote: true, id: "question-#{question.id}", class: "text-input-form" do %>
+        <%= text_area_tag :answer, open_answer, rows: 4, required: true, id: "open-answer-question-#{question.id}", "aria-label": question.title %>
+        <% if open_answer.empty? %>
+          <%= submit_tag(t("poll_questions.show.open.answer"), class: "button secondary hollow") %>
+        <% else %>
+          <%= submit_tag(t("poll_questions.show.open.answered"), class: "button answered") %>
+        <% end %>
+      <% end %>
+    <% elsif !user_signed_in? %>
+      <%= text_area_tag :answer, nil, rows: 4, required: true, id: "open-answer-question-#{question.id}", "aria-label": question.title, disabled: true %>
+      <%= link_to t("poll_questions.show.open.answer"), new_user_session_path, class: "button secondary hollow" %>
+    <% elsif !current_user.level_two_or_three_verified? %>
+      <%= text_area_tag :answer, nil, rows: 4, required: true, id: "open-answer-question-#{question.id}", "aria-label": question.title, disabled: true %>
+      <%= link_to t("poll_questions.show.open.answer"), verification_path, class: "button secondary hollow" %>
+    <% else %>
+      <%= text_area_tag :answer, open_answer, rows: 4, required: true, id: "open-answer-question-#{question.id}", "aria-label": question.title, disabled: true %>
+    <% end %>
+  <% end %>
+
   <% if can?(:answer, question) && !question.poll.voted_in_booth?(current_user) %>
     <% question_answers.each do |question_answer| %>
       <% if already_answered?(question_answer) %>

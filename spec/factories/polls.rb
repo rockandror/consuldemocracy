@@ -207,6 +207,12 @@ FactoryBot.define do
     answer { question.question_answers.sample.title }
   end
 
+  factory :poll_open_answer, class: "Poll::Answer" do
+    question factory: :poll_question_open
+    author factory: [:user, :level_two]
+    answer { "open text" }
+  end
+
   factory :poll_partial_result, class: "Poll::PartialResult" do
     question factory: [:poll_question, :yes_no]
     author factory: :user
