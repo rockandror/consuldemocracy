@@ -451,6 +451,13 @@
   z-index: 1;
 }
 
+// POLLS OPEN QUESTION
+
+.poll-question-answers {
+  .text-input-form {
+    width: 100%;
+  }
+}
 // /* This controls how many elements will be on each row of the block grid. */
 // /* Set this to whatever number you need, up to the max allowed in the variable */
 // $per-row: false;

@@ -34,6 +34,13 @@ es:
         services: Servicios Digitales
       collaborative_legislation: Propuestas del Cabildo
       tenerife_logo: "Cabildo Tenerife"
+  poll_questions:
+    description:
+      open: "Escribe aquí tu respuesta."
+    show:
+      open:
+        answer: Enviar
+        answered: Enviado
   shared:
     main_links:
       cabildo: Cabildo Abierto

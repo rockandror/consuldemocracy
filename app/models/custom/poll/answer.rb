@@ -10,7 +10,8 @@ class Poll::Answer < ApplicationRecord
   validate :max_votes
 
   validates :answer, inclusion: { in: ->(a) { a.question.possible_answers }},
-                     unless: ->(a) { a.question.blank? }
+                     unless: ->(a) { a.question.blank? },
+                     if: ->(a) { a.question&.vote_type != 'open' }
 
   scope :by_author, ->(author_id) { where(author_id: author_id) }
   scope :by_question, ->(question_id) { where(question_id: question_id) }
@@ -36,7 +37,7 @@ class Poll::Answer < ApplicationRecord
   private
 
     def max_votes
-      return if !question || question&.unique? || persisted?
+      return if !question || question&.unique? || question.vote_type == 'open' || persisted?
 
       author.lock!
 
