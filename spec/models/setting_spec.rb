@@ -17,107 +17,71 @@ describe Setting do
     expect(Setting.where(key: "official_level_1_name", value: "Stormtrooper")).to exist
   end
 
-  describe "#prefix" do
-    it "returns the prefix of its key" do
-      expect(Setting.create!(key: "prefix.key_name").prefix).to eq "prefix"
-    end
-
-    it "returns the whole key for a non prefixed key" do
-      expect(Setting.create!(key: "key_name").prefix).to eq "key_name"
+  it "each setting has a config object defined" do
+    Setting.defaults.each do |key, config|
+      expect(config).to be_a(Setting::Config)
     end
   end
 
-  describe "#type" do
-    it "returns the key prefix for 'process' settings" do
-      process_setting = Setting.create!(key: "process.whatever")
-      expect(process_setting.type).to eq "process"
-    end
+  describe "#config" do
+    it "returns the config object" do
+      setting = Setting.find_by(key: "feature.map")
 
-    it "returns the key prefix for 'feature' settings" do
-      feature_setting = Setting.create!(key: "feature.whatever")
-      expect(feature_setting.type).to eq "feature"
-    end
-
-    it "returns the key prefix for 'map' settings" do
-      map_setting = Setting.create!(key: "map.whatever")
-      expect(map_setting.type).to eq "map"
-    end
-
-    it "returns the key prefix for 'html' settings" do
-      html_setting = Setting.create!(key: "html.whatever")
-      expect(html_setting.type).to eq "html"
-    end
-
-    it "returns the key prefix for 'homepage' settings" do
-      homepage_setting = Setting.create!(key: "homepage.whatever")
-      expect(homepage_setting.type).to eq "homepage"
-    end
-
-    it "returns the key prefix for 'sdg' settings" do
-      sdg_setting = Setting.create!(key: "sdg.whatever")
-
-      expect(sdg_setting.type).to eq "sdg"
-    end
-
-    it "returns the key prefix for 'remote_census.general' settings" do
-      remote_census_general_setting = Setting.create!(key: "remote_census.general.whatever")
-      expect(remote_census_general_setting.type).to eq "remote_census.general"
-    end
-
-    it "returns the key prefix for 'remote_census_request' settings" do
-      remote_census_request_setting = Setting.create!(key: "remote_census.request.whatever")
-      expect(remote_census_request_setting.type).to eq "remote_census.request"
-    end
-
-    it "returns the key prefix for 'remote_census_response' settings" do
-      remote_census_response_setting = Setting.create!(key: "remote_census.response.whatever")
-      expect(remote_census_response_setting.type).to eq "remote_census.response"
-    end
-
-    it "returns 'configuration' for the rest of the settings" do
-      configuration_setting = Setting.create!(key: "whatever")
-      expect(configuration_setting.type).to eq "configuration"
-    end
-  end
-
-  describe "#enabled?" do
-    it "is true if value is present" do
-      setting = Setting.create!(key: "feature.whatever", value: 1)
-      expect(setting.enabled?).to be true
-
-      setting.value = "true"
-      expect(setting.enabled?).to be true
-
-      setting.value = "whatever"
-      expect(setting.enabled?).to be true
-    end
-
-    it "is false if value is blank" do
-      setting = Setting.create!(key: "feature.whatever")
-      expect(setting.enabled?).to be false
-
-      setting.value = ""
-      expect(setting.enabled?).to be false
+      expect(setting.config.class).to eq(Setting::Config)
     end
   end
 
   describe "#content_type?" do
-    it "returns true if the last part of the key is content_types" do
-      expect(Setting.create!(key: "key_name.content_types").content_type?).to be true
+    it "returns true if the setting config object type is content_types, otherwise returns false" do
+      expect(Setting.find_by!(key: "uploads.images.content_types").content_type?).to be true
+      expect(Setting.find_by!(key: "uploads.documents.content_types").content_type?).to be true
+      expect(Setting.find_by!(key: "uploads.documents.max_size").content_type?).to be false
+    end
+  end
+
+  describe "#group" do
+    it "returns the group from the setting config object" do
+      expect(Setting.find_by!(key: "feature.map").group).to be :features
+      expect(Setting.find_by!(key: "map.latitude").group).to be :map
+      expect(Setting.find_by!(key: "map.zoom").group).to be :map
+    end
+  end
+
+  describe "#enabled?" do
+    let(:setting) { Setting.find_by(key: "feature.map") }
+
+    it "is true if value is present" do
+      Setting["feature.map"] = 1
+
+      expect(setting.enabled?).to be true
+
+      Setting["feature.map"] = "true"
+
+      expect(setting.enabled?).to be true
+
+      Setting["feature.map"] = "whatever"
+
+      expect(setting.enabled?).to be true
     end
 
-    it "returns false if the last part of the key is not content_types" do
-      expect(Setting.create!(key: "key_name.whatever").content_type?).to be false
+    it "is false if value is blank" do
+      Setting["feature.map"] = nil
+
+      expect(setting.enabled?).to be false
+
+      Setting["feature.map"] = ""
+
+      expect(setting.enabled?).to be false
     end
   end
 
   describe "#content_type_group" do
     it "returns the group for content_types settings" do
-      images =    Setting.create!(key: "update.images.content_types")
-      documents = Setting.create!(key: "update.documents.content_types")
+      images_setting =    Setting.find_by(key: "uploads.images.content_types")
+      documents_setting = Setting.find_by(key: "uploads.documents.content_types")
 
-      expect(images.content_type_group).to    eq "images"
-      expect(documents.content_type_group).to eq "documents"
+      expect(images_setting.content_type_group).to    eq "images"
+      expect(documents_setting.content_type_group).to eq "documents"
     end
   end
 
@@ -225,7 +189,7 @@ describe Setting do
   describe ".add_new_settings" do
     context "default settings with strings" do
       before do
-        allow(Setting).to receive(:defaults).and_return({ stub: "stub" })
+        allow(Setting).to receive(:defaults).and_return({ stub: Setting::Config.new("stub") })
       end
 
       it "creates the setting if it doesn't exist" do
@@ -256,7 +220,7 @@ describe Setting do
 
     context "nil default settings" do
       before do
-        allow(Setting).to receive(:defaults).and_return({ stub: nil })
+        allow(Setting).to receive(:defaults).and_return({ stub: Setting::Config.new })
       end
 
       it "creates the setting if it doesn't exist" do
@@ -319,6 +283,12 @@ describe Setting do
       Setting["remote_census.request.postal_code"] = "some.value"
 
       expect(Setting.force_presence_postal_code?).to be true
+    end
+  end
+
+  describe ".by_group" do
+    it "returns settings records that have the tab set to the given group name" do
+      expect(Setting.by_group(:map).pluck(:key)).to include("map.latitude", "map.longitude", "map.zoom")
     end
   end
 end

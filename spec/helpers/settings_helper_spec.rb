@@ -13,7 +13,7 @@ RSpec.describe SettingsHelper do
   end
 
   describe "#feature?" do
-    it "returns presence of feature flag setting value" do
+    it "finds settings by the given name prefixed with 'feature.' and returns its presence" do
       Setting["feature.f1"] = "active"
       Setting["feature.f2"] = ""
       Setting["feature.f3"] = nil
@@ -22,6 +22,17 @@ RSpec.describe SettingsHelper do
       expect(feature?("f2")).to be nil
       expect(feature?("f3")).to be nil
       expect(feature?("f4")).to be nil
+    end
+
+    it "finds settings by the given name prefixed with 'process.' and returns its presence" do
+      Setting["process.p1"] = "active"
+      Setting["process.p2"] = ""
+      Setting["process.p3"] = nil
+
+      expect(feature?("p1")).to eq("active")
+      expect(feature?("p2")).to be nil
+      expect(feature?("p3")).to be nil
+      expect(feature?("p4")).to be nil
     end
   end
 

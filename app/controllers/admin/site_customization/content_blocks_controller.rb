@@ -9,8 +9,7 @@ class Admin::SiteCustomization::ContentBlocksController < Admin::SiteCustomizati
   def index
     @content_blocks = SiteCustomization::ContentBlock.order(:name, :locale)
     @headings_content_blocks = Budget::ContentBlock.all
-    all_settings = Setting.all.group_by(&:type)
-    @html_settings = all_settings["html"]
+    @html_settings = Setting.by_group(:html)
   end
 
   def create

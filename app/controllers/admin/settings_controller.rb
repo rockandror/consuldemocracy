@@ -1,16 +1,15 @@
 class Admin::SettingsController < Admin::BaseController
   def index
-    all_settings = Setting.all.group_by(&:type)
-    @configuration_settings = all_settings["configuration"]
-    @feature_settings = all_settings["feature"]
-    @participation_processes_settings = all_settings["process"]
-    @map_configuration_settings = all_settings["map"]
-    @proposals_settings = all_settings["proposals"]
-    @remote_census_general_settings = all_settings["remote_census.general"]
-    @remote_census_request_settings = all_settings["remote_census.request"]
-    @remote_census_response_settings = all_settings["remote_census.response"]
-    @uploads_settings = all_settings["uploads"]
-    @sdg_settings = all_settings["sdg"]
+    @configuration_settings = Setting.by_group(:configuration)
+    @feature_settings = Setting.by_group(:features)
+    @participation_processes_settings = Setting.by_group(:processes)
+    @map_configuration_settings = Setting.by_group(:map)
+    @proposals_settings = Setting.by_group(:proposal_dashboard)
+    @remote_census_general_settings = Setting.by_group(:remote_census_general)
+    @remote_census_request_settings = Setting.by_group(:remote_census_request)
+    @remote_census_response_settings = Setting.by_group(:remote_census_response)
+    @uploads_settings = Setting.by_group(:uploads)
+    @sdg_settings = Setting.by_group(:sdg)
   end
 
   def update

@@ -14,7 +14,7 @@ class InstallationController < ApplicationController
     end
 
     def settings_feature_flags
-      Setting.where("key LIKE 'process.%'")
+      Setting.by_group(:processes)
              .pluck(:key, :value)
              .to_h
              .transform_keys { |key| key.remove("process.") }

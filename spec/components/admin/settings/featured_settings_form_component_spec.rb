@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe Admin::Settings::FeaturedSettingsFormComponent do
-  let(:setting) { create(:setting, key: "feature.goodness") }
+  let(:setting) { Setting.find_by(key: "feature.map") }
   let(:component) { Admin::Settings::FeaturedSettingsFormComponent.new(setting) }
 
   it "includes an aria-labelledby attribute" do
