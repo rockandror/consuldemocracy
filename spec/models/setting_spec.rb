@@ -39,11 +39,27 @@ describe Setting do
     end
   end
 
+  describe "#feature?" do
+    it "returns true if the setting config object type is feature, otherwise returns false" do
+      expect(Setting.find_by!(key: "process.debates").feature?).to be true
+      expect(Setting.find_by!(key: "feature.map").feature?).to be true
+      expect(Setting.find_by!(key: "uploads.documents.max_size").feature?).to be false
+    end
+  end
+
   describe "#group" do
     it "returns the group from the setting config object" do
       expect(Setting.find_by!(key: "feature.map").group).to be :features
       expect(Setting.find_by!(key: "map.latitude").group).to be :map
       expect(Setting.find_by!(key: "map.zoom").group).to be :map
+    end
+  end
+
+  describe "#text?" do
+    it "returns true if the setting config object type is text, otherwise returns false" do
+      expect(Setting.find_by!(key: "uploads.documents.max_size").text?).to be true
+      expect(Setting.find_by!(key: "facebook_handle").text?).to be true
+      expect(Setting.find_by!(key: "process.debates").text?).to be false
     end
   end
 

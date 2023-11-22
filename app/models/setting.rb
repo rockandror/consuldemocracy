@@ -6,7 +6,7 @@ class Setting < ApplicationRecord
   def config
     Setting.defaults[key]
   end
-  delegate :content_type?, :group, to: :config
+  delegate :content_type?, :feature?, :group, :text?, to: :config
 
   def enabled?
     value.present?
@@ -237,6 +237,14 @@ class Setting < ApplicationRecord
 
     def content_type?
       type == :content_types
+    end
+
+    def feature?
+      type == :feature
+    end
+
+    def text?
+      type == :text
     end
   end
 end
