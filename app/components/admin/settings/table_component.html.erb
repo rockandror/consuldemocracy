@@ -21,7 +21,7 @@
           <% elsif setting.feature? %>
             <%= render Admin::Settings::FeaturedSettingsFormComponent.new(setting, tab: tab) %>
           <% elsif setting.text? %>
-            <%= render "admin/settings/settings_form", setting: setting, tab: tab %>
+            <%= render Admin::Settings::TextFormComponent.new(setting, tab: tab) %>
           <% end %>
         </td>
       </tr>
