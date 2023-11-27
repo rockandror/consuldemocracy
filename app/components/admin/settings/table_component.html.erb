@@ -17,7 +17,7 @@
         </td>
         <td class="<%= column_class %>">
           <% if setting.content_type? %>
-            <%= render "admin/settings/content_types_settings_form", setting: setting %>
+            <%= render Admin::Settings::ContentTypesFormComponent.new(setting) %>
           <% elsif setting.feature? %>
             <%= render Admin::Settings::FeaturedSettingsFormComponent.new(setting, tab: tab) %>
           <% elsif setting.text? %>
