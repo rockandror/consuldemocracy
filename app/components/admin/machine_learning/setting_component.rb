@@ -1,14 +1,14 @@
 class Admin::MachineLearning::SettingComponent < ApplicationComponent
-  attr_reader :kind
+  attr_reader :setting
 
-  def initialize(kind)
-    @kind = kind
+  def initialize(setting)
+    @setting = setting
   end
 
   private
 
-    def setting
-      @setting ||= Setting.find_by(key: "machine_learning.#{kind}")
+    def kind
+      setting.key.split(".").last
     end
 
     def ml_info

@@ -186,10 +186,6 @@ class MachineLearning
       "/#{tenant_data_folder}/#{filename}"
     end
 
-    def script_kinds
-      %w[tags related_content comments_summary]
-    end
-
     def scripts_info
       scripts_info = []
       Dir[SCRIPTS_FOLDER.join("*.py")].each do |full_path_filename|

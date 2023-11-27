@@ -1,8 +1,8 @@
 class Admin::MachineLearning::SettingsComponent < ApplicationComponent
   private
 
-    def script_kinds
-      @script_kinds ||= ::MachineLearning.script_kinds
+    def settings
+      @settings ||= Setting.by_group(:machine_learning)
     end
 
     def filenames

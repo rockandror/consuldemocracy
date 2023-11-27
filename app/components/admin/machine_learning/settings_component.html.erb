@@ -1,7 +1,7 @@
 <div class="tabs-panel machine-learning-settings" id="settings">
   <div class="settings-management">
-    <% script_kinds.each do |kind| %>
-      <%= render Admin::MachineLearning::SettingComponent.new(kind) %>
+    <% settings.each do |setting| %>
+      <%= render Admin::MachineLearning::SettingComponent.new(setting) %>
     <% end %>
   </div>
 
