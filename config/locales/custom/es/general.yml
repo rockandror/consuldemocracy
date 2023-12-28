@@ -46,3 +46,7 @@ es:
     subject_hint: Máx. 30 caracteres
     submit: Enviar
     success: Mensaje enviado correctamente
+  cookies_consent:
+    title: "Política de cookies"
+    message: "Las cookies nos ayudan a ofrecer nuestros servicios. Al utilizar nuestros servicios, aceptas el uso de cookies."
+    accept: "Aceptar"
