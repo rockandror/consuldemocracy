@@ -27,7 +27,8 @@ class Setting
           "facebook_handle": "CabildoTenerife",
           "instagram_handle": "cabildotenerife/?hl=es",
           "twitter_handle": "CabildoTenerife",
-          "youtube_handle": "channel/UCSnQFzldpaeR5D7zTOp3pRA?view_as=subscriber"
+          "youtube_handle": "channel/UCSnQFzldpaeR5D7zTOp3pRA?view_as=subscriber",
+          "cookies_consent.more_info_link": ""
         })
       end
     end
