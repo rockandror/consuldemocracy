@@ -20,9 +20,12 @@ class Setting
     # in the test environment.
     def defaults
       if Rails.env.test?
-        consul_defaults
+        consul_defaults.merge({
+          "feature.cookies_consent": false
+        })
       else
         consul_defaults.merge({
+          "feature.cookies_consent": false,
           "facebook_handle": "CabildoTenerife",
           "instagram_handle": "cabildotenerife/?hl=es",
           "twitter_handle": "CabildoTenerife",
