@@ -23,6 +23,7 @@ class Setting
         consul_defaults
       else
         consul_defaults.merge({
+          "feature.cookies_consent": false,
           "facebook_handle": "CabildoTenerife",
           "instagram_handle": "cabildotenerife/?hl=es",
           "twitter_handle": "CabildoTenerife",

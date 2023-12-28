@@ -8,6 +8,7 @@
 var initialize_modules = function() {
   "use strict";
 
+  App.CookiesConsent.initialize();
   App.GoogleSearch.initialize();
 };
 
