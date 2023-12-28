@@ -21,7 +21,8 @@ class Setting
     def defaults
       if Rails.env.test?
         consul_defaults.merge({
-          "feature.cookies_consent": false
+          "feature.cookies_consent": false,
+          "cookies_consent.more_info_link": ""
         })
       else
         consul_defaults.merge({
@@ -29,7 +30,8 @@ class Setting
           "facebook_handle": "CabildoTenerife",
           "instagram_handle": "cabildotenerife/?hl=es",
           "twitter_handle": "CabildoTenerife",
-          "youtube_handle": "channel/UCSnQFzldpaeR5D7zTOp3pRA?view_as=subscriber"
+          "youtube_handle": "channel/UCSnQFzldpaeR5D7zTOp3pRA?view_as=subscriber",
+          "cookies_consent.more_info_link": ""
         })
       end
     end
