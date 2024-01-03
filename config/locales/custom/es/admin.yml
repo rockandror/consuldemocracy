@@ -86,6 +86,14 @@ es:
           geozone: Geozona
           tags: Tags
           ods: ODS
+    settings:
+      index:
+        cookies_consent:
+          title: Consentimiento de cookies
+        cookies_consent_banner:
+          title: Banner de consentimiento de cookies
+        cookies_setup:
+          title: Página de configuración de cookies
     shared:
       search:
         label:
