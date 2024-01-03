@@ -6,6 +6,7 @@ en:
     accept: "Accept"
     message: "Cookies help us deliver our services. By using our services, you agree to our use of cookies."
     more_info_link: "More information"
+    notice: "Your cookies preferences were saved! You can change them anytime from the \"Cookies setup\" link in the page footer."
     reject: "Reject"
     setup: "Setup"
     title: "Cookies policy"
@@ -20,3 +21,6 @@ en:
       description: This website uses third party cookies to collect anonymous information such as the number of visitors to the site, or the most popular pages. Enabling these cookies allows us to improve our website.
     accept_all: Accept all
     accept_essentials: Accept essential cookies
+  layouts:
+    footer:
+      cookies_consent_setup: Cookies setup

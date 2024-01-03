@@ -11,6 +11,7 @@ es:
     search: Buscar
   layouts:
     footer:
+      cookies_consent_setup: Configuración de cookies
       links:
         legal: Aviso Legal
         privacy: Política de Privacidad
@@ -50,6 +51,7 @@ es:
     accept: "Aceptar"
     message: "Las cookies nos ayudan a ofrecer nuestros servicios. Al utilizar nuestros servicios, aceptas el uso de cookies."
     more_info_link: "Más información"
+    notice: "Tus preferencias de cookies se han guardado. Puedes cambiarlas en cualquier momento desde el enlace \"Configuración de cookies\" en el pie de página."
     reject: "Rechazar"
     setup: "Ajustes"
     title: "Política de cookies"

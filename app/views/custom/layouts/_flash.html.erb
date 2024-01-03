@@ -1,0 +1,3 @@
+<% flash.each do |flash_key, flash_message| %>
+  <%= render Layout::CalloutComponent.new(id: flash_key, message: flash_message, type: flash_key) %>
+<% end %>
