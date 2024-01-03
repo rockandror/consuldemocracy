@@ -1,5 +1,13 @@
 es:
   settings:
+    cookies_consent:
+      more_info_link: Enlace a la política de cookies
+      more_info_link_description: Enlace que se muestra en el banner de consentimiento a la página de política de cookies
+      setup_page: Activar la página de configuración de consentimiento de cookies de terceros
+      setup_page_description: Permite a los usuarios configurar (aceptar o rechazar) el seguimiento de cookies de terceros.
+    feature:
+      cookies_consent: Banner de consentimiento de cookies
+      cookies_consent_description: Activa el banner de consentimiento de cookies para informar a los usuarios sobre las cookies que utiliza la aplicación.
     process:
       legislation: "Propuestas del Cabildo"
     sdg:

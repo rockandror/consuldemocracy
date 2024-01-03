@@ -10,3 +10,11 @@ en:
         placeholder: "Search by the class name and the instance ID. As example: Budget#2"
     menu:
       audits: Changelog
+    settings:
+      index:
+        cookies_consent:
+          title: Cookies consent
+        cookies_consent_banner:
+          title: Cookies consent banner
+        cookies_setup:
+          title: Cookies consent setup
