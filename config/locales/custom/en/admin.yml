@@ -10,3 +10,14 @@ en:
         placeholder: "Search by the class name and the instance ID. As example: Budget#2"
     menu:
       audits: Changelog
+    settings:
+      index:
+        sdg:
+          title: SDG configuration
+          how_to_enable: 'To show the configuration options from Sustainable Development Goals you must enable "SDG" on "Features" tab.'
+        cookies_consent:
+          title: Cookies consent
+        cookies_consent_banner:
+          title: Cookies consent banner
+        cookies_setup:
+          title: Cookies consent setup
