@@ -23,7 +23,8 @@ class Setting
         consul_defaults.merge({
           "feature.cookies_consent": false,
           "cookies_consent.more_info_link": "",
-          "cookies_consent.setup_page": false
+          "cookies_consent.setup_page": false,
+          "cookies_consent.version_name": "v1"
         })
       else
         consul_defaults.merge({
@@ -33,7 +34,8 @@ class Setting
           "twitter_handle": "CabildoTenerife",
           "youtube_handle": "channel/UCSnQFzldpaeR5D7zTOp3pRA?view_as=subscriber",
           "cookies_consent.more_info_link": "",
-          "cookies_consent.setup_page": false
+          "cookies_consent.setup_page": false,
+          "cookies_consent.version_name": "v1"
         })
       end
     end
