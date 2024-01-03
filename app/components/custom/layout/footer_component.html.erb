@@ -17,11 +17,20 @@
       <% end %>
     </div>
     <div class="small-12 large-2 column">
-      <%= link_to page_path("cookies") do %>
-        <div class="footer-link">
-          <%= image_tag(image_path_for("icono-cookies-footer.png"), alt: "") %>
-          <span><%= t("layouts.footer.links.cookies") %></span>
-        </div>
+      <% if cookies_setup_page_enabled? %>
+        <%= link_to "#cookies_consent_setup", "data-open": "cookies_consent_setup" do %>
+          <div class="footer-link">
+            <%= image_tag(image_path_for("icono-cookies-footer.png"), alt: "") %>
+            <span><%= t("layouts.footer.cookies_consent_setup") %></span>
+          </div>
+        <% end %>
+      <% else %>
+        <%= link_to page_path("cookies") do %>
+          <div class="footer-link">
+            <%= image_tag(image_path_for("icono-cookies-footer.png"), alt: "") %>
+            <span><%= t("layouts.footer.links.cookies") %></span>
+          </div>
+        <% end %>
       <% end %>
     </div>
     <div class="small-12 large-2 column">
