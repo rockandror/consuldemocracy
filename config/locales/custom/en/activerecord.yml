@@ -1,6 +1,21 @@
 en:
   activerecord:
+    attributes:
+      cookies/vendor:
+        name: Vendor name
+        cookie: Cookie name
+        description: Description
+        script: Javascript code
     models:
       audit:
         one: "Changelog entry"
         other: "Changelog entries"
+      cookies_vendor:
+        one: Cookie vendor
+        other: Cookie vendors
+    errors:
+      models:
+        cookies/vendor:
+          attributes:
+            cookie:
+              collision: "cannot start with \"cookies_consent\". Please consider adding the vendor name as a prefix."
