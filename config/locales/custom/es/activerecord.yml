@@ -8,6 +8,11 @@ es:
           other: "Otro"
   activerecord:
     attributes:
+      cookies/vendor:
+        name: Nombre del proveedor
+        cookie: Nombre de la cookie
+        description: Descripción
+        script: Código javascript
       site_customization/page:
         is_news: Es noticia
         news_date: Fecha de la noticia
@@ -17,3 +22,12 @@ es:
       audit:
         one: "Registro de cambio"
         other: "Registros de cambio"
+      cookies_vendor:
+        one: Proveedor de cookies
+        other: Proveedorores de cookies
+    errors:
+      models:
+        cookies/vendor:
+          attributes:
+            cookie:
+              collision: "no puede empezar por \"cookies_consent\". Considere la posibilidad de añadir el nombre del proveedor como prefijo."

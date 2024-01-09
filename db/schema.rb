@@ -475,6 +475,16 @@ ActiveRecord::Schema.define(version: 2024_04_24_013913) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "cookies_vendors", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "cookie"
+    t.text "script"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cookie"], name: "index_cookies_vendors_on_cookie", unique: true
+  end
+
   create_table "dashboard_actions", id: :serial, force: :cascade do |t|
     t.string "title", limit: 80
     t.text "description"
