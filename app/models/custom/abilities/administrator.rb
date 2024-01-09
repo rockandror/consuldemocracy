@@ -9,5 +9,7 @@ class Abilities::Administrator
     can :download, ::Administrator
     can :download, Legislation::Process
     can :read, Audit
+
+    can :manage, Cookies::Vendor
   end
 end
