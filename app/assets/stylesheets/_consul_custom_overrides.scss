@@ -11,6 +11,9 @@
 // The variables you can override are defined in the
 // `_settings.scss` and `_consul_settings.scss` files.
 
+$dark-gray: #8a8a8a;
+$switch-background: darken($dark-gray, 10%);
+
 // COLORS
 $brand: #045177;
 $footer: $brand;
