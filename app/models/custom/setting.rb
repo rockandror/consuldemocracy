@@ -24,7 +24,8 @@ class Setting
           "feature.cookies_consent": false,
           "cookies_consent.more_info_link": "",
           "cookies_consent.setup_page": false,
-          "cookies_consent.version_name": "v1"
+          "cookies_consent.version_name": "v1",
+          "cookies_consent.admin_test_mode": false
         })
       else
         consul_defaults.merge({
@@ -35,7 +36,8 @@ class Setting
           "youtube_handle": "channel/UCSnQFzldpaeR5D7zTOp3pRA?view_as=subscriber",
           "cookies_consent.more_info_link": "",
           "cookies_consent.setup_page": false,
-          "cookies_consent.version_name": "v1"
+          "cookies_consent.version_name": "v1",
+          "cookies_consent.admin_test_mode": false
         })
       end
     end
