@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe Layout::FooterComponent do
   describe "description links" do
-    it "generates links that open in the same tab" do
+    it "generates links that open in the same tab", :consul do
       render_inline Layout::FooterComponent.new
 
       page.find(".info") do |info|
