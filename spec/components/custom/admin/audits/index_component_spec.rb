@@ -18,7 +18,7 @@ describe Admin::Audits::IndexComponent do
   end
 
   it "shows a message when there are no search results" do
-    allow(controller).to receive(:params).and_return({ search: "Budget#1" })
+    allow(vc_test_controller).to receive(:params).and_return({ search: "Budget#1" })
 
     render_inline Admin::Audits::IndexComponent.new(audits: Audit.none.page(1))
 
