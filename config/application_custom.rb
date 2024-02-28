@@ -10,7 +10,5 @@ module Consul
 
     config.autoload_paths << "#{Rails.root}/app/controllers/custom/concerns"
     config.autoload_paths << "#{Rails.root}/app/mailers/custom"
-
-    config.devise_lockable = Rails.application.secrets.devise_lockable
   end
 end
