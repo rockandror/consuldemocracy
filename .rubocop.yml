@@ -317,6 +317,7 @@ Lint/SymbolConversion:
   Enabled: true
   Exclude:
     - "app/models/setting.rb"
+    - "app/models/custom/setting.rb"
     - "db/dev_seeds/settings.rb"
 
 Lint/UselessAssignment:
