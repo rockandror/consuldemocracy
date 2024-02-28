@@ -9,6 +9,5 @@ module Consul
     config.time_zone = "Atlantic/Canary"
 
     config.autoload_paths << "#{Rails.root}/app/controllers/custom/concerns"
-    config.autoload_paths << "#{Rails.root}/app/mailers/custom"
   end
 end
