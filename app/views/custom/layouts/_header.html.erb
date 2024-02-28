@@ -37,13 +37,8 @@
     <% end %>
 
     <div class="hide-for-small-only middle-section">
-      <%= link_to "https://www.tenerife.es/", target: "_blank" do %>
-        <%= t("application.subtitle1") %>
-      <% end %>
-      |
-      <%= link_to "https://sede.tenerife.es/es/", target: "_blank" do %>
-        <%= t("application.subtitle2") %>
-      <% end %>
+      <%= new_window_link_to t("application.subtitle1"), "https://www.tenerife.es/" %>
+      <%= new_window_link_to t("application.subtitle2"), "https://sede.tenerife.es/es/" %>
     </div>
     <div class="hide-for-small-only right-section">
       <div class="top-bar-right">

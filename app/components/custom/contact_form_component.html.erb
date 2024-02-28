@@ -15,9 +15,8 @@
         <%= f.text_area :message, rows: 7 %>
         <%= f.check_box :terms_of_service,
                         label: t("devise_views.users.registrations.new.terms",
-                                 terms: link_to(t("devise_views.users.registrations.new.terms_link"), "/privacy",
-                                                title: t("shared.target_blank"),
-                                                target: "_blank")) %>
+                                 terms: new_window_link_to(t("devise_views.users.registrations.new.terms_link"),
+                                                           "/privacy")) %>
         <div class="small-12 medium-12">
           <%= sanitize(
             t(
