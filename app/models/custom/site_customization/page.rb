@@ -11,13 +11,15 @@ class SiteCustomization::Page
       results = results.where("title ILIKE ? OR slug ILIKE ?", "%#{terms[:text]}%", "%#{terms[:text]}%")
     end
     if terms[:type] != "all"
-      results = results.where("is_news = ?", terms[:type] == "news")
+      results = results.where(is_news: terms[:type] == "news")
     end
     if terms[:start_date].present?
-      results = results.where("site_customization_pages.created_at >= ? OR news_date >= ?", terms[:start_date], terms[:start_date])
+      results = results.where("site_customization_pages.created_at >= ? OR news_date >= ?",
+                              terms[:start_date], terms[:start_date])
     end
     if terms[:end_date].present?
-      results = results.where("site_customization_pages.created_at <= ? OR news_date <= ?", terms[:end_date], terms[:end_date])
+      results = results.where("site_customization_pages.created_at <= ? OR news_date <= ?",
+                              terms[:end_date], terms[:end_date])
     end
     results
   end
@@ -36,7 +38,7 @@ class SiteCustomization::Page
 
   def searchable_translations_definitions
     {
-      title       => "A",
+      title => "A",
       description => "C"
     }
   end

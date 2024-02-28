@@ -90,11 +90,10 @@ describe "Admin custom pages", :admin do
         I18n.with_locale(:es) do
           create(:site_customization_page, :news, title: "Other title", slug: "other-title")
           create(:site_customization_page, :news,
-                    title: "Another title",
-                    slug: "another-title",
-                    news_date: 1.week.ago,
-                    created_at: 1.week.ago
-                )
+                 title: "Another title",
+                 slug: "another-title",
+                 news_date: 1.week.ago,
+                 created_at: 1.week.ago)
         end
 
         visit admin_site_customization_pages_path(locale: :es)

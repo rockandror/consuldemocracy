@@ -22,9 +22,15 @@ class Legislation::Processes::Exporter
 
       Zip::File.open(temp_file.path, Zip::File::CREATE) do |zip|
         zip.get_output_stream("process.csv") { |f| f.puts(to_csv) }
-        zip.get_output_stream("questions_answers.csv") { |f| f.puts(Legislation::Answers::Exporter.new(@process).to_csv) }
-        zip.get_output_stream("draft_comments.csv") { |f| f.puts(Legislation::Annotations::Exporter.new(@process).to_csv) }
-        zip.get_output_stream("proposals.csv") { |f| f.puts(Legislation::Proposals::Exporter.new(@process).to_csv) }
+        zip.get_output_stream("questions_answers.csv") do |f|
+          f.puts(Legislation::Answers::Exporter.new(@process).to_csv)
+        end
+        zip.get_output_stream("draft_comments.csv") do |f|
+          f.puts(Legislation::Annotations::Exporter.new(@process).to_csv)
+        end
+        zip.get_output_stream("proposals.csv") do |f|
+          f.puts(Legislation::Proposals::Exporter.new(@process).to_csv)
+        end
       end
 
       File.read(temp_file.path)

@@ -52,10 +52,14 @@ describe SiteCustomization::Page do
         end
 
         it "finds pages searching by 'news_date'" do
-          create(:site_customization_page, :news, title: "Page 1", slug: "page-1",
-                    news_date: 1.day.ago, created_at: 1.day.ago)
-          news_page = create(:site_customization_page, :news, title: "Page 2", slug: "page-2",
-                                news_date: 1.day.from_now, created_at: 1.day.ago)
+          create(:site_customization_page, :news, title: "Page 1",
+                                                  slug: "page-1",
+                                                  news_date: 1.day.ago,
+                                                  created_at: 1.day.ago)
+          news_page = create(:site_customization_page, :news, title: "Page 2",
+                                                              slug: "page-2",
+                                                              news_date: 1.day.from_now,
+                                                              created_at: 1.day.ago)
 
           expect(SiteCustomization::Page.search(type: "all", start_date: Date.current)).to eq [news_page]
         end
@@ -70,10 +74,12 @@ describe SiteCustomization::Page do
         end
 
         it "finds pages searching by 'news_date'" do
-          news_page = create(:site_customization_page, :news, title: "Page 1", slug: "page-1",
-                                news_date: 1.day.ago)
-          create(:site_customization_page, :news, title: "Page 2", slug: "page-2",
-                    news_date: 1.day.from_now)
+          news_page = create(:site_customization_page, :news, title: "Page 1",
+                                                              slug: "page-1",
+                                                              news_date: 1.day.ago)
+          create(:site_customization_page, :news, title: "Page 2",
+                                                  slug: "page-2",
+                                                  news_date: 1.day.from_now)
 
           expect(SiteCustomization::Page.search(type: "all", end_date: Date.current)).to eq [news_page]
         end

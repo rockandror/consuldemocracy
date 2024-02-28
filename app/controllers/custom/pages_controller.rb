@@ -6,7 +6,7 @@ class PagesController
   def show
     string_array = params[:id].split("_")
     family = string_array[1]
-    @related_pages = SiteCustomization::Page.published.where("slug LIKE :family", family: "\_#{family}\_%")
+    @related_pages = SiteCustomization::Page.published.where("slug LIKE :family", family: "_#{family}_%")
     @has_news = false
     if family == "cabildo"
       @menu_title = "Cabildo Abierto"
@@ -25,7 +25,7 @@ class PagesController
   def news
     @menu_title = "Cabildo Abierto"
     @news = SiteCustomization::Page.where(is_news: true).order(news_date: :desc).page(params[:page]).per(5)
-    @related_pages = SiteCustomization::Page.where("slug LIKE :family", family: "\_cabildo\_%")
+    @related_pages = SiteCustomization::Page.where("slug LIKE :family", family: "_cabildo_%")
     render action: :news
   end
 end

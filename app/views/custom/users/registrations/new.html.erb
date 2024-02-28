@@ -21,7 +21,6 @@
       <%= f.text_field :username,  autofocus: true, maxlength: User.username_max_length,
                                    hint: t("devise_views.users.registrations.new.username_note") %>
 
-
       <% select_options = User::GENDER.map { |g| [t("activemodel.models.user.gender.#{g}"), g] } %>
       <%= f.select :gender,
                    options_for_select(select_options),
@@ -64,8 +63,7 @@
             terms_registry: link_to(
               t("devise_views.users.registrations.new.terms_registry"),
               "https://www.tenerife.es/documentos/ECIT_RegistroTratamientos.pdf"
-            )
-          )
+            ))
         ) %>
       </div>
       <div class="small-12 medium-6 small-centered margin-top">

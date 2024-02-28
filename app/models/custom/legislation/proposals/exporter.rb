@@ -24,7 +24,7 @@ class Legislation::Proposals::Exporter
         I18n.t("admin.legislation.proposals.export_list.author_id"),
         I18n.t("admin.legislation.proposals.export_list.author_date_of_birth"),
         I18n.t("admin.legislation.proposals.export_list.author_geozone"),
-        I18n.t("admin.legislation.proposals.export_list.author_gender"),
+        I18n.t("admin.legislation.proposals.export_list.author_gender")
       ]
     end
 
@@ -44,6 +44,7 @@ class Legislation::Proposals::Exporter
 
     def get_gender(gender_key)
       return unless gender_key
+
       I18n.t("activemodel.models.user.gender.#{gender_key}")
     end
 end

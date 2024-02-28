@@ -6,15 +6,15 @@ describe "Custom Pages" do
 
     click_link "Cabildo Abierto"
 
-    expect(page).to have_selector "h1", text: "¿Qué es cabildoabierto.tenerife.es?"
+    expect(page).to have_css "h1", text: "¿Qué es cabildoabierto.tenerife.es?"
 
     click_link "Participación y colaboración"
 
-    expect(page).to have_selector "h1", text: "Conoce lo que hacemos"
+    expect(page).to have_css "h1", text: "Conoce lo que hacemos"
 
     click_link "Ética Pública"
 
-    expect(page).to have_selector "h1", text: "Código de Buen Gobierno"
+    expect(page).to have_css "h1", text: "Código de Buen Gobierno"
   end
 
   describe "Menu" do
@@ -57,7 +57,8 @@ describe "Custom Pages" do
     end
 
     context "Other custom pages" do
-      scenario "only renders the menu section when the slugs contain '_cabildo_', '_participacion_' or '_etica_'" do
+      scenario "only renders the menu section when the slugs contain '_cabildo_', " \
+               "'_participacion_' or '_etica_'" do
         create(:site_customization_page, :published, slug: "_cabildo_any-slug", title: "Slug con Cabildo")
         create(:site_customization_page, :published, slug: "new_slug")
 
@@ -82,24 +83,21 @@ describe "Custom Pages" do
     describe "Menu contents" do
       before do
         create(:site_customization_page, :published,
-          slug: "_cabildo_any-slug",
-          title: "Cabildo related page"
-        )
+               slug: "_cabildo_any-slug",
+               title: "Cabildo related page")
         create(:site_customization_page, :published,
-          slug: "_participacion_any-slug",
-          title: "Participation related page"
-        )
+               slug: "_participacion_any-slug",
+               title: "Participation related page")
         create(:site_customization_page, :published,
-          slug: "_etica_any-slug",
-          title: "Ethics related page"
-        )
+               slug: "_etica_any-slug",
+               title: "Ethics related page")
         create(:site_customization_page, :published,
-          slug: "_other_any-slug",
-          title: "Other any slug"
-        )
+               slug: "_other_any-slug",
+               title: "Other any slug")
       end
 
-      scenario "only renders in menu section the slugs that contains '_cabildo_', '_participacion_' or '_etica_'" do
+      scenario "only renders in menu section the slugs that contains '_cabildo_', " \
+               "'_participacion_' or '_etica_'" do
         visit root_path(locale: :es)
 
         click_link "Cabildo Abierto"
@@ -156,7 +154,8 @@ describe "Custom Pages" do
         expect(page).to have_content "Inicio > Cabildo Abierto > ¿Qué es cabildoabierto.tenerife.es?"
         expect(page).to have_link "Inicio", href: root_path
         expect(page).to have_link "Cabildo Abierto", href: "#"
-        expect(page).to have_link "¿Qué es cabildoabierto.tenerife.es?", href: "_cabildo_que-es-el-cabildo-abierto"
+        expect(page).to have_link "¿Qué es cabildoabierto.tenerife.es?",
+                                  href: "_cabildo_que-es-el-cabildo-abierto"
       end
 
       scenario "Participation" do
@@ -178,7 +177,8 @@ describe "Custom Pages" do
         expect(page).to have_content "Inicio > Ética Pública > Código de Buen Gobierno"
         expect(page).to have_link "Inicio", href: root_path
         expect(page).to have_link "Ética Pública", href: "#"
-        expect(page).to have_link "Código de Buen Gobierno", href: "_etica_codigo-de-buen-gobierno-y-seguimiento"
+        expect(page).to have_link "Código de Buen Gobierno",
+                                  href: "_etica_codigo-de-buen-gobierno-y-seguimiento"
       end
     end
 

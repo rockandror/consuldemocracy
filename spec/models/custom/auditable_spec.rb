@@ -63,7 +63,7 @@ describe "Auditable" do
     context "on application record subclasses" do
       it "returns all the columns but the translations" do
         proposal_columns = %w[author_id hidden_at flags_count ignored_flag_at cached_votes_up comments_count
-          tsv geozone_id retired_at retired_reason community_id published_at selected]
+                              tsv geozone_id retired_at retired_reason community_id published_at selected]
 
         expect(Proposal.audited_columns).to include(*proposal_columns)
         expect(Proposal.audited_columns).not_to include(*Proposal.translated_attribute_names)

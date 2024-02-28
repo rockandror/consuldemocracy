@@ -1,7 +1,6 @@
 require_dependency Rails.root.join("app", "controllers", "account_controller").to_s
 
 class AccountController
-
   private
 
     alias_method :consul_allowed_params, :allowed_params

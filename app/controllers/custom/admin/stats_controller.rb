@@ -2,6 +2,6 @@ require_dependency Rails.root.join("app", "controllers", "admin", "stats_control
 
 class Admin::StatsController
   def tags
-    @tags = Tag.all.order(taggings_count: :desc).page(params[:page])
+    @tags = Tag.order(taggings_count: :desc).page(params[:page])
   end
 end
