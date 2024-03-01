@@ -17,7 +17,7 @@ class Setting < ApplicationRecord
 
   class << self
     def [](key)
-      where(key: key).pick(:value).presence
+      where(key: key).pick(:value).presence.presence
     end
 
     def []=(key, value)
