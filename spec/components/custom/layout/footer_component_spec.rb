@@ -9,8 +9,8 @@ describe Layout::FooterComponent do
 
       render_inline Layout::FooterComponent.new
 
-      page.find(".subfooter") do |subfooter|
-        expect(subfooter).to have_css "a[data-open=cookies_consent_setup]", text: "Cookies setup"
+      page.find("footer") do |footer|
+        expect(footer).to have_css "a[data-open=cookies_consent_setup]", text: "Cookies setup"
       end
     end
 
@@ -19,8 +19,8 @@ describe Layout::FooterComponent do
 
       render_inline Layout::FooterComponent.new
 
-      page.find(".subfooter") do |subfooter|
-        expect(subfooter).not_to have_css "a[data-open=cookies_consent_setup]", text: "Cookies setup"
+      page.find("footer") do |footer|
+        expect(footer).not_to have_css "a[data-open=cookies_consent_setup]", text: "Cookies setup"
       end
     end
   end
