@@ -27,5 +27,4 @@
 
 gem "ruby-ntlm"
 gem "net-smtp", "0.3.3"
-gem "cookies_eu"
 gem "capistrano-systemd-multiservice", "~> 0.1.0.beta13", require: false

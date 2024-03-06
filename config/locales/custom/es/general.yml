@@ -9,10 +9,6 @@ es:
     support_title: Atención Ciudadana
     support_number: 922 239 500
     search: Buscar
-  cookies_eu:
-    cookies_text: Este sitio web utiliza cookies propias y de terceros para el correcto funcionamiento de la página y para fines analíticos y publicitarios. Puedes aceptar las cookies pulsando el botón “Aceptar” u obtener información adicional para configurarlas o rechazar su uso clicando %{cookies_link}.
-    cookies_link: AQUÍ
-    ok: Aceptar
   layouts:
     footer:
       links:
