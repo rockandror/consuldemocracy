@@ -173,8 +173,6 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.2.3)
-    cookies_eu (1.7.8)
-      js_cookie_rails (~> 2.2.0)
     crass (1.0.6)
     daemons (1.4.1)
     dalli (3.2.6)
@@ -295,8 +293,6 @@ GEM
       actionpack (>= 3.1)
       railties (>= 3.1)
       sassc
-    js_cookie_rails (2.2.0)
-      railties (>= 3.1)
     json (2.7.1)
     jwt (2.7.1)
     kaminari (1.2.2)
@@ -716,7 +712,6 @@ DEPENDENCIES
   caxlsx_rails (~> 0.6.3)
   ckeditor (~> 4.3.0)
   cocoon (~> 1.2.15)
-  cookies_eu
   daemons (~> 1.4.1)
   dalli (~> 3.2.6)
   delayed_job_active_record (~> 4.1.7)

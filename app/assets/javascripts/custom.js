@@ -4,13 +4,11 @@
 // * Spanish: https://github.com/consuldemocracy/consuldemocracy/blob/master/CUSTOMIZE_ES.md#javascript
 //
 //
-//= require cookies_eu
 
 var initialize_modules = function() {
   "use strict";
 
   App.GoogleSearch.initialize();
-  App.ConsentBanner.initialize();
 };
 
 $(document).on("turbolinks:load", initialize_modules);
