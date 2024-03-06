@@ -260,7 +260,6 @@ describe "Legislation Draft Versions" do
     end
 
     scenario "Publish new comment with errors for an existing annotation" do
-      allow_any_instance_of(Layout::ConsentBannerComponent).to receive(:render?).and_return(false)
       create(:legislation_annotation, draft_version: draft_version)
 
       visit legislation_process_draft_version_path(draft_version.process, draft_version)
