@@ -7,7 +7,7 @@ module Polymorphic
 
     def resource
       if resource_model.to_s == "Legislation::Process"
-        @resource ||= instance_variable_get("@process")
+        @resource ||= instance_variable_get(:@process)
       else
         consul_resource
       end

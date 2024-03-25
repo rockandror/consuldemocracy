@@ -8,7 +8,8 @@ describe "System Emails", :admin do
       within("#contact") { click_link "Ver" }
 
       expect(page).to have_content "Asunto de ejemplo"
-      expect(page).to have_content "El usuario Juan con dirección de correo juan@mail.com ha enviado el siguiente mensaje:"
+      expect(page).to have_content "El usuario Juan con dirección de correo " \
+                                   "juan@mail.com ha enviado el siguiente mensaje:"
       expect(page).to have_content "Mensaje de ejemplo"
     end
   end

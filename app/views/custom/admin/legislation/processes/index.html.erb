@@ -44,8 +44,6 @@
             <%= render Admin::TableActionsComponent.new(process) do |actions| %>
               <%= actions.link_to t("admin.legislation.processes.index.download"),
                                   download_admin_legislation_process_path(process, format: :zip),
-                                  target: "_blank",
-                                  rel: "nofollow",
                                   class: "download-link" %>
             <% end %>
           </td>

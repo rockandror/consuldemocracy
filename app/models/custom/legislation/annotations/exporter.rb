@@ -50,6 +50,7 @@ class Legislation::Annotations::Exporter
 
     def get_gender(gender_key)
       return unless gender_key
+
       I18n.t("activemodel.models.user.gender.#{gender_key}")
     end
 end

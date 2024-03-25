@@ -18,7 +18,6 @@ Devise.setup do |config|
   # config.deny_old_passwords = false # allow old passwords
   # config.deny_old_passwords = true # will deny all the old passwords
   # config.deny_old_passwords = 3 # will deny new passwords that matches with the last 3 passwords
-  # config.deny_old_passwords = true
 
   # enable email validation for :secure_validatable. (true, false, validation_options)
   # dependency: see https://github.com/devise-security/devise-security/blob/master/README.md#e-mail-validation
@@ -63,7 +62,11 @@ module Devise
         if !new_record? && !encrypted_password_change.nil? && !erased?
           dummy = self.class.new
           dummy.encrypted_password = encrypted_password_change.first
-          dummy.password_salt = password_salt_change.first if respond_to?(:password_salt_change) && !password_salt_change.nil?
+
+          if respond_to?(:password_salt_change) && !password_salt_change.nil?
+            dummy.password_salt = password_salt_change.first
+          end
+
           errors.add(:password, :equal_to_current_password) if dummy.valid_password?(password)
         end
       end

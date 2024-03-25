@@ -38,22 +38,22 @@ describe "Collaborative legislation" do
     end
   end
 
-context "processes home page" do
-  scenario "Participation phases are displayed on current locale" do
-    process = create(:legislation_process, proposals_phase_start_date: Date.new(2018, 01, 01),
-                                           proposals_phase_end_date: Date.new(2018, 12, 01))
+  context "processes home page" do
+    scenario "Participation phases are displayed on current locale" do
+      process = create(:legislation_process, proposals_phase_start_date: Date.new(2018, 01, 01),
+                                             proposals_phase_end_date: Date.new(2018, 12, 01))
 
-    visit legislation_process_path(process)
+      visit legislation_process_path(process)
 
-    expect(page).to have_content("Participation phases")
-    expect(page).to have_content("Proposals")
-    expect(page).to have_content("01 Jan 2018 - 01 Dec 2018")
+      expect(page).to have_content("Participation phases")
+      expect(page).to have_content("Proposals")
+      expect(page).to have_content("01 Jan 2018 - 01 Dec 2018")
 
-    visit legislation_process_path(process, locale: "es")
+      visit legislation_process_path(process, locale: "es")
 
-    expect(page).to have_content("Participa")
-    expect(page).to have_content("Propuestas")
-    expect(page).to have_content("01 ene 2018 - 01 dic 2018")
+      expect(page).to have_content("Participa")
+      expect(page).to have_content("Propuestas")
+      expect(page).to have_content("01 ene 2018 - 01 dic 2018")
+    end
   end
-end
 end

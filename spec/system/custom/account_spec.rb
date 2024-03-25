@@ -2,10 +2,9 @@ require "rails_helper"
 
 describe "Account" do
   let(:geozone) { create(:geozone, name: "Village") }
-  let(:user) { create(:user,
-                      gender: :male,
-                      geozone: geozone,
-                      date_of_birth: Date.parse("01/02/2000")) }
+  let(:user) do
+    create(:user, gender: :male, geozone: geozone, date_of_birth: Date.parse("01/02/2000"))
+  end
 
   before do
     login_as(user)

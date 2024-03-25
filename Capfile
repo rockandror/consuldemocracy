@@ -5,6 +5,7 @@ require "capistrano/setup"
 require "capistrano/deploy"
 
 require "capistrano/bundler"
+require "capistrano/npm"
 require "capistrano/rails/assets"
 require "capistrano/rails/migrations"
 #require "capistrano/passenger"
@@ -13,7 +14,7 @@ require "rvm1/capistrano3"
 
 require "capistrano/puma"
 install_plugin Capistrano::Puma, load_hooks: false
-install_plugin Capistrano::Puma::Daemon
+install_plugin Capistrano::Puma::Systemd
 
 require "capistrano/systemd/multiservice"
 install_plugin Capistrano::Systemd::MultiService.new_service("delayed_job@", service_type: "user")

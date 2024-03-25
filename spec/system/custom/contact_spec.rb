@@ -11,7 +11,7 @@ describe "Contact form" do
     fill_in "Asunto", with: "Petición de soporte"
     fill_in "Mensaje", with: "Necesito ayuda ..."
     check "Acepto la Política de Privacidad"
-    click_on "Enviar"
+    click_button "Enviar"
 
     expect(page).to have_content "Mensaje enviado correctamente"
     expect(page).to have_current_path(root_path)
@@ -27,7 +27,7 @@ describe "Contact form" do
     fill_in "Mensaje", with: "Necesito ayuda ..."
     check "Acepto la Política de Privacidad"
     fill_in "Si eres humano, por favor ignora este campo", with: "This is a honeypot field"
-    click_on "Enviar"
+    click_button "Enviar"
 
     expect(page.status_code).to eq(200)
     expect(page.html).to be_empty
@@ -41,7 +41,7 @@ describe "Contact form" do
     fill_in "Email", with: "fulanito@example.org"
     fill_in "Asunto", with: "Petición de soporte"
     fill_in "Mensaje", with: "Necesito ayuda ..."
-    click_on "Enviar"
+    click_button "Enviar"
 
     expect(page).to have_content("debe ser aceptado")
     expect(page).not_to have_content "Mensaje enviado correctamente"
@@ -50,7 +50,7 @@ describe "Contact form" do
   scenario "Shows validation errors when validation fails" do
     visit contact_path(locale: "es")
 
-    click_on "Enviar"
+    click_button "Enviar"
 
     expect(page).to have_content("no puede estar en blanco", count: 4)
     expect(page).to have_content("debe ser aceptado", count: 1)
@@ -63,7 +63,7 @@ describe "Contact form" do
     fill_in "Asunto", with: "Petición de soporte"
     fill_in "Mensaje", with: "Necesito ayuda ..."
     check "Acepto la Política de Privacidad"
-    click_on "Enviar"
+    click_button "Enviar"
 
     expect(page).to have_content "Mensaje enviado correctamente"
     expect(ActionMailer::Base.deliveries.count).to eq 1
