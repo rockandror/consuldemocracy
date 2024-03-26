@@ -1,6 +1,6 @@
 class ContactFormComponent < ApplicationComponent
   attr_reader :form
-  delegate :current_user, :new_window_link_to, to: :helpers
+  use_helpers :current_user, :new_window_link_to
 
   def initialize(form)
     @form = form
