@@ -1,9 +1,9 @@
 require "rails_helper"
 
 describe MachineLearning do
-  # def full_sanitizer(string)
-  #   ActionView::Base.full_sanitizer.sanitize(string)
-  # end
+  def full_sanitizer(string)
+    ActionView::Base.full_sanitizer.sanitize(string)
+  end
 
   let(:job) { create(:machine_learning_job) }
 
@@ -300,33 +300,33 @@ describe MachineLearning do
   #     expect(MlSummaryComment.where(commentable_type: "Budget::Investment")).to be_empty
   #   end
   # end
-  #
-  # describe "#export_proposals_to_json" do
-  #   it "creates a JSON file with all proposals" do
-  #     first_proposal = create(:proposal)
-  #     last_proposal = create(:proposal)
-  #
-  #     machine_learning = MachineLearning.new(job)
-  #     machine_learning.send(:export_proposals_to_json)
-  #
-  #     json_file = MachineLearning.data_folder.join("proposals.json")
-  #     json = JSON.parse(File.read(json_file))
-  #
-  #     expect(json).to be_an Array
-  #     expect(json.size).to be 2
-  #
-  #     expect(json.first["id"]).to eq first_proposal.id
-  #     expect(json.first["title"]).to eq first_proposal.title
-  #     expect(json.first["summary"]).to eq full_sanitizer(first_proposal.summary)
-  #     expect(json.first["description"]).to eq full_sanitizer(first_proposal.description)
-  #
-  #     expect(json.last["id"]).to eq last_proposal.id
-  #     expect(json.last["title"]).to eq last_proposal.title
-  #     expect(json.last["summary"]).to eq full_sanitizer(last_proposal.summary)
-  #     expect(json.last["description"]).to eq full_sanitizer(last_proposal.description)
-  #   end
-  # end
-  #
+
+  describe "#export_proposals_to_json" do
+    it "creates a JSON file with all proposals" do
+      first_proposal = create(:proposal)
+      last_proposal = create(:proposal)
+
+      machine_learning = MachineLearning.new(job)
+      machine_learning.send(:export_proposals_to_json)
+
+      json_file = MachineLearning.data_folder.join("proposals.json")
+      json = JSON.parse(File.read(json_file))
+
+      expect(json).to be_an Array
+      expect(json.size).to be 2
+
+      expect(json.first["id"]).to eq first_proposal.id
+      expect(json.first["title"]).to eq first_proposal.title
+      expect(json.first["summary"]).to eq full_sanitizer(first_proposal.summary)
+      expect(json.first["description"]).to eq full_sanitizer(first_proposal.description)
+
+      expect(json.last["id"]).to eq last_proposal.id
+      expect(json.last["title"]).to eq last_proposal.title
+      expect(json.last["summary"]).to eq full_sanitizer(last_proposal.summary)
+      expect(json.last["description"]).to eq full_sanitizer(last_proposal.description)
+    end
+  end
+
   # describe "#export_budget_investments_to_json" do
   #   it "creates a JSON file with all budget investments" do
   #     first_budget_investment = create(:budget_investment)
