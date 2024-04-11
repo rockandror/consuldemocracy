@@ -63,243 +63,243 @@ describe MachineLearning do
     end
   end
 
-  # describe "#cleanup_investments_tags!" do
-  #   it "does not delete other machine learning generated data" do
-  #     create(:ml_summary_comment, commentable: create(:proposal))
-  #     create(:ml_summary_comment, commentable: create(:budget_investment))
-  #
-  #     create(:related_content, :proposals, :from_machine_learning)
-  #     create(:related_content, :budget_investments, :from_machine_learning)
-  #
-  #     expect(MlSummaryComment.count).to be 2
-  #     expect(RelatedContent.for_proposals.from_machine_learning.count).to be 2
-  #     expect(RelatedContent.for_investments.from_machine_learning.count).to be 2
-  #
-  #     machine_learning = MachineLearning.new(job)
-  #     machine_learning.send(:cleanup_investments_tags!)
-  #
-  #     expect(MlSummaryComment.count).to be 2
-  #     expect(RelatedContent.for_proposals.from_machine_learning.count).to be 2
-  #     expect(RelatedContent.for_investments.from_machine_learning.count).to be 2
-  #   end
-  #
-  #   it "deletes investments tags machine learning generated data" do
-  #     proposal = create(:proposal)
-  #     investment = create(:budget_investment)
-  #
-  #     user_tag = create(:tag)
-  #     create(:tagging, tag: user_tag, taggable: investment)
-  #
-  #     ml_investment_tag = create(:tag)
-  #     create(:tagging, tag: ml_investment_tag, taggable: investment, context: "ml_tags")
-  #
-  #     ml_proposal_tag = create(:tag)
-  #     create(:tagging, tag: ml_proposal_tag, taggable: proposal, context: "ml_tags")
-  #
-  #     common_tag = create(:tag)
-  #     create(:tagging, tag: common_tag, taggable: investment)
-  #     create(:tagging, tag: common_tag, taggable: investment, context: "ml_tags")
-  #     create(:tagging, tag: common_tag, taggable: proposal, context: "ml_tags")
-  #
-  #     expect(Tag.count).to be 4
-  #     expect(Tagging.count).to be 6
-  #     expect(Tagging.where(context: "tags").count).to be 2
-  #     expect(Tagging.where(context: "ml_tags", taggable_type: "Budget::Investment").count).to be 2
-  #     expect(Tagging.where(context: "ml_tags", taggable_type: "Proposal").count).to be 2
-  #
-  #     machine_learning = MachineLearning.new(job)
-  #     machine_learning.send(:cleanup_investments_tags!)
-  #
-  #     expect(Tag.count).to be 3
-  #     expect(Tag.all).not_to include ml_investment_tag
-  #     expect(Tagging.count).to be 4
-  #     expect(Tagging.where(context: "tags").count).to be 2
-  #     expect(Tagging.where(context: "ml_tags", taggable_type: "Budget::Investment")).to be_empty
-  #     expect(Tagging.where(context: "ml_tags", taggable_type: "Proposal").count).to be 2
-  #   end
-  # end
-  #
-  # describe "#cleanup_proposals_related_content!" do
-  #   it "does not delete other machine learning generated data" do
-  #     proposal = create(:proposal)
-  #     investment = create(:budget_investment)
-  #
-  #     create(:ml_summary_comment, commentable: proposal)
-  #     create(:ml_summary_comment, commentable: investment)
-  #
-  #     create(:tagging, tag: create(:tag))
-  #     create(:tagging, tag: create(:tag), context: "ml_tags", taggable: proposal)
-  #     create(:tagging, tag: create(:tag), context: "ml_tags", taggable: investment)
-  #
-  #     expect(MlSummaryComment.count).to be 2
-  #     expect(Tag.count).to be 3
-  #     expect(Tagging.count).to be 3
-  #     expect(Tagging.where(context: "tags").count).to be 1
-  #     expect(Tagging.where(context: "ml_tags").count).to be 2
-  #
-  #     machine_learning = MachineLearning.new(job)
-  #     machine_learning.send(:cleanup_proposals_related_content!)
-  #
-  #     expect(MlSummaryComment.count).to be 2
-  #     expect(Tag.count).to be 3
-  #     expect(Tagging.count).to be 3
-  #     expect(Tagging.where(context: "tags").count).to be 1
-  #     expect(Tagging.where(context: "ml_tags").count).to be 2
-  #   end
-  #
-  #   it "deletes proposals related content machine learning generated data" do
-  #     create(:related_content, :proposals)
-  #     create(:related_content, :budget_investments)
-  #     create(:related_content, :proposals, :from_machine_learning)
-  #     create(:related_content, :budget_investments, :from_machine_learning)
-  #
-  #     expect(RelatedContent.for_proposals.from_users.count).to be 2
-  #     expect(RelatedContent.for_investments.from_users.count).to be 2
-  #     expect(RelatedContent.for_proposals.from_machine_learning.count).to be 2
-  #     expect(RelatedContent.for_investments.from_machine_learning.count).to be 2
-  #
-  #     machine_learning = MachineLearning.new(job)
-  #     machine_learning.send(:cleanup_proposals_related_content!)
-  #
-  #     expect(RelatedContent.for_proposals.from_users.count).to be 2
-  #     expect(RelatedContent.for_investments.from_users.count).to be 2
-  #     expect(RelatedContent.for_proposals.from_machine_learning).to be_empty
-  #     expect(RelatedContent.for_investments.from_machine_learning.count).to be 2
-  #   end
-  # end
-  #
-  # describe "#cleanup_investments_related_content!" do
-  #   it "does not delete other machine learning generated data" do
-  #     proposal = create(:proposal)
-  #     investment = create(:budget_investment)
-  #
-  #     create(:ml_summary_comment, commentable: proposal)
-  #     create(:ml_summary_comment, commentable: investment)
-  #
-  #     create(:tagging, tag: create(:tag))
-  #     create(:tagging, tag: create(:tag), context: "ml_tags", taggable: proposal)
-  #     create(:tagging, tag: create(:tag), context: "ml_tags", taggable: investment)
-  #
-  #     expect(MlSummaryComment.count).to be 2
-  #     expect(Tag.count).to be 3
-  #     expect(Tagging.count).to be 3
-  #     expect(Tagging.where(context: "tags").count).to be 1
-  #     expect(Tagging.where(context: "ml_tags").count).to be 2
-  #
-  #     machine_learning = MachineLearning.new(job)
-  #     machine_learning.send(:cleanup_investments_related_content!)
-  #
-  #     expect(MlSummaryComment.count).to be 2
-  #     expect(Tag.count).to be 3
-  #     expect(Tagging.count).to be 3
-  #     expect(Tagging.where(context: "tags").count).to be 1
-  #     expect(Tagging.where(context: "ml_tags").count).to be 2
-  #   end
-  #
-  #   it "deletes proposals related content machine learning generated data" do
-  #     create(:related_content, :proposals)
-  #     create(:related_content, :budget_investments)
-  #     create(:related_content, :proposals, :from_machine_learning)
-  #     create(:related_content, :budget_investments, :from_machine_learning)
-  #
-  #     expect(RelatedContent.for_proposals.from_users.count).to be 2
-  #     expect(RelatedContent.for_investments.from_users.count).to be 2
-  #     expect(RelatedContent.for_proposals.from_machine_learning.count).to be 2
-  #     expect(RelatedContent.for_investments.from_machine_learning.count).to be 2
-  #
-  #     machine_learning = MachineLearning.new(job)
-  #     machine_learning.send(:cleanup_investments_related_content!)
-  #
-  #     expect(RelatedContent.for_proposals.from_users.count).to be 2
-  #     expect(RelatedContent.for_investments.from_users.count).to be 2
-  #     expect(RelatedContent.for_proposals.from_machine_learning.count).to be 2
-  #     expect(RelatedContent.for_investments.from_machine_learning).to be_empty
-  #   end
-  # end
-  #
-  # describe "#cleanup_proposals_comments_summary!" do
-  #   it "does not delete other machine learning generated data" do
-  #     create(:related_content, :proposals, :from_machine_learning)
-  #     create(:related_content, :budget_investments, :from_machine_learning)
-  #
-  #     create(:tagging, tag: create(:tag))
-  #     create(:tagging, tag: create(:tag), context: "ml_tags", taggable: create(:proposal))
-  #     create(:tagging, tag: create(:tag), context: "ml_tags", taggable: create(:budget_investment))
-  #
-  #     expect(RelatedContent.for_proposals.from_machine_learning.count).to be 2
-  #     expect(RelatedContent.for_investments.from_machine_learning.count).to be 2
-  #     expect(Tag.count).to be 3
-  #     expect(Tagging.count).to be 3
-  #     expect(Tagging.where(context: "tags").count).to be 1
-  #     expect(Tagging.where(context: "ml_tags").count).to be 2
-  #
-  #     machine_learning = MachineLearning.new(job)
-  #     machine_learning.send(:cleanup_proposals_comments_summary!)
-  #
-  #     expect(RelatedContent.for_proposals.from_machine_learning.count).to be 2
-  #     expect(RelatedContent.for_investments.from_machine_learning.count).to be 2
-  #     expect(Tag.count).to be 3
-  #     expect(Tagging.count).to be 3
-  #     expect(Tagging.where(context: "tags").count).to be 1
-  #     expect(Tagging.where(context: "ml_tags").count).to be 2
-  #   end
-  #
-  #   it "deletes proposals comments summary machine learning generated data" do
-  #     create(:ml_summary_comment, commentable: create(:proposal))
-  #     create(:ml_summary_comment, commentable: create(:budget_investment))
-  #
-  #     expect(MlSummaryComment.where(commentable_type: "Proposal").count).to be 1
-  #     expect(MlSummaryComment.where(commentable_type: "Budget::Investment").count).to be 1
-  #
-  #     machine_learning = MachineLearning.new(job)
-  #     machine_learning.send(:cleanup_proposals_comments_summary!)
-  #
-  #     expect(MlSummaryComment.where(commentable_type: "Proposal")).to be_empty
-  #     expect(MlSummaryComment.where(commentable_type: "Budget::Investment").count).to be 1
-  #   end
-  # end
-  #
-  # describe "#cleanup_investments_comments_summary!" do
-  #   it "does not delete other machine learning generated data" do
-  #     create(:related_content, :proposals, :from_machine_learning)
-  #     create(:related_content, :budget_investments, :from_machine_learning)
-  #
-  #     create(:tagging, tag: create(:tag))
-  #     create(:tagging, tag: create(:tag), context: "ml_tags", taggable: create(:proposal))
-  #     create(:tagging, tag: create(:tag), context: "ml_tags", taggable: create(:budget_investment))
-  #
-  #     expect(RelatedContent.for_proposals.from_machine_learning.count).to be 2
-  #     expect(RelatedContent.for_investments.from_machine_learning.count).to be 2
-  #     expect(Tag.count).to be 3
-  #     expect(Tagging.count).to be 3
-  #     expect(Tagging.where(context: "tags").count).to be 1
-  #     expect(Tagging.where(context: "ml_tags").count).to be 2
-  #
-  #     machine_learning = MachineLearning.new(job)
-  #     machine_learning.send(:cleanup_investments_comments_summary!)
-  #
-  #     expect(RelatedContent.for_proposals.from_machine_learning.count).to be 2
-  #     expect(RelatedContent.for_investments.from_machine_learning.count).to be 2
-  #     expect(Tag.count).to be 3
-  #     expect(Tagging.count).to be 3
-  #     expect(Tagging.where(context: "tags").count).to be 1
-  #     expect(Tagging.where(context: "ml_tags").count).to be 2
-  #   end
-  #
-  #   it "deletes budget investments comments summary machine learning generated data" do
-  #     create(:ml_summary_comment, commentable: create(:proposal))
-  #     create(:ml_summary_comment, commentable: create(:budget_investment))
-  #
-  #     expect(MlSummaryComment.where(commentable_type: "Proposal").count).to be 1
-  #     expect(MlSummaryComment.where(commentable_type: "Budget::Investment").count).to be 1
-  #
-  #     machine_learning = MachineLearning.new(job)
-  #     machine_learning.send(:cleanup_investments_comments_summary!)
-  #
-  #     expect(MlSummaryComment.where(commentable_type: "Proposal").count).to be 1
-  #     expect(MlSummaryComment.where(commentable_type: "Budget::Investment")).to be_empty
-  #   end
-  # end
+  describe "#cleanup_investments_tags!" do
+    it "does not delete other machine learning generated data" do
+      create(:ml_summary_comment, commentable: create(:proposal))
+      create(:ml_summary_comment, commentable: create(:budget_investment))
+
+      create(:related_content, :proposals, :from_machine_learning)
+      create(:related_content, :budget_investments, :from_machine_learning)
+
+      expect(MlSummaryComment.count).to be 2
+      expect(RelatedContent.for_proposals.from_machine_learning.count).to be 2
+      expect(RelatedContent.for_investments.from_machine_learning.count).to be 2
+
+      machine_learning = MachineLearning.new(job)
+      machine_learning.send(:cleanup_investments_tags!)
+
+      expect(MlSummaryComment.count).to be 2
+      expect(RelatedContent.for_proposals.from_machine_learning.count).to be 2
+      expect(RelatedContent.for_investments.from_machine_learning.count).to be 2
+    end
+
+    it "deletes investments tags machine learning generated data" do
+      proposal = create(:proposal)
+      investment = create(:budget_investment)
+
+      user_tag = create(:tag)
+      create(:tagging, tag: user_tag, taggable: investment)
+
+      ml_investment_tag = create(:tag)
+      create(:tagging, tag: ml_investment_tag, taggable: investment, context: "ml_tags")
+
+      ml_proposal_tag = create(:tag)
+      create(:tagging, tag: ml_proposal_tag, taggable: proposal, context: "ml_tags")
+
+      common_tag = create(:tag)
+      create(:tagging, tag: common_tag, taggable: investment)
+      create(:tagging, tag: common_tag, taggable: investment, context: "ml_tags")
+      create(:tagging, tag: common_tag, taggable: proposal, context: "ml_tags")
+
+      expect(Tag.count).to be 4
+      expect(Tagging.count).to be 6
+      expect(Tagging.where(context: "tags").count).to be 2
+      expect(Tagging.where(context: "ml_tags", taggable_type: "Budget::Investment").count).to be 2
+      expect(Tagging.where(context: "ml_tags", taggable_type: "Proposal").count).to be 2
+
+      machine_learning = MachineLearning.new(job)
+      machine_learning.send(:cleanup_investments_tags!)
+
+      expect(Tag.count).to be 3
+      expect(Tag.all).not_to include ml_investment_tag
+      expect(Tagging.count).to be 4
+      expect(Tagging.where(context: "tags").count).to be 2
+      expect(Tagging.where(context: "ml_tags", taggable_type: "Budget::Investment")).to be_empty
+      expect(Tagging.where(context: "ml_tags", taggable_type: "Proposal").count).to be 2
+    end
+  end
+
+  describe "#cleanup_proposals_related_content!" do
+    it "does not delete other machine learning generated data" do
+      proposal = create(:proposal)
+      investment = create(:budget_investment)
+
+      create(:ml_summary_comment, commentable: proposal)
+      create(:ml_summary_comment, commentable: investment)
+
+      create(:tagging, tag: create(:tag))
+      create(:tagging, tag: create(:tag), context: "ml_tags", taggable: proposal)
+      create(:tagging, tag: create(:tag), context: "ml_tags", taggable: investment)
+
+      expect(MlSummaryComment.count).to be 2
+      expect(Tag.count).to be 3
+      expect(Tagging.count).to be 3
+      expect(Tagging.where(context: "tags").count).to be 1
+      expect(Tagging.where(context: "ml_tags").count).to be 2
+
+      machine_learning = MachineLearning.new(job)
+      machine_learning.send(:cleanup_proposals_related_content!)
+
+      expect(MlSummaryComment.count).to be 2
+      expect(Tag.count).to be 3
+      expect(Tagging.count).to be 3
+      expect(Tagging.where(context: "tags").count).to be 1
+      expect(Tagging.where(context: "ml_tags").count).to be 2
+    end
+
+    it "deletes proposals related content machine learning generated data" do
+      create(:related_content, :proposals)
+      create(:related_content, :budget_investments)
+      create(:related_content, :proposals, :from_machine_learning)
+      create(:related_content, :budget_investments, :from_machine_learning)
+
+      expect(RelatedContent.for_proposals.from_users.count).to be 2
+      expect(RelatedContent.for_investments.from_users.count).to be 2
+      expect(RelatedContent.for_proposals.from_machine_learning.count).to be 2
+      expect(RelatedContent.for_investments.from_machine_learning.count).to be 2
+
+      machine_learning = MachineLearning.new(job)
+      machine_learning.send(:cleanup_proposals_related_content!)
+
+      expect(RelatedContent.for_proposals.from_users.count).to be 2
+      expect(RelatedContent.for_investments.from_users.count).to be 2
+      expect(RelatedContent.for_proposals.from_machine_learning).to be_empty
+      expect(RelatedContent.for_investments.from_machine_learning.count).to be 2
+    end
+  end
+
+  describe "#cleanup_investments_related_content!" do
+    it "does not delete other machine learning generated data" do
+      proposal = create(:proposal)
+      investment = create(:budget_investment)
+
+      create(:ml_summary_comment, commentable: proposal)
+      create(:ml_summary_comment, commentable: investment)
+
+      create(:tagging, tag: create(:tag))
+      create(:tagging, tag: create(:tag), context: "ml_tags", taggable: proposal)
+      create(:tagging, tag: create(:tag), context: "ml_tags", taggable: investment)
+
+      expect(MlSummaryComment.count).to be 2
+      expect(Tag.count).to be 3
+      expect(Tagging.count).to be 3
+      expect(Tagging.where(context: "tags").count).to be 1
+      expect(Tagging.where(context: "ml_tags").count).to be 2
+
+      machine_learning = MachineLearning.new(job)
+      machine_learning.send(:cleanup_investments_related_content!)
+
+      expect(MlSummaryComment.count).to be 2
+      expect(Tag.count).to be 3
+      expect(Tagging.count).to be 3
+      expect(Tagging.where(context: "tags").count).to be 1
+      expect(Tagging.where(context: "ml_tags").count).to be 2
+    end
+
+    it "deletes proposals related content machine learning generated data" do
+      create(:related_content, :proposals)
+      create(:related_content, :budget_investments)
+      create(:related_content, :proposals, :from_machine_learning)
+      create(:related_content, :budget_investments, :from_machine_learning)
+
+      expect(RelatedContent.for_proposals.from_users.count).to be 2
+      expect(RelatedContent.for_investments.from_users.count).to be 2
+      expect(RelatedContent.for_proposals.from_machine_learning.count).to be 2
+      expect(RelatedContent.for_investments.from_machine_learning.count).to be 2
+
+      machine_learning = MachineLearning.new(job)
+      machine_learning.send(:cleanup_investments_related_content!)
+
+      expect(RelatedContent.for_proposals.from_users.count).to be 2
+      expect(RelatedContent.for_investments.from_users.count).to be 2
+      expect(RelatedContent.for_proposals.from_machine_learning.count).to be 2
+      expect(RelatedContent.for_investments.from_machine_learning).to be_empty
+    end
+  end
+
+  describe "#cleanup_proposals_comments_summary!" do
+    it "does not delete other machine learning generated data" do
+      create(:related_content, :proposals, :from_machine_learning)
+      create(:related_content, :budget_investments, :from_machine_learning)
+
+      create(:tagging, tag: create(:tag))
+      create(:tagging, tag: create(:tag), context: "ml_tags", taggable: create(:proposal))
+      create(:tagging, tag: create(:tag), context: "ml_tags", taggable: create(:budget_investment))
+
+      expect(RelatedContent.for_proposals.from_machine_learning.count).to be 2
+      expect(RelatedContent.for_investments.from_machine_learning.count).to be 2
+      expect(Tag.count).to be 3
+      expect(Tagging.count).to be 3
+      expect(Tagging.where(context: "tags").count).to be 1
+      expect(Tagging.where(context: "ml_tags").count).to be 2
+
+      machine_learning = MachineLearning.new(job)
+      machine_learning.send(:cleanup_proposals_comments_summary!)
+
+      expect(RelatedContent.for_proposals.from_machine_learning.count).to be 2
+      expect(RelatedContent.for_investments.from_machine_learning.count).to be 2
+      expect(Tag.count).to be 3
+      expect(Tagging.count).to be 3
+      expect(Tagging.where(context: "tags").count).to be 1
+      expect(Tagging.where(context: "ml_tags").count).to be 2
+    end
+
+    it "deletes proposals comments summary machine learning generated data" do
+      create(:ml_summary_comment, commentable: create(:proposal))
+      create(:ml_summary_comment, commentable: create(:budget_investment))
+
+      expect(MlSummaryComment.where(commentable_type: "Proposal").count).to be 1
+      expect(MlSummaryComment.where(commentable_type: "Budget::Investment").count).to be 1
+
+      machine_learning = MachineLearning.new(job)
+      machine_learning.send(:cleanup_proposals_comments_summary!)
+
+      expect(MlSummaryComment.where(commentable_type: "Proposal")).to be_empty
+      expect(MlSummaryComment.where(commentable_type: "Budget::Investment").count).to be 1
+    end
+  end
+
+  describe "#cleanup_investments_comments_summary!" do
+    it "does not delete other machine learning generated data" do
+      create(:related_content, :proposals, :from_machine_learning)
+      create(:related_content, :budget_investments, :from_machine_learning)
+
+      create(:tagging, tag: create(:tag))
+      create(:tagging, tag: create(:tag), context: "ml_tags", taggable: create(:proposal))
+      create(:tagging, tag: create(:tag), context: "ml_tags", taggable: create(:budget_investment))
+
+      expect(RelatedContent.for_proposals.from_machine_learning.count).to be 2
+      expect(RelatedContent.for_investments.from_machine_learning.count).to be 2
+      expect(Tag.count).to be 3
+      expect(Tagging.count).to be 3
+      expect(Tagging.where(context: "tags").count).to be 1
+      expect(Tagging.where(context: "ml_tags").count).to be 2
+
+      machine_learning = MachineLearning.new(job)
+      machine_learning.send(:cleanup_investments_comments_summary!)
+
+      expect(RelatedContent.for_proposals.from_machine_learning.count).to be 2
+      expect(RelatedContent.for_investments.from_machine_learning.count).to be 2
+      expect(Tag.count).to be 3
+      expect(Tagging.count).to be 3
+      expect(Tagging.where(context: "tags").count).to be 1
+      expect(Tagging.where(context: "ml_tags").count).to be 2
+    end
+
+    it "deletes budget investments comments summary machine learning generated data" do
+      create(:ml_summary_comment, commentable: create(:proposal))
+      create(:ml_summary_comment, commentable: create(:budget_investment))
+
+      expect(MlSummaryComment.where(commentable_type: "Proposal").count).to be 1
+      expect(MlSummaryComment.where(commentable_type: "Budget::Investment").count).to be 1
+
+      machine_learning = MachineLearning.new(job)
+      machine_learning.send(:cleanup_investments_comments_summary!)
+
+      expect(MlSummaryComment.where(commentable_type: "Proposal").count).to be 1
+      expect(MlSummaryComment.where(commentable_type: "Budget::Investment")).to be_empty
+    end
+  end
 
   describe "#export_proposals_to_json" do
     it "creates a JSON file with all proposals" do
