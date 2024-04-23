@@ -162,7 +162,7 @@ module Auditable
             follow: :followable,
             image: :imageable,
             link: :linkable,
-            milestone: :milestonable,
+            milestone: :milestoneable,
             ml_summary_comment: :commentable,
             notification: :notifiable,
             progress_bar: :progressable,
