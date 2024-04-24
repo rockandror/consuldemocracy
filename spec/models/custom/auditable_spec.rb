@@ -97,7 +97,7 @@ describe "Auditable" do
       expect(Follow.audit_associated_with).to eq(:followable)
       expect(Image.audit_associated_with).to eq(:imageable)
       expect(Link.audit_associated_with).to eq(:linkable)
-      expect(Milestone.audit_associated_with).to eq(:milestonable)
+      expect(Milestone.audit_associated_with).to eq(:milestoneable)
       expect(MlSummaryComment.audit_associated_with).to eq(:commentable)
       expect(Notification.audit_associated_with).to eq(:notifiable)
       expect(ProgressBar.audit_associated_with).to eq(:progressable)

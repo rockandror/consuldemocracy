@@ -1,7 +1,7 @@
 class Admin::Audits::ShowComponent < ApplicationComponent
   attr_reader :audit
 
-  delegate :audit_value, :field_name, :new_value, :old_value, :sanitize, :wysiwyg, to: :helpers
+  use_helpers :audit_value, :field_name, :new_value, :old_value, :sanitize, :wysiwyg
 
   def initialize(audit)
     @audit = audit

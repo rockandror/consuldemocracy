@@ -1,3 +1,3 @@
 class Layout::ConsentBannerComponent < ApplicationComponent
-  delegate :cookies, to: :helpers
+  use_helpers :cookies
 end
