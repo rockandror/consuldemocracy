@@ -18,7 +18,7 @@
    * [Ejemplo de consulta demasiado compleja](#ejemplo-de-consulta-demasiado-compleja)
 * [Ejemplos de código](#ejemplos-de-codigo)
 
-<h2 id="caracteristicas">Características</h2>
+## Características {#caracteristicas}
 
 * API de sólo lectura
 * Acceso público, sin autenticación
@@ -111,7 +111,7 @@ La consulta debe estar ubicada en un documento JSON válido, como valor de la cl
 
 ![Postman POST](../../img/graphql/graphql-postman-post-body.png)
 
-<h4 id="librerias-http">Librerías HTTP</h4>
+#### Librerías HTTP {#librerias-http}
 
 Por supuesto es posible utilizar cualquier librería HTTP de lenguajes de programación.
 
@@ -119,7 +119,7 @@ Por supuesto es posible utilizar cualquier librería HTTP de lenguajes de progra
 
 `User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36`
 
-<h2 id="informacion-disponible">Información disponible</h2>
+## Información disponible {#informacion-disponible}
 
 El fichero [config/api.yml](../../config/api.yml) contiene una lista completa de los modelos (y sus campos) que están expuestos actualmente en la API.
 
@@ -138,7 +138,7 @@ La lista de modelos es la siguiente:
 
 ## Ejemplos de consultas
 
-<h3 id="recuperar-un-unico-elemento-de-una-coleccion">Recuperar un único elemento de una colección</h3>
+### Recuperar un único elemento de una colección {#recuperar-un-unico-elemento-de-una-coleccion}
 
 ```
 {
@@ -164,7 +164,7 @@ Respuesta:
 }
 ```
 
-<h3 id="recuperar-una-coleccion-completa">Recuperar una colección completa</h3>
+### Recuperar una colección completa {#recuperar-una-coleccion-completa}
 
 ```
 {
@@ -201,7 +201,7 @@ Respuesta:
 }
 ```
 
-<h4 id="paginacion">Paginación</h4>
+#### Paginación {#paginacion}
 
 Actualmente el número máximo (y por defecto) de elementos que se devuelven en cada página está establecido a 25. Para poder navegar por las distintas páginas es necesario solicitar además información relativa al `endCursor`:
 
@@ -258,7 +258,7 @@ Para recuperar la siguiente página, hay que pasar como parámetro el cursor rec
 }
 ```
 
-<h3 id="acceder-a-varios-recursos-en-una-unica-peticion">Acceder a varios recursos en una única petición</h3>
+### Acceder a varios recursos en una única petición {#acceder-a-varios-recursos-en-una-unica-peticion}
 
 Esta consulta solicita información relativa a varios modelos distintos en una única petición: `Proposal`, `User`, `Geozone` y `Comment`:
 
@@ -426,6 +426,6 @@ La respuesta:
 }
 ```
 
-<h2 id="ejemplos-de-codigo">Ejemplos de código</h2>
+## Ejemplos de código {#ejemplos-de-codigo}
 
 El directorio [doc/api/examples](https://github.com/consuldemocracy/consuldemocracy/tree/master/doc/api/examples/ruby) contiene ejemplos de código para acceder a la API.
