@@ -3,19 +3,19 @@
 * [Características](#caracteristicas)
 * [GraphQL](#graphql)
 * [Haciendo peticiones a la API](#haciendo-peticiones-a-la-api)
-  * [Clientes soportados](#clientes-soportados)
-    * [GraphiQL](#graphiql)
-    * [Postman](#postman)
-    * [Librerías HTTP](#librerias-http)
+   * [Clientes soportados](#clientes-soportados)
+      * [GraphiQL](#graphiql)
+      * [Postman](#postman)
+      * [Librerías HTTP](#librerias-http)
 * [Información disponible](#informacion-disponible)
 * [Ejemplos de consultas](#ejemplos-de-consultas)
-  * [Recuperar un único elemento de una colección](#recuperar-un-unico-elemento-de-una-coleccion)
-  * [Recuperar una colección completa](#recuperar-una-coleccion-completa)
-    * [Paginación](#paginacion)
-  * [Acceder a varios recursos en una única petición](#acceder-a-varios-recursos-en-una-unica-peticion)
+   * [Recuperar un único elemento de una colección](#recuperar-un-unico-elemento-de-una-coleccion)
+   * [Recuperar una colección completa](#recuperar-una-coleccion-completa)
+      * [Paginación](#paginacion)
+   * [Acceder a varios recursos en una única petición](#acceder-a-varios-recursos-en-una-unica-peticion)
 * [Limitaciones de seguridad](#limitaciones-de-seguridad)
-  * [Ejemplo de consulta demasiado profunda](#ejemplo-de-consulta-demasiado-profunda)
-  * [Ejemplo de consulta demasiado compleja](#ejemplo-de-consulta-demasiado-compleja)
+   * [Ejemplo de consulta demasiado profunda](#ejemplo-de-consulta-demasiado-profunda)
+   * [Ejemplo de consulta demasiado compleja](#ejemplo-de-consulta-demasiado-compleja)
 * [Ejemplos de código](#ejemplos-de-codigo)
 
 <h2 id="caracteristicas">Características</h2>
@@ -23,10 +23,10 @@
 * API de sólo lectura
 * Acceso público, sin autenticación
 * Usa GraphQL por debajo
-  * El tamaño máximo (y por defecto) de página está establecido a 25
-  * La profundiad máxima de las consultas es de 8 niveles
-  * Como máximo se pueden solicitar 2 colecciones en una misma consulta
-  * Soporte para peticiones GET (consulta dentro del *query string*) y POST (consulta dentro del *body*, como `application/json` o `application/graphql`).
+   * El tamaño máximo (y por defecto) de página está establecido a 25
+   * La profundiad máxima de las consultas es de 8 niveles
+   * Como máximo se pueden solicitar 2 colecciones en una misma consulta
+   * Soporte para peticiones GET (consulta dentro del *query string*) y POST (consulta dentro del *body*, como `application/json` o `application/graphql`).
 
 ## GraphQL
 
@@ -72,8 +72,8 @@ Siguiendo las [directrices oficiales](http://graphql.org/learn/serving-over-http
 
 * Peticiones GET, con la consulta dentro del *query string*.
 * Peticiones POST
-  * Con la consulta dentro del *body*, con `Content-Type: application/json`
-  * Con la consulta dentro del *body*, con `Content-Type: application/graphql`
+   * Con la consulta dentro del *body*, con `Content-Type: application/json`
+   * Con la consulta dentro del *body*, con `Content-Type: application/graphql`
 
 ### Clientes soportados
 

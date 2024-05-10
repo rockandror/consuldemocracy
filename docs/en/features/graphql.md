@@ -3,19 +3,19 @@
 * [Characteristics](#characteristics)
 * [GraphQL](#graphql)
 * [Making API requests](#making-api-requests)
-  * [Supported clients](#supported-clients)
-    * [GraphiQL](#graphiql)
-    * [Postman](#postman)
-    * [HTTP libraries](#http-libraries)
+   * [Supported clients](#supported-clients)
+      * [GraphiQL](#graphiql)
+      * [Postman](#postman)
+      * [HTTP libraries](#http-libraries)
 * [Available information](#available-information)
 * [Examples of queries](#examples-of-queries)
-  * [Request a single record from a collection](#request-a-single-record-from-a-collection)
-  * [Request a complete collection](#request-a-complete-collection)
-    * [Pagination](#pagination)
-  * [Accessing several resources in a single request](#accessing-several-resources-in-a-single-request)
+   * [Request a single record from a collection](#request-a-single-record-from-a-collection)
+   * [Request a complete collection](#request-a-complete-collection)
+      * [Pagination](#pagination)
+   * [Accessing several resources in a single request](#accessing-several-resources-in-a-single-request)
 * [Security limitations](#security-limitations)
-  * [Example of too deep query](#example-of-too-deep-query)
-  * [Example of too complex query](#example-of-too-complex-query)
+   * [Example of too deep query](#example-of-too-deep-query)
+   * [Example of too complex query](#example-of-too-complex-query)
 * [Code examples](#code-examples)
 
 ## Characteristics
@@ -23,10 +23,10 @@
 * Read-only API
 * Public access, no authentication needed
 * Uses GraphQL technology:
-  * Maximum page size (and the default) is 25 records
-  * Maximum query depth is set at 8 levels
-  * A maximum of two collections can be requested within the same query
-  * Support for GET requests (query must be inside the *query string*) and POST requests (query must be within the *body*, encoded as `application/json` or `application/graphql`)
+   * Maximum page size (and the default) is 25 records
+   * Maximum query depth is set at 8 levels
+   * A maximum of two collections can be requested within the same query
+   * Support for GET requests (query must be inside the *query string*) and POST requests (query must be within the *body*, encoded as `application/json` or `application/graphql`)
 
 ## GraphQL
 
@@ -72,8 +72,8 @@ Following [the official recommendations](http://graphql.org/learn/serving-over-h
 
 * GET requests, with the query inside the *query string*.
 * POST requests
-  * With the query inside the *body*, with `Content-Type: application/json`
-  * With the query inside the *body*, with `Content-Type: application/graphql`
+   * With the query inside the *body*, with `Content-Type: application/json`
+   * With the query inside the *body*, with `Content-Type: application/graphql`
 
 ### Supported clients
 
