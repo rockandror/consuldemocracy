@@ -131,7 +131,7 @@ Deberías obtener algo similar a:
 
 Pendiente de ser completado... ¡Se agradecen las Contribuciones!
 
-## ¿Tienes problemas?
+## Si hay problemas
 
 Ejecute los comandos en el **directorio de Consul Democracy**, para borrar todas las imágenes y contenedores anteriores del Docker de Consul Democracy. Luego, reinicie el [proceso de instalación](#instalacion) de Docker:
 

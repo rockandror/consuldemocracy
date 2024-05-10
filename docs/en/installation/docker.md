@@ -131,7 +131,7 @@ You should see output similar to this:
 
 Pending to be completed... Contributions Welcome!
 
-## Having trouble?
+## In case of trouble
 
 Run these commands at **Consul Democracy's directory**, to erase all your previous Consul Democracy's Docker images and containers. Then restart the Docker [installation process](#installation):
 

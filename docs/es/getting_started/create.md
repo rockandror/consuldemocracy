@@ -12,7 +12,7 @@ El repositorio git de Consul Democracy está hospedado en Github.com, recomendam
 
 ****ADVERTENCIA IMPORTANTE**: No hagas un fork de `https://github.com/AyuntamientoMadrid/consul`, es una equivocación frecuente que conlleva múltiples y graves problemas.
 
-## ¿Porqué hacer el código público?
+## Haz el código público
 
 Recomendamos publicar el código por varias razones:
 

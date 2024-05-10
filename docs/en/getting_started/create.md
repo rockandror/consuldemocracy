@@ -12,7 +12,7 @@ Consul Democracy git repo is hosted at Github.com, we recommend using it for you
 
 ****IMPORTANT NOTICE**: Do not fork `https://github.com/AyuntamientoMadrid/consul`, it's a common mistake that leads to multiple and grave problems.
 
-## Why make code public?
+## Make the code public
 
 We strongly recommend making code public for multiple reasons:
 
