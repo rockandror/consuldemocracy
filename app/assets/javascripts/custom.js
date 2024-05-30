@@ -7,10 +7,9 @@
 
 var initialize_modules = function() {
   "use strict";
-  App.Callout.initialize();
+
   App.CookiesConsent.initialize();
   App.GoogleSearch.initialize();
-  App.Followable.initialize();
 };
 
 $(document).on("turbolinks:load", initialize_modules);
