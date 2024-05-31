@@ -1,0 +1,24 @@
+<% provide :title do %><%= @poll.name %><% end %>
+
+<div class="polls-results-stats">
+  <%= render "poll_header" %>
+
+  <%= render "poll_subnav" %>
+
+  <div class="row margin" data-equalizer data-equalize-on="medium">
+    <div class="small-12 medium-3 column sidebar" data-equalizer-watch>
+      <p><strong><%= t("polls.show.results.title") %></strong></p>
+      <ul class="menu vertical">
+        <%- @poll.questions.each do |question| %>
+          <% unless question.vote_type == "info_gender" || question.vote_type == "info_birthdate" || question.vote_type == "info_locality" || question.vote_type == "open" %>
+          <li><%= link_to question.title, "##{question.title.parameterize}" %></li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="small-12 medium-9 column" data-equalizer-watch>
+      <%= render Polls::Results::QuestionComponent.with_collection(@poll.questions) %>
+    </div>
+  </div>
+</div>
