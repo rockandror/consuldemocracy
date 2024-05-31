@@ -13,6 +13,11 @@ es:
     cookies_text: Este sitio web utiliza cookies propias y de terceros para el correcto funcionamiento de la página y para fines analíticos y publicitarios. Puedes aceptar las cookies pulsando el botón “Aceptar” u obtener información adicional para configurarlas o rechazar su uso clicando %{cookies_link}.
     cookies_link: AQUÍ
     ok: Aceptar
+  errors:
+    messages:
+      cannot_change_date:
+        poll_started: "No puede ser cambiada si la encuesta ha comenzado"
+        poll_ended: "No puede ser cambiada si la encuesta ha acabado"
   layouts:
     footer:
       links:
@@ -34,6 +39,30 @@ es:
         services: Servicios Digitales
       collaborative_legislation: Propuestas del Cabildo
       tenerife_logo: "Cabildo Tenerife"
+      poll_questions: Encuestas
+  polls:
+    index:
+      participate_button: "Participar en esta encuesta"
+      participate_button_expired: "Encuesta terminada"
+      already_answer: "Ya has participado en esta encuesta"
+      cant_answer: "Esta encuesta no está disponible en tu zona"
+      title: "Encuestas"
+      section_header:
+        help: Ayuda sobre las encuestas
+        icon_alt: Icono de Encuestas
+        title: Encuestas
+      section_footer:
+        title: Ayuda sobre las encuestas
+        description: Las encuestas ciudadanas son un mecanismo de participación por el que la ciudadanía con derecho a voto puede tomar decisiones de forma directa.
+      no_polls: "No hay encuestas abiertas."
+    show:
+      back: Volver a encuestas
+      already_voted_in_booth: "Ya has participado en esta encuesta en urnas presenciales, no puedes volver a participar."
+      already_voted_in_web: "Ya has participado en esta encuesta. Si vuelves a votar se sobreescribirá tu resultado anterior."
+      cant_answer_expired: "Esta encuesta ha terminado."
+      cant_answer_wrong_geozone: "Esta encuesta no está disponible en tu zona."
+      results_menu: "Resultados de la encuesta"
+
   poll_questions:
     description:
       info_birthdate: Si tienes esta información en tu perfil, se autocompleta automáticamente

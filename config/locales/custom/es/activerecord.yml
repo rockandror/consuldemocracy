@@ -8,11 +8,15 @@ es:
           other: "Otro"
   activerecord:
     attributes:
+      poll/question:
+        poll_id: "Encuesta"
       site_customization/page:
         is_news: Es noticia
         news_date: Fecha de la noticia
       user:
         geozone_id: Localidad (opcional)
+      votation_type:
+        vote_type: Tipo de pregunta
       votation_type/vote_type:
         open: Respuesta abierta
         info_gender: Género del usuario
@@ -22,3 +26,9 @@ es:
       audit:
         one: "Registro de cambio"
         other: "Registros de cambio"
+      poll:
+        one: "Encuesta"
+        other: "Encuestas"
+      votation_type:
+        one: Tipo de pregunta
+        other: Tipos de pregunta

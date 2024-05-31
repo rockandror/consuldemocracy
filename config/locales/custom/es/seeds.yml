@@ -1,0 +1,8 @@
+es:
+  seeds:
+    polls:
+      current_poll: "Encuesta Abierta"
+      current_poll_geozone_restricted: "Encuesta Abierta restringida por geozona"
+      recounting_poll: "Encuesta en Recuento"
+      expired_poll_without_stats: "Encuesta Finalizada (sin Estadísticas o Resultados)"
+      expired_poll_with_stats: "Encuesta Finalizada (con Estadísticas y Resultado)"

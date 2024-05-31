@@ -1,0 +1,6 @@
+es:
+  verification:
+    letter:
+      create:
+        flash:
+          success: Antes de las encuestas recibirás una carta con las instrucciones para verificar tu cuenta.<br> Recuerda que puedes ahorrar el envío verificándote presencialmente en cualquiera de las Oficinas de Atención al Ciudadano.

@@ -2,6 +2,8 @@ es:
   settings:
     process:
       legislation: "Propuestas del Cabildo"
+      polls: "Encuestas"
+      polls_description: "Las encuestas ciudadanas son un mecanismo de participación por el que la ciudadanía con derecho a voto puede tomar decisiones de forma directa"
     sdg:
       process:
         legislation: Alineamiento ODS en propuestas del Cabildo

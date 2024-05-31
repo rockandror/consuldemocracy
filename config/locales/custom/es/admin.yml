@@ -70,18 +70,13 @@ es:
     menu:
       audits: Registro de cambios
       legislation: Propuestas del Cabildo
-    polls:
-      results:
-        export_list:
-          id: ID
-          question_id: ID de la pregunta
-          answer: Respuesta
-          author_id: ID del autor
-      votation_type:
-        open_description: "Permite que el usuario responda libremente en un cuadro de texto."
+      polls: Encuestas
+      site_customization:
+        information_texts_menu:
+          polls: "Encuestas"
     proposals:
       index:
-        export: Descargar selección actual
+        export: Descargar resultados
         export_list:
           id: ID
           title: Título
@@ -98,11 +93,13 @@ es:
     shared:
       search:
         label:
+          polls: "Buscar encuestas por nombre o descripción"
           pages: "Buscar páginas por título o slug"
         clean: "Limpiar búsqueda"
     stats:
       show:
         tags: Tags
+        polls: Encuestas
       tags:
         title: Estadisticas de tags
         all: Tags
@@ -110,6 +107,12 @@ es:
           name: Nombre
           count: Elementos tagueados
         no_results: No hay elementos tagueados
+      polls:
+        title: Estadísticas de encuestas
+        all: Encuestas
+        poll_questions: "Preguntas de encuesta: %{poll}"
+        table:
+          poll_name: Encuesta
     site_customization:
       pages:
         new:
@@ -125,3 +128,52 @@ es:
       contact:
         title: "Contacto"
         description: "Enviado al correo de contacto del Cabildo cuando un usuario envía el formulario de contacto."
+    active_polls:
+      edit:
+        title: "Descripción general de encuestas"
+      form:
+        description:
+          help_text: "Este texto aparecerá en la cabecera de la página de encuestas. Puedes usarlo para añadir un contexto a las encuestas abiertas"
+    polls:
+      votation_type:
+        title: "Tipo de pregunta"
+        unique_description: "Solo se puede responder a la pregunta con una única respuesta."
+        multiple_description: "Permite elegir más de una respuesta. Se puede elegir el número máximo de respuestas."
+        open_description: "Permite que el usuario responda libremente en un cuadro de texto."
+        info_description: Obtiene esta información del perfil del usuario si existe.
+      results:
+        export_list:
+          id: ID
+          question_id: ID de la pregunta
+          answer: Respuesta
+          author_id: ID del autor
+      index:
+        title: "Listado de encuestas"
+        create: "Crear encuesta"
+        no_polls: "No hay encuestas."
+      new:
+        title: "Nueva encuesta"
+        submit_button: "Crear encuesta"
+      edit:
+        title: "Editar encuesta"
+        submit_button: "Actualizar encuesta"
+      show:
+        no_questions: "No hay preguntas asignadas a esta encuesta."
+      destroy:
+        success_notice: "Encuesta eliminada correctamente"
+        unable_notice: "No se pueden eliminar encuestas con votos"
+    sdg:
+      polls: "Encuestas"
+    questions:
+      index:
+        title: "Preguntas de encuestas"
+        filter_poll: Filtrar por encuesta
+        select_poll: Seleccionar encuesta
+        create_question: "Crear pregunta para encuesta"
+        table_poll: "Encuesta"
+        poll_not_assigned: "Encuesta no asignada"
+      new:
+        title: "Crear pregunta ciudadana para la encuesta %{poll}"
+      form:
+        poll_help: "Solo se pueden seleccionar encuestas que no hayan empezado"
+      no_edit: "Una vez comenzada la encuesta no será posible crear, editar o eliminar preguntas, respuestas o cualquier contenido asociado a la encuesta."

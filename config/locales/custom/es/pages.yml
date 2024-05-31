@@ -3,10 +3,13 @@ es:
     help:
       menu:
         processes: "Propuestas del Cabildo"
+        polls: "Encuestas"
       processes:
         title: "Propuestas del Cabildo"
         link: "propuestas del Cabildo"
         feature: "Para participar en la propuestas del Cabildo tienes que %{link} y verificar tu cuenta."
+      polls:
+        title: "Encuestas"
     breadcrumbs:
       root: Inicio
       entity: Cabildo Abierto
@@ -24,7 +27,7 @@ es:
             - key_column: 2
               page_column: Propuestas
             - key_column: 3
-              page_column: Votaciones
+              page_column: Encuestas
             - key_column: 4
               page_column: Presupuestos participativos
             - key_column: 5

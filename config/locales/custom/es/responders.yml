@@ -1,0 +1,7 @@
+es:
+  flash:
+    actions:
+      create:
+        poll: "Encuesta creada correctamente."
+      update:
+        active_poll: "Descripción general de encuestas actualizada correctamente."
