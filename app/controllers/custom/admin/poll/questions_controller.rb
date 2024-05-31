@@ -5,7 +5,7 @@ class Admin::Poll::QuestionsController
     @question.author = @question.proposal&.author || current_user
 
     if @question.save
-      if @question.vote_type == "open"
+      if (["open", "info_gender", "info_birthdate", "info_locality"].include?(@question.vote_type))
         redirect_to admin_poll_path(@question.poll)
       else
         redirect_to admin_question_path(@question)

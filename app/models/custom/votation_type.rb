@@ -3,7 +3,7 @@ class VotationType < ApplicationRecord
 
   QUESTIONABLE_TYPES = %w[Poll::Question].freeze
 
-  enum vote_type: %w[unique multiple open]
+  enum vote_type: %w[unique multiple open info_gender info_birthdate info_locality]
 
   validates :questionable, presence: true
   validates :questionable_type, inclusion: { in: ->(*) { QUESTIONABLE_TYPES }}

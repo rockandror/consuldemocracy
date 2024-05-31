@@ -15,6 +15,9 @@ es:
         geozone_id: Localidad (opcional)
       votation_type/vote_type:
         open: Respuesta abierta
+        info_gender: Género del usuario
+        info_birthdate: Fecha de nacimiento del usuario
+        info_locality: Localidad del usuario
     models:
       audit:
         one: "Registro de cambio"

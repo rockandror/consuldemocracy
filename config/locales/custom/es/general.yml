@@ -36,6 +36,9 @@ es:
       tenerife_logo: "Cabildo Tenerife"
   poll_questions:
     description:
+      info_birthdate: Si tienes esta información en tu perfil, se autocompleta automáticamente
+      info_locality: Si tienes esta información en tu perfil, se autocompleta automáticamente
+      info_gender: Si tienes esta información en tu perfil, se autocompleta automáticamente
       open: "Escribe aquí tu respuesta."
     show:
       open:

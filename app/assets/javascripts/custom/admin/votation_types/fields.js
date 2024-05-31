@@ -7,6 +7,7 @@
         $(".description-unique").show();
         $(".description-multiple").hide();
         $(".description-open").hide();
+        $(".description-info").hide();
         $(".votation-type-max-votes").prop("disabled", true);
         return
       } 
@@ -15,6 +16,7 @@
         $(".description-unique").hide();
         $(".description-multiple").show();
         $(".description-open").hide();
+        $(".description-info").hide();
         $(".votation-type-max-votes").prop("disabled", false);
         return
       }
@@ -23,6 +25,16 @@
         $(".description-unique").hide();
         $(".description-multiple").hide();
         $(".description-open").show();
+        $(".description-info").hide();
+        $(".votation-type-max-votes").prop("disabled", true);
+        return
+      }
+      if ($(this).val().startsWith("info_")) {
+        $(".max-votes").hide();
+        $(".description-unique").hide();
+        $(".description-multiple").hide();
+        $(".description-open").hide();
+        $(".description-info").show();
         $(".votation-type-max-votes").prop("disabled", true);
         return
       }

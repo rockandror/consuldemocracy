@@ -1,5 +1,6 @@
 class Poll::Exporter
     require "csv"
+    require 'date'
 
     def initialize(poll_answers = [])
       @answers = poll_answers
@@ -24,11 +25,21 @@ class Poll::Exporter
       end
 
       def csv_values(answer)
+        if answer.question.vote_type == 'info_birthdate'
+          answer_text = calculate_age(answer.answer.to_date)
+        else
+          answer_text = answer.answer
+        end
         [
           answer.id.to_s,
           answer.question_id.to_s,
-          answer.answer,
+          answer_text,
           answer.author_id.to_s
         ]
+      end
+
+      def calculate_age(dob)
+        now = Time.now.utc.to_date
+        now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
       end
   end

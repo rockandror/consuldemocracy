@@ -20,6 +20,63 @@
     <% end %>
   <% end %>
 
+  <% if question.vote_type == "info_gender" %>
+    <% if can?(:answer, question) && !question.poll.voted_in_booth?(current_user) %>
+      <%= form_tag answer_question_path(question), remote: true, :"data-turbolinks"=>"true", id: "question-#{question.id}", class: "text-input-form" do %>
+          <% select_options = User::GENDER.map { |g| [t("activemodel.models.user.gender.#{g}"), g] } %>
+          <%= select_tag :answer,
+              options_for_select(select_options, selected: info_gender_answer),
+              label: t("devise_views.users.registrations.new.gender_label"),
+              include_blank: true %>
+        <% if question.answers.by_author(current_user).present? %>
+          <%= submit_tag("Enviado", :class => "button answered") %>
+        <% else %>
+          <%= submit_tag("Enviar", :class => "button secondary hollow") %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <%= form_tag answer_question_path(question), remote: true, :"data-turbolinks"=>"true", id: "question-#{question.id}", class: "text-input-form" do %>
+          <% select_options = User::GENDER.map { |g| [t("activemodel.models.user.gender.#{g}"), g] } %>
+          <%= select_tag :answer,
+              options_for_select(select_options, selected: info_gender_answer),
+              label: t("devise_views.users.registrations.new.gender_label"),
+              include_blank: true, disabled: true %>
+      <% end %>
+    <% end %>
+  <% elsif question.vote_type == "info_birthdate" %>
+    <% if can?(:answer, question) && !question.poll.voted_in_booth?(current_user) %>
+      <%= form_tag answer_question_path(question), remote: true, :"data-turbolinks"=>"true", id: "question-#{question.id}" do %>
+        <%= date_select(:answer, "date_of_birth", selected: info_birthdate, start_year: 1900, end_year: 2030) %>
+        <% if question.answers.by_author(current_user).present? %>
+          <%= submit_tag("Enviado", :class => "button answered") %>
+        <% else %>
+          <%= submit_tag("Enviar", :class => "button secondary hollow") %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <%= date_select(:answer, "date_of_birth", selected: info_birthdate, start_year: 1900, end_year: 2030, disabled: true) %>
+    <% end %>
+  <% elsif question.vote_type == "info_locality" %>
+    <% if can?(:answer, question) && !question.poll.voted_in_booth?(current_user) %>
+    <%= form_tag answer_question_path(question), remote: true, :"data-turbolinks"=>"true", id: "question-#{question.id}" do %>
+        <% select_options = Geozone.order(:name).map { |geozone| [geozone.name, geozone.id] } %>
+        <%= select_tag :answer,
+          options_for_select(select_options, selected: info_locality),
+          include_blank: true %>
+        <% if question.answers.by_author(current_user).present? %>
+          <%= submit_tag("Enviado", :class => "button answered") %>
+        <% else %>
+          <%= submit_tag("Enviar", :class => "button secondary hollow") %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <% select_options = Geozone.order(:name).map { |geozone| [geozone.name, geozone.id] } %>
+      <%= select_tag :answer,
+        options_for_select(select_options, selected: info_locality),
+        include_blank: true, disabled: true %>
+    <% end %>
+  <% end %>
+
   <% if can?(:answer, question) && !question.poll.voted_in_booth?(current_user) %>
     <% question_answers.each do |question_answer| %>
       <% if already_answered?(question_answer) %>

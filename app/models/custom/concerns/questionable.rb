@@ -6,7 +6,7 @@ module Questionable
   private
 
     def find_by_attributes(user, title)
-      if vote_type == "open"
+      if ["open", "info_gender", "info_birthdate", "info_locality"].include?(vote_type)
         { author: user }
       else
         consul_find_by_attributes(user, title)
