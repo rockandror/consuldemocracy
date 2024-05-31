@@ -58,9 +58,9 @@ class Legislation::Answers::Exporter
         question.title,
         comment.body,
         comment.user.id,
-        answer.user.date_of_birth,
-        answer.user.geozone&.name,
-        get_gender(answer.user.gender)
+        comment.user.date_of_birth,
+        comment.user.geozone&.name,
+        get_gender(comment.user.gender)
       ]
     end
 
