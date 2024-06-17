@@ -25,7 +25,7 @@ describe "Multitenancy", :seed_tenants do
 
     with_subdomain("mars") do
       visit polls_path
-
+      expect(page).to have_content "YEAHHH!!!"
       expect(page).to have_content "Human rights for Martians?"
       expect(page).to have_css "html.tenant-mars"
       expect(page).not_to have_css "html.tenant-venus"

@@ -9,6 +9,7 @@ describe "Admin poll questions", :admin do
     question2 = create(:poll_question, poll: poll2, proposal: proposal)
 
     visit admin_poll_path(poll1)
+    expect(page).to have_content("YEAHHHH")
     expect(page).to have_content(poll1.name)
 
     within("#poll_question_#{question1.id}") do

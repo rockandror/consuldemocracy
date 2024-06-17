@@ -288,6 +288,8 @@ describe "Polls" do
 
       login_as(officer.user)
       visit new_officing_residence_path
+
+      expect(page).to have_content "YEAHHH!!!"
       officing_verify_residence
       click_button "Confirm vote"
 
