@@ -13,4 +13,10 @@ class Layout::CookiesConsent::SetupComponent < Layout::CookiesConsent::BaseCompo
   def vendors
     Cookies::Vendor.all
   end
+
+  private
+
+    def more_info_link
+      Setting["cookies_consent.more_info_link"]
+    end
 end
