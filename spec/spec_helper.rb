@@ -9,6 +9,7 @@ Dir["./spec/support/**/*.rb"].sort.each { |f| require f }
 Dir["./spec/shared/**/*.rb"].sort.each  { |f| require f }
 
 RSpec.configure do |config|
+  Capybara.always_include_port = false
   config.use_transactional_fixtures = true
   config.fixture_path = "spec/fixtures/files"
 

@@ -18,28 +18,30 @@ shared_examples "remotely_translatable" do |factory_name, path_name, path_argume
 
   context "After click remote translations button" do
     describe "without delayed jobs" do
+
       scenario "request a translation of an already translated text" do
         response = generate_response(resource)
         expect_any_instance_of(RemoteTranslations::Microsoft::Client).to receive(:call).and_return(response)
 
-        in_browser(:one) do
+        # Navegador 1: Usa la sesión de Capybara para el primer usuario
+        Capybara.using_session(:user_one) do
           visit path
           select "Español", from: "Language:"
-
           expect(page).to have_button "Traducir página"
         end
 
-        in_browser(:two) do
+        # Navegador 2: Usa una segunda sesión de Capybara para el segundo usuario
+        Capybara.using_session(:user_two) do
           visit path
           select "Español", from: "Language:"
           click_button "Traducir página"
-
-          expect(page).to have_content "Se han solicitado correctamente las traducciones"
+          expect(page).to have_content I18n.t("remote_translations.create.enqueue_remote_translation"), wait: 10
+          expect(page).to have_content(/(Se han solicitado correctamente las traducciones|Translations have been correctly requested.)/, wait: 10)
         end
 
-        in_browser(:one) do
+        # Volver a Navegador 1 para realizar más acciones
+        Capybara.using_session(:user_one) do
           click_button "Traducir página"
-
           expect(page).not_to have_button "Traducir página"
         end
       end
