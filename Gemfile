@@ -82,6 +82,7 @@ group :test do
   gem "selenium-webdriver", "~> 4.25.0"
   gem "simplecov", "~> 0.22.0", require: false
   gem "simplecov-lcov", "~> 0.8.0", require: false
+  gem "test-prof", "~> 1.0"
 end
 
 group :development do

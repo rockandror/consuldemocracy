@@ -54,13 +54,16 @@ jobs:
         run: bundle exec rake db:setup
       - name: Compile assets
         run: bundle exec rake assets:precompile > /dev/null 2>&1
-      - name: Run test suite
+      - name: Run test suite with TestProf tools
         env:
           KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC }}
           KNAPSACK_PRO_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
           KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
           KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
           KNAPSACK_PRO_LOG_LEVEL: info
+          TEST_STACK_PROF: 1
+          FDOC: 1
+          EVENT_PROF: 'transaction'
         run: bin/knapsack_pro_rspec
       - name: Coveralls Parallel
         if: ${{ env.TEST_COVERAGE == 1 }}
