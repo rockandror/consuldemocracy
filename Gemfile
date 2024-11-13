@@ -83,6 +83,7 @@ group :test do
   gem "simplecov", "~> 0.22.0", require: false
   gem "simplecov-lcov", "~> 0.8.0", require: false
   gem "test-prof", "~> 1.0"
+  gem "stackprof", ">= 0.2.9", require: false
 end
 
 group :development do
