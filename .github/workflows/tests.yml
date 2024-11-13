@@ -1,11 +1,5 @@
 name: tests
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches-ignore:
-      - i18n_master
+on: push
 
 permissions:
   contents: read
@@ -61,7 +55,10 @@ jobs:
           KNAPSACK_PRO_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
           KNAPSACK_PRO_FIXED_QUEUE_SPLIT: true
           KNAPSACK_PRO_LOG_LEVEL: info
-        run: bin/knapsack_pro_rspec
+        run: bin/knapsack_pro_rspec --format documentation
+
+      - name: Run entire suite for RSpec Tracer analysis
+        run: bin/rspec --format documentation
       - name: Coveralls Parallel
         if: ${{ env.TEST_COVERAGE == 1 }}
         uses: coverallsapp/github-action@master

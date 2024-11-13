@@ -10,6 +10,13 @@ if ENV["TEST_COVERAGE"] && !ENV["TEST_COVERAGE"].empty?
   SimpleCov.formatter = SimpleCov::Formatter::LcovFormatter
   SimpleCov.start("rails")
 end
+
+require "rspec/tracer"
+
+RSpecTracer.configure do |config|
+  config.storage_path = "./tmp/rspec_tracer_data"
+end
+
 require File.expand_path("../../config/environment", __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 
