@@ -60,7 +60,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each, type: :system) do |example|
-    driven_by :selenium_chrome_headless
+    driven_by :headless_chrome
     Capybara.default_set_options = { clear: :backspace }
   end
 
