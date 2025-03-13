@@ -69,7 +69,7 @@ module Capybara
   end
 end
 
-Capybara.register_driver :headless_chrome do |app|
+Capybara.register_driver :selenium_chrome_headless do |app|
   options = Selenium::WebDriver::Chrome::Options.new.tap do |opts|
     opts.add_argument "--headless"
     opts.add_argument "--no-sandbox"
