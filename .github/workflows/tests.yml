@@ -8,7 +8,7 @@ env:
 
 jobs:
   tests:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-20.04
     timeout-minutes: 60
     services:
       postgres:
@@ -71,7 +71,7 @@ jobs:
   coveralls:
     permissions:
       contents: none
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-20.04
     needs: tests
     steps:
       - name: Finish coveralls
