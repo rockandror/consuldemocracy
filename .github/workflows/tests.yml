@@ -9,12 +9,8 @@ env:
 
 jobs:
   tests:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 60
-    container:
-      image: browserless/chrome:122.0
-      options: --shm-size=2g  # evita errores de memoria compartida con headless chrome
-
     services:
       postgres:
         image: postgres:13.16
@@ -27,7 +23,6 @@ jobs:
       PGUSER: consul
       PGPASSWORD: password
       RAILS_ENV: test
-
     strategy:
       fail-fast: false
       matrix:
@@ -46,13 +41,19 @@ jobs:
       - name: Install node packages
         run: npm clean-install
       - name: Install ImageMagick
-        run: apt-get update && apt-get install -y imagemagick
+        run: sudo apt-get update && sudo apt-get install -y imagemagick
       - name: Copy secrets and database files
         run: for i in config/*.example; do cp "$i" "${i/.example}"; done
       - name: Setup database
         run: bundle exec rake db:setup
       - name: Compile assets
         run: bundle exec rake assets:precompile > /dev/null 2>&1
+      - name: Install Chrome 122 from GitHub Releases
+        run: |
+          sudo apt-get remove -y google-chrome-stable || true
+          wget -O chrome122.deb https://github.com/jonny-dev-support/chrome-archives/releases/download/v122.0.6261.112/google-chrome-stable_122.0.6261.112-1_amd64.deb
+          sudo dpkg -i chrome122.deb || sudo apt-get install -f -y
+          google-chrome-stable --version
       - name: Run test suite
         env:
           KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC }}
@@ -77,7 +78,7 @@ jobs:
   coveralls:
     permissions:
       contents: none
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: tests
     steps:
       - name: Finish coveralls
