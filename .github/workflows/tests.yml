@@ -9,8 +9,12 @@ env:
 
 jobs:
   tests:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     timeout-minutes: 60
+    container:
+      image: browserless/chrome:122.0
+      options: --shm-size=2g  # evita errores de memoria compartida con headless chrome
+
     services:
       postgres:
         image: postgres:13.16
@@ -23,6 +27,7 @@ jobs:
       PGUSER: consul
       PGPASSWORD: password
       RAILS_ENV: test
+
     strategy:
       fail-fast: false
       matrix:
@@ -41,15 +46,13 @@ jobs:
       - name: Install node packages
         run: npm clean-install
       - name: Install ImageMagick
-        run: sudo apt-get install imagemagick
+        run: apt-get update && apt-get install -y imagemagick
       - name: Copy secrets and database files
         run: for i in config/*.example; do cp "$i" "${i/.example}"; done
       - name: Setup database
         run: bundle exec rake db:setup
       - name: Compile assets
         run: bundle exec rake assets:precompile > /dev/null 2>&1
-      - name: Install Chromium
-        run: sudo apt-get install -y chromium-browser
       - name: Run test suite
         env:
           KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC: ${{ secrets.KNAPSACK_PRO_TEST_SUITE_TOKEN_RSPEC }}
@@ -74,7 +77,7 @@ jobs:
   coveralls:
     permissions:
       contents: none
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     needs: tests
     steps:
       - name: Finish coveralls
