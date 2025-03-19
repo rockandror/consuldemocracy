@@ -112,7 +112,7 @@ describe "Admin legislation questions", :admin do
 
       expect(page).not_to have_css "#error_explanation"
 
-      visit edit_question_url
+      refresh
       expect(page).to have_field(field_en[:id], with: "Changed")
     end
 
@@ -131,7 +131,7 @@ describe "Admin legislation questions", :admin do
       expect(page).to have_field fields_for(:en).last[:id], with: "No"
 
       click_button "Save changes"
-      visit edit_question_url
+      refresh
 
       expect(page).not_to have_field fields_for(:en).first[:id], with: "Yes"
       expect(page).to have_field fields_for(:en).last[:id], with: "No"

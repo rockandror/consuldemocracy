@@ -1,0 +1,302 @@
+diff --git a/spec/shared/system/flaggable.rb b/spec/shared/system/flaggable.rb
+index b40f3c4802..899fb549fd 100644
+--- a/spec/shared/system/flaggable.rb
++++ b/spec/shared/system/flaggable.rb
+@@ -34,7 +34,7 @@ shared_examples "flaggable" do |factory_name, admin: false|
+       expect(page).not_to have_link "Flag as inappropriate", visible: :all
+     end
+ 
+-    visit path
++    refresh
+ 
+     within "##{dom_id(flaggable)} .flag-content" do
+       expect(page).to have_link "Unflag", visible: :hidden
+diff --git a/spec/system/account_spec.rb b/spec/system/account_spec.rb
+index 04c2d7e176..91e74ce7ba 100644
+--- a/spec/system/account_spec.rb
++++ b/spec/system/account_spec.rb
+@@ -41,7 +41,7 @@ describe "Account" do
+ 
+     expect(page).to have_content "Changes saved"
+ 
+-    visit account_path
++    refresh
+ 
+     expect(page).to have_css "input[value='Larry Bird']"
+     expect(find("#account_email_on_comment")).to be_checked
+@@ -96,7 +96,7 @@ describe "Account" do
+ 
+     expect(page).to have_content "Changes saved"
+ 
+-    visit account_path
++    refresh
+ 
+     expect(page).to have_css "input[value='Google']"
+     expect(find("#account_email_on_comment")).to be_checked
+@@ -130,7 +130,7 @@ describe "Account" do
+       click_button "Save changes"
+       expect(page).to have_content "Changes saved"
+ 
+-      visit account_path
++      refresh
+       expect(find("#account_official_position_badge")).to be_checked
+     end
+ 
+@@ -144,7 +144,7 @@ describe "Account" do
+       expect(page).not_to have_css "#account_official_position_badge"
+ 
+       login_as(official_user3)
+-      visit account_path
++      refresh
+ 
+       expect(page).not_to have_css "#account_official_position_badge"
+     end
+diff --git a/spec/system/admin/budget_investments_spec.rb b/spec/system/admin/budget_investments_spec.rb
+index 1032ed76cd..eb820d0ef7 100644
+--- a/spec/system/admin/budget_investments_spec.rb
++++ b/spec/system/admin/budget_investments_spec.rb
+@@ -72,7 +72,7 @@ describe "Admin budget investments", :admin do
+       end
+ 
+       budget_investment3.update!(administrator_id: admin.id)
+-      visit admin_budget_budget_investments_path(budget_id: budget.id)
++      refresh
+ 
+       within("#budget_investment_#{budget_investment3.id}") do
+         expect(page).to have_content("Gema")
+@@ -1814,7 +1814,7 @@ describe "Admin budget investments", :admin do
+       expect(cookie_value).to eq("id,supports,admin,geozone,feasibility,valuation_finished," \
+                                  "visible_to_valuators,selected,incompatible,author")
+ 
+-      visit admin_budget_budget_investments_path(budget)
++      refresh
+ 
+       cookie_value = cookie_by_name("investments-columns")[:value]
+ 
+diff --git a/spec/system/admin/legislation/questions_spec.rb b/spec/system/admin/legislation/questions_spec.rb
+index d19b42f332..57b6f9f06c 100644
+--- a/spec/system/admin/legislation/questions_spec.rb
++++ b/spec/system/admin/legislation/questions_spec.rb
+@@ -112,7 +112,7 @@ describe "Admin legislation questions", :admin do
+ 
+       expect(page).not_to have_css "#error_explanation"
+ 
+-      visit edit_question_url
++      refresh
+       expect(page).to have_field(field_en[:id], with: "Changed")
+     end
+ 
+@@ -131,7 +131,7 @@ describe "Admin legislation questions", :admin do
+       expect(page).to have_field fields_for(:en).last[:id], with: "No"
+ 
+       click_button "Save changes"
+-      visit edit_question_url
++      refresh
+ 
+       expect(page).not_to have_field fields_for(:en).first[:id], with: "Yes"
+       expect(page).to have_field fields_for(:en).last[:id], with: "No"
+diff --git a/spec/system/admin/poll/booths_spec.rb b/spec/system/admin/poll/booths_spec.rb
+index 9462358dfa..7b38e46ea1 100644
+--- a/spec/system/admin/poll/booths_spec.rb
++++ b/spec/system/admin/poll/booths_spec.rb
+@@ -68,7 +68,7 @@ describe "Admin booths", :admin do
+ 
+     expect(page).to have_content "Booth created successfully"
+ 
+-    visit admin_booths_path
++    refresh
+     expect(page).to have_content "Upcoming booth"
+     expect(page).to have_content "39th Street, number 2, ground floor"
+   end
+diff --git a/spec/system/admin/poll/questions/options/options_spec.rb b/spec/system/admin/poll/questions/options/options_spec.rb
+index 6f79f83789..50ce28e28f 100644
+--- a/spec/system/admin/poll/questions/options/options_spec.rb
++++ b/spec/system/admin/poll/questions/options/options_spec.rb
+@@ -64,7 +64,7 @@ describe "Poll question options", :admin do
+     expect(page).to have_content "Changes saved"
+     expect(page).to have_content "New title"
+ 
+-    visit admin_question_path(question)
++    refresh
+ 
+     expect(page).not_to have_content "Answer title"
+ 
+diff --git a/spec/system/admin/site_customization/information_texts_spec.rb b/spec/system/admin/site_customization/information_texts_spec.rb
+index 206295aa7b..48e32fa6b6 100644
+--- a/spec/system/admin/site_customization/information_texts_spec.rb
++++ b/spec/system/admin/site_customization/information_texts_spec.rb
+@@ -74,7 +74,7 @@ describe "Admin custom information texts", :admin do
+ 
+       expect(page).to have_content "Translation updated successfully"
+ 
+-      visit admin_site_customization_information_texts_path
++      refresh
+       select "Français", from: "Current language"
+ 
+       expect(page).to have_content "Aide personalise sur les débats"
+diff --git a/spec/system/admin/system_emails_spec.rb b/spec/system/admin/system_emails_spec.rb
+index baefc2e2f0..535bdb9963 100644
+--- a/spec/system/admin/system_emails_spec.rb
++++ b/spec/system/admin/system_emails_spec.rb
+@@ -333,7 +333,7 @@ describe "System Emails" do
+ 
+       expect(page).not_to have_content("Proposal A Title")
+ 
+-      visit admin_system_email_preview_pending_path("proposal_notification_digest")
++      refresh
+ 
+       expect(page).to have_content("Proposal B")
+       expect(page).not_to have_content("Proposal A Title")
+diff --git a/spec/system/admin/tags_spec.rb b/spec/system/admin/tags_spec.rb
+index 5406757db3..4266661863 100644
+--- a/spec/system/admin/tags_spec.rb
++++ b/spec/system/admin/tags_spec.rb
+@@ -24,7 +24,7 @@ describe "Admin tags", :admin do
+       click_button "Create topic"
+     end
+ 
+-    visit admin_tags_path
++    refresh
+ 
+     expect(page).to have_content "important issues"
+   end
+diff --git a/spec/system/budget_polls/officing_spec.rb b/spec/system/budget_polls/officing_spec.rb
+index c88d281809..87ec22f2be 100644
+--- a/spec/system/budget_polls/officing_spec.rb
++++ b/spec/system/budget_polls/officing_spec.rb
+@@ -18,7 +18,7 @@ describe "Budget Poll Officing" do
+     create(:poll_shift, officer: officer, booth: booth, date: Date.current, task: :recount_scrutiny)
+     create(:poll_officer_assignment, booth_assignment: booth_assignment, officer: officer)
+ 
+-    visit officing_root_path
++    refresh
+ 
+     expect(page).not_to have_content("You don't have officing shifts today")
+     expect(page).to have_content("Validate document")
+diff --git a/spec/system/budget_polls/voter_spec.rb b/spec/system/budget_polls/voter_spec.rb
+index 80a975ad9e..0d6854d0cf 100644
+--- a/spec/system/budget_polls/voter_spec.rb
++++ b/spec/system/budget_polls/voter_spec.rb
+@@ -110,7 +110,7 @@ describe "BudgetPolls", :with_frozen_time do
+         expect(page).to have_content "Remove"
+       end
+ 
+-      visit budget_investment_path(budget, investment)
++      refresh
+ 
+       within("#budget_investment_#{investment.id}") do
+         expect(page).to have_content "Remove vote"
+diff --git a/spec/system/budgets/investments_spec.rb b/spec/system/budgets/investments_spec.rb
+index 87a9ed0b10..dd9d4df911 100644
+--- a/spec/system/budgets/investments_spec.rb
++++ b/spec/system/budgets/investments_spec.rb
+@@ -331,7 +331,7 @@ describe "Budget Investments" do
+       order = all(".budget-investment h3").map(&:text)
+       expect(order).not_to be_empty
+ 
+-      visit budget_investments_path(budget, heading_id: heading.id)
++      refresh
+       new_order = all(".budget-investment h3").map(&:text)
+ 
+       expect(order).to eq(new_order)
+@@ -522,7 +522,7 @@ describe "Budget Investments" do
+       order = all(".budget-investment h3").map(&:text)
+       expect(order).not_to be_empty
+ 
+-      visit budget_investments_path(budget, heading_id: heading.id)
++      refresh
+       new_order = all(".budget-investment h3").map(&:text)
+ 
+       expect(order).to eq(new_order)
+@@ -1167,7 +1167,7 @@ describe "Budget Investments" do
+ 
+       expect(page).to have_content "Investment project deleted successfully"
+ 
+-      visit user_path(user, tab: :budget_investments)
++      refresh
+ 
+       expect(page).to have_content "User has no public activity"
+       expect(page).not_to have_content investment1.title
+diff --git a/spec/system/legislation/draft_versions_spec.rb b/spec/system/legislation/draft_versions_spec.rb
+index 1e7c0b3e9d..8bb5590430 100644
+--- a/spec/system/legislation/draft_versions_spec.rb
++++ b/spec/system/legislation/draft_versions_spec.rb
+@@ -209,7 +209,7 @@ describe "Legislation Draft Versions" do
+       first(:css, ".annotator-hl").click
+       expect(page).to have_content "this is my annotation"
+ 
+-      visit legislation_process_draft_version_path(draft_version.process, draft_version)
++      refresh
+ 
+       expect(page).to have_css ".annotator-hl"
+       first(:css, ".annotator-hl").click
+diff --git a/spec/system/legislation/processes_spec.rb b/spec/system/legislation/processes_spec.rb
+index de95ae37f5..9061788c40 100644
+--- a/spec/system/legislation/processes_spec.rb
++++ b/spec/system/legislation/processes_spec.rb
+@@ -113,7 +113,7 @@ describe "Legislation" do
+         expect(page).to have_content("published")
+ 
+         login_as(administrator)
+-        visit legislation_processes_path
++        refresh
+         expect(page).not_to have_content("not published")
+         expect(page).to have_content("published")
+       end
+@@ -124,7 +124,7 @@ describe "Legislation" do
+         expect(page).to have_content("past published")
+ 
+         login_as(administrator)
+-        visit legislation_processes_path(filter: "past")
++        refresh
+         expect(page).not_to have_content("not published")
+         expect(page).to have_content("past published")
+       end
+diff --git a/spec/system/management/users_spec.rb b/spec/system/management/users_spec.rb
+index ce8f0647be..817cb0078f 100644
+--- a/spec/system/management/users_spec.rb
++++ b/spec/system/management/users_spec.rb
+@@ -86,7 +86,7 @@ describe "Users" do
+ 
+     expect(page).to have_content "User account deleted."
+ 
+-    visit management_document_verifications_path
++    refresh
+     fill_in "document_verification_document_number", with: "12345678Z"
+     click_button "Check document"
+ 
+diff --git a/spec/system/moderation/comments_spec.rb b/spec/system/moderation/comments_spec.rb
+index 3c1b8fd1a0..c373525453 100644
+--- a/spec/system/moderation/comments_spec.rb
++++ b/spec/system/moderation/comments_spec.rb
+@@ -16,7 +16,7 @@ describe "Moderate comments" do
+     end
+ 
+     login_as(citizen)
+-    visit debate_path(comment.commentable)
++    refresh
+ 
+     expect(page).to have_css(".comment", count: 1)
+     expect(page).not_to have_content("This comment has been deleted")
+diff --git a/spec/system/polls/voter_spec.rb b/spec/system/polls/voter_spec.rb
+index 52d2a352ab..f907ace9e8 100644
+--- a/spec/system/polls/voter_spec.rb
++++ b/spec/system/polls/voter_spec.rb
+@@ -27,7 +27,7 @@ describe "Voter" do
+         expect(page).not_to have_button("Vote Yes")
+       end
+ 
+-      visit poll_path(poll)
++      refresh
+ 
+       expect(page).to have_content("You have already participated in this poll.")
+       expect(page).to have_content("If you vote again it will be overwritten")
+@@ -51,7 +51,7 @@ describe "Voter" do
+         expect(page).to have_button("Vote No")
+       end
+ 
+-      visit poll_path(poll)
++      refresh
+ 
+       expect(page).not_to have_content("You have already participated in this poll.")
+       expect(page).not_to have_content("If you vote again it will be overwritten")
