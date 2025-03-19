@@ -42,6 +42,16 @@ jobs:
         run: npm clean-install
       - name: Install ImageMagick
         run: sudo apt-get install imagemagick
+      - name: Remove image-bundled Chrome
+        run: sudo apt-get purge google-chrome-stable
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: 128
+          install-chromedriver: true
+          install-dependencies: true
+      - name: Print installed Chrome version
+        run: chrome --product-version
       - name: Copy secrets and database files
         run: for i in config/*.example; do cp "$i" "${i/.example}"; done
       - name: Setup database
